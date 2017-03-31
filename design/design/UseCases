@@ -1,0 +1,504 @@
+UseCases
+
+**Jacks Use Cases:**
+
+1. Designer selects a block from the tabPane
+
+    1. The EventHandler<MouseClicked> for the ImageView of the block is triggered
+
+    2. The setMouseToBlock(Block b) method is called from the EventHandler and the appropriate Block is passed.
+
+    3. The mouse now contains an image of that block, and it can be placed in the Grid
+
+2. Designer places a block on the Grid
+
+    4. The click to place a block on the Grid triggers the EventHandler for the specific grid section that is clicked on. 
+
+    5. That event handler calls the getBlock() method to receive which Block is currently selected.
+
+    6. The getBlock() is surrounded with a try/catch to send an error if no Block is selected
+
+    7. If a Block is successfully placed, the Block is passed to the GameObject with the setBlock(int x, int y, Block b) method to put the Block in the appropriate location
+
+3. Designer selects a new Background color for the game
+
+    8. The Graphics menu is clicked on in the MenuBar
+
+    9. The SetBackground sub-menu is clicked on, calling the openBackgroundWindow() method
+
+    10. A color selection object is placed on a Scene, and then a new Stage is opened with the color selection, and an Okay button
+
+    11. The EventHandler<MouseClicked> for the Okay button calls the method GameObject.setBackgroundColor(ColorPicker.getValue());
+
+4. Designer selects a new image for a Block
+
+    12. The "New Image" button is clicked, and the EventHandler<MouseClicked> is triggered
+
+    13. A FileChooser object is created and the selectFile() method is called, opening a new Stage in the default pictures directory.
+
+    14. When a picture is selected and the Okay button is pressed, a new ImageView is created with the appropriate Image.
+
+    15. A new Block is created with the appropriate ImageView, and then added to the ObservableList<Block> in the TabPane
+
+    16. The Block then appears in the appropriate Tab, and it can be clicked on to set the properties of the Block
+
+**Hamsa’s Use Cases**
+
+1. User picks up a powerup
+
+    1. In simulation, Game Player checks for collisions between objects on screen
+
+    2. Collision Handler in Game Player detects collision between sprite (powerup) and sprite (user)
+
+    3. Collision Handler calls Controllers handle(Col1 player, Col2 item, allActiveSprites) which will call the same method within the Model/GameEngine.
+
+    4. Model finds the right model object that correlates with the views Col1 and Col2
+
+    5. Model finds the right Rule that handles collisions between these two objects
+
+    6. That Rule is executed
+
+    7. Physics Engine animates any movement specified within the Rule
+
+    8. Sprite views display changes
+
+2. User hits an enemy and dies
+
+    9. Simulation checks for collisions with Collision Handler
+
+    10. Collision Handler finds collision between enemy and user
+
+    11. Collision Handler calls handle(Col1 user, Col2 sprite) which calls this same method in the GameEngine
+
+    12. GameEngine finds the relevant model objects and rules pertaining to those specific objects
+
+    13. GameEngine would execute these Rules
+
+    14. Physics Engine would execute any movement-based rules.
+
+    15. UI would display updates
+
+3. Enemy runs away when user steps on a block
+
+    16. Collision Handler in Game Player detects a collision between User and block
+
+    17. Collision Handler calls Controller’s handle(Coll1 user, Coll2 block) method which calls the same method in Game Engine
+
+    18. Game Engine finds the Rule that involves that block and the user
+
+    19. That Rule will specify that the enemy runs away
+
+    20. That Rule block is executed and the Physics Engine handles the movement
+
+    21. The UI displays this update
+
+4. User pauses the game
+
+    22. Game Player detects user input
+
+    23. Game Player sends input to Controller which sends it to the Game Engine
+
+    24. Game Engine finds Rule for this input and executes the input
+
+    25. The Rule brings up a splashscreen which just pauses the game
+
+5. User enters a door to a new level
+
+    26. Game Player’s Collision Handler detects a collision between the door and user
+
+    27. Collision Handler calls handle(Coll1 user, Coll2 door) which calls the same method in the Game Engine
+
+    28. The Game Engine finds the Rule that contains the door and user and executes this Rule
+
+    29. This Rule will specify changing the level which will be done by the Game Engine’s interaction handler.
+
+    30. The changes will be displayed on the UI.
+
+6. User beats the entire game by hitting the end-of-level block on the last level
+
+    31. Collision Handler detects the collision between the User and the end-of-level block
+
+    32. Collision Handler calls handle(Coll1 user, Coll2 block) in the Controller
+
+    33. Controller calls this same method in the Game Engine
+
+    34. Game Engine finds relevant Rule and executes it, this time it will bring up an endgame splashscreen
+
+**Justin’s Use Cases**
+
+1. User uploads image to use as sprite
+
+    1. Button handler puts image into ImageView and calls SpriteFactory to make a sprite
+
+    2. Button handler calls addSprite(Sprite sprite) in TabView
+
+    3. TabView calls addSprite in its ScrollPane
+
+    4. ScrollPane displays sprite
+
+2. User adds text to splash screen
+
+    5. User clicks splash screen manager button on toolbar
+
+    6. Button handler opens splash screen manager window
+
+    7. User types text into text area and presses save
+
+    8. Save button handler calls setSplashText(String splashtext) on SplashData
+
+3. User deletes sprite from grid
+
+    9. User clicks on sprite
+
+    10. Sprite ImageView mouse listener sets selected sprite
+
+    11. User clicks delete button in toolbar
+
+    12. Delete button handler calls remove() on currently selected sprite
+
+4. User loads a game
+
+    13. GUIBuilder calls buildGUIFromFile(String Filename)
+
+    14. GUIBuilder instantiates XMLReader
+
+    15. XMLReader reads XML file and returns GameDataObject, which contains GridViewData and TabData
+
+    16. GUIBuilder calls createTabView(TabData d) on TabView and createGridView(GridViewData d) on GridView
+
+5. User sets interaction between hero and enemy to make hero lose a life
+
+    17. User clicks on set interactions button on toolbar, which opens interactions manager window
+
+    18. In hero-enemy line, user selects change lives from interaction type drop down box
+
+    19. User puts -1 into change lives field and presses save
+
+    20. InteractionManager creates new Rule and calls addRule(Rule r) on hero sprite
+
+**Jonathan’s Use Case**
+
+1. User sets number of lives of the Hero
+
+    1. Sprite is clicked and the Click handler refreshes the ToolBar to pertain to the selected sprite
+
+    2. User types in a number in the lives box
+
+    3. The lives box is parsed and the integer and Sprite.updateLives(integer) is called
+
+2. User uploads a file of sprites for the Tab view
+
+    4. "Upload Sprites" button is clicked
+
+    5. The user uploads an XML file of sprites
+
+    6. The Sprites are created in the SpriteFactory from the XML data
+
+    7. The Sprites are added to TabData 
+
+    8. Tabs are Updated
+
+3. User sets damage of an Enemy
+
+    9. Sprite is clicked and the Click handler refreshes the ToolBar to pertain to the selected sprite
+
+    10. User types in a number in the damage box
+
+    11. The lives box is parsed and the integer and Sprite.updateDamage(integer) is called
+
+4. User sets the order levels
+
+    12. User clicks Level maker button  and the Clicked Event is triggered
+
+    13. User then chooses order of files to set the level order
+
+    14. XML files are updated with the order they are in
+
+**Bilva’s Use Cases**
+
+1. Enemy gets to edge and turns around
+
+    1. In simulation, step checks for collisions in CollisionHandler
+
+    2. CollisionHandler catches a collision between the air block above the edge and enemy
+
+    3. CollisionHander calls to Controller handle(Col1 (player), Col2 (enemy), allActive (all the other current displayed Objects)), which calls the same method to Model. 
+
+    4. Model uses a map to find the correlating model for the enemy
+
+    5. Model changes the enemy’s  UIImageProperties to move in another direction
+
+    6. Physics Engine animates this movement appropriately 
+
+    7. UIView displays the changes
+
+2. User beats level
+
+    8. In simulation, user hits goal block
+
+    9. CollisionHandler catches a collision between the two sprites
+
+    10. CollisionHander calls to Controller handle(Col1 (player), Col2 (goal), allActive (all the other current displayed Objects)), which calls the same method to Model. 
+
+    11. Model uses a map to find the correlating model for the goal
+
+    12. Model loops through the goal rules and then calls the Rule Handler which calls the goal rule
+
+    13. The RuleHandler appropriately changes the game by following the goal rule
+
+3. User uses powerup
+
+    14. In simulation user hits space of other kay
+
+    15. GameEngine calls handleEvent(KeyCode, allActive)
+
+    16. Model loops through all rules or uses a class to effectively find related rules
+
+    17. Model runs rules whose needed object = KeyCode using RuleHandler
+
+    18. RuleHandler runs the object creation 
+
+4. User creates an object in the authoring environment which can be hit to create a powerup
+
+    19. In the authoring environment the UI is used to select the appropriate action
+
+    20. SpriteFactory creates this Sprite
+
+    21. XMLSaver saves this Sprite with XMLSerialization
+
+    22. When the GameEngine is initialized in Controller it takes in the parameter of the saved XMLData which Controller separates for GameEngine to only get needed data
+
+    23. GameEngine reads this data using XMLReader to create the appropriate model which contains an object creation rule that states when a collision occurs with the player a new object of certain type is created. 
+
+5. Player hits a portal object
+
+    24. In simulation, step checks for collisions in CollisionHandler
+
+    25. CollisionHandler catches collision between player and enemy
+
+    26. CollisionHander calls to Controller handle(Col1 (player), Col2 (portal), allActive (all the other current displayed Objects)), which calls the same method to Model. 
+
+    27. Model uses a map to find the correlating model for the enemy
+
+    28. The player model contains the rule which moves the sprite to a new location
+
+    29. Model changes the players location in the encapsulated object sent from front end
+
+    30. In View, the object is moved using the physics engine to the new location
+
+6. Enemy falls off edge
+
+    31. Enemy walks on simulation based on its current set movement
+
+    32. It reaches a edge and walks off
+
+    33. CollisionHandler detects that enemies collides with air tile
+
+    34. Calls method in model which finds the enemies’ model and uses it
+
+    35. The enemy model has a rule to deal with this which changes the Sprites current movement to be physics engine determine
+
+    36. Model uses newly updated sprite to change UIImageProperties Object appropriately
+
+    37. UIView moves object appropriately using new Properties object 
+
+7. Player enters a keyinput with no action
+
+    38. handleInteraction is called by Controller
+
+    39. UIView.getCollision() used to determine that interacting Objects is a keyCode input
+
+    40. The GameEngine.handleInteraction(KeyCode, UI.getAllActive()) is called
+
+        1. This loops through all models’ and their rules
+
+    41. No rule is found with keycode input as a requirement
+
+    42. Break;
+
+8. Player goes through a map connector (green tube in Mario) 
+
+    43. Same code as all previously stated collision interactions
+
+    44. Rule run has two lines
+
+        2. Changes current level to new level which updates in UI through pointers
+
+        3. Moves player to appropriate location like other rules
+
+**Henry’s Use Cases:**
+
+1. Player jumps on top of an enemy that is killed by being jumped on top of:
+
+    1. In simulation, step checks for collisions in CollisionHandler
+
+    2. CollisionHandler catches collision between player and enemy
+
+    3. CollisionHander calls to Controller handle(Col1 (player), Col2 (enemy), allActive (all the other current displayed Objects)), which calls the same method to Model. 
+
+    4. Model uses a map to find the correlating model for the enemy
+
+    5. The enemy model contains the reaction of the enemy to collision with the user
+
+    6. Model changes the enemy’s image view to a null string and returns 
+
+    7. In View, the change to null string triggers View to remove the object from the group
+
+2. Player collides with an enemy in a way that doesn’t kill the enemy
+
+    8. In simulation, step checks for collisions in CollisionHandler
+
+    9. CollisionHandler catches collision between player and enemy
+
+    10. CollisionHander calls to Controller handle(Col1 (player), Col2 (enemy), allActive (all the other current displayed Objects)), which calls the same method to Model. 
+
+    11. Model uses a map to find the correlating model for the enemy
+
+    12. The enemy model contains the reaction of the enemy to collision with the user and evaluates that the player does not kill the enemy
+
+    13. Model changes the player’s image view to a null string and returns
+
+    14. In View, the change to null string triggers View to ‘kill’ the player
+
+    15. Game reverts to last checkpoint and removes a life
+
+3. User saves the game
+
+    16. User presses the ‘save’ button on the GUI
+
+    17. View catches button press, pauses timeline, calls ‘save’ in Controller, and then restart timeline
+
+    18. Controller runs through all current map positions, settings, lives, speeds, etc. and writes to XML file with timestamp. 
+
+4. User restarts the current game
+
+    19. User presses the ‘restart’ button on the GUI
+
+    20. View catches button press, clears the group for the animation screen, and calls ‘restart’ in Controller
+
+    21. Controller runs parse() in XMLInterpreter using the original XML file, which restarts the game by resetting the positions of all the objects in the map
+
+    22. XML returns, sending it back to view, where view resets the number of lives, and the points
+
+    23. View then returns to simulation and runs the game
+
+**Jacob’s use cases:**
+
+     5.   Player launches fire
+
+1. User presses the space key
+
+2. Eventhandler is called in UIView on game engine object
+
+3. Model makes appropriate update, i.e. creates fire object by changing ImageView from a null String
+
+4. Updated view in 2d-array form List is sent back to the front end
+
+5. In View, animation method is called on List which uses physics engine to move the fireball  
+
+     6.  Fireball hits enemy
+
+1. In simulation, step checks for collisions in CollisionHandler
+
+2. CollisionHandler catches collision between fireball and enemy
+
+3. CollisionHander calls to Controller handle(Col1 (fireball), Col2 (enemy), allActive (all the other current displayed Objects)), which calls the same method to Model. 
+
+4. Model uses a map to find the correlating model for the enemy
+
+5. The enemy model contains the reaction of the enemy to collision with fireball
+
+6. Model changes the enemy’s image view and fireball’s image view to  null Strings and returns 
+
+7. In View, the change to null string triggers View to remove the object from the group
+
+   7.  Enemy reaches end of screen
+
+1. In simulation, step checks for location of enemy
+
+2. View reverses enemy’s direction by calling method on the enemy object itself
+
+    8.  Player collides with block
+
+1. In simulation, step checks for collisions in CollisionHandler
+
+2. CollisionHandler catches collision between player and block
+
+3. CollisionHander calls to Controller handle(Col1 (player), Col2 (block), allActive (all the other current displayed Objects)), which calls the same method to Model. 
+
+4. Model uses a map to find the correlating model for the block
+
+5. The block model contains the reaction of the block to collision with the user
+
+6. Model sees that block is not changed 
+
+7. Model changes user’s direction to 0 and returns
+
+8. View is updated
+
+    9.  Powerup block is hit
+
+1. In simulation, step checks for collisions in CollisionHandler
+
+2. CollisionHandler catches collision between player and powerup block
+
+3. CollisionHander calls to Controller handle(Col1 (player), Col2 (powerup block), allActive (all the other current displayed Objects)), which calls the same method to Model. 
+
+4. Model uses a map to find the correlating model for the power up block
+
+5. The enemy model contains the reaction of the power up block to collision with the user
+
+6. Model changes the power up’s image view to a null string
+
+7. Model changes user’s image (e.g. doubles height and width) and returns
+
+8. In View, the change to null string triggers View to remove the object from the group and update to user is made
+
+**Josh Kopen’s Use Cases**
+
+1. A brand new image is submitted by the user to be used in the game
+
+    1. The user selects the option in the Authoring Environment to create a new Image.
+
+    2. The Authoring Environment creates an instance of an image object
+
+    3. The Authoring Environment sends the image and the desired name of the image to the ImageSaver class with the saveImage(Image i) method
+
+    4. The ImageSaver puts the image into the folder in the proper format which allows it to be accessed later.
+
+2. The user wants to save the game
+
+    5. The user selects the option in the Authoring Environment to save the game
+
+    6. The Authoring Environment calls the writeFile(String fileName, Game g) method and sends the name for the desired game as well as the Game object which has the information about all of the set data from the game.
+
+    7. The XMLWriter will put the data into XML format using XStream and will then send this to the parent class FileWriter with the method createFile(String s) where the String will be the XML which was just created
+
+    8. The FileWriter will save the XML file in the proper resource file which can be accessed later
+
+3. The user wants to play a game
+
+    9. The user launches a new game
+
+    10. The Game Engine calls getInstructionData(String fileName) and the Game Player calls getMapData(String fileName) from the XMLParser.
+
+    11. The XMLParser calls its parent class the FileLoader twice, once for each method, with the method loadFile(String fileName) 
+
+    12. Both methods receive the XML file and parse the appropriate section.
+
+    13. The methods then use reflection to create usable objects for the Game Player and Game Engine
+
+    14. The methods then return those objects to the module calling them in order for those modules to be able to begin to set up the game
+
+4. The user wants to write scripts in Groovy to change their game
+
+    15. The user writes scripts in the authoring environment in Groovy
+
+    16. The Authoring environment calls the class GroovyHandler with the method interpretGroovy(String script, Game g)
+
+    17. The GroovyHandler will use LocalClassLoader’s loadClass(String name) method in order to properly be able to work with the Game’s classes
+
+    18. The GroovyHanlder will edit Game to the specifications as interpreted by the Groovy scripts
+
+    19. The method will terminate when all of the Groovy script is interpreted and the Game object will have been edited but nothing is returned.
+
