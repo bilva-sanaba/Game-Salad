@@ -5,21 +5,30 @@ package usecases;
  *
  */
 public class UseCase1 {
-	//check for collision in UIView
+	
+	/**
+	 * 	check for collision in UIView
+	 */
 	if(collision){
-		//CollisionHandler.handlecollision() 
+		CollisionHandler.handlecollision();
 	}
 	
-	//Handle collision and call controller in CollisionHandler
+	/**
+	 * Handle collision and call controller in CollisionHandler
+	 */
 	Controller.handleCollision();
 	
-	//handle collision in Controller
+	/**
+	 * handle collision in Controller
+	 */
 	Model. handleCollision(UIImageProperty player, UIImageProperty enemy, UIImageProperty<Sprite> allActive);
 	
 	//Model method to search for enemy's model, then change ImageView to a null string and return
 	//INSERT HERE BILVA, HAMSA, BELAL
 	
-	//send player to last checkpoint in View and remove a life
+	/**
+	 * send player to last checkpoint in View and remove a life
+	 */
 	player.setLocation(cp.getX(), cp.getY());
 	lives--;
 	
