@@ -24,4 +24,6 @@ public interface Sprite {
 	 * returns a list of Rules that the Sprite contains
 	 */
 	public List<Rule> getRules();
+	
+	public void setNewLocation();
 }
