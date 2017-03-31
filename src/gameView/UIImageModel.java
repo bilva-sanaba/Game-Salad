@@ -1,5 +1,6 @@
 package gameView;
 
-public class UIImageModel {
-
+public abstract class UIImageModel {
+	public abstract void currentCollision();
+	public abstract void allActive();
 }
