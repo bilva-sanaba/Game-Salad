@@ -1,5 +1,6 @@
 package controller_interfaces;
 
+import gameView.UIImageModel;
 import gameView.UIImageProperty;
 
 import java.io.File;
@@ -44,5 +45,7 @@ public interface ControllerInterface {
 	 * Resets the current game using the original XML file 
 	 */
 	public void resetCurrentGame();
+	
+	public void checkCollision(UIImageModel u);
 	
 }
