@@ -1,5 +1,6 @@
 package author_interfaces;
 
+import gameEngine_interface.Sprite;
 import javafx.scene.layout.GridPane;
 
 public interface GridView {

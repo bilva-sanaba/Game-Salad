@@ -1,5 +1,6 @@
 package author_interfaces;
 
+import gameEngine_interface.Sprite;
 import javafx.scene.control.TabPane;
 
 public interface TabView {
