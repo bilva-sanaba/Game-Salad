@@ -10,6 +10,7 @@ Josh Kopen:
 Henry Taylor: 
 - Primary: UIView
 - Secondary: Model and ImageProperties
+
 Jacob Weiss:
 - Primary: animating the sprites
 - Secondary: Controller
@@ -19,9 +20,11 @@ Both work on the PhysicsEngine
 Hamsa Pillai
 - Primary: Collision Handler
 - Secondary: Physics Handler
+
 Bilva Sanaba
 - Primary: Physics Handler
 - Secondary: Collision Handler
+
 Belal Taher
 - Primary: Deserializing game objects
 - Secondary: Collision Handler/Physics Handler
@@ -31,10 +34,12 @@ Jonathan Rub:
 - Assign reactions to collisions
 - Assign reactions to interaction 
 - Shared Editor
+
 Jack Bloomfeld:
 - Place game elements (i.e., starting positions for a level)
 - Determine the order of advancement 
-- Setup graphical elements 
+- Setup graphical elements
+
 Justin Yang:
 - Set instructions, splash screen, player setup, level bonuses, etc.
 - Tweak settings 
