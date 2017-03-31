@@ -21,7 +21,7 @@ public class UseCase1 {
 	/**
 	 * handle collision in Controller
 	 */
-	Model. handleCollision(UIImageProperty player, UIImageProperty enemy, UIImageProperty<Sprite> allActive);
+	GameEngineInterface.handleInteraction(List<UIImageProperty> {player, enemy} , UIImageProperty<Sprite> allActive);
 	
 	//Model method to search for enemy's model, then change ImageView to a null string and return
 	//INSERT HERE BILVA, HAMSA, BELAL
