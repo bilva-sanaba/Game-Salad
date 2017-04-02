@@ -11,7 +11,7 @@ import gameView.UIImageProperty;
  * @author Bilva
  *
  */
-public interface Sprite {
+public interface Entity {
 	/**
 	 * Takes parameters of interactingObjects to determine what rules should be followed, changes sprites with new rules if applicable
 	 * also changes UIImageProperties appropriately. 
@@ -19,11 +19,11 @@ public interface Sprite {
 	 * @param allActive
 	 * @param allSprites
 	 */
-	public void evaluateKeyRules(Collection<Object> interactingObjects, Collection<UIImageProperty> allActive, Collection<Sprite> allSprites);
+	public void evaluateKeyRules(Collection<Object> interactingObjects, Collection<UIImageProperty> allActive, Collection<Entity> allSprites);
 	/**
 	 * returns a list of Rules that the Sprite contains
 	 */
-	public List<Rule> getRules();
+	public List<Component> getRules();
 	
 	public void setNewLocation();
 }

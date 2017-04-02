@@ -3,5 +3,5 @@ package gameEngine_interface;
 import java.util.Collection;
 
 public interface ObjectCreationRule {
-	public Sprite createSprite(Collection<Object> interactingObjects);
+	public Entity createSprite(Collection<Object> interactingObjects);
 }

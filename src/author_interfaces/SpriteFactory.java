@@ -1,7 +1,7 @@
 package author_interfaces;
 
-import gameEngine_interface.Sprite;
+import gameEngine_interface.Entity;
 
 public interface SpriteFactory {
-	public Sprite makeSprite();
+	public Entity makeSprite();
 }

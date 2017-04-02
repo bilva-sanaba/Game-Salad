@@ -13,5 +13,5 @@ public interface RuleHandler {
 	 * @param rule
 	 * @param allSprites
 	 */
-	public void handleRule (Rule rule, List<Sprite> allSprites);
+	public void handleRule (Component rule, List<Entity> allSprites);
 }
