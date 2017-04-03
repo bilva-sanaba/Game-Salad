@@ -1,0 +1,52 @@
+Example Data by Mr. Data himself
+
+The first type of data files which we will need will be all of our needed image files. These will be saved in an images folder all together and will be saved in .jpeg format. In the first sprint, the images will probably have to be loaded in manually as preset images but we intend to let users add their own image files later. Secondly, we will have an HTML Page folder called html which will store all needed HTML pages. Finally, we will have a folder called sounds to hold all of the sound files needed for the game.
+
+We will also need resource files to change the languages in our authoring environment. We can create resource files in a folder which allows us to easily change the language on any of our buttons so that users of any language can utilize our fantastic authoring environment. An example of what one of these files would look like would be the file English.Resources:
+
+<table>
+  <tr>
+    <td>StartGame = Start
+ImageDropDown = Images
+FileTab= File
+EditTab= Edit
+ExitButton = Exit
+...</td>
+  </tr>
+</table>
+
+
+This resource file would continue so on and so forth with all of the needed labels and button names to be translatable to other languages.
+
+Lastly we will need to save XML files in order to load the games that we make and be able to save them. The authoring environment will send XML files which look like
+
+<table>
+  <tr>
+    <td><list>
+  <groovy.Brick>
+    <myX>10</myX>
+    <myY>20</myY>
+    <otherAttributes>
+      <string>Has powerup</string>
+    </otherAttributes>
+  </groovy.Brick>
+  <groovy.Brick>
+    <myX>30</myX>
+    <myY>49</myY>
+    <otherAttributes>
+      <string>Has powerup</string>
+      <string>Is Destroyable</string>
+    </otherAttributes>
+  </groovy.Brick>
+  <groovy.Brick>
+    <myX>3</myX>
+    <myY>5</myY>
+    <otherAttributes/>
+  </groovy.Brick>
+</list>
+</td>
+  </tr>
+</table>
+
+
+The data portion of the project will also be able to read in these XML files and create the objects for the actual game player to be able to use.
