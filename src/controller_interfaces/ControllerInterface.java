@@ -25,7 +25,7 @@ public interface ControllerInterface {
 	 * @param allActive - all active items on the screen 
 	 * @return Map of the old UIImageProperty to the new one
 	 */
-	public Map<UIImageProperty, UIImageProperty> handleCollision(UIImageProperty coll1, 
+	public UIImageProperty handleCollision(UIImageProperty coll1, 
 			UIImageProperty coll2, Collection<UIImageProperty> allActive);
 	
 	/**

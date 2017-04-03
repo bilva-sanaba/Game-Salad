@@ -1,6 +1,6 @@
 package usecases;
 
-import controller_interfaces.Controller;
+import controller.Controller;
 import gameEngine_interface.GameEngine;
 
 /**
