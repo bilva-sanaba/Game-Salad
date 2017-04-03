@@ -1,15 +1,31 @@
-package controller_interfaces;
-
-import java.util.Collection;
-import java.util.Map;
+package controller;
 
 import gameView.UIImageModel;
 import gameView.UIImageProperty;
+import gameView.UIView;
 
-public class Controller implements ControllerInterface{
+import java.util.Collection;
+
+import view_interfaces.UIViewInterface;
+import javafx.stage.Stage;
+import controller_interfaces.ControllerInterface;
+
+
+
+public class Controller implements ControllerInterface {
+	
+	UIViewInterface myGameView;
+	
+	public Controller(Stage s) {
+		myGameView = new UIView(s, this);
+	}
+	
+	public Controller() {
+	}
 
 	@Override
-	public Map<UIImageProperty, UIImageProperty> handleCollision(UIImageProperty coll1, UIImageProperty coll2,
+	public UIImageProperty handleCollision(
+			UIImageProperty coll1, UIImageProperty coll2,
 			Collection<UIImageProperty> allActive) {
 		// TODO Auto-generated method stub
 		return null;
@@ -38,5 +54,6 @@ public class Controller implements ControllerInterface{
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }
