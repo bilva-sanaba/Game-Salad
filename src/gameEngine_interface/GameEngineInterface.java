@@ -17,7 +17,7 @@ public interface GameEngineInterface {
 	 * @param collide2
 	 * @param allActive
 	 */
-	public void handleInteraction(Collection<Object> interactingObjects, Collection<UIImageProperty> allActive);
+	public void handleUpdates();
 
 	
 }
