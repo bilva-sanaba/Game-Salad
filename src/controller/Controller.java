@@ -1,5 +1,6 @@
 package controller;
 
+import gameView.UIImageModel;
 import gameView.UIImageProperty;
 import gameView.UIView;
 
@@ -17,6 +18,9 @@ public class Controller implements ControllerInterface {
 	
 	public Controller(Stage s) {
 		myGameView = new UIView(s, this);
+	}
+	
+	public Controller() {
 	}
 
 	@Override
@@ -41,6 +45,12 @@ public class Controller implements ControllerInterface {
 
 	@Override
 	public void resetCurrentGame() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void checkCollision(UIImageModel u) {
 		// TODO Auto-generated method stub
 		
 	}
