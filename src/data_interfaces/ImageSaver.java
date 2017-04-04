@@ -1,5 +1,11 @@
 package data_interfaces;
 
-public interface ImageSaver {
-	public void saveImage(Image i);
+public class ImageSaver implements FileSaver{
+
+	
+	public void createFile(String fileName, String data) {
+		
+		
+	}
+
 }
