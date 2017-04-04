@@ -17,7 +17,6 @@ public class XMLWriter implements FileSaver{
 	private static final String SUFFIX = ".txt";
 	private static final String PREFIX = "games/";
 
-	@Override
 	public void createFile(String fileName, Object data) {
 		try {
 			File f = new File(PREFIX + fileName + SUFFIX);
@@ -32,6 +31,11 @@ public class XMLWriter implements FileSaver{
 		
 	}
 	
+	/**
+	 * writes an XML file which saves game data
+	 * @param fileName the desired name for the file
+	 * @param gameData the data which should be saved
+	 */
 	public void writeFile(String fileName, List gameData) {
 		LocalClassLoader loader = new LocalClassLoader();
         XStream serializer = new XStream(new DomDriver());
@@ -43,13 +47,4 @@ public class XMLWriter implements FileSaver{
         createFile(fileName, ret);
 	}
 	
-	public static void main(String[] args) {
-		XMLWriter x = new XMLWriter();
-		List l = new ArrayList();
-		l.add("jonathan");
-		l.add(1);
-		x.writeFile("rub", l);
-	}
-	
-
 }

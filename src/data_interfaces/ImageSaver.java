@@ -23,6 +23,11 @@ public class ImageSaver implements FileSaver{
 		}
 	}
 
+	/**
+	 * Saves an image for the user
+	 * @param fileName name of the file
+	 * @param i the image itself
+	 */
 	public void saveImage(String fileName, Image i) {
 		createFile(fileName, i);
 	}
