@@ -1,9 +1,41 @@
 package data_interfaces;
 
-import groovy.lang.GroovyClassLoader;
+import java.util.HashMap;
+import java.util.Map;
+import groovy.lang.*;
 
-public interface LocalClassLoader extends GroovyClassLoader{
-	public void add(Class<?> c);
-	public Class<?> loadClass(String name) throws ClassNotFoundException;
 
+/**
+ * A ClassLoader defines where to find classes when Java creates them.
+ * 
+ * This class allows for Java, XStream, and Groovy to share definitions, 
+ * no matter where they were created.
+ * 
+ * @author Robert C. Duvall
+ */
+public class LocalClassLoader extends GroovyClassLoader {
+    private Map<String, Class<?>> myClasses = new HashMap<>();
+
+    /**
+     * Add a new class definition to set of possible classes.
+     */
+    public void add (Class<?> c) {
+        myClasses.put(c.getName(), c);
+    }
+
+
+    /**
+     * @see GroovyClassLoader#loadClass(String)
+     */
+    @Override
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        if (myClasses.containsKey(name)) {
+            return myClasses.get(name);
+        }
+        else {
+        	
+        	add(super.loadClass(name));
+            return super.loadClass(name);
+        }
+    }
 }
