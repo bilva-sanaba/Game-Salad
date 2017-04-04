@@ -1,11 +1,16 @@
-import controller.Controller;
-import javafx.application.Application;
+
+import javafx.application.*;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.GUIBuilder;
 
 public class Main extends Application {
 
 	public void start(Stage arg0) throws Exception {
-		new Controller(arg0);
+		GUIBuilder gui = new GUIBuilder();
+		Scene s = gui.buildScene();
+		arg0.setScene(s);
+		arg0.show();
 	}
 
 	public static void main(String[] args) {
