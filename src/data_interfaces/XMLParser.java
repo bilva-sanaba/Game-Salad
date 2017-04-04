@@ -1,9 +1,12 @@
 package data_interfaces;
 
-import java.util.ArrayList;
+public class XMLParser implements FileLoader {
 
-public interface XMLParser extends FileLoader {
-	public ArrayList getMapData(String fileName);
-	public ArrayList getInstructionData(String fileName);
+	@Override
+	public String loadFile(String fileName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	
 }
