@@ -31,7 +31,7 @@ public class GUIBuilder {
 	/**
 	 * Resource bundle for all text displayed on screen.
 	 */
-	public static final ResourceBundle myResources = ResourceBundle.getBundle(DEFAULT_RESOUCES);
+	//public static final ResourceBundle myResources = ResourceBundle.getBundle(DEFAULT_RESOUCES);
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 
@@ -40,22 +40,27 @@ public class GUIBuilder {
 	 * Initializes the main Scene and Stage.
 	 */
 	public GUIBuilder(){
-		GridPane root = new GridPane();
+		
 		GUIComponent grid = new GridView();
 		GUIComponent tab = new TabView();
 		GUIComponent menu = new MenuView();
 		GUIComponent toolbar = new ToolBarView();
 		
-		myComp.add(grid);
+		//myComp.add(grid);
 		myComp.add(tab);
 		myComp.add(menu);
-		myComp.add(toolbar);
+		//myComp.add(toolbar);
 		
 	}
 	
 	public Pane buildPane() {
 		Pane myPane = new GridPane();
+		myPane.setPrefHeight(SCREEN_HEIGHT);
+		myPane.setPrefWidth(SCREEN_WIDTH);
 		
+		for(GUIComponent c: myComp){
+			myPane.getChildren().add(c.buildComponent());
+		}
 		return myPane;
 	}
 

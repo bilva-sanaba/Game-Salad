@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
 public class TabView extends GUIComponent{
@@ -15,6 +16,7 @@ public class TabView extends GUIComponent{
 	TabPane myTab = new TabPane();
 	
 	public TabView(){
+		GridPane.setConstraints(myTab, 1, 1);
 		Tab blockTab = new Tab();
 		blockTab.setText("Blocks");
 		blockTab.setContent(blocksView);
