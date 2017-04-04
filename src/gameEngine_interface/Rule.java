@@ -10,4 +10,8 @@ public interface Rule {
 	 */
 	public Rule getUpdatedRule(Collection<Object> interactingObjects);
 	public List<Object> checkNeededObjects();
+	
+	
+	
+	public void runRule();
 }

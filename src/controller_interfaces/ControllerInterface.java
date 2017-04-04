@@ -1,5 +1,6 @@
 package controller_interfaces;
 
+import gameView.UIImageModel;
 import gameView.UIImageProperty;
 
 import java.io.File;
@@ -24,7 +25,7 @@ public interface ControllerInterface {
 	 * @param allActive - all active items on the screen 
 	 * @return Map of the old UIImageProperty to the new one
 	 */
-	public Map<UIImageProperty, UIImageProperty> handleCollision(UIImageProperty coll1, 
+	public UIImageProperty handleCollision(UIImageProperty coll1, 
 			UIImageProperty coll2, Collection<UIImageProperty> allActive);
 	
 	/**
@@ -44,5 +45,7 @@ public interface ControllerInterface {
 	 * Resets the current game using the original XML file 
 	 */
 	public void resetCurrentGame();
+	
+	public void checkCollision(UIImageModel u);
 	
 }
