@@ -1,16 +1,29 @@
 package data_interfaces;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import groovy.LocalClassLoader;
+import data_interfaces.LocalClassLoader;
 
 public class XMLWriter implements FileSaver{
 
 	@Override
 	public void createFile(String fileName, String data) {
+		try {
+			File f = new File(fileName);
+			BufferedWriter b = new BufferedWriter(new FileWriter(f));
+			b.write(data);
+			b.close();
+		}
+		catch (IOException e) {
+			//TODO call the alert that they built
+		}
 		
 		
 	}
