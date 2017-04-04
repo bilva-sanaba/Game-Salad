@@ -1,6 +1,6 @@
 package author_interfaces;
 
-import gameEngine_interface.Sprite;
+import gameEngine_interface.Entity;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -18,7 +18,7 @@ public class GridComponent implements GridView{
 	}
 
 	@Override
-	public void placeSprite(Sprite s) {
+	public void placeSprite(Entity s) {
 		// TODO Auto-generated method stub
 		
 	}
