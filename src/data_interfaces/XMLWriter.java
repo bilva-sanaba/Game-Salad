@@ -14,11 +14,11 @@ import data_interfaces.LocalClassLoader;
 public class XMLWriter implements FileSaver{
 
 	@Override
-	public void createFile(String fileName, String data) {
+	public void createFile(String fileName, Object data) {
 		try {
 			File f = new File(fileName);
 			BufferedWriter b = new BufferedWriter(new FileWriter(f));
-			b.write(data);
+			b.write(data.toString());
 			b.close();
 		}
 		catch (IOException e) {

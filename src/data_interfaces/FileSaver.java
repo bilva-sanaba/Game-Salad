@@ -1,5 +1,5 @@
 package data_interfaces;
 
 public interface FileSaver {
-	public void createFile(String fileName, String data);
+	public void createFile(String fileName, Object data);
 }
