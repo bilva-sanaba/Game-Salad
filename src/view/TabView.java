@@ -9,12 +9,12 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 
-public class TabComponent extends GUIcomponent{
+public class TabView extends GUIComponent{
 	private ObservableList<ImageView> blocksList = FXCollections.observableArrayList();
 	private ListView<ImageView> blocksView = new ListView<ImageView>();
 	TabPane myTab = new TabPane();
 	
-	public TabComponent(){
+	public TabView(){
 		Tab blockTab = new Tab();
 		blockTab.setText("Blocks");
 		blockTab.setContent(blocksView);

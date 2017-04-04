@@ -2,7 +2,7 @@ package view;
 
 import java.util.*;
 
-import author_interfaces.GUIComponent;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -33,28 +33,34 @@ public class GUIBuilder {
 	 */
 	public static final ResourceBundle myResources = ResourceBundle.getBundle(DEFAULT_RESOUCES);
 
-	private Collection<GUIComponent> myComp = new Collection<GUIcomponent>;
+	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 
 	
 	/**
 	 * Initializes the main Scene and Stage.
 	 */
-	public GUIBuilder GUIBuilder(){
+	public GUIBuilder(){
 		GridPane root = new GridPane();
-		GUIcomponent grid = new GridView();
-		GUIcomponent tab = new TabView();
-		GUIcomponent menu = new MenuView();
-		GUIcomponent toolbar = new ToolBarView();
-		myComp.addAll(grid, tab, menu, toolbar);
+		GUIComponent grid = new GridView();
+		GUIComponent tab = new TabView();
+		GUIComponent menu = new MenuView();
+		GUIComponent toolbar = new ToolBarView();
+		
+		myComp.add(grid);
+		myComp.add(tab);
+		myComp.add(menu);
+		myComp.add(toolbar);
+		
 	}
 	
 	public Pane buildPane() {
 		Pane myPane = new GridPane();
-		myComp.stream().map(myPane::buildComponent);
+		
 		return myPane;
 	}
 
 	public Scene buildScene() {
 		Scene myScene = new Scene(buildPane());
+		return myScene;
 	}
 }
