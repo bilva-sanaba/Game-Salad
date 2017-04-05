@@ -2,6 +2,13 @@ package gameView;
 
 import java.awt.Dimension;
 
+import gameView.commands.AbstractCommand;
+import gameView.commands.LoadCommand;
+import gameView.commands.MakeCommand;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 import gameView.splashScreen.SplashView;
 import controller_interfaces.ControllerInterface;
 import javafx.stage.Stage;
@@ -18,7 +25,7 @@ public class UIView implements UIViewInterface {
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
 		myController = controller;
-		mySplash = new SplashView(this);
+		mySplash = new SplashView(this, getCommands());
 		getSplashScreen();
 	}
 
@@ -40,8 +47,23 @@ public class UIView implements UIViewInterface {
 		
 	}
 	
+	public void loadGame(String file) {
+		myController.loadNewGame(file);
+	}
+	
 	public void authorGame() {
 		
+	}
+	
+	private Collection<AbstractCommand> getCommands() {
+		Collection<AbstractCommand> list = new ArrayList<AbstractCommand>();
+		list.add(new LoadCommand(this));
+		list.add(new MakeCommand(this));
+		return list;
+	}
+	
+	public Stage getStage() {
+		return myStage;
 	}
 
 }

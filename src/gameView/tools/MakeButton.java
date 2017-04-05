@@ -7,8 +7,12 @@ public class MakeButton extends Button {
 
 	private String myText;
 	private AbstractCommand myCommand;
+	
+	
 	public MakeButton(String text, AbstractCommand com) {
 		myText = text;
 		myCommand = com;	
 	}
+	
+	
 }

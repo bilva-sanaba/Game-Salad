@@ -1,5 +1,5 @@
 package gameView.commands;
-
+import javafx.stage.Stage;
 import gameView.UIView;
 
 public abstract class AbstractCommand {
@@ -7,6 +7,7 @@ public abstract class AbstractCommand {
 	private UIView view;
 	
 	public AbstractCommand(UIView m) {
+		super();
 		view = m;
 	}
 
@@ -14,5 +15,7 @@ public abstract class AbstractCommand {
 		return view;
 	}
 	
-	protected abstract void execute();
+	public abstract void execute(Stage s);	
+	public abstract String getName();
 }
+ 

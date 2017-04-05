@@ -3,6 +3,7 @@
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
 }
+
 #splashlabel {
 	-fx-font-family: sans-serif;
 	-fx-alignment: bottom-right;
@@ -21,3 +22,18 @@
 	-fx-font-size: 75;
 	-fx-text-fill: white;
 }
+
+.button {
+	-fx-background-color: #708090;
+	-fx-text-fill: white;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-font-size: 40;
+	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
+}
+
+.button:hover {
+	-fx-background-color: #2f4f4f;
+	
+}
+
