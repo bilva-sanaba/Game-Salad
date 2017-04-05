@@ -1,9 +1,9 @@
-package gameEngine_interface;
-
-public class CollisionHandler {
-	
-	public <T> T detectCollision() {
-		return null;
-	}
-
-}
+//package gameEngine_interface;
+//
+//public class CollisionHandler {
+//	
+//	public <T> T detectCollision() {
+//		 
+//	}
+//
+//}
