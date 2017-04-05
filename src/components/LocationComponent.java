@@ -1,27 +1,19 @@
 package components;
 
-public class LocationComponent implements IComponent{
-	private int xLocation;
-	private int yLocation;
+/**
+ * Component used for determining the location of an object
+ * @author Bilva
+ *
+ */
+public class LocationComponent extends XYComponent implements IComponent {
 	public LocationComponent(int x,int y){
-		xLocation = x;
-		yLocation = y;
+		super(x,y);
 	}
-	public LocationComponent(){}
+	public LocationComponent(){
+		super();
+	}
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Location;
-	}
-	public void setX(int newX){
-		xLocation = newX;
-	}
-	public void setY(int newY){
-		yLocation = newY;
-	}
-	public int getX(){
-		return xLocation;
-	}
-	public int getY(){
-		return yLocation;
 	}
 }

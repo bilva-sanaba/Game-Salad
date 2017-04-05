@@ -5,6 +5,7 @@ import java.util.Collection;
 import components.IComponent;
 /**
  * Interface for Entity object which represents any object displayed in the game
+ * Note: Discuss with GameAuthor team if other methods are needed
  * @author Bilva
  *
  */
