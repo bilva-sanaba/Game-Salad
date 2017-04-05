@@ -39,7 +39,6 @@ public class Controller implements ControllerInterface {
 
 	@Override
 	public void loadNewGame(String filePath) {
-		// TODO Auto-generated method stub
 		
 	}
 
