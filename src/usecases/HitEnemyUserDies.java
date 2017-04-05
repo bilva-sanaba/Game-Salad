@@ -2,8 +2,8 @@ package usecases;
 
 
 import gameEngine_interface.CollisionHandler;
-import gameEngine_interface.Rule;
-import gameEngine_interface.Sprite;
+import gameEngine_interface.Component;
+import gameEngine_interface.Entity;
 
 public class HitEnemyUserDies {
 	
@@ -13,8 +13,8 @@ public class HitEnemyUserDies {
 	 */
 	public void detectCollision() {
 		CollisionHandler ch = new CollisionHandler();
-		Sprite collider = ch.detectCollision(); 
-		Sprite collidee = ch.detectCollision();
+		Entity collider = ch.detectCollision(); 
+		Entity collidee = ch.detectCollision();
 		handleInteraction(collider, collidee);
 	}
 
@@ -23,9 +23,9 @@ public class HitEnemyUserDies {
 	 * @param collider
 	 * @param collidee
 	 */
-	public void handleInteraction(Sprite collider, Sprite collidee) {
-		Rule colliderRule = collider.getRules().get(0);
-		Rule collideeRule = collidee.getRules().get(0);
+	public void handleInteraction(Entity collider, Entity collidee) {
+		Component colliderRule = collider.getRules().get(0);
+		Component collideeRule = collidee.getRules().get(0);
 		colliderRule.checkNeededObjects();
 		collideeRule.checkNeededObjects();
 		colliderRule.runRule();
@@ -38,7 +38,7 @@ public class HitEnemyUserDies {
 	 * @param collider
 	 * @param collidee
 	 */
-	public void handlePhysics(Sprite collider, Sprite collidee) {
+	public void handlePhysics(Entity collider, Entity collidee) {
 		collider.setNewLocation();
 		collidee.setNewLocation();
 	}
