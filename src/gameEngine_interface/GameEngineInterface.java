@@ -10,14 +10,9 @@ import gameView.UIImageProperty;
  */
 public interface GameEngineInterface {
 	/**
-	 * Method takes interactingObjects, currently limited to two colliding UIImageProperties, 
-	 * or KeyCodeInput and loops through all other UIImageProperties in the game and updates them 
-	 * appropriately based on the collision 
-	 * @param collide1
-	 * @param collide2
-	 * @param allActive
+	 * When called by a higher class the GameEngine should utilize its stored data and update that data
 	 */
-	public void handleInteraction(Collection<Object> interactingObjects, Collection<UIImageProperty> allActive);
+	public void handleUpdates();
 
 	
 }
