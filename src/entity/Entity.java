@@ -4,6 +4,7 @@ import java.util.Collection;
 import components.IComponent;
 /**
  * Class which will represent each GameObject
+ * Contains an identifier int and a list of Components
  * @author Bilva
  *
  */

@@ -6,9 +6,9 @@ package components;
  *
  */
 public class LabelComponent implements IComponent {
-	private String Label;
-	public LabelComponent(String label){
-		Label = label;
+	private String label;
+	public LabelComponent(String l){
+		label = l;
 	}
 	public LabelComponent(){}
 	@Override
@@ -16,9 +16,9 @@ public class LabelComponent implements IComponent {
 		return ComponentType.Label;
 	}
 	public void setLabel(String newLabel){
-		Label = newLabel;
+		label = newLabel;
 	}
 	public String getLabel(){
-		return Label;
+		return label;
 	}
 }
