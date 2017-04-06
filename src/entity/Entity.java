@@ -44,9 +44,10 @@ public class Entity implements IEntity,IRestrictEntity {
 		
 	}
 	
+	
 	public IComponent getComponent(ComponentType ct){
 		for(IComponent myComponent: myComponents){
-			if(myComponent.getComponentType() == ct){
+			if(myComponent.getComponentType() == ct){ //Should it be == or .equals()?
 				return myComponent;
 			}
 		}
