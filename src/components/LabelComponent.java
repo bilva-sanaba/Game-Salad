@@ -6,6 +6,7 @@ package components;
  *
  */
 public class LabelComponent implements IComponent {
+
 	private String label;
 	public LabelComponent(String l){
 		label = l;
@@ -15,9 +16,11 @@ public class LabelComponent implements IComponent {
 	public ComponentType getComponentType() {
 		return ComponentType.Label;
 	}
+	
 	public void setLabel(String newLabel){
 		label = newLabel;
 	}
+
 	public String getLabel(){
 		return label;
 	}

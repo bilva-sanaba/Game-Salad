@@ -5,5 +5,7 @@ public enum ComponentType {
 	Location(),
 	Sprite(),
 	Velocity(),
-	Health();
+	ImageProperties(),
+	Health(),
+	Acceleration();
 }

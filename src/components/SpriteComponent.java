@@ -1,11 +1,7 @@
 package components;
 
 import javafx.scene.image.Image;
-/**
- * Component used for setting the image displayed for an entity
- * @author Bilva
- *
- */
+
 public class SpriteComponent implements IComponent {
 	private String classPath;
 	private Image sprite;
