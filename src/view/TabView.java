@@ -20,17 +20,20 @@ public class TabView extends GUIComponent{
 	private TabPane myTab = new TabPane();
 	private Button b;
 	private ImageChooser chooser = new ImageChooser();
+	private UtilityFactory util;
 	
-	public TabView(){
+	public TabView(UtilityFactory utilF){
 		blocksView.setItems(blocksList);
 		//blocksView.setOrientation(Orientation.VERTICAL);
 		//blocksView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		Tab blockTab = util.buildTab(resources.getString("BlockTabLabel"), false);
+		util = utilF;
+		Tab blockTab = util.buildTab("BlockTabLabel", false);
 		blockTab.setContent(blocksView);
-		b = util.buildButton(resources.getString("AddEntityButton"), e->blocksList.add(chooser.chooseFile()));
+		b = util.buildButton("AddEntityButton", e->blocksList.add(chooser.chooseFile()));
 		myTab.getTabs().add(blockTab);
 	}
-	
+
+	@Override
 	public Region buildComponent(){
         pane.getChildren().add(myTab);
 		GridPane.setConstraints(myTab, 0, 0);
