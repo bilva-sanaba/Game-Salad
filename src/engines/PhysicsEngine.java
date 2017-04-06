@@ -10,9 +10,8 @@ import entity.IEntityManager;
 
 public class PhysicsEngine extends AbstractEngine{
 	
-	public static final int LOCATION_LIST = 0;
-	public static final int VELOCITY_LIST = 1;
-	public static final int ACCELERATION_LIST = 2;
+	public static final int VELOCITY_LIST = 0;
+	public static final int ACCELERATION_LIST = 1;
 
 	public PhysicsEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
@@ -29,7 +28,7 @@ public class PhysicsEngine extends AbstractEngine{
 	public void update() {
 		for(int currentEntity = 0; currentEntity < myComponents.get(LOCATION_LIST).size(); currentEntity++){
 			LocationComponent myLocation = (LocationComponent) myComponents.get(LOCATION_LIST).get(currentEntity);
-			VelocityComponent myVelocity = (VelocityComponent) myComponents.get(VELOCITY_LIST).get(currentEntity));
+			VelocityComponent myVelocity = (VelocityComponent) myComponents.get(VELOCITY_LIST).get(currentEntity);
 			myLocation.setX(myLocation.getX() + myVelocity.getX());
 			myLocation.setY(myLocation.getY() + myVelocity.getY());
 		}
