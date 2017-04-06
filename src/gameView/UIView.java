@@ -2,6 +2,7 @@ package gameView;
 
 import java.awt.Dimension;
 
+import entitiy.restricted.IRestrictedEntityManager;
 import entity.Entity;
 import gameView.commands.AbstractCommand;
 import gameView.commands.LoadCommand;
@@ -25,7 +26,7 @@ public class UIView implements UIViewInterface {
 	private ControllerInterface myController;
 	private SplashView mySplash;
 	private GameScreen myGameScene;
-	private IRestrictManager myEntities; 
+	private IRestrictedEntityManager myEntities; 
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
@@ -74,7 +75,7 @@ public class UIView implements UIViewInterface {
 		return myStage;
 	}
 	
-	public void addEntities(IRestrictManager entity) {
+	public void addEntities(IRestrictedEntityManager entity) {
 		myEntities = entity;
 	}
 

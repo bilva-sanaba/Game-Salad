@@ -4,5 +4,8 @@ public enum ComponentType {
 	Label(),
 	Location(),
 	Sprite(),
-	Velocity();
+	Velocity(),
+	ImageProperties(),
+	Health(),
+	Acceleration();
 }
