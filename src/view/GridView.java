@@ -7,6 +7,11 @@ import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
+
+/**
+ * @author Justin Yang
+ *
+ */
 public class GridView extends GUIComponent {
 	GridPane myGrid;
 	
