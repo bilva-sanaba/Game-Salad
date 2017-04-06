@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import view.menu.MenuView;
 
 
 /**
@@ -25,13 +26,13 @@ public class GUIBuilder {
 	private static final double TITLE_PANE_HEIGHT_FACTOR = .2;
 	private static final double TITLE_PANE_WIDTH_FACTOR = .375;
 	private static final double COMMAND_LINE_HEIGHT_FACTOR = .2;
-	private static final String DEFAULT_RESOUCES = "resources/screentext/English";
-	private static final String DEFAULT_CSS = "resources/css/slogo.css";
+	//private static final String DEFAULT_RESOUCES = "resources/screentext/English";
+	//private static final String DEFAULT_CSS = "resources/css/slogo.css";
 	
 	/**
 	 * Resource bundle for all text displayed on screen.
 	 */
-	public static final ResourceBundle myResources = ResourceBundle.getBundle(DEFAULT_RESOUCES);
+	//public static final ResourceBundle myResources = ResourceBundle.getBundle(DEFAULT_RESOUCES);
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 
@@ -39,18 +40,14 @@ public class GUIBuilder {
 	/**
 	 * Initializes the main Scene and Stage.
 	 */
-	public GUIBuilder(){
+	public GUIBuilder(UtilityFactory utilF){
 		GridPane root = new GridPane();
-		GUIComponent grid = new GridView();
-		GUIComponent tab = new TabView();
-		GUIComponent menu = new MenuView();
-		GUIComponent toolbar = new ToolBarView();
-		
+		GUIComponent grid = new GridView(utilF);
+		GUIComponent tab = new TabView(utilF);
+		GUIComponent toolbar = new ToolBarView(utilF);
 		myComp.add(grid);
 		myComp.add(tab);
-		myComp.add(menu);
 		myComp.add(toolbar);
-		
 	}
 	
 	public Pane buildPane() {

@@ -6,7 +6,7 @@ import javafx.scene.layout.Region;
 public class GridView extends GUIComponent {
 	GridPane myGrid;
 	
-	public GridView() {
+	public GridView(UtilityFactory utilF) {
 		myGrid = new GridPane();
 	}
 	

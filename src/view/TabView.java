@@ -14,14 +14,14 @@ public class TabView extends GUIComponent{
 	private ListView<ImageView> blocksView = new ListView<ImageView>();
 	TabPane myTab = new TabPane();
 	
-	public TabView(){
+	public TabView(UtilityFactory utilF){
 		Tab blockTab = new Tab();
 		blockTab.setText("Blocks");
 		blockTab.setContent(blocksView);
 		blockTab.setClosable(false);
 		myTab.getTabs().add(blockTab);
 	}
-	
+
 	public Region buildComponent(){
 		Region myRegion = myTab;
 		return myRegion;
