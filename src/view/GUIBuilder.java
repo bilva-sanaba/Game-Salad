@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import view.toolbar.ToolBarView;
 
 
 /**
@@ -27,8 +27,8 @@ public class GUIBuilder {
 	private static final double TITLE_PANE_HEIGHT_FACTOR = .2;
 	private static final double TITLE_PANE_WIDTH_FACTOR = .375;
 	private static final double COMMAND_LINE_HEIGHT_FACTOR = .2;
-	private static final String DEFAULT_RESOUCES = "resources/screentext/English";
-	private static final String DEFAULT_CSS = "resources/css/slogo.css";
+	//private static final String DEFAULT_RESOUCES = "resources/screentext/English";
+	//private static final String DEFAULT_CSS = "resources/css/slogo.css";
 	
 	/**
 	 * Resource bundle for all text displayed on screen.
@@ -37,33 +37,32 @@ public class GUIBuilder {
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 
+	private GUIComponent grid;
+	private GUIComponent tab;
+	private GUIComponent toolbar;
 	
 	/**
 	 * Initializes the main Scene and Stage.
 	 */
-	public GUIBuilder(){
-		
-		GUIComponent grid = new GridView(5, 5);
-		GUIComponent tab = new TabView();
-		GUIComponent menu = new MenuView();
-		GUIComponent toolbar = new ToolBarView();
-		
+	public GUIBuilder(UtilityFactory utilF){
+		grid = new GridView(utilF, 10, 10);
+		tab = new TabView(utilF);
+		toolbar = new ToolBarView(utilF);
 		myComp.add(grid);
-		//myComp.add(tab);
-		//myComp.add(menu);
-		//myComp.add(toolbar);
-		
+		myComp.add(tab);
+		myComp.add(toolbar);
 	}
 	
 	public Pane buildPane() {
-		Pane myPane = new GridPane();
+		BorderPane myPane = new BorderPane();
 		myPane.setPrefHeight(SCREEN_HEIGHT);
 		myPane.setPrefWidth(SCREEN_WIDTH);
-		
-		for(GUIComponent c: myComp){
-			myPane.getChildren().add(c.buildComponent());
-			
-		}
+//		for(GUIComponent c: myComp){
+//			myPane.getChildren().add(c.buildComponent());
+//		}
+		myPane.setTop(toolbar.buildComponent());
+		myPane.setRight(tab.buildComponent());
+		myPane.setLeft(grid.buildComponent());
 		return myPane;
 	}
 

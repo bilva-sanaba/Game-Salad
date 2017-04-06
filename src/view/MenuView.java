@@ -14,9 +14,9 @@ public class MenuView extends GUIComponent{
 		GridPane.setConstraints(myMenu, 0, 0);
 	}
 	
+	@Override
 	public Region buildComponent(){
-		Region myRegion = myMenu;
-		return myRegion;
+		return myMenu;
 	}
 
 }

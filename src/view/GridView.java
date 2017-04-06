@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 public class GridView extends GUIComponent {
 	GridPane myGrid;
 	
-	public GridView(int rows, int cols) {
+	public GridView(UtilityFactory utilF, int rows, int cols) {
 		myGrid = new GridPane();
 		myGrid.setGridLinesVisible(true);
 		
@@ -33,6 +33,7 @@ public class GridView extends GUIComponent {
 		myGrid.add(rect, row, col);
 	}
 	
+	@Override
 	public Region buildComponent() {
 		return myGrid;
 	}
