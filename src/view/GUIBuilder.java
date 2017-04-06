@@ -47,8 +47,8 @@ public class GUIBuilder {
 		GUIComponent toolbar = new ToolBarView();
 		
 		//myComp.add(grid);
-		myComp.add(tab);
-		myComp.add(menu);
+		//myComp.add(tab);
+		//myComp.add(menu);
 		//myComp.add(toolbar);
 		
 	}
