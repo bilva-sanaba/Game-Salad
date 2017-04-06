@@ -1,5 +1,8 @@
 package gameView.observers;
 
+import entitiy.restricted.IRestrictedEntity;
+import entity.IEntityManager;
+import gameView.ImageManager;
 import gameView.UIView;
 import gameView.gameScreen.GameScreen;
 
@@ -8,16 +11,15 @@ import java.util.Observer;
 
 public class EntityManagerObserver implements Observer {
 
-	private GameScreen myGameView;
+	private ImageManager myImageManager;
 	
-	public EntityManagerObserver(GameScreen view) {
-		myGameView = view;
+	public EntityManagerObserver(ImageManager images) {
+		myImageManager = images;
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+		myImageManager.updateMap((IRestrictedEntity) arg);
 	}
 
 }

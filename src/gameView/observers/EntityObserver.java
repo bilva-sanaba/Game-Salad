@@ -1,22 +1,22 @@
 package gameView.observers;
 
-import gameView.UIView;
-import gameView.gameScreen.GameScreen;
+import entitiy.restricted.IRestrictedEntity;
+import gameView.ImageManager;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class EntityObserver implements Observer {
 	
-	private GameScreen myGameView;
+	private ImageManager myImageManager;
 
-	public EntityObserver(GameScreen view) {
-		myGameView = view;
+	public EntityObserver(ImageManager images) {
+		myImageManager = images;
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		myImageManager.updateEntity((IRestrictedEntity) arg);
 		
 	}
 

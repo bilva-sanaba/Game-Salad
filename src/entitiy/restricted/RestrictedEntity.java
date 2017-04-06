@@ -1,22 +1,13 @@
 package entitiy.restricted;
 
+import java.util.Observer;
+
 import gameView.Coordinate;
 import javafx.beans.InvalidationListener;
 
 public class RestrictedEntity extends AbstractRestrictedEntity implements IRestrictedEntity {
 	public RestrictedEntity(Coordinate c, String image){
 		super(c,image);
-	}
-	@Override
-	public void addListener(InvalidationListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeListener(InvalidationListener listener) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -29,6 +20,11 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 	public String getImagePath() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public void addObserver(Observer obs) {
+		this.addObserver(obs);
 	}
 
 }

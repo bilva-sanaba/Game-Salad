@@ -1,29 +1,24 @@
 package entitiy.restricted;
 
 import java.util.Collection;
+import java.util.Observable;
+import java.util.Observer;
 
 import javafx.beans.InvalidationListener;
 
-public class RestrictedEntityManager implements IRestrictedEntityManager {
-	private Collection<RestrictedEntity> myRestrictedEntities;
-	public RestrictedEntityManager(Collection<RestrictedEntity> entities){
+public class RestrictedEntityManager extends Observable implements IRestrictedEntityManager {
+	private Collection<IRestrictedEntity> myRestrictedEntities;
+	public RestrictedEntityManager(Collection<IRestrictedEntity> entities){
 		myRestrictedEntities = entities; 
 	}
+	
 	@Override
-	public void addListener(InvalidationListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeListener(InvalidationListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Collection<RestrictedEntity> getEntities() {
+	public Collection<IRestrictedEntity> getEntities() {
 		return myRestrictedEntities;
+	}
+	@Override
+	public void addObserver(Observer obs) {
+		this.addObserver(obs);	
 	}
 
 }

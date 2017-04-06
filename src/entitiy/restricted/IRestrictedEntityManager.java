@@ -1,6 +1,7 @@
 package entitiy.restricted;
 
 import java.util.Collection;
+import java.util.Observer;
 
 import javafx.beans.Observable;
 /**
@@ -8,11 +9,13 @@ import javafx.beans.Observable;
  * @author Bilva
  *
  */
-public interface IRestrictedEntityManager extends Observable {
+public interface IRestrictedEntityManager {
 	/**
 	 * 
 	 * @return Collection of entities with restricted data
 	 */
-	public Collection<RestrictedEntity> getEntities();
+	public Collection<IRestrictedEntity> getEntities();
+	
+	public void addObserver(Observer obs);
 	
 }

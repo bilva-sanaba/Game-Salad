@@ -1,5 +1,7 @@
 package entitiy.restricted;
 
+import java.util.Observer;
+
 import gameView.Coordinate;
 import javafx.beans.Observable;
 /**
@@ -7,7 +9,7 @@ import javafx.beans.Observable;
  * @author Bilva
  *
  */
-public interface IRestrictedEntity extends Observable{
+public interface IRestrictedEntity {
 	/**
 	 * 
 	 * @return Coordinate of Entities location
@@ -18,5 +20,8 @@ public interface IRestrictedEntity extends Observable{
 	 * @return String which is the ImagePath of the Entity
 	 */
 	public String getImagePath();
+	
+	
+	public void addObserver(Observer obs);
 
 }

@@ -3,7 +3,6 @@ package gameView;
 import java.awt.Dimension;
 
 import entitiy.restricted.IRestrictedEntityManager;
-import entity.Entity;
 import gameView.commands.AbstractCommand;
 import gameView.commands.LoadCommand;
 import gameView.commands.MakeCommand;
@@ -12,7 +11,6 @@ import gameView.gameScreen.GameScreen;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import components.SpriteComponent;
 import gameView.splashScreen.SplashView;
 import controller_interfaces.ControllerInterface;
 import javafx.stage.Stage;
@@ -50,7 +48,6 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		myGameScene.addSprites();
 		myStage.setScene(myGameScene.getScene());
 		myStage.show();
 		
@@ -61,6 +58,10 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void authorGame() {
+		
+	}
+	
+	public void saveGame() {
 		
 	}
 	
@@ -77,6 +78,9 @@ public class UIView implements UIViewInterface {
 	
 	public void addEntities(IRestrictedEntityManager entity) {
 		myEntities = entity;
+		myGameScene.addEntity(entity);
 	}
+	
+	
 
 }
