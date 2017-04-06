@@ -45,7 +45,7 @@ public class GUIBuilder {
 	 * Initializes the main Scene and Stage.
 	 */
 	public GUIBuilder(UtilityFactory utilF){
-		grid = new GridView(utilF);
+		grid = new GridView(utilF, 10, 10);
 		tab = new TabView(utilF);
 		toolbar = new ToolBarView(utilF);
 		myComp.add(grid);
