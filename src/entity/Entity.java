@@ -14,7 +14,7 @@ import javafx.beans.InvalidationListener;
  *
  */
 public class Entity implements IEntity,IRestrictEntity {
-	private int identifier;
+	private int  identifier;
 	Collection<IComponent> myComponents;
 	
 	public Entity(int id){
