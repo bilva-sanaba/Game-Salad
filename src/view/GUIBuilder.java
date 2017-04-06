@@ -43,14 +43,14 @@ public class GUIBuilder {
 	 */
 	public GUIBuilder(){
 		
-		GUIComponent grid = new GridView();
+		GUIComponent grid = new GridView(5, 5);
 		GUIComponent tab = new TabView();
 		GUIComponent menu = new MenuView();
 		GUIComponent toolbar = new ToolBarView();
 		
-		//myComp.add(grid);
-		myComp.add(tab);
-		myComp.add(menu);
+		myComp.add(grid);
+		//myComp.add(tab);
+		//myComp.add(menu);
 		//myComp.add(toolbar);
 		
 	}
