@@ -12,12 +12,13 @@ import entity.IEntityManager;
  * @author Bilva
  *
  */
-public class CollisionEngine extends AbstractEngine {
+public class CollisionEngine extends AbstractEngine{
 
 	public CollisionEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	@Override
 	public List<ComponentType> neededComponents() {

@@ -9,7 +9,7 @@ import components.IComponent;
  * @author Bilva
  *
  */
-public interface IEntity {
+public interface IEntity{
 	/**
 	 * Returns the integer representation of the object
 	 * @return int Identifer of Object
