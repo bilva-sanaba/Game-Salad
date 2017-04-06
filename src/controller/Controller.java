@@ -14,6 +14,8 @@ import java.util.Observer;
 import view_interfaces.UIViewInterface;
 import javafx.stage.Stage;
 import controller_interfaces.ControllerInterface;
+import entitiy.restricted.RestrictedEntity;
+import entitiy.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
 /**
@@ -26,7 +28,7 @@ public class Controller implements ControllerInterface, Observer {
 	
 	UIViewInterface myGameView;
 	private GameEngine myGameEngine;
-	private Observable myObservable;
+	private RestrictedEntityManager myRestrictedEntityManager;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
 	
@@ -35,6 +37,7 @@ public class Controller implements ControllerInterface, Observer {
 		myGameView = new UIView(s, this);
 		myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
+		myRestrictedEntityManager = new RestrictedEntityManager();
 	}
 	
 	public Controller() {
@@ -84,12 +87,5 @@ public class Controller implements ControllerInterface, Observer {
 		Collection<RestrictedEntity> animatableEntities = (Collection<RestrictedEntity>) arg;
 		myWorldAnimator.start(myStage, animatableEntities);
 	}
-	
-	
-	
-	private void handleKeyInput(KeyCode code){
-		//make call to backend
-	}
-	
 
 }

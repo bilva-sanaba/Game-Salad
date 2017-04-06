@@ -1,11 +1,14 @@
 package gameView;
 
+import java.util.Collection;
+
 import org.w3c.dom.Entity;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import entitiy.restricted.RestrictedEntity;
 /**
  * 
  * @author Jacob
@@ -33,8 +36,8 @@ public class WorldAnimator {
 		animation.play();
 	}
 	
-	private void step(double elapsedTime, Collection<RestrictedEntities> restrictedEntities){
-		for(Entity e : restrictedEntities){
+	private void step(double elapsedTime, Collection<RestrictedEntity> restrictedEntities){
+		for(RestrictedEntity e : restrictedEntities){
 			Entity updatedEntity = entityFactory.genEntity(DataType);
 			updatedEntity.move();
 		}
