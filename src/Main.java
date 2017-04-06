@@ -7,7 +7,7 @@ import view.GUIBuilder;
 public class Main extends Application {
 
 	public void start(Stage arg0) throws Exception {
-		GUIBuilder gui = new GUIBuilder();
+		GUIBuilder gui = new GUIBuilder(null);
 		Scene s = gui.buildScene();
 		arg0.setScene(s);
 		arg0.show();
