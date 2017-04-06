@@ -2,10 +2,13 @@ package view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -20,11 +23,13 @@ public class TabView extends GUIComponent{
 	private UtilityFactory util;
 	
 	public TabView(UtilityFactory utilF){
+		blocksView.setItems(blocksList);
+		//blocksView.setOrientation(Orientation.VERTICAL);
+		//blocksView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		util = utilF;
-		b = util.buildButton("AddEntityButton", e->chooser.chooseFile());
-		//GridPane.setConstraints(myTab, 1, 1);
 		Tab blockTab = util.buildTab("BlockTabLabel", false);
 		blockTab.setContent(blocksView);
+		b = util.buildButton("AddEntityButton", e->blocksList.add(chooser.chooseFile()));
 		myTab.getTabs().add(blockTab);
 	}
 
@@ -33,7 +38,7 @@ public class TabView extends GUIComponent{
         pane.getChildren().add(myTab);
 		GridPane.setConstraints(myTab, 0, 0);
 		pane.getChildren().add(b);
-		GridPane.setConstraints(b, 0, 1);
+		GridPane.setConstraints(b, 0, 1); 
 		Region myRegion = pane;
 		GridPane.setConstraints(pane, 1, 1);
 		return myRegion;
