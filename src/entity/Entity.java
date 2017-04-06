@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
 
+import components.ComponentType;
 import components.IComponent;
 import engines.IRestrictEntity;
 import javafx.beans.InvalidationListener;
@@ -41,5 +42,15 @@ public class Entity implements IEntity,IRestrictEntity {
 	public void removeListener(InvalidationListener arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public IComponent getComponent(ComponentType ct){
+		for(IComponent myComponent: myComponents){
+			if(myComponent.getComponentType() == ct){
+				return myComponent;
+			}
+		}
+		
+		return null;
 	}
 }
