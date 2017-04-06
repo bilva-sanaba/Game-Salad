@@ -1,6 +1,7 @@
 package gameEngine_interface;
 
 import java.util.Collection;
+import java.util.PriorityQueue;
 
 import gameView.UIImageProperty;
 
