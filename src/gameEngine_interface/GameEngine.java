@@ -12,6 +12,10 @@ import engines.CollisionEngine;
 import engines.MovementEngine;
 import entitiy.restricted.IRestrictedEntityManager;
 import entity.IEntityManager;
+
+
+import engines.AbstractEngine;
+import entity.IEntityManager;
 /**
  * Basic GameEngine class
  * Note: the engines must be created in someway, likely via reflection
@@ -21,9 +25,11 @@ import entity.IEntityManager;
 public class GameEngine implements GameEngineInterface {
 	private IGameData myLevelManager;
 	private IEntityManager myEntityManager; 
+
 	private IRestrictedEntityManager myRestrictedEntityManager;
 	private List<AbstractEngine> myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
+	
 	GameEngine(String xmlDataFile){
 		myLevelManager = myParser.loadFile(xmlDataFile);
 		myEntityManager = myLevelManager.getLevels()[0];

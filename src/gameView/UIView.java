@@ -1,5 +1,6 @@
 package gameView;
 
+import controller.Controller;
 import controller_interfaces.ControllerInterface;
 import javafx.stage.Stage;
 import view_interfaces.UIViewInterface;
@@ -8,9 +9,9 @@ import view_interfaces.UIViewInterface;
 public class UIView implements UIViewInterface {
 	
 	private Stage myStage;
-	private ControllerInterface myController;
+	private Controller myController;
 	
-	public UIView(Stage s, ControllerInterface controller) {
+	public UIView(Stage s, Controller controller) {
 		myStage = s;
 		myController = controller;
 		

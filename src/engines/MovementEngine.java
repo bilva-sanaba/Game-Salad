@@ -8,12 +8,7 @@ import components.LocationComponent;
 import components.VelocityComponent;
 import entity.Entity;
 import entity.IEntityManager;
-/**
- * This class handles all movement of objects. 
- * Make sure to add an interface so that different movement engines can be implemented
- * @author Bilva
- *
- */
+
 public class MovementEngine extends AbstractEngine {
 	
 	private static final int LOCATION_LIST = 0;

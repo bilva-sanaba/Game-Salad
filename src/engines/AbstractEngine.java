@@ -6,15 +6,7 @@ import java.util.List;
 import components.ComponentType;
 import components.IComponent;
 import entity.IEntityManager;
-/**
- * An abstract engine represents all engines
- * It is currently passed in an entityManager which contains all the entities 
- * It sets myComponents equal to the Entity components needed by the engine which are defined in neededComponents
- * (Is this a good way to pass only the needed data???)
- * When update is called, the engine updates all the components it has access to appropriately
- * @author Bilva
- *
- */
+
 public abstract class AbstractEngine {
 	
 	protected List<ArrayList<IComponent>> myComponents = new ArrayList<ArrayList<IComponent>>();
