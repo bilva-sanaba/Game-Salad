@@ -3,9 +3,7 @@ package controller_interfaces;
 import gameView.UIImageModel;
 import gameView.UIImageProperty;
 
-import java.io.File;
 import java.util.Collection;
-import java.util.Map;
 /**
  * This class defines the behavior of the controller. The controller runs most of the game itself, 
  * and will only need to be called by View to handle user interactions, such as starting a new game, 

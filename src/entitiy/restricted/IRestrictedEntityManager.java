@@ -13,6 +13,6 @@ public interface IRestrictedEntityManager extends Observable {
 	 * 
 	 * @return Collection of entities with restricted data
 	 */
-	public Collection<IRestrictedEntity> getEntities();
+	public Collection<RestrictedEntity> getEntities();
 	
 }

@@ -22,7 +22,7 @@ public class RestrictedEntityManager implements IRestrictedEntityManager {
 	}
 
 	@Override
-	public Collection<IRestrictedEntity> getEntities() {
+	public Collection<RestrictedEntity> getEntities() {
 		return myRestrictedEntities;
 	}
 

@@ -11,12 +11,12 @@ import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ImageChooser {
-	
+
 	static final String[] EXTENSIONS = new String[]{
 	        "gif", "png", "bmp" // and other formats you need
 	    };
 
-	public void chooseFile(){
+	public ImageView chooseFile(){
 		ImageView imgv = new ImageView();
 	    FileChooser chooser = makeChooser();
 	    File file = chooser.showOpenDialog(new Stage());
@@ -42,6 +42,7 @@ public class ImageChooser {
 	        alert.setContentText("Please Select a File");
 	        alert.showAndWait();
 	    }
+	    return imgv;
 	}
 	
 	private FileChooser makeChooser() {
