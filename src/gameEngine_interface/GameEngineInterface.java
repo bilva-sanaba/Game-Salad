@@ -1,6 +1,4 @@
 package gameEngine_interface;
-import java.util.Collection;
-import gameView.UIImageProperty;
 
 /**
  * A game engine is created in the gameplayer which uses this game engine to handle collisions between objects as well as

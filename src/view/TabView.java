@@ -13,19 +13,22 @@ import javafx.scene.layout.Region;
 public class TabView extends GUIComponent{
 	private ObservableList<ImageView> blocksList = FXCollections.observableArrayList();
 	private ListView<ImageView> blocksView = new ListView<ImageView>();
-	GridPane pane = new GridPane();
-	TabPane myTab = new TabPane();
-	Button b;
-	ImageChooser chooser = new ImageChooser();
+	private GridPane pane = new GridPane();
+	private TabPane myTab = new TabPane();
+	private Button b;
+	private ImageChooser chooser = new ImageChooser();
+	private UtilityFactory util;
 	
-	public TabView(){
-		b = util.buildButton(resources.getString("AddEntityButton"), e->chooser.chooseFile());
+	public TabView(UtilityFactory utilF){
+		util = utilF;
+		b = util.buildButton("AddEntityButton", e->chooser.chooseFile());
 		//GridPane.setConstraints(myTab, 1, 1);
-		Tab blockTab = util.buildTab(resources.getString("BlockTabLabel"), false);
+		Tab blockTab = util.buildTab("BlockTabLabel", false);
 		blockTab.setContent(blocksView);
 		myTab.getTabs().add(blockTab);
 	}
-	
+
+	@Override
 	public Region buildComponent(){
         pane.getChildren().add(myTab);
 		GridPane.setConstraints(myTab, 0, 0);
