@@ -17,6 +17,8 @@ public class UtilityFactory {
 	
 	public Button buildButton(String s, EventHandler<ActionEvent> e){
 		Button myButton = new Button();
+		myButton.setText(s);
+		myButton.setOnAction(e);
 		return myButton;
 	}
 	

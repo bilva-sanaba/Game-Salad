@@ -31,7 +31,6 @@ public class ImageChooser {
 		        alert.setContentText("Invalid URL");
 		        alert.showAndWait();
 			}
-	        System.out.println("file:"+imagepath);
 	        Image image = new Image(imagepath);
 	        imgv.setImage(image);
 	    }

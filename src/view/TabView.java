@@ -27,11 +27,12 @@ public class TabView extends GUIComponent{
 	}
 	
 	public Region buildComponent(){
-        //pane.getChildren().add(myTab);
-		//GridPane.setConstraints(myTab, 0, 0);
+        pane.getChildren().add(myTab);
+		GridPane.setConstraints(myTab, 0, 0);
 		pane.getChildren().add(b);
-		//GridPane.setConstraints(b, 1, 0);
+		GridPane.setConstraints(b, 0, 1);
 		Region myRegion = pane;
+		GridPane.setConstraints(pane, 1, 1);
 		return myRegion;
 	}
 	

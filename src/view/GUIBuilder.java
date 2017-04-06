@@ -2,6 +2,8 @@ package view;
 
 import java.util.*;
 
+import com.sun.javafx.geom.Rectangle;
+
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -47,8 +49,8 @@ public class GUIBuilder {
 		GUIComponent toolbar = new ToolBarView();
 		
 		//myComp.add(grid);
-		//myComp.add(tab);
-		//myComp.add(menu);
+		myComp.add(tab);
+		myComp.add(menu);
 		//myComp.add(toolbar);
 		
 	}
@@ -60,6 +62,7 @@ public class GUIBuilder {
 		
 		for(GUIComponent c: myComp){
 			myPane.getChildren().add(c.buildComponent());
+			
 		}
 		return myPane;
 	}
