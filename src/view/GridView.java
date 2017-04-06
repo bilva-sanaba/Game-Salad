@@ -10,6 +10,7 @@ public class GridView extends GUIComponent {
 		myGrid = new GridPane();
 	}
 	
+	@Override
 	public Region buildComponent() {
 		return myGrid;
 	}

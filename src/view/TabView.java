@@ -2,7 +2,6 @@ package view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -24,6 +23,7 @@ public class TabView extends GUIComponent{
 		myTab.getTabs().add(blockTab);
 	}
 
+	@Override
 	public Region buildComponent(){
 		Region myRegion = myTab;
 		return myRegion;

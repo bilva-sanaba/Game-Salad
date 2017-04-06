@@ -2,12 +2,9 @@ package view;
 
 import java.util.*;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import view.toolbar.ToolBarView;
 
 

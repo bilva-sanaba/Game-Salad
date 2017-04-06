@@ -6,6 +6,7 @@ import view.GUIBuilder;
 
 public class Main extends Application {
 
+	@Override
 	public void start(Stage arg0) throws Exception {
 		GUIBuilder gui = new GUIBuilder(null);
 		Scene s = gui.buildScene();
