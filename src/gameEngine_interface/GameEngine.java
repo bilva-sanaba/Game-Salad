@@ -2,7 +2,9 @@ package gameEngine_interface;
 
 import java.util.List;
 
+import data_interfaces.XMLParser;
 import engines.AbstractEngine;
+import entitiy.restricted.IRestrictedEntityManager;
 import entity.IEntityManager;
 /**
  * Basic GameEngine class
@@ -11,8 +13,13 @@ import entity.IEntityManager;
  *
  */
 public class GameEngine implements GameEngineInterface {
+	private ILevelManager myLevelManager;
 	private IEntityManager myEntityManager; 
-	List<AbstractEngine> myEngines;
+	private List<AbstractEngine> myEngines;
+	private XMLParser myParser = new XMLParser();
+	GameEngine(String xmlDataFile){
+		myLevelManager = XMLParser.createLevelManager();
+	}
 	/**
 	 * Runs each Engine in my Engine
 	 */
@@ -21,5 +28,10 @@ public class GameEngine implements GameEngineInterface {
 		for (AbstractEngine s : myEngines){
 			s.update();
 		}	
+	}
+	@Override
+	public IRestrictedEntityManager getEntities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
