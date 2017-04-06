@@ -2,6 +2,9 @@ package view;
 
 import java.util.*;
 
+import com.sun.javafx.geom.Rectangle;
+
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -54,6 +57,7 @@ public class GUIBuilder {
 		
 		for(GUIComponent c: myComp){
 			myPane.getChildren().add(c.buildComponent());
+			
 		}
 		return myPane;
 	}

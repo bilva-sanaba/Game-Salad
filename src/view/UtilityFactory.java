@@ -19,11 +19,13 @@ public class UtilityFactory {
 	private ResourceBundle myResources;
 	
 	public UtilityFactory(String language){
-		myResources = ResourceBundle.getBundle(language);
+		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
 	}
 	
-	public Tab buildTab(){
+	public Tab buildTab(String label, Boolean closable){
 		Tab myTab = new Tab();
+		myTab.setText(label);
+		myTab.setClosable(closable);
 		return myTab;
 	}
 	
@@ -50,6 +52,13 @@ public class UtilityFactory {
 		MenuItem myMenuItem = new MenuItem(name);
 		myMenuItem.setOnAction(event);
 		return myMenuItem;
+	}
+
+	public Button buildButton(String string, EventHandler eventname) {
+        Button result = new Button();
+        result.setText(string);
+        result.setOnAction(eventname);
+        return result;
 	}
 
 }

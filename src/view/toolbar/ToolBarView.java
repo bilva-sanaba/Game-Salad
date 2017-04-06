@@ -10,7 +10,13 @@ public class ToolBarView extends GUIComponent{
 	
 	public ToolBarView(UtilityFactory utilF){
 		myBar = new ToolBar();
+		fillBar(utilF);
 	}
+	
+	private void fillBar(UtilityFactory utilF) {
+		
+	}
+	
 	@Override
 	public Region buildComponent() {
 		return myBar;
