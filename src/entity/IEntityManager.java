@@ -4,6 +4,7 @@ import java.util.List;
 
 import components.ComponentType;
 import components.IComponent;
+import entitiy.restricted.IRestrictedEntityManager;
 /**
  * This interface is for the EntityManager object which should store entity data and provide public methods 
  * for engines to use in order to get appropriate encapsulated/limited information
@@ -16,5 +17,10 @@ import components.IComponent;
 public interface IEntityManager {
 
 	public List<IComponent> getCertainComponents(ComponentType certainComponent);
+	/**
+	 * Returns an object storing components in a restricted form with pointers
+	 * @return
+	 */
+	public IRestrictedEntityManager getRestricted();
 
 }

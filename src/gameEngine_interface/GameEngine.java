@@ -1,9 +1,12 @@
 package gameEngine_interface;
 
+import java.util.Arrays;
 import java.util.List;
 
 import data_interfaces.XMLParser;
 import engines.AbstractEngine;
+import engines.CollisionEngine;
+import engines.MovementEngine;
 import entitiy.restricted.IRestrictedEntityManager;
 import entity.IEntityManager;
 /**
@@ -15,10 +18,12 @@ import entity.IEntityManager;
 public class GameEngine implements GameEngineInterface {
 	private ILevelManager myLevelManager;
 	private IEntityManager myEntityManager; 
-	private List<AbstractEngine> myEngines;
+	private IRestrictedEntityManager myRestrictedEntityManager;
+	private List<AbstractEngine> myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	GameEngine(String xmlDataFile){
 		myLevelManager = XMLParser.createLevelManager();
+		myRestrictedEntityManager = myEntityManager.getRestricted();
 	}
 	/**
 	 * Runs each Engine in my Engine
