@@ -11,7 +11,13 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+/**
+ * 
+ * buildButton(String, String) credit to Duvall
+ * 
+ * @author Jonathan
+ *
+ */
 public class UtilityFactory {
 	
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
@@ -30,21 +36,23 @@ public class UtilityFactory {
 	}
 	
 	public Button buildButton(String property, String eventname){
+		ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
+
 		// represent all supported image suffixes
         final String IMAGEFILE_SUFFIXES =
                 String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));
 
         Button result = new Button();
-        String label = myResources.getString(property);
+        String label = imagesResources.getString(property);
         if (label.matches(IMAGEFILE_SUFFIXES)) {
             result.setGraphic(new ImageView(
-                                  new Image(getClass().getResourceAsStream(DEFAULT_RESOURCE_PACKAGE + label))));
+                                  new Image(DEFAULT_RESOURCE_PACKAGE + label)));
         } else {
             result.setText(label);
         }
-        EventFactory evfac = new EventFactory();
-        EventHandler handler = evfac.getEvent(eventname);
-        result.setOnAction(handler);
+//        EventFactory evfac = new EventFactory();
+//        EventHandler handler = evfac.getEvent(eventname);
+//        result.setOnAction(handler);
         return result;
 	}
 	

@@ -6,6 +6,7 @@ import com.sun.javafx.geom.Rectangle;
 
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import view.toolbar.ToolBarView;
@@ -36,29 +37,32 @@ public class GUIBuilder {
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 
+	private GUIComponent grid;
+	private GUIComponent tab;
+	private GUIComponent toolbar;
 	
 	/**
 	 * Initializes the main Scene and Stage.
 	 */
 	public GUIBuilder(UtilityFactory utilF){
-		GridPane root = new GridPane();
-		GUIComponent grid = new GridView(utilF);
-		GUIComponent tab = new TabView(utilF);
-		GUIComponent toolbar = new ToolBarView(utilF);
+		grid = new GridView(utilF);
+		tab = new TabView(utilF);
+		toolbar = new ToolBarView(utilF);
 		myComp.add(grid);
 		myComp.add(tab);
-	//	myComp.add(toolbar);
+		myComp.add(toolbar);
 	}
 	
 	public Pane buildPane() {
-		Pane myPane = new GridPane();
+		BorderPane myPane = new BorderPane();
 		myPane.setPrefHeight(SCREEN_HEIGHT);
 		myPane.setPrefWidth(SCREEN_WIDTH);
-		
-		for(GUIComponent c: myComp){
-			myPane.getChildren().add(c.buildComponent());
-			
-		}
+//		for(GUIComponent c: myComp){
+//			myPane.getChildren().add(c.buildComponent());
+//		}
+		myPane.setTop(toolbar.buildComponent());
+		myPane.setRight(tab.buildComponent());
+		myPane.setLeft(grid.buildComponent());
 		return myPane;
 	}
 
