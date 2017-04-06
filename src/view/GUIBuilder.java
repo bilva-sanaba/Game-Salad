@@ -8,7 +8,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import view.menu.MenuView;
 
 
 /**
@@ -47,12 +46,17 @@ public class GUIBuilder {
 		GUIComponent toolbar = new ToolBarView(utilF);
 		myComp.add(grid);
 		myComp.add(tab);
-		myComp.add(toolbar);
+	//	myComp.add(toolbar);
 	}
 	
 	public Pane buildPane() {
 		Pane myPane = new GridPane();
+		myPane.setPrefHeight(SCREEN_HEIGHT);
+		myPane.setPrefWidth(SCREEN_WIDTH);
 		
+		for(GUIComponent c: myComp){
+			myPane.getChildren().add(c.buildComponent());
+		}
 		return myPane;
 	}
 

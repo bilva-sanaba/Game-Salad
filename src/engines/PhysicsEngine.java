@@ -4,7 +4,11 @@ import java.util.List;
 
 import components.ComponentType;
 import entity.IEntityManager;
-
+/**
+ * Like other engines.
+ * @author Bilva
+ *
+ */
 public class PhysicsEngine extends AbstractEngine{
 
 	public PhysicsEngine(IEntityManager myEntityManager) {
