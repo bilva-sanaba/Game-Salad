@@ -1,25 +1,18 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
+import entitiy.restricted.RestrictedEntity;
 import javafx.beans.InvalidationListener;
 
 public class Tracker implements ITracker {
 	private String message;
-	private ArrayList<InvalidationListener> observers;
+	private Collection<RestrictedEntity> observers;
 	
-	public Tracker(String message, ArrayList<InvalidationListener> observers){
+	public Tracker(String message, Collection<RestrictedEntity> entities){
 		this.message = message;
-		this.observers = observers;
-	}
-	@Override
-	public void addListener(InvalidationListener listener) {
-		observers.add(listener);
-	}
-
-	@Override
-	public void removeListener(InvalidationListener listener) {
-		observers.remove(listener);
+		this.observers = entities;
 	}
 
 	@Override

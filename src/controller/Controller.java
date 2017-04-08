@@ -3,7 +3,6 @@ package controller;
 import gameView.UIImageModel;
 import gameView.UIImageProperty;
 import gameView.UIView;
-import gameView.WorldAnimator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +23,7 @@ import gameEngine_interface.GameEngine;
  *
  */
 
-public class Controller implements ControllerInterface, Observer {
+public class Controller implements ControllerInterface {
 	
 	UIViewInterface myGameView;
 	private GameEngine myGameEngine;
@@ -39,11 +38,8 @@ public class Controller implements ControllerInterface, Observer {
 		myWorldAnimator = new WorldAnimator();
 		myRestrictedEntityManager = new RestrictedEntityManager();
 	}
-	
-	public Controller() {
-	}
 
-	@Override
+	/*@Override
 	public UIImageProperty handleCollision(
 			UIImageProperty coll1, UIImageProperty coll2,
 			Collection<UIImageProperty> allActive) {
@@ -51,7 +47,7 @@ public class Controller implements ControllerInterface, Observer {
 		collidingObjects.addAll(Arrays.asList(coll1, coll2));
 		myGameEngine.handleInteraction(collidingObjects, allActive);
 		return null;
-	}
+	}*/
 
 	@Override
 	public void save() {

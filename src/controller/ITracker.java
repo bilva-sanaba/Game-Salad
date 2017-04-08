@@ -1,12 +1,11 @@
 package controller;
 
-import javafx.beans.Observable;
 /**
  * Interface to manage observable moments (Collision, Movement, etc.)
  * @author Jacob
  *
  */
-public interface ITracker extends Observable {
+public interface ITracker{
 	
 	/**
 	 * Accesses changed message in the tracker(Type of collision, etc.)
