@@ -23,8 +23,8 @@ public interface ControllerInterface {
 	 * @param allActive - all active items on the screen 
 	 * @return Map of the old UIImageProperty to the new one
 	 */
-	public UIImageProperty handleCollision(UIImageProperty coll1, 
-			UIImageProperty coll2, Collection<UIImageProperty> allActive);
+	/*public UIImageProperty handleCollision(UIImageProperty coll1, 
+			UIImageProperty coll2, Collection<UIImageProperty> allActive);*/
 	
 	/**
 	 * Called by front end when user tells the program to save the game. Will communicate with Data 

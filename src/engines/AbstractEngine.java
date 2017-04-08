@@ -1,20 +1,15 @@
 package engines;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import components.ComponentType;
 import components.IComponent;
+import entitiy.restricted.IRestrictedEntity;
+import entitiy.restricted.RestrictedEntity;
 import entity.IEntityManager;
-/**
- * An abstract engine represents all engines
- * It is currently passed in an entityManager which contains all the entities 
- * It sets myComponents equal to the Entity components needed by the engine which are defined in neededComponents
- * (Is this a good way to pass only the needed data???)
- * When update is called, the engine updates all the components it has access to appropriately
- * @author Bilva
- *
- */
+
 public abstract class AbstractEngine {
 	
 	protected List<ArrayList<IComponent>> myComponents = new ArrayList<ArrayList<IComponent>>();
@@ -32,7 +27,8 @@ public abstract class AbstractEngine {
 	protected abstract List<ComponentType> neededComponents();
 	/**
 	 * Updates its lists of components
+	 * @return 
 	 */
-	public abstract void update();
+	public abstract Collection<? extends RestrictedEntity> update();
 	
 }

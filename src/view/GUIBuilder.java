@@ -1,40 +1,24 @@
 package view;
 
-import java.util.*;
-
-import com.sun.javafx.geom.Rectangle;
-
-import javafx.scene.Node;
+import java.util.Collection;
+import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import view.toolbar.ToolBarView;
 
-
 /**
- * 
- * @author Jonathan
+ * @author Jonathan Rub
+ * @author Justin Yang
  *
  */
 public class GUIBuilder {
+	public static final String RESOURCE_PACKAGE = "resources/";
+    public static final String STYLESHEET = "default.css";
+	
 	private static final double SCREEN_HEIGHT = 650;
 	private static final double SCREEN_WIDTH = 1000;
-	private static final double TURTLE_VIEW_HEIGHT_FACTOR = .6;
-	private static final double TURTLE_VIEW_WIDTH_FACTOR = .8;
-	private static final double TAB_VIEW_HEIGHT_FACTOR = .8;
-	private static final double TAB_VIEW_WIDTH_FACTOR = .2;
-	private static final double TITLE_PANE_HEIGHT_FACTOR = .2;
-	private static final double TITLE_PANE_WIDTH_FACTOR = .375;
-	private static final double COMMAND_LINE_HEIGHT_FACTOR = .2;
-	//private static final String DEFAULT_RESOUCES = "resources/screentext/English";
-	//private static final String DEFAULT_CSS = "resources/css/slogo.css";
 	
-	/**
-	 * Resource bundle for all text displayed on screen.
-	 */
-	//public static final ResourceBundle myResources = ResourceBundle.getBundle(DEFAULT_RESOUCES);
-
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 
 	private GUIComponent grid;
@@ -62,12 +46,13 @@ public class GUIBuilder {
 //		}
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
-		myPane.setLeft(grid.buildComponent());
+		myPane.setCenter(grid.buildComponent());
 		return myPane;
 	}
 
 	public Scene buildScene() {
 		Scene myScene = new Scene(buildPane());
+		myScene.getStylesheets().add(RESOURCE_PACKAGE + STYLESHEET);
 		return myScene;
 	}
 }
