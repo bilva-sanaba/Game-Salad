@@ -16,12 +16,12 @@ public class ImageChooser {
 	        "gif", "png", "bmp" // and other formats you need
 	    };
 
-	public ImageView chooseFile(){
+	public String chooseFile(){
 		ImageView imgv = new ImageView();
 	    FileChooser chooser = makeChooser();
 	    File file = chooser.showOpenDialog(new Stage());
+	    String imagepath = "";
 	    if(file != null) {
-	        String imagepath = "";
 			try {
 				imagepath = file.toURI().toURL().toString();
 			} catch (MalformedURLException e) {
@@ -33,6 +33,8 @@ public class ImageChooser {
 			}
 	        Image image = new Image(imagepath);
 	        imgv.setImage(image);
+	        imgv.setFitWidth(50);
+			imgv.setFitHeight(50);
 	    }
 	    else
 	    {
@@ -42,7 +44,7 @@ public class ImageChooser {
 	        alert.setContentText("Please Select a File");
 	        alert.showAndWait();
 	    }
-	    return imgv;
+	    return imagepath;
 	}
 	
 	private FileChooser makeChooser() {
