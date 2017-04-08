@@ -1,5 +1,7 @@
 package gameView;
 
+import entity.Entity;
+
 public class EntityFactory {
 	
 	
