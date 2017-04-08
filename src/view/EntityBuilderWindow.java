@@ -28,7 +28,8 @@ public class EntityBuilderWindow {
 	private UtilityFactory util;
 	private Stage myStage = new Stage();
 	
-	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<ImageView> blocksListIn){ 
+	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<ImageView> blocksListIn, Entity entityIn){ 
+		myEntity = entityIn;
 		blocksList = blocksListIn;
 		util = utilIn;
 		nodeList.add(myImage);
@@ -41,6 +42,20 @@ public class EntityBuilderWindow {
 	}
 	
 	private Scene buildScene(){
+		buildNodes();
+		GridPane pane = buildPane();
+		return new Scene(pane);
+	}
+	
+	public ImageView getImage(){
+		return myImage;
+	}
+	
+	public Entity getEntity(){
+		return myEntity;
+	}
+	
+	private void buildNodes(){
 		Node imageButton = util.buildButton("ChooseImageLabel", e->{
 			myImagePath = imageChooser.chooseFile();
 			Image image = new Image(myImagePath);
@@ -52,27 +67,16 @@ public class EntityBuilderWindow {
 		GridPane.setConstraints(imageButton, 0, 1);
 		
 		Node okayButton = util.buildButton("OkayLabel", e->{
-			myEntity = new Entity(19);
-			myEntity.addComponent(new SpriteComponent(myImagePath));
-			ImageView temp = new ImageView(new Image(myImagePath));
-			blocksList.add(temp);
+			Entity tempEntity = new Entity(19);
+			tempEntity.addComponent(new SpriteComponent(myImagePath));
+			ImageView tempImg = new ImageView(new Image(myImagePath));
+			blocksList.add(tempImg);
+			myEntity = tempEntity;
 			myStage.close();
 		});
 		nodeList.add(okayButton);
 		GridPane.setConstraints(okayButton, 0, 2);
-		
-		GridPane pane = buildPane();
-		return new Scene(pane);
 	}
-	
-	public ImageView getImage(){
-		return myImage;
-	}
-	
-	public Entity myEntity(){
-		return myEntity;
-	}
-	
 	private GridPane buildPane(){
 		GridPane pane = new GridPane();
 		pane.getChildren().addAll(nodeList);
