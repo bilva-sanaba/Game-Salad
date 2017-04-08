@@ -2,6 +2,7 @@ package gameEngine_interface;
 
 
 import entitiy.restricted.IRestrictedEntityManager;
+import entitiy.restricted.RestrictedEntityManager;
 
 /**
  * A game engine is created in the gameplayer which uses this game engine to handle collisions between objects as well as
@@ -18,7 +19,7 @@ public interface GameEngineInterface {
 	 * 
 	 * @return Encapsulation of all Entities
 	 */
-	public IRestrictedEntityManager getEntities();
+	public RestrictedEntityManager getRestrictedEntityManager();
 
 	
 }

@@ -6,13 +6,15 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 import gameView.UIImageProperty;
-
+import author_interfaces.GameData;
 import author_interfaces.IGameData;
 import data_interfaces.XMLParser;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
 import engines.MovementEngine;
 import entitiy.restricted.IRestrictedEntityManager;
+import entitiy.restricted.RestrictedEntityManager;
+import entity.EntityManager;
 import entity.IEntityManager;
 
 
@@ -25,10 +27,10 @@ import entity.IEntityManager;
  *
  */
 public class GameEngine implements GameEngineInterface {
-	private IGameData myLevelManager;
-	private IEntityManager myEntityManager; 
+	private GameData myLevelManager;
+	private EntityManager myEntityManager; 
 
-	private IRestrictedEntityManager myRestrictedEntityManager;
+	private RestrictedEntityManager myRestrictedEntityManager;
 	private List<AbstractEngine> myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	
@@ -47,7 +49,7 @@ public class GameEngine implements GameEngineInterface {
 		}	
 	}
 	@Override
-	public IRestrictedEntityManager getEntities() {
+	public RestrictedEntityManager getRestrictedEntityManager() {
 		return myRestrictedEntityManager;
 	}
 }
