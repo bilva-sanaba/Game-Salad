@@ -2,17 +2,26 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.w3c.dom.Entity;
 
+import com.sun.javafx.collections.MappingChange.Map;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import entitiy.restricted.RestrictedEntity;
 import entitiy.restricted.RestrictedEntityManager;
+import entity.EntityManager;
 import gameEngine_interface.GameEngine;
 import gameView.EntityFactory;
 /**
@@ -33,6 +42,10 @@ public class WorldAnimator {
 	
 	private Scene myScene;
 	private GameEngine myGameEngine;
+	private Timeline animation;
+	private GameBuilder myGameBuilder;
+	
+	private HashMap<Integer, ImageView> imageMap = new HashMap<Integer, ImageView>();
 	
 	private boolean pause = false;
 	
@@ -41,47 +54,73 @@ public class WorldAnimator {
 	
 	public void start (Stage s, GameEngine myGameEngine){
 		
-		myScene = //create scene
-		s.setScene(myScene);//FILL
-		s.show();
-		Collection<RestrictedEntity> entities = restrictedEntities.getEntities();
+		Group root = new Group();
 		
 		this.myGameEngine = myGameEngine;
-		collisionTracker = new CollisionTracker("No", entities);
-		movementTracker = new MovementTracker("Go", entities);
+		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
+		
+		myGameBuilder = new GameBuilder();
+		myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500, 500);
+		createMap(restrictedEntityManager);
+		for(Integer id : imageMap.keySet()){
+			root.getChildren().add(imageMap.get(id));
+		}
+		s.setScene(myScene);//FILL
+		s.show();
+		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
+		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
+	
+		
+		
+		collisionTracker = new CollisionTracker("No", restrictedEntityManager.getEntities());
+		movementTracker = new MovementTracker("Go", restrictedEntityManager.getEntities());
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
 									  e-> step(SECOND_DELAY));
-		Timeline animation = new Timeline();
+		this.animation = new Timeline();
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
 		animation.play();
 	}
 	
-	private void step(double elapsedTime){	
-		myGameEngine.handleUpdates();
+	private void createMap(RestrictedEntityManager manager) {
 		
-		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
-		myScene.setOnKeyReleased(e -> handleKeyReleased());
+		Collection<RestrictedEntity> entities = manager.getEntities();
 		
-		if(collisionTracker.getMessage().equals("Yes")){
-			collisionTracker.changeMessage("No");
+		for(RestrictedEntity entity : entities){
+			Image image = new Image(getClass().getClassLoader().getResourceAsStream(entity.getImagePath()));
+			ImageView imageView = new ImageView(image);
+			imageView.setX(entity.getLocation().getX());
+			imageView.setY(entity.getLocation().getY());
+			imageMap.put(entity.getID(), imageView);
 		}
 	}
 
-	private void handleKeyReleased() {
-		// TODO Auto-generated method stub
+	private void step(double elapsedTime){	
+		
+		myGameEngine.handleUpdates(keysPressed);
 		
 	}
 
-	private void handleKeyPressed(KeyCode code) {
-		if(code ==  KeyCode.P && !pause){
+	private void handleKeyReleased(KeyCode keyCode) {
+		keysPressed.remove(keyCode) ;
+		
+	}
+
+	private void handleKeyPressed(KeyCode keyCode) {
+		externalKeyHandler(keyCode);
+		keysPressed.add(keyCode);
+	}
+	
+	private void externalKeyHandler(KeyCode code){
+		if(code == KeyCode.P && !pause){
 			movementTracker.changeMessage("Pause");
 			pause = true;
+			animation.pause();
 		}
 		if(code == KeyCode.P && pause){
 			movementTracker.changeMessage("Go");
 			pause = false;
+			animation.play();
 		}
-		//ADD more
 	}
 }

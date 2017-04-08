@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 import gameView.UIImageProperty;
+import javafx.scene.input.KeyCode;
 import author_interfaces.GameData;
 import author_interfaces.IGameData;
 import data_interfaces.XMLParser;
@@ -43,7 +44,7 @@ public class GameEngine implements GameEngineInterface {
 	 * Runs each Engine in my Engine
 	 */
 	@Override
-	public void handleUpdates() {
+	public void handleUpdates(Collection<KeyCode> keysPressed) {
 		for (AbstractEngine s : myEngines){
 			s.update();
 		}	
