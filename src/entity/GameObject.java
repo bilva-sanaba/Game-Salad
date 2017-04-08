@@ -8,5 +8,4 @@ public class GameObject {
 	public ArrayList<Level> getLevels(){
 		return levelList;
 	}
-	
 }
