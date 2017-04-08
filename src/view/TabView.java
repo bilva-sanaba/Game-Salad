@@ -26,7 +26,7 @@ public class TabView extends GUIComponent{
 
 	public TabView(UtilityFactory utilIn){
 		util = utilIn;
-		entityBuilder = new EntityBuilderWindow(util, blocksList);
+		entityBuilder = new EntityBuilderWindow(util, blocksList, currentEntity);
 		blocksView.setItems(blocksList);
 		blocksView.setOrientation(Orientation.VERTICAL);
 		blocksView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
