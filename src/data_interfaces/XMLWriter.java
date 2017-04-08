@@ -7,11 +7,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import components.LocationComponent;
+import components.SpriteComponent;
 import data_interfaces.LocalClassLoader;
+import entity.Entity;
 
 public class XMLWriter implements FileSaver{
 	
-	private static final String SUFFIX = ".txt";
+	private static final String SUFFIX = ".xml";
 	private static final String PREFIX = "games/";
 
 	@Override
@@ -35,7 +41,7 @@ public class XMLWriter implements FileSaver{
 	 * @param gameData the data which should be saved
 	 */
 	public void writeFile(String fileName, List gameData) {
-		LocalClassLoader loader = new LocalClassLoader();
+		ClassLoader loader = new LocalClassLoader();
         XStream serializer = new XStream(new DomDriver());
         String ret;
         
@@ -44,5 +50,23 @@ public class XMLWriter implements FileSaver{
         ret = serializer.toXML(gameData);
         createFile(fileName, ret);
 	}
+	
+	/*
+	public static void main(String[] args) {
+		XMLWriter x = new XMLWriter();
+		SpriteComponent s = new SpriteComponent("jin jon");
+		LocationComponent t = new LocationComponent(5,6);
+		List l = new ArrayList();
+		
+		Entity e = new Entity(9);
+		e.addComponent(s);
+		Entity e1 = new Entity(9);
+		e1.addComponent(s);
+		l.add(e);
+		e1.addComponent(t);
+		l.add(e1);
+		
+		x.writeFile("try4", l);
+	}*/
 	
 }
