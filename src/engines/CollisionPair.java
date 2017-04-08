@@ -24,11 +24,16 @@ public class CollisionPair {
 	}
 	
 	public void putPairingFromList(List<IComponent> compList, int index0, int index1) {
-		ComponentType type = compList.get(0).getComponentType();
-		IComponent object0Comp = compList.get(index0);
-		IComponent object1Comp = compList.get(index1);
-		object0.put(type, object0Comp);
-		object1.put(type, object1Comp);
+		try {
+			ComponentType type = compList.get(0).getComponentType();
+			IComponent object0Comp = compList.get(index0);
+			IComponent object1Comp = compList.get(index1);
+			object0.put(type, object0Comp);
+			object1.put(type, object1Comp);
+		} catch(IndexOutOfBoundsException e) {
+			System.out.println("Exception handling needs to be replaced in CollisionPair.java in putPairingFromList()");
+		}
+		
 	}
 	
 	public List<Map<ComponentType, IComponent>> getMaps() {
