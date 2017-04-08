@@ -7,13 +7,19 @@ import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
+import java.util.Observable;
+import java.util.Observer;
+
+import entity.Entity;
+import entity.Level;
 
 /**
  * @author Justin Yang
  *
  */
-public class GridView extends GUIComponent {
-	GridPane myGrid;
+public class GridView extends GUIComponent implements Observer {
+	private Level myLevel;
+	private GridPane myGrid;
 	
 	public GridView(UtilityFactory utilF, int rows, int cols) {
 		myGrid = new GridPane();
@@ -24,6 +30,9 @@ public class GridView extends GUIComponent {
 				addMouseListenerPane(row, col);
 			}
 		}
+		
+		myLevel = new Level();
+		myLevel.addObserver(this);
 	}
 	
 	private void addMouseListenerPane(int row, int col) {
@@ -33,13 +42,29 @@ public class GridView extends GUIComponent {
 			@Override
 			public void handle(MouseEvent event) {
 				System.out.println(String.format("Click at row %d col %d", row, col));
+				//Add entity from mouse
+				addLevelEntity(new Entity(19));
 			}
 		});
 		myGrid.add(rect, row, col);
 	}
 	
+	public void loadLevel(Level level) {
+		myLevel = level;
+		myLevel.addObserver(this);
+	}
+	
+	public void addLevelEntity(Entity entity) {
+		myLevel.add(entity);
+	}
+	
 	@Override
 	public Region buildComponent() {
 		return myGrid;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		System.out.println("so triggered");
 	}
 }
