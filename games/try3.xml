@@ -1,0 +1,10 @@
+<list>
+  <entity.Entity>
+    <identifier>9</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent>
+        <classPath>jin jon</classPath>
+      </components.SpriteComponent>
+    </myComponents>
+  </entity.Entity>
+</list>
