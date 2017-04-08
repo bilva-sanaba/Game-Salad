@@ -1,10 +1,5 @@
 package usecases;
 
-
-import gameEngine_interface.CollisionHandler;
-import gameEngine_interface.Component;
-import gameEngine_interface.Entity;
-
 public class HitEnemyUserDies {
 	
 	/**

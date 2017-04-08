@@ -3,9 +3,7 @@ package controller_interfaces;
 import gameView.UIImageModel;
 import gameView.UIImageProperty;
 
-import java.io.File;
 import java.util.Collection;
-import java.util.Map;
 /**
  * This class defines the behavior of the controller. The controller runs most of the game itself, 
  * and will only need to be called by View to handle user interactions, such as starting a new game, 
@@ -25,8 +23,8 @@ public interface ControllerInterface {
 	 * @param allActive - all active items on the screen 
 	 * @return Map of the old UIImageProperty to the new one
 	 */
-	public UIImageProperty handleCollision(UIImageProperty coll1, 
-			UIImageProperty coll2, Collection<UIImageProperty> allActive);
+	/*public UIImageProperty handleCollision(UIImageProperty coll1, 
+			UIImageProperty coll2, Collection<UIImageProperty> allActive);*/
 	
 	/**
 	 * Called by front end when user tells the program to save the game. Will communicate with Data 

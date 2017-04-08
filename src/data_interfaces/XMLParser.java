@@ -1,11 +1,18 @@
 package data_interfaces;
 
+
 import java.util.List;
 import java.io.*;
+
+
+import entity.IEntityManager;
+
+
 
 public class XMLParser implements FileLoader {
 
 	@Override
+
 	public Object loadFile(String fileName) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(fileName));

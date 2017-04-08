@@ -1,4 +1,5 @@
 package components;
+
 /**
  * Component used for determining the location of an object
  * @author Bilva
