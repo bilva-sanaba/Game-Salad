@@ -12,6 +12,8 @@ import java.util.Observer;
 
 import view_interfaces.UIViewInterface;
 import javafx.stage.Stage;
+import view.GUIBuilder;
+import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
 import entitiy.restricted.RestrictedEntity;
 import entitiy.restricted.RestrictedEntityManager;
@@ -31,13 +33,20 @@ public class Controller implements ControllerInterface {
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
 	
+	private GUIBuilder myGUIBuilder;
+	
+	
 	public Controller(Stage s) {
 		myStage = s;
+		
+		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
+		
 		myGameView = new UIView(s, this);
 		myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
 		myRestrictedEntityManager = new RestrictedEntityManager();
 	}
+	
 
 	/*@Override
 	public UIImageProperty handleCollision(

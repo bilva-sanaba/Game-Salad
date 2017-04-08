@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.w3c.dom.Entity;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import entitiy.restricted.RestrictedEntity;
 import entitiy.restricted.RestrictedEntityManager;
+import gameEngine_interface.GameEngine;
 import gameView.EntityFactory;
 /**
  * 
@@ -27,39 +29,36 @@ public class WorldAnimator {
 	
 	private CollisionTracker collisionTracker;
 	private MovementTracker movementTracker;
+	private ArrayList<KeyCode> keysPressed = new ArrayList<KeyCode>();
 	
 	private Scene myScene;
+	private GameEngine myGameEngine;
 	
 	private boolean pause = false;
 	
 	public WorldAnimator(){
 	}
 	
-	public void start (Stage s, RestrictedEntityManager restrictedEntities){
+	public void start (Stage s, GameEngine myGameEngine){
 		
 		myScene = //create scene
 		s.setScene(myScene);//FILL
 		s.show();
 		Collection<RestrictedEntity> entities = restrictedEntities.getEntities();
 		
+		this.myGameEngine = myGameEngine;
 		collisionTracker = new CollisionTracker("No", entities);
 		movementTracker = new MovementTracker("Go", entities);
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
-									  e-> step(SECOND_DELAY, entities));
+									  e-> step(SECOND_DELAY));
 		Timeline animation = new Timeline();
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
 		animation.play();
 	}
 	
-	private void step(double elapsedTime, Collection<RestrictedEntity> entities){	
-		boolean collision = false;
-		for(RestrictedEntity e : entities){
-			//check for collision
-			if(collision){
-				collisionTracker.changeMessage("Yes");
-			}
-		}
+	private void step(double elapsedTime){	
+		myGameEngine.handleUpdates();
 		
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased());
