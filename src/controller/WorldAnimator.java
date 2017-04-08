@@ -74,7 +74,7 @@ public class WorldAnimator {
 	}
 
 	private void handleKeyPressed(KeyCode code) {
-		if(code == KeyCode.P && !pause){
+		if(code ==  KeyCode.P && !pause){
 			movementTracker.changeMessage("Pause");
 			pause = true;
 		}
