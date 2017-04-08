@@ -46,7 +46,7 @@ public class GUIBuilder {
 //		}
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
-		myPane.setLeft(grid.buildComponent());
+		myPane.setCenter(grid.buildComponent());
 		return myPane;
 	}
 
