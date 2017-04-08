@@ -6,6 +6,8 @@ import org.w3c.dom.Entity;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import entitiy.restricted.RestrictedEntity;
@@ -23,15 +25,21 @@ public class WorldAnimator {
 	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
 	public static final int KEY_INPUT_SPEED = 3;
 	
-	private EntityFactory entityFactory = new EntityFactory();
 	private CollisionTracker collisionTracker;
 	private MovementTracker movementTracker;
+	
+	private Scene myScene;
+	
+	private boolean pause = false;
 	
 	public WorldAnimator(){
 	}
 	
 	public void start (Stage s, RestrictedEntityManager restrictedEntities){
 		
+		myScene = //create scene
+		s.setScene(myScene);//FILL
+		s.show();
 		Collection<RestrictedEntity> entities = restrictedEntities.getEntities();
 		
 		collisionTracker = new CollisionTracker("No", entities);
@@ -52,5 +60,29 @@ public class WorldAnimator {
 				collisionTracker.changeMessage("Yes");
 			}
 		}
+		
+		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
+		myScene.setOnKeyReleased(e -> handleKeyReleased());
+		
+		if(collisionTracker.getMessage().equals("Yes")){
+			collisionTracker.changeMessage("No");
+		}
+	}
+
+	private void handleKeyReleased() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void handleKeyPressed(KeyCode code) {
+		if(code == KeyCode.P && !pause){
+			movementTracker.changeMessage("Pause");
+			pause = true;
+		}
+		if(code == KeyCode.P && pause){
+			movementTracker.changeMessage("Go");
+			pause = false;
+		}
+		//ADD more
 	}
 }
