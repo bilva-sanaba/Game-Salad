@@ -1,13 +1,14 @@
 package entitiy.restricted;
 
+import java.util.Observer;
+
 import gameView.Coordinate;
-import javafx.beans.Observable;
 /**
  * Interface for objects which the front end will receive
  * @author Bilva
  *
  */
-public interface IRestrictedEntity extends Observable{
+public interface IRestrictedEntity extends Observer{
 	/**
 	 * 
 	 * @return Coordinate of Entities location

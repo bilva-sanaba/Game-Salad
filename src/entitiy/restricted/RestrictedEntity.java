@@ -1,5 +1,7 @@
 package entitiy.restricted;
 
+import java.util.Observable;
+
 import gameView.Coordinate;
 import javafx.beans.InvalidationListener;
 
@@ -7,7 +9,7 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 	public RestrictedEntity(Coordinate c, String image){
 		super(c,image);
 	}
-	@Override
+	/*@Override
 	public void addListener(InvalidationListener listener) {
 		// TODO Auto-generated method stub
 		
@@ -17,7 +19,7 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 	public void removeListener(InvalidationListener listener) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 	@Override
 	public Coordinate getLocation() {
@@ -29,6 +31,11 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 	public String getImagePath() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		//IN THIS METHOD YOU WILL CALL THE APPROPRIATE UPDATE FOR MOVEMENT, ETC.
 	}
 
 }
