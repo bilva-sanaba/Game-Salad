@@ -1,7 +1,9 @@
 package engines;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import components.ComponentType;
 import components.IComponent;
@@ -16,7 +18,7 @@ import entity.IEntityManager;
  * @author Bilva
  *
  */
-public class CollisionEngine extends AbstractEngine{
+public class CollisionEngine extends AbstractEngine implements ICollision{
 	
 	private List<ISubEngine> subEngines;
 	private IEntityManager entManager;
@@ -60,7 +62,12 @@ public class CollisionEngine extends AbstractEngine{
 		
 		if (collisionOccurs) {
 			for(ISubEngine subEngine: subEngines) {
-				
+				List<ComponentType> subEngineNeededComponents = subEngine.getNecessaryComponents();
+				Map<ComponentType, IComponent> object0Components = new HashMap<ComponentType, IComponent>();
+				Map<ComponentType, IComponent> object1Components = new HashMap<ComponentType, IComponent>();
+				for(ComponentType comp : subEngineNeededComponents) {
+					
+				}
 			}
 		}
 	}
