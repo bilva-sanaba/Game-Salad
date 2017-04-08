@@ -1,6 +1,7 @@
 package view;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -23,7 +24,8 @@ public class GridView extends GUIComponent implements Observer {
 	
 	public GridView(UtilityFactory utilF, int rows, int cols) {
 		myGrid = new GridPane();
-		myGrid.setGridLinesVisible(true);
+		myGrid.getStyleClass().add("view-grid");
+		myGrid.setAlignment(Pos.CENTER);
 		
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < cols; col++) {
@@ -37,7 +39,8 @@ public class GridView extends GUIComponent implements Observer {
 	
 	private void addMouseListenerPane(int row, int col) {
 		Rectangle rect = new Rectangle(40, 40);
-		rect.setFill(Color.GRAY);
+		rect.getStyleClass().add("view-grid-cell");
+		rect.setFill(Color.GREY);
 		rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
