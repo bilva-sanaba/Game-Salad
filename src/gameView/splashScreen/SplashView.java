@@ -32,7 +32,7 @@ public class SplashView {
 	public SplashView(UIView view, Collection<AbstractCommand> buttons) {
 		myCommands = buttons;
 		myView = view;
-		myButtonFactory = new ButtonFactory(view);
+		myButtonFactory = new ButtonFactory(view, view.DEFAULT_BUTTONS);
 		myPane = new BorderPane();
 		myPane.setId("splashpane");
 		myScene = new Scene(myPane, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);

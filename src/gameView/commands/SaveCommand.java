@@ -1,6 +1,7 @@
 package gameView.commands;
 
 import javafx.stage.Stage;
+import gameView.ICommandUIView;
 import gameView.UIView;
 
 public class SaveCommand extends AbstractCommand {
@@ -11,7 +12,7 @@ public class SaveCommand extends AbstractCommand {
 
 	@Override
 	public void execute(Stage s) {
-		getView().saveGame();
+		((ICommandUIView) getView()).saveGame();
 	}
 
 	@Override

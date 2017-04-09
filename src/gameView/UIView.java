@@ -13,13 +13,16 @@ import java.util.Collection;
 
 import gameView.splashScreen.SplashView;
 import controller_interfaces.ControllerInterface;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view_interfaces.UIViewInterface;
 
 
-public class UIView implements UIViewInterface {
+public class UIView implements UIViewInterface, ICommandUIView {
 	
 	public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
+	public final String DEFAULT_BUTTONS =  "EnglishCommands";
+	
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
@@ -31,12 +34,11 @@ public class UIView implements UIViewInterface {
 		myController = controller;
 		mySplash = new SplashView(this, getCommands());
 		myGameScene = new GameScreen(this);
-		getSplashScreen();
+		runGame();//getSplashScreen();
 	}
 
 	public void getSplashScreen() {
-		myStage.setScene(mySplash.getSplashScene());
-		myStage.show();
+		setStage(mySplash.getSplashScene());
 	}
 	
 	@Override
@@ -48,8 +50,7 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		myStage.setScene(myGameScene.getScene());
-		myStage.show();
+		setStage(myGameScene.getScene());
 		
 	}
 	
@@ -63,6 +64,11 @@ public class UIView implements UIViewInterface {
 	
 	public void saveGame() {
 		
+	}
+	
+	private void setStage(Scene s) {
+		myStage.setScene(s);
+		myStage.show();
 	}
 	
 	private Collection<AbstractCommand> getCommands() {
@@ -80,7 +86,5 @@ public class UIView implements UIViewInterface {
 		myEntities = entity;
 		myGameScene.addEntity(entity);
 	}
-	
-	
 
 }
