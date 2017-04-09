@@ -21,10 +21,12 @@ public class TabView extends GUIComponent{
 	private TabPane myTab = new TabPane();
 	private Button b;
 	private UtilityFactory util;
+	private ViewData myData;
 	private Entity currentEntity = null;
 	private EntityBuilderWindow entityBuilder;
 
-	public TabView(UtilityFactory utilIn){
+	public TabView(UtilityFactory utilIn, ViewData data){
+		myData = data;
 		util = utilIn;
 		entityBuilder = new EntityBuilderWindow(util, blocksList, currentEntity);
 		blocksView.setItems(blocksList);
@@ -50,7 +52,7 @@ public class TabView extends GUIComponent{
 		pane.getChildren().add(b);
 		GridPane.setConstraints(b, 0, 1); 
 		Region myRegion = pane;
-		GridPane.setConstraints(pane, 1, 1);
+		GridPane.setConstraints(pane, 0, 1);
 		return myRegion;
 	}
 
