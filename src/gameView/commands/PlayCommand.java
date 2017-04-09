@@ -19,5 +19,4 @@ public class PlayCommand extends AbstractCommand {
 		return "Play";
 	}
 
-	
 }

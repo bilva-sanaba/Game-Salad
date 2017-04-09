@@ -11,20 +11,7 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 	public RestrictedEntity(int id, Coordinate c, String image){
 		super(id, c,image);
 	}
-<<<<<<< HEAD:src/entity/restricted/RestrictedEntity.java
-	/*@Override
-	public void addListener(InvalidationListener listener) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void removeListener(InvalidationListener listener) {
-		// TODO Auto-generated method stub
-		
-	}*/
-=======
->>>>>>> hjt8:src/entitiy/restricted/RestrictedEntity.java
 
 	@Override
 	public Coordinate getLocation() {
@@ -37,7 +24,7 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 		// TODO Auto-generated method stub
 		return imagePath;
 	}
-	@Override
+	
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		//IN THIS METHOD YOU WILL CALL THE APPROPRIATE UPDATE FOR MOVEMENT, ETC.

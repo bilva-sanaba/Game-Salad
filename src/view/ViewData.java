@@ -7,14 +7,13 @@ import java.util.Observable;
 import components.*;
 
 /**
- * Casting takes place to be able to edit the component because we are using enums to choose the specific component
- * we feel comfortable to cast the component to its specific component
+ * Casting takes place to be able to edit the component because we are using
+ * enums to choose the specific component we feel comfortable to cast the
+ * component to its specific component
  *
-=======
-import components.*;
-/**
- * Casting takes place to beable to edit the component becuase we are using Enums to choose the specific component 
- * we feel compfortable to cast the component to its specific component
+ * ======= import components.*; /** Casting takes place to beable to edit the
+ * component becuase we are using Enums to choose the specific component we feel
+ * compfortable to cast the component to its specific component
  * 
  * @author Jonathan
  * @author Justin
@@ -46,15 +45,17 @@ public class ViewData extends Observable {
 
 		LocationComponent locComp = new LocationComponent(row, col);
 		placedEntityList.get(entityID).addComponent(locComp);
-		/*	LocationComponent locComp = (LocationComponent) definedEntityList.get(entityID).getComponent(ComponentType.Location);
-		locComp.setX(row);
-		locComp.setY(col); */
+		/*
+		 * LocationComponent locComp = (LocationComponent)
+		 * definedEntityList.get(entityID).getComponent(ComponentType.Location);
+		 * locComp.setX(row); locComp.setY(col);
+		 */
 
 	}
 
 	public void defineEntity(Entity entity) {
 		definedEntityList.put(entity.getID(), entity);
-		//notifyObservers();
+		// notifyObservers();
 	}
 
 	public void placeEntity(Entity entity) {
@@ -64,7 +65,7 @@ public class ViewData extends Observable {
 
 	public void undefineEntity(Entity entity) {
 		definedEntityList.remove(entity.getID());
-		//notifyObservers();
+		// notifyObservers();
 	}
 
 	public void unplaceEntity(Entity entity) {
@@ -85,5 +86,3 @@ public class ViewData extends Observable {
 		return gameName;
 	}
 }
-
-

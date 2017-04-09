@@ -19,7 +19,5 @@ public class MakeCommand extends AbstractCommand {
 	public String getName() {
 		return "Make";
 	}
-	
-	
 
 }

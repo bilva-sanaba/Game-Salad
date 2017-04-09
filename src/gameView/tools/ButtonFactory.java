@@ -13,28 +13,28 @@ import view.UtilityFactory;
 
 public class ButtonFactory extends UtilityFactory {
 
-	private UIView myView; 
+	private UIView myView;
 	private ResourceBundle myResources;
-	private final String DEFAULT_PATH =  "resources/";
+	private final String DEFAULT_PATH = "resources/";
 	private String myFile;
-	
+
 	public ButtonFactory(UIView view, String file) {
 		super(file);
 		myView = view;
 		myFile = file;
 		myResources = ResourceBundle.getBundle(DEFAULT_PATH + file);
 	}
-	
+
 	public Button makeButton(AbstractCommand command) {
 		Button button;
 		try {
-			button = buildButton(command.getName(), "", myFile);
+			button = buildButton(command.getName(), "", myFile, null);
 		} catch (Exception e) {
 			button = new Button("No Label Found");
 		}
-		button.setId(command.getName().toLowerCase()); 
+		button.setId(command.getName().toLowerCase());
 		button.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {	
+			public void handle(ActionEvent event) {
 				command.execute(myView.getStage());
 			}
 		});

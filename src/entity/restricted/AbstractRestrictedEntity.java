@@ -12,7 +12,7 @@ public abstract class AbstractRestrictedEntity extends Observable {
 
 	public AbstractRestrictedEntity(int id, Coordinate c, String image) {
 		myID = id;
-		myCoordinate = c ; 
-		imagePath = image; 
+		myCoordinate = c;
+		imagePath = image;
 	}
 }

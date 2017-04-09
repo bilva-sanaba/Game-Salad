@@ -13,25 +13,25 @@ import java.util.AbstractMap.SimpleEntry;
 
 public class PatternParse {
 	private List<Entry<String, Pattern>> mySymbols;
-	
+
 	public PatternParse() {
 		mySymbols = new ArrayList<Entry<String, Pattern>>();
 	}
-	
+
 	public void addPattern(String pattern) {
 		ResourceBundle resource = ResourceBundle.getBundle(pattern);
 		Enumeration<String> iterator = resource.getKeys();
 		while (iterator.hasMoreElements()) {
 			String key = iterator.nextElement();
 			String regex = resource.getString(key);
-			mySymbols.add(new SimpleEntry<>(key,
-					Pattern.compile(regex, Pattern.CASE_INSENSITIVE)));
+			mySymbols.add(new SimpleEntry<>(key, Pattern.compile(regex,
+					Pattern.CASE_INSENSITIVE)));
 		}
 	}
-	
+
 	public String getSymbol(String text) {
 		final String ERROR = "NO MATCH";
-		for (Entry<String, Pattern> e: mySymbols) {
+		for (Entry<String, Pattern> e : mySymbols) {
 			if (e.getValue().matcher(text).matches()) {
 				return e.getKey();
 			}

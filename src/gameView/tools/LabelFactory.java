@@ -1,6 +1,5 @@
 package gameView.tools;
 
-public class LabelFactory{
+public class LabelFactory {
 
-	
 }

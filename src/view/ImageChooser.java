@@ -12,43 +12,46 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ImageChooser {
 
-	static final String[] EXTENSIONS = new String[]{
-	        "gif", "png", "bmp" // and other formats you need
-	    };
+	static final String[] EXTENSIONS = new String[] { "gif", "png", "bmp" // and
+																			// other
+																			// formats
+																			// you
+																			// need
+	};
 
-	public String chooseFile(){
+	public String chooseFile() {
 		ImageView imgv = new ImageView();
-	    FileChooser chooser = makeChooser();
-	    File file = chooser.showOpenDialog(new Stage());
-	    String imagepath = "";
-	    if(file != null) {
+		FileChooser chooser = makeChooser();
+		File file = chooser.showOpenDialog(new Stage());
+		String imagepath = "";
+		if (file != null) {
 			try {
 				imagepath = file.toURI().toURL().toString();
 			} catch (MalformedURLException e) {
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		        alert.setTitle("Information Dialog");
-		        alert.setHeaderText("Error");
-		        alert.setContentText("Invalid URL");
-		        alert.showAndWait();
+				alert.setTitle("Information Dialog");
+				alert.setHeaderText("Error");
+				alert.setContentText("Invalid URL");
+				alert.showAndWait();
 			}
-	        
-	    }
-	    else
-	    {
-	        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	        alert.setTitle("Information Dialog");
-	        alert.setHeaderText("Error");
-	        alert.setContentText("Please Select a File");
-	        alert.showAndWait();
-	    }
-	    return imagepath;
+
+		} else {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText("Error");
+			alert.setContentText("Please Select a File");
+			alert.showAndWait();
+		}
+		return imagepath;
 	}
-	
+
 	private FileChooser makeChooser() {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Select Image");
 		chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-		chooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files","*.bmp", "*.png", "*.jpg", "*.gif"));
+		chooser.getExtensionFilters().addAll(
+				new ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg",
+						"*.gif"));
 		return chooser;
 	}
 }

@@ -17,7 +17,7 @@ public class LoadCommand extends AbstractCommand {
 	public LoadCommand(UIView m) {
 		super(m);
 	}
-	
+
 	@Override
 	public void execute(Stage s) {
 		GameChooser gameChoice = new GameChooser(s);
@@ -29,6 +29,5 @@ public class LoadCommand extends AbstractCommand {
 	public String getName() {
 		return "Load";
 	}
-	
 
 }

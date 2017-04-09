@@ -12,11 +12,11 @@ import entity.Entity;
 import javafx.scene.control.TextInputDialog;
 import view.ViewData;
 
-public class LaunchEvent implements ToolBarButtonEvent{
-	
+public class LaunchEvent implements ToolBarButtonEvent {
+
 	ViewData myData;
-	
-	public LaunchEvent(ViewData data){
+
+	public LaunchEvent(ViewData data) {
 		myData = data;
 	}
 
@@ -24,7 +24,7 @@ public class LaunchEvent implements ToolBarButtonEvent{
 	public void event() {
 		XMLWriter xw = new XMLWriter();
 		String fileName;
-		List <Entity> l = new ArrayList<Entity>();
+		List<Entity> l = new ArrayList<Entity>();
 		Map<Integer, Entity> m = myData.getEntityMap();
 		for (Integer key : m.keySet()) {
 			l.add(m.get(key));
@@ -33,17 +33,16 @@ public class LaunchEvent implements ToolBarButtonEvent{
 			TextInputDialog tid = new TextInputDialog(myData.getGameName());
 			tid.setTitle("Saving File");
 			tid.setHeaderText("Please choose a name for your game: ");
-			Optional <String> result = tid.showAndWait();
+			Optional<String> result = tid.showAndWait();
 			try {
 				myData.setGameName(result.get());
 				fileName = result.get();
 				xw.writeFile(fileName, l);
-			}
-			catch (NoSuchElementException e) {
+			} catch (NoSuchElementException e) {
 				return;
 			}
 		}
 		Communicator c = new Communicator(myData.getGameName());
-		//pass this value to the game engine
+		// pass this value to the game engine
 	}
 }
