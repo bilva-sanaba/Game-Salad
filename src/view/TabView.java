@@ -39,7 +39,6 @@ public class TabView extends GUIComponent{
 			@Override
 			public void changed(ObservableValue<? extends Entity> observable, Entity oldVal, Entity newVal) {                                                                           
 				myData.setUserSelectedEntity(newVal);
-				System.out.println("asd");
 			}
 		});
 		Tab blockTab = util.buildTab("BlockTabLabel", false);
@@ -47,9 +46,9 @@ public class TabView extends GUIComponent{
 		b = util.buildButton("AddEntityButton", e->
 		{
 			entityBuilder.showEntityBuilder();
-			/*           ImageView myImage = chooser.chooseFile();
-                                                myImage.setOnMouseClicked(e->currentEntity = chooser.getEntity());
-                                                blocksList.add(chooser.chooseFile()); */
+//			ImageView myImage = chooser.chooseFile();
+//            myImage.setOnMouseClicked(e->currentEntity = chooser.getEntity());
+//            blocksList.add(chooser.chooseFile());
 		});
 		myTab.getTabs().add(blockTab);
 	}

@@ -6,6 +6,7 @@ import components.SpriteComponent;
 import entity.Entity;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -44,9 +45,9 @@ public class GridView extends GUIComponent {
 				System.out.println(String.format("Click at row %d col %d", row, col));
 				Entity userSelectedEntity = myData.getUserSelectedEntity();
 				if (userSelectedEntity != null) {
-					myData.setEntityLocation(userSelectedEntity.getID(), row, col);
-					Entity placedEntity = new Entity(userSelectedEntity.getID());
+					Entity placedEntity = userSelectedEntity.clone();
 					myData.placeEntity(placedEntity);
+					myData.setEntityLocation(placedEntity.getID(), row, col);
 					drawEntity(placedEntity);
 				}
 			}

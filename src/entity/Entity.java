@@ -21,8 +21,6 @@ public class Entity implements IEntity, IRestrictEntity {
 		identifier = id;
 		myComponents= new ArrayList<IComponent>();
 	}
-<<<<<<< HEAD
-=======
 	
 	public Entity clone(){
 		Entity temp = new Entity(identifier);
@@ -33,8 +31,7 @@ public class Entity implements IEntity, IRestrictEntity {
 		}
 		return temp;
 	}
-	
->>>>>>> 5c72dfd9ffdd7bbe7f803c0005dfd099a582a7f9
+
 	@Override
 	public int getID(){
 		return identifier;
