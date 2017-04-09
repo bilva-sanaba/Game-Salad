@@ -48,6 +48,6 @@ public interface ControllerInterface {
 	 */
 	public void resetCurrentGame() throws XMLException;
 
-	void update(Observable obs, Object arg);
+	public void run();
 	
 }

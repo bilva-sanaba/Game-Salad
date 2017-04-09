@@ -1,17 +1,5 @@
 package controller;
 
-import gameView.UIImageModel;
-import gameView.UIImageProperty;
-import gameView.UIView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
-
-import org.w3c.dom.Element;
-
 import data_interfaces.*;
 
 import view_interfaces.UIViewInterface;
@@ -21,8 +9,7 @@ import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
 import entity.EntityManager;
-import entity.restricted.RestrictedEntity;
-import entity.restricted.RestrictedEntityManager;
+
 import gameEngine_interface.GameEngine;
 
 /**
@@ -51,17 +38,6 @@ public class Controller implements ControllerInterface {
 		myGameView = new UIView(s, this);
 		myWorldAnimator = new WorldAnimator();
 	}
-	
-
-	/*@Override
-	public UIImageProperty handleCollision(
-			UIImageProperty coll1, UIImageProperty coll2,
-			Collection<UIImageProperty> allActive) {
-		Collection<Object> collidingObjects = new ArrayList<Object>();
-		collidingObjects.addAll(Arrays.asList(coll1, coll2));
-		myGameEngine.handleInteraction(collidingObjects, allActive);
-		return null;
-	}*/
 
 	@Override
 	public void save(String fileName) {
@@ -88,7 +64,7 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-	public void update(Observable obs, Object arg) {
+	public void run() {
 		// TODO Auto-generated method stub
 		//call world animator
 		myWorldAnimator.start(myStage, myGameEngine);
