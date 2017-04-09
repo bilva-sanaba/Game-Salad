@@ -2,7 +2,8 @@ package active_object_checkers;
 
 import java.util.List;
 
-import gameEngine_interface.Entity;
+import entity.Entity;
+
 
 public interface IActiveObjectChecker {
 	
