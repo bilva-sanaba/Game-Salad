@@ -1,16 +1,13 @@
 package gameView;
 
 import java.awt.Dimension;
-
 import entity.restricted.IRestrictedEntityManager;
 import gameView.commands.AbstractCommand;
 import gameView.commands.LoadCommand;
 import gameView.commands.MakeCommand;
 import gameView.gameScreen.GameScreen;
-
 import java.util.ArrayList;
 import java.util.Collection;
-
 import gameView.splashScreen.SplashView;
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
@@ -20,7 +17,7 @@ import view_interfaces.UIViewInterface;
 
 public class UIView implements UIViewInterface, ICommandUIView {
 	
-	public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
+	public static final Dimension DEFAULT_SIZE = new Dimension(1000, 650);
 	public final String DEFAULT_BUTTONS =  "EnglishCommands";
 	
 	private Stage myStage;
