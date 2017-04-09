@@ -20,6 +20,7 @@ public class EntityManager implements IEntityManager{
 	EntityManager(Collection<Entity> entities){
 		myEntities = entities;
 	}
+	
 	@Override
 	public List<IComponent> getCertainComponents(ComponentType certainComponent) {
 		List<IComponent> certainComponents = new ArrayList<IComponent>();
@@ -38,6 +39,7 @@ public class EntityManager implements IEntityManager{
 		}
 		return new RestrictedEntityManager(certainComponents);
 	}
+	
 	@Override
 	public Map<IEntity, IRestrictedEntity> getEntityMap() {
 		Map<IEntity, IRestrictedEntity> entityToRestricted = new HashMap<IEntity,IRestrictedEntity>();
@@ -48,6 +50,4 @@ public class EntityManager implements IEntityManager{
 		};
 		return entityToRestricted;
 	}
-	
-
 }

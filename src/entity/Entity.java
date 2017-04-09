@@ -13,7 +13,7 @@ import javafx.beans.InvalidationListener;
  * @author Bilva
  *
  */
-public class Entity implements IEntity,IRestrictEntity {
+public class Entity implements IEntity, IRestrictEntity {
 	private int identifier;
 	Collection<IComponent> myComponents;
 	

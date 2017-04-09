@@ -4,9 +4,16 @@ import entity.Entity;
 
 import java.util.HashMap;
 import java.util.Observable;
+import components.*;
 
-import components.ComponentType;
-
+/**
+ * Casting takes place to be able to edit the component because we are using enums to choose the specific component 
+ * we feel comfortable to cast the component to its specific component
+ * 
+ * @author Jonathan
+ * @author Justin
+ *
+ */
 public class ViewData extends Observable {
 	private HashMap<Integer, Entity> entityList;
 	private Entity userSelectedEntity;
@@ -25,7 +32,12 @@ public class ViewData extends Observable {
 	}
 	
 	public void setEntityLocation(int entityID, int row, int col) {
-//		entityList.get(entityID).getComponent(ComponentType.Location).setX(row);
+		LocationComponent locComp = (LocationComponent) entityList.get(entityID).getComponent(ComponentType.Location);
+		locComp.setXY(row, col);
+	}
+	
+	public void setEntityLocation(int row, int col) {
+		setEntityLocation(userSelectedEntity.getID(), row, col);
 	}
 	
 	public void addEntity(Entity entity) {
