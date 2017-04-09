@@ -20,15 +20,23 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent{
 	public void event() {
 		XMLWriter xw = new XMLWriter();
 		String fileName;
-		Collection <Entity> l = myData.getEntityMap().values();
+		List <Entity> l = new ArrayList<Entity>();
+		Map<Integer, Entity> m = myData.getEntityMap();
+		for (Integer key : m.keySet()) {
+			l.add(m.get(key));
+		}
 		TextInputDialog tid = new TextInputDialog(myData.getGameName());
 		tid.setTitle("Saving File");
 		tid.setHeaderText("Please choose a name for your game: ");
 		Optional <String> result = tid.showAndWait();
-		myData.setGameName(result.get());
-		fileName = result.get();
-		System.out.print(result.get());
-				
-		xw.writeFile(fileName, l);
+		try {
+			myData.setGameName(result.get());
+			fileName = result.get();
+			System.out.print(result.get());		
+			xw.writeFile(fileName, l);
+		}
+		catch (NoSuchElementException e) {
+			
+		}
 	}
 }

@@ -32,9 +32,6 @@ public class XMLParser {
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document doc = builder.parse(fileName);
-			if (doc.equals(null)) {
-				System.out.println("alert");
-			}
 			return doc.getDocumentElement();
 		} catch (ParserConfigurationException e) {
 			// TODO Solve this	
@@ -55,6 +52,7 @@ public class XMLParser {
 	 * @return the element of the parsed DOM objects
 	 */
 	public Element getData(String fileName) {
+		System.out.println(fileName);
 		return (Element)loadFile(fileName);
 	}
 	
