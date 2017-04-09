@@ -80,5 +80,4 @@ public class ViewData extends Observable {
 		return gameName;
 	}
 }
-}
 
