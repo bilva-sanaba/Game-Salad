@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -23,7 +22,7 @@ public class TabView extends GUIComponent{
 	private UtilityFactory util;
 	private Entity currentEntity = null;
 	private EntityBuilderWindow entityBuilder;
-
+ 
 	public TabView(UtilityFactory utilIn){
 		util = utilIn;
 		entityBuilder = new EntityBuilderWindow(util, blocksList, currentEntity);
