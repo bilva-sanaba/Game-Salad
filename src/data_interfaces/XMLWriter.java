@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
@@ -15,7 +16,7 @@ import components.SpriteComponent;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
 
-public class XMLWriter extends AuthoringDataTool implements FileSaver {
+public class XMLWriter extends GameSavingDataTool implements FileSaver {
 
 	@Override
 	public void createFile(String fileName, Object data) {
@@ -35,7 +36,7 @@ public class XMLWriter extends AuthoringDataTool implements FileSaver {
 	 * @param fileName the desired name for the file
 	 * @param gameData the data which should be saved
 	 */
-	public void writeFile(String fileName, List gameData) {
+	public void writeFile(String fileName, Collection gameData) {
 		ClassLoader loader = new LocalClassLoader();
         XStream serializer = new XStream(new DomDriver());
         String ret;
@@ -47,7 +48,7 @@ public class XMLWriter extends AuthoringDataTool implements FileSaver {
 	}
 	
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		XMLWriter x = new XMLWriter();
 		SpriteComponent s = new SpriteComponent("jin jon");
 		SpriteComponent s1 = new SpriteComponent("bobby joe");
@@ -64,6 +65,6 @@ public class XMLWriter extends AuthoringDataTool implements FileSaver {
 		l.add(e1);
 		
 		x.writeFile("try4", l);
-	}*/
+	}
 	
 }
