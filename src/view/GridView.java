@@ -1,7 +1,12 @@
 package view;
 
+import components.ComponentType;
+import components.LocationComponent;
+import components.SpriteComponent;
+import entity.Entity;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -37,22 +42,24 @@ public class GridView extends GUIComponent {
 			@Override
 			public void handle(MouseEvent event) {
 				System.out.println(String.format("Click at row %d col %d", row, col));
-				if (myData.getUserSelectedEntity() != null) {
-					myData.setEntityLocation(row, col);
+				Entity userSelectedEntity = myData.getUserSelectedEntity();
+				if (userSelectedEntity != null) {
+					myData.setEntityLocation(userSelectedEntity.getID(), row, col);
+					Entity placedEntity = new Entity(userSelectedEntity.getID());
+					myData.placeEntity(placedEntity);
+					drawEntity(placedEntity);
 				}
 			}
 		});
 		myGrid.add(rect, row, col);
 	}
-	
-//	public void loadData(ViewData data) {
-//		myLevel = level;
-//		myLevel.addObserver(this);
-//	}
-//	
-//	public void addLevelEntity(Entity entity) {
-//		myLevel.add(entity);
-//	}
+
+	private void drawEntity(Entity entity) {
+		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
+		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
+		ImageView spriteImage = new ImageView(entitySprite.getSprite());
+		myGrid.add(spriteImage, entityLocation.getX(), entityLocation.getY());
+	}
 	
 	@Override
 	public Region buildComponent() {

@@ -1,6 +1,8 @@
 package view;
 
 import java.util.ArrayList;
+
+import components.LocationComponent;
 import components.SpriteComponent;
 import entity.Entity;
 import javafx.collections.ObservableList;
@@ -67,8 +69,9 @@ public class EntityBuilderWindow {
 			Entity tempEntity = new Entity(i);
 			i++;
 			tempEntity.addComponent(new SpriteComponent(myImagePath));
+			tempEntity.addComponent(new LocationComponent(1, 2));
 			blocksList.add(tempEntity);
-			myData.addEntity(tempEntity);
+			myData.defineEntity(tempEntity);
 			myStage.close();
 		});
 		nodeList.add(okayButton);

@@ -6,8 +6,8 @@ package components;
  *
  */
 public class LocationComponent extends XYComponent implements IComponent {
-	public LocationComponent(int x,int y){
-		super(x,y);
+	public LocationComponent(int x, int y){
+		super(x, y);
 	}
 	public LocationComponent(){
 		super();

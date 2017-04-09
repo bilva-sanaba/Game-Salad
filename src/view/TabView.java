@@ -28,7 +28,6 @@ public class TabView extends GUIComponent{
 	private ViewData myData;
 	private EntityBuilderWindow entityBuilder;
 
-
 	public TabView(UtilityFactory utilIn, ViewData data){
 		//	Image i = ((SpriteComponent)currentEntity.getComponent(ComponentType.Sprite)).getSprite();
 		myData = data;
@@ -40,6 +39,7 @@ public class TabView extends GUIComponent{
 			@Override
 			public void changed(ObservableValue<? extends Entity> observable, Entity oldVal, Entity newVal) {					
 				myData.setUserSelectedEntity(newVal);
+				System.out.println("asd");
 			}
 		});
 		Tab blockTab = util.buildTab("BlockTabLabel", false);
