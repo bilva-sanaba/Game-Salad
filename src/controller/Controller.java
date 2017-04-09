@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
+import data_interfaces.*;
 
 import view_interfaces.UIViewInterface;
 import javafx.stage.Stage;
@@ -62,7 +63,8 @@ public class Controller implements ControllerInterface {
 	public void save() {
 		// TODO Auto-generated method stub
 		//loop through and save all write all items to XML
-		
+		XMLWriter xw = new XMLWriter();
+		//xw.writeFile(filename, list of entities);
 	}
 
 	@Override
@@ -89,8 +91,7 @@ public class Controller implements ControllerInterface {
 	public void update(Observable obs, Object arg) {
 		// TODO Auto-generated method stub
 		//call world animator
-		Collection<RestrictedEntity> animatableEntities = (Collection<RestrictedEntity>) arg;
-		myWorldAnimator.start(myStage, animatableEntities);
+		myWorldAnimator.start(myStage, myGameEngine);
 	}
 
 }

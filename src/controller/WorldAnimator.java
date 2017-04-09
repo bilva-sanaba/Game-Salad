@@ -22,14 +22,14 @@ import gameEngine_interface.GameEngine;
  *
  */
 public class WorldAnimator {
-	private Stage myStage;
+	//private Stage myStage;
 	public static final int FRAMES_PER_SECOND = 60;
 	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
 	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
 	public static final int KEY_INPUT_SPEED = 3;
 	
-	private CollisionTracker collisionTracker;
-	private MovementTracker movementTracker;
+	//private CollisionTracker collisionTracker;
+	//private MovementTracker movementTracker;
 	private ArrayList<KeyCode> keysPressed = new ArrayList<KeyCode>();
 	
 	private Scene myScene;
@@ -63,8 +63,8 @@ public class WorldAnimator {
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
 		
-		collisionTracker = new CollisionTracker("No", restrictedEntityManager.getEntities());
-		movementTracker = new MovementTracker("Go", restrictedEntityManager.getEntities());
+		//collisionTracker = new CollisionTracker("No", restrictedEntityManager.getEntities());
+		//movementTracker = new MovementTracker("Go", restrictedEntityManager.getEntities());
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
 									  e-> step(SECOND_DELAY));
 		this.animation = new Timeline();
@@ -95,8 +95,6 @@ public class WorldAnimator {
 			}
 			else{
 				imageMap.put(e.getID(), updatedMap.get(e.getID()));
-				root.getChildren().remove(imageMap.get(e.getID()));
-				root.getChildren().add(imageMap.get(e.getID()));
 			}
 		}
 		
