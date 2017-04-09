@@ -4,14 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-import org.w3c.dom.Entity;
-
-import com.sun.javafx.collections.MappingChange.Map;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -19,11 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import entitiy.restricted.RestrictedEntity;
-import entitiy.restricted.RestrictedEntityManager;
-import entity.EntityManager;
+import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
-import gameView.EntityFactory;
 /**
  * 
  * @author Jacob

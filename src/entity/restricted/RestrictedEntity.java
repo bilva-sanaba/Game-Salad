@@ -1,4 +1,4 @@
-package entitiy.restricted;
+package entity.restricted;
 
 import java.util.Observable;
 
@@ -24,23 +24,23 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 	@Override
 	public Coordinate getLocation() {
 		// TODO Auto-generated method stub
-		return null;
+		return myCoordinate;
 	}
 
 	@Override
 	public String getImagePath() {
 		// TODO Auto-generated method stub
-		return null;
+		return imagePath;
 	}
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		//IN THIS METHOD YOU WILL CALL THE APPROPRIATE UPDATE FOR MOVEMENT, ETC.
 	}
+
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

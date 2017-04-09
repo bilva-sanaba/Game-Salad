@@ -1,11 +1,14 @@
 package engines;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import components.ComponentType;
 import components.IComponent;
 import entity.IEntityManager;
+import entity.restricted.IRestrictedEntity;
+import entity.restricted.RestrictedEntity;
 
 public abstract class AbstractEngine {
 	
@@ -23,7 +26,8 @@ public abstract class AbstractEngine {
 	protected abstract List<ComponentType> neededComponents();
 	/**
 	 * Updates its lists of components
+	 * @return 
 	 */
-	public abstract void update();
+	public abstract Collection<? extends RestrictedEntity> update();
 	
 }

@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import entitiy.restricted.RestrictedEntity;
-import entitiy.restricted.RestrictedEntityManager;
+import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityManager;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;

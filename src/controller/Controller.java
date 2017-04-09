@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
-import entitiy.restricted.RestrictedEntity;
-import entitiy.restricted.RestrictedEntityManager;
+import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
 /**

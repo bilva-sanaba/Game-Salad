@@ -1,0 +1,20 @@
+<list>
+  <entity.Entity>
+    <identifier>9</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent>
+        <classPath>jin jon</classPath>
+      </components.SpriteComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>9</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>5</x>
+        <y>6</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+</list>
