@@ -1,5 +1,8 @@
 package view;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -21,8 +24,9 @@ import javafx.scene.image.ImageView;
  */
 public class UtilityFactory {
 	
-    public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
-	
+    public static final String DEFAULT_RESOURCE_PACKAGE = "resources" + File.separator;
+    
+	ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
 	private ResourceBundle myResources;
 	
 	public UtilityFactory(String language){
@@ -36,8 +40,7 @@ public class UtilityFactory {
 		return myTab;
 	}
 	
-	public Button buildButton(String property, String eventname){
-		ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
+	public Button buildButton(String property, String eventname, ViewData data){
 
 		// represent all supported image suffixes
         final String IMAGEFILE_SUFFIXES =
@@ -69,5 +72,14 @@ public class UtilityFactory {
         result.setOnAction(eventname);
         return result;
 	}
-
+	
+	public List<Button> makeToolBarButtons(ViewData data) {
+		List<Button> toolButtons = new ArrayList<Button>();
+		String[] names = imagesResources.getString("IconNames").split(", ");
+		String[] events = imagesResources.getString("EventNames").split(", ");
+		for(int i = 0; i < names.length; i++){
+			toolButtons.add(buildButton(names[i], events[i], data));
+		}
+		return toolButtons;
+	}
 }
