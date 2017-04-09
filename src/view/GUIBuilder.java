@@ -10,7 +10,7 @@ import view.toolbar.ToolBarView;
 /**
  * @author Jonathan Rub
  * @author Justin Yang
- *
+ * @author Jack Bloomfeld
  */
 public class GUIBuilder {
 	public static final String RESOURCE_PACKAGE = "resources/";
