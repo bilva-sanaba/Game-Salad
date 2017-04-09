@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Observable;
 import components.*;
 
-<<<<<<< HEAD
 /**
  * Casting takes place to be able to edit the component because we are using enums to choose the specific component
  * we feel comfortable to cast the component to its specific component
@@ -17,7 +16,6 @@ import components.*;
  * Casting takes place to beable to edit the component becuase we are using Enums to choose the specific component 
  * we feel compfortable to cast the component to its specific component
  * 
->>>>>>> master
  * @author Jonathan
  * @author Justin
  *
@@ -26,11 +24,13 @@ public class ViewData extends Observable {
 	private HashMap<Integer, Entity> definedEntityList;
 	private HashMap<Integer, Entity> placedEntityList;
 	private Entity userSelectedEntity;
-
+	private String gameName;
+	
 	public ViewData() {
 		definedEntityList = new HashMap<Integer, Entity>();
 		placedEntityList = new HashMap<Integer, Entity>();
 		userSelectedEntity = null;
+		gameName = "";
 	}
 
 	public void setUserSelectedEntity(Entity entity) {
@@ -71,4 +71,14 @@ public class ViewData extends Observable {
 		return definedEntityList;
 
 	}
+	
+	public void setGameName(String s) {
+		gameName = s;
+	}
+	
+	public String getGameName() {
+		return gameName;
+	}
 }
+}
+
