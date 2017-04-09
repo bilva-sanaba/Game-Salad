@@ -16,16 +16,15 @@ import data_interfaces.XMLParser;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
 import engines.MovementEngine;
-import entitiy.restricted.IRestrictedEntity;
-import entitiy.restricted.IRestrictedEntityManager;
-import entitiy.restricted.RestrictedEntity;
-import entitiy.restricted.RestrictedEntityManager;
 import entity.Entity;
 import entity.EntityManager;
 import entity.IEntity;
 import entity.IEntityManager;
-
-
+import entity.restricted.IRestrictedEntity;
+import entity.restricted.IRestrictedEntityManager;
+import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityFactory;
+import entity.restricted.RestrictedEntityManager;
 import engines.AbstractEngine;
 import entity.IEntityManager;
 /**
@@ -37,15 +36,15 @@ import entity.IEntityManager;
 public class GameEngine implements GameEngineInterface {
 	private GameData myLevelManager;
 	private EntityManager myEntityManager; 
-
+	private RestrictedEntityFactory myREF = new RestrictedEntityFactory();
 	private RestrictedEntityManager myRestrictedEntityManager;
 	private List<AbstractEngine> myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	
 	GameEngine(String xmlDataFile){
-		myLevelManager = myParser.loadFile(xmlDataFile);
-		myEntityManager = myLevelManager.getLevels()[0];
+		myLevelManager = (GameData) myParser.loadFile(xmlDataFile);
+		myEntityManager = ((GameData) myLevelManager).getLevels()[0];
 		myRestrictedEntityManager = myEntityManager.getRestricted();
 		entityToRestricted = myEntityManager.getEntityMap();
 	}
@@ -53,12 +52,18 @@ public class GameEngine implements GameEngineInterface {
 	 * Runs each Engine in my Engine
 	 */
 	@Override
+
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
-		Collection <RestrictedEntity> changesRestrictedEntity = new ArrayList<RestrictedEntity>();
+		Collection <Entity> changedEntity = new ArrayList<Entity>();
+		
 		for (AbstractEngine s : myEngines){
-			changesRestrictedEntity.addAll(s.update());
+			changedEntity.addAll(s.update());
 		}	
-		return changesRestrictedEntity;
+		Collection <RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
+		for (Entity e : changedEntity){
+			changedRestrictedEntity.add(myREF.createRestrictedEntity(e));
+		}
+		return changedRestrictedEntity;
 	}
 	@Override
 	public RestrictedEntityManager getRestrictedEntityManager() {

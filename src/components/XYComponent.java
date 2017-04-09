@@ -15,6 +15,12 @@ public abstract class XYComponent {
 	public void setY(int newY){
 		y = newY;
 	}
+	
+	public void setXY(int newX, int newY){
+			x = newX;
+			y = newY;
+	}
+	
 	public int getX(){
 		return x;
 	}

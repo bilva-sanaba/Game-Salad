@@ -3,7 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import entitiy.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntity;
 import javafx.beans.InvalidationListener;
 
 public class Tracker implements ITracker {

@@ -1,4 +1,4 @@
-package entitiy.restricted;
+package entity.restricted;
 
 import java.util.Observer;
 
@@ -9,6 +9,12 @@ import gameView.Coordinate;
  *
  */
 public interface IRestrictedEntity extends Observer{
+	
+	/**
+	 * 
+	 * @return ID of RestrictedEntity
+	 */
+	public int getID();
 	/**
 	 * 
 	 * @return Coordinate of Entities location
