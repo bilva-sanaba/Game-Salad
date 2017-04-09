@@ -5,8 +5,6 @@ import entity.Entity;
 import java.util.HashMap;
 import java.util.Observable;
 
-import components.ComponentType;
-
 public class ViewData extends Observable {
 	private HashMap<Integer, Entity> entityList;
 	private Entity userSelectedEntity;
@@ -18,6 +16,10 @@ public class ViewData extends Observable {
 	
 	public void setUserSelectedEntity(Entity entity) {
 		userSelectedEntity = entity;
+	}
+	
+	public Entity getUserSelectedEntity() {
+		return userSelectedEntity;
 	}
 	
 	public void setEntityLocation(int entityID, int row, int col) {

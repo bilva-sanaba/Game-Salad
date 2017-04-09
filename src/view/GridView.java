@@ -37,6 +37,9 @@ public class GridView extends GUIComponent {
 			@Override
 			public void handle(MouseEvent event) {
 				System.out.println(String.format("Click at row %d col %d", row, col));
+				if (myData.getUserSelectedEntity() != null) {
+					
+				}
 			}
 		});
 		myGrid.add(rect, row, col);

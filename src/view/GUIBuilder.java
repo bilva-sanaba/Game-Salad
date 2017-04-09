@@ -43,9 +43,7 @@ public class GUIBuilder {
 		BorderPane myPane = new BorderPane();
 		myPane.setPrefHeight(SCREEN_HEIGHT);
 		myPane.setPrefWidth(SCREEN_WIDTH);
-//		for(GUIComponent c: myComp){
-//			myPane.getChildren().add(c.buildComponent());
-//		}
+		
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
 		myPane.setCenter(grid.buildComponent());

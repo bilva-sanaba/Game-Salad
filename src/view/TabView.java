@@ -1,6 +1,8 @@
 package view;
 
 import entity.Entity;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
@@ -31,7 +33,12 @@ public class TabView extends GUIComponent{
 		entityBuilder = new EntityBuilderWindow(util, blocksList, currentEntity);
 		blocksView.setItems(blocksList);
 		blocksView.setOrientation(Orientation.VERTICAL);
-		blocksView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		blocksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ImageView>() {
+					@Override
+					public void changed(ObservableValue<? extends ImageView> observable, ImageView oldVal, ImageView newVal) {
+//						myData.setUserSelectedEntity(entity);
+					}
+				});
 		Tab blockTab = util.buildTab("BlockTabLabel", false);
 		blockTab.setContent(blocksView);
 		b = util.buildButton("AddEntityButton", e->
