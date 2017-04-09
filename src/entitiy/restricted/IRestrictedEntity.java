@@ -9,6 +9,12 @@ import gameView.Coordinate;
  *
  */
 public interface IRestrictedEntity extends Observer{
+	
+	/**
+	 * 
+	 * @return ID of RestrictedEntity
+	 */
+	public int getID();
 	/**
 	 * 
 	 * @return Coordinate of Entities location

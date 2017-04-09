@@ -44,6 +44,7 @@ public class WorldAnimator {
 	private GameEngine myGameEngine;
 	private Timeline animation;
 	private GameBuilder myGameBuilder;
+	private Group root;
 	
 	private HashMap<Integer, ImageView> imageMap = new HashMap<Integer, ImageView>();
 	
@@ -54,7 +55,7 @@ public class WorldAnimator {
 	
 	public void start (Stage s, GameEngine myGameEngine){
 		
-		Group root = new Group();
+		root = new Group();
 		
 		this.myGameEngine = myGameEngine;
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
@@ -69,8 +70,6 @@ public class WorldAnimator {
 		s.show();
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
-	
-		
 		
 		collisionTracker = new CollisionTracker("No", restrictedEntityManager.getEntities());
 		movementTracker = new MovementTracker("Go", restrictedEntityManager.getEntities());
@@ -98,6 +97,7 @@ public class WorldAnimator {
 	private void step(double elapsedTime){	
 		
 		myGameEngine.handleUpdates(keysPressed);
+		//MAKE CHANGES TO ROOT based on Updates
 		
 	}
 
@@ -113,12 +113,12 @@ public class WorldAnimator {
 	
 	private void externalKeyHandler(KeyCode code){
 		if(code == KeyCode.P && !pause){
-			movementTracker.changeMessage("Pause");
+			//movementTracker.changeMessage("Pause");
 			pause = true;
 			animation.pause();
 		}
 		if(code == KeyCode.P && pause){
-			movementTracker.changeMessage("Go");
+			//movementTracker.changeMessage("Go");
 			pause = false;
 			animation.play();
 		}
