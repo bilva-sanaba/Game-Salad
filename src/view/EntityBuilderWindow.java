@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 
 public class EntityBuilderWindow {
 	
-	private ObservableList<ImageView> blocksList;
-	
+	private ObservableList<Entity> blocksList;
 	private ArrayList<Node> nodeList = new ArrayList<Node>();
 	private Image myImageImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
 	private ImageView myImage = new ImageView(myImageImage);
@@ -23,9 +22,11 @@ public class EntityBuilderWindow {
 	private ImageChooser imageChooser = new ImageChooser();
 	private UtilityFactory util;
 	private Stage myStage = new Stage();
+	private ViewData myData;
+	private int i = 0;
 	
-	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<ImageView> blocksListIn, Entity entityIn){ 
-		myEntity = entityIn;
+	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn){ 
+		myData = dataIn;
 		blocksList = blocksListIn;
 		util = utilIn;
 		nodeList.add(myImage);
@@ -63,16 +64,17 @@ public class EntityBuilderWindow {
 		GridPane.setConstraints(imageButton, 0, 1);
 		
 		Node okayButton = util.buildButton("OkayLabel", e->{
-			Entity tempEntity = new Entity(19);
+			Entity tempEntity = new Entity(i);
+			i++;
 			tempEntity.addComponent(new SpriteComponent(myImagePath));
-			ImageView tempImg = new ImageView(new Image(myImagePath));
-			blocksList.add(tempImg);
-			myEntity = tempEntity;
+			blocksList.add(tempEntity);
+			myData.addEntity(tempEntity);
 			myStage.close();
 		});
 		nodeList.add(okayButton);
 		GridPane.setConstraints(okayButton, 0, 2);
 	}
+	
 	private GridPane buildPane(){
 		GridPane pane = new GridPane();
 		pane.getChildren().addAll(nodeList);
