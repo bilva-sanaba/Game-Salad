@@ -2,7 +2,8 @@ package data_interfaces;
 
 import java.util.HashMap;
 import java.util.Map;
-import groovy.lang.*;
+
+import groovy.lang.GroovyClassLoader;
 
 
 /**

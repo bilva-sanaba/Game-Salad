@@ -1,18 +1,19 @@
 package gameView.commands;
 import javafx.stage.Stage;
+import gameView.ICommandView;
 import gameView.UIView;
 
 public abstract class AbstractCommand {
 	
-	private UIView view;
+	private ICommandView myView;
 	
-	public AbstractCommand(UIView m) {
+	public AbstractCommand(ICommandView m) {
 		super();
-		view = m;
+		myView = m;
 	}
 
-	protected UIView getView() {
-		return view;
+	protected ICommandView getView() {
+		return myView;
 	}
 	
 	public abstract void execute(Stage s);	

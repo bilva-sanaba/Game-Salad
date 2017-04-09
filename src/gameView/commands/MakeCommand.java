@@ -1,6 +1,7 @@
 package gameView.commands;
 
 import javafx.stage.Stage;
+import gameView.ICommandUIView;
 import gameView.UIView;
 
 public class MakeCommand extends AbstractCommand {
@@ -11,12 +12,12 @@ public class MakeCommand extends AbstractCommand {
 
 	@Override
 	public void execute(Stage s) {
-		getView().authorGame();
+		((ICommandUIView) getView()).authorGame();
 	}
 
 	@Override
 	public String getName() {
-		return "New Game";
+		return "Make";
 	}
 	
 	

@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
+import gameView.tools.ButtonFactory;
 
 public class SplashView {
 	
@@ -23,6 +24,7 @@ public class SplashView {
 	private Scene myScene;
 	private BorderPane myPane;
 	private Collection<AbstractCommand> myCommands;
+	private ButtonFactory myButtonFactory;
 
 //	private static final String SPLASH_BACKGROUND = "/resources/images/background.gif";
 //	private static final String MAIN_BACKGROUND = "/resources/images/mainpage.gif";
@@ -30,6 +32,7 @@ public class SplashView {
 	public SplashView(UIView view, Collection<AbstractCommand> buttons) {
 		myCommands = buttons;
 		myView = view;
+		myButtonFactory = new ButtonFactory(view, view.DEFAULT_BUTTONS);
 		myPane = new BorderPane();
 		myPane.setId("splashpane");
 		myScene = new Scene(myPane, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
@@ -83,14 +86,7 @@ public class SplashView {
 	}
 	
 	private Button makeButton(AbstractCommand command) { 
-		Button button = new Button(command.getName());
-		button.setId(command.getName().toLowerCase()); 
-		button.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {	
-				command.execute(myView.getStage());
-			}
-		});
-		return button;
+		return myButtonFactory.makeButton(command);
 	}
 
 }

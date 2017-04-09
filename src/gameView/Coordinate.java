@@ -1,5 +1,8 @@
 package gameView;
 
+import components.LocationComponent;
+import components.XYComponent;
+
 public class Coordinate {
 
 	private double myX;
@@ -9,6 +12,10 @@ public class Coordinate {
 		myX = x;
 		myY = y;
 	}
+	public Coordinate(XYComponent xy){
+		myX=xy.getX();
+		myY=xy.getY();
+	}
 	
 	public double getX() {
 		return myX;
@@ -17,4 +24,5 @@ public class Coordinate {
 	public double getY() {
 		return myY;	
 	}
+	
 }

@@ -2,36 +2,44 @@ package gameView;
 
 import java.awt.Dimension;
 
+import entity.restricted.IRestrictedEntityManager;
 import gameView.commands.AbstractCommand;
 import gameView.commands.LoadCommand;
 import gameView.commands.MakeCommand;
+import gameView.gameScreen.GameScreen;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import gameView.splashScreen.SplashView;
+import controller.Controller;
 import controller_interfaces.ControllerInterface;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view_interfaces.UIViewInterface;
 
 
-public class UIView implements UIViewInterface {
+public class UIView implements UIViewInterface, ICommandUIView {
 	
 	public static final Dimension DEFAULT_SIZE = new Dimension(800, 600);
+	public final String DEFAULT_BUTTONS =  "EnglishCommands";
+	
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
+	private GameScreen myGameScene;
+	private IRestrictedEntityManager myEntities; 
 	
-	public UIView(Stage s, ControllerInterface controller) {
+	public UIView(Stage s, Controller controller) {
 		myStage = s;
 		myController = controller;
 		mySplash = new SplashView(this, getCommands());
-		getSplashScreen();
+		myGameScene = new GameScreen(this);
+		runGame();//getSplashScreen();
 	}
 
 	public void getSplashScreen() {
-		myStage.setScene(mySplash.getSplashScene());
-		myStage.show();
+		setStage(mySplash.getSplashScene());
 	}
 	
 	@Override
@@ -43,7 +51,7 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		// TODO Auto-generated method stub
+		setStage(myGameScene.getScene());
 		
 	}
 	
@@ -55,6 +63,15 @@ public class UIView implements UIViewInterface {
 		
 	}
 	
+	public void saveGame() {
+		
+	}
+	
+	private void setStage(Scene s) {
+		myStage.setScene(s);
+		myStage.show();
+	}
+	
 	private Collection<AbstractCommand> getCommands() {
 		Collection<AbstractCommand> list = new ArrayList<AbstractCommand>();
 		list.add(new LoadCommand(this));
@@ -64,6 +81,11 @@ public class UIView implements UIViewInterface {
 	
 	public Stage getStage() {
 		return myStage;
+	}
+	
+	public void addEntities(IRestrictedEntityManager entity) {
+		myEntities = entity;
+		myGameScene.addEntity(entity);
 	}
 
 }
