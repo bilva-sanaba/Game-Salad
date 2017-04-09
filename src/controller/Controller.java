@@ -9,10 +9,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
+
+import org.w3c.dom.Element;
+
 import data_interfaces.*;
 
 import view_interfaces.UIViewInterface;
 import javafx.stage.Stage;
+import data_interfaces.XMLException;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
@@ -34,6 +38,7 @@ public class Controller implements ControllerInterface {
 	private EntityManager myEntityManager;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
+	private String filePath;
 	
 	private GUIBuilder myGUIBuilder;
 	
@@ -44,9 +49,7 @@ public class Controller implements ControllerInterface {
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
 		
 		myGameView = new UIView(s, this);
-		myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
-		myEntityManager = new EntityManager();
 	}
 	
 
@@ -61,34 +64,35 @@ public class Controller implements ControllerInterface {
 	}*/
 
 	@Override
-	public void save(String filename) {
+	public void save(String fileName) {
 		// TODO Auto-generated method stub
 		//loop through and save all write all items to XML
 		XMLWriter xw = new XMLWriter();
-		xw.writeFile(filename, myEntityManager.getEntityMap().keySet());
+		xw.writeFile(fileName, myEntityManager.getEntities());
 	}
 
 	@Override
 	public void loadNewGame(String filePath) {
 		// TODO Auto-generated method stub
-		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
-		
+		this.filePath = filePath;
+		myGameEngine = new GameEngine(filePath);
 	}
 
 	@Override
 	public void resetCurrentGame() {
-		// TODO Auto-generated method stub
-		//load starting game file
-		
+		if(!filePath.equals(null)){
+			myGameEngine = new GameEngine(filePath);
+		}
+		else{
+			try {
+				throw new XMLException(String.format("No current game"));
+			} catch (XMLException e) {
+				// TODO Auto-generated catch block, MUST REMOVE STACK TRACE
+				e.printStackTrace();
+			}
+		}
 	}
 
-	@Override
-	public void checkCollision(UIImageModel u) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void update(Observable obs, Object arg) {
 		// TODO Auto-generated method stub
 		//call world animator

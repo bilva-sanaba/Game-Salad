@@ -7,12 +7,6 @@ import java.util.Observable;
 import components.*;
 
 /**
- * Casting takes place to be able to edit the component because we are using enums to choose the specific component
- * we feel comfortable to cast the component to its specific component
- *
-=======
-import components.*;
-/**
  * Casting takes place to beable to edit the component becuase we are using Enums to choose the specific component 
  * we feel compfortable to cast the component to its specific component
  * 
@@ -80,5 +74,5 @@ public class ViewData extends Observable {
 		return gameName;
 	}
 }
-}
+
 

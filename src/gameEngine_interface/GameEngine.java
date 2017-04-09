@@ -42,8 +42,8 @@ public class GameEngine implements GameEngineInterface {
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	
-	GameEngine(String xmlDataFile){
-		myLevelManager = (GameData) myParser.loadFile(xmlDataFile);
+	public GameEngine(String xmlDataFile){
+		myLevelManager = (GameData) myParser.getData(xmlDataFile);
 		myEntityManager = ((GameData) myLevelManager).getLevels()[0];
 		myRestrictedEntityManager = myEntityManager.getRestricted();
 		entityToRestricted = myEntityManager.getEntityMap();
