@@ -14,16 +14,22 @@ public interface IEntity{
 	 * Returns the integer representation of the object
 	 * @return int Identifer of Object
 	 */
-	int getID();
+	public int getID();
+	
+	/**
+	 * sets a new integer to be the identifier of the object
+	 */
+	public void setID(int i);
+	
 	/**
 	 * Adds an IComponents to the Objects Collection of IComponents
 	 * @param component to be add to the Collection of IComponents
 	 */
-	void addComponent(IComponent component);
+	public void addComponent(IComponent component);
 	/**
 	 * Returns all IComponents which the Entity holds
 	 * @return Collection<IComponent> which the Entity holds
 	 */
-	Collection<IComponent> getComponents();
+	public Collection<IComponent> getComponents();
 
 }

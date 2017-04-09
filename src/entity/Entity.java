@@ -6,6 +6,8 @@ import java.util.Observable;
 import components.ComponentType;
 import components.IComponent;
 import engines.IRestrictEntity;
+import entity.restricted.IRestrictedEntity;
+import gameView.Coordinate;
 import javafx.beans.InvalidationListener;
 /**
  * Class which will represent each GameObject
@@ -38,6 +40,11 @@ public class Entity implements IEntity,IRestrictEntity {
 	}
 	
 	@Override
+	public void setID(int i){
+		identifier = i;
+	}
+	
+	@Override
 	public void addComponent(IComponent component){
 		myComponents.add(component);
 	}
@@ -47,7 +54,7 @@ public class Entity implements IEntity,IRestrictEntity {
 		return myComponents;
 	}
 	
-	@Override
+	/*@Override
 	public void addListener(InvalidationListener arg0) {
 		// TODO Auto-generated method stub
 		
@@ -57,7 +64,7 @@ public class Entity implements IEntity,IRestrictEntity {
 	public void removeListener(InvalidationListener arg0) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 	
 	public IComponent getComponent(ComponentType ct){
 		for(IComponent myComponent: myComponents){
@@ -66,5 +73,17 @@ public class Entity implements IEntity,IRestrictEntity {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void addListener(InvalidationListener arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeListener(InvalidationListener arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
