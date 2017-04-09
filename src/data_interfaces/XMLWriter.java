@@ -15,15 +15,12 @@ import components.SpriteComponent;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
 
-public class XMLWriter implements FileSaver{
-	
-	private static final String SUFFIX = ".xml";
-	private static final String PREFIX = "games/";
+public class XMLWriter extends AuthoringDataTool implements FileSaver {
 
 	@Override
 	public void createFile(String fileName, Object data) {
 		try {
-			File f = new File(PREFIX + fileName + SUFFIX);
+			File f = new File(getPrefix() + fileName + getSuffix());
 			BufferedWriter b = new BufferedWriter(new FileWriter(f));
 			b.write(data.toString());
 			b.close();
