@@ -20,20 +20,20 @@ import javafx.scene.paint.Color;
 public class GridView extends GUIComponent {
 	private GridPane myGrid;
 	private ViewData myData;
-	
+
 	public GridView(UtilityFactory utilF, ViewData data, int rows, int cols) {
 		myData = data;
 		myGrid = new GridPane();
 		myGrid.getStyleClass().add("view-grid");
 		myGrid.setAlignment(Pos.CENTER);
-		
+
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < cols; col++) {
 				addMouseListenerPane(row, col);
 			}
 		}
 	}
-	
+
 	private void addMouseListenerPane(int row, int col) {
 		Rectangle rect = new Rectangle(40, 40);
 		rect.getStyleClass().add("view-grid-cell");
@@ -60,7 +60,7 @@ public class GridView extends GUIComponent {
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
 		myGrid.add(spriteImage, entityLocation.getX(), entityLocation.getY());
 	}
-	
+
 	@Override
 	public Region buildComponent() {
 		return myGrid;

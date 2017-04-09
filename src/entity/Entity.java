@@ -21,6 +21,20 @@ public class Entity implements IEntity, IRestrictEntity {
 		identifier = id;
 		myComponents= new ArrayList<IComponent>();
 	}
+<<<<<<< HEAD
+=======
+	
+	public Entity clone(){
+		Entity temp = new Entity(identifier);
+		for(IComponent a : myComponents){
+//			create clone method for IComponents
+//			new IComponent b = 
+			temp.addComponent(a);
+		}
+		return temp;
+	}
+	
+>>>>>>> 5c72dfd9ffdd7bbe7f803c0005dfd099a582a7f9
 	@Override
 	public int getID(){
 		return identifier;
