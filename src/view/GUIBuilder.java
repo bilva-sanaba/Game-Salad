@@ -20,18 +20,20 @@ public class GUIBuilder {
 	private static final double SCREEN_WIDTH = 1000;
 	
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
-
 	private GUIComponent grid;
 	private GUIComponent tab;
 	private GUIComponent toolbar;
+	private ViewData myData;
 	
 	/**
 	 * Initializes the main Scene and Stage.
 	 */
 	public GUIBuilder(UtilityFactory utilF){
-		grid = new GridView(utilF, 10, 10);
-		tab = new TabView(utilF);
-		toolbar = new ToolBarView(utilF);
+		myData = new ViewData();
+		grid = new GridView(utilF, myData, 10, 10);
+		tab = new TabView(utilF, myData);
+		toolbar = new ToolBarView(utilF, myData);
+		
 		myComp.add(grid);
 		myComp.add(tab);
 		myComp.add(toolbar);
@@ -41,9 +43,7 @@ public class GUIBuilder {
 		BorderPane myPane = new BorderPane();
 		myPane.setPrefHeight(SCREEN_HEIGHT);
 		myPane.setPrefWidth(SCREEN_WIDTH);
-//		for(GUIComponent c: myComp){
-//			myPane.getChildren().add(c.buildComponent());
-//		}
+		
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
 		myPane.setCenter(grid.buildComponent());

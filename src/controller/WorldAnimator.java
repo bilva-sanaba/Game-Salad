@@ -4,14 +4,14 @@ import java.util.Collection;
 
 import org.w3c.dom.Entity;
 
+import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import entitiy.restricted.RestrictedEntity;
-import entitiy.restricted.RestrictedEntityManager;
 import gameView.EntityFactory;
 /**
  * 

@@ -1,14 +1,11 @@
 package view;
 
 import java.util.ArrayList;
-
 import components.SpriteComponent;
 import entity.Entity;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -17,7 +14,6 @@ import javafx.stage.Stage;
 public class EntityBuilderWindow {
 	
 	private ObservableList<ImageView> blocksList;
-
 	
 	private ArrayList<Node> nodeList = new ArrayList<Node>();
 	private Image myImageImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));

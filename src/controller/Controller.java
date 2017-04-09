@@ -13,8 +13,8 @@ import java.util.Observer;
 import view_interfaces.UIViewInterface;
 import javafx.stage.Stage;
 import controller_interfaces.ControllerInterface;
-import entitiy.restricted.RestrictedEntity;
-import entitiy.restricted.RestrictedEntityManager;
+import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
 /**

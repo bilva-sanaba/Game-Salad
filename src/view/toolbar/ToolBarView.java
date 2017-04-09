@@ -4,11 +4,14 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.layout.Region;
 import view.GUIComponent;
 import view.UtilityFactory;
+import view.ViewData;
 
 public class ToolBarView extends GUIComponent{
 	private ToolBar myBar;
+	private ViewData myData;
 	
-	public ToolBarView(UtilityFactory utilF){
+	public ToolBarView(UtilityFactory utilF, ViewData data) {
+		myData = data;
 		myBar = new ToolBar();
 		fillBar(utilF);
 	}
