@@ -38,7 +38,7 @@ public class WorldAnimator {
 	private GameBuilder myGameBuilder;
 	private Group root;
 	
-	private HashMap<Integer, ImageView> imageMap = new HashMap<Integer, ImageView>();
+	private HashMap<Integer, ImageView> imageMap;
 	
 	private boolean pause = false;
 	
@@ -74,22 +74,32 @@ public class WorldAnimator {
 	}
 	
 	private void createMap(RestrictedEntityManager manager) {
-		
 		Collection<RestrictedEntity> entities = manager.getEntities();
-		
-		for(RestrictedEntity entity : entities){
-			Image image = new Image(getClass().getClassLoader().getResourceAsStream(entity.getImagePath()));
-			ImageView imageView = new ImageView(image);
-			imageView.setX(entity.getLocation().getX());
-			imageView.setY(entity.getLocation().getY());
-			imageMap.put(entity.getID(), imageView);
-		}
+		imageMap = fillMap(entities);
 	}
 
 	private void step(double elapsedTime){	
 		
-		myGameEngine.handleUpdates(keysPressed);
+		Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
+		HashMap<Integer, ImageView> updatedMap = fillMap(updatedEntities);
+
 		//MAKE CHANGES TO ROOT based on Updates
+		for(RestrictedEntity e : updatedEntities){
+			if(e.getLocation() == null && e.getImagePath().equals(null)){
+				imageMap.remove(e.getID());
+				root.getChildren().remove(imageMap.get(e.getID()));
+			}
+			if(!imageMap.containsKey(e.getID())){
+				imageMap.put(e.getID(), updatedMap.get(e.getID()));
+				root.getChildren().add(imageMap.get(e.getID()));
+			}
+			else{
+				imageMap.put(e.getID(), updatedMap.get(e.getID()));
+				root.getChildren().remove(imageMap.get(e.getID()));
+				root.getChildren().add(imageMap.get(e.getID()));
+			}
+		}
+		
 		
 	}
 
@@ -114,5 +124,17 @@ public class WorldAnimator {
 			pause = false;
 			animation.play();
 		}
+	}
+	
+	private HashMap<Integer, ImageView> fillMap(Collection<RestrictedEntity> entities){
+		HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
+		for(RestrictedEntity entity : entities){
+			Image image = new Image(getClass().getClassLoader().getResourceAsStream(entity.getImagePath()));
+			ImageView imageView = new ImageView(image);
+			imageView.setX(entity.getLocation().getX());
+			imageView.setY(entity.getLocation().getY());
+			map.put(entity.getID(), imageView);
+		}
+		return map;
 	}
 }
