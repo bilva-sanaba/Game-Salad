@@ -1,0 +1,10 @@
+.view-grid {
+	-fx-padding: 10;
+	-fx-background-color: white;
+	-fx-grid-lines-visible: false;
+}
+
+.view-grid-cell {
+	-fx-fill: white;
+	-fx-stroke: black;
+}

@@ -2,7 +2,7 @@ package gameView;
 
 import java.awt.Dimension;
 
-import entitiy.restricted.IRestrictedEntityManager;
+import entity.restricted.IRestrictedEntityManager;
 import gameView.commands.AbstractCommand;
 import gameView.commands.LoadCommand;
 import gameView.commands.MakeCommand;
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import gameView.splashScreen.SplashView;
+import controller.Controller;
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -29,7 +30,7 @@ public class UIView implements UIViewInterface, ICommandUIView {
 	private GameScreen myGameScene;
 	private IRestrictedEntityManager myEntities; 
 	
-	public UIView(Stage s, ControllerInterface controller) {
+	public UIView(Stage s, Controller controller) {
 		myStage = s;
 		myController = controller;
 		mySplash = new SplashView(this, getCommands());

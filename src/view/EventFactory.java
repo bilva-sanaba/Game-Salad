@@ -1,12 +1,25 @@
 package view;
 
-import javafx.event.EventHandler;
+import java.lang.reflect.Constructor;
+import java.util.*;
 
+import groovyjarjarantlr.collections.List;
+import voogasalad.util.reflection.*;
+
+import view.toolbar.ToolBarButtonEvent;
+
+/**
+ * 
+ * @author Jonathan
+ *
+ */
 public class EventFactory {
+	
+	private static final String PREFIX = "view.toolbar.";
 
-	public EventHandler getEvent(String eventname) {
-		// TODO Auto-generated method stub
-		return null;
+	public ToolBarButtonEvent getEvent(String eventname, ViewData data) throws Exception {
+		Reflection reflector = new Reflection();
+		
+		return (ToolBarButtonEvent)reflector.createInstance(PREFIX + eventname, data);
 	}
-
 }

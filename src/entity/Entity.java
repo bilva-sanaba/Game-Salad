@@ -21,23 +21,38 @@ public class Entity implements IEntity,IRestrictEntity {
 		identifier = id;
 		myComponents= new ArrayList<IComponent>();
 	}
+	
+	public Entity clone(){
+		Entity temp = new Entity(identifier);
+		for(IComponent a : myComponents){
+//			create clone method for IComponents
+//			new IComponent b = 
+			temp.addComponent(a);
+		}
+		return temp;
+	}
+	
 	@Override
 	public int getID(){
 		return identifier;
 	}
+	
 	@Override
 	public void addComponent(IComponent component){
 		myComponents.add(component);
 	}
+	
 	@Override
 	public Collection<IComponent> getComponents(){
 		return myComponents;
 	}
+	
 	@Override
 	public void addListener(InvalidationListener arg0) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public void removeListener(InvalidationListener arg0) {
 		// TODO Auto-generated method stub
@@ -50,7 +65,6 @@ public class Entity implements IEntity,IRestrictEntity {
 				return myComponent;
 			}
 		}
-		
 		return null;
 	}
 }

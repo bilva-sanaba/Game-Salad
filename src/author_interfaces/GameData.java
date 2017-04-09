@@ -1,11 +1,13 @@
 package author_interfaces;
 
+import entity.EntityManager;
 import entity.IEntityManager;
 
 public class GameData implements IGameData{
 
 	@Override
-	public IEntityManager[] getLevels() {
+
+	public EntityManager[] getLevels() {
 		// TODO Auto-generated method stub
 		return null;
 	}

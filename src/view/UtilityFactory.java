@@ -1,5 +1,8 @@
 package view;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -11,6 +14,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 /**
  * 
  * buildButton(String, String) credit to Duvall
@@ -20,8 +24,9 @@ import javafx.scene.image.ImageView;
  */
 public class UtilityFactory {
 	
-    public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
-	
+    public static final String DEFAULT_RESOURCE_PACKAGE = "resources" + File.separator;
+    
+	ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
 	private ResourceBundle myResources;
 	
 	public UtilityFactory(String language){
@@ -35,7 +40,7 @@ public class UtilityFactory {
 		return myTab;
 	}
 	
-	public Button buildButton(String property, String eventname, String imageFile){
+	public Button buildButton(String property, String eventname, String imageFile, ViewData data){
 		ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + imageFile);
 
 		// represent all supported image suffixes
@@ -50,14 +55,19 @@ public class UtilityFactory {
         } else {
             result.setText(label);
         }
-//        EventFactory evfac = new EventFactory();
-//        EventHandler handler = evfac.getEvent(eventname);
-//        result.setOnAction(handler);
+        EventFactory evfac = new EventFactory();
+        result.setOnAction(e -> {
+			try {
+				evfac.getEvent(eventname, data).event();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
         return result;
 	}
 	
 	public Button buildButton(String property, String eventname) {
-		return buildButton(property, eventname, "images");
+		return buildButton(property, eventname, "images", null);
 	}
 	
 	public MenuItem builtMenuItem(String name, EventHandler<ActionEvent> event){
@@ -72,5 +82,14 @@ public class UtilityFactory {
         result.setOnAction(eventname);
         return result;
 	}
-
+	
+	public List<Button> makeToolBarButtons(ViewData data) {
+		List<Button> toolButtons = new ArrayList<Button>();
+		String[] names = imagesResources.getString("IconNames").split(", ");
+		String[] events = imagesResources.getString("EventNames").split(", ");
+		for(int i = 0; i < names.length; i++){
+			toolButtons.add(buildButton(names[i], events[i], "images", data));
+		}
+		return toolButtons;
+	}
 }

@@ -7,11 +7,7 @@ import components.LocationComponent;
 import components.VelocityComponent;
 import entity.Entity;
 import entity.IEntityManager;
-/**
- * Like other engines.
- * @author Bilva
- *
- */
+
 public class PhysicsEngine extends AbstractEngine{
 	
 	public static final int LOCATION_LIST = 0;

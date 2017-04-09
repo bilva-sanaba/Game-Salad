@@ -1,6 +1,6 @@
 package gameView.gameScreen;
 
-import entitiy.restricted.IRestrictedEntityManager;
+import entity.restricted.IRestrictedEntityManager;
 import gameView.ImageManager;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
