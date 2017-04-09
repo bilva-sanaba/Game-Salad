@@ -7,6 +7,7 @@ public class SpriteComponent implements IComponent {
 	private Image sprite;
 	public SpriteComponent(String path){
 		classPath= path;
+		sprite = new Image(path);
 	}
 	public SpriteComponent(){}
 	@Override
