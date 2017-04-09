@@ -54,9 +54,14 @@ public class UtilityFactory {
         } else {
             result.setText(label);
         }
-//        EventFactory evfac = new EventFactory();
-//        EventHandler handler = evfac.getEvent(eventname);
-//        result.setOnAction(handler);
+        EventFactory evfac = new EventFactory();
+        result.setOnAction(e -> {
+			try {
+				evfac.getEvent(eventname, data).event();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
         return result;
 	}
 	
