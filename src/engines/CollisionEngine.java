@@ -1,8 +1,10 @@
 package engines;
 
+import java.util.Collection;
 import java.util.List;
 
 import components.ComponentType;
+import entity.Entity;
 import entity.IEntityManager;
 /**
  * This engine handles all collisions
@@ -27,7 +29,8 @@ public class CollisionEngine extends AbstractEngine{
 	}
 
 	@Override
-	public void update() {
+	public Collection<? extends Entity> update() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

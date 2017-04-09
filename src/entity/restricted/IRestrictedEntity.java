@@ -10,17 +10,13 @@ import gameView.Coordinate;
  * @author Bilva
  *
  */
-<<<<<<< HEAD:src/entity/restricted/IRestrictedEntity.java
-public interface IRestrictedEntity extends Observer{
-	
+
+public interface IRestrictedEntity {
 	/**
 	 * 
 	 * @return ID of RestrictedEntity
 	 */
 	public int getID();
-=======
-public interface IRestrictedEntity {
->>>>>>> hjt8:src/entitiy/restricted/IRestrictedEntity.java
 	/**
 	 * 
 	 * @return Coordinate of Entities location
