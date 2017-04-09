@@ -20,7 +20,7 @@ import javafx.scene.layout.Region;
 public class TabView extends GUIComponent{
 	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
 	private ListView<Entity> blocksView = new ListView<Entity>();
-	//private ListView<ImageView> blocksView2 = 
+	//private ListView<ImageView> blocksView2 =
 	private GridPane pane = new GridPane();
 	private TabPane myTab = new TabPane();
 	private Button b;
@@ -28,9 +28,8 @@ public class TabView extends GUIComponent{
 	private ViewData myData;
 	private EntityBuilderWindow entityBuilder;
 
-
 	public TabView(UtilityFactory utilIn, ViewData data){
-		//	Image i = ((SpriteComponent)currentEntity.getComponent(ComponentType.Sprite)).getSprite();
+		//            Image i = ((SpriteComponent)currentEntity.getComponent(ComponentType.Sprite)).getSprite();
 		myData = data;
 		util = utilIn;
 		entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
@@ -38,8 +37,9 @@ public class TabView extends GUIComponent{
 		blocksView.setOrientation(Orientation.VERTICAL);
 		blocksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Entity>() {
 			@Override
-			public void changed(ObservableValue<? extends Entity> observable, Entity oldVal, Entity newVal) {					
+			public void changed(ObservableValue<? extends Entity> observable, Entity oldVal, Entity newVal) {                                                                           
 				myData.setUserSelectedEntity(newVal);
+				System.out.println("asd");
 			}
 		});
 		Tab blockTab = util.buildTab("BlockTabLabel", false);
@@ -47,10 +47,10 @@ public class TabView extends GUIComponent{
 		b = util.buildButton("AddEntityButton", e->
 		{
 			entityBuilder.showEntityBuilder();
-			/*	ImageView myImage = chooser.chooseFile();
-			myImage.setOnMouseClicked(e->currentEntity = chooser.getEntity());
-			blocksList.add(chooser.chooseFile()); */
-		}); 
+			/*           ImageView myImage = chooser.chooseFile();
+                                                myImage.setOnMouseClicked(e->currentEntity = chooser.getEntity());
+                                                blocksList.add(chooser.chooseFile()); */
+		});
 		myTab.getTabs().add(blockTab);
 	}
 
@@ -59,10 +59,11 @@ public class TabView extends GUIComponent{
 		pane.getChildren().add(myTab);
 		GridPane.setConstraints(myTab, 0, 0);
 		pane.getChildren().add(b);
-		GridPane.setConstraints(b, 0, 1); 
+		GridPane.setConstraints(b, 0, 1);
 		Region myRegion = pane;
 		GridPane.setConstraints(pane, 0, 1);
 		return myRegion;
+
 	}
 
 }
