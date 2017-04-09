@@ -2,6 +2,7 @@ package entity;
 
 import java.util.Collection;
 
+import components.ComponentType;
 import components.IComponent;
 
 /**
@@ -38,5 +39,11 @@ public interface IEntity {
 	 * @return Collection<IComponent> which the Entity holds
 	 */
 	public Collection<IComponent> getComponents();
+	/**
+	 * Returns the specified icomponent and null if it does not exist
+	 * @param ct the component type
+	 * @return the icomponent or null if it does not exist
+	 */
+	public IComponent getComponent(ComponentType ct);
 
 }
