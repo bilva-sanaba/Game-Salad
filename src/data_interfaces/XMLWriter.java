@@ -31,8 +31,6 @@ public class XMLWriter implements FileSaver{
 		catch (IOException e) {
 			//TODO call the alert that they built
 		}
-		
-		
 	}
 	
 	/**
@@ -51,19 +49,21 @@ public class XMLWriter implements FileSaver{
         createFile(fileName, ret);
 	}
 	
-	/*
-	public static void main(String[] args) {
+	
+	/*public static void main(String[] args) {
 		XMLWriter x = new XMLWriter();
 		SpriteComponent s = new SpriteComponent("jin jon");
+		SpriteComponent s1 = new SpriteComponent("bobby joe");
 		LocationComponent t = new LocationComponent(5,6);
 		List l = new ArrayList();
 		
 		Entity e = new Entity(9);
 		e.addComponent(s);
-		Entity e1 = new Entity(9);
-		e1.addComponent(s);
+		e.addComponent(t);
 		l.add(e);
-		e1.addComponent(t);
+
+		Entity e1 = new Entity(10);
+		e1.addComponent(s1);
 		l.add(e1);
 		
 		x.writeFile("try4", l);
