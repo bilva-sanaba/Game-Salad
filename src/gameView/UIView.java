@@ -55,11 +55,11 @@ public class UIView implements UIViewInterface, ICommandUIView {
 	}
 	
 	public void loadGame(String file) {
-		myController.loadNewGame(file);
+		addEntities(myController.loadNewGame(file));
 	}
 	
 	public void authorGame() {
-		
+		myController.makeGame();
 	}
 	
 	public void saveGame() {

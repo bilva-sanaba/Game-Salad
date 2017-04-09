@@ -9,14 +9,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
-import data_interfaces.*;
 
+import data_interfaces.*;
 import view_interfaces.UIViewInterface;
 import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
 import entity.EntityManager;
+import entity.restricted.IRestrictedEntityManager;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
@@ -65,10 +66,9 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public void loadNewGame(String filePath) {
+	public IRestrictedEntityManager loadNewGame(String filePath) {
 		// TODO Auto-generated method stub
-		RestrictedEntityManager restrictedEntityManager = myGameEngine
-				.getRestrictedEntityManager();
+		return (IRestrictedEntityManager) myGameEngine.getRestrictedEntityManager();
 
 	}
 
@@ -97,4 +97,8 @@ public class Controller implements ControllerInterface {
 
 	}
 
+	public void makeGame() {
+		myStage.setScene(myGUIBuilder.buildScene());
+		myStage.show();
+	}
 }
