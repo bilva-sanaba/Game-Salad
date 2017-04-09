@@ -17,10 +17,12 @@ import components.*;
 public class ViewData extends Observable {
 	private HashMap<Integer, Entity> entityList;
 	private Entity userSelectedEntity;
+	private String gameName;
 	
 	public ViewData() {
 		entityList = new HashMap<Integer, Entity>();
 		userSelectedEntity = null;
+		gameName = "";
 	}
 	
 	public void setUserSelectedEntity(Entity entity) {
@@ -52,5 +54,13 @@ public class ViewData extends Observable {
 	
 	public HashMap<Integer, Entity> getEntityMap() {
 		return entityList;
+	}
+	
+	public void setGameName(String s) {
+		gameName = s;
+	}
+	
+	public String getGameName() {
+		return gameName;
 	}
 }
