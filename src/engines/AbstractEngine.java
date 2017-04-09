@@ -6,6 +6,7 @@ import java.util.List;
 
 import components.ComponentType;
 import components.IComponent;
+import entity.Entity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
@@ -28,6 +29,6 @@ public abstract class AbstractEngine {
 	 * Updates its lists of components
 	 * @return 
 	 */
-	public abstract Collection<? extends RestrictedEntity> update();
+	public abstract Collection<? extends Entity> update();
 	
 }
