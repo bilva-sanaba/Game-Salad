@@ -31,10 +31,7 @@ public class ImageChooser {
 		        alert.setContentText("Invalid URL");
 		        alert.showAndWait();
 			}
-	        Image image = new Image(imagepath);
-	        imgv.setImage(image);
-	        imgv.setFitWidth(50);
-			imgv.setFitHeight(50);
+	        
 	    }
 	    else
 	    {
