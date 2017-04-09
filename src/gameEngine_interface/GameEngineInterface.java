@@ -3,9 +3,9 @@ package gameEngine_interface;
 
 import java.util.Collection;
 
-import entitiy.restricted.IRestrictedEntityManager;
-import entitiy.restricted.RestrictedEntity;
-import entitiy.restricted.RestrictedEntityManager;
+import entity.restricted.IRestrictedEntityManager;
+import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityManager;
 import javafx.scene.input.KeyCode;
 
 /**

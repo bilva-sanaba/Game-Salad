@@ -1,4 +1,4 @@
-package entitiy.restricted;
+package entity.restricted;
 
 import java.util.Observable;
 

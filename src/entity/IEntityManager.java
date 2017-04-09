@@ -5,8 +5,8 @@ import java.util.Map;
 
 import components.ComponentType;
 import components.IComponent;
-import entitiy.restricted.IRestrictedEntity;
-import entitiy.restricted.IRestrictedEntityManager;
+import entity.restricted.IRestrictedEntity;
+import entity.restricted.IRestrictedEntityManager;
 /**
  * This interface is for the EntityManager object which should store entity data and provide public methods 
  * for engines to use in order to get appropriate encapsulated/limited information

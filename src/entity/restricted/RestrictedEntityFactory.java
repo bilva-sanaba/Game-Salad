@@ -1,4 +1,4 @@
-package entitiy.restricted;
+package entity.restricted;
 
 import components.ComponentType;
 import components.SpriteComponent;

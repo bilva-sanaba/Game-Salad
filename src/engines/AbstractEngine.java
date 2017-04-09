@@ -6,9 +6,9 @@ import java.util.List;
 
 import components.ComponentType;
 import components.IComponent;
-import entitiy.restricted.IRestrictedEntity;
-import entitiy.restricted.RestrictedEntity;
 import entity.IEntityManager;
+import entity.restricted.IRestrictedEntity;
+import entity.restricted.RestrictedEntity;
 
 public abstract class AbstractEngine {
 	
