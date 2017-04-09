@@ -10,9 +10,9 @@ import components.ComponentType;
 import components.IComponent;
 import components.SpriteComponent;
 import components.XYComponent;
-import entitiy.restricted.IRestrictedEntity;
-import entitiy.restricted.RestrictedEntity;
-import entitiy.restricted.RestrictedEntityManager;
+import entity.restricted.IRestrictedEntity;
+import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityManager;
 import gameView.Coordinate;
 
 public class EntityManager implements IEntityManager{

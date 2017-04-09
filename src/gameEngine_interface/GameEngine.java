@@ -16,16 +16,14 @@ import data_interfaces.XMLParser;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
 import engines.MovementEngine;
-import entitiy.restricted.IRestrictedEntity;
-import entitiy.restricted.IRestrictedEntityManager;
-import entitiy.restricted.RestrictedEntity;
-import entitiy.restricted.RestrictedEntityManager;
 import entity.Entity;
 import entity.EntityManager;
 import entity.IEntity;
 import entity.IEntityManager;
-
-
+import entity.restricted.IRestrictedEntity;
+import entity.restricted.IRestrictedEntityManager;
+import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityManager;
 import engines.AbstractEngine;
 import entity.IEntityManager;
 /**
@@ -53,6 +51,7 @@ public class GameEngine implements GameEngineInterface {
 	 * Runs each Engine in my Engine
 	 */
 	@Override
+
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
 		Collection <RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
 		for (AbstractEngine s : myEngines){
