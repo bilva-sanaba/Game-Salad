@@ -1,0 +1,24 @@
+#bottom {
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+	-fx-background-repeat: stretch;
+}
+#top {
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+	-fx-background-repeat: stretch;
+}
+#left {
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+	-fx-background-repeat: stretch;
+}
+#right {
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+	-fx-background-repeat: stretch;
+}
+
+#main {
+	-fx-background-color: #a9a9a9;
+}
+
+.button {
+	-fx-background-color: white;
+}

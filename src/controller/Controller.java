@@ -44,9 +44,9 @@ public class Controller implements ControllerInterface {
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
 		
 		myGameView = new UIView(s, this);
-		myGameEngine = new GameEngine();
+		//myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
-		myEntityManager = new EntityManager();
+		//myEntityManager = new EntityManager();
 	}
 	
 
@@ -60,7 +60,6 @@ public class Controller implements ControllerInterface {
 		return null;
 	}*/
 
-	@Override
 	public void save(String filename) {
 		// TODO Auto-generated method stub
 		//loop through and save all write all items to XML
@@ -88,11 +87,17 @@ public class Controller implements ControllerInterface {
 		
 	}
 
-	@Override
 	public void update(Observable obs, Object arg) {
 		// TODO Auto-generated method stub
 		//call world animator
 		myWorldAnimator.start(myStage, myGameEngine);
+	}
+
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

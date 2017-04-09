@@ -40,7 +40,12 @@ public class UtilityFactory {
 		return myTab;
 	}
 	
+<<<<<<< HEAD
 	public Button buildButton(String property, String eventname, ViewData data){
+=======
+	public Button buildButton(String property, String eventname, String imageFile){
+		ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + imageFile);
+>>>>>>> hjt8
 
 		// represent all supported image suffixes
         final String IMAGEFILE_SUFFIXES =
@@ -63,6 +68,10 @@ public class UtilityFactory {
 			}
 		});
         return result;
+	}
+	
+	public Button buildButton(String property, String eventname) {
+		return buildButton(property, eventname, "images");
 	}
 	
 	public MenuItem builtMenuItem(String name, EventHandler<ActionEvent> event){
