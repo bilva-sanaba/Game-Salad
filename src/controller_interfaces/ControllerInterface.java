@@ -4,6 +4,7 @@ import gameView.UIImageModel;
 import gameView.UIImageProperty;
 
 import java.util.Collection;
+import java.util.Observable;
 /**
  * This class defines the behavior of the controller. The controller runs most of the game itself, 
  * and will only need to be called by View to handle user interactions, such as starting a new game, 
@@ -30,7 +31,7 @@ public interface ControllerInterface {
 	 * Called by front end when user tells the program to save the game. Will communicate with Data 
 	 * builder to save all necessary state information. 
 	 */
-	public void save();
+	public void save(String fileName);
 	
 	/**
 	 * Load new game from users choice from the UI. Will pass in the String of the data file for the
@@ -46,6 +47,6 @@ public interface ControllerInterface {
 	
 	public void checkCollision(UIImageModel u);
 
-	void save(String filename);
+	public void update(Observable obs, Object arg);
 	
 }

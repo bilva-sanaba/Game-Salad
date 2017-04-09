@@ -40,7 +40,7 @@ public class GameEngine implements GameEngineInterface {
 	}
 	public Collection<Entity> save(){
 		
-		return null;
+		return myEntityManager.copy();
 	}
 	private void initializeRestrictedEntities(){
 		myRestrictedEntityManager = myEntityManager.getRestricted();

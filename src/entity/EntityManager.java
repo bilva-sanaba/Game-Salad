@@ -34,9 +34,12 @@ public class EntityManager implements IEntityManager{
 		Collection<Entity> copy = new ArrayList<Entity>();
 		for (Entity e: myEntities){
 			Entity entCopy = new Entity(e.getID());
-			
-			
+			for (IComponent comp : e.getComponents()){
+				entCopy.addComponent(comp);
+			}
+			copy.add(e);
 		}
+		return copy;
 	}
 
 	@Override
