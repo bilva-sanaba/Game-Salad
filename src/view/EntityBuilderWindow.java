@@ -68,9 +68,7 @@ public class EntityBuilderWindow {
 		Node okayButton = util.buildButton("OkayLabel", e->{
 			Entity tempEntity = new Entity(i);
 			i++;
-			System.out.println(myImagePath);
 			tempEntity.addComponent(new SpriteComponent(myImagePath));
-			tempEntity.addComponent(new LocationComponent(1, 2));
 			blocksList.add(tempEntity);
 			myData.defineEntity(tempEntity);
 			myStage.close();

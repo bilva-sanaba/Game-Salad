@@ -36,7 +36,7 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent{
 			xw.writeFile(fileName, l);
 		}
 		catch (NoSuchElementException e) {
-			
+			return;
 		}
 	}
 }
