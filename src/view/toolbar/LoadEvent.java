@@ -2,6 +2,9 @@ package view.toolbar;
 
 import java.io.File;
 import java.util.*;
+
+import components.ComponentType;
+import components.LocationComponent;
 import data_interfaces.*;
 import entity.*;
 
@@ -38,10 +41,19 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			c = new Communicator(name);
 			Collection <Entity> col = c.getData();
 			for (Entity e: col) {
-				newVD.addEntity(e);
+				if (isPlaced(e)) {
+					newVD.placeEntity(e);
+				}
+				else {
+					newVD.defineEntity(e);
+				}
 			}
 		}
+		myData = newVD;
 	}
 	
+	private boolean isPlaced(Entity e) {
+		return (!e.getComponent(ComponentType.Location).equals(null));
+	}
 	
 }
