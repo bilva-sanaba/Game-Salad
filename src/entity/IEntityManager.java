@@ -22,7 +22,7 @@ public interface IEntityManager {
 	 * @param certainComponent
 	 * @return
 	 */
-	public List<IComponent> getCertainComponents(ComponentType certainComponent);
+	public Map<Integer, IComponent> getCertainComponents(ComponentType certainComponent);
 	/**
 	 * Returns an object storing components in a restricted form with pointers
 	 * @return

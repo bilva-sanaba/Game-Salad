@@ -44,8 +44,8 @@ public class GameEngine implements GameEngineInterface {
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	
 	GameEngine(String xmlDataFile){
-		myLevelManager = myParser.loadFile(xmlDataFile);
-		myEntityManager = myLevelManager.getLevels()[0];
+		myLevelManager = (GameData) myParser.loadFile(xmlDataFile);
+		myEntityManager = ((GameData) myLevelManager).getLevels()[0];
 		myRestrictedEntityManager = myEntityManager.getRestricted();
 		entityToRestricted = myEntityManager.getEntityMap();
 	}
@@ -54,11 +54,11 @@ public class GameEngine implements GameEngineInterface {
 	 */
 	@Override
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
-		Collection <RestrictedEntity> changesRestrictedEntity = new ArrayList<RestrictedEntity>();
+		Collection <RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
 		for (AbstractEngine s : myEngines){
-			changesRestrictedEntity.addAll(s.update());
+			changedRestrictedEntity.addAll(s.update());
 		}	
-		return changesRestrictedEntity;
+		return changedRestrictedEntity;
 	}
 	@Override
 	public RestrictedEntityManager getRestrictedEntityManager() {

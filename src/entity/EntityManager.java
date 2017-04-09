@@ -21,11 +21,14 @@ public class EntityManager implements IEntityManager{
 		myEntities = entities;
 	}
 	@Override
-	public List<IComponent> getCertainComponents(ComponentType certainComponent) {
-		List<IComponent> certainComponents = new ArrayList<IComponent>();
+	public Map<Integer,IComponent> getCertainComponents(ComponentType certainComponent) {
+		Map<Integer,IComponent> certainComponents = new HashMap<Integer,IComponent>();
 		for (Entity e : myEntities){
-			certainComponents.add(e.getComponent(certainComponent));
+
+			certainComponents.put(e.getID(),e.getComponent(certainComponent));
 		}
+
+
 		return certainComponents;
 	}
 
@@ -48,6 +51,6 @@ public class EntityManager implements IEntityManager{
 		};
 		return entityToRestricted;
 	}
-	
+
 
 }
