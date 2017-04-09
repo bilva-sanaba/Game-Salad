@@ -5,6 +5,8 @@ import entity.Entity;
 import java.util.HashMap;
 import java.util.Observable;
 
+import components.ComponentType;
+
 public class ViewData extends Observable {
 	private HashMap<Integer, Entity> entityList;
 	private Entity userSelectedEntity;
