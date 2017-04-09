@@ -32,7 +32,6 @@ public class Controller implements ControllerInterface {
 
 	UIViewInterface myGameView;
 	private GameEngine myGameEngine;
-	private EntityManager myEntityManager;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
 
@@ -40,9 +39,7 @@ public class Controller implements ControllerInterface {
 
 	public Controller(Stage s) {
 		myStage = s;
-
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
-
 		myGameView = new UIView(s, this);
 		// myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
@@ -62,14 +59,15 @@ public class Controller implements ControllerInterface {
 		// TODO Auto-generated method stub
 		// loop through and save all write all items to XML
 		XMLWriter xw = new XMLWriter();
-		xw.writeFile(filename, myEntityManager.getEntityMap().keySet());
+		xw.writeFile(filename, myGameEngine.save());
 	}
 
 	@Override
-	public IRestrictedEntityManager loadNewGame(String filePath) {
-		// TODO Auto-generated method stub
-		return (IRestrictedEntityManager) myGameEngine.getRestrictedEntityManager();
-
+	public IRestrictedEntityManager loadNewGame(String gameName) {
+		Communicator c = new Communicator(gameName);
+		myGameEngine.loadData(c);
+		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
+		return restrictedEntityManager;
 	}
 
 	@Override

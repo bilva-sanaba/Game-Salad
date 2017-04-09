@@ -8,8 +8,8 @@ import gameView.Coordinate;
 /**
  * Interface for objects which the front end will receive
 **/
+
 public interface IRestrictedEntity {
-	
 	/**
 	 * 
 	 * @return ID of RestrictedEntity

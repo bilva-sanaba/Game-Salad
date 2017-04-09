@@ -1,11 +1,9 @@
 package controller_interfaces;
 
+import java.util.Observable;
+
 import entity.restricted.IRestrictedEntityManager;
 import gameView.UIImageModel;
-import gameView.UIImageProperty;
-
-import java.util.Collection;
-
 /**
  * This class defines the behavior of the controller. The controller runs most
  * of the game itself, and will only need to be called by View to handle user
@@ -42,6 +40,8 @@ public interface ControllerInterface {
 	 */
 	public void save();
 
+	public void save(String fileName);
+	
 	/**
 	 * Load new game from users choice from the UI. Will pass in the String of
 	 * the data file for the new game, that will be in XML format and controller
@@ -58,6 +58,8 @@ public interface ControllerInterface {
 	public void resetCurrentGame();
 
 	public void checkCollision(UIImageModel u);
+
+	public void update(Observable obs, Object arg);
 	
 	public void makeGame();
 

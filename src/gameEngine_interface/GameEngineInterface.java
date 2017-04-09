@@ -1,5 +1,7 @@
 package gameEngine_interface;
 
+
+import entity.Entity;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import javafx.scene.input.KeyCode;
@@ -29,5 +31,7 @@ public interface GameEngineInterface {
 	 * @return Encapsulation of all Entities
 	 */
 	public RestrictedEntityManager getRestrictedEntityManager();
+	
+	public Collection<Entity> save();
 
 }

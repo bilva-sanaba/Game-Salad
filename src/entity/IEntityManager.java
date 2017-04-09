@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -40,5 +41,7 @@ public interface IEntityManager {
 	 * 
 	 * @return
 	 */
-	public Map<IEntity, IRestrictedEntity> getEntityMap();
+	public Map<IEntity,IRestrictedEntity> getEntityMap(); 
+	
+	public Collection<Entity> copy();
 }

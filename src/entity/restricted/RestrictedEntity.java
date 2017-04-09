@@ -11,8 +11,6 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 	public RestrictedEntity(int id, Coordinate c, String image){
 		super(id, c,image);
 	}
-
-
 	@Override
 	public Coordinate getLocation() {
 		// TODO Auto-generated method stub
