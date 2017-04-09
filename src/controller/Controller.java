@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
+import entity.EntityManager;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
@@ -30,7 +31,7 @@ public class Controller implements ControllerInterface {
 	
 	UIViewInterface myGameView;
 	private GameEngine myGameEngine;
-	private RestrictedEntityManager myRestrictedEntityManager;
+	private EntityManager myEntityManager;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
 	
@@ -45,7 +46,7 @@ public class Controller implements ControllerInterface {
 		myGameView = new UIView(s, this);
 		myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
-		myRestrictedEntityManager = new RestrictedEntityManager();
+		myEntityManager = new EntityManager();
 	}
 	
 
@@ -60,11 +61,11 @@ public class Controller implements ControllerInterface {
 	}*/
 
 	@Override
-	public void save() {
+	public void save(String filename) {
 		// TODO Auto-generated method stub
 		//loop through and save all write all items to XML
 		XMLWriter xw = new XMLWriter();
-		//xw.writeFile(filename, list of entities);
+		xw.writeFile(filename, myEntityManager.getEntityMap().keySet());
 	}
 
 	@Override
