@@ -79,17 +79,12 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public void resetCurrentGame() {
+	public void resetCurrentGame() throws XMLException {
 		if(!filePath.equals(null)){
 			myGameEngine = new GameEngine(filePath);
 		}
 		else{
-			try {
-				throw new XMLException(String.format("No current game"));
-			} catch (XMLException e) {
-				// TODO Auto-generated catch block, MUST REMOVE STACK TRACE
-				e.printStackTrace();
-			}
+			throw new XMLException(String.format("No current game"));
 		}
 	}
 
