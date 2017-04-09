@@ -16,10 +16,9 @@ import components.SpriteComponent;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
 
-public class XMLWriter extends GameSavingDataTool implements FileSaver {
+public class XMLWriter extends GameSavingDataTool {
 
-	@Override
-	public void createFile(String fileName, Object data) {
+	private void createFile(String fileName, Object data) {
 		try {
 			File f = new File(getPrefix() + fileName + getSuffix());
 			BufferedWriter b = new BufferedWriter(new FileWriter(f));
@@ -47,24 +46,5 @@ public class XMLWriter extends GameSavingDataTool implements FileSaver {
         createFile(fileName, ret);
 	}
 	
-	
-	public static void main(String[] args) {
-		XMLWriter x = new XMLWriter();
-		SpriteComponent s = new SpriteComponent("jin jon");
-		SpriteComponent s1 = new SpriteComponent("bobby joe");
-		LocationComponent t = new LocationComponent(5,6);
-		List l = new ArrayList();
-		
-		Entity e = new Entity(9);
-		e.addComponent(s);
-		e.addComponent(t);
-		l.add(e);
-
-		Entity e1 = new Entity(10);
-		e1.addComponent(s1);
-		l.add(e1);
-		
-		x.writeFile("try4", l);
-	}
 	
 }

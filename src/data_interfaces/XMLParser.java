@@ -23,18 +23,15 @@ import entity.IEntityManager;
 
 
 
-public class XMLParser implements FileLoader {
+public class XMLParser {
 
 	
 
-	public Object loadFile(String fileName) {
+	private Element loadFile(String fileName) {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document doc = builder.parse(fileName);
-			if (doc.equals(null)) {
-				System.out.println("alert");
-			}
 			return doc.getDocumentElement();
 		} catch (ParserConfigurationException e) {
 			// TODO Solve this	
@@ -55,20 +52,8 @@ public class XMLParser implements FileLoader {
 	 * @return the element of the parsed DOM objects
 	 */
 	public Element getData(String fileName) {
+		System.out.println(fileName);
 		return (Element)loadFile(fileName);
 	}
 	
-	/*public static void main(String [] args) {
-		XMLParser x = new XMLParser();
-		EntityHandler e = new EntityHandler();
-		Collection <Entity> c = e.getCollection(x.getData("games/try4.xml"));
-		
-		for (Entity f: c) {
-			System.out.println(f.getID());
-			Collection <IComponent> ics = f.getComponents();
-			for (IComponent i : ics) {
-				
-			}
-		}
-	}*/
 }
