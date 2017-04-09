@@ -1,10 +1,7 @@
 
 import controller.Controller;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.GUIBuilder;
-import view.UtilityFactory;
 
 
 public class Main extends Application {	

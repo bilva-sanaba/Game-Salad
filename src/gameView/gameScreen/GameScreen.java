@@ -47,10 +47,10 @@ public class GameScreen {
 	}
 
 	private void initializeBoxes() {
-		myTopBox = setHBox("top", UIView.DEFAULT_SIZE.width, 100);
-		myBottomBox = setHBox("bottom", UIView.DEFAULT_SIZE.width, 100);
-		myLeftBox = setSides("left", 100, UIView.DEFAULT_SIZE.height);
-		myRightBox = setSides("right", 100, UIView.DEFAULT_SIZE.height);
+		myTopBox = setHBox("top", UIView.DEFAULT_SIZE.width, 50);
+		//myBottomBox = setHBox("bottom", UIView.DEFAULT_SIZE.width, 100);
+		//myLeftBox = setSides("left", 100, UIView.DEFAULT_SIZE.height);
+		//myRightBox = setSides("right", 100, UIView.DEFAULT_SIZE.height);
 	}
 	
 	private void setSize(Pane box, String id, double width, double height) {
