@@ -1,6 +1,7 @@
 package engines;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import components.ComponentType;
 import components.IComponent;
 import components.ImagePropertiesComponent;
 import components.LocationComponent;
+import entity.Entity;
 import entity.IEntityManager;
 /**
  * This engine handles all collisions
@@ -22,6 +24,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	
 	private List<ISubEngine> subEngines;
 	private IEntityManager entManager;
+	private List<Entity> newEntitiesCreated;
 
 	public CollisionEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
@@ -40,21 +43,20 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	 * it sends components of those objects to subEngines which can handle effects (such moving the entity or changing the entities image, etc.)
 	 */
 	private void checkCollisionsOccurred() {
-		List<IComponent> locationComponents = entManager.getCertainComponents(ComponentType.Location);
-		List<IComponent> imageComponents = entManager.getCertainComponents(ComponentType.ImageProperties);
+		Map<Integer, IComponent> locationComponents = entManager.getCertainComponents(ComponentType.Location);
+		Map<Integer, IComponent> imageComponents = entManager.getCertainComponents(ComponentType.ImageProperties);
 		System.out.println("We should make sure that the EntityManager actively updates its list of entities to only include those on the screen");
 		doubleForLoopCollisionChecking(locationComponents, imageComponents);
 	}
 
-	private void doubleForLoopCollisionChecking(List<IComponent> locationComponents, List<IComponent> imageComponents) {
-		int componentIndex0 = -1;
-		for (IComponent location : locationComponents) {
-			componentIndex0++;
-			int componentIndex1 = -1;
-			for (IComponent otherLocation : locationComponents) {
-				componentIndex1++;
-				if (componentIndex1 != componentIndex0) {
-					checkIndividualCollision(location, otherLocation, imageComponents.get(componentIndex0), imageComponents.get(componentIndex1), componentIndex0, componentIndex1);
+	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
+		for (int i = 0;i<locationComponents.size();i++) {
+			int component0index = i;
+			
+			for (int j=i+1;j<locationComponents.size();j++) {
+				int component1index = j;
+				if (component0index != component1index) {
+					checkIndividualCollision(locationComponents.get(component0index), locationComponents.get(component1index), imageComponents.get(component0index), imageComponents.get(component1index), component0index, component1index);
 				}
 			}
 		}
@@ -78,10 +80,10 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 			for(ISubEngine subEngine: subEngines) {
 				List<ComponentType> subEngineNeededComponents = subEngine.getNecessaryComponents();
 				for(ComponentType comp : subEngineNeededComponents) {
-					List<IComponent> componentFromAllEntities = entManager.getCertainComponents(comp);
+					Map<Integer, IComponent> componentFromAllEntities = entManager.getCertainComponents(comp);
 					CollisionPair dataTransmitter = new CollisionPair();
 					dataTransmitter.putPairingFromList(componentFromAllEntities, index0, index1);
-					subEngine.handleCollision(dataTransmitter);
+					newEntitiesCreated = subEngine.handleCollision(dataTransmitter);
 				}
 			}
 		}
@@ -94,8 +96,10 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	}
 
 	@Override
-	public void update() {
+	public Collection<? extends Entity> update() {
+		newEntitiesCreated = new ArrayList<Entity>();
 		checkCollisionsOccurred();
+		return newEntitiesCreated;
 		
 	}
 

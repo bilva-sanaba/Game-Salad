@@ -23,9 +23,9 @@ public class CollisionPair {
 		object1 = new HashMap<ComponentType, IComponent>();
 	}
 	
-	public void putPairingFromList(List<IComponent> compList, int index0, int index1) {
+	public void putPairingFromList(Map<Integer, IComponent> compList, int index0, int index1) {
 		try {
-			ComponentType type = compList.get(0).getComponentType();
+			ComponentType type = compList.get(compList.size()-1).getComponentType();
 			IComponent object0Comp = compList.get(index0);
 			IComponent object1Comp = compList.get(index1);
 			object0.put(type, object0Comp);

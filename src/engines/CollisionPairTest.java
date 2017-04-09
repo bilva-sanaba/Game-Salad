@@ -2,7 +2,6 @@ package engines;
 
 import static org.junit.Assert.*;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,10 +10,8 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import entity.EntityManager;
 import components.AccelerationComponent;
 import components.ComponentType;
-import components.HealthComponent;
 import components.IComponent;
 
 public class CollisionPairTest {
@@ -29,7 +26,7 @@ public class CollisionPairTest {
 		l.add(new AccelerationComponent());
 		l.add(new AccelerationComponent());
 		CollisionPair cp = new CollisionPair();
-		cp.putPairingFromList(l, 0, 1);
+		//cp.putPairingFromList(l, 0, 1);
 		List<Map<ComponentType, IComponent>> maps = cp.getMaps();
 		assertEquals(maps.size(), 2);
 		Map<ComponentType, IComponent> abc = Collections.unmodifiableMap(new HashMap<ComponentType, IComponent>());
