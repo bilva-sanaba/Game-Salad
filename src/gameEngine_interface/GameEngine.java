@@ -51,6 +51,7 @@ public class GameEngine implements GameEngineInterface {
 	 * Runs each Engine in my Engine
 	 */
 	@Override
+
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
 		Collection <RestrictedEntity> changesRestrictedEntity = new ArrayList<RestrictedEntity>();
 		for (AbstractEngine s : myEngines){
