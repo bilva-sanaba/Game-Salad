@@ -88,7 +88,30 @@ public class WorldAnimator {
 
 	private void step(double elapsedTime){	
 		
-		myGameEngine.handleUpdates(keysPressed);
+		Collection<RestrictedEntity> newEntities = myGameEngine.handleUpdates(keysPressed);
+		for (RestrictedEntity re : newEntities){
+			if (re.getImagePath() == null && re.getLocation()==null){
+				root.getChildren().remove(imageMap.get(re.getID()));
+				imageMap.remove(re.getID());
+			}else{
+				if (!imageMap.containsKey(re.getID())){
+					Image image = new Image(getClass().getClassLoader().getResourceAsStream(re.getImagePath()));
+					ImageView imageView = new ImageView(image);
+					imageView.setX(re.getLocation().getX());
+					imageView.setY(re.getLocation().getY());
+					imageMap.put(re.getID(), imageView);
+					root.getChildren().add(imageMap.get(re.getID()));
+				}
+			
+			else{
+				ImageView currentImage = imageMap.get(re.getID());
+				currentImage.setX(re.getLocation().getX());
+				currentImage.setY(re.getLocation().getY());
+				currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(re.getImagePath())));
+			}
+		}
+		}
+		
 		//MAKE CHANGES TO ROOT based on Updates
 		
 	}
