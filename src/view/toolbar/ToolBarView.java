@@ -27,5 +27,4 @@ public class ToolBarView extends GUIComponent{
 	public Region buildComponent() {
 		return myBar;
 	}
-
 }
