@@ -9,12 +9,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
+import data_interfaces.*;
 
 import view_interfaces.UIViewInterface;
 import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
+import entity.EntityManager;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
@@ -29,7 +31,7 @@ public class Controller implements ControllerInterface {
 	
 	UIViewInterface myGameView;
 	private GameEngine myGameEngine;
-	private RestrictedEntityManager myRestrictedEntityManager;
+	private EntityManager myEntityManager;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
 	
@@ -44,7 +46,7 @@ public class Controller implements ControllerInterface {
 		myGameView = new UIView(s, this);
 		myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
-		myRestrictedEntityManager = new RestrictedEntityManager();
+		myEntityManager = new EntityManager();
 	}
 	
 
@@ -59,10 +61,11 @@ public class Controller implements ControllerInterface {
 	}*/
 
 	@Override
-	public void save() {
+	public void save(String filename) {
 		// TODO Auto-generated method stub
 		//loop through and save all write all items to XML
-		
+		XMLWriter xw = new XMLWriter();
+		xw.writeFile(filename, myEntityManager.getEntityMap().keySet());
 	}
 
 	@Override
@@ -89,8 +92,7 @@ public class Controller implements ControllerInterface {
 	public void update(Observable obs, Object arg) {
 		// TODO Auto-generated method stub
 		//call world animator
-		Collection<RestrictedEntity> animatableEntities = (Collection<RestrictedEntity>) arg;
-		myWorldAnimator.start(myStage, animatableEntities);
+		myWorldAnimator.start(myStage, myGameEngine);
 	}
 
 }

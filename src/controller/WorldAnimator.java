@@ -22,14 +22,14 @@ import gameEngine_interface.GameEngine;
  *
  */
 public class WorldAnimator {
-	private Stage myStage;
+	//private Stage myStage;
 	public static final int FRAMES_PER_SECOND = 60;
 	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
 	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
 	public static final int KEY_INPUT_SPEED = 3;
 	
-	private CollisionTracker collisionTracker;
-	private MovementTracker movementTracker;
+	//private CollisionTracker collisionTracker;
+	//private MovementTracker movementTracker;
 	private ArrayList<KeyCode> keysPressed = new ArrayList<KeyCode>();
 	
 	private Scene myScene;
@@ -38,7 +38,7 @@ public class WorldAnimator {
 	private GameBuilder myGameBuilder;
 	private Group root;
 	
-	private HashMap<Integer, ImageView> imageMap = new HashMap<Integer, ImageView>();
+	private HashMap<Integer, ImageView> imageMap;
 	
 	private boolean pause = false;
 	
@@ -63,8 +63,8 @@ public class WorldAnimator {
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
 		
-		collisionTracker = new CollisionTracker("No", restrictedEntityManager.getEntities());
-		movementTracker = new MovementTracker("Go", restrictedEntityManager.getEntities());
+		//collisionTracker = new CollisionTracker("No", restrictedEntityManager.getEntities());
+		//movementTracker = new MovementTracker("Go", restrictedEntityManager.getEntities());
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
 									  e-> step(SECOND_DELAY));
 		this.animation = new Timeline();
@@ -74,45 +74,30 @@ public class WorldAnimator {
 	}
 	
 	private void createMap(RestrictedEntityManager manager) {
-		
 		Collection<RestrictedEntity> entities = manager.getEntities();
-		
-		for(RestrictedEntity entity : entities){
-			Image image = new Image(getClass().getClassLoader().getResourceAsStream(entity.getImagePath()));
-			ImageView imageView = new ImageView(image);
-			imageView.setX(entity.getLocation().getX());
-			imageView.setY(entity.getLocation().getY());
-			imageMap.put(entity.getID(), imageView);
-		}
+		imageMap = fillMap(entities);
 	}
 
 	private void step(double elapsedTime){	
 		
-		Collection<RestrictedEntity> newEntities = myGameEngine.handleUpdates(keysPressed);
-		for (RestrictedEntity re : newEntities){
-			if (re.getImagePath() == null && re.getLocation()==null){
-				root.getChildren().remove(imageMap.get(re.getID()));
-				imageMap.remove(re.getID());
-			}else{
-				if (!imageMap.containsKey(re.getID())){
-					Image image = new Image(getClass().getClassLoader().getResourceAsStream(re.getImagePath()));
-					ImageView imageView = new ImageView(image);
-					imageView.setX(re.getLocation().getX());
-					imageView.setY(re.getLocation().getY());
-					imageMap.put(re.getID(), imageView);
-					root.getChildren().add(imageMap.get(re.getID()));
-				}
-			
+		Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
+		HashMap<Integer, ImageView> updatedMap = fillMap(updatedEntities);
+
+		//MAKE CHANGES TO ROOT based on Updates
+		for(RestrictedEntity e : updatedEntities){
+			if(e.getLocation() == null && e.getImagePath().equals(null)){
+				imageMap.remove(e.getID());
+				root.getChildren().remove(imageMap.get(e.getID()));
+			}
+			if(!imageMap.containsKey(e.getID())){
+				imageMap.put(e.getID(), updatedMap.get(e.getID()));
+				root.getChildren().add(imageMap.get(e.getID()));
+			}
 			else{
-				ImageView currentImage = imageMap.get(re.getID());
-				currentImage.setX(re.getLocation().getX());
-				currentImage.setY(re.getLocation().getY());
-				currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(re.getImagePath())));
+				imageMap.put(e.getID(), updatedMap.get(e.getID()));
 			}
 		}
-		}
 		
-		//MAKE CHANGES TO ROOT based on Updates
 		
 	}
 
@@ -137,5 +122,17 @@ public class WorldAnimator {
 			pause = false;
 			animation.play();
 		}
+	}
+	
+	private HashMap<Integer, ImageView> fillMap(Collection<RestrictedEntity> entities){
+		HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
+		for(RestrictedEntity entity : entities){
+			Image image = new Image(getClass().getClassLoader().getResourceAsStream(entity.getImagePath()));
+			ImageView imageView = new ImageView(image);
+			imageView.setX(entity.getLocation().getX());
+			imageView.setY(entity.getLocation().getY());
+			map.put(entity.getID(), imageView);
+		}
+		return map;
 	}
 }
