@@ -1,17 +1,11 @@
 package gameEngine_interface;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
-
-import gameView.UIImageProperty;
 import javafx.scene.input.KeyCode;
-import author_interfaces.GameData;
-import author_interfaces.IGameData;
+import data_interfaces.Communicator;
 import data_interfaces.XMLParser;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
@@ -19,14 +13,10 @@ import engines.MovementEngine;
 import entity.Entity;
 import entity.EntityManager;
 import entity.IEntity;
-import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
-import entity.restricted.IRestrictedEntityManager;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityFactory;
 import entity.restricted.RestrictedEntityManager;
-import engines.AbstractEngine;
-import entity.IEntityManager;
 /**
  * Basic GameEngine class
  * Note: the engines must be created in someway, likely via reflection
@@ -34,17 +24,25 @@ import entity.IEntityManager;
  *
  */
 public class GameEngine implements GameEngineInterface {
-	private GameData myLevelManager;
-	private EntityManager myEntityManager; 
+	private EntityManager myEntityManager = new EntityManager(new ArrayList<Entity>()); 
 	private RestrictedEntityFactory myREF = new RestrictedEntityFactory();
 	private RestrictedEntityManager myRestrictedEntityManager;
 	private List<AbstractEngine> myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	
-	GameEngine(String xmlDataFile){
-		myLevelManager = (GameData) myParser.loadFile(xmlDataFile);
-		myEntityManager = ((GameData) myLevelManager).getLevels()[0];
+	public GameEngine(){
+		initializeRestrictedEntities();
+	}
+	public void loadData(Communicator c){
+		myEntityManager = new EntityManager(c.getData());
+		initializeRestrictedEntities();
+	}
+	public Collection<Entity> save(){
+		
+		return null;
+	}
+	private void initializeRestrictedEntities(){
 		myRestrictedEntityManager = myEntityManager.getRestricted();
 		entityToRestricted = myEntityManager.getEntityMap();
 	}
@@ -55,7 +53,6 @@ public class GameEngine implements GameEngineInterface {
 
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
 		Collection <Entity> changedEntity = new ArrayList<Entity>();
-		
 		for (AbstractEngine s : myEngines){
 			changedEntity.addAll(s.update());
 		}	
@@ -65,6 +62,7 @@ public class GameEngine implements GameEngineInterface {
 		}
 		return changedRestrictedEntity;
 	}
+	
 	@Override
 	public RestrictedEntityManager getRestrictedEntityManager() {
 		return myRestrictedEntityManager;

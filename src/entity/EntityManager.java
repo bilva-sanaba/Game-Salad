@@ -17,7 +17,7 @@ import gameView.Coordinate;
 
 public class EntityManager implements IEntityManager{
 	private Collection<Entity> myEntities;
-	EntityManager(Collection<Entity> entities){
+	public EntityManager(Collection<Entity> entities){
 		myEntities = entities;
 	}
 	
@@ -28,9 +28,15 @@ public class EntityManager implements IEntityManager{
 
 			certainComponents.put(e.getID(),e.getComponent(certainComponent));
 		}
-
-
 		return certainComponents;
+	}
+	public Collection<Entity> copy(){
+		Collection<Entity> copy = new ArrayList<Entity>();
+		for (Entity e: myEntities){
+			Entity entCopy = new Entity(e.getID());
+			
+			
+		}
 	}
 
 	@Override
@@ -53,5 +59,4 @@ public class EntityManager implements IEntityManager{
 		};
 		return entityToRestricted;
 	}
-
 }

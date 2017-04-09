@@ -45,5 +45,7 @@ public interface ControllerInterface {
 	public void resetCurrentGame();
 	
 	public void checkCollision(UIImageModel u);
+
+	void save(String filename);
 	
 }

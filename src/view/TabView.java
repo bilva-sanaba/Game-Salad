@@ -1,6 +1,7 @@
 package view;
 
 import components.ComponentType;
+import components.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;
@@ -20,7 +21,6 @@ import javafx.scene.layout.Region;
 public class TabView extends GUIComponent{
 	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
 	private ListView<Entity> blocksView = new ListView<Entity>();
-	//private ListView<ImageView> blocksView2 =
 	private GridPane pane = new GridPane();
 	private TabPane myTab = new TabPane();
 	private Button b;
@@ -29,7 +29,9 @@ public class TabView extends GUIComponent{
 	private EntityBuilderWindow entityBuilder;
 
 	public TabView(UtilityFactory utilIn, ViewData data){
-		//            Image i = ((SpriteComponent)currentEntity.getComponent(ComponentType.Sprite)).getSprite();
+	/*	Entity entity = new Entity(7);
+		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
+		ImageView spriteImage = new ImageView(entitySprite.getSprite()); */
 		myData = data;
 		util = utilIn;
 		entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
@@ -47,9 +49,6 @@ public class TabView extends GUIComponent{
 		b = util.buildButton("AddEntityButton", e->
 		{
 			entityBuilder.showEntityBuilder();
-			/*           ImageView myImage = chooser.chooseFile();
-                                                myImage.setOnMouseClicked(e->currentEntity = chooser.getEntity());
-                                                blocksList.add(chooser.chooseFile()); */
 		});
 		myTab.getTabs().add(blockTab);
 	}

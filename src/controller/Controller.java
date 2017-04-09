@@ -40,13 +40,11 @@ public class Controller implements ControllerInterface {
 	
 	public Controller(Stage s) {
 		myStage = s;
-		
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
-		
 		myGameView = new UIView(s, this);
 		myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
-		myEntityManager = new EntityManager();
+//		myEntityManager = new EntityManager();
 	}
 	
 
@@ -69,8 +67,9 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public void loadNewGame(String filePath) {
-		// TODO Auto-generated method stub
+	public void loadNewGame(String gameName) {
+		Communicator c = new Communicator(gameName);
+		myGameEngine.loadData(c);
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		
 	}

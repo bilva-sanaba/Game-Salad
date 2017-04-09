@@ -1,6 +1,7 @@
 package engines;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import components.ComponentType;
@@ -27,13 +28,14 @@ public class MovementEngine extends AbstractEngine {
 	}
 
 	@Override
-	public void update() {
+	public Collection<? extends Entity> update() {
 		for(int currentEntity = 0; currentEntity < myComponents.get(LOCATION_LIST).size(); currentEntity++){
 			LocationComponent myLocation = (LocationComponent) myComponents.get(LOCATION_LIST).get(currentEntity);
 			VelocityComponent myVelocity = (VelocityComponent) myComponents.get(VELOCITY_LIST).get(currentEntity);
 			myLocation.setX(myLocation.getX() + myVelocity.getX());
 			myLocation.setY(myLocation.getY() + myVelocity.getY());
 		}
+		return null;
 		
 	}
 	
