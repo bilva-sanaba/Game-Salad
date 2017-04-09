@@ -38,7 +38,7 @@ public class GridView extends GUIComponent {
 			public void handle(MouseEvent event) {
 				System.out.println(String.format("Click at row %d col %d", row, col));
 				if (myData.getUserSelectedEntity() != null) {
-					
+					myData.setEntityLocation(row, col);
 				}
 			}
 		});

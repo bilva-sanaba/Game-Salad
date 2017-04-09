@@ -3,6 +3,8 @@ package data_interfaces;
 import java.util.HashMap;
 import java.util.Map;
 
+import groovy.lang.GroovyClassLoader;
+
 
 /**
  * A ClassLoader defines where to find classes when Java creates them.

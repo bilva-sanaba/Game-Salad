@@ -1,8 +1,10 @@
 package data_interfaces;
 
 
+import java.util.Collection;
 import java.util.List;
 import voogasalad.util.reflection.*;
+import entity.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,7 +14,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-
+import components.IComponent;
 
 import java.io.*;
 
@@ -30,6 +32,9 @@ public class XMLParser implements FileLoader {
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document doc = builder.parse(fileName);
+			if (doc.equals(null)) {
+				System.out.println("alert");
+			}
 			return doc.getDocumentElement();
 		} catch (ParserConfigurationException e) {
 			// TODO Solve this	
@@ -47,14 +52,23 @@ public class XMLParser implements FileLoader {
 	 * Retrieves the data needed from the file
 	 * to be sent to the game engine
 	 * @param fileName the name of the file
-	 * @return the list of reflected objects
+	 * @return the element of the parsed DOM objects
 	 */
-	public Document getData(String fileName) {
-		return (Document)loadFile(fileName);
+	public Element getData(String fileName) {
+		return (Element)loadFile(fileName);
 	}
-	/*
-	public static void main(String [] args) {
+	
+	/*public static void main(String [] args) {
 		XMLParser x = new XMLParser();
-		System.out.println(x.getData("games/try2.xml"));
+		EntityHandler e = new EntityHandler();
+		Collection <Entity> c = e.getCollection(x.getData("games/try4.xml"));
+		
+		for (Entity f: c) {
+			System.out.println(f.getID());
+			Collection <IComponent> ics = f.getComponents();
+			for (IComponent i : ics) {
+				
+			}
+		}
 	}*/
 }

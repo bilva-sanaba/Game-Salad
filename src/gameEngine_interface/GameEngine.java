@@ -23,6 +23,7 @@ import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import entity.restricted.RestrictedEntity;
+import entity.restricted.RestrictedEntityFactory;
 import entity.restricted.RestrictedEntityManager;
 import engines.AbstractEngine;
 import entity.IEntityManager;
@@ -35,7 +36,7 @@ import entity.IEntityManager;
 public class GameEngine implements GameEngineInterface {
 	private GameData myLevelManager;
 	private EntityManager myEntityManager; 
-
+	private RestrictedEntityFactory myREF = new RestrictedEntityFactory();
 	private RestrictedEntityManager myRestrictedEntityManager;
 	private List<AbstractEngine> myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
@@ -53,10 +54,15 @@ public class GameEngine implements GameEngineInterface {
 	@Override
 
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
-		Collection <RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
+		Collection <Entity> changedEntity = new ArrayList<Entity>();
+		
 		for (AbstractEngine s : myEngines){
-			changedRestrictedEntity.addAll(s.update());
+			changedEntity.addAll(s.update());
 		}	
+		Collection <RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
+		for (Entity e : changedEntity){
+			changedRestrictedEntity.add(myREF.createRestrictedEntity(e));
+		}
 		return changedRestrictedEntity;
 	}
 	@Override
