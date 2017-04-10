@@ -8,6 +8,9 @@ package voogasalad.util.reflection;
 public final class ReflectionException extends RuntimeException {
     // for serialization
     private static final long serialVersionUID = 1L;
+    
+    public static final String COMPONENT_REFLECTION_ERROR = "Error in component reflection, check package and class names";
+    public static final String EVENT_REFLECTION_ERROR = "Error in event reflection, check package and class names";
 
     /**
      * Create an exception based on an issue in our code.
