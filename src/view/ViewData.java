@@ -90,7 +90,13 @@ public class ViewData extends Observable {
 		return gameName;
 	}
 	
+	public void clearData(){
+		definedEntityMap.clear();
+		placedEntityMap.clear();
+		
+	}
 	public void refresh(){
+		System.out.println("This is called");
 		setChanged();
 		notifyObservers();
 	}
