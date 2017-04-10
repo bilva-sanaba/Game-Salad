@@ -5,6 +5,7 @@ import java.util.List;
 
 import components.ComponentType;
 import entity.Entity;
+import entity.IEntity;
 import entity.IEntityManager;
 
 /**
@@ -30,7 +31,7 @@ public class CollisionEngine extends AbstractEngine {
 	}
 
 	@Override
-	public Collection<? extends Entity> update() {
+	public Collection<IEntity> update() {
 		return null;
 		// TODO Auto-generated method stub
 

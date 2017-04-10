@@ -1,11 +1,13 @@
 package engines;
 
+import java.util.Collection;
 import java.util.List;
 
 import components.ComponentType;
 import components.LocationComponent;
 import components.VelocityComponent;
 import entity.Entity;
+import entity.IEntity;
 import entity.IEntityManager;
 
 public class PhysicsEngine extends AbstractEngine {
@@ -26,13 +28,14 @@ public class PhysicsEngine extends AbstractEngine {
 	}
 
 	@Override
-	public void update() {
+	public Collection<IEntity> update() {
 		for(int currentEntity = 0; currentEntity < myComponents.get(LOCATION_LIST).size(); currentEntity++){
 			LocationComponent myLocation = (LocationComponent) myComponents.get(LOCATION_LIST).get(currentEntity);
-			VelocityComponent myVelocity = (VelocityComponent) myComponents.get(VELOCITY_LIST).get(currentEntity));
+			VelocityComponent myVelocity = (VelocityComponent) myComponents.get(VELOCITY_LIST).get(currentEntity);
 			myLocation.setX(myLocation.getX() + myVelocity.getX());
 			myLocation.setY(myLocation.getY() + myVelocity.getY());
 		}
+		return null;
 		
 	}
 
