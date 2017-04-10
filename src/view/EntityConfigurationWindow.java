@@ -4,6 +4,7 @@ import entity.Entity;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 /**
  * make a window interface
@@ -19,7 +20,7 @@ public class EntityConfigurationWindow {
 	private String myEntityType;
 	private String[] componentList;
 	private ComponentFactory myCompF;
-	private StackPane root;
+	private VBox root;
 	private Entity myEntity;
 	
 	
@@ -38,7 +39,7 @@ public class EntityConfigurationWindow {
 	}
 	
 	private Scene buildScene() {
-		root = new StackPane();
+		root = new VBox();
 		buildComponentEditor();
 		return new Scene(root);
 	}

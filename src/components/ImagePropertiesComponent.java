@@ -9,8 +9,7 @@ public class ImagePropertiesComponent implements IComponent {
 	}
 	
 	public ImagePropertiesComponent() {
-		imageHeight = 0;
-		imageWidth = 0;
+		super();
 	}
 	
 	@Override

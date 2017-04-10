@@ -32,9 +32,9 @@ public class EntityBuilderWindow {
 	private int i = 0;
 	
 
-	private static final String[] BLOCK_ENTITY = {"Label", "ImageProperties"};//,"Location","Sprite"};
-//	private static final String[] CHARACTER_ENTITY = {"Label","Location","Sprite", "ImageProperties", "Velocity", "Health", "Accele.ration"};
-//	private static final String[] POWERUP_ENTITY = {"Label","Location","Sprite", "ImageProperties"};
+//	private static final String[] BLOCK_ENTITY = {"Label", "ImageProperties"};
+	private static final String[] CHARACTER_ENTITY = {"Label", "ImageProperties", "Velocity", "Health", "Acceleration"};
+//	private static final String[] POWERUP_ENTITY = {"Label", "ImageProperties"};
 
 	public EntityBuilderWindow(UtilityFactory utilIn,
 			ObservableList<Entity> blocksListIn, ViewData dataIn) {
@@ -45,7 +45,7 @@ public class EntityBuilderWindow {
 		GridPane.setConstraints(myImage, 0, 0);
 		GridPane.setColumnSpan(myImage, 3);
 		myStage.setScene(buildScene());
-		EntityConfigurationWindow ebw = new EntityConfigurationWindow(utilIn, dataIn, BLOCK_ENTITY);
+		EntityConfigurationWindow ebw = new EntityConfigurationWindow(utilIn, dataIn, CHARACTER_ENTITY);
 		ebw.show();
 	}
 
