@@ -1,17 +1,12 @@
+
 package gameView;
 
 import java.awt.Dimension;
 
+import data_interfaces.XMLException;
 import entity.restricted.IRestrictedEntityManager;
-import gameEngine_interface.GameEngine;
-import gameView.commands.AbstractCommand;
-import gameView.commands.LoadCommand;
-import gameView.commands.MakeCommand;
 import gameView.gameScreen.GameScreen;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
+import com.sun.jmx.snmp.Timestamp;
 import gameView.splashScreen.SplashView;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
@@ -20,10 +15,12 @@ import javafx.stage.Stage;
 import view_interfaces.UIViewInterface;
 
 
-public class UIView implements UIViewInterface, ICommandUIView {
+public class UIView implements UIViewInterface {
 	
 	public static final Dimension DEFAULT_SIZE = new Dimension(1000, 650);
-	public final String DEFAULT_BUTTONS =  "EnglishCommands";
+	public static final String DEFAULT_BUTTONS =  "EnglishCommands";
+	public static final String DEFAULT_LOCATION = "resources/";
+	public static final String DEFAULT_STYLING = "UI";
 	
 	private Stage myStage;
 	private ControllerInterface myController;
@@ -36,14 +33,14 @@ public class UIView implements UIViewInterface, ICommandUIView {
 		myStage = s;
 		myController = controller;
 		myAnimation = new WorldAnimator();
-		mySplash = new SplashView(this, getCommands());
+		mySplash = new SplashView(this);
 		myGameScene = new GameScreen(this, myAnimation);
-		//runGame();//getSplashScreen();
-		getSplashScreen();
+		runGame();//getSplashScreen();
+		//getSplashScreen();
 	}
 
 	public void getSplashScreen() {
-		setStage(mySplash.getSplashScene());
+		setStage(mySplash.getScene());
 	}
 	
 	@Override
@@ -55,36 +52,39 @@ public class UIView implements UIViewInterface, ICommandUIView {
 
 	@Override
 	public void runGame() {
+		System.out.println("IN UIVIEW");
 		setStage(myGameScene.getScene());
 		
 	}
 	
 	public void loadGame(String file) {
+		System.out.println("IN UIVIEW");
 		addEntities(myController.loadNewGame(file));
 	}
 	
 	public void authorGame() {
+		System.out.println("IN UIVIEW");
 		myController.makeGame();
 	}
 	
 	public void saveGame() {
-		
+		System.out.println("IN UIVIEW");
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		myController.save(timestamp.toString());
 	}
 	
 	public void restart() {
-		
+		System.out.println("IN UIVIEW");
+		try {
+			myController.resetCurrentGame();
+		} catch (XMLException e) {
+			//TODO: make exception
+		}
 	}
 	
 	private void setStage(Scene s) {
 		myStage.setScene(s);
 		myStage.show();
-	}
-	
-	private Collection<AbstractCommand> getCommands() {
-		Collection<AbstractCommand> list = new ArrayList<AbstractCommand>();
-		list.add(new LoadCommand(this));
-		list.add(new MakeCommand(this));
-		return list;
 	}
 	
 	public Stage getStage() {

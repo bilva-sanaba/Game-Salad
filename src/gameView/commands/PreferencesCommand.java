@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import gameView.ICommandGameView;
 import gameView.ICommandView;
 import gameView.UIView;
 import gameView.tools.DisplayManager;
@@ -27,16 +26,17 @@ public class PreferencesCommand extends AbstractCommand {
 	
 	public PreferencesCommand(ICommandView m) {
 		super(m);
-		myBox = new VBox(); 
-		myBox.setId("box");
-		myStage = new Stage();
-		myPopup = new ScrollablePopup("Preferences", "/resources/Preferences.css", myBox, makeCloseButton(),
-				new Dimension(UIView.DEFAULT_SIZE.width/3, UIView.DEFAULT_SIZE.height/3));
-		myDisplays = ((ICommandGameView) getView()).getComponents();
+//		myBox = new VBox(); 
+//		myBox.setId("box");
+//		myStage = new Stage();
+//		myPopup = new ScrollablePopup("Preferences", "/resources/Preferences.css", myBox, makeCloseButton(),
+//				new Dimension(UIView.DEFAULT_SIZE.width/3, UIView.DEFAULT_SIZE.height/3));
+//		myDisplays = ((ICommandGameView) getView()).getComponents();
 	}
 
 	@Override
 	public void execute(Stage s) {
+		initialize();
 		myBox.getChildren().clear();
 		myStage.setTitle(getName());
 		makeBox(); 
@@ -49,6 +49,15 @@ public class PreferencesCommand extends AbstractCommand {
 	@Override
 	public String getName() {
 		return "Preferences";
+	}
+	
+	private void initialize() {
+		myBox = new VBox(); 
+		myBox.setId("box");
+		myStage = new Stage();
+		myPopup = new ScrollablePopup("Preferences", "/" + UIView.DEFAULT_LOCATION + "Preferences.css", myBox, makeCloseButton(),
+				new Dimension(UIView.DEFAULT_SIZE.width/3, UIView.DEFAULT_SIZE.height/3));
+		myDisplays = ((ICommandView) getView()).getComponents();
 	}
 	
 	private void makeBox() {

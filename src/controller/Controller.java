@@ -35,7 +35,7 @@ import gameView.UIView;
 
 public class Controller implements ControllerInterface {
 
-	UIViewInterface myGameView;
+	private UIViewInterface myGameView;
 	private GameEngine myGameEngine;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
@@ -45,8 +45,9 @@ public class Controller implements ControllerInterface {
 	public Controller(Stage s) {
 		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
-		myGameView = new UIView(s, this);
+		myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
+		myGameView = new UIView(s, this);
 		// myEntityManager = new EntityManager();
 	}
 
