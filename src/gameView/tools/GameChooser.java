@@ -34,6 +34,7 @@ public class GameChooser {
 	public GameChooser(Stage s) {
 		//myStage = s;
 		myStage = new Stage();
+		myStage.setTitle("Pick A Game");
 		myFiles = new ArrayList<String>();
 		mySubBoxes = new ArrayList<HBox>();
 		myBox = new VBox();
@@ -47,13 +48,6 @@ public class GameChooser {
 	 * @return The pop-up file chooser
 	 */
 	public Stage selectFile() {
-		String game = null;
-//		FileChooser chooser = new FileChooser(); 
-//		chooser.setTitle("Open Data File");
-//		chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-//		chooser.getExtensionFilters().setAll(
-//				new ExtensionFilter("Text Files", FILE_EXTENSION));
-//		File dataFile = chooser.showOpenDialog(myStage);
 		File directory = new File(GAME_PATH);
 		String[] allFiles = directory.list();
 		for (String each: allFiles) {
@@ -69,8 +63,7 @@ public class GameChooser {
 	}
 	
 	public String getFile() {
-		String[] split = myChosenFile.split("\\.");
-		return split[0]; 
+		return myChosenFile; 
 	}
 	
 	private void makeVBox() {
@@ -81,27 +74,28 @@ public class GameChooser {
 			for (int k : new int[]{0, 1, 2}) {
 				if (it.hasNext()) {
 					String current = it.next();
-					newHBox.getChildren().add(makeButton(current));
-				}
+					String[] split = current.split("\\."); 
+					newHBox.getChildren().add(makeButton(split[0]));
+				}  
 			}
 			count += 1;
 			newHBox.setId("subbox");
 			mySubBoxes.add(newHBox);
 		}
 		mySubBoxes.stream()
-			.forEach(c -> myBox.getChildren().add(c));
+			.forEach(c -> myBox.getChildren().add(c)); 
 	}
 	 
-	private Button makeButton(String name) {
-		Button newButton = new Button(name);
+	private Button makeButton(String name) { 
+		Button newButton = new Button(name);  
 		newButton.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
+			public void handle(ActionEvent event) { 
 				myChosenFile = name;
 				myStage.close();
-			}
+			}  
 		});
 		newButton.setContentDisplay(ContentDisplay.TOP);
-		newButton.setPrefWidth((SCENE_DIMENSIONS.width/3)-40);
+		newButton.setPrefWidth((SCENE_DIMENSIONS.width/3)-20);
 		newButton.setPrefHeight(newButton.getPrefWidth()*1.2);
 		return newButton;
 	} 
