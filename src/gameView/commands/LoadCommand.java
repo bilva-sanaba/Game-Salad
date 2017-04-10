@@ -14,7 +14,7 @@ import gameView.tools.GameChooser;
 
 public class LoadCommand extends AbstractCommand {
 
-	public LoadCommand(UIView m) {
+	public LoadCommand(ICommandView m) {
 		super(m);
 	}
 

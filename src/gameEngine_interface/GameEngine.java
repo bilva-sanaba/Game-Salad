@@ -36,6 +36,7 @@ public class GameEngine implements GameEngineInterface {
 			myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
+	
 
 	public GameEngine(){
 		initializeRestrictedEntities();
@@ -75,5 +76,4 @@ public class GameEngine implements GameEngineInterface {
 	public RestrictedEntityManager getRestrictedEntityManager() {
 		return myRestrictedEntityManager;
 	}
-	private void addAndReplace
 }

@@ -29,10 +29,8 @@ public class Entity implements IEntity, IRestrictEntity {
 
 	public Entity clone() {
 		Entity temp = new Entity(identifier);
-		for (IComponent a : myComponents) {
-			// create clone method for IComponents
-			// new IComponent b =
-			temp.addComponent(a);
+		for(IComponent a : myComponents){
+			temp.addComponent(a.newCopy());
 		}
 		return temp;
 	}
@@ -87,6 +85,6 @@ public class Entity implements IEntity, IRestrictEntity {
 	@Override
 	public void removeListener(InvalidationListener arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
 }

@@ -29,7 +29,7 @@ public class ButtonFactory extends UtilityFactory {
 		Button button;
 		try {
 			button = buildButton(command.getName(), "", myFile, null);
-		} catch (Exception e) {
+		} catch (Exception e) {  
 			button = new Button("No Label Found");
 		}
 		button.setId(command.getName().toLowerCase());

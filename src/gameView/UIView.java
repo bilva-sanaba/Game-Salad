@@ -31,6 +31,7 @@ public class UIView implements UIViewInterface, ICommandUIView {
 		myController = controller;
 		mySplash = new SplashView(this, getCommands());
 		myGameScene = new GameScreen(this);
+		//runGame();
 		getSplashScreen();
 	}
 
@@ -60,6 +61,10 @@ public class UIView implements UIViewInterface, ICommandUIView {
 	}
 	
 	public void saveGame() {
+		
+	}
+	
+	public void restart() {
 		
 	}
 	

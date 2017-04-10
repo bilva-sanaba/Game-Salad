@@ -24,21 +24,21 @@ public class NewMovementEngine extends AbstractEngine{
 		Map<IEntity, IRestrictedEntity> entityMap = getEManager().getEntityMap();
 		for (IEntity e: entityMap.keySet()) {
 			if (hasComponent(e,ComponentType.Location)) {
-				updateAllValues(e);
-				placeInMap(entityMap, e);
-				//TODO: fix cast issue
-				changed.add(e);
+				updateAllValues(e, entityMap, changed);
 			}
 		}
 		return changed;
 	}
 
-	private void updateAllValues(IEntity e) {
+	private void updateAllValues(IEntity e, Map<IEntity, IRestrictedEntity> entityMap, Collection<IEntity> changed) {
 		if (hasComponent(e, ComponentType.Velocity)) {
 			updateLocation(e);
 			if (hasComponent(e, ComponentType.Acceleration)) {
 				updateVelocity(e);
 			}
+			placeInMap(entityMap, e);
+			//TODO: fix cast issue
+			changed.add((Entity) e);
 		}
 	}
 	

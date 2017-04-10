@@ -2,11 +2,12 @@ package gameView.commands;
 
 import javafx.stage.Stage;
 import gameView.ICommandUIView;
+import gameView.ICommandView;
 import gameView.UIView;
 
 public class MakeCommand extends AbstractCommand {
 
-	public MakeCommand(UIView m) {
+	public MakeCommand(ICommandView m) {
 		super(m);
 	}
 
