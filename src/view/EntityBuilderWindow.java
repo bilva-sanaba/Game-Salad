@@ -2,7 +2,6 @@ package view;
 
 import java.util.ArrayList;
 
-import components.LocationComponent;
 import components.SpriteComponent;
 import entity.Entity;
 import javafx.collections.ObservableList;
