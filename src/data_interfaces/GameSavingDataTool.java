@@ -1,7 +1,9 @@
 package data_interfaces;
 
+import java.io.File;
+
 public class GameSavingDataTool {
-	private static final String PREFIX = "games/";
+	private static final String PREFIX = "games" + File.separator;
 	private static final String SUFFIX = ".xml";
 
 	protected String getPrefix() {
