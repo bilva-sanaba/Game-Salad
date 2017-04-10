@@ -2,6 +2,7 @@ package gameEngine_interface;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.scene.input.KeyCode;
@@ -59,6 +60,7 @@ public class GameEngine implements GameEngineInterface {
 
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
 		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
+		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
 			changedEntity.addAll(s.update());
 		}
@@ -73,4 +75,5 @@ public class GameEngine implements GameEngineInterface {
 	public RestrictedEntityManager getRestrictedEntityManager() {
 		return myRestrictedEntityManager;
 	}
+	private void addAndReplace
 }
