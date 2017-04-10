@@ -52,8 +52,10 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 					newVD.defineEntity(e);
 				}
 			}
+			myData = newVD;
+			myData.refresh();
 		}
-		myData = newVD;
+		
 	}
 	
 	private boolean isPlaced(Entity e) {
