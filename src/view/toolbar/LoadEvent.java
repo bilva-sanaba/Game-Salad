@@ -34,8 +34,9 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		File dataFile = fc.showOpenDialog(newStage);
 		if (!dataFile.equals(null)) {
 			String dataPath = dataFile.getAbsolutePath();
-
-			String[] splitS = dataPath.split("/");
+			System.out.println(dataPath);
+			String fs = File.separator;
+			String[] splitS = dataPath.split(File.separator + File.separator);
 			String firstSplit = splitS[splitS.length - 1];
 			String name = firstSplit.substring(0, firstSplit.length()
 					- getSuffix().length());

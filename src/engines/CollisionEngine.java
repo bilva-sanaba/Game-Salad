@@ -11,6 +11,7 @@ import components.IComponent;
 import components.ImagePropertiesComponent;
 import components.LocationComponent;
 import entity.Entity;
+import entity.IEntity;
 import entity.IEntityManager;
 
 /**
@@ -25,7 +26,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	
 	private List<ISubEngine> subEngines;
 	private IEntityManager entManager;
-	private List<Entity> newEntitiesCreated;
+	private List<IEntity> newEntitiesCreated;
 	private ITwoObjectCollide collisionMethod;
 
 	public CollisionEngine(IEntityManager myEntityManager) {
@@ -95,11 +96,10 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	}
 
 	@Override
-	public Collection<? extends Entity> update() {
-		newEntitiesCreated = new ArrayList<Entity>();
+	public Collection<IEntity> update() {
+		newEntitiesCreated = new ArrayList<IEntity>();
 		checkCollisionsOccurred();
 		return newEntitiesCreated;
-		
 	}
 
 }

@@ -47,7 +47,7 @@ public class Controller implements ControllerInterface {
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
 		myGameView = new UIView(s, this);
 		myWorldAnimator = new WorldAnimator();
-		// myEntityManager = new EntityManager();
+		myGameEngine = new GameEngine();
 	}
 
 	public void save(String fileName) {
@@ -58,17 +58,17 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public IRestrictedEntityManager loadNewGame(String gameName) {
-		Communicator c = new Communicator(gameName);
-		myGameEngine.loadData(c);
+	public void loadNewGame(String gameName) { //IRestrictedEntityManager
+		//Communicator c = new Communicator(gameName);
+		myGameEngine.loadData(); //c
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
-		return restrictedEntityManager;
+		//return restrictedEntityManager;
 	}
 
 	@Override
 	public void resetCurrentGame() throws XMLException {
 		if(!filePath.equals(null)){
-			myGameEngine = new GameEngine(filePath);
+			myGameEngine.loadData(new Communicator(filePath));;
 		}
 		else{
 			throw new XMLException(String.format("No current game"));

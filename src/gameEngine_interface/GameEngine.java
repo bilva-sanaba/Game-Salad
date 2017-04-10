@@ -2,8 +2,12 @@ package gameEngine_interface;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import components.LocationComponent;
+import components.SpriteComponent;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
 import data_interfaces.XMLParser;
@@ -37,16 +41,19 @@ public class GameEngine implements GameEngineInterface {
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	
 
-	public GameEngine(String xmlDataFile){
-		myLevelManager = (GameData) myParser.getData(xmlDataFile);
-		myEntityManager = ((GameData) myLevelManager).getLevels()[0];
-	}
-
 	public GameEngine(){
 		initializeRestrictedEntities();
 	}
-	public void loadData(Communicator c){
-		myEntityManager = new EntityManager(c.getData());
+	public void loadData(){ //Communicator c
+		ArrayList<Entity> test = new ArrayList<Entity>();
+		for (int i=0; i<10;i++){
+			Entity e = new Entity(i);
+			e.addComponent(new LocationComponent(i,i));
+			e.addComponent(new SpriteComponent("dirt.jpg"));
+			test.add(e);
+		}
+		//myEntityManager = new EntityManager(c.getData());
+		myEntityManager=new EntityManager(test);
 		initializeRestrictedEntities();
 	}
 	public Collection<Entity> save(){
@@ -64,12 +71,13 @@ public class GameEngine implements GameEngineInterface {
 	@Override
 
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
-		Collection <Entity> changedEntity = new ArrayList<Entity>();
+		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
+		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
 			changedEntity.addAll(s.update());
 		}
 		Collection<RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
-		for (Entity e : changedEntity) {
+		for (IEntity e : changedEntity) {
 			changedRestrictedEntity.add(myREF.createRestrictedEntity(e));
 		}
 		return changedRestrictedEntity;
