@@ -50,7 +50,7 @@ public class Controller implements ControllerInterface {
 		// myEntityManager = new EntityManager();
 	}
 
-	public void save(String filename) {
+	public void save(String fileName) {
 		// TODO Auto-generated method stub
 		// loop through and save all write all items to XML
 		XMLWriter xw = new XMLWriter();
@@ -62,12 +62,13 @@ public class Controller implements ControllerInterface {
 		Communicator c = new Communicator(gameName);
 		myGameEngine.loadData(c);
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
+		return restrictedEntityManager;
 	}
 
 	@Override
 	public void resetCurrentGame() throws XMLException {
 		if(!filePath.equals(null)){
-			myGameEngine = new GameEngine(filePath);
+			myGameEngine.loadData(new Communicator(filePath));;
 		}
 		else{
 			throw new XMLException(String.format("No current game"));
