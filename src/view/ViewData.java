@@ -7,16 +7,9 @@ import java.util.Observable;
 import components.*;
 
 /**
- * Casting takes place to be able to edit the component because we are using Enums to choose the specific component 
+ * Casting takes place to be able to edit the component because we are using enums to choose the specific component
  * we feel comfortable to cast the component to its specific component
- * Casting takes place to be able to edit the component because we are using
- * enums to choose the specific component we feel comfortable to cast the
- * component to its specific component
  *
- *Casting takes place to be able to edit the
- * component because we are using Enums to choose the specific component we feel
- * comfortable to cast the component to its specific component
- * 
  * @author Jonathan
  * @author Justin
  * @author Jack
