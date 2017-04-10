@@ -11,7 +11,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -20,6 +22,7 @@ import javafx.scene.image.ImageView;
  * buildButton(String, String) credit to Duvall
  * 
  * @author Jonathan
+ * @author Jack
  *
  */
 public class UtilityFactory {
@@ -74,17 +77,24 @@ public class UtilityFactory {
 		return buildButton(property, eventname, "images", null);
 	}
 	
+	public Button buildButton(String string, EventHandler eventname) {
+        Button result = new Button();
+        result.setText(string);
+        result.setOnAction(eventname);
+        return result;
+	}
+	
 	public MenuItem builtMenuItem(String name, EventHandler<ActionEvent> event){
 		MenuItem myMenuItem = new MenuItem(name);
 		myMenuItem.setOnAction(event);
 		return myMenuItem;
 	}
 
-	public Button buildButton(String string, EventHandler eventname) {
-        Button result = new Button();
-        result.setText(string);
-        result.setOnAction(eventname);
-        return result;
+	public RadioButton buildRadioButton(String property, boolean selected, ToggleGroup group){
+		RadioButton myButton = new RadioButton(property);
+		myButton.setSelected(selected);
+		myButton.setToggleGroup(group);
+		return myButton;
 	}
 	
 	public List<Button> makeToolBarButtons(ViewData data) {
