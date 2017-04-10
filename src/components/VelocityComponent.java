@@ -5,8 +5,8 @@ public class VelocityComponent extends XYComponent implements IComponent {
 		super(x, y);
 	}
 
-	public VelocityComponent() {
-		super();
+	public VelocityComponent(int x, int y) {
+		super(x, y);
 	}
 
 	@Override
