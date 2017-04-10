@@ -58,12 +58,12 @@ public class GameEngine implements GameEngineInterface {
 	@Override
 
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
-		Collection <Entity> changedEntity = new ArrayList<Entity>();
+		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
 		for (AbstractEngine s : myEngines){
 			changedEntity.addAll(s.update());
 		}
 		Collection<RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
-		for (Entity e : changedEntity) {
+		for (IEntity e : changedEntity) {
 			changedRestrictedEntity.add(myREF.createRestrictedEntity(e));
 		}
 		return changedRestrictedEntity;
