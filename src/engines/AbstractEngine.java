@@ -7,9 +7,11 @@ import java.util.List;
 import components.ComponentType;
 import components.IComponent;
 import entity.Entity;
+import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
+import javafx.scene.input.KeyCode;
 
 public abstract class AbstractEngine {
 
@@ -18,10 +20,10 @@ public abstract class AbstractEngine {
 	
 	public AbstractEngine(IEntityManager myEntityManager){
 		myEManager = myEntityManager;
-		int i = 0;
-		for (ComponentType ct : neededComponents())
-			myComponents.add((ArrayList<IComponent>) myEntityManager
-					.getCertainComponents(neededComponents().get(i)));
+//		int i = 0;
+//		for (ComponentType ct : neededComponents())
+//			myComponents.add((ArrayList<IComponent>) myEntityManager
+//					.getCertainComponents(neededComponents().get(i)));
 	}
 
 	/**
@@ -33,10 +35,11 @@ public abstract class AbstractEngine {
 
 	/**
 	 * Updates its lists of components
+	 * @param keysPressed 
 	 * 
 	 * @return
 	 */
-	public abstract Collection<? extends Entity> update();
+	public abstract Collection<IEntity> update(Collection<KeyCode> keysPressed);
 	
 	/**
 	 * Returns the entity manager

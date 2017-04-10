@@ -2,8 +2,12 @@ package controller_interfaces;
 
 import java.util.Observable;
 
+import data_interfaces.XMLException;
+
+
 import entity.restricted.IRestrictedEntityManager;
 import gameView.UIImageModel;
+
 /**
  * This class defines the behavior of the controller. The controller runs most
  * of the game itself, and will only need to be called by View to handle user
@@ -38,7 +42,6 @@ public interface ControllerInterface {
 	 * Called by front end when user tells the program to save the game. Will
 	 * communicate with Data builder to save all necessary state information.
 	 */
-	public void save();
 
 	public void save(String fileName);
 	
@@ -53,13 +56,15 @@ public interface ControllerInterface {
 	public IRestrictedEntityManager loadNewGame(String filePath);
 
 	/**
+<<<<<<< HEAD
+	 * Resets the current game using the original XML file 
+	 * @throws XMLException 
+	 *
 	 * Resets the current game using the original XML file
 	 */
-	public void resetCurrentGame();
+	public void resetCurrentGame() throws XMLException;
 
-	public void checkCollision(UIImageModel u);
-
-	public void update(Observable obs, Object arg);
+	public void run();
 	
 	public void makeGame();
 

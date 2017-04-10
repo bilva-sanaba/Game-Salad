@@ -2,7 +2,7 @@ package components;
 
 public class AccelerationComponent extends XYComponent implements IComponent {
 
-	public AccelerationComponent(int x, int y) {
+	public AccelerationComponent(double x, double y) {
 		super(x, y);
 	}
 
@@ -13,6 +13,10 @@ public class AccelerationComponent extends XYComponent implements IComponent {
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Acceleration;
+	}
+	@Override
+	public IComponent newCopy() {
+		return new AccelerationComponent(getX(), getY());
 	}
 
 }

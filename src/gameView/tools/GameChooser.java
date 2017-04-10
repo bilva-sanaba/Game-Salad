@@ -30,7 +30,6 @@ public class GameChooser {
 	private ArrayList<HBox> mySubBoxes;
 	private String myChosenFile;
 	private static final Dimension SCENE_DIMENSIONS = new Dimension(UIView.DEFAULT_SIZE.width/2, UIView.DEFAULT_SIZE.height/2);
-	
 	public GameChooser(Stage s) {
 		//myStage = s;
 		myStage = new Stage();

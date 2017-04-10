@@ -7,7 +7,7 @@ package components;
  *
  */
 public class LocationComponent extends XYComponent implements IComponent {
-	public LocationComponent(int x, int y) {
+	public LocationComponent(double x, double y){
 		super(x, y);
 	}
 
@@ -18,5 +18,8 @@ public class LocationComponent extends XYComponent implements IComponent {
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Location;
+	}
+	public IComponent newCopy() {
+		return new LocationComponent(getX(), getY());
 	}
 }

@@ -35,10 +35,7 @@ public class EntityManager implements IEntityManager {
 	public Collection<Entity> copy(){
 		Collection<Entity> copy = new ArrayList<Entity>();
 		for (Entity e: myEntities){
-			Entity entCopy = new Entity(e.getID());
-			for (IComponent comp : e.getComponents()){
-				entCopy.addComponent(comp);
-			}
+			Entity entCopy = e.clone();
 			copy.add(e);
 		}
 		return copy;

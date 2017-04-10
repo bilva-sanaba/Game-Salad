@@ -1,7 +1,7 @@
 package components;
 
 public class VelocityComponent extends XYComponent implements IComponent {
-	public VelocityComponent(int x, int y) {
+	public VelocityComponent(double x, double y) {
 		super(x, y);
 	}
 
@@ -12,5 +12,8 @@ public class VelocityComponent extends XYComponent implements IComponent {
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Velocity;
+	}
+	public IComponent newCopy() {
+		return new VelocityComponent(getX(), getY());
 	}
 }

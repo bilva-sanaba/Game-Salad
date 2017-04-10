@@ -11,6 +11,10 @@ public class HealthComponent implements IComponent {
 	public HealthComponent(int h) {
 		health = h;
 	}
+	
+	public HealthComponent(){
+		super();
+	}
 
 	@Override
 	public ComponentType getComponentType() {
@@ -26,4 +30,7 @@ public class HealthComponent implements IComponent {
 		health = h;
 	}
 
+	public IComponent newCopy() {
+		return new HealthComponent(getHealth());
+	}
 }
