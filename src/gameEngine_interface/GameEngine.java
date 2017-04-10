@@ -2,6 +2,7 @@ package gameEngine_interface;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.scene.input.KeyCode;
@@ -37,11 +38,6 @@ public class GameEngine implements GameEngineInterface {
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	
 
-	public GameEngine(String xmlDataFile){
-		myLevelManager = (GameData) myParser.getData(xmlDataFile);
-		myEntityManager = ((GameData) myLevelManager).getLevels()[0];
-	}
-
 	public GameEngine(){
 		initializeRestrictedEntities();
 	}
@@ -64,12 +60,13 @@ public class GameEngine implements GameEngineInterface {
 	@Override
 
 	public Collection <RestrictedEntity> handleUpdates(Collection<KeyCode> keysPressed) {
-		Collection <Entity> changedEntity = new ArrayList<Entity>();
+		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
+		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
 			changedEntity.addAll(s.update());
 		}
 		Collection<RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
-		for (Entity e : changedEntity) {
+		for (IEntity e : changedEntity) {
 			changedRestrictedEntity.add(myREF.createRestrictedEntity(e));
 		}
 		return changedRestrictedEntity;

@@ -8,22 +8,20 @@ import entity.*;
 import entity.restricted.*;
 
 public class NewMovementEngine extends AbstractEngine{
-
+	private RestrictedEntityFactory ref = new RestrictedEntityFactory();
 	public NewMovementEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 	}
 
 	@Override
-	protected List<ComponentType> neededComponents() {
-		
+	protected List<ComponentType> neededComponents() {	
 		return null;
 	}
 
 	@Override
-	public Collection<? extends Entity> update() {
-		Collection<Entity> changed = new ArrayList<Entity>();
+	public Collection<IEntity> update() {
+		Collection<IEntity> changed = new ArrayList<IEntity>();
 		Map<IEntity, IRestrictedEntity> entityMap = getEManager().getEntityMap();
-		
 		for (IEntity e: entityMap.keySet()) {
 			if (hasComponent(e,ComponentType.Location)) {
 				updateAllValues(e, entityMap, changed);
@@ -32,7 +30,7 @@ public class NewMovementEngine extends AbstractEngine{
 		return changed;
 	}
 
-	private void updateAllValues(IEntity e, Map<IEntity, IRestrictedEntity> entityMap, Collection<Entity> changed) {
+	private void updateAllValues(IEntity e, Map<IEntity, IRestrictedEntity> entityMap, Collection<IEntity> changed) {
 		if (hasComponent(e, ComponentType.Velocity)) {
 			updateLocation(e);
 			if (hasComponent(e, ComponentType.Acceleration)) {
@@ -55,7 +53,7 @@ public class NewMovementEngine extends AbstractEngine{
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		
-		vc.setXY(vc.getX() + ac.getX(), vc.getX() + ac.getX());
+		vc.setXY(vc.getX() + ac.getX(), vc.getY() + ac.getY());
 	}
 	
 	private boolean hasComponent(IEntity e, ComponentType c) {
@@ -63,7 +61,6 @@ public class NewMovementEngine extends AbstractEngine{
 	}
 	
 	private void placeInMap (Map <IEntity, IRestrictedEntity> entityMap, IEntity e) {
-		RestrictedEntityFactory ref = new RestrictedEntityFactory();
 		entityMap.put(e, ref.createRestrictedEntity(e));
 	}
 }

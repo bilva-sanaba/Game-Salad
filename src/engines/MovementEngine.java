@@ -8,6 +8,7 @@ import components.ComponentType;
 import components.LocationComponent;
 import components.VelocityComponent;
 import entity.Entity;
+import entity.IEntity;
 import entity.IEntityManager;
 
 public class MovementEngine extends AbstractEngine {
@@ -28,7 +29,7 @@ public class MovementEngine extends AbstractEngine {
 	}
 
 	@Override
-	public Collection<? extends Entity> update() {
+	public Collection<IEntity> update() {
 		for(int currentEntity = 0; currentEntity < myComponents.get(LOCATION_LIST).size(); currentEntity++){
 			LocationComponent myLocation = (LocationComponent) myComponents.get(LOCATION_LIST).get(currentEntity);
 			VelocityComponent myVelocity = (VelocityComponent) myComponents.get(VELOCITY_LIST).get(currentEntity);
