@@ -21,7 +21,8 @@ public class EntityBuilderWindow {
 
 	private ObservableList<Entity> blocksList;
 	private ArrayList<Node> nodeList = new ArrayList<Node>();
-	private Image myImageImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
+	private Image myImageImage = new Image(getClass().getClassLoader()
+			.getResourceAsStream("empty.jpg"));
 	private ImageView myImage = new ImageView(myImageImage);
 	private String myImagePath = "";
 	private Entity myEntity;
@@ -31,7 +32,8 @@ public class EntityBuilderWindow {
 	private ViewData myData;
 	private int i = 0;
 
-	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn){
+	public EntityBuilderWindow(UtilityFactory utilIn,
+			ObservableList<Entity> blocksListIn, ViewData dataIn) {
 		myData = dataIn;
 		blocksList = blocksListIn;
 		util = utilIn;
@@ -41,26 +43,26 @@ public class EntityBuilderWindow {
 		myStage.setScene(buildScene());
 	}
 
-	public void showEntityBuilder(){
+	public void showEntityBuilder() {
 		myStage.show();
 	}
 
-	private Scene buildScene(){
+	private Scene buildScene() {
 		buildNodes();
 		GridPane pane = buildPane();
 		return new Scene(pane, 300, 350);
 	}
 
-	public ImageView getImage(){
+	public ImageView getImage() {
 		return myImage;
 	}
 
-	public Entity getEntity(){
+	public Entity getEntity() {
 		return myEntity;
 	}
 
-	private void buildNodes(){
-		Node imageButton = util.buildButton("ChooseImageLabel", e->{
+	private void buildNodes() {
+		Node imageButton = util.buildButton("ChooseImageLabel", e -> {
 			myImagePath = imageChooser.chooseFile();
 			Image image = new Image(myImagePath);
 			myImage.setImage(image);
@@ -70,7 +72,7 @@ public class EntityBuilderWindow {
 		nodeList.add(imageButton);
 		GridPane.setConstraints(imageButton, 0, 1);
 
-		Node okayButton = util.buildButton("OkayLabel", e->{
+		Node okayButton = util.buildButton("OkayLabel", e -> {
 			Entity tempEntity = new Entity(i);
 			i++;
 			tempEntity.addComponent(new SpriteComponent(myImagePath));
@@ -105,7 +107,7 @@ public class EntityBuilderWindow {
 		
 	}
 
-	private GridPane buildPane(){
+	private GridPane buildPane() {
 		GridPane pane = new GridPane();
 		pane.getChildren().addAll(nodeList);
 		return pane;
