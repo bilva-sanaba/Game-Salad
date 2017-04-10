@@ -3,10 +3,10 @@ package gameView;
 import view_interfaces.UIImagePropertyInterface;
 
 public class UIImageProperty implements UIImagePropertyInterface {
-	
+
 	private Coordinate myLocation;
 	private String myType;
-	
+
 	public UIImageProperty(Coordinate coord, String type) {
 		myLocation = coord;
 		myType = type;

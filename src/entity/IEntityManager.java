@@ -8,12 +8,16 @@ import components.ComponentType;
 import components.IComponent;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
+
 /**
- * This interface is for the EntityManager object which should store entity data and provide public methods 
- * for engines to use in order to get appropriate encapsulated/limited information
+ * This interface is for the EntityManager object which should store entity data
+ * and provide public methods for engines to use in order to get appropriate
+ * encapsulated/limited information
  * 
- * In order to give it more flexibility, the returns should be some encapsulation+ (concrete/interface)
- * rather than the List<ArrayList<IComponent>>
+ * In order to give it more flexibility, the returns should be some
+ * encapsulation+ (concrete/interface) rather than the
+ * List<ArrayList<IComponent>>
+ * 
  * @author Bilva
  *
  */
@@ -23,12 +27,16 @@ public interface IEntityManager {
 	 * @param certainComponent
 	 * @return
 	 */
-	public Map<Integer, IComponent> getCertainComponents(ComponentType certainComponent);
+	public Map<Integer, IComponent> getCertainComponents(
+			ComponentType certainComponent);
+
 	/**
 	 * Returns an object storing components in a restricted form with pointers
+	 * 
 	 * @return
 	 */
 	public IRestrictedEntityManager getRestricted();
+
 	/**
 	 * 
 	 * @return

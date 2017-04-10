@@ -9,8 +9,8 @@ import javafx.beans.InvalidationListener;
 public class Tracker implements ITracker {
 	private String message;
 	private Collection<RestrictedEntity> observers;
-	
-	public Tracker(String message, Collection<RestrictedEntity> entities){
+
+	public Tracker(String message, Collection<RestrictedEntity> entities) {
 		this.message = message;
 		this.observers = entities;
 	}
@@ -25,10 +25,10 @@ public class Tracker implements ITracker {
 		message = newMessage;
 		notifyObservers();
 	}
-	
+
 	private void notifyObservers() {
 		// TODO Auto-generated method stub
-		//FACTORY CALL ON observers
+		// FACTORY CALL ON observers
 	}
 
 }

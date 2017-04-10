@@ -17,9 +17,13 @@ import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityFactory;
 import entity.restricted.RestrictedEntityManager;
+import engines.AbstractEngine;
+import entity.IEntityManager;
+
 /**
- * Basic GameEngine class
- * Note: the engines must be created in someway, likely via reflection
+ * Basic GameEngine class Note: the engines must be created in someway, likely
+ * via reflection
+ * 
  * @author Bilva
  *
  */
@@ -27,7 +31,8 @@ public class GameEngine implements GameEngineInterface {
 	private EntityManager myEntityManager = new EntityManager(new ArrayList<Entity>()); 
 	private RestrictedEntityFactory myREF = new RestrictedEntityFactory();
 	private RestrictedEntityManager myRestrictedEntityManager;
-	private List<AbstractEngine> myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
+	private List<AbstractEngine> myEngines = Arrays.asList(new MovementEngine(
+			myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	
@@ -52,6 +57,7 @@ public class GameEngine implements GameEngineInterface {
 		myRestrictedEntityManager = myEntityManager.getRestricted();
 		entityToRestricted = myEntityManager.getEntityMap();
 	}
+
 	/**
 	 * Runs each Engine in my Engine
 	 */
@@ -61,14 +67,14 @@ public class GameEngine implements GameEngineInterface {
 		Collection <Entity> changedEntity = new ArrayList<Entity>();
 		for (AbstractEngine s : myEngines){
 			changedEntity.addAll(s.update());
-		}	
-		Collection <RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
-		for (Entity e : changedEntity){
+		}
+		Collection<RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
+		for (Entity e : changedEntity) {
 			changedRestrictedEntity.add(myREF.createRestrictedEntity(e));
 		}
 		return changedRestrictedEntity;
 	}
-	
+
 	@Override
 	public RestrictedEntityManager getRestrictedEntityManager() {
 		return myRestrictedEntityManager;
