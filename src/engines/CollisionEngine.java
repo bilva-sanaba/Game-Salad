@@ -12,6 +12,7 @@ import components.ImagePropertiesComponent;
 import components.LocationComponent;
 import entity.Entity;
 import entity.IEntityManager;
+
 /**
  * This engine handles all collisions
  * When update is called it should use all needed CollisionSubEngines

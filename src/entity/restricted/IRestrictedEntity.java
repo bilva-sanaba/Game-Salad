@@ -2,14 +2,14 @@ package entity.restricted;
 
 import java.util.Observer;
 
+import java.util.Observer;
+
 import gameView.Coordinate;
 /**
  * Interface for objects which the front end will receive
- * @author Bilva
- *
- */
-public interface IRestrictedEntity extends Observer{
-	
+**/
+
+public interface IRestrictedEntity {
 	/**
 	 * 
 	 * @return ID of RestrictedEntity
@@ -25,5 +25,8 @@ public interface IRestrictedEntity extends Observer{
 	 * @return String which is the ImagePath of the Entity
 	 */
 	public String getImagePath();
+	
+	
+	public void addObserver(Observer obs);
 
 }

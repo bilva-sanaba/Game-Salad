@@ -1,6 +1,7 @@
 package view;
 
 import components.ComponentType;
+import components.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;
@@ -17,10 +18,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
-public class TabView extends GUIComponent{
-	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
+public class TabView extends GUIComponent {
+	private ObservableList<Entity> blocksList = FXCollections
+			.observableArrayList();
 	private ListView<Entity> blocksView = new ListView<Entity>();
-	//private ListView<ImageView> blocksView2 =
 	private GridPane pane = new GridPane();
 	private TabPane myTab = new TabPane();
 	private Button b;
@@ -28,34 +29,37 @@ public class TabView extends GUIComponent{
 	private ViewData myData;
 	private EntityBuilderWindow entityBuilder;
 
-	public TabView(UtilityFactory utilIn, ViewData data){
-		//            Image i = ((SpriteComponent)currentEntity.getComponent(ComponentType.Sprite)).getSprite();
+	public TabView(UtilityFactory utilIn, ViewData data) {
+		/*
+		 * Entity entity = new Entity(7); SpriteComponent entitySprite =
+		 * (SpriteComponent) entity.getComponent(ComponentType.Sprite);
+		 * ImageView spriteImage = new ImageView(entitySprite.getSprite());
+		 */
 		myData = data;
 		util = utilIn;
 		entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
 		blocksView.setItems(blocksList);
 		blocksView.setOrientation(Orientation.VERTICAL);
-		blocksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Entity>() {
-			@Override
-			public void changed(ObservableValue<? extends Entity> observable, Entity oldVal, Entity newVal) {                                                                           
-				myData.setUserSelectedEntity(newVal);
-				System.out.println("asd");
-			}
-		});
+		blocksView.getSelectionModel().selectedItemProperty()
+				.addListener(new ChangeListener<Entity>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Entity> observable,
+							Entity oldVal, Entity newVal) {
+						myData.setUserSelectedEntity(newVal);
+						System.out.println("asd");
+					}
+				});
 		Tab blockTab = util.buildTab("BlockTabLabel", false);
 		blockTab.setContent(blocksView);
-		b = util.buildButton("AddEntityButton", e->
-		{
+		b = util.buildButton("AddEntityButton", e -> {
 			entityBuilder.showEntityBuilder();
-			/*           ImageView myImage = chooser.chooseFile();
-                                                myImage.setOnMouseClicked(e->currentEntity = chooser.getEntity());
-                                                blocksList.add(chooser.chooseFile()); */
 		});
 		myTab.getTabs().add(blockTab);
 	}
 
 	@Override
-	public Region buildComponent(){
+	public Region buildComponent() {
 		pane.getChildren().add(myTab);
 		GridPane.setConstraints(myTab, 0, 0);
 		pane.getChildren().add(b);
