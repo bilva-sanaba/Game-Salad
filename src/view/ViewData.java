@@ -51,7 +51,6 @@ public class ViewData extends Observable {
 		/*	LocationComponent locComp = (LocationComponent) definedEntityList.get(entityID).getComponent(ComponentType.Location);
 		locComp.setX(row);
 		locComp.setY(col); */
-
 	}
 
 	public void defineEntity(Entity entity) {
@@ -62,7 +61,7 @@ public class ViewData extends Observable {
 
 	public void placeEntity(Entity entity) {
 		placedEntityMap.put(entity.getID(), entity);
-		notifyObservers();
+		//notifyObservers();
 	}
 
 	public void undefineEntity(Entity entity) {
@@ -72,7 +71,7 @@ public class ViewData extends Observable {
 
 	public void unplaceEntity(Entity entity) {
 		definedEntityMap.remove(entity.getID());
-		notifyObservers();
+		//notifyObservers();
 	}
 
 	public HashMap<Integer, Entity> getDefinedEntityMap() {
@@ -89,5 +88,10 @@ public class ViewData extends Observable {
 
 	public String getGameName() {
 		return gameName;
+	}
+	
+	public void refresh(){
+		setChanged();
+		notifyObservers();
 	}
 }
