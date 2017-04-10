@@ -7,15 +7,15 @@ import java.util.Observable;
 import components.*;
 
 /**
- * Casting takes place to beable to edit the component becuase we are using Enums to choose the specific component 
- * we feel compfortable to cast the component to its specific component
+ * Casting takes place to be able to edit the component because we are using Enums to choose the specific component 
+ * we feel comfortable to cast the component to its specific component
  * Casting takes place to be able to edit the component because we are using
  * enums to choose the specific component we feel comfortable to cast the
  * component to its specific component
  *
- *Casting takes place to beable to edit the
- * component becuase we are using Enums to choose the specific component we feel
- * compfortable to cast the component to its specific component
+ *Casting takes place to be able to edit the
+ * component because we are using Enums to choose the specific component we feel
+ * comfortable to cast the component to its specific component
  * 
  * @author Jonathan
  * @author Justin
@@ -54,24 +54,19 @@ public class ViewData extends Observable {
 	}
 
 	public void defineEntity(Entity entity) {
-
 		definedEntityMap.put(entity.getID(), entity);
-		//notifyObservers();
 	}
 
 	public void placeEntity(Entity entity) {
 		placedEntityMap.put(entity.getID(), entity);
-		//notifyObservers();
 	}
 
 	public void undefineEntity(Entity entity) {
 		definedEntityMap.remove(entity.getID());
-		//notifyObservers();
 	}
 
 	public void unplaceEntity(Entity entity) {
 		definedEntityMap.remove(entity.getID());
-		//notifyObservers();
 	}
 
 	public HashMap<Integer, Entity> getDefinedEntityMap() {
@@ -96,7 +91,6 @@ public class ViewData extends Observable {
 		
 	}
 	public void refresh(){
-		System.out.println("This is called");
 		setChanged();
 		notifyObservers();
 	}
