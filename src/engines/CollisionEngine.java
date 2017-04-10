@@ -25,6 +25,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	private List<ISubEngine> subEngines;
 	private IEntityManager entManager;
 	private List<Entity> newEntitiesCreated;
+	private ITwoObjectCollide collisionMethod;
 
 	public CollisionEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
@@ -68,10 +69,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 		ImagePropertiesComponent img1 = (ImagePropertiesComponent) imageProp1;
 		LocationComponent loc0 = (LocationComponent) location0;
 		LocationComponent loc1 = (LocationComponent) location1;
-		boolean collisionOccurs = false;
-		//TODO: check if collision occurs
-		System.out.println("STILL NEED TO IMPLEMENT COLLISION CHECKING MECHANISM IN COLLISIONENGINE IN METHOD CHECKINDIVIDUALCOLLISION()");
-		
+		boolean collisionOccurs = collisionMethod.collides(loc0, loc1, img0, img1);		
 		sendCollisionToSubEngines(index0, index1, collisionOccurs);
 	}
 
