@@ -1,7 +1,7 @@
 package components;
 
 public class VelocityComponent extends XYComponent implements IComponent {
-	public VelocityComponent(int x, int y) {
+	public VelocityComponent(double x, double y) {
 		super(x, y);
 	}
 

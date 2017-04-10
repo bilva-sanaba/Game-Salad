@@ -39,7 +39,7 @@ public class Entity implements IEntity, IRestrictEntity {
 	public int getID() {
 		return identifier;
 	}
-
+	
 	@Override
 	public void setID(int i) {
 		identifier = i;
@@ -73,6 +73,7 @@ public class Entity implements IEntity, IRestrictEntity {
 				return myComponent;
 			}
 		}
+		
 		return null;
 	}
 
