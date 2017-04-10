@@ -25,7 +25,7 @@ public class LaunchEvent implements ToolBarButtonEvent{
 		XMLWriter xw = new XMLWriter();
 		String fileName;
 		List <Entity> l = new ArrayList<Entity>();
-		Map<Integer, Entity> m = myData.getEntityMap();
+		Map<Integer, Entity> m = myData.getDefinedEntityMap();
 		for (Integer key : m.keySet()) {
 			l.add(m.get(key));
 		}

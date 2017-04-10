@@ -22,14 +22,14 @@ import components.*;
  *
  */
 public class ViewData extends Observable {
-	private HashMap<Integer, Entity> definedEntityList;
-	private HashMap<Integer, Entity> placedEntityList;
+	private HashMap<Integer, Entity> definedEntityMap;
+	private HashMap<Integer, Entity> placedEntityMap;
 	private Entity userSelectedEntity;
 	private String gameName;
 
 	public ViewData() {
-		definedEntityList = new HashMap<Integer, Entity>();
-		placedEntityList = new HashMap<Integer, Entity>();
+		definedEntityMap = new HashMap<Integer, Entity>();
+		placedEntityMap = new HashMap<Integer, Entity>();
 		userSelectedEntity = null;
 		gameName = "";
 	}
@@ -45,7 +45,7 @@ public class ViewData extends Observable {
 	public void setEntityLocation(int entityID, int row, int col) {
 
 		LocationComponent locComp = new LocationComponent(row, col);
-		placedEntityList.get(entityID).addComponent(locComp);
+		placedEntityMap.get(entityID).addComponent(locComp);
 		/*	LocationComponent locComp = (LocationComponent) definedEntityList.get(entityID).getComponent(ComponentType.Location);
 		locComp.setX(row);
 		locComp.setY(col); */
@@ -53,28 +53,31 @@ public class ViewData extends Observable {
 	}
 
 	public void defineEntity(Entity entity) {
-		definedEntityList.put(entity.getID(), entity);
+		definedEntityMap.put(entity.getID(), entity);
 		//notifyObservers();
 	}
 
 	public void placeEntity(Entity entity) {
-		placedEntityList.put(entity.getID(), entity);
+		placedEntityMap.put(entity.getID(), entity);
 		notifyObservers();
 	}
 
 	public void undefineEntity(Entity entity) {
-		definedEntityList.remove(entity.getID());
+		definedEntityMap.remove(entity.getID());
 		//notifyObservers();
 	}
 
 	public void unplaceEntity(Entity entity) {
-		definedEntityList.remove(entity.getID());
+		definedEntityMap.remove(entity.getID());
 		notifyObservers();
 	}
 
-	public HashMap<Integer, Entity> getEntityMap() {
-		return definedEntityList;
-
+	public HashMap<Integer, Entity> getDefinedEntityMap() {
+		return definedEntityMap;
+	}
+	
+	public HashMap<Integer, Entity> getPlacedEntityMap() {
+		return placedEntityMap;
 	}
 
 	public void setGameName(String s) {

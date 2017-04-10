@@ -1,11 +1,9 @@
 package gameView;
 
-<<<<<<< HEAD
 import controller.Controller;
-=======
 import java.awt.Dimension;
 
-import entitiy.restricted.IRestrictedEntityManager;
+import entity.restricted.IRestrictedEntityManager;
 import gameView.commands.AbstractCommand;
 import gameView.commands.LoadCommand;
 import gameView.commands.MakeCommand;
@@ -15,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import gameView.splashScreen.SplashView;
->>>>>>> hjt8
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -28,14 +25,10 @@ public class UIView implements UIViewInterface, ICommandUIView {
 	public final String DEFAULT_BUTTONS =  "EnglishCommands";
 	
 	private Stage myStage;
-<<<<<<< HEAD
-	private Controller myController;
-=======
 	private ControllerInterface myController;
 	private SplashView mySplash;
 	private GameScreen myGameScene;
 	private IRestrictedEntityManager myEntities; 
->>>>>>> hjt8
 	
 	public UIView(Stage s, Controller controller) {
 		myStage = s;

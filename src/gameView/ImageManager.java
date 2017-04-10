@@ -3,8 +3,8 @@ package gameView;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import entitiy.restricted.IRestrictedEntity;
-import entitiy.restricted.IRestrictedEntityManager;
+import entity.restricted.IRestrictedEntity;
+import entity.restricted.IRestrictedEntityManager;
 import gameView.observers.EntityManagerObserver;
 import gameView.observers.EntityObserver;
 

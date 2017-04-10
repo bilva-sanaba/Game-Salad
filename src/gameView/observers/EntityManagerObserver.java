@@ -1,6 +1,6 @@
 package gameView.observers;
 
-import entitiy.restricted.IRestrictedEntity;
+import entity.restricted.IRestrictedEntity;
 import entity.IEntityManager;
 import gameView.ImageManager;
 import gameView.UIView;
