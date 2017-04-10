@@ -1,6 +1,5 @@
 package components;
 
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import javafx.scene.image.Image;
 

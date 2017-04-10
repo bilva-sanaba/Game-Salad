@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class GameChooser {
 
 	private Stage myStage;
-	private static final String FILE_EXTENSION = "*.xlm";
+	private static final String FILE_EXTENSION = "*.xml";
 
 	public GameChooser(Stage s) {
 		myStage = s;

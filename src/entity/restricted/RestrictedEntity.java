@@ -36,6 +36,6 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return myID;
 	}
 }

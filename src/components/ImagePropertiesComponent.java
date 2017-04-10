@@ -3,10 +3,16 @@ package components;
 public class ImagePropertiesComponent implements IComponent {
 	private double imageHeight;
 	private double imageWidth;
+	
 	public ImagePropertiesComponent(double h, double w) {
 		imageHeight = h;
 		imageWidth = w;
 	}
+	
+	public ImagePropertiesComponent() {
+		super();
+	}
+	
 	@Override
 	public ComponentType getComponentType() {
 		// TODO Auto-generated method stub
