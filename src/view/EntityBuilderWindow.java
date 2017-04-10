@@ -55,7 +55,7 @@ public class EntityBuilderWindow {
 	private Scene buildScene() {
 		buildNodes();
 		GridPane pane = buildPane();
-		return new Scene(pane, 300, 350);
+		return new Scene(pane, 350, 350);
 	}
 
 	public ImageView getImage() {
@@ -74,6 +74,7 @@ public class EntityBuilderWindow {
 			myImage.setFitWidth(200);
 			myImage.setFitHeight(200);
 		});
+		GridPane.setColumnSpan(imageButton, 2);
 		nodeList.add(imageButton);
 		GridPane.setConstraints(imageButton, 0, 1);
 

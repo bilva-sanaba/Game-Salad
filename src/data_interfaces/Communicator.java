@@ -12,6 +12,7 @@ public class Communicator extends GameSavingDataTool {
 
 	public Communicator(String s) {
 		fileName = getPrefix() + s + getSuffix();
+
 	}
 
 	public Collection<Entity> getData() {

@@ -26,17 +26,15 @@ public class GameBuilder {
 	public GameBuilder() {
 	}
 
-	public Scene setUpGame(Group root, RestrictedEntityManager manager,
-			int height, int width) {
+	public Scene setUpGame(Group root, RestrictedEntityManager manager,int height, int width) {
 		Collection<RestrictedEntity> entities = manager.getEntities();
 
 		for (RestrictedEntity entity : entities) {
-			Image image = new Image(getClass().getClassLoader()
-					.getResourceAsStream(entity.getImagePath()));
+			Image image = new Image(getClass().getClassLoader().getResourceAsStream(entity.getImagePath()));
 			ImageView imageView = new ImageView(image);
 			imageView.setX(entity.getLocation().getX());
 			imageView.setY(entity.getLocation().getY());
-			// root.getChildren().add(imageView);
+			root.getChildren().add(imageView);
 			imageMap.put(entity, imageView);
 		}
 
