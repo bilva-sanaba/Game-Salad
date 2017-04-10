@@ -3,22 +3,22 @@ package gameView.commands;
 import javafx.stage.Stage;
 import gameView.ICommandUIView;
 import gameView.ICommandView;
-import gameView.UIView;
 
-public class SaveCommand extends AbstractCommand {
+public class RestartCommand extends AbstractCommand {
 
-	public SaveCommand(ICommandView m) {
+	public RestartCommand(ICommandView m) {
 		super(m);
 	}
 
 	@Override
 	public void execute(Stage s) {
-		getView().saveGame();
+		((ICommandUIView) getView()).restart();
+		
 	}
 
 	@Override
 	public String getName() {
-		return "Save";
+		return "Restart";
 	}
 
 }

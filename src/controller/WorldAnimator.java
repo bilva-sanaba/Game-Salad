@@ -68,6 +68,10 @@ public class WorldAnimator {
 		animation.getKeyFrames().add(frame);
 		animation.play();
 	}
+	
+	public Scene getScene() {
+		return myScene;
+	}
 
 	private void createMap(RestrictedEntityManager manager) {
 		Collection<RestrictedEntity> entities = manager.getEntities();

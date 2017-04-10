@@ -26,11 +26,6 @@ public class SplashView {
 	private Collection<AbstractCommand> myCommands;
 	private ButtonFactory myButtonFactory;
 
-	// private static final String SPLASH_BACKGROUND =
-	// "/resources/images/background.gif";
-	// private static final String MAIN_BACKGROUND =
-	// "/resources/images/mainpage.gif";
-
 	public SplashView(UIView view, Collection<AbstractCommand> buttons) {
 		myCommands = buttons;
 		myView = view;
@@ -62,7 +57,6 @@ public class SplashView {
 		createMainScene(newScene);
 		PauseTransition pause = new PauseTransition(Duration.seconds(7));
 		pause.setOnFinished(event -> {
-			System.out.print("what2");
 			myPane = newScene;
 			myScene.setRoot(myPane);
 		});
