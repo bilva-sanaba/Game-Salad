@@ -16,6 +16,7 @@ public class LabelComponent implements IComponent {
 	}
 
 	public LabelComponent() {
+
 	}
 
 	@Override

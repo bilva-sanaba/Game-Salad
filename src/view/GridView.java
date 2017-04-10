@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,12 +21,13 @@ import javafx.scene.paint.Color;
 
 /**
  * @author Justin Yang
- *
+ * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent implements Observer{
 	private GridPane myGrid;
 	private ViewData myData;
 	private int i = 1000;
+	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
 
 	public GridView(UtilityFactory utilF, ViewData data, int rows, int cols) {
 		myData = data;
@@ -72,7 +74,24 @@ public class GridView extends GUIComponent implements Observer{
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
 		spriteImage.setFitHeight(40);
 		spriteImage.setFitWidth(40);
+		placedImages.add(spriteImage);
 		myGrid.add(spriteImage, entityLocation.getX(), entityLocation.getY());
+	}
+	
+	private void clearEntitiesOnGrid(){
+		for(ImageView i: placedImages){
+			myGrid.getChildren().remove(i);
+		}
+		placedImages.clear();
+	}
+	
+	private void placeEntitiesFromFile(){
+		Entity tempEntity;
+		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
+		for(Integer i: myMap.keySet()){
+			tempEntity = myMap.get(i);
+			drawEntity(tempEntity);
+		}
 	}
 
 	@Override
@@ -80,23 +99,9 @@ public class GridView extends GUIComponent implements Observer{
 		return myGrid;
 	}
 
-	public void refresh(){
-		Entity tempEntity;
-		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
-		for(Integer i: myMap.keySet()){
-			tempEntity = myMap.get(i);
-			drawEntity(tempEntity);
-		}
-	}
-
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("This is triggered");
-		Entity tempEntity;
-		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
-		for(Integer i: myMap.keySet()){
-			tempEntity = myMap.get(i);
-			drawEntity(tempEntity);
-		}
+		clearEntitiesOnGrid();
+		placeEntitiesFromFile();
 	}
 }

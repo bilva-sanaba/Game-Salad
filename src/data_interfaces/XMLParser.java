@@ -25,7 +25,9 @@ public class XMLParser {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
+			System.out.println(fileName);
 			Document doc = builder.parse(fileName);
+			System.out.println("This happens");
 			return doc.getDocumentElement();
 		} catch (ParserConfigurationException e) {
 			// TODO Solve this

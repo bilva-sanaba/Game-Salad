@@ -1,27 +1,24 @@
 package view;
 
-import java.lang.reflect.Constructor;
-import java.util.*;
-
-//import groovyjarjarantlr.collections.List;
 import voogasalad.util.reflection.*;
-
 import view.toolbar.ToolBarButtonEvent;
 
 /**
  * 
  * @author Jonathan
+ * @author Justin
  *
  */
 public class EventFactory {
-
 	private static final String PREFIX = "view.toolbar.";
 
-	public ToolBarButtonEvent getEvent(String eventname, ViewData data)
-			throws Exception {
-		Reflection reflector = new Reflection();
-
-		return (ToolBarButtonEvent) reflector.createInstance(
-				PREFIX + eventname, data);
+	public ToolBarButtonEvent getEvent(String eventname, ViewData data) {	
+		ToolBarButtonEvent reflectedEvent;
+		try {
+			reflectedEvent = (ToolBarButtonEvent) Reflection.createInstance(PREFIX + eventname, data);
+		} catch (Exception e) {
+			throw new ReflectionException(ReflectionException.EVENT_REFLECTION_ERROR);
+		}
+		return reflectedEvent;
 	}
 }
