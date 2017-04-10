@@ -2,5 +2,10 @@ package view;
 
 import javafx.scene.Node;
 
-public abstract interface ComponentEditor {	
+public abstract class ComponentEditor {
+	private Node myInputNode;
+	
+	private void setInputNode(Node inputNode) {
+		
+	}
 }

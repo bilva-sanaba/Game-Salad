@@ -94,6 +94,10 @@ tmp/
 local.properties
 .settings/
 .loadpath
+<<<<<<< HEAD
+=======
+.gitignore
+>>>>>>> 9bc857ebb8a1062d4aed15aa823c4e36a7c7a3f3
 .classpath
 
 # Eclipse Core

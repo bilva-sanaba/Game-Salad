@@ -24,27 +24,28 @@ public class XMLWriter extends GameSavingDataTool {
 			BufferedWriter b = new BufferedWriter(new FileWriter(f));
 			b.write(data.toString());
 			b.close();
-		}
-		catch (IOException e) {
-			//TODO call the alert that they built
+		} catch (IOException e) {
+			// TODO call the alert that they built
 		}
 	}
-	
+
 	/**
 	 * writes an XML file which saves game data
-	 * @param fileName the desired name for the file
-	 * @param gameData the data which should be saved
+	 * 
+	 * @param fileName
+	 *            the desired name for the file
+	 * @param gameData
+	 *            the data which should be saved
 	 */
-	public void writeFile(String fileName, Collection gameData) {
+	public void writeFile(String fileName, Collection<Entity> gameData) {
 		ClassLoader loader = new LocalClassLoader();
-        XStream serializer = new XStream(new DomDriver());
-        String ret;
-        
-        serializer.setClassLoader(loader);
-        
-        ret = serializer.toXML(gameData);
-        createFile(fileName, ret);
+		XStream serializer = new XStream(new DomDriver());
+		String ret;
+
+		serializer.setClassLoader(loader);
+
+		ret = serializer.toXML(gameData);
+		createFile(fileName, ret);
 	}
-	
-	
+
 }

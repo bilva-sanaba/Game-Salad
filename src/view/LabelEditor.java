@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
-public class LabelEditor implements ComponentEditor {
+public class LabelEditor extends ComponentEditor {
 	private Node myInputNode;
 	
 	protected void setInputNode(Node newNode){

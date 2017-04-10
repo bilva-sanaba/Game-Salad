@@ -7,31 +7,37 @@ import java.util.List;
 import components.ComponentType;
 import components.IComponent;
 import entity.Entity;
+import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
 
 public abstract class AbstractEngine {
-	
+
 	protected List<ArrayList<IComponent>> myComponents = new ArrayList<ArrayList<IComponent>>();
 	private IEntityManager myEManager;
 	
 	public AbstractEngine(IEntityManager myEntityManager){
 		myEManager = myEntityManager;
 		int i = 0;
-		for (ComponentType ct: neededComponents())
-			myComponents.add((ArrayList<IComponent>) myEntityManager.getCertainComponents(neededComponents().get(i)));
+		for (ComponentType ct : neededComponents())
+			myComponents.add((ArrayList<IComponent>) myEntityManager
+					.getCertainComponents(neededComponents().get(i)));
 	}
+
 	/**
 	 * Returns the componentTypes it needs to operate
+	 * 
 	 * @return
 	 */
 	protected abstract List<ComponentType> neededComponents();
+
 	/**
 	 * Updates its lists of components
-	 * @return 
+	 * 
+	 * @return
 	 */
-	public abstract Collection<? extends Entity> update();
+	public abstract Collection<IEntity> update();
 	
 	/**
 	 * Returns the entity manager
@@ -39,5 +45,5 @@ public abstract class AbstractEngine {
 	protected IEntityManager getEManager () {
 		return myEManager;
 	}
-	
+
 }
