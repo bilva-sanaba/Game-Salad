@@ -13,5 +13,9 @@ public class AccelerationComponent extends XYComponent implements IComponent {
 	public ComponentType getComponentType() {
 		return ComponentType.Acceleration;
 	}
+	@Override
+	public IComponent newCopy() {
+		return new AccelerationComponent(getX(), getY());
+	}
 
 }

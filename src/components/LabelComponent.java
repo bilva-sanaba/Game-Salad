@@ -24,4 +24,8 @@ public class LabelComponent implements IComponent {
 	public String getLabel(){
 		return label;
 	}
+	
+	public IComponent newCopy() {
+		return new LabelComponent(getLabel());
+	}
 }

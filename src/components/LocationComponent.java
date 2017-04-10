@@ -16,4 +16,7 @@ public class LocationComponent extends XYComponent implements IComponent {
 	public ComponentType getComponentType() {
 		return ComponentType.Location;
 	}
+	public IComponent newCopy() {
+		return new LocationComponent(getX(), getY());
+	}
 }

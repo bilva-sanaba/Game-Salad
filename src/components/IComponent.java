@@ -6,4 +6,6 @@ package components;
  */
 public interface IComponent {
 	public ComponentType getComponentType();
+	
+	public IComponent newCopy();
 }

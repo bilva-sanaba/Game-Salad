@@ -24,4 +24,7 @@ public class SpriteComponent implements IComponent {
 	public Image getSprite(){
 		return new Image(classPath);
 	}
+	public IComponent newCopy() {
+		return new SpriteComponent(getClassPath());
+	}
 }

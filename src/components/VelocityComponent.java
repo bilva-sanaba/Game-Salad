@@ -11,4 +11,7 @@ public class VelocityComponent extends XYComponent implements IComponent{
 	public ComponentType getComponentType() {
 		return ComponentType.Velocity;
 	}
+	public IComponent newCopy() {
+		return new VelocityComponent(getX(), getY());
+	}
 }
