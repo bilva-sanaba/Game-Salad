@@ -4,7 +4,6 @@ import java.io.File;
 import java.net.MalformedURLException;
 
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -17,7 +16,6 @@ public class ImageChooser {
 	    };
 
 	public String chooseFile(){
-		ImageView imgv = new ImageView();
 	    FileChooser chooser = makeChooser();
 	    File file = chooser.showOpenDialog(new Stage());
 	    String imagepath = "";
