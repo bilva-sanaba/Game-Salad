@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import components.SpriteComponent;
 import entity.Entity;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,8 +23,7 @@ public class EntityBuilderWindow {
 
 	private ObservableList<Entity> blocksList;
 	private ArrayList<Node> nodeList = new ArrayList<Node>();
-	private Image myImageImage = new Image(getClass().getClassLoader()
-			.getResourceAsStream("empty.jpg"));
+	private Image myImageImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
 	private ImageView myImage = new ImageView(myImageImage);
 	private String myImagePath = "";
 	private Entity myEntity;
@@ -30,14 +32,13 @@ public class EntityBuilderWindow {
 	private Stage myStage = new Stage();
 	private ViewData myData;
 	private int i = 0;
-	
+	private String[] entityList = BLOCK_ENTITY;
 
-	private static final String[] BLOCK_ENTITY = {"Label", "ImageProperties"};
-	private static final String[] CHARACTER_ENTITY = {"Label", "ImageProperties", "Velocity", "Health", "Acceleration"};
-	private static final String[] POWERUP_ENTITY = {"Label", "ImageProperties"};
+	private static final String[] BLOCK_ENTITY = { "Label", "ImageProperties" };
+	private static final String[] CHARACTER_ENTITY = { "Label", "ImageProperties", "Velocity", "Health", "Acceleration" };
+	private static final String[] POWERUP_ENTITY = { "Label", "ImageProperties" };
 
-	public EntityBuilderWindow(UtilityFactory utilIn,
-			ObservableList<Entity> blocksListIn, ViewData dataIn) {
+	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn) {
 		myData = dataIn;
 		blocksList = blocksListIn;
 		util = utilIn;
@@ -45,8 +46,6 @@ public class EntityBuilderWindow {
 		GridPane.setConstraints(myImage, 0, 0);
 		GridPane.setColumnSpan(myImage, 3);
 		myStage.setScene(buildScene());
-		EntityConfigurationWindow ebw = new EntityConfigurationWindow(utilIn, dataIn, CHARACTER_ENTITY);
-		ebw.show();
 	}
 
 	public void showEntityBuilder() {
@@ -82,9 +81,11 @@ public class EntityBuilderWindow {
 			Entity tempEntity = new Entity(i);
 			i++;
 			tempEntity.addComponent(new SpriteComponent(myImagePath));
-			blocksList.add(tempEntity);
 			myData.defineEntity(tempEntity);
+			myData.setUserSelectedEntity(tempEntity);
 			myStage.close();
+			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, blocksList);
+			ecw.show();
 		});
 		nodeList.add(okayButton);
 		GridPane.setConstraints(okayButton, 0, 4);
@@ -93,7 +94,18 @@ public class EntityBuilderWindow {
 		nodeList.add(entityType);
 		GridPane.setConstraints(entityType, 0, 2);
 
-		final ToggleGroup group = new ToggleGroup();
+		final ToggleGroup group = addRadioButtons();
+
+	}
+
+	private GridPane buildPane() {
+		GridPane pane = new GridPane();
+		pane.getChildren().addAll(nodeList);
+		return pane;
+	}
+
+	private ToggleGroup addRadioButtons() {
+		ToggleGroup group = new ToggleGroup();
 
 		RadioButton rb1 = new RadioButton("Block");
 		rb1.setToggleGroup(group);
@@ -110,31 +122,19 @@ public class EntityBuilderWindow {
 		rb3.setToggleGroup(group);
 		GridPane.setConstraints(rb3, 2, 3);
 		nodeList.add(rb3);
-		
-	}
 
-	private GridPane buildPane() {
-		GridPane pane = new GridPane();
-		pane.getChildren().addAll(nodeList);
-		return pane;
-	}
+		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+				if (new_toggle.equals(rb3)) {
+					entityList = POWERUP_ENTITY;
+				} else if (new_toggle.equals(rb2)) {
+					entityList = CHARACTER_ENTITY;
+				} else {
+					entityList = BLOCK_ENTITY;
+				}
+			}
+		});
 
-	private ToggleGroup addRadialButtons(){
-		ToggleGroup group = new ToggleGroup();
-
-		RadioButton rb1 = new RadioButton("Block");
-		rb1.setToggleGroup(group);
-		rb1.setSelected(true);
-		GridPane.setConstraints(rb1, 0, 3);
-
-		RadioButton rb2 = new RadioButton("Character");
-		rb2.setToggleGroup(group);
-		GridPane.setConstraints(rb2, 1, 3);
-
-		RadioButton rb3 = new RadioButton("Item");
-		rb3.setToggleGroup(group);
-		GridPane.setConstraints(rb3, 2, 3);
-		
 		return group;
 	}
 }

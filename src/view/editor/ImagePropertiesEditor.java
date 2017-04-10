@@ -26,7 +26,7 @@ public class ImagePropertiesEditor extends ComponentEditor {
 		mySizeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
 			mySizeSlider.setValue(newValue.doubleValue());
 			myLabel.setText(
-					String.format("Size : " + Double.toString(newValue.doubleValue()) + " px"));
+					String.format("Size : " + Integer.toString(newValue.intValue()) + " px"));
 			mySize = newValue.doubleValue();
 		});
 		System.out.println(myBox);

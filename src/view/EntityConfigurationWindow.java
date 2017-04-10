@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 
 import entity.Entity;
+import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -27,16 +28,18 @@ public class EntityConfigurationWindow {
 	private VBox root;
 	private Entity myEntity;
 	private ArrayList<ComponentEditor> myCompEdits;
+	private ObservableList<Entity> myList;
 
-	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType) {
+	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, ObservableList<Entity> blocksList) {
 		myCompF = new ComponentFactory();
 		myUtilF = utilF;
 		myData = entityData;
-		myEntity = new Entity(123);// myData.getUserSelectedEntity();
+		myEntity = myData.getUserSelectedEntity();
 		myData.setUserSelectedEntity(myEntity);
 		myStage = new Stage();
 		componentList = entityType;
 		myCompEdits = new ArrayList<ComponentEditor>();
+		myList = blocksList;
 		myStage.setScene(buildScene());
 	}
 
@@ -63,6 +66,8 @@ public class EntityConfigurationWindow {
 		for (ComponentEditor comp : myCompEdits) {
 			myEntity.addComponent(comp.getComponent());
 		}
+		myList.add(myEntity);
+		myStage.close();
 	}
 	
 }
