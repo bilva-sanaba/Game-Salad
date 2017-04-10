@@ -42,6 +42,7 @@ public interface IEntityManager {
 	 * @return
 	 */
 	public Map<IEntity,IRestrictedEntity> getEntityMap(); 
+
 	
 	public Collection<Entity> copy();
 }
