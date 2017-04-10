@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -19,6 +21,7 @@ import javafx.util.Duration;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
+import gameView.Coordinate;
 
 /**
  * 
@@ -108,9 +111,9 @@ public class WorldAnimator {
 		HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
 		for(RestrictedEntity entity : entities){
 			SequentialTransition trans = new SequentialTransition();
-			removeEntity(entity);
-			updateEntity(entity);
-			createEntity(entity);
+			removeEntity(entity, trans);
+			updateEntity(entity, trans);
+			createEntity(entity, trans);
 			
 			trans.play();
 		}
@@ -121,7 +124,7 @@ public class WorldAnimator {
 		if(entity.getLocation() == null && entity.getImagePath().equals(null)){
 			if (imageMap.containsKey(entity.getID())){
 				FadeTransition ft = makeFade(imageMap.get(entity.getID()));
-				trans.add(ft);
+				trans.getChildren().add(ft);
 				root.getChildren().remove(imageMap.get(entity.getID()));
 				imageMap.remove(entity.getID());
 			}
@@ -133,7 +136,7 @@ public class WorldAnimator {
 			ImageView imageView = new ImageView(image);
 			updateImage(imageView,entity);
 			FadeTransition ft = makeAppear(imageView);
-			trans.add(ft);
+			trans.getChildren().add(ft);
 			imageMap.put(entity.getID(), imageView);
 		}
 	}
@@ -141,8 +144,8 @@ public class WorldAnimator {
 		if(imageMap.containsKey(entity.getID())){
 			ImageView currentImage = imageMap.get(entity.getID());
 			updateImage(currentImage,entity);
-			PathTransition pt = moveToLocation(currentImage, entity)
-			trans.add(pt);
+			PathTransition pt = moveToLocation(currentImage, entity.getLocation());
+			trans.getChildren().add(pt);
 			root.getChildren().add(imageMap.get(entity.getID()));
 		}
 	}
@@ -154,8 +157,8 @@ public class WorldAnimator {
 	
 	private PathTransition moveToLocation(ImageView imageView, Coordinate c){
 		Path path = new Path();
-		int xLoc = c.getX();
-		int yLoc = c.getY();
+		double xLoc = c.getX();
+		double yLoc = c.getY();
 		path.getElements().add(new MoveTo(xLoc, yLoc));
 		PathTransition pathTransition = new PathTransition(Duration.millis(KEY_INPUT_SPEED), path, imageView);
 		return pathTransition;

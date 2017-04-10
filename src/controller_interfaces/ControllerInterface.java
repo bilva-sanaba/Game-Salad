@@ -42,7 +42,6 @@ public interface ControllerInterface {
 	 * Called by front end when user tells the program to save the game. Will
 	 * communicate with Data builder to save all necessary state information.
 	 */
-	public void save();
 
 	public void save(String fileName);
 	
@@ -57,13 +56,12 @@ public interface ControllerInterface {
 	public IRestrictedEntityManager loadNewGame(String filePath);
 
 	/**
-<<<<<<< HEAD
 	 * Resets the current game using the original XML file 
 	 * @throws XMLException 
 	 *
 	 * Resets the current game using the original XML file
 	 */
-	public void resetCurrentGame();
+	public void resetCurrentGame() throws XMLException;
 
 	public void run();
 	
