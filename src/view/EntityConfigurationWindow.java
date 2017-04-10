@@ -38,17 +38,17 @@ public class EntityConfigurationWindow {
 	}
 	
 	private Scene buildScene() {
-		buildComponentEditor();
 		root = new StackPane();
+		buildComponentEditor();
 		return new Scene(root);
 	}
 
 	private void buildComponentEditor() {
 		for(String comp: componentList){
-			System.out.println(comp + "\n");
-			//ComponentEditor editor = myCompF.getComponentEditor(comp);
-			//root.getChildren().add(editor.getInputNode());
-			//myEntity.addComponent(myCompF.getComponent(comp));
+			ComponentEditor editor = myCompF.getComponentEditor(comp);
+			System.out.println(editor + " got editor");
+			root.getChildren().add(editor.getInputNode());
+			myEntity.addComponent(myCompF.getComponent(comp));
 		}
 	}
 }

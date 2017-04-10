@@ -7,6 +7,12 @@ public class ImagePropertiesComponent implements IComponent {
 		imageHeight = h;
 		imageWidth = w;
 	}
+	
+	public ImagePropertiesComponent() {
+		imageHeight = 0;
+		imageWidth = 0;
+	}
+	
 	@Override
 	public ComponentType getComponentType() {
 		// TODO Auto-generated method stub

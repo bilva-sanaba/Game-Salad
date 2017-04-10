@@ -32,7 +32,7 @@ public class EntityBuilderWindow {
 	private int i = 0;
 	
 
-	private static final String[] BLOCK_ENTITY = {"Label"};//,"Location","Sprite", "ImageProperties"};
+	private static final String[] BLOCK_ENTITY = {"Label", "ImageProperties"};//,"Location","Sprite"};
 //	private static final String[] CHARACTER_ENTITY = {"Label","Location","Sprite", "ImageProperties", "Velocity", "Health", "Accele.ration"};
 //	private static final String[] POWERUP_ENTITY = {"Label","Location","Sprite", "ImageProperties"};
 
