@@ -6,6 +6,7 @@ import java.util.*;
 import components.*;
 import entity.*;
 import entity.restricted.*;
+import javafx.scene.input.KeyCode;
 
 public class NewMovementEngine extends AbstractEngine{
 	private RestrictedEntityFactory ref = new RestrictedEntityFactory();
@@ -18,8 +19,7 @@ public class NewMovementEngine extends AbstractEngine{
 		return null;
 	}
 
-	@Override
-	public Collection<IEntity> update() {
+	public Collection<IEntity> update(Collection<KeyCode> keys) {
 		Collection<IEntity> changed = new ArrayList<IEntity>();
 		Map<IEntity, IRestrictedEntity> entityMap = getEManager().getEntityMap();
 		for (IEntity e: entityMap.keySet()) {

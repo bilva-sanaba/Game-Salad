@@ -13,6 +13,7 @@ import components.LocationComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
+import javafx.scene.input.KeyCode;
 
 /**
  * This engine handles all collisions
@@ -95,8 +96,8 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 		return null;
 	}
 
-	@Override
-	public Collection<IEntity> update() {
+
+	public Collection<IEntity> update(Collection<KeyCode> keys) {
 		newEntitiesCreated = new ArrayList<IEntity>();
 		checkCollisionsOccurred();
 		return newEntitiesCreated;

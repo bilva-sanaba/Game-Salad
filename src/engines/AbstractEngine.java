@@ -11,6 +11,7 @@ import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
+import javafx.scene.input.KeyCode;
 
 public abstract class AbstractEngine {
 
@@ -34,10 +35,11 @@ public abstract class AbstractEngine {
 
 	/**
 	 * Updates its lists of components
+	 * @param keysPressed 
 	 * 
 	 * @return
 	 */
-	public abstract Collection<IEntity> update();
+	public abstract Collection<IEntity> update(Collection<KeyCode> keysPressed);
 	
 	/**
 	 * Returns the entity manager

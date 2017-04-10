@@ -63,7 +63,7 @@ public class GameEngine implements GameEngineInterface {
 		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
 		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
-			changedEntity.addAll(s.update());
+			changedEntity.addAll(s.update(keysPressed));
 		}
 		Collection<RestrictedEntity> changedRestrictedEntity = new ArrayList<RestrictedEntity>();
 		for (IEntity e : changedEntity) {
