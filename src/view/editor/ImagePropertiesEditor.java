@@ -1,5 +1,6 @@
 package view.editor;
 
+import components.IComponent;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -7,12 +8,12 @@ import javafx.scene.text.Text;
 
 public class ImagePropertiesEditor extends ComponentEditor {
 	private static final String ComponentName = "ImageProperties";
-	private static final String ImageProp = "Size : 0 percent";
+	private static final String ImageProp = "Size : 0 px";
 	
 	private HBox myBox;
 	private Text myLabel = new Text(ImageProp);
 	private Slider mySizeSlider;
-	private int mySize;
+	private double mySize;
 	
 	public ImagePropertiesEditor() {
 		System.out.println("kill yourself");
@@ -23,17 +24,19 @@ public class ImagePropertiesEditor extends ComponentEditor {
 		myBox.getChildren().add(mySizeSlider);
 		
 		mySizeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-			mySizeSlider.setValue(newValue.intValue());
+			mySizeSlider.setValue(newValue.doubleValue());
 			myLabel.setText(
-					String.format("Size : " + Integer.toString(newValue.intValue()) + " percent"));
-			mySize = newValue.intValue();
+					String.format("Size : " + Double.toString(newValue.doubleValue()) + " px"));
+			mySize = newValue.doubleValue();
 		});
 		System.out.println(myBox);
 		setInputNode(myBox);
 	}
-	
-	public IComponent getValue(){
-		return mySize;
+
+	@Override
+	public IComponent getComponent() {
+		return getCompF().getComponent(ComponentName, mySize, mySize);
 	}
+
 	
 }

@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import entity.Entity;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -24,6 +26,7 @@ public class EntityConfigurationWindow {
 	private ComponentFactory myCompF;
 	private VBox root;
 	private Entity myEntity;
+	private ArrayList<ComponentEditor> myCompEdits;
 
 	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType) {
 		myCompF = new ComponentFactory();
@@ -33,6 +36,7 @@ public class EntityConfigurationWindow {
 		myData.setUserSelectedEntity(myEntity);
 		myStage = new Stage();
 		componentList = entityType;
+		myCompEdits = new ArrayList<ComponentEditor>();
 		myStage.setScene(buildScene());
 	}
 
@@ -49,24 +53,18 @@ public class EntityConfigurationWindow {
 	private void buildComponentEditor() {
 		for (String comp : componentList) {
 			ComponentEditor editor = myCompF.getComponentEditor(comp);
+			myCompEdits.add(editor);
 			root.getChildren().add(editor.getInputNode());
 		}
 		root.getChildren().add(myUtilF.buildButton("MakeEntity", e -> enterButton()));
 	}
 
 	private void enterButton() {
-		
-		for (String comp : componentList) {
-			myEntity.addComponent(myCompF.getComponent(comp));
+		for (ComponentEditor comp : myCompEdits) {
+			myEntity.addComponent(comp.getComponent());
 		}
 	}
 	
 }
-//	private void createSpeedChooser() {
-//		slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-//			slider.setValue(newValue.intValue());
-//			speedLabel.setText(String.format("Animation Speed : " + Integer.toString(newValue.intValue()) + " milliseconds"));
-//			speed = newValue.intValue();
-//		});
-//	}
+
 

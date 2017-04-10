@@ -1,10 +1,12 @@
 package view.editor;
 
+import components.IComponent;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class VelocityEditor extends ComponentEditor{
+	private static final String ComponentName = "Velocity";
 private static final String VELOCITY = "Velocity : 0 m/s";
 	
 	private HBox myBox;
@@ -30,15 +32,8 @@ private static final String VELOCITY = "Velocity : 0 m/s";
 		setInputNode(myBox);
 	}
 	
-	public int getValue(){
-		return myVelocity;
+	@Override
+	public IComponent getComponent() {
+		return getCompF().getComponent(ComponentName, myVelocity, myVelocity);
 	}
 }
-
-//private void createSpeedChooser() {
-//slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-//	slider.setValue(newValue.intValue());
-//	speedLabel.setText(String.format("Animation Speed : " + Integer.toString(newValue.intValue()) + " milliseconds"));
-//	speed = newValue.intValue();
-//});
-//}

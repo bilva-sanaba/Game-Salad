@@ -5,12 +5,13 @@ import java.io.File;
 import components.IComponent;
 import javafx.scene.Node;
 import view.editor.ComponentEditor;
+import view.editor.newComponentFactory;
 import voogasalad.util.reflection.Reflection;
 import voogasalad.util.reflection.ReflectionException;
 
-public class ComponentFactory {
+public class ComponentFactory implements newComponentFactory {
 	private static final String PREFIX = "components.";
-	private static final String PREFI = "view.";
+	private static final String PREFI = "view.editor.";
 	private static final String SUFFIX = "Component";
 	private static final String SUFFI = "Editor";
 	

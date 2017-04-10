@@ -1,11 +1,12 @@
 package view.editor;
 
+import components.IComponent;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class HealthEditor extends ComponentEditor {
-
+	private static final String ComponentName = "Health";
 	private static final String HEATH = "Health : 0 hp";
 	
 	private HBox myBox;
@@ -31,8 +32,8 @@ public class HealthEditor extends ComponentEditor {
 		setInputNode(myBox);
 	}
 	
-	public int getValue(){
-		return myHealth;
+	public IComponent getComponent() {
+		return getCompF().getComponent(ComponentName, myHealth);
 	}
 	
 }

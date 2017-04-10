@@ -1,11 +1,12 @@
 package view.editor;
 
+import components.IComponent;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class AccelerationEditor extends ComponentEditor {
-
+	private static final String ComponentName = "Acceleration";
 	private static final String ACCELERATION = "Acceleration : 0 m/s/s";
 	
 	private HBox myBox;
@@ -31,8 +32,8 @@ public class AccelerationEditor extends ComponentEditor {
 		setInputNode(myBox);
 	}
 	
-	public int getValue(){
-		return myAcceleration;
+	@Override
+	public IComponent getComponent() {
+		return getCompF().getComponent(ComponentName, myAcceleration, myAcceleration);
 	}
-	
 }
