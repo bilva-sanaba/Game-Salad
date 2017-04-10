@@ -49,7 +49,6 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	private void checkCollisionsOccurred() {
 		Map<Integer, IComponent> locationComponents = entManager.getCertainComponents(ComponentType.Location);
 		Map<Integer, IComponent> imageComponents = entManager.getCertainComponents(ComponentType.ImageProperties);
-		System.out.println("We should make sure that the EntityManager actively updates its list of entities to only include those on the screen");
 		doubleForLoopCollisionChecking(locationComponents, imageComponents);
 	}
 

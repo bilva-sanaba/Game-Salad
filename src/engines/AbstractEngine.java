@@ -20,10 +20,10 @@ public abstract class AbstractEngine {
 	
 	public AbstractEngine(IEntityManager myEntityManager){
 		myEManager = myEntityManager;
-		int i = 0;
-		for (ComponentType ct : neededComponents())
-			myComponents.add((ArrayList<IComponent>) myEntityManager
-					.getCertainComponents(neededComponents().get(i)));
+//		int i = 0;
+//		for (ComponentType ct : neededComponents())
+//			myComponents.add((ArrayList<IComponent>) myEntityManager
+//					.getCertainComponents(neededComponents().get(i)));
 	}
 
 	/**

@@ -45,8 +45,13 @@ public class NewMovementEngine extends AbstractEngine{
 	private void updateLocation(IEntity e) {
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		
 		lc.setXY(lc.getX() + vc.getX(), lc.getY() + vc.getY());
+//		if (lc.getY()>200){
+//			vc.setY(0);
+//			ac.setY(0);
+//		}
 	}
 	
 	private void updateVelocity(IEntity e) {
@@ -57,7 +62,7 @@ public class NewMovementEngine extends AbstractEngine{
 	}
 	
 	private boolean hasComponent(IEntity e, ComponentType c) {
-		return (!e.getComponent(c).equals(null));
+		return (e.getComponent(c)!=null);
 	}
 	
 	private void placeInMap (Map <IEntity, IRestrictedEntity> entityMap, IEntity e) {

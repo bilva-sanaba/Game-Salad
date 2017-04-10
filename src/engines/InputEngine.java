@@ -1,5 +1,6 @@
 package engines;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,14 +30,16 @@ public class InputEngine extends AbstractEngine{
 		for (IEntity e : getEManager().getEntityMap().keySet()){
 			handleInput(e,keys);
 		}
-		return null;
+		return new ArrayList<IEntity>();
 	}
 	private void handleInput(IEntity e, Collection<KeyCode> keys){
+		if (e.getComponent(ComponentType.KeyInput)!=null){
 		KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 		for (KeyCode key : keys){
 			if (ic.getMap().containsKey(key)){
 				ic.getMap().get(key).operation(e);
 			}
+		}
 		}
 		
 		

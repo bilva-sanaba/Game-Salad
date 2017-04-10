@@ -11,6 +11,8 @@ public class KeyInputComponent implements IComponent {
 	public KeyInputComponent(Map<KeyCode,KeyExpression> keyMap){
 		inputMap=keyMap;
 	}
+	public KeyInputComponent(){
+	}
 	
 	
 	public Map<KeyCode,KeyExpression> getMap(){
