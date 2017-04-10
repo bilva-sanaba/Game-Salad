@@ -16,20 +16,19 @@ import javafx.util.Duration;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
+
 /**
  * 
  * @author Jacob
  *
  */
 public class WorldAnimator {
-	//private Stage myStage;
+	// private Stage myStage;
 	public static final int FRAMES_PER_SECOND = 60;
 	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
 	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
 	public static final int KEY_INPUT_SPEED = 3;
-
-	//private CollisionTracker collisionTracker;
-	//private MovementTracker movementTracker;
+	
 	private ArrayList<KeyCode> keysPressed = new ArrayList<KeyCode>();
 
 	private Scene myScene;
@@ -50,12 +49,13 @@ public class WorldAnimator {
 		this.myGameEngine = myGameEngine;
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		myGameBuilder = new GameBuilder();
-		myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500, 500);
+		myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,
+				500);
 		createMap(restrictedEntityManager);
-		for(Integer id : imageMap.keySet()){
+		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
 		}
-		s.setScene(myScene);//FILL
+		s.setScene(myScene);// FILL
 		s.show();
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
@@ -68,6 +68,10 @@ public class WorldAnimator {
 		animation.getKeyFrames().add(frame);
 		animation.play();
 	}
+	
+	public Scene getScene() {
+		return myScene;
+	}
 
 	private void createMap(RestrictedEntityManager manager) {
 		Collection<RestrictedEntity> entities = manager.getEntities();
@@ -79,26 +83,27 @@ public class WorldAnimator {
 		HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);
 	}
 	private void handleKeyReleased(KeyCode keyCode) {
-		keysPressed.remove(keyCode) ;
+		keysPressed.remove(keyCode);
 	}
 
 	private void handleKeyPressed(KeyCode keyCode) {
 		externalKeyHandler(keyCode);
 		keysPressed.add(keyCode);
 	}
-
+	
 	private void externalKeyHandler(KeyCode code){
 		if(code == KeyCode.P && !pause){
 			//movementTracker.changeMessage("Pause");
 			pause = true;
 			animation.pause();
 		}
-		if(code == KeyCode.P && pause){
-			//movementTracker.changeMessage("Go");
+		if (code == KeyCode.P && pause) {
+			// movementTracker.changeMessage("Go");
 			pause = false;
 			animation.play();
 		}
 	}
+
 
 	private HashMap<Integer, ImageView> fillMapAndDisplay(Collection<RestrictedEntity> entities){
 		HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();

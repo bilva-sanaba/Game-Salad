@@ -1,17 +1,19 @@
 package controller;
 
 import javafx.scene.image.Image;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-
 import javafx.beans.binding.DoubleBinding;
+
 /**
  * 
  * @author Jacob
@@ -20,26 +22,28 @@ import javafx.beans.binding.DoubleBinding;
 public class GameBuilder {
 
 	private HashMap<RestrictedEntity, ImageView> imageMap = new HashMap<RestrictedEntity, ImageView>();
-	
-	public GameBuilder(){
+
+	public GameBuilder() {
 	}
-	
-	public Scene setUpGame(Group root, RestrictedEntityManager manager, int height, int width){
+
+	public Scene setUpGame(Group root, RestrictedEntityManager manager,
+			int height, int width) {
 		Collection<RestrictedEntity> entities = manager.getEntities();
-		
-		for(RestrictedEntity entity : entities){
-			Image image = new Image(getClass().getClassLoader().getResourceAsStream(entity.getImagePath()));
+
+		for (RestrictedEntity entity : entities) {
+			Image image = new Image(getClass().getClassLoader()
+					.getResourceAsStream(entity.getImagePath()));
 			ImageView imageView = new ImageView(image);
 			imageView.setX(entity.getLocation().getX());
 			imageView.setY(entity.getLocation().getY());
-			//root.getChildren().add(imageView);
+			// root.getChildren().add(imageView);
 			imageMap.put(entity, imageView);
 		}
-	
+
 		return new Scene(root, height, width);
 	}
-	
-	public HashMap<RestrictedEntity, ImageView> getMap(){
+
+	public HashMap<RestrictedEntity, ImageView> getMap() {
 		return imageMap;
 	}
 }

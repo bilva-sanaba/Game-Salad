@@ -7,14 +7,13 @@ import java.util.Observable;
 import components.*;
 
 /**
- * Casting takes place to be able to edit the component because we are using enums to choose the specific component
- * we feel comfortable to cast the component to its specific component
+ * Casting takes place to be able to edit the component because we are using
+ * enums to choose the specific component we feel comfortable to cast the
+ * component to its specific component
  *
-=======
-import components.*;
-/**
- * Casting takes place to beable to edit the component becuase we are using Enums to choose the specific component 
- * we feel compfortable to cast the component to its specific component
+ * ======= import components.*; /** Casting takes place to beable to edit the
+ * component becuase we are using Enums to choose the specific component we feel
+ * compfortable to cast the component to its specific component
  * 
  * @author Jonathan
  * @author Justin
@@ -45,6 +44,7 @@ public class ViewData extends Observable {
 	public void setEntityLocation(int entityID, int row, int col) {
 
 		LocationComponent locComp = new LocationComponent(row, col);
+
 		placedEntityMap.get(entityID).addComponent(locComp);
 		/*	LocationComponent locComp = (LocationComponent) definedEntityList.get(entityID).getComponent(ComponentType.Location);
 		locComp.setX(row);
@@ -53,6 +53,7 @@ public class ViewData extends Observable {
 	}
 
 	public void defineEntity(Entity entity) {
+
 		definedEntityMap.put(entity.getID(), entity);
 		//notifyObservers();
 	}
@@ -88,5 +89,3 @@ public class ViewData extends Observable {
 		return gameName;
 	}
 }
-
-

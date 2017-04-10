@@ -43,7 +43,8 @@ public class GridView extends GUIComponent {
 		rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println(String.format("Click at row %d col %d", row, col));
+				System.out.println(String.format("Click at row %d col %d", row,
+						col));
 				Entity userSelectedEntity = myData.getUserSelectedEntity();
 				if (userSelectedEntity != null) {
 					Entity placedEntity = userSelectedEntity.clone();
@@ -59,8 +60,10 @@ public class GridView extends GUIComponent {
 	}
 
 	private void drawEntity(Entity entity) {
-		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
-		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
+		LocationComponent entityLocation = (LocationComponent) entity
+				.getComponent(ComponentType.Location);
+		SpriteComponent entitySprite = (SpriteComponent) entity
+				.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
 		spriteImage.setFitHeight(40);
 		spriteImage.setFitWidth(40);
