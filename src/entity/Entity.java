@@ -85,6 +85,16 @@ public class Entity implements IEntity, IRestrictEntity {
 	@Override
 	public void removeListener(InvalidationListener arg0) {
 		// TODO Auto-generated method stub
-
+		
+	}
+	
+	
+	public IComponent getComponent(ComponentType ct){
+		for(IComponent myComponent: myComponents){
+			if(myComponent.getComponentType() == ct){ //Should it be == or .equals()?
+				return myComponent;
+			}
+		}
+		return null;
 	}
 }
