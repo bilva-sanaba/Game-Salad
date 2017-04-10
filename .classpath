@@ -2,12 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="images"/>
+	<classpathentry kind="src" path="lib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/lib/groovy-all-2.4.10-indy.jar"/>
-	<classpathentry kind="lib" path="/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/lib/groovy-doc.jar"/>
-	<classpathentry kind="lib" path="/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/lib/groovy-src.jar"/>
-	<classpathentry kind="lib" path="/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/lib/xstream-1.4.9.jar"/>
-	<classpathentry kind="lib" path="/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/lib/xstream-doc.jar"/>
-	<classpathentry kind="lib" path="/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/lib/xstream-src.jar"/>
+	<classpathentry kind="lib" path="lib/groovy-all-2.4.10-indy.jar"/>
+	<classpathentry kind="lib" path="lib/groovy-doc.jar"/>
+	<classpathentry kind="lib" path="lib/xstream-1.4.9.jar"/>
+	<classpathentry kind="lib" path="lib/xstream-doc.jar"/>
+	<classpathentry kind="lib" path="lib/xstream-src.jar"/>
+	<classpathentry kind="lib" path="lib/groovy-src.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

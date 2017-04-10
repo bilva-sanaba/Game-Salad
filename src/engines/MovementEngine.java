@@ -11,7 +11,7 @@ import entity.Entity;
 import entity.IEntityManager;
 
 public class MovementEngine extends AbstractEngine {
-	
+
 	private static final int LOCATION_LIST = 0;
 	private static final int VELOCITY_LIST = 1;
 
@@ -24,7 +24,7 @@ public class MovementEngine extends AbstractEngine {
 	 */
 	@Override
 	protected List<ComponentType> neededComponents() {
-		return Arrays.asList(ComponentType.Location,ComponentType.Velocity);
+		return Arrays.asList(ComponentType.Location, ComponentType.Velocity);
 	}
 
 	@Override
@@ -36,12 +36,13 @@ public class MovementEngine extends AbstractEngine {
 			myLocation.setY(myLocation.getY() + myVelocity.getY());
 		}
 		return null;
-		
 	}
-	
-	public void add(Entity myEntity){
-		myComponents.get(LOCATION_LIST).add(myEntity.getComponent(ComponentType.Location));
-		myComponents.get(VELOCITY_LIST).add(myEntity.getComponent(ComponentType.Velocity));
+
+	public void add(Entity myEntity) {
+		myComponents.get(LOCATION_LIST).add(
+				myEntity.getComponent(ComponentType.Location));
+		myComponents.get(VELOCITY_LIST).add(
+				myEntity.getComponent(ComponentType.Velocity));
 	}
 
 }

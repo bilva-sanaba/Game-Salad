@@ -14,36 +14,36 @@ import view.toolbar.ToolBarView;
  */
 public class GUIBuilder {
 	public static final String RESOURCE_PACKAGE = "resources/";
-    public static final String STYLESHEET = "default.css";
-	
+	public static final String STYLESHEET = "default.css";
+
 	private static final double SCREEN_HEIGHT = 650;
 	private static final double SCREEN_WIDTH = 1000;
-	
+
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 	private GUIComponent grid;
 	private GUIComponent tab;
 	private GUIComponent toolbar;
 	private ViewData myData;
-	
+
 	/**
 	 * Initializes the main Scene and Stage.
 	 */
-	public GUIBuilder(UtilityFactory utilF){
+	public GUIBuilder(UtilityFactory utilF) {
 		myData = new ViewData();
 		grid = new GridView(utilF, myData, 10, 10);
 		tab = new TabView(utilF, myData);
 		toolbar = new ToolBarView(utilF, myData);
-		
+
 		myComp.add(grid);
 		myComp.add(tab);
 		myComp.add(toolbar);
 	}
-	
+
 	public Pane buildPane() {
 		BorderPane myPane = new BorderPane();
 		myPane.setPrefHeight(SCREEN_HEIGHT);
 		myPane.setPrefWidth(SCREEN_WIDTH);
-		
+
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
 		myPane.setCenter(grid.buildComponent());

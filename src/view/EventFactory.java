@@ -3,7 +3,7 @@ package view;
 import java.lang.reflect.Constructor;
 import java.util.*;
 
-import groovyjarjarantlr.collections.List;
+//import groovyjarjarantlr.collections.List;
 import voogasalad.util.reflection.*;
 
 import view.toolbar.ToolBarButtonEvent;
@@ -14,12 +14,14 @@ import view.toolbar.ToolBarButtonEvent;
  *
  */
 public class EventFactory {
-	
+
 	private static final String PREFIX = "view.toolbar.";
 
-	public ToolBarButtonEvent getEvent(String eventname, ViewData data) throws Exception {
+	public ToolBarButtonEvent getEvent(String eventname, ViewData data)
+			throws Exception {
 		Reflection reflector = new Reflection();
-		
-		return (ToolBarButtonEvent)reflector.createInstance(PREFIX + eventname, data);
+
+		return (ToolBarButtonEvent) reflector.createInstance(
+				PREFIX + eventname, data);
 	}
 }

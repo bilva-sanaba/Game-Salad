@@ -10,15 +10,20 @@ public class SpriteComponent implements IComponent {
 	public SpriteComponent(String path){
 		classPath= path;
 	}
-	public SpriteComponent(){}
+
+	public SpriteComponent() {
+	}
+
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Sprite;
 	}
-	public void setClassPath(String newPath){
+
+	public void setClassPath(String newPath) {
 		classPath = newPath;
 	}
-	public String getClassPath(){
+
+	public String getClassPath() {
 		return classPath;
 	}
 	public Image getSprite(){
