@@ -1,4 +1,4 @@
-package view;
+package view.editor;
 
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
@@ -14,10 +14,8 @@ public class LabelEditor extends ComponentEditor {
 	private TextField myTextInputField;
 	
 	public LabelEditor() {
-		System.out.println("kill yourself");
 		myBox = new HBox();
 		myTextInputField = new TextField();
-		System.out.println("kill yourself now asshole");
 		myBox.getChildren().add(myLabel);
 		myBox.getChildren().add(myTextInputField);
 		System.out.println(myBox);

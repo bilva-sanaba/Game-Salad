@@ -1,4 +1,4 @@
-package view;
+package view.editor;
 
 import javafx.scene.Node;
 
@@ -7,7 +7,6 @@ public abstract class ComponentEditor {
 	
 	protected void setInputNode(Node newNode){
 		myInputNode = newNode;
-		System.out.println(myInputNode);
 	}
 	
 	public Node getInputNode() {
