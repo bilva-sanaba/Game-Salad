@@ -27,9 +27,7 @@ public class Entity implements IEntity,IRestrictEntity {
 	public Entity clone(){
 		Entity temp = new Entity(identifier);
 		for(IComponent a : myComponents){
-//			create clone method for IComponents
-//			new IComponent b = 
-			temp.addComponent(a);
+			temp.addComponent(a.newCopy());
 		}
 		return temp;
 	}
