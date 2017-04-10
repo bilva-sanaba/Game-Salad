@@ -7,5 +7,7 @@ public enum ComponentType {
 	Velocity(),
 	ImageProperties(),
 	Health(), 
-	Acceleration();
+	Acceleration(),
+	KeyInputType();
+	
 }
