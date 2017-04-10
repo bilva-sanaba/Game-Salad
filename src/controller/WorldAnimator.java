@@ -59,8 +59,7 @@ public class WorldAnimator {
 		s.show();
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
-		//collisionTracker = new CollisionTracker("No", restrictedEntityManager.getEntities());
-		//movementTracker = new MovementTracker("Go", restrictedEntityManager.getEntities());
+		
 		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
 				e-> step(SECOND_DELAY));
 		this.animation = new Timeline();
@@ -89,12 +88,10 @@ public class WorldAnimator {
 
 	private void externalKeyHandler(KeyCode code){
 		if(code == KeyCode.P && !pause){
-			//movementTracker.changeMessage("Pause");
 			pause = true;
 			animation.pause();
 		}
 		if(code == KeyCode.P && pause){
-			//movementTracker.changeMessage("Go");
 			pause = false;
 			animation.play();
 		}

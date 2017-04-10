@@ -31,11 +31,12 @@ public class GameEngine implements GameEngineInterface {
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	
-<<<<<<< HEAD
+
 	public GameEngine(String xmlDataFile){
 		myLevelManager = (GameData) myParser.getData(xmlDataFile);
 		myEntityManager = ((GameData) myLevelManager).getLevels()[0];
-=======
+	}
+
 	public GameEngine(){
 		initializeRestrictedEntities();
 	}
@@ -48,7 +49,6 @@ public class GameEngine implements GameEngineInterface {
 		return myEntityManager.copy();
 	}
 	private void initializeRestrictedEntities(){
->>>>>>> 5e6301035bc8d61251ead2fd0f04e528a985e67e
 		myRestrictedEntityManager = myEntityManager.getRestricted();
 		entityToRestricted = myEntityManager.getEntityMap();
 	}

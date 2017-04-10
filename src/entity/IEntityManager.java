@@ -34,14 +34,7 @@ public interface IEntityManager {
 	 * @return
 	 */
 	public Map<IEntity,IRestrictedEntity> getEntityMap(); 
-<<<<<<< HEAD
-	/**
-	 * Returns entities in entity manager
-	 * @return
-	 */
-	public Collection<Entity> getEntities();
-=======
+
 	
 	public Collection<Entity> copy();
->>>>>>> 5e6301035bc8d61251ead2fd0f04e528a985e67e
 }

@@ -9,8 +9,9 @@ import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
 import entity.EntityManager;
-
+import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
+import gameView.UIView;
 
 /**
  * 
@@ -41,17 +42,7 @@ public class Controller implements ControllerInterface {
 		// TODO Auto-generated method stub
 		//loop through and save all write all items to XML
 		XMLWriter xw = new XMLWriter();
-<<<<<<< HEAD
-		xw.writeFile(fileName, myEntityManager.getEntities());
-	}
-
-	@Override
-	public void loadNewGame(String filePath) {
-		// TODO Auto-generated method stub
-		this.filePath = filePath;
-		myGameEngine = new GameEngine(filePath);
-=======
-		xw.writeFile(filename, myGameEngine.save());
+		xw.writeFile(fileName, myGameEngine.save());
 	}
 
 	@Override
@@ -59,8 +50,6 @@ public class Controller implements ControllerInterface {
 		Communicator c = new Communicator(gameName);
 		myGameEngine.loadData(c);
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
-		
->>>>>>> 5e6301035bc8d61251ead2fd0f04e528a985e67e
 	}
 
 	@Override

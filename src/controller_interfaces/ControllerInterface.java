@@ -5,11 +5,9 @@ import gameView.UIImageProperty;
 
 import java.util.Collection;
 import java.util.Observable;
-<<<<<<< HEAD
 
 import data_interfaces.XMLException;
-=======
->>>>>>> 5e6301035bc8d61251ead2fd0f04e528a985e67e
+
 /**
  * This class defines the behavior of the controller. The controller runs most of the game itself, 
  * and will only need to be called by View to handle user interactions, such as starting a new game, 
@@ -49,16 +47,8 @@ public interface ControllerInterface {
 	 * Resets the current game using the original XML file 
 	 * @throws XMLException 
 	 */
-<<<<<<< HEAD
 	public void resetCurrentGame() throws XMLException;
 
 	public void run();
-=======
-	public void resetCurrentGame();
-	
-	public void checkCollision(UIImageModel u);
-
-	public void update(Observable obs, Object arg);
->>>>>>> 5e6301035bc8d61251ead2fd0f04e528a985e67e
 	
 }
