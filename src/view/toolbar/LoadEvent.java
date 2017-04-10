@@ -11,12 +11,13 @@ import entity.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import view.GridView;
 import view.ViewData;
 
 public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent {
-	ViewData myData;
-
-	public LoadEvent(ViewData data) {
+	private ViewData myData;
+	
+	public LoadEvent(ViewData data){
 		myData = data;
 	}
 
@@ -44,6 +45,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			Collection <Entity> col = c.getData();
 			for (Entity e: col) {
 				if (isPlaced(e)) {
+					System.out.println("this happens");
 					newVD.placeEntity(e);
 				}
 				else {
@@ -55,7 +57,12 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	}
 	
 	private boolean isPlaced(Entity e) {
-		return (!e.getComponent(ComponentType.Location).equals(null));
+		try {
+			return (!e.getComponent(ComponentType.Location).equals(null));
+		}
+		catch (NullPointerException npe) {
+			return false;
+		}
 	}
 	
 }

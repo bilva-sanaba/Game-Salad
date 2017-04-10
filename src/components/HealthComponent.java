@@ -26,4 +26,7 @@ public class HealthComponent implements IComponent {
 		health = h;
 	}
 
+	public IComponent newCopy() {
+		return new HealthComponent(getHealth());
+	}
 }
