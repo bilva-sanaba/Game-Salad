@@ -1,11 +1,13 @@
 package components;
 
 public enum ComponentType {
-	Label(),
+	Label(), 
 	Location(),
 	Sprite(),
 	Velocity(),
 	ImageProperties(),
-	Health(),
-	Acceleration();
+	Health(), 
+	Acceleration(),
+	KeyInput();
+	
 }

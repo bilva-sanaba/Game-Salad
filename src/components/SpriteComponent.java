@@ -1,28 +1,34 @@
 package components;
 
+
 import javafx.scene.image.Image;
 
 public class SpriteComponent implements IComponent {
 	private String classPath;
-	private Image sprite;
+	
 	public SpriteComponent(String path){
 		classPath= path;
 	}
-	public SpriteComponent(){}
+
+	public SpriteComponent() {
+	}
+
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Sprite;
 	}
-	public void setClassPath(String newPath){
+
+	public void setClassPath(String newPath) {
 		classPath = newPath;
 	}
-	public String getClassPath(){
+
+	public String getClassPath() {
 		return classPath;
 	}
 	public Image getSprite(){
-		return sprite;
+		return new Image(classPath);
 	}
-	public void setSprite(Image img){
-		sprite = img;
+	public IComponent newCopy() {
+		return new SpriteComponent(getClassPath());
 	}
 }
