@@ -12,17 +12,20 @@ import components.*;
  *
  * @author Jonathan
  * @author Justin
+ * @author Jack
  *
  */
 public class ViewData extends Observable {
 	private HashMap<Integer, Entity> definedEntityList;
 	private HashMap<Integer, Entity> placedEntityList;
 	private Entity userSelectedEntity;
+	private String gameName;
 
 	public ViewData() {
 		definedEntityList = new HashMap<Integer, Entity>();
 		placedEntityList = new HashMap<Integer, Entity>();
 		userSelectedEntity = null;
+		gameName = "";
 	}
 
 	public void setUserSelectedEntity(Entity entity) {
@@ -34,14 +37,18 @@ public class ViewData extends Observable {
 	}
 
 	public void setEntityLocation(int entityID, int row, int col) {
-		LocationComponent locComp = (LocationComponent) definedEntityList.get(entityID).getComponent(ComponentType.Location);
+
+		LocationComponent locComp = new LocationComponent(row, col);
+		placedEntityList.get(entityID).addComponent(locComp);
+		/*	LocationComponent locComp = (LocationComponent) definedEntityList.get(entityID).getComponent(ComponentType.Location);
 		locComp.setX(row);
-		locComp.setY(col);
+		locComp.setY(col); */
+
 	}
 
 	public void defineEntity(Entity entity) {
 		definedEntityList.put(entity.getID(), entity);
-		notifyObservers();
+		//notifyObservers();
 	}
 
 	public void placeEntity(Entity entity) {
@@ -51,7 +58,7 @@ public class ViewData extends Observable {
 
 	public void undefineEntity(Entity entity) {
 		definedEntityList.remove(entity.getID());
-		notifyObservers();
+		//notifyObservers();
 	}
 
 	public void unplaceEntity(Entity entity) {
@@ -62,4 +69,14 @@ public class ViewData extends Observable {
 	public HashMap<Integer, Entity> getEntityMap() {
 		return definedEntityList;
 	}
+
+	public void setGameName(String s) {
+		gameName = s;
+	}
+
+	public String getGameName() {
+		return gameName;
+	}
 }
+
+

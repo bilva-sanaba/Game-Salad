@@ -9,12 +9,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
+import data_interfaces.*;
 
 import view_interfaces.UIViewInterface;
 import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
+import entity.EntityManager;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
@@ -29,7 +31,6 @@ public class Controller implements ControllerInterface {
 	
 	UIViewInterface myGameView;
 	private GameEngine myGameEngine;
-	private RestrictedEntityManager myRestrictedEntityManager;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
 	
@@ -38,13 +39,10 @@ public class Controller implements ControllerInterface {
 	
 	public Controller(Stage s) {
 		myStage = s;
-		
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
-		
 		myGameView = new UIView(s, this);
 		myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
-		myRestrictedEntityManager = new RestrictedEntityManager();
 	}
 	
 
@@ -59,15 +57,17 @@ public class Controller implements ControllerInterface {
 	}*/
 
 	@Override
-	public void save() {
+	public void save(String filename) {
 		// TODO Auto-generated method stub
 		//loop through and save all write all items to XML
-		
+		XMLWriter xw = new XMLWriter();
+		xw.writeFile(filename, myGameEngine.save());
 	}
 
 	@Override
-	public void loadNewGame(String filePath) {
-		// TODO Auto-generated method stub
+	public void loadNewGame(String gameName) {
+		Communicator c = new Communicator(gameName);
+		myGameEngine.loadData(c);
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		
 	}
@@ -89,8 +89,7 @@ public class Controller implements ControllerInterface {
 	public void update(Observable obs, Object arg) {
 		// TODO Auto-generated method stub
 		//call world animator
-		Collection<RestrictedEntity> animatableEntities = (Collection<RestrictedEntity>) arg;
-		myWorldAnimator.start(myStage, animatableEntities);
+		myWorldAnimator.start(myStage, myGameEngine);
 	}
 
 }
