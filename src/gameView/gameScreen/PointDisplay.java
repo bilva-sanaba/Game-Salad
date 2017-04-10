@@ -14,4 +14,5 @@ public class PointDisplay extends UIDisplayComponent {
 		return null;
 	}
 
+
 }

@@ -1,14 +1,19 @@
 package gameView;
 
 import java.awt.Dimension;
+
 import entity.restricted.IRestrictedEntityManager;
+import gameEngine_interface.GameEngine;
 import gameView.commands.AbstractCommand;
 import gameView.commands.LoadCommand;
 import gameView.commands.MakeCommand;
 import gameView.gameScreen.GameScreen;
+
 import java.util.ArrayList;
 import java.util.Collection;
+
 import gameView.splashScreen.SplashView;
+import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -25,13 +30,16 @@ public class UIView implements UIViewInterface, ICommandUIView {
 	private SplashView mySplash;
 	private GameScreen myGameScene;
 	private IRestrictedEntityManager myEntities; 
+	private WorldAnimator myAnimation;
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
 		myController = controller;
+		myAnimation = new WorldAnimator();
 		mySplash = new SplashView(this, getCommands());
-		myGameScene = new GameScreen(this);
-		runGame();//getSplashScreen();
+		myGameScene = new GameScreen(this, myAnimation);
+		//runGame();//getSplashScreen();
+		getSplashScreen();
 	}
 
 	public void getSplashScreen() {
@@ -86,6 +94,10 @@ public class UIView implements UIViewInterface, ICommandUIView {
 	public void addEntities(IRestrictedEntityManager entity) {
 		myEntities = entity;
 		myGameScene.addEntity(entity);
+	}
+	
+	public Scene getGameScene() {
+		return myAnimation.getScene();
 	}
 
 }

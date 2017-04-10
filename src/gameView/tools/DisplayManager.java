@@ -17,20 +17,16 @@ public class DisplayManager {
 		myScreen = screen;
 		myAllDisplays = makeComponents();
 		myActiveDisplays = makeComponents();
-//		Collection<UIDisplayComponent> displays = new ArrayList<UIDisplayComponent>();
-//		displays.stream()
-//			.forEach(c -> {
-//				myAllDisplays.put(c.getName(), c);
-//				myActiveDisplays.put(c.getName(), c);
-//			});
 	}
 	
 	public void add(String toAdd) {
 		myActiveDisplays.put(toAdd, myAllDisplays.get(toAdd));
+		myScreen.addComponent(myAllDisplays.get(toAdd));
 	}
 	
 	public void remove(String toRemove) {
 		myActiveDisplays.remove(toRemove);
+		myScreen.removeComponent(myAllDisplays.get(toRemove));
 	}
 	
 	public Collection<String> getNames() {
@@ -46,6 +42,9 @@ public class DisplayManager {
 		displays.put("MA;SDLF", null);
 		displays.put("ALSDJF", null);
 		displays.put(";LIJA;SDLF", null);
+		displays.put("MA;;LASJDF;LAK", null);
+		displays.put("A.DKFJAL;JOIJW", null);
+		displays.put(";A;LSKDJFA;LSDKJFA;SDLF", null);
 		return displays;
 	}
 }

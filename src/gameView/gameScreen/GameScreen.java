@@ -42,16 +42,17 @@ public class GameScreen implements ICommandGameView {
 	private WorldAnimator myAnimation;
 	private DisplayManager myDisplays;
 
-	public GameScreen(UIView view) {
+	public GameScreen(UIView view, WorldAnimator animation) {
 		myView = view;
 		myDisplays = new DisplayManager(this);
 		myButtonFactory = new ButtonFactory(view, view.DEFAULT_BUTTONS);
-		myAnimation = new WorldAnimator();
+		myAnimation = animation;
 		initializeBoxes();
 		buildScene();
 	}
 
 	public Scene getScene() {
+		//myBP.setCenter(myAnimation.getScene().getRoot());
 		return myScene;
 	}
 
@@ -61,11 +62,11 @@ public class GameScreen implements ICommandGameView {
 	}
 
 	public void runGame() {
-		//call play in worldanimator
+		myAnimation.start();
 	}
 	
 	public void pauseGame() {
-		//call pause in world animator
+		myAnimation.pause();
 	}
 
 	private void initializeBoxes() {
@@ -130,11 +131,11 @@ public class GameScreen implements ICommandGameView {
 	}
 	
 	public void removeComponent(UIDisplayComponent toRemove) {
-		//my game view remove toRemove
+		myBP.getChildren().remove(toRemove);
 	}
 	
 	public void addComponent(UIDisplayComponent toAdd) {
-		//my game view add toAdd
+		myBP.getChildren().add(toAdd);
 	}
 
 }

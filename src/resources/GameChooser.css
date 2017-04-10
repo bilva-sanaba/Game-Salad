@@ -1,0 +1,20 @@
+.button {
+	-fx-background-image: url("images/file.png");
+	-fx-background-repeat: stretch;
+	-fx-font-size: 30;
+	-fx-content-display: top;
+	-fx-background-size: cover;
+}
+
+#main {
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+	-fx-background-repeat: stretch;
+	-fx-alignment: center;
+	-fx-spacing: 10;
+}
+#subbox {
+	-fx-background-repeat: stretch;
+	-fx-spacing: 10;
+	-fx-alignment: center
+	-fx-padding: 10;
+}

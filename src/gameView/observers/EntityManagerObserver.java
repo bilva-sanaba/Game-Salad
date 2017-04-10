@@ -1,23 +1,19 @@
 package gameView.observers;
 
 import entity.restricted.IRestrictedEntity;
-import entity.IEntityManager;
 import gameView.ImageManager;
-import gameView.UIView;
-import gameView.gameScreen.GameScreen;
-
 import java.util.Observable;
-import java.util.Observer;
-
-public class EntityManagerObserver implements Observer {
+import java.util.Observer;  
+ 
+public class EntityManagerObserver implements Observer { 
 
 	private ImageManager myImageManager;
 
-	public EntityManagerObserver(ImageManager images) {
+	public EntityManagerObserver(ImageManager images) { 
 		myImageManager = images;
-	}
-
-	@Override
+	} 
+ 
+	@Override  
 	public void update(Observable o, Object arg) {
 		myImageManager.updateMap((IRestrictedEntity) arg);
 	}

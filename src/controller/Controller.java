@@ -86,7 +86,7 @@ public class Controller implements ControllerInterface {
 	public void update(Observable obs, Object arg) {
 		// TODO Auto-generated method stub
 		// call world animator
-		myWorldAnimator.start(myStage, myGameEngine);
+		myWorldAnimator.start(myGameEngine);
 	}
 
 	@Override
@@ -98,5 +98,9 @@ public class Controller implements ControllerInterface {
 	public void makeGame() {
 		myStage.setScene(myGUIBuilder.buildScene());
 		myStage.show();
+	}
+	
+	public GameEngine getEngine() {
+		return myGameEngine;
 	}
 }

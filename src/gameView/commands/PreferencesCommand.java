@@ -1,6 +1,6 @@
 package gameView.commands;
 
-import java.util.Collection;
+import java.awt.Dimension;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,15 +9,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import gameView.ICommandGameView;
 import gameView.ICommandView;
-import gameView.UIDisplayComponent;
 import gameView.UIView;
 import gameView.tools.DisplayManager;
+import gameView.tools.ScrollablePopup;
 
 public class PreferencesCommand extends AbstractCommand {
 
@@ -25,21 +23,25 @@ public class PreferencesCommand extends AbstractCommand {
 	private Scene myScene;
 	private VBox myBox;
 	private DisplayManager myDisplays;
+	private ScrollablePopup myPopup;
 	
 	public PreferencesCommand(ICommandView m) {
 		super(m);
-		myBox = new VBox();
-		myBox.setId("pane");
+		myBox = new VBox(); 
+		myBox.setId("box");
+		myStage = new Stage();
+		myPopup = new ScrollablePopup("Preferences", "/resources/Preferences.css", myBox, makeCloseButton(),
+				new Dimension(UIView.DEFAULT_SIZE.width/3, UIView.DEFAULT_SIZE.height/3));
 		myDisplays = ((ICommandGameView) getView()).getComponents();
-		myScene = new Scene(myBox, UIView.DEFAULT_SIZE.width/4, UIView.DEFAULT_SIZE.height/4);
 	}
 
 	@Override
 	public void execute(Stage s) {
-		myStage = new Stage();
-		makeBox();
+		myBox.getChildren().clear();
+		myStage.setTitle(getName());
+		makeBox(); 
 		makeCloseButton();
-		myStage.setScene(myScene);
+		myStage.setScene(myPopup.getScene());
 		myStage.show();
 		
 	}
@@ -58,6 +60,7 @@ public class PreferencesCommand extends AbstractCommand {
 	
 	private CheckBox makeCheckBox(String name, boolean bool) {
 		CheckBox checkbox = new CheckBox(name);
+		checkbox.setSelected(myDisplays.checkIfActive(name));
 		checkbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
 	        public void changed(ObservableValue<? extends Boolean> ov,
 	            Boolean old_val, Boolean new_val) {
@@ -71,13 +74,14 @@ public class PreferencesCommand extends AbstractCommand {
 		return checkbox;
 	}
 	
-	private void makeCloseButton() {
+	private Button makeCloseButton() {
 		Button close = new Button("Close");
 		close.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				myStage.close();
 			}
 		});
+		return close;
 	}
 
 }

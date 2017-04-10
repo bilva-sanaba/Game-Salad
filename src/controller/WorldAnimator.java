@@ -8,6 +8,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -44,19 +45,17 @@ public class WorldAnimator {
 	public WorldAnimator(){
 	}
 
-	public void start (Stage s, GameEngine myGameEngine){
+	public void start (GameEngine myGameEngine){
 		root = new Group();
 		this.myGameEngine = myGameEngine;
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		myGameBuilder = new GameBuilder();
-		myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,
+		myScene =  myGameBuilder.setUpGame(root, restrictedEntityManager, 500,
 				500);
 		createMap(restrictedEntityManager);
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
 		}
-		s.setScene(myScene);// FILL
-		s.show();
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
 		//collisionTracker = new CollisionTracker("No", restrictedEntityManager.getEntities());
@@ -141,5 +140,13 @@ public class WorldAnimator {
 		currentImage.setX(re.getLocation().getX());
 		currentImage.setY(re.getLocation().getY());
 		currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(re.getImagePath())));
+	}
+	
+	public void pause() {
+		animation.pause();
+	}
+	
+	public void start() {
+		animation.play();
 	}
 }

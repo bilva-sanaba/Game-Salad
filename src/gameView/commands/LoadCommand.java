@@ -21,8 +21,9 @@ public class LoadCommand extends AbstractCommand {
 	@Override
 	public void execute(Stage s) {
 		GameChooser gameChoice = new GameChooser(s);
-		File fileToLoad = gameChoice.getFile();
-		((ICommandUIView) getView()).loadGame(fileToLoad.getPath());
+		Stage newStage = gameChoice.selectFile();
+		newStage.showAndWait();
+		((ICommandUIView) getView()).loadGame(gameChoice.getFile());
 	}
 
 	@Override
