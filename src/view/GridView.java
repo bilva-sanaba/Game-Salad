@@ -91,6 +91,7 @@ public class GridView extends GUIComponent implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
+		System.out.println("This is triggered");
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
 		for(Integer i: myMap.keySet()){
