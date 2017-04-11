@@ -58,11 +58,11 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public void loadNewGame(String gameName) { //IRestrictedEntityManager
+	public IRestrictedEntityManager loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
 		myGameEngine.loadData(c); //c
-		//RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
-		//return restrictedEntityManager;
+		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
+		return restrictedEntityManager;
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class Controller implements ControllerInterface {
 	}
 
 	public void run() {
-		myWorldAnimator.start(myGameEngine);
+		myWorldAnimator.start(myStage, myGameEngine);
 	}
 
 

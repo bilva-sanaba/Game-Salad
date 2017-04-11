@@ -104,6 +104,7 @@ public class WorldAnimator {
 	private void handleKeyPressed(KeyCode keyCode) {
 		externalKeyHandler(keyCode);
 		keysPressed.add(keyCode);
+		System.out.println(keysPressed);
 	}
 	
 	private void externalKeyHandler(KeyCode code){
