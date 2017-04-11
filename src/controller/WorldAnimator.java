@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -56,12 +57,11 @@ public class WorldAnimator {
 	private Timeline animation;
 	private Group root;
 	private GameBuilder myGameBuilder;
+	private Camera myCamera;
 
 	private Map<Integer, ImageView> imageMap= new HashMap<Integer, ImageView>();
 
 	private boolean pause = false;
-	
-	private boolean scrolling = true;
 
 	public WorldAnimator(){
 	}
@@ -77,6 +77,7 @@ public class WorldAnimator {
 		//myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 		//myScene = new Scene(root,LENGTH,WIDTH);
 		myScene = new Scene(root,LENGTH - 200,WIDTH);
+		myCamera = new Camera(LENGTH ,myScene, (LocationComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location));
 		createMap(restrictedEntityManager);
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
@@ -110,21 +111,11 @@ public class WorldAnimator {
 	private void step(double elapsedTime, GameEngine myGameEngine){
 		Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
 		HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);
-		LocationComponent locationComponent = (LocationComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location);
-		VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
-		updateScrolling(locationComponent, velocityComponent);
-		System.out.println(velocityComponent.getX() > 0);
+		/*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
+		updateScrolling(locationComponent, velocityComponent);*/
+		myCamera.updateCamera();
 	}
-	
-	private void updateScrolling(LocationComponent mainCharLoc, VelocityComponent mainCharVel){
-		if( (mainCharLoc.getX() - root.getTranslateX() >= 100 &&  mainCharVel.getX() > 0) ){
-			root.setTranslateX(mainCharVel.getX());
-		}
-	}
-	
-	private void updateCamera(){
-		root.setTranslateX(root.getTranslateX() - 2);
-	}
+
 	
 	private void handleKeyReleased(KeyCode keyCode) {
 		
