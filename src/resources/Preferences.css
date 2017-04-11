@@ -1,0 +1,36 @@
+#scroll {
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+}
+
+#pane {
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+}
+
+#box {
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+	-fx-background-repeat: stretch;
+	-fx-spacing: 10;
+	-fx-alignment: center-left;
+	-fx-padding: 10;
+}
+
+.check-box {
+	-fx-text-fill: white;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-font-size: 15;
+	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
+}
+
+.button {
+	-fx-background-color: #708090;
+	-fx-text-fill: white;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-font-size: 20;
+	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
+}
+
+.button:hover {
+	-fx-background-color: #2f4f4f;
+}

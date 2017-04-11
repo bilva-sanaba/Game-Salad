@@ -1,7 +1,6 @@
 package gameView.commands;
 
 import javafx.stage.Stage;
-import gameView.ICommandGameView;
 import gameView.ICommandView;
 
 public class PauseCommand extends AbstractCommand {
@@ -12,7 +11,7 @@ public class PauseCommand extends AbstractCommand {
 
 	@Override
 	public void execute(Stage s) {
-		((ICommandGameView) getView()).pauseGame();
+		((ICommandView) getView()).pauseGame();
 	}
 
 	@Override

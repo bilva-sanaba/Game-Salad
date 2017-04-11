@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,14 +21,17 @@ import javafx.scene.paint.Color;
 
 /**
  * @author Justin Yang
- *
+ * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent implements Observer{
 	private GridPane myGrid;
 	private ViewData myData;
+	private UtilityFactory util;
 	private int i = 1000;
+	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
 
-	public GridView(UtilityFactory utilF, ViewData data, int rows, int cols) {
+	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
+		util = utilIn;
 		myData = data;
 		myGrid = new GridPane();
 		myGrid.getStyleClass().add("view-grid");
@@ -72,7 +76,24 @@ public class GridView extends GUIComponent implements Observer{
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
 		spriteImage.setFitHeight(40);
 		spriteImage.setFitWidth(40);
-		myGrid.add(spriteImage, entityLocation.getX(), entityLocation.getY());
+		placedImages.add(spriteImage);
+		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
+	}
+	
+	public void clearEntitiesOnGrid(){
+		for(ImageView i: placedImages){
+			myGrid.getChildren().remove(i);
+		}
+		placedImages.clear();
+	}
+	
+	public void placeEntitiesFromFile(){
+		Entity tempEntity;
+		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
+		for(Integer i: myMap.keySet()){
+			tempEntity = myMap.get(i);
+			drawEntity(tempEntity);
+		}
 	}
 
 	@Override
@@ -80,22 +101,9 @@ public class GridView extends GUIComponent implements Observer{
 		return myGrid;
 	}
 
-	public void refresh(){
-		Entity tempEntity;
-		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
-		for(Integer i: myMap.keySet()){
-			tempEntity = myMap.get(i);
-			drawEntity(tempEntity);
-		}
-	}
-
 	@Override
-	public void update(Observable o, Object arg) {
-		Entity tempEntity;
-		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
-		for(Integer i: myMap.keySet()){
-			tempEntity = myMap.get(i);
-			drawEntity(tempEntity);
-		}
+	public void update(Observable arg0, Object arg1) {
+		clearEntitiesOnGrid();
+		placeEntitiesFromFile();
 	}
 }

@@ -68,13 +68,4 @@ public class EntityManager implements IEntityManager {
 		;
 		return entityToRestricted;
 	}
-<<<<<<< HEAD
-
-	@Override
-	public Collection<Entity> getEntities() {
-		return myEntities;
-	}
-
-=======
->>>>>>> 5e6301035bc8d61251ead2fd0f04e528a985e67e
 }
