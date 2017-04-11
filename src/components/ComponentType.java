@@ -8,6 +8,8 @@ public enum ComponentType {
 	ImageProperties(),
 	Health(), 
 	Acceleration(),
-	KeyInput();
+	KeyInput(),
+	Splash(),
+	Background();
 	
 }
