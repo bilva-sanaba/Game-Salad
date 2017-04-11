@@ -8,7 +8,7 @@ import java.util.Map;
 
 import components.LocationComponent;
 import components.SpriteComponent;
-
+import components.TerminalVelComponent;
 import components.AccelerationComponent;
 import components.ComponentType;
 import components.KeyExpression;
@@ -112,6 +112,7 @@ public class GameEngine implements GameEngineInterface {
 		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		t.addComponent(new KeyInputComponent());
 		t.addComponent(new AccelerationComponent(0,0));
+		t.addComponent(new TerminalVelComponent(5, 5));
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
 		e.add(t);
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());

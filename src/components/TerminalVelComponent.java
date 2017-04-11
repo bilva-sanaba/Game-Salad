@@ -1,6 +1,6 @@
 package components;
 
-public class TerminalVelComponent{
+public class TerminalVelComponent implements IComponent{
 	
 	double terminalX;
 	double terminalY;
@@ -19,10 +19,20 @@ public class TerminalVelComponent{
 	}
 	
 	public boolean canAccelerateX(double currentXVelocity){
-		return currentXVelocity < terminalX;
+		return Math.abs(currentXVelocity) <= terminalX;
 	}
 	
 	public boolean canAccelerateY(double currentYVelocity){
-		return currentYVelocity < terminalY;
+		return Math.abs(currentYVelocity) <= terminalY;
+	}
+
+	@Override
+	public ComponentType getComponentType() {
+		return ComponentType.TerminalVelComponent;
+	}
+
+	@Override
+	public IComponent newCopy() {
+		return new TerminalVelComponent(getX(), getY());
 	}
 }
