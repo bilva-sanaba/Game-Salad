@@ -14,20 +14,17 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 
 	
 	public String collides(Map<ComponentType, IComponent> obj0, Map<ComponentType, IComponent> obj1) {
-		Rectangle rect0 = createRectangle(location0, image0);
-		Rectangle rect1 = createRectangle(location1, image1);
-		
-		return obj0.getLayoutBounds().intersects(obj1.getLayoutBounds());
+		ImagePropertiesComponent img0 = (ImagePropertiesComponent) obj0.get(ComponentType.ImageProperties);
 	}
 	
-	private Rectangle createRectangle(LocationComponent xy, ImagePropertiesComponent heightWidth) {
+	/*private Rectangle createRectangle(LocationComponent xy, ImagePropertiesComponent heightWidth) {
 		Rectangle created = new Rectangle();
 		created.setX(xy.getX());
 		created.setY(xy.getY());
 		created.setHeight(heightWidth.getHeight());
 		created.setWidth(heightWidth.getWidth());
 		return created;
-	}
+	}*/
 
 	@Override
 	public List<ComponentType> needsComponents() {
