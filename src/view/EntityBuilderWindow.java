@@ -96,7 +96,7 @@ public class EntityBuilderWindow {
 		GridPane.setConstraints(entityType, 0, 2);
 
 		final ToggleGroup group = addRadioButtons();
-
+		
 	}
 
 	private GridPane buildPane() {

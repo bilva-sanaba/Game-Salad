@@ -1,10 +1,14 @@
 package gameEngine_interface;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import components.LocationComponent;
+import components.SpriteComponent;
 
 import components.AccelerationComponent;
 import components.ComponentType;
@@ -104,13 +108,17 @@ public class GameEngine implements GameEngineInterface {
 		}
 		Entity t = new Entity(40);
 		t.addComponent(new LocationComponent(0,200));
-		t.addComponent(new VelocityComponent(2,0));
+		t.addComponent(new VelocityComponent(0,0));
 		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		t.addComponent(new KeyInputComponent());
 		t.addComponent(new AccelerationComponent(0,0));
-		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.SPACE,ConcreteKeyExpressions.JUMP.getKeyExpression());
+		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
 		e.add(t);
-		myEntityManager=new EntityManager(e);
+		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());
+		e.add(t);
+		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
+		e.add(t);
+		myEntityManager=new EntityManager(e);    
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
 		initializeRestrictedEntities();
 	}

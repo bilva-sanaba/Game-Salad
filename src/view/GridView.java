@@ -26,10 +26,12 @@ import javafx.scene.paint.Color;
 public class GridView extends GUIComponent implements Observer{
 	private GridPane myGrid;
 	private ViewData myData;
+	private UtilityFactory util;
 	private int i = 1000;
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
 
-	public GridView(UtilityFactory utilF, ViewData data, int rows, int cols) {
+	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
+		util = utilIn;
 		myData = data;
 		myGrid = new GridPane();
 		myGrid.getStyleClass().add("view-grid");
@@ -75,17 +77,17 @@ public class GridView extends GUIComponent implements Observer{
 		spriteImage.setFitHeight(40);
 		spriteImage.setFitWidth(40);
 		placedImages.add(spriteImage);
-		myGrid.add(spriteImage, entityLocation.getX(), entityLocation.getY());
+		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
 	}
 	
-	private void clearEntitiesOnGrid(){
+	public void clearEntitiesOnGrid(){
 		for(ImageView i: placedImages){
 			myGrid.getChildren().remove(i);
 		}
 		placedImages.clear();
 	}
 	
-	private void placeEntitiesFromFile(){
+	public void placeEntitiesFromFile(){
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
 		for(Integer i: myMap.keySet()){
@@ -100,7 +102,7 @@ public class GridView extends GUIComponent implements Observer{
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable arg0, Object arg1) {
 		clearEntitiesOnGrid();
 		placeEntitiesFromFile();
 	}
