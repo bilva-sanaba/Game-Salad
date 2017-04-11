@@ -8,6 +8,11 @@ public abstract class XYComponent {
 		x = xVal;
 		y = yVal;
 	}
+	
+	public XYComponent(int xVal, int yVal) {
+		x = xVal;
+		y = yVal;
+	}
 
 	public XYComponent() {
 	}

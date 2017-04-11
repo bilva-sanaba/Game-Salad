@@ -10,6 +10,10 @@ public class LocationComponent extends XYComponent implements IComponent {
 	public LocationComponent(double x, double y){
 		super(x, y);
 	}
+	
+	public LocationComponent(int x, int y) {
+		super(x,y);
+	}
 
 	public LocationComponent() {
 		super();

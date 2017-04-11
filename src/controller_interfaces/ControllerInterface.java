@@ -52,11 +52,11 @@ public interface ControllerInterface {
 	 * 
 	 * @param filePath
 	 *            - string of the file path to the new data file
+	 * @return 
 	 */
 	public IRestrictedEntityManager loadNewGame(String filePath);
 
 	/**
-<<<<<<< HEAD
 	 * Resets the current game using the original XML file 
 	 * @throws XMLException 
 	 *
