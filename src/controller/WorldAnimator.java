@@ -15,6 +15,7 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -54,17 +55,17 @@ public class WorldAnimator {
 	public WorldAnimator(){
 	}
 
-	public void start (Stage s, GameEngine myGameEngine){
+	public void start (GameEngine myGameEngine){
 		root = new Group();
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
-//		myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
+		//myGameBuilder = new GameBuilder();
+
+		//myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 		myScene = new Scene(root,LENGTH,WIDTH);
 		createMap(restrictedEntityManager);
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
 		}
-		s.setScene(myScene);// FILL
-		s.show();
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
 		
@@ -118,6 +119,10 @@ public class WorldAnimator {
 		}
 	}
 
+	public void setKeys(Scene s) {
+		s.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
+		s.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
+	}
 
 	private HashMap<Integer, ImageView> fillMapAndDisplay(Collection<RestrictedEntity> entities){
 		HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
@@ -162,11 +167,6 @@ public class WorldAnimator {
 		if(imageMap.containsKey(entity.getID())){
 			ImageView currentImage = imageMap.get(entity.getID());
 			updateImage(currentImage,entity);
-
-//			PathTransition pt = moveToLocation(currentImage, entity.getLocation());
-//			trans.getChildren().add(pt);
-//			root.getChildren().add(imageMap.get(entity.getID()));
-
 		}
 	}
 	private void updateImage(ImageView currentImage, RestrictedEntity re){
@@ -198,5 +198,13 @@ public class WorldAnimator {
 		FadeTransition ft = new FadeTransition(Duration.millis(KEY_INPUT_SPEED), imageView);
 		ft.setToValue(newOpacity);
 		return ft;
+	}
+	
+	public void start(){
+		animation.play();
+	}
+	
+	public void pause(){
+		animation.pause();
 	}
 }

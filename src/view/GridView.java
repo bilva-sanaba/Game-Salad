@@ -75,7 +75,7 @@ public class GridView extends GUIComponent implements Observer{
 		spriteImage.setFitHeight(40);
 		spriteImage.setFitWidth(40);
 		placedImages.add(spriteImage);
-		myGrid.add(spriteImage, entityLocation.getX(), entityLocation.getY());
+		myGrid.add(spriteImage, (int) entityLocation.getX(), (int) entityLocation.getY());
 	}
 	
 	private void clearEntitiesOnGrid(){

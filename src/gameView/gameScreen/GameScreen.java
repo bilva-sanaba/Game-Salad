@@ -1,57 +1,71 @@
 package gameView.gameScreen;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import controller.WorldAnimator;
 import entity.restricted.IRestrictedEntityManager;
-import gameView.ICommandGameView;
+import gameEngine_interface.RunnerTest;
+import gameView.AbstractViewer;
 import gameView.ICommandView;
 import gameView.ImageManager;
-import gameView.UIDisplayComponent;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
-import gameView.commands.LoadCommand;
-import gameView.commands.MakeCommand;
-import gameView.commands.PauseCommand;
-import gameView.commands.PlayCommand;
-import gameView.commands.PreferencesCommand;
-import gameView.commands.SaveCommand;
-import gameView.tools.ButtonFactory;
+import gameView.displayComponents.UIDisplayComponent;
 import gameView.tools.DisplayManager;
-import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class GameScreen implements ICommandGameView {
+public class GameScreen extends AbstractViewer {
 
+	private static final String myName = GameScreen.class.getSimpleName();
 	private Scene myScene;
 	private BorderPane myBP;
-	private UIView myView;
 	private IRestrictedEntityManager myEntities;
 	private ImageManager myManager;
-	private ButtonFactory myButtonFactory;
 	private HBox myTopBox;
 	private HBox myBottomBox;
 	private VBox myLeftBox;
 	private VBox myRightBox;
+	private StackPane myPane;
 	private WorldAnimator myAnimation;
 	private DisplayManager myDisplays;
+	private Collection<AbstractCommand> myCommands;
 
-	public GameScreen(UIView view) {
-		myView = view;
-		myDisplays = new DisplayManager(this);
-		myButtonFactory = new ButtonFactory(view, view.DEFAULT_BUTTONS);
-		myAnimation = new WorldAnimator();
+	public GameScreen(UIView view, WorldAnimator animation) {
+		super(view);
+		myCommands = getCommands(myName);
+		//myAnimation = animation;
 		initializeBoxes();
-		buildScene();
+		buildMainScene();
+		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS);
 	}
 
 	public Scene getScene() {
+		//myBP.setCenter(myAnimation.getScene().getRoot());
+		myAnimation = new RunnerTest().getAnimator();
+		myAnimation.setKeys(myScene);
+		Scene test = myAnimation.getScene();
+		myPane.getChildren().add(test.getRoot());
+//		for (Node each:myPane.getChildren()) {
+//			if (each == test.getRoot()) {
+//				for (Node f: ((Group) each).getChildren()) {
+//					System.out.println(f);
+//					System.out.println(((ImageView) f).getX());
+//					System.out.println(((ImageView) f).getY());
+//				}
+//			}
+//			System.out.println(each.getTranslateX());
+//			System.out.println(each.getTranslateY());
+//			
+//		}
+		//myBP.setCenter(test.getRoot());
 		return myScene;
 	}
 
@@ -61,15 +75,16 @@ public class GameScreen implements ICommandGameView {
 	}
 
 	public void runGame() {
-		//call play in worldanimator
+		myAnimation.start();
 	}
 	
 	public void pauseGame() {
-		//call pause in world animator
+		myAnimation.pause();
 	}
 
 	private void initializeBoxes() {
 		myTopBox = setHBox("top", UIView.DEFAULT_SIZE.width, 50);
+		myPane = new StackPane();
 		// myBottomBox = setHBox("bottom", UIView.DEFAULT_SIZE.width, 100);
 		// myLeftBox = setSides("left", 100, UIView.DEFAULT_SIZE.height);
 		// myRightBox = setSides("right", 100, UIView.DEFAULT_SIZE.height);
@@ -92,49 +107,40 @@ public class GameScreen implements ICommandGameView {
 		return box;
 	}
 
-	private void buildScene() {
+	private void buildMainScene() {
 		myBP = new BorderPane(null, myTopBox, myRightBox, myBottomBox,
 				myLeftBox);
 		myBP.setId("main");
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(this.getClass().getResource("/resources/GameView.css").toExternalForm());
-		getCommands().stream()
+		myScene.getStylesheets().add(getStyleSheets(this, myName));
+		myCommands.stream()
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
 			});
-		
-	}
-
-	private Button makeButton(AbstractCommand command) {
-		return myButtonFactory.makeButton(command);
-	}
-	
-
-	private Collection<AbstractCommand> getCommands() {
-		Collection<AbstractCommand> list = new ArrayList<AbstractCommand>();
-		list.add(new PlayCommand(this));
-		list.add(new PauseCommand(this));
-		list.add(new SaveCommand(this));
-		list.add(new PreferencesCommand(this));
-		return list;
-	}
-
-	@Override
-	public void saveGame() {
-		myView.saveGame();
+		myBP.setCenter(myPane);
+//		Scene test = myAnimation.getScene();
+//		Pane newPane = new Pane();
+//		newPane.getChildren().add(test.getRoot());
+//		myBP.setCenter(test.getRoot());
 	}
 
 	@Override
 	public DisplayManager getComponents() {
-		return myDisplays;
+		System.out.println("GAMESCREEN");
+		return myDisplays; 
 	}
 	
 	public void removeComponent(UIDisplayComponent toRemove) {
-		//my game view remove toRemove
-	}
+		//myBP.getChildren().remove(toRemove);
+		myPane.getChildren().remove(toRemove.getDisplay());
+	} 
 	
 	public void addComponent(UIDisplayComponent toAdd) {
-		//my game view add toAdd
+		StackPane.setAlignment(toAdd.getDisplay(), toAdd.getPos());
+		System.out.println(StackPane.getAlignment(toAdd.getDisplay()));
+		myPane.getChildren().add(toAdd.getDisplay());
+		//((Group) myAnimation.getScene().getRoot()).getChildren().add(toAdd.getDisplay());
+		//System.out.println(((Group) myAnimation.getScene().getRoot()).getChildren());
 	}
 
 }

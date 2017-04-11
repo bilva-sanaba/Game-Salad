@@ -35,7 +35,7 @@ import gameView.UIView;
 
 public class Controller implements ControllerInterface {
 
-	UIViewInterface myGameView;
+	private UIViewInterface myGameView;
 	private GameEngine myGameEngine;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
@@ -45,9 +45,9 @@ public class Controller implements ControllerInterface {
 	public Controller(Stage s) {
 		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
-		myGameView = new UIView(s, this);
-		myWorldAnimator = new WorldAnimator();
 		myGameEngine = new GameEngine();
+		myWorldAnimator = new WorldAnimator();
+		myGameView = new UIView(s, this);
 	}
 
 	public void save(String fileName) {
@@ -59,9 +59,9 @@ public class Controller implements ControllerInterface {
 
 	@Override
 	public void loadNewGame(String gameName) { //IRestrictedEntityManager
-		//Communicator c = new Communicator(gameName);
-		myGameEngine.loadData(); //c
-		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
+		Communicator c = new Communicator(gameName);
+		myGameEngine.loadData(c); //c
+		//RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		//return restrictedEntityManager;
 	}
 
@@ -76,12 +76,16 @@ public class Controller implements ControllerInterface {
 	}
 
 	public void run() {
-		myWorldAnimator.start(myStage, myGameEngine);
+		myWorldAnimator.start(myGameEngine);
 	}
 
 
 	public void makeGame() {
 		myStage.setScene(myGUIBuilder.buildScene());
 		myStage.show();
+	}
+	
+	public GameEngine getEngine() {
+		return myGameEngine;
 	}
 }
