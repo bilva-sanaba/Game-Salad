@@ -12,7 +12,6 @@ public class Main extends Application {
 		new RunnerTest(arg0);
 
 		//new RunnerTest();
-
 	}
 
 	public static void main(String[] args) {

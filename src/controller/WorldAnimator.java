@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import com.sun.org.apache.regexp.internal.recompile;
@@ -42,7 +43,7 @@ public class WorldAnimator {
 	public static final int WIDTH = 500;
 	public static final int LENGTH = 1000;
 	
-	private ArrayList<KeyCode> keysPressed = new ArrayList<KeyCode>();
+	private HashSet<KeyCode> keysPressed = new HashSet<KeyCode>();
 
 	private Scene myScene;
 	private Timeline animation;
@@ -95,8 +96,6 @@ public class WorldAnimator {
 	private void step(double elapsedTime, GameEngine myGameEngine){
 		Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
 		HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);
-		
-		
 	}
 	private void handleKeyReleased(KeyCode keyCode) {
 		keysPressed.remove(keyCode);
