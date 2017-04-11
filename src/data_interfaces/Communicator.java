@@ -18,7 +18,6 @@ public class Communicator extends GameSavingDataTool {
 	public Collection<Entity> getData() {
 		XMLParser xp = new XMLParser();
 		EntityHandler eh = new EntityHandler();
-
 		return eh.getCollection(xp.getData(fileName));
 	}
 }
