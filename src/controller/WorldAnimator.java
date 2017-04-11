@@ -3,7 +3,9 @@ package controller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
@@ -14,6 +16,7 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -38,7 +41,7 @@ public class WorldAnimator {
 	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
 	public static final int KEY_INPUT_SPEED = 3;
 	
-	private ArrayList<KeyCode> keysPressed = new ArrayList<KeyCode>();
+	private Set<KeyCode> keysPressed = new HashSet<KeyCode>();
 
 	private Scene myScene;
 	private Timeline animation;
@@ -52,18 +55,17 @@ public class WorldAnimator {
 	public WorldAnimator(){
 	}
 
-	public void start (Stage s, GameEngine myGameEngine){
+	public void start (GameEngine myGameEngine){
 		root = new Group();
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		myGameBuilder = new GameBuilder();
+
 //		myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 		myScene = new Scene(root,500,500);
 		createMap(restrictedEntityManager);
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
 		}
-		s.setScene(myScene);// FILL
-		s.show();
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
 		
@@ -115,6 +117,10 @@ public class WorldAnimator {
 		}
 	}
 
+	public void setKeys(Scene s) {
+		s.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
+		s.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
+	}
 
 	private HashMap<Integer, ImageView> fillMapAndDisplay(Collection<RestrictedEntity> entities){
 		HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
@@ -191,5 +197,13 @@ public class WorldAnimator {
 		FadeTransition ft = new FadeTransition(Duration.millis(KEY_INPUT_SPEED), imageView);
 		ft.setToValue(newOpacity);
 		return ft;
+	}
+	
+	public void pause() {
+		animation.pause();
+	}
+	
+	public void start() {
+		animation.play();
 	}
 }

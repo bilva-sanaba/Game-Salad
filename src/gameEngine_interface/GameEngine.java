@@ -115,7 +115,7 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
 		e.add(t);
 		myEntityManager=new EntityManager(e);    
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager), new CollisionEngine(myEntityManager));
+		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
 		initializeRestrictedEntities();
 	}
 }
