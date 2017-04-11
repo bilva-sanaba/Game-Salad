@@ -33,4 +33,9 @@ public interface UIViewInterface {
 	 * Starts the animation to run the game
 	 */
 	public void runGame();
+	public void authorGame();
+	public void loadGame(String filePath);
+	public void restart();
+	public void saveGame();
+
 }

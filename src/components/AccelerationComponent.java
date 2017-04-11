@@ -2,6 +2,10 @@ package components;
 
 public class AccelerationComponent extends XYComponent implements IComponent {
 
+	public AccelerationComponent(double x, double y) {
+		super(x, y);
+	}
+	
 	public AccelerationComponent(int x, int y) {
 		super(x, y);
 	}

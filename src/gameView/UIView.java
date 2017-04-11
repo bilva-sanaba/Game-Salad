@@ -1,41 +1,48 @@
+
 package gameView;
 
 import java.awt.Dimension;
+
+import data_interfaces.XMLException;
 import entity.restricted.IRestrictedEntityManager;
-import gameView.commands.AbstractCommand;
-import gameView.commands.LoadCommand;
-import gameView.commands.MakeCommand;
 import gameView.gameScreen.GameScreen;
-import java.util.ArrayList;
-import java.util.Collection;
+import com.sun.jmx.snmp.Timestamp;
 import gameView.splashScreen.SplashView;
+import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view_interfaces.UIViewInterface;
 
 
-public class UIView implements UIViewInterface, ICommandUIView {
+public class UIView implements UIViewInterface {
 	
 	public static final Dimension DEFAULT_SIZE = new Dimension(1000, 650);
-	public final String DEFAULT_BUTTONS =  "EnglishCommands";
+	public static final String DEFAULT_BUTTONS =  "EnglishCommands";
+	public static final String DEFAULT_LOCATION = "resources/";
+	public static final String DEFAULT_STYLING = "UI";
+	public static final String STAGE_TITLE = "RainDrop Salad";
 	
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
 	private GameScreen myGameScene;
 	private IRestrictedEntityManager myEntities; 
+	private WorldAnimator myAnimation;
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
+		s.setTitle(STAGE_TITLE);
 		myController = controller;
-		mySplash = new SplashView(this, getCommands());
-		myGameScene = new GameScreen(this);
-		getSplashScreen();
+		myAnimation = new WorldAnimator();
+		mySplash = new SplashView(this);
+		myGameScene = new GameScreen(this, myAnimation);
+		runGame();//getSplashScreen();
+		//getSplashScreen();
 	}
 
 	public void getSplashScreen() {
-		setStage(mySplash.getSplashScene());
+		setStage(mySplash.getScene());
 	}
 	
 	@Override
@@ -60,23 +67,21 @@ public class UIView implements UIViewInterface, ICommandUIView {
 	}
 	
 	public void saveGame() {
-		
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		myController.save(timestamp.toString());
 	}
 	
 	public void restart() {
-		
+		try {
+			myController.resetCurrentGame();
+		} catch (XMLException e) {
+			//TODO: make exception
+		}
 	}
 	
 	private void setStage(Scene s) {
 		myStage.setScene(s);
 		myStage.show();
-	}
-	
-	private Collection<AbstractCommand> getCommands() {
-		Collection<AbstractCommand> list = new ArrayList<AbstractCommand>();
-		list.add(new LoadCommand(this));
-		list.add(new MakeCommand(this));
-		return list;
 	}
 	
 	public Stage getStage() {
@@ -86,6 +91,10 @@ public class UIView implements UIViewInterface, ICommandUIView {
 	public void addEntities(IRestrictedEntityManager entity) {
 		myEntities = entity;
 		myGameScene.addEntity(entity);
+	}
+	
+	public Scene getGameScene() {
+		return myAnimation.getScene();
 	}
 
 }

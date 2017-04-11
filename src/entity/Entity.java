@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import components.ComponentType;
 import components.IComponent;
+import components.LabelComponent;
 import engines.IRestrictEntity;
 import entity.restricted.IRestrictedEntity;
 import gameView.Coordinate;
@@ -39,7 +40,7 @@ public class Entity implements IEntity, IRestrictEntity {
 	public int getID() {
 		return identifier;
 	}
-
+	
 	@Override
 	public void setID(int i) {
 		identifier = i;
@@ -73,6 +74,7 @@ public class Entity implements IEntity, IRestrictEntity {
 				return myComponent;
 			}
 		}
+		
 		return null;
 	}
 
@@ -88,13 +90,11 @@ public class Entity implements IEntity, IRestrictEntity {
 		
 	}
 	
-	
-	public IComponent getComponent(ComponentType ct){
-		for(IComponent myComponent: myComponents){
-			if(myComponent.getComponentType() == ct){ //Should it be == or .equals()?
-				return myComponent;
-			}
+	@Override
+	public String toString(){
+		if(((LabelComponent)this.getComponent(ComponentType.Label)).getLabel() != null){
+			return ((LabelComponent)this.getComponent(ComponentType.Label)).getLabel();
 		}
-		return null;
+		return "null label component";
 	}
 }

@@ -11,7 +11,9 @@ import components.IComponent;
 import components.ImagePropertiesComponent;
 import components.LocationComponent;
 import entity.Entity;
+import entity.IEntity;
 import entity.IEntityManager;
+import javafx.scene.input.KeyCode;
 
 /**
  * This engine handles all collisions
@@ -25,7 +27,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	
 	private List<ISubEngine> subEngines;
 	private IEntityManager entManager;
-	private List<Entity> newEntitiesCreated;
+	private List<IEntity> newEntitiesCreated;
 	private ITwoObjectCollide collisionMethod;
 
 	public CollisionEngine(IEntityManager myEntityManager) {
@@ -47,14 +49,12 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	private void checkCollisionsOccurred() {
 		Map<Integer, IComponent> locationComponents = entManager.getCertainComponents(ComponentType.Location);
 		Map<Integer, IComponent> imageComponents = entManager.getCertainComponents(ComponentType.ImageProperties);
-		System.out.println("We should make sure that the EntityManager actively updates its list of entities to only include those on the screen");
 		doubleForLoopCollisionChecking(locationComponents, imageComponents);
 	}
 
 	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
 		for (int i = 0;i<locationComponents.size();i++) {
 			int component0index = i;
-			
 			for (int j=i+1;j<locationComponents.size();j++) {
 				int component1index = j;
 				if (component0index != component1index) {
@@ -104,12 +104,11 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 		return null;
 	}
 
-	@Override
-	public Collection<? extends Entity> update() {
-		newEntitiesCreated = new ArrayList<Entity>();
+
+	public Collection<IEntity> update(Collection<KeyCode> keys) {
+		newEntitiesCreated = new ArrayList<IEntity>();
 		checkCollisionsOccurred();
 		return newEntitiesCreated;
-		
 	}
 
 }
