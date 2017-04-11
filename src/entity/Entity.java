@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import components.ComponentType;
 import components.IComponent;
+import components.LabelComponent;
 import engines.IRestrictEntity;
 import entity.restricted.IRestrictedEntity;
 import gameView.Coordinate;
@@ -87,5 +88,10 @@ public class Entity implements IEntity, IRestrictEntity {
 	public void removeListener(InvalidationListener arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public String toString(){
+		return ((LabelComponent)this.getComponent(ComponentType.Label)).getLabel();
 	}
 }
