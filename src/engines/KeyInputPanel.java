@@ -47,4 +47,5 @@ public class KeyInputPanel implements IKeyInputPanel{
 		stage.setScene(scene);
 		stage.show();
 	}
+	private createKey
 }

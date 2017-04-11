@@ -66,10 +66,6 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	
 	
 	private void checkIndividualCollision(IComponent location0, IComponent location1, IComponent imageProp0, IComponent imageProp1, int index0, int index1) {
-		ImagePropertiesComponent img0 = (ImagePropertiesComponent) imageProp0;
-		ImagePropertiesComponent img1 = (ImagePropertiesComponent) imageProp1;
-		LocationComponent loc0 = (LocationComponent) location0;
-		LocationComponent loc1 = (LocationComponent) location1;
 		List<ComponentType> necessaryCollisionCheckingComponents = collisionMethod.needsComponents();
 		HashMap<ComponentType, IComponent> obj0Map = new HashMap<ComponentType, IComponent>();
 		HashMap<ComponentType, IComponent> obj1Map = new HashMap<ComponentType, IComponent>();
