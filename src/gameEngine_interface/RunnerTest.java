@@ -4,10 +4,18 @@ import controller.WorldAnimator;
 import javafx.stage.Stage;
 
 public class RunnerTest {
-	public RunnerTest(Stage s){
-		WorldAnimator wa = new WorldAnimator();
+	
+	private WorldAnimator myWorld;
+	
+	public RunnerTest(){
+		myWorld = new WorldAnimator();
 		GameEngine ge = new GameEngine();
 		ge.dummyLoad();
-		wa.start(s,ge);
+		myWorld.start(ge);
+	}
+	
+	public WorldAnimator getAnimator() {
+		System.out.println(myWorld);
+		return myWorld;
 	}
 }

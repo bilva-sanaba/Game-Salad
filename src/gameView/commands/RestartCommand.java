@@ -1,7 +1,6 @@
 package gameView.commands;
 
 import javafx.stage.Stage;
-import gameView.ICommandUIView;
 import gameView.ICommandView;
 
 public class RestartCommand extends AbstractCommand {
@@ -12,7 +11,7 @@ public class RestartCommand extends AbstractCommand {
 
 	@Override
 	public void execute(Stage s) {
-		((ICommandUIView) getView()).restart();
+		((ICommandView) getView()).restart();
 		
 	}
 
