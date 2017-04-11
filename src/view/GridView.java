@@ -11,38 +11,86 @@ import components.SpriteComponent;
 import entity.Entity;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
 /**
+ * @author Jonathan Rub
  * @author Justin Yang
  * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent implements Observer{
+	private ScrollPane myScroll;
 	private GridPane myGrid;
 	private ViewData myData;
 	private UtilityFactory util;
 	private int i = 1000;
+	private int myRow;
+	private int myCol;
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
+	private BorderPane bp;
 
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
 		util = utilIn;
+		myRow = rows;
+		myCol = cols;
 		myData = data;
 		myGrid = new GridPane();
 		myGrid.getStyleClass().add("view-grid");
 		myGrid.setAlignment(Pos.CENTER);
 		myData.addObserver(this);
-
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < cols; col++) {
 				addMouseListenerPane(row, col);
 			}
 		}
+		bp = new BorderPane();
+		Button butt = util.buildButton("addHo", e-> addHo());
+		util.buildButton("addHo", e->addHo());
+		Button butt2 = util.buildButton("addVert", e -> addVert());
+		util.buildButton("addVert", e -> addVert());
+		HBox box = new HBox(butt,butt2);
+		bp.setTop(box);
+		
+		myScroll = new ScrollPane(myGrid);
+		bp.setCenter(myScroll);
+	}
+
+	private void addHo() {
+		for (i=0;i<myRow;i++){
+			Rectangle rect = new Rectangle(40, 40);
+			rect.getStyleClass().add("view-grid-cell");
+			
+			
+			myGrid.add(rect, myCol, i);
+			addMouseListenerPane(myCol, i);
+		}
+		myCol++;
+	}
+		
+	
+
+	private void addVert() {
+		for (i=0;i<myCol;i++){
+			Rectangle rect = new Rectangle(40, 40);
+			rect.getStyleClass().add("view-grid-cell");
+			
+			
+			myGrid.add(rect, i, myRow);
+			addMouseListenerPane(i, myRow);
+		}
+		myRow++;
+		
 	}
 
 	private void addMouseListenerPane(int row, int col) {
@@ -80,14 +128,14 @@ public class GridView extends GUIComponent implements Observer{
 		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
 	}
 	
-	private void clearEntitiesOnGrid(){
+	public void clearEntitiesOnGrid(){
 		for(ImageView i: placedImages){
 			myGrid.getChildren().remove(i);
 		}
 		placedImages.clear();
 	}
 	
-	private void placeEntitiesFromFile(){
+	public void placeEntitiesFromFile(){
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
 		for(Integer i: myMap.keySet()){
@@ -98,11 +146,11 @@ public class GridView extends GUIComponent implements Observer{
 
 	@Override
 	public Region buildComponent() {
-		return myGrid;
+		return bp;
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable arg0, Object arg1) {
 		clearEntitiesOnGrid();
 		placeEntitiesFromFile();
 	}
