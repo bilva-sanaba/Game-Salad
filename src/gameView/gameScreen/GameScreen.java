@@ -48,11 +48,11 @@ public class GameScreen extends AbstractViewer {
 	}
 
 	public Scene getScene() {
-		//myBP.setCenter(myAnimation.getScene().getRoot());
-		myAnimation = new RunnerTest().getAnimator();
-		myAnimation.setKeys(myScene);
-		Scene test = myAnimation.getScene();
-		myPane.getChildren().add(test.getRoot());
+		myPane.getChildren().add(myAnimation.getScene().getRoot());
+//		myAnimation = new RunnerTest().getAnimator();
+//		myAnimation.setKeys(myScene);
+//		Scene test = myAnimation.getScene();
+//		myPane.getChildren().add(test.getRoot());
 //		for (Node each:myPane.getChildren()) {
 //			if (each == test.getRoot()) {
 //				for (Node f: ((Group) each).getChildren()) {
