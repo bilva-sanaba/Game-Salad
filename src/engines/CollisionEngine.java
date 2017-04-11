@@ -106,6 +106,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 
 
 	public Collection<IEntity> update(Collection<KeyCode> keys) {
+		System.out.println("is this being called");
 		newEntitiesCreated = new ArrayList<IEntity>();
 		checkCollisionsOccurred();
 		return newEntitiesCreated;

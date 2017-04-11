@@ -25,7 +25,9 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 		LocationComponent loc1 = (LocationComponent) obj1.get(ComponentType.Location);
 		Rectangle r0 = createRectangle(loc0, img0);
 		Rectangle r1 = createRectangle(loc1, img1);
+		System.out.println("TRIGGERED");
 		if (checkRectangleCollide(r0, r1)) {
+			System.out.println(whichSide(r0,r1));
 			return whichSide(r0, r1);
 		}
 		return ITwoObjectCollide.NONE;

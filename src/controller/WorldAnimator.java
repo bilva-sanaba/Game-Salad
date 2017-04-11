@@ -111,9 +111,6 @@ public class WorldAnimator {
 	}
 	
 	private void externalKeyHandler(KeyCode code){
-		if(code == KeyCode.S){
-			animation.play();
-		}
 		if(code == KeyCode.P && !pause){
 			animation.pause();
 			pause=true;
