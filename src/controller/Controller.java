@@ -48,7 +48,6 @@ public class Controller implements ControllerInterface {
 		myGameEngine = new GameEngine();
 		myWorldAnimator = new WorldAnimator();
 		myGameView = new UIView(s, this);
-		// myEntityManager = new EntityManager();
 	}
 
 	public void save(String fileName) {
@@ -59,9 +58,9 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public IRestrictedEntityManager loadNewGame(String gameName) {
+	public IRestrictedEntityManager loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
-		myGameEngine.loadData(c);
+		myGameEngine.loadData(c); //c
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		return restrictedEntityManager;
 	}
