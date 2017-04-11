@@ -20,7 +20,7 @@ public interface ITwoObjectCollide {
 	public static final String RIGHT = "Right";
 	public static final String TOP = "Top";
 	public static final String BOTTOM = "Bottom";
-	public static final String NONE = "";
+	public static final String NONE = "No Collision";
 
 
 
