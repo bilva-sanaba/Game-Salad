@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 
 public class Camera {
 	
-	public static final int rightBoundInFrame = 200;
+	public static final int RIGHT_BOUND = 400;
 	
 	private int myLevelLength;
 	private Scene myFrame;
@@ -26,9 +26,12 @@ public class Camera {
 	}
 	
 	public void updateCamera(){
-		if( ((myFrame.getWidth() - root.getTranslateX()) - (followerLoc.getX() - root.getTranslateX())) <= 200){
-			System.out.println((myFrame.getWidth() - root.getTranslateX()) - (followerLoc.getX() - root.getTranslateX()));
-			root.setTranslateX(root.getTranslateX() +2 );
+		System.out.println((myFrame.getWidth() - root.getTranslateX()) - (followerLoc.getX()));
+		if( (myFrame.getWidth() - root.getTranslateX()) - (followerLoc.getX() ) <= RIGHT_BOUND){
+			root.setTranslateX(root.getTranslateX() - 2 );
+		}
+		else{
+			root.setTranslateX(root.getTranslateX());
 		}
 	}
 	
