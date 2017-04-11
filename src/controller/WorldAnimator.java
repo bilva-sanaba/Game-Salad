@@ -7,12 +7,15 @@ import java.util.Map;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
+import components.ComponentType;
+import components.XYComponent;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -58,6 +61,10 @@ public class WorldAnimator {
 		myGameBuilder = new GameBuilder();
 //		myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 		myScene = new Scene(root,500,500);
+		
+		//BELALS SHIT
+		
+		
 		createMap(restrictedEntityManager);
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
@@ -92,8 +99,18 @@ public class WorldAnimator {
 		Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
 		HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);
 		
+		XYComponent locationComponent = (XYComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location);
+		if(locationComponent.getX() > 200){
+			updateCamera();
+		}
+		
 		
 	}
+	
+	private void updateCamera(){
+		root.setTranslateX(root.getTranslateX() - 2);
+	}
+	
 	private void handleKeyReleased(KeyCode keyCode) {
 		keysPressed.remove(keyCode);
 	}
@@ -155,7 +172,12 @@ public class WorldAnimator {
 	private void updateEntity(RestrictedEntity entity, SequentialTransition trans){
 		if(imageMap.containsKey(entity.getID())){
 			ImageView currentImage = imageMap.get(entity.getID());
-			updateImage(currentImage,entity);
+			if((entity.getID() == 40 && entity.getLocation().getX() >= 300)){
+				updateImage(currentImage, entity);
+			}
+			else{
+				updateImage(currentImage, entity);
+			}
 //			PathTransition pt = moveToLocation(currentImage, entity.getLocation());
 //			trans.getChildren().add(pt);
 //			root.getChildren().add(imageMap.get(entity.getID()));
@@ -163,9 +185,11 @@ public class WorldAnimator {
 	}
 	private void updateImage(ImageView currentImage, RestrictedEntity re){
 		currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(re.getImagePath())));
+
 		currentImage.setX(re.getLocation().getX());
 		currentImage.setY(re.getLocation().getY());		
 	}
+	
 	
 	private PathTransition moveToLocation(ImageView imageView, Coordinate c){
 		Path path = new Path();

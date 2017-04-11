@@ -46,6 +46,7 @@ public class GameEngine implements GameEngineInterface {
 	private List<AbstractEngine> myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
+	private Entity mainCharacter;
 
 	public GameEngine(){
 		initializeRestrictedEntities();
@@ -110,8 +111,13 @@ public class GameEngine implements GameEngineInterface {
 		t.addComponent(new AccelerationComponent(0,0));
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.SPACE,ConcreteKeyExpressions.JUMP.getKeyExpression());
 		e.add(t);
+		mainCharacter = t;
 		myEntityManager=new EntityManager(e);
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
 		initializeRestrictedEntities();
+	}
+	
+	public Entity getMainCharacter(){
+		return mainCharacter;
 	}
 }

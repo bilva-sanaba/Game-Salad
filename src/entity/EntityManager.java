@@ -68,4 +68,13 @@ public class EntityManager implements IEntityManager {
 		;
 		return entityToRestricted;
 	}
+	
+	public Entity getEntityByID(int ID){
+		for(Entity currentEntity: myEntities){
+			if(currentEntity.getID() == ID){
+				return currentEntity;
+			}
+		}
+		return null;
+	}
 }
