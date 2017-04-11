@@ -30,6 +30,6 @@ public interface ISubEngine {
 	 * This method will return the ComponentType that the subEngine needs so that it receives that component, and nothing more.
 	 * @return
 	 */
-	public List<ComponentType> getNecessaryComponents();
+	public List<ComponentType> getNecessaryComponents(String sideOfCollision);
 	
 }
