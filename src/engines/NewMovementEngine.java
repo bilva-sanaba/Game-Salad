@@ -32,9 +32,9 @@ public class NewMovementEngine extends AbstractEngine{
 
 	private void updateAllValues(IEntity e, Map<IEntity, IRestrictedEntity> entityMap, Collection<IEntity> changed) {
 		if (hasComponent(e, ComponentType.Velocity)) {
-			updateLocation(e);
+			updateMovement(e, ComponentType.Location, ComponentType.Velocity);
 			if (hasComponent(e, ComponentType.Acceleration)) {
-				updateVelocity(e);
+				updateMovement(e, ComponentType.Velocity, ComponentType.Acceleration);
 			}
 			placeInMap(entityMap, e);
 			//TODO: fix cast issue
@@ -59,6 +59,13 @@ public class NewMovementEngine extends AbstractEngine{
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		
 		vc.setXY(vc.getX() + ac.getX(), vc.getY() + ac.getY());
+	}
+	
+	private void updateMovement(IEntity e, ComponentType c1, ComponentType c2) {
+		XYComponent xy1 = (XYComponent) e.getComponent(c1);
+		XYComponent xy2 = (XYComponent) e.getComponent(c2);
+		
+		xy1.setXY(xy1.getX() + xy2.getX(), xy1.getY() + xy2.getY());
 	}
 	
 	private boolean hasComponent(IEntity e, ComponentType c) {
