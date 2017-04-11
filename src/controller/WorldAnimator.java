@@ -72,7 +72,7 @@ public class WorldAnimator {
 		this.animation = new Timeline();
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
-		animation.play();
+		//animation.play();
 	}
 	
 	public Scene getScene() {
@@ -90,9 +90,7 @@ public class WorldAnimator {
 
 	private void step(double elapsedTime, GameEngine myGameEngine){
 		Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
-		HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);
-		
-		
+		HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);		
 	}
 	private void handleKeyReleased(KeyCode keyCode) {
 		keysPressed.remove(keyCode);
@@ -104,13 +102,16 @@ public class WorldAnimator {
 	}
 	
 	private void externalKeyHandler(KeyCode code){
-		if(code == KeyCode.P && !pause){
-			pause = true;
-			animation.pause();
-		}
-		if (code == KeyCode.P && pause) {
-			pause = false;
+		if(code == KeyCode.S){
 			animation.play();
+		}
+		if(code == KeyCode.P && !pause){
+			animation.pause();
+			pause = true;
+		}
+		else if (code == KeyCode.P && pause) {
+			animation.play();
+			pause = false;
 		}
 	}
 

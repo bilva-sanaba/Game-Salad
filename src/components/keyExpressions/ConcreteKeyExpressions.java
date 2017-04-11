@@ -18,12 +18,12 @@ public enum ConcreteKeyExpressions {
 		}
 	}),
 	RIGHT ((a) -> {
-		LocationComponent vc = (LocationComponent) a.getComponent(ComponentType.Location);
-		vc.setX(vc.getX()+1);
+		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
+		lc.setX(lc.getX()+1);
 	}),
 	LEFT ((a) -> {
-		LocationComponent vc = (LocationComponent) a.getComponent(ComponentType.Location);
-		vc.setX(vc.getX()-1);
+		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
+		lc.setX(lc.getX()-1);
 	});
 
     private KeyExpression keyExpression; 

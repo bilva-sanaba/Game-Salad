@@ -104,7 +104,7 @@ public class GameEngine implements GameEngineInterface {
 		}
 		Entity t = new Entity(40);
 		t.addComponent(new LocationComponent(0,200));
-		t.addComponent(new VelocityComponent(0,0));
+		t.addComponent(new VelocityComponent(1,0));
 		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		t.addComponent(new KeyInputComponent());
 		t.addComponent(new AccelerationComponent(0,0));
@@ -115,7 +115,7 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
 		e.add(t);
 		myEntityManager=new EntityManager(e);    
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
+		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		initializeRestrictedEntities();
 	}
 }
