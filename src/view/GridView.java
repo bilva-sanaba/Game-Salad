@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -28,10 +29,12 @@ public class GridView extends GUIComponent implements Observer{
 	private ViewData myData;
 	private UtilityFactory util;
 	private int i = 1000;
+	private int size;
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
 
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
 		util = utilIn;
+		size = rows;
 		myData = data;
 		myGrid = new GridPane();
 		myGrid.getStyleClass().add("view-grid");
@@ -43,7 +46,15 @@ public class GridView extends GUIComponent implements Observer{
 				addMouseListenerPane(row, col);
 			}
 		}
+		myGrid.setOnKeyReleased(e -> handelKeyRel(e.getCode()));
 	}
+
+//	private void handelKeyRel(KeyCode code) {
+//		if(code == KeyCode.R){
+//			myGrid.addRow(size);
+//			size++;
+//		}
+//	}
 
 	private void addMouseListenerPane(int row, int col) {
 		Rectangle rect = new Rectangle(40, 40);
