@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
@@ -43,11 +44,13 @@ public class WorldAnimator {
 	public static final int WIDTH = 500;
 	public static final int LENGTH = 1000;
 	
-	private HashSet<KeyCode> keysPressed = new HashSet<KeyCode>();
+	private Set<KeyCode> keysPressed = new HashSet<KeyCode>();
+
 
 	private Scene myScene;
 	private Timeline animation;
 	private Group root;
+	private GameBuilder myGameBuilder;
 
 	private Map<Integer, ImageView> imageMap= new HashMap<Integer, ImageView>();
 
@@ -56,10 +59,10 @@ public class WorldAnimator {
 	public WorldAnimator(){
 	}
 
-	public void start (Stage s, GameEngine myGameEngine){
+	public void start (GameEngine myGameEngine){
 		root = new Group();
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
-		//myGameBuilder = new GameBuilder();
+		myGameBuilder = new GameBuilder();
 
 		//myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 		myScene = new Scene(root,LENGTH,WIDTH);
@@ -67,8 +70,7 @@ public class WorldAnimator {
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
 		}
-		s.setScene(myScene);
-		s.show();
+
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
 		
@@ -77,7 +79,6 @@ public class WorldAnimator {
 		this.animation = new Timeline();
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
-		//animation.play();
 	}
 	
 	public Scene getScene() {
@@ -95,15 +96,19 @@ public class WorldAnimator {
 
 	private void step(double elapsedTime, GameEngine myGameEngine){
 		Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
-		HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);
+
+		HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);		
 	}
 	private void handleKeyReleased(KeyCode keyCode) {
+		
 		keysPressed.remove(keyCode);
+
 	}
 
 	private void handleKeyPressed(KeyCode keyCode) {
 		externalKeyHandler(keyCode);
 		keysPressed.add(keyCode);
+		System.out.println(keyCode);
 	}
 	
 	private void externalKeyHandler(KeyCode code){
@@ -117,6 +122,7 @@ public class WorldAnimator {
 		else if (code == KeyCode.P && pause) {
 			animation.play();
 			pause =false;
+
 		}
 	}
 

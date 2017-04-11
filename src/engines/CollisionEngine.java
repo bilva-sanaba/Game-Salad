@@ -55,7 +55,6 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
 		for (int i = 0;i<locationComponents.size();i++) {
 			int component0index = i;
-			
 			for (int j=i+1;j<locationComponents.size();j++) {
 				int component1index = j;
 				if (component0index != component1index) {
@@ -71,7 +70,10 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 		ImagePropertiesComponent img1 = (ImagePropertiesComponent) imageProp1;
 		LocationComponent loc0 = (LocationComponent) location0;
 		LocationComponent loc1 = (LocationComponent) location1;
-		boolean collisionOccurs = collisionMethod.collides(loc0, loc1, img0, img1);		
+		boolean collisionOccurs = collisionMethod.collides(loc0, loc1, img0, img1);
+		if (collisionOccurs){
+			System.out.println("Collision");
+		}
 		sendCollisionToSubEngines(index0, index1, collisionOccurs);
 	}
 
