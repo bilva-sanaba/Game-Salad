@@ -72,6 +72,7 @@ public abstract class AbstractViewer implements ICommandView {
 	//DOES NOTHING FOR SPLASHSCREEN
 	public void runGame() {
 		System.out.println("ABSTRACT");
+		getView().runGame();
 	}
 	public DisplayManager getComponents() {
 		System.out.println("ABSTRACT");

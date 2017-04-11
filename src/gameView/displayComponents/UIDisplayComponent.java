@@ -1,6 +1,6 @@
-package gameView;
+package gameView.displayComponents;
 
-import javafx.scene.Node;
+import javafx.geometry.Pos;
 import javafx.scene.layout.Region;
 
 public abstract class UIDisplayComponent extends Region {
@@ -9,6 +9,7 @@ public abstract class UIDisplayComponent extends Region {
 	
 	public UIDisplayComponent(String name) {
 		myDisplayName = name;
+		setID();
 	}
 	
 	public String getName() {
@@ -16,5 +17,7 @@ public abstract class UIDisplayComponent extends Region {
 	}
 	
 	public abstract Region getDisplay();
+	public abstract Pos getPos();
+	protected abstract void setID();
 	
 }

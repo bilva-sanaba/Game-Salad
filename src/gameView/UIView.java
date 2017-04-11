@@ -21,6 +21,7 @@ public class UIView implements UIViewInterface {
 	public static final String DEFAULT_BUTTONS =  "EnglishCommands";
 	public static final String DEFAULT_LOCATION = "resources/";
 	public static final String DEFAULT_STYLING = "UI";
+	public static final String STAGE_TITLE = "RainDrop Salad";
 	
 	private Stage myStage;
 	private ControllerInterface myController;
@@ -31,6 +32,7 @@ public class UIView implements UIViewInterface {
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
+		s.setTitle(STAGE_TITLE);
 		myController = controller;
 		myAnimation = new WorldAnimator();
 		mySplash = new SplashView(this);
@@ -52,29 +54,24 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		System.out.println("IN UIVIEW");
 		setStage(myGameScene.getScene());
 		
 	}
 	
 	public void loadGame(String file) {
-		System.out.println("IN UIVIEW");
 		addEntities(myController.loadNewGame(file));
 	}
 	
 	public void authorGame() {
-		System.out.println("IN UIVIEW");
 		myController.makeGame();
 	}
 	
 	public void saveGame() {
-		System.out.println("IN UIVIEW");
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		myController.save(timestamp.toString());
 	}
 	
 	public void restart() {
-		System.out.println("IN UIVIEW");
 		try {
 			myController.resetCurrentGame();
 		} catch (XMLException e) {

@@ -19,11 +19,11 @@ public class CommandFactory {
 	public CommandFactory(String resource, String filePath) {
 		myBundle = ResourceBundle.getBundle(filePath);
 		myKey = resource;
-	}
+	} 
 	
 	public Collection<AbstractCommand> getCommands(ICommandView s) {
 		Collection<AbstractCommand> commands = new ArrayList<AbstractCommand>();
-		String buttons = myBundle.getString(myKey);
+		String buttons = myBundle.getString(myKey); 
 		String[] list = buttons.split(", ");
 		for (String each: list) {
 			AbstractCommand newCommand = (AbstractCommand) Reflection.createInstance(COMMAND_RESOURCE+each+"Command", s);

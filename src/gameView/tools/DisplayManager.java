@@ -1,9 +1,8 @@
 package gameView.tools;
 
-import gameView.UIDisplayComponent;
+import gameView.displayComponents.UIDisplayComponent;
 import gameView.gameScreen.GameScreen;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -12,7 +11,7 @@ import voogasalad.util.reflection.Reflection;
 
 public class DisplayManager {
 
-	private static final String COMPONENT_LOCATION = ".gameView.displayComponents.";
+	private static final String COMPONENT_LOCATION = "gameView.displayComponents.";
 	private static final String BUNDLE_KEY = DisplayManager.class.getSimpleName();
 	
 	private HashMap<String, UIDisplayComponent> myAllDisplays;
@@ -22,6 +21,7 @@ public class DisplayManager {
 	public DisplayManager(GameScreen screen, String filePath) {
 		myScreen = screen;
 		myAllDisplays = makeComponents(filePath);
+		myActiveDisplays = new HashMap<String, UIDisplayComponent>();
 		copyMap(myAllDisplays);
 	}
 	

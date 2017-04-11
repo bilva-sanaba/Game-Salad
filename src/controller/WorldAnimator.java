@@ -114,6 +114,10 @@ public class WorldAnimator {
 		}
 	}
 
+	public void setKeys(Scene s) {
+		s.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
+		s.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
+	}
 
 	private HashMap<Integer, ImageView> fillMapAndDisplay(Collection<RestrictedEntity> entities){
 		HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
