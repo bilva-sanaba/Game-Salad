@@ -12,24 +12,37 @@ import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
 
 public abstract class AbstractEngine {
-	
+
 	protected List<ArrayList<IComponent>> myComponents = new ArrayList<ArrayList<IComponent>>();
+	private IEntityManager myEManager;
 	
-	public AbstractEngine(IEntityManager myEntityManager) {
-		
-		/*for (ComponentType ct: neededComponents())
-			myComponents.add((ArrayList<IComponent>) myEntityManager.getCertainComponents(neededComponents().get(i)));
-	*/
+	public AbstractEngine(IEntityManager myEntityManager){
+		myEManager = myEntityManager;
+		int i = 0;
+		for (ComponentType ct : neededComponents())
+			myComponents.add((ArrayList<IComponent>) myEntityManager
+					.getCertainComponents(neededComponents().get(i)));
 	}
+
 	/**
 	 * Returns the componentTypes it needs to operate
+	 * 
 	 * @return
 	 */
 	protected abstract List<ComponentType> neededComponents();
+
 	/**
 	 * Updates its lists of components
-	 * @return 
+	 * 
+	 * @return
 	 */
 	public abstract Collection<? extends Entity> update();
 	
+	/**
+	 * Returns the entity manager
+	 */
+	protected IEntityManager getEManager () {
+		return myEManager;
+	}
+
 }

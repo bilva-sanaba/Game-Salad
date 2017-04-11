@@ -9,10 +9,10 @@ import view.GUIComponent;
 import view.UtilityFactory;
 import view.ViewData;
 
-public class ToolBarView extends GUIComponent{
+public class ToolBarView extends GUIComponent {
 	private ToolBar myBar;
 	private ViewData myData;
-	
+
 	public ToolBarView(UtilityFactory utilF, ViewData data) {
 		myData = data;
 		myBar = new ToolBar();
@@ -22,7 +22,7 @@ public class ToolBarView extends GUIComponent{
 	private void fillBar(List<Button> toolBarButtons) {
 		toolBarButtons.stream().forEach(myBar.getItems()::add);
 	}
-	
+
 	@Override
 	public Region buildComponent() {
 		return myBar;

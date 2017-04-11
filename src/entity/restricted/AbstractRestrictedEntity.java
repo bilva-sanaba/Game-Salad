@@ -1,8 +1,10 @@
 package entity.restricted;
 
+import java.util.Observable;
+
 import gameView.Coordinate;
 
-public abstract class AbstractRestrictedEntity {
+public abstract class AbstractRestrictedEntity extends Observable {
 
 	protected int myID;
 	protected Coordinate myCoordinate;
@@ -10,7 +12,7 @@ public abstract class AbstractRestrictedEntity {
 
 	public AbstractRestrictedEntity(int id, Coordinate c, String image) {
 		myID = id;
-		myCoordinate = c ; 
-		imagePath = image; 
+		myCoordinate = c;
+		imagePath = image;
 	}
 }

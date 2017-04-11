@@ -1,5 +1,9 @@
 package view;
 
+import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
+
 import components.ComponentType;
 import components.LocationComponent;
 import components.SpriteComponent;
@@ -18,15 +22,17 @@ import javafx.scene.paint.Color;
  * @author Justin Yang
  *
  */
-public class GridView extends GUIComponent {
+public class GridView extends GUIComponent implements Observer{
 	private GridPane myGrid;
 	private ViewData myData;
+	private int i = 1000;
 
 	public GridView(UtilityFactory utilF, ViewData data, int rows, int cols) {
 		myData = data;
 		myGrid = new GridPane();
 		myGrid.getStyleClass().add("view-grid");
 		myGrid.setAlignment(Pos.CENTER);
+		myData.addObserver(this);
 
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < cols; col++) {
@@ -42,10 +48,13 @@ public class GridView extends GUIComponent {
 		rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println(String.format("Click at row %d col %d", row, col));
+				System.out.println(String.format("Click at row %d col %d", row,
+						col));
 				Entity userSelectedEntity = myData.getUserSelectedEntity();
 				if (userSelectedEntity != null) {
 					Entity placedEntity = userSelectedEntity.clone();
+					placedEntity.setID(i);
+					i++;
 					myData.placeEntity(placedEntity);
 					myData.setEntityLocation(placedEntity.getID(), row, col);
 					drawEntity(placedEntity);
@@ -56,15 +65,37 @@ public class GridView extends GUIComponent {
 	}
 
 	private void drawEntity(Entity entity) {
-		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
-		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
-		Image a = entitySprite.getSprite();
+		LocationComponent entityLocation = (LocationComponent) entity
+				.getComponent(ComponentType.Location);
+		SpriteComponent entitySprite = (SpriteComponent) entity
+				.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
+		spriteImage.setFitHeight(40);
+		spriteImage.setFitWidth(40);
 		myGrid.add(spriteImage, entityLocation.getX(), entityLocation.getY());
 	}
 
 	@Override
 	public Region buildComponent() {
 		return myGrid;
+	}
+
+	public void refresh(){
+		Entity tempEntity;
+		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
+		for(Integer i: myMap.keySet()){
+			tempEntity = myMap.get(i);
+			drawEntity(tempEntity);
+		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		Entity tempEntity;
+		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
+		for(Integer i: myMap.keySet()){
+			tempEntity = myMap.get(i);
+			drawEntity(tempEntity);
+		}
 	}
 }

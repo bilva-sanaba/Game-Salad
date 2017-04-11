@@ -8,8 +8,8 @@ import components.VelocityComponent;
 import entity.Entity;
 import entity.IEntityManager;
 
-public class PhysicsEngine extends AbstractEngine{
-	
+public class PhysicsEngine extends AbstractEngine {
+
 	public static final int LOCATION_LIST = 0;
 	public static final int VELOCITY_LIST = 1;
 	public static final int ACCELERATION_LIST = 2;
@@ -35,11 +35,14 @@ public class PhysicsEngine extends AbstractEngine{
 		}
 		
 	}
-	
-	public void add(Entity myEntity){
-		myComponents.get(LOCATION_LIST).add(myEntity.getComponent(ComponentType.Location));
-		myComponents.get(VELOCITY_LIST).add(myEntity.getComponent(ComponentType.Velocity));
-		myComponents.get(ACCELERATION_LIST).add(myEntity.getComponent(ComponentType.Acceleration));
+
+	public void add(Entity myEntity) {
+		myComponents.get(LOCATION_LIST).add(
+				myEntity.getComponent(ComponentType.Location));
+		myComponents.get(VELOCITY_LIST).add(
+				myEntity.getComponent(ComponentType.Velocity));
+		myComponents.get(ACCELERATION_LIST).add(
+				myEntity.getComponent(ComponentType.Acceleration));
 	}
 
 }

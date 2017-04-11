@@ -1,0 +1,586 @@
+<list>
+  <entity.Entity>
+    <identifier>0</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent>
+        <classPath>file:/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <sprite>
+          <url>file:/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/images/dirt.jpg</url>
+          <progress>
+            <value>1.0</value>
+            <valid>true</valid>
+            <bean class="javafx.scene.image.Image" reference="../.."/>
+            <name>progress</name>
+          </progress>
+          <requestedWidth>0.0</requestedWidth>
+          <requestedHeight>0.0</requestedHeight>
+          <width>
+            <name>width</name>
+            <value>50.0</value>
+            <outer-class reference="../.."/>
+          </width>
+          <height>
+            <name>height</name>
+            <value>50.0</value>
+            <outer-class reference="../.."/>
+          </height>
+          <preserveRatio>false</preserveRatio>
+          <smooth>false</smooth>
+          <backgroundLoading>false</backgroundLoading>
+          <platformImage>
+            <name>platformImage</name>
+            <value class="com.sun.prism.Image">
+              <pixelBuffer class="java.nio.HeapByteBuffer">
+                <mark>-1</mark>
+                <position>0</position>
+                <limit>7500</limit>
+                <capacity>7500</capacity>
+                <address>0</address>
+                <hb>fLRRdLdNc7tLdLZIgLpTdrdPbrpNbbdGerNIeKZDcaBAa6U/aKc/bKZCbKNIb6VRerA4dK87a6s7
+YqUxYKQtYKMwbK9Faa5DbLBDf7xVhrthibtkerFMfblIeLtKa7BFcatEbKo7aaw5bKo/baVCbqZB
+bas8aqw+Zag/Y6Q8YqAxZp8sWY4iVpAqT5gsXrY+b65FcbBHgLNUebNMcbNFd7VGebRKdbJKb7JI
+dLZKeK9JdqRCcaBAa6U/ZKc9Zac9aaVDcKdKe6xDda5Fb65DXJovZJszaJw3cq1Db60+bqw9gL1V
+fbtaf79febdSerVLebJJcKlCcKNHbqZBaqo8Zac7Z6Y+a6hBbatAbadBaqNEZZ4/Y502Y54wU44k
+UIwqUZIuaq9FcatEcqxFfbNReLFKc7FCd7ZEerZFerNIeLFIe7JMfLBMdKZDb6M/Z6Y7YKo5Yas6
+aqg9bqE8gKJVdadObalJZJtAbppFbp1BbaY9bKs2ca07hL9Ver1Udb5Vd7tUeLBNf7FOe6tIcKVN
+cqhGaqg9Y6U3Y6g7Zao9aag9bKRBbqFFaJ1BZZ06Xp0yT5EnUJEtV5AxdKdIcaxCcq1DdbZOcrRK
+dLdGcLE9dbE/dq4/gbRLgrZRhblVfLBMdK1EbK8+abQ+bLVAdq4/b5gwXmU5UW4sTHwoaplJbppP
+bKJMX6Q3YKwwY6cwbqk7aqk+Zao9fb5Yhrtfjb5igrRRfLpVfrhReLFGca9AbLJAZK04YaYyZ6U4
+a6U+baVAbqdAZ6Q8W541XqE4Ypw2dqZCaq4/a69AdLdQcrVMdLdNbqxBcKc/cqZBgbVRhrxah7tZ
+gbNQgLNOerNIeLhKfbhOg69NcI8xUj0sR0gcRWAZeqFSc6JUa6dPXKg8XKs0XqQwXpkraKAzZp80
+iL5cj8BllcRojL5bgcpVi8RZhrZQfLFJdrRHaq08YaEvYqMvY6Yybaw6daxEcqlDaKc+Zqo9aqU5
+dqc8aKw9aa0+fLNVdLBQebJTeadNfKJPeaNRgLVdg7xeibhah65Rh7BSgrFRg7JSh69Wi6xbbYk+
+XjkzVEEhU1wbfJ5IcKFFaqFEY5o9ZJs9aqI/ZZw0bKA0bJ00jb1aj75glMFkl8BghMdUj8JdiLFV
+e6hLeq5Mc6VGbJc9bJw5ZaM2bq48cao/cqZBa6Y8Zac5bqdAd6NEdadIdqhJibZZf7JThbFacIY+
+dX1Ea4FDgrNkhcNikcVhha5OfKtNd61Pfq1RhKdTiKhfZYhEXzkwVz0iVlsbeKJAbqo5d6RFaHk1
+cXs/Yn4zb588Zp4xap81h75YjMNekMBdlrtcjsJdlL9ji7ZdgrdbgbhddphOaXc8Z3k7YYs3aaY+
+ZqY4ZaM0Y6c2Y6c6bZ5FZ4I/coBCc4FDjcFchr1XkLdeUVIWVT8aSkcchatgktFolNNedrJBYKU7
+Wqc9Z6hAdKBBfKFRWYM7XjsoWT8kU10gdK9DZrU2dKJAS0UVWD4jSUwXfahMerVHd7JGgL1WfL1V
+gL1WjL5bk8FflL9lj8Jlj9Fti8hpaYZEUUklTUUhS2QjWZIzUpoqUJ4mWKgtXaU3YIk7RU4fUUMg
+UkQhiMNZiMFYkLJbWVIeXjokU0AijqVhl89klNJXdbZCWKU7VKo9YKo5cKg7dKJAW4kxWzsiWUAi
+VV4nc69LY7c9cqFFUUMgXjgvT0oke6ZNdbVDerVHgrhYfbhafsBehMdejsNXkcRfkspniMtkjsZr
+c4VLVD8kVz8lVF4pZJU8U5YsU5wpWacwX6A4bIxDSEYdWD0oWT4pkbljk7limrBoUEgjWT43UT0y
+maFypMJsocVhhqpQb5pLZ51JbKZCcak8cqM6XIstXz0hWDogVlEpgqNcdqtPeZRNVUEmXDkzTEko
+fq5Yc7ZCea1Bka5emLNuhrNihsRhiMlRj8JZl75lnsFvo7p2gHlNXDwjXD4iVlYkaYM8bI5CZYo8
+bZRDdphLdYBEVEYfXD0oXT4pTUsbT00dS0chcGpacGZucGdsU044T04YV1ETVUcYU0MiTUwgYnw1
+faxMeK9KWowtXD0gXDwlXEQsUUklTE4dU0cdWzsmWjguRUYkZ5lEXKEtbJYyV1gcUkQfRk8YbJI/
+arE5e6dGZnEtTkgWWUchbU4yd046dVY5Z1owTUkaUEYiVEUmVEonS0YcV0ogc1Y0d1U6d1U6Xjsn
+Y0AsVjwra2ZgZWlyb2x1WUhBWT8kXz4dYzYjaTQuXjsoa3I+eqdUc6pNXY4zWjwgWz8pWj0vWDov
+VzYnXTkjZDspXTwrTkwmbJVHYaA3d55DU0gbXjsoTz8deYpGbbFKf6JQZ2QvXD8hYDolbkUzeVM+
+el0/ZVEwVTsgYjouYzMvXjYuWjspX0EneVY6elc5elc5YTsmXzYiWDcocmhebnFqcGhlXEE2YkAn
+XjsdYzokZzYnXDohanI/gKxfeqxXZ4o4XkAkVz8nUTwrWT41XTwzYDspYT0lXDwjUkYgdYtLbZpF
+cZFGVEwnXz8yT0AjeINLb6RUgp9cbGo6WkMkVzgjaEoyc1g7a1Q0aFEyXT0mYzkpaTowYTktWzop
+XkAoeVc7eVY6eVY6f2M+flk8flpEb1pFb2ROdGBIfFpBfVo8fWE8gmY/jmxHiXBIaXA8UW8vUmsp
+ZmotfFc8eV9GcmBKYU49Zk05ZUovbVAwZ0oqaFQvXVwsU2UrVmIwUkksUjspTT8kW2E1Umk1XGo5
+XV83ZF1AZ1tFa1pAcFw7clo2dlk5eVo9e1o7dFU4XT8lVjwlXkModlk7eVc8eVc8j25Fk2pMmm1W
+eVc+clc5eVg5kGdJlG1Oj29JooBTtIler4hfeWVAUUsnUkMibEoul2pNlW1UhGJJfFo/dVIyfFg2
+dlUyd1o4b1k0UEAcT0QmUUMpVz4oWDkkW0EoTzsiUkAqTkQpXVtEbmxfdWxlcmBSdFY8fFg4hl0/
+k2xNkG9MgmhDWj8iVjcjXT0meFk6eFY7eFY7nW9NmGRMnmlZgVQ/e1Y5fFU0kmZJl2tSmGtOrnpT
+wIFYxIVkh1dDXTcuYjUwgUVEnWdLnGhSmGROhlEyiFIshVEsflMxelk2b1czWEAkVjosXDoxYjss
+YTchaDsmZTcqZTMyWTgxaVxWbmdudGZzdlxdelBAhVI3jVc7m2xQk29NgmNEWzgkYjouZD0se1Y7
+eVY4eVY4iWZKjmZNkGZOcEwybk8zcEwyj2NKlmpNl25OonlZrYBhqnxig15EYkYuXEEsbE89mWxL
+l2pLjWRGcEsuck8xbk8ycVQ2a00xa00xYEImWToeWjohY0MsYUEsYkEuYUAtY0AkZUUsak44dFtH
+dFtHdFhCelpBeFU5fVo+g2NKh2tVfWJNYEUwYkQsZUMoiWRHj2E/kGJAeFpAd1Q+d1M9Xj4nWz8n
+XjwjjGJJmGtOlWpIl2tGmWlFnGpJil89e1g6eFY7hF5HmWtJl2pJimFBYD0fXT0kWT0lVj0nVj0n
+Vz4oWD4nWDwmXD4mclI7d1U8elg/fFhAelg9clQ8YkcyVz4qVTwoYkYwdVU8eVY6eVY6eFY7dlY9
+c1U9cVE4eFU5g1w9roVluIhiuYljdlpCdFQ9dlM/XEAqVj4mVTcfimJIlWpKmm9Mmm1EnWlBnmhC
+jl44fVczeVU1hFs/mG5Ilm5KiGREXDofWDwmVj0pUjsrVj8vUjsrWD4tWDwnWjsmc1M6eFY7d1Q4
+d1Q2dVU8dFY+Zko0WD0oWT4paUszd1c+eFU5e1Y5fFc6eVQ3eFM2gFk6fFMzhFg1tIZiuYVduoZe
+eFU1elM2fVg+WjwiVz0kWjwih2JIlGtNkGhElWtDnGxGnGpHiWE+d1g5c1g9fF1IkG5JjmxJgmFC
+Xj8jWz0lVzgkXD0pXD0rXj0qXTomWTYgYj4kc1A0elg8dlU2elk6e1g8dlQ5Z0UqWDgfWzsiakgt
+dlM3elc7eFM2gFk6flc4fFMzflMxflAsiFgytoZguYVduoZetIVbs4Fcq31caEMmXD4iWjwidFA2
+flk+f1w8fFo3fFU2f1o/iW9Yj4BtiX9zf3JqeFs9eVw+els+dFI2elc7gls+pHtfqXxfq3xern9h
+roFiq4Bgg1w9dlM1eFk8lnlbroNhsIVjr4RirYJgp35elG1OfVg7eFM2flk8jWZHkGdHkGVDglYz
+gVUyf1MwmW1KnW1Hn29JvYdYvoVat4NcZj4bWz4gXT8lb000eFY9cVM3d1o8eVlAclZBfGtbh4V5
+h4mGd3h6clQ4dVY6eFY6eVU1fVQ0hlg2uIZhv4piv4hfu4RbuIRcuIhihlo3e1Q1e1g8m3xgt4Ze
+t4ZeuIRcu4dftYVfmW1KfFMzelU4hGFFlG9Slm9QkGdHeU4sfVQ0gFk6k2xNlmtImG1KvYdYu4Rb
+tYNeaUIjWj8iWT0lb084eFY9dlc6dlc6d1U5dlY/hnFgjoh8iIeCdXN0eVQ5e1Y5flc4fFMzgFUy
+h1k1soJauIVat4RXu4ZcuodcuIdfh1k1flMzfFM3oHheuIRcu4ZcvIZavIZauYVdm21Je1IyeVY6
+flxBjmtPkm1QkGdHflU1flc4fVo+i2lOlWxMlm1Nuolgt4NesoRjcU4yZ000Z0s1jWpUlnFXl3NT
+l3FNnXFOmm1OmHVZjHZfiXhmhnRoj2JFjGBDiV1Ae1IyflU1fFYyk2tHkWpDkmhAoHZOpXlUoXVQ
+d0opb0QkbkIllGhNpXVPqHdPqXRKpnFHqHRMkmZDeFEyelg9eFg/gF5Dg15Bh14+il89iGFCh2RI
+knBVlWxMlm1NuIhgtoRhtIVnfVo+dFk+c1U9oXxisoZptIhjtYZcu4RbvoRcqnhTlG5KkW5Qk25U
+mGtOkWVIkmlNe1Q3eFU3d1Y3d1Y3d1Y1e1o5kG1Nkm5OkW1NaEEkYTkfXzcdh19Glm1NlmpHm21J
+nGxGl2lFimFBeFU5dVU8dVU8elg9flc4g1g2mG1LlWxMlG1Okm9TmWxLmm1MvIhguYNftoRjgVg6
+eVc7elc7p3tguYhos4NduYZbvoNXv4FYrXZNmWxFlmtImGtMk2xPlG1QjmlOelc7e1k+eFk9d1g8
+d1g8eFY6kW9TkG5Sk3FVY0EmYD4lXj4nhWVOkm1QlG1Ol25Ol2xKlGtLh2JFeFY7dlY9eFg/eFY7
+eFM2gFc3l2xKlWxMkmtMkGtOl2pJmWxLs35Us3xVtH5chVg3fFU2elM0m2xQqXhYpnhUsYBYt4BZ
+tnxWp3NMk2hFkmdFlWhLlW5Pl3NTiWRHdVI2dlQ5dlQ7cE41ck42ck40jGhOi2dNjGpPaksvZkYt
+ZkgufmNIkGtOkm1QkmtMj2ZGjmdIhWBDeFU5dlY9dVU8eFY7elc7f1g5hl9Ag15BhmNHjmxRkGVF
+kmdHnWxEnmhEn2pKf1IzfFg4elM2gVU6flE0fVQ0jWJAmGdGmGZFi149eVUzelU4hVxAkmhCmHBM
+jWdDelU4e1c9d1M7YD0nXTokYj4odVE5dFA2e1g8j2xOlHFRkm9Pk3JPlm1NlGtLh14+fVQ0flU1
+fVY3d1I1e1g8d1Q4eFY7eFY7cU80YkAlWTkgX0EpclQ8e1Q3fVY5mG1LmWtKmWpMfVY5eFY6eVY6
+fFQ6flY8eVY6iWZIlG1Ql2tOiWJFd1Q2eVY4hl1BnG1Dmm1EkWZDelM0d1M5dVI8XDsoWzwoWjkm
+eVZAfFg+e1Q3k2tIlGxIlGpCl21Fmm5Ll2xKiV48fVQ0fVQ0flU1fVQ0flU1flc4e1Y5eFY7cFA3
+Wz0lVjokXUErclZAeVY6elc7km5Olm1Pl2tQflk8d1U5eVY6d082e1Y8dFU5g2VJkGxSk2tRhWJG
+eFc4elc5glk7l2tGlGlGkGdHfFc8d1U8b1A7Xj8rWzwoXT4peFY9dVI2eVIzkGhFm3BNlmpFmW1G
+lWpIlWpIiF8/fVY3elM0fVQ0gFUzfVEufVIwelExeFU5clI5WDoiWTsjYUEodlY9elU6fFc8k29N
+lmtLmGtMkGdHkG5Lj2tLckktYTwhXT8jak80eFg/flpAeFY6dFU2eVY2eVAyY0AqYj8pYUEqWz0l
+XkAoYUMrb1E3clM3clA0e1g6fVk5eFQ0e1c3flk8elU4f1o/gVo7gFs+eVY6dVM4e1g8k2pKrIBd
+soJcsYFbrYFeq4JinXpedVM4dVI2eVQ3j2hJkGlIkWpJlW1JmWtJnW1Jl2tGlm5Kk2tIcEUlYDkc
+XT8jaE0ydFY8eFY9dFU5dlk7elk6cUgqVDwyVT0xVjwvVz0sWT0nWTsheVg5eFYzflo2d1Etf1g3
+eVU1elc7dVU+dldDc1ZEd1Q4elg9dlY9dFY+elg9k2xNsYViuIdfuIdftIResIVjo3xdeVQ3fVY3
+glc1lmpHmG1KmW5Lmm1GnW1FmGhAnGxEl2tGk2xLbEouWz0jWjwkbkwxeVIzgFUzflMxe1I0elc7
+bUsyVj02VTopYUEqWDogW0EqW0Eqc1U7fVg7e1Y7eVRBdVRFeVZDeVQ6e1Y5dlc7cVc+f1QyeVg3
+b1g5cFg8elg9lWxQsodlsoddu4hZvH9SvoRfpXtibVZEbVpJd1U8nmlKl2xKl2xKlWpHmW1ImGxH
+m29Kl2xKkW1NclA1Z0cuZkcrg2BClWxMnHBNnG5Kmm5Llm1NhV5BY0k8aEgzd04yh14+hGFDg2RH
+g2BChl9Ahl5Ea0cxaUg1bkgxj2NGmm1MlW5Nj3BTn2pIlm1NgWJFdlc7fFQ6k2ZJp3xapXtTp3ZL
+rHZKr3tWm3dde2tbe29fhGxUiWBEiWJDiWJDl3BPlm9OlWxMk2xLkW1NkW5QfFo/eVc8e1g8nXZX
+sYVitYVftYRcuIZhtoZio3VRc1dCf1Y6jlo1uoVdsYRbrohjl29MmWxNk2lQXjslXT4pYTwhqXdU
+vYZfuIdfsIhkv4NftYNgk2pKe1Q1fE8yi1w+mm1Ok2tHmm9FnGtCl2lHi29XjoV0jYp7kYJtc1U9
+elU6elU6lW5NlG1MlG1Okm1QlXJUk3BUf1xAelc5eVIzm3NQsoZht4dht4ZeuIdfs4Jao3JKdVY5
+gVMxlFYvwoVZt4Zbr4VdlWlEmmlJlmpRWT0nUz8nWTkgq3lYwYNcv4Zbt4dZv4Rct4VglWpIfVQ0
+g1Q2jV5AlGtNkm5MkWtGmmxImG1NjnJckol6ioZ6kYR0dFlGelU6e1Y7mW1KlmtJlWxMimZGjWpM
+imdLfVg7fFU2gFc3nHFPrYFer4Ner4FdsoJcrn5WqHdPflw3jlw3oGI9sXdRq35XonxVmm5LnWpL
+kGZOX0o3UEk3WUg2oXlguH1bu35SsHtJtYFZrYFai2hCeVUxf1Y2glk7hmFEiGlMjGlJmm9Pmm1Q
+j29ajXtth3tvh3Rmb1A+dVE3dVE3n25GnGxIlWpIf1g5fVg7fFc6fFU2gFc3fFEvjWJAk2pKkmlJ
+k2pKl2xKmm5Jn3JLrYpgs4Ndq3NShlM0e1c3fVw5lGlHnGlMk2pUfW1dbnFmbWtfiW1flGJHomhA
+pG89lmlClW9KgWA9elk4e1c3bEcqXT4iWD0ibUswkGdJm25RimVLc1hFblhKb1RDYj0rWDwnWDwn
+nGhBm2tHmG1Ne1Y5elc7eVQ3elM0fVIwf1QyjmNBlW5Nk29PlHBQlW5NmG1KoXVQrYxhtYlkrXpb
+fU81dlM3eFk8lG1QmGpQj2xYeGxcZWtha25lgnBklWxWnGpHm2g9mm1Mlm9Qf11BeFY6eVQ5aUYq
+Xj4nWz8pakwylW5Pm25NjmVHd1c+dFhCc1M8XzogWD4tWD4tnGxImG1Lkm1Qd1U8eFg/eVc8fVY5
+fVIwgFUzjmNBlG1OkGtOkW1Nk2pKl2tIo3ZPrYtlsIhkqXtagVI0flU3fFc6kmpQkmxViW1YeGta
+bWxadW9fgWxbkm5YlmpPl2xKl2pNlWtSgFxEe1c/e1Y8a0ctXj4nVzsmaUszlHBQmGxJkGVCelY0
+dVQ1dlU2YDwaWzsiXDwjhFs9fVg9elpDXkItXkMuXT8nhGFFjmVFkGVDh1w6gVg4f1g5imNCmW5L
+mm1GnWxElHJNmnJOnm5Ksn5XsHxXpXdVhFs/eldBdVpFb1tDb1tCdFxAd1k/fVlBfVlBfFhAglU4
+glpBeVU/eVZAelY+dVE3c1M8bk86dVU+f1g5g1cyiVw1rIJcpn5bqIBco3xVqHpYqXtZeFQ6dVU8
+dVlEWUAsWD8rWDwmhWNIlm9Ql25Ohl09fVQ0fVY1iWBAlWpHl2pDnGxEkm5Ml29Ln29HvINYvYJY
+s31XgVU4d1dAc1lCdlg8elg1f1cze1UxdlM3dlY/dldDfVUyeVQ3dlY/dldCdlY9dlc7eFg/d1dA
+dlQ7fVQ2g1Uxj142t4Vgs4JhuopmuIhiu4ZcvIdde1g8d1U8c1U9WT0oVzsmWTsjgV9Ek25Rk2xN
+g1w9elM0flc4i2RFk2xLlmtJmG1LlW5NlW1KnHBJu4ZcvoNZtn5ZflEyeFY7dFY6eFQ0f1Muf1Ir
+fFQxe1k9dFVAc1RCf1gveVUzeFpAclg/cVY7dlc6dlQ4dlI6fFc9fVQ2f1EtjFo1t4JguINjuoVl
+tIBbuoZfvIhhfVY3eFM2eVY6dlQ5eFY7dlQ5gFxChWJGh2JFgFs+e1Y5eFU5eFU5eVU7eVc8fFo/
+jGE/iF8/jWZFqH1aq3tVq3lWiV48h2JFh2RGfFMzgVUygFUza0gqZkguZEYuiGhRm2xAk2hFelg/
+Z0gzaEowc1Ize1Y5f1c9gVk/kmtMl2xKmmxKqnlZqndYrXxbqnxYpnhWqHpYgVY0f1QyflU1kGdH
+k2xNj2pNfls/elc7dlM3eFU5elc7eFU5akgtWzskWjsmX0MugFUze1Q3fVk/km5Uk2xNlm5LlGxJ
+kmtMkGlMfVQ2f1g5e1g8WzwnWz8pWjohmHVXvYRXtoRjgFdBXDsoXj4nakcpe1IyflI1jmVJrYlp
+r4tnpoBcmW5OlmtLlWpIlW5HmW1Km29MflU1f1Qyf1Qyk2hGlWxMlm9Qfls/e1c9elY8elc7elU4
+e1Y5bksvXjwjWz8pYkc0f1Y2e1Y7f1xGj29YjW5Pj21ImXJRl25SlGpRe1Y7d1U5dVc/XD0pXj4p
+XjsfnHZRvoNXuodof1ZEWTkqXj8qa0gsglc3hFU3jmJFrYlproxppYNglW5Nl25OlW1JlG5HmWtH
+mmxIfVg7gls8hFs7j2RCkGdHkWpLeVY6c1E2dFA2flk8hFs9g1g4c0osYj0iYUEoZUYxdE8ydVA2
+elQ/jmpQj25LjGxFiGRCi2NKimFLelY+dFU5eFpCaEUxXzkkZT4dmHNJsn9Uqn9feVhHVj4yVT8q
+ZEYqfVQ0gVI0kWRHpn9gpYFfoXpZmW5OmGlLmWtHmW5EmW1Kmm5LkHFVkm9TjWZHglk5flU1eVQ3
+ZUImXTsgYDwijmdKsoVktIZkmmxKf1Y4dlE3bks1XjwgYTskZzwpe1M5e1kzc1MqXDoXZTwmXzkm
+dFE7dVc7dlQ7elE9gVQ9fFQxelUof1QneVY2Y0k6UEAzUD8tZUwuflc2glQzfk8xf1Y2fFU0hls7
+mWhKn2hKomxKnGhAlGtLlm1Nm25Hl2xKlHBQelc5e1Y5elY8YEEsWT0oWjojk2pKuYhgt4Zel2xJ
+elc5dVY6bU4yWT4rWDwnYkIpeVc7elc7dlQ4Wz0jWz8nXD0odVU+eVU7elU4fFU4elU4eFY6d1g8
+e1c3eVU7Z0gzWDspWD0oZ0wvd1g5e1c3fVU7fFQ7e1Y8fVg9km5OlW1KmG1LmWxLmm1Mmm1Mm25H
+mG1LlHBQe1g6fFc6e1c9YEEsWj4pXDwllGtLuolhuYhgmW5Le1g6dlc7bk8zWT4rWT0oYkIpeVc7
+elc7dlQ4Wz0jWz8nXj8qd1dAe1c9fFc6flc6fFc6elg8eVo+fFg4eVU7Z0gzWTwqWT4pZ0wvd1g5
+fFg4flY8fVU8fFc9flk+k29Plm5LmW5Mmm1Mmm1Mmm1M</hb>
+                <offset>0</offset>
+                <isReadOnly>false</isReadOnly>
+                <bigEndian>true</bigEndian>
+                <nativeByteOrder>false</nativeByteOrder>
+              </pixelBuffer>
+              <minX>0</minX>
+              <minY>0</minY>
+              <width>50</width>
+              <height>50</height>
+              <scanlineStride>150</scanlineStride>
+              <pixelFormat>BYTE_RGB</pixelFormat>
+              <pixelScale>1.0</pixelScale>
+              <serial>
+                <int>0</int>
+              </serial>
+            </value>
+            <valid>true</valid>
+            <outer-class reference="../.."/>
+          </platformImage>
+        </sprite>
+      </components.SpriteComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent>
+        <classPath>file:/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/images/sand.jpg</classPath>
+        <sprite>
+          <url>file:/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/images/sand.jpg</url>
+          <progress>
+            <value>1.0</value>
+            <valid>true</valid>
+            <bean class="javafx.scene.image.Image" reference="../.."/>
+            <name>progress</name>
+          </progress>
+          <requestedWidth>0.0</requestedWidth>
+          <requestedHeight>0.0</requestedHeight>
+          <width>
+            <name>width</name>
+            <value>50.0</value>
+            <outer-class reference="../.."/>
+          </width>
+          <height>
+            <name>height</name>
+            <value>50.0</value>
+            <outer-class reference="../.."/>
+          </height>
+          <preserveRatio>false</preserveRatio>
+          <smooth>false</smooth>
+          <backgroundLoading>false</backgroundLoading>
+          <platformImage>
+            <name>platformImage</name>
+            <value class="com.sun.prism.Image">
+              <pixelBuffer class="java.nio.HeapByteBuffer">
+                <mark>-1</mark>
+                <position>0</position>
+                <limit>7500</limit>
+                <capacity>7500</capacity>
+                <address>0</address>
+                <hb>xr6Nxr6Nxb2M49uq39em4tqp5Nqp49mo4til3dOg3tSf3NKd4Nah6t+p59ym49ii29Kb29Sd2NGa
+0suU0MmS1M+X19Ka19Ka1tGa5eCp496n4dqm4Nml3NSj39em2tCf1tSZ0tCV3die3teg3dag29Gg
+3dKl2dCn6eG8+/PP+/PO7+rCyMGTy8WTy8SO29Wb2NOc2NOcxL2Jxb6KyMGN4tun4dmo5Nqp4dem
+4dem4tin3tSj39Wi4Naj49mm6d+s592q49mk2tOd29Se2NGa0suU0cqT086W1tGZ1tGa2NOc4t2m
+4Nqm49yo4dmo39em39eo1s6f0s+Y09GY2tWd3dag3teh3dOi3tOl2tGm6uG4/PTN+/PM7ea8ysOV
+zsiWzseR2NGa2dKb2dKbyMGLyMGLzMWP39Wg49mm49mm4dem49mo5Nqp3tOl2c6g3dKk4dao5Nmr
+59yu5Nmr2tOd29Se2NGb1M2X08yW1M+Y19Kb19Kb2NOc4tyo4dun5t6t3tal3NSl3NSl2dGi0s6e
+2daj19Gf3NWh4dek39Wi3dOi2NCh6eGz/PXJ//rO7ue5ysSUxsCMzMWP29Sd2dOZ2dOZ4dih39af
+3tWe3dOe3dOg3dOg29Gg39Sm3tOl5tuu6t+y6N2w08ibv7SHwraMx7uR0cqU0suV0cqUzseRzciR
+z8qT0cyV0syY0MqW5N6q5N6s6uS049us5d2v6uK0+PDC//vT//rQ5d6y3dWm3dOi3dOg39Wi4Naj
+29Oi1tCe19Gf2dOh3Nak4dqm4Nml5t+p6uSq6uSq4dei4dei39Wg182a2M6b2tCf3tSj4dao49iq
+59yv6N2w5tuu0seavrOGwreKyL2Q0suV0suV0cqU0MmT0MuU0cyV0s2W082Z0MqW6OKw5uCu5+Gx
+4tqs4dmr49ut/PTG//7a//zY5t223tKo3tSj3tKg3dOe3tWe29Sd1c6Y1tGa2NKe4Nml3dai39ik
+6+Gu6+Kr6+Kr4Nal4tin4dem3NKh2s+h2s+h39Sm4NWn39Sm4tep5t6v5t6v0sqbvbWGvraFxr6N
+0cqT0cqT0MmS0MuU0MuU0MuU0cuX0syY0sya5uCu492t5N6u5+Cy59+x5t6w+/LH//zd//fW5925
+3dGn3tGk3dGf3NGb3tWc3tWc2dOZ2tOc2NGb3dag29Sg4til7uSx7OKv7OKv39Sn4NWo4dap6t+y
+6N2w6d6x8ue58+i69Om74dmo2tKh2dKe1s+Z0suVz8iS0suV1s+Y1s+Y1dCY19Ka2NOc19Kb19Kb
+2NKe2NKe4dup3tim3den4tys4tut39ep59+x6eC/6+G+5ty45Niu6dyv4tak3dGd3dKa1MuS0cuR
+08yV0cqT1s+Z1syZ4Naj9eu49Om79Om75dmv4dWr4NSq8OS67uO27OG09+y++e7A9u694Nml1c6Y
+1M2W1tCW2dOZ1tCU2dOX1tGX1dCY1tGZ2dSc2tWd2dSd2dSd29af2tSg2tSg3Nak29Wj4dur5N6u
+492t5N6u4tq15Nu06t625tqw696x4NSk2c2Z2s6a186X0ciRzseQ0MmS1M2X0ceU3NKf+O67+ezA
++ezA49ir49ir4teq7OG08OW37+S29eu6+e++9/C849ym19CZ19CZ19GX2NKW2dOX1tCU1dCW1M+V
+2NKY2NGa3NWe29Sd3NWf29Se3dag2tOf3NWh29Sg4tqp5d2s4tyq4tyq5Nyu49ut6d6x6t+x6t2w
+49en2s6e2s6c1cuY0siTz8iSz8iS1M2X08mU3tSh+Oy6+ezA+ezA1MqZ1syb08mY3tSj3NKf3dOg
+4Naj49yo4Nml3dag29Se29Sd2NGa0syS0syS19GX3ded3Nac29Sd1s+Y19CZ19CZ29Se3NWf2tOd
+vreBvreDvreD2dKe1s+b2NGd3NWh3NWh3dai5Nqp5tqq59qt6duu5tms59qt5Nqp4dem39ik3tej
+29Ge2M6Z1MqV08eT0seZ0seZzcSL0MeOzcSN2M+Y1cyV182Y1M2X2NGb1s+Z3NWh3tej3dai2tOf
+0MmTz8iS2dKc39ih3teg29Sd0cqT0cqU08yW2tOd3dag4NmjrqdxrqdxraZw2dKc1M2X2NGb2tOd
+2dOZ2dKb49mk5dmn5Neq6Nuu6dyw6Nuv6d6w592s5t6t5N2p2c+c3dOe1MqVwbWBwLaDwLaDzceJ
+zceJzceL1M6S1c+V19CZ1s+Y19Ca2NGd3NWh3dWk3NSj2NCf0MiZ0MiZ2NCh39ii3teh29Se0MmT
+0MmV1cuY3tSh39Wi39WisKZxs6l0sKlz19Ca1s+Z1c6X1s+Y2NKW19GX49mk592q5dir6dyw7N+z
+696y6d6w6d+u59+u49yo2dKe3dOg2M6bwraEwrmCwrmC2dOV19GT2NKU1M6S1tCW1s+Y3NWf39ii
+3tej2tKh3NSj3dWm2tKj2dGi3dWn3tao49uq49uq4dmo2tCf29Gg3dOi49mo4tin4dekwLaDw7mG
+w7mE1MqV1c6X0MmS1s+Y1tGX1M2W4Nah5typ49ap4tWp49aq49ap29Ci2M6d19Cc2dKc5d6o49mm
+3NKfxbuIxL6ExL6E6OKm5d+j5uCm19GX1s+Y1c6Y4dqk6eKu5t6t2dGg1Myb18+g3dWm59yu7OGz
+59yu5t6v5t6v6N2v4tep5Nmr5dqs6d6w6Nuu69+v0ceW0MaT0ceU0MaR0ciRysOM1M2W0s2V0suV
+3tej6d+u5tms39Kl18qd1sqay8GOwbqEwLmDzMWO7uex7uSx5typzMKRycOJycOJ5N2n49ym5d6o
+2NGb1c6a19Cc3tej5Nyr5Nyr29Oi1s6d2tCf4Nal5tyr6N6t5tyr5t6w6N2w6d6x5Nms5tuu59qu
+6dyw6dyv59qt0saW08eX0ceU0ceSz8WQzsWO0MmS0MqW0suX3dWk5tut59qt4dSn2c2d2MyazsSP
+xb6HwLqAzMWO7OWu8Oaz6N6tzMKRycKLycKL2NKe2NKe3Nai2NCf2NCf3dWk2tKh29Oi29Oi5t6t
+7eOy6+Gw592q4Naj3tSh5duo6eC16d2z6Nyy5Niu5Niu4tWr5dis5dis5Neq1Mea2Myc1MqX39Wg
+4Nah4tmi2NGa1tCe1s6d1s6f18ye2Muf18qd08eX1sqYzcSNysSKycOJ0cuR4tuk5d6q4demxbqM
+xL+IxL+IzcGbz8SX0ceS39qa39qW39qW1c+TzMaWzcSj9OnV//rp//7p5d7B0Myf0tCX3Nua6eSt
+6OOs5t+r4dmo3tal3dWm3tSj3NKh3tSh1syX2M6Z1cuW9O238Omz8eq04tul2tSa39mfyMKIxb6H
+xr+IycKL0MmS0MmS0cqT0MmS08yV0cqT29Se2dKe1s6dwbmKxLuExLuE0cWb0MWXzsSP3tic3diY
+3tia1M2WzseZz8ej9OrP//vi///k6uTA08+gz8yV2NaZ6uWt6uWu5+Cs4Nml3tal3dWk29Gg29Gg
+3dOg2M6Z2M6Z2M+Y9O238eq07eaw4Nmj29Se3dagy8SOxb6Ix8CKyMGLzcaQz8iR0suU0MmS0suU
+0cqT2tOd2tOf1c6awbmIxLqFxLqFy8GOysCLysCL4dqj4Nmj4Nml0sqbzcSZzcac7OS/+fHM+vLL
+4dquzMaWzMaS3Neg5eCo5+Cp5N2n3NWh3NWh39em29Gg3NKf29Ge2tCb2dCZ2M+Y6eKr6uOt6eKs
+5d6o39em3tal18+e0sqZ1Myb0cmY0cqW1c6Y1c6Y19CZ19CZ19CZ29Se3NWf2NGdysOPysCPysCP
+wLd8vrV8vbaA29Oi3dWn3NOozsWcy8KXx7+R2dGi2tSi29WhzceTv7mFwLqGz8mX492j492j4dqj
+1c6Y1c6a19Cc0ceU08mW08mU2M6Z2M+Y0suU1s+Y19Ca2NGb39ik5d2v59+x9+/B/fXH//jJ7ua3
+3tal3NSj3dai5N2n5N2n49ym39ii3teh3dai19Cc2M2f2M2furV1urR4v7iC3dWm4Neu3tSwz8af
+ycCVyMCP1s+Y29Wb2tSYy8WLvreBv7iEzsaV4tyg4duh39ih19Ca19Ca2NGd1cuY182Y08mU182Y
+3NOc2tOc1s+Z19Ca19Cc4tun59+x5d2v9u7A//fJ//fI6+O029Ok3dWk4Nin59+u5t6t49uq3tal
+3NSj29Oi2NCf286k286kw75+w72Bxr+J2dGj29Kp286r08eh0MSa0ceW2dCZ3tWa3dWXz8mNxb6H
+x8CK0cmY3deb3ded3NWe2tOc2NGb2tCd3NKf3NKd39Wg182Y2M6Z2dKc0cqU1M2Z08yY3dWk49uq
+4dmo7ua19u699u696eGw3tal39eo4Nip4tqr4Niq4Niq5d2v49qv4dit29Kn3M6n3M6n3deb2tSa
+1c6Y18+g2Myi28+n5Niu59yv592s3NKd2M+W2tGY3dSb3tWe29Gc182Y0MqQ0syS19CZ49ym5+Cq
+7uSx/fPA/vTB+/G85Nql3dag3NWfz8iUz8eWzsaV1c2e1s+Y1M2W1M2W1c6X1M2X2NGb2tOf3tal
+4dmr4dit39at49qx8+rD8unC7uW+5Nu06Nux6Nux2dKb2tOc2tOd19Cc18ye18ye4teq5Nmr6N2v
+3NKh29Ge2tCb2tCb3dSd3tWe2tGa0cqT0suU1c6Y5d6o592q6d+u/fPC/PK//fPA4dek3dai3tej
+0MiXzsaXzsaX0sud1c+T2NKW1M6S082R0cuR3NWe4Nmj39em3dWn3dSp3tWu4ti09+3J9OrH8ObD
+5du459qu59qu29Sd29Se2tOd2NGb182a182c49iq59qt59qu3tGl286h3dCj28+f3NKf3dOe2M+Y
+0cqU08yW1c6a5N2p592s7uSz+e++//XE//XE4Naj3dai39emz8eYzcWWzcaY08ye19GV082P1tCS
+1c+R1M6S1tCW4dqj39ik3tan3NOo39av49m19OrG9uzI7+XB5Nq26Nuu6Nuu3teg3teg39ii3NWf
+3dOg4dem6t2w7eC07+K25tmt5tmt59qu5Neq49mo4dek2tCd1M2Z1c6a2dGg7OKx6d6w5Nmr4dao
+3tSj39Wk08mY29Oi1Myb/fXG///T//7Qy8SYwLqAxL6E1M6S29WZ29WZ19GX2NGa08yY2NCh2dGj
+3NOq2tGo3dSr2dCn3NOo3tWq39Oh39Oh4tyi4tyi49yl39ik3NKh4NWn6dyw8OO37eC06t2x696x
+6dyv4dSn3dKk3dKk29Ci0sqZ0MiX182c6N2v6t+x5dqs4NWn3tOl5Nqp08uaz8eW1s6d//nK//nJ
+//nL0sufwLmDwruF1s+Y3ded3ded2NKY1s+Y1c6a2NCf2NCi2dGj2dGj3dWn29Ok29Oi29Sg3tSf
+3tSf3Nib3tie3daf4tun39Sm39Sn6Nuv7eC07+K16d2t5tqq5tqq5Nqp4tep39Sn2s+i1syb182c
+3NGj59yu6t+x5dqs4NWn3dOi29Gg19Cc1c6a1c6a//zK//7O//zM0Mmbv7eIv7eG1c6a29Se3daf
+2dKb1M2W19Cc1s6d2dGi2tKj2tKj3tal39ii3daf29Wb3dSd3dSdwr6Bxb+FwbqE2NCf3dKk29Cj
+5diu5dis4tWo3tKi3NCe29Ge3NKf29Gg18+g1c2f39Wk3dKk2c6g0seZ0MWX0seZ1Mmb1cua1MqX
+29Se1M2X29Se2dOf39mn2tSi2dOj4Niq3dWm7eay8Omz7uew5N2m2dKc2tOf2tKh4Nip4Nip3NSl
+1s+b1c6X3Nac6OKm6uOs6uOswbyCxb6HwruF2NCf2s+h18yf4tWp5tms5tqq4tak3dGf2tCb2tCd
+2dKe2tOf29Oi2tCf3dKk3dKk0seZ0seZ08ia0siX08mW1cuW2tOc39ih2NGa29af2NOc2dOf29Wh
+2tKj2tKh6eKu7uex8Omy5t+o29Sd2tOf3tal3tao3NSm3NSm1s6d1c6Y3teg7+mv6uOs6uOsvbiB
+wbqExb6K19Cc2c+e3tSj4NSk5dmp4dWl39Oj2tCd2tCd3NKd2dKb19CZ19CZ39Wk3tSj3NGjzsOV
+z8SW0ceW0siV1cuW0smS2dKb2dOZ3Nac2tWd39qi29af3tmi3dWk4Nml6eKs7uiu8Oqw5N6k29Sd
+2NGd3dWm4Nes3tWq3tWq18+h18+e2tOf5N2n6eSs6eSs3Nai1s+b2NGd4Nml3dOg3tShxbmHu69/
+v7OD08eX49mo5Nqn1c6YysOMzMaM1tKV6d+u5tyr5Nqp18ye2tCf2c+e2M6b29Gc3NOc6eOp6+Wr
+6+Wr6uWr7Oev6uWt5N+o5N2p49ym39ih3Naa3tic19GV2tOc3NWh6OCx+vHG/PPK7eS7186j1c2e
+2NCf4tun3dih3dih49qh4dih49mm3tOl4tep4daoua98qqBrrKJv1MqZ59yu5Nms2M2gyb+OzMKP
+1s+Y7OKx7+W0592s2c+e3NKh2c6g29Ci2s+h18+e7eW08Oi38Om17uez9O258Omz6uOt6OOr5eCm
+2dWY1tKT08+S19Wc2NSk19Kq6ePD//nd//vf9+7N1M2h1tGa1dGR2daP2tSa2tSa5Nui4tmi4til
+49iq4dao3NKhu7F+r6Vwr6Vw0siX59yu5dqt1suex72My8GM19CZ7OKv7OKv5duq2c+e29Gg2c+e
+3NKh3NKh3NSj7ua18em48eq27uez8uu17+iy6uOt5uGq496n3die2NSX1dGU19Wa1tOe1tKj6uW/
+//nX//za9u7J1s+j1tCc1dGU2NSU2tOc2tOc1MuS1syX1MqZ49iq5Nmr5Nqp2M6b1cuW1MqV0siV
+0caY0MWX1sud2c+e1s+Z2dKb4Naj4dek4Naj29Ge29Ge2tCd29Ge2c+e1s+b4tun5N2p5N2p4Nmj
+49ym49ym3teh3dWk3tej6uWu8Oux7+qw496k09GY0c6Z1dGh3Nir3tet2NGlz8ia1M6czseRw7yF
+w7yGw7yGz8aP0ceSzsST5dqs5Nmr5tyr592q6d+q6N6p0ceUxbuKxruN1sud4dqm3daf2tSa182Y
+1syX3NKd3dOe3dOe3dOg29Ge2c+c19Cc3tej3tej3teh29Se29Se3NWf19Ca2tOf2NGb8+y2//zE
+//zE5+Kq0cyU0s2W0MqW0sya082b0cub0cuZ08uaysKRu7SAurN/urN/z8WQ0siV0siX5tuu5dqt
+5Nqp5duo5dyl5t2m0siTysCNyMCP0sqZ3tej3NWe29Wb19CZ1M2W2dKb3NWe3NWf3dag19Ca19Ca
+3NKd4dei4Nah3tSf4Nah39Wg39Wg29Gc2tSa2NKY8uu0//nD//jC5d+r0cuX082Z0cuX0cuX0syY
+0MmV0cqW0MmVyMGNurN/ubJ+ubJ+29Gc3NKf3NGj49ir5Nms49mo4Naj4Neg4Neg3NKd2tOf2tKh
+29Sg39ii3ded29WZ1s+Y08yV2NGa39ih3teg2tOdy8SOysONzsSP1MqV08mU08mU3tSf3tSf3tSf
+29Gc1tCS2NKW5d+l6eKs6OGt4dmo2NCh2NCh2tKj2dGg2dKe1s+Z08yW0suUz8iRyMGKx8CMx8CM
+8ee07+W07uO14NWo4NWo39Wk1syX1cyV1MuS5N2m8Omz8Om15+Cs4Nmj3tie2tSY0suU0MmS19CZ
+4dqj4tuk2dKcwLmDvbaAwLaBysCLyb+MysCN3dOg39Wi3dOg2tCd186T2dCV1M6Uz8iSz8iU2NCh
+3dWm39ep3tan5Nyt5t6t3tejz8iSy8SN0smS1s2U1s+Z1s+Z7eOw7eOy8ue53dKl4dap49mo1syX
+1s2U082T6OGq7uex7OWx5t+r4Nmj39mf2dOX08yV0suU19CZ4dqj49ym2tOdvreBvreBvrSBysCN
+x72Kx72K3tSh4Nal3NKh2c+e2M6Z29Gc1cuW1MqX08mW3NKf4Naj4Nal49mo5duq49mo39Wi08mW
+0siT1MqV182Y1c6Y1c6Y6N6r6d+u6N2w5Nms49ir4tin2M6Z1MuS0cuRz8mP1M2X0cqW1c6a2dKc
+2dOZ1c+T0MmT0suV19Ca2dKc2tOd29Se19Cc2NGd2tCd0ceU0siX0ceW7OKx6d+u6d6w39Sm39Op
+3NCm29Ci3NKf2tCb3tWe5dyj4tmi49mk3dOg4dem29Ci3NGj3NGj2M6d182c1syZ1syZ4til4tin
+49ir5dqt5tuu5duq1syXzsiOzceLu7V7tK13tq97xr+L0MmT08yV0syS08yW0cqU0suV0cqU08yY
+2tOf7+i08eq28Oaz4tin4dem39Sm9+y+9Om79uu96+Cy6dy66Ny25Niu4dem4dih49qf5dyh5dyj
+3tWe2tCd2s+h3NGk5tuu6N2w5dqs18ye1cqc1cqc4Nal4Nal4dap5tuu6N2v5tyr08yVzMaM0MqO
+urR6sap0s6x4xLyLzseT0suU0cuR0suX0suX1c6a1M2Z1M2Z19Cc9O258eq29eu64Nal4Nal39Sm
+9eq88+i69uu+6d6x4tWy5dmx4teq4Naj5Nuk5dyj5dyj6N+o3dOg2s+h1cqd28+l59yv59yu5Nqp
+0MaV1cmf1cmf4dek4dem49iq4NWo5Nmr39ik1c6X0MqQzsiMwruEvreBvLSDyMCP0sqZ1M2Xz8iR
+1c6a0suX1M2Z08yY08yY1s+b7uez7+i08+m22tCf2tCf3dOi8ue58OW38+i64NWn29Cj3dKk4dem
+4dek4Nah4tij4til5tqq39Km18uh1Mie2s6k4tep39Wk4dei2tGa18uj18uj4til4dem49iq1Mye
+2NCh19Cc19CZ1c+V1tCUzseQzseTzMST1s6f39em39ik2dKc08mW08mW2c+c3tSf4dei4Nah4tij
+5Nqn4tunx8CMxr+LycGQ3tal3dWm3NSlxb2OvLV+vLV/z8WQ182a1syZ39Wk5tuu6Nuv2cyiyb2T
+yr6UzcKU0ceWz8WQ0suU3Nac4NSs4NSs49mm4tin4Nip0sqc1c2e1M2Z1s+Y1tCU1tCWz8iR0cqW
+z8eY1s6g2tKj2tKh1s+b2M6Z182Y2tCb3NKd3tSf4dei39Wg5Nql49ymycKMyMGNycKO39em39em
+3talxb2MvLZ6urR60ciR2tCd1syb39Sn5tuu5tmt3dCkyr+Ry8GQzMKP0MaRz8WQ0suV39ii4NWo
+4NWo4Naj3NSj3NSl29Ok3NSl29Sg1c6X1tCW1tCWzcaPzcaSzMSV2dGj5d2v5d2u3dWk1MqV1cuW
+2c+a2M6Z2dCZ3tWe596n5t2m4tukzMWPy8SOysON4tun49yo4dqmysKRwbt/vrh+0cqT2tCd2M2f
+4NWn5Nmr5tqq2s6cz8aPz8aP0MeQ1MqV0suX1c2c1s6f3NKh3NKh2M6b1c2c1s6f5Nyt5Nyt5t+r
+19CZ2dOZ19GXycKLwbmIwrqM4dmr//jK//zN8+u65Nql4Nah2c+azMOMyL+Iz8aP7uWu6+Kr7OWu
+2tOc29Se2dKc8Omz8eq27uez19Cc0syQz8mP3NWf39Wk3tOl4dao3tSj4tai4dae4dmb3dWX2dCV
+2dCZ08ua1Myex76Vyb+Myb+M1M+X1M+Y1s+Z5N2n5N2n5N2n2dKc19Ca1s+Yx8KKwLuEwb6J3dqn
+///P//7R7+zB3tmi39ii2tOcyL+EycCF0cWR7eK17eG57OS22dKb2taZ2tOc7+e48eW78ea53NCe
+08qR1MuU3NKd3tSh3tSh4Nal39Wk39Wi3NWh29Se3NWe2tOc1s+Y1s+Y0suUx8CKx8CKx8CK1M+X
+1M+Y1s+Z5N2n5N2n5N2n2dKc19Ca1s+Yx8KKwLuEwb6J3dqn///P//7R7+zB3tmi39ii2tOcyL+E
+ycCF0cWR7eK17eG57OS22dKb2taZ2tOc7+e48eW78ea53NCe08qR1MuU3NKd3tSh3tSh4Nal39Wk
+39Wi3NWh29Se3NWe2tOc1s+Y1s+Y0suUx8CKx8CKx8CK</hb>
+                <offset>0</offset>
+                <isReadOnly>false</isReadOnly>
+                <bigEndian>true</bigEndian>
+                <nativeByteOrder>false</nativeByteOrder>
+              </pixelBuffer>
+              <minX>0</minX>
+              <minY>0</minY>
+              <width>50</width>
+              <height>50</height>
+              <scanlineStride>150</scanlineStride>
+              <pixelFormat>BYTE_RGB</pixelFormat>
+              <pixelScale>1.0</pixelScale>
+              <serial>
+                <int>0</int>
+              </serial>
+            </value>
+            <valid>true</valid>
+            <outer-class reference="../.."/>
+          </platformImage>
+        </sprite>
+      </components.SpriteComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1000</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>5</x>
+        <y>1</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1001</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>4</x>
+        <y>2</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1002</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>3</x>
+        <y>1</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1003</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>4</x>
+        <y>1</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1004</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>5</x>
+        <y>2</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1005</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>3</x>
+        <y>2</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1006</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>4</x>
+        <y>3</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1007</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>5</x>
+        <y>4</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1008</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>5</x>
+        <y>3</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1009</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>3</x>
+        <y>4</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1010</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>4</x>
+        <y>4</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1011</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>3</x>
+        <y>3</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1012</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>1</x>
+        <y>2</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1013</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>2</x>
+        <y>2</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1014</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>2</x>
+        <y>1</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1015</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>1</x>
+        <y>1</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1016</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>9</x>
+        <y>1</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1017</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>8</x>
+        <y>3</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1018</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>7</x>
+        <y>4</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1019</identifier>
+    <myComponents class="list">
+      <components.SpriteComponent reference="../../../entity.Entity[2]/myComponents/components.SpriteComponent"/>
+      <components.LocationComponent>
+        <x>7</x>
+        <y>5</y>
+      </components.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+</list>
