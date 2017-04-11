@@ -3,6 +3,7 @@ package components.keyExpressions;
 import components.AccelerationComponent;
 import components.ComponentType;
 import components.KeyExpression;
+import components.LocationComponent;
 import components.VelocityComponent;
 import entity.IEntity;
 import javafx.scene.input.KeyCode;
@@ -15,6 +16,14 @@ public enum ConcreteKeyExpressions {
 			vc.setY(-3);
 			ac.setY(.05);
 		}
+	}),
+	RIGHT ((a) -> {
+		LocationComponent vc = (LocationComponent) a.getComponent(ComponentType.Location);
+		vc.setX(vc.getX()+1);
+	}),
+	LEFT ((a) -> {
+		LocationComponent vc = (LocationComponent) a.getComponent(ComponentType.Location);
+		vc.setX(vc.getX()-1);
 	});
 
     private KeyExpression keyExpression; 

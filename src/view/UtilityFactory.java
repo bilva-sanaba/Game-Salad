@@ -106,4 +106,9 @@ public class UtilityFactory {
 		}
 		return toolButtons;
 	}
+	
+	public Integer convertToInt(Double d){
+		Integer i = d.intValue();
+		return i;
+	}
 }
