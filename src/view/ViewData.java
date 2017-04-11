@@ -85,6 +85,6 @@ public class ViewData extends Observable {
 	}
 	public void refresh(){
 		setChanged();
-		notifyObservers();
+		notifyObservers("refresh");
 	}
 }

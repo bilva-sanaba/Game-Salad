@@ -1,5 +1,11 @@
 package engines;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import components.ComponentType;
+import components.IComponent;
 import components.ImagePropertiesComponent;
 import components.LocationComponent;
 import javafx.scene.shape.Rectangle;
@@ -7,10 +13,10 @@ import javafx.scene.shape.Rectangle;
 public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 
 	
-	public boolean collides(LocationComponent location0, LocationComponent location1, ImagePropertiesComponent image0,
-			ImagePropertiesComponent image1) {
-		Rectangle obj0 = createRectangle(location0, image0);
-		Rectangle obj1 = createRectangle(location1, image1);
+	public String collides(Map<ComponentType, IComponent> obj0, Map<ComponentType, IComponent> obj1) {
+		Rectangle rect0 = createRectangle(location0, image0);
+		Rectangle rect1 = createRectangle(location1, image1);
+		
 		return obj0.getLayoutBounds().intersects(obj1.getLayoutBounds());
 	}
 	
@@ -21,6 +27,17 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 		created.setHeight(heightWidth.getHeight());
 		created.setWidth(heightWidth.getWidth());
 		return created;
+	}
+
+	@Override
+	public List<ComponentType> needsComponents() {
+		List<ComponentType> neededComp = new ArrayList<ComponentType>();
+		neededComp.add(ComponentType.ImageProperties);
+		neededComp.add(ComponentType.Velocity);
+		neededComp.add(ComponentType.Location);
+		return neededComp;
+
+
 	}
 
 }

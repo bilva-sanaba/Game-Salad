@@ -80,14 +80,14 @@ public class GridView extends GUIComponent implements Observer{
 		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
 	}
 	
-	private void clearEntitiesOnGrid(){
+	public void clearEntitiesOnGrid(){
 		for(ImageView i: placedImages){
 			myGrid.getChildren().remove(i);
 		}
 		placedImages.clear();
 	}
 	
-	private void placeEntitiesFromFile(){
+	public void placeEntitiesFromFile(){
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
 		for(Integer i: myMap.keySet()){
@@ -102,7 +102,7 @@ public class GridView extends GUIComponent implements Observer{
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable arg0, Object arg1) {
 		clearEntitiesOnGrid();
 		placeEntitiesFromFile();
 	}

@@ -92,6 +92,9 @@ public class Entity implements IEntity, IRestrictEntity {
 	
 	@Override
 	public String toString(){
-		return ((LabelComponent)this.getComponent(ComponentType.Label)).getLabel();
+		if(((LabelComponent)this.getComponent(ComponentType.Label)).getLabel() != null){
+			return ((LabelComponent)this.getComponent(ComponentType.Label)).getLabel();
+		}
+		return "null label component";
 	}
 }
