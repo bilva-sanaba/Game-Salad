@@ -55,7 +55,7 @@ public class WorldAnimator {
 	public WorldAnimator(){
 	}
 
-	public void start (GameEngine myGameEngine){
+	public void start (Stage s, GameEngine myGameEngine){
 		root = new Group();
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		//myGameBuilder = new GameBuilder();
@@ -66,6 +66,8 @@ public class WorldAnimator {
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
 		}
+		s.setScene(myScene);
+		s.show();
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
 		
