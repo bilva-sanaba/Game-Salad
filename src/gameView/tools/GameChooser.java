@@ -24,7 +24,7 @@ public class GameChooser {
 
 	private Stage myStage;
 	private static final String FILE_EXTENSION = "*.xlm";
-	private static final String GAME_PATH = "/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/games";
+	private static final String GAME_PATH = "games" +File.separator;
 	private ArrayList<String> myFiles;
 	private VBox myBox;
 	private ArrayList<HBox> mySubBoxes;

@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -26,10 +27,8 @@ public class KeyInputPanel implements IKeyInputPanel{
 	}
 	public void openWindow(){
 		Stage stage = new Stage();
-		GridPane root = new GridPane();
+		BorderPane root = new BorderPane();
 		root.setPadding(new Insets(10));
-		root.setHgap(20);
-		root.setVgap(20);
 		Button okayButton = new Button("Close");
 		okayButton.setOnAction(e -> {
 			//TODO: pass the color to a new entity or something?
@@ -41,6 +40,8 @@ public class KeyInputPanel implements IKeyInputPanel{
 				keyMap.put(current,currentKeyExpression);
 			}
 		});
+		Node n = Pane()
+		root.setBottom(arg0);
 		root.getChildren().add(okayButton);
 		Scene scene = new Scene(root, 230, 400);
 		stage.setScene(scene);
