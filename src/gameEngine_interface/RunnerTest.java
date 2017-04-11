@@ -7,11 +7,11 @@ public class RunnerTest {
 	
 	private WorldAnimator myWorld;
 	
-	public RunnerTest(Stage s){
+	public RunnerTest(){
 		myWorld = new WorldAnimator();
 		GameEngine ge = new GameEngine();
 		ge.dummyLoad();
-		myWorld.start(s, ge);
+		myWorld.start(ge);
 	}
 	
 	public WorldAnimator getAnimator() {
