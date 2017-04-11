@@ -1,5 +1,7 @@
 package view;
 
+import java.util.HashMap;
+
 import components.ComponentType;
 import components.SpriteComponent;
 import entity.Entity;
@@ -77,6 +79,18 @@ public class TabView extends GUIComponent {
 		});
 		myTab.getTabs().add(blockTab);
 	}
+	
+	public void clearEntitiesOnTab(){
+		blocksList.clear();
+	}
+	public void placeEntitiesFromFile(){
+		Entity tempEntity;
+		HashMap<Integer, Entity> myMap = myData.getDefinedEntityMap();
+		for(Integer i: myMap.keySet()){
+			tempEntity = myMap.get(i);
+			blocksList.add(tempEntity);
+		}
+	}
 
 	@Override
 	public Region buildComponent() {
@@ -87,7 +101,6 @@ public class TabView extends GUIComponent {
 		Region myRegion = pane;
 		GridPane.setConstraints(pane, 0, 1);
 		return myRegion;
-
 	}
 
 }
