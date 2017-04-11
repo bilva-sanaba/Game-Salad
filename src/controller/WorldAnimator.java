@@ -3,9 +3,11 @@ package controller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import com.sun.org.apache.regexp.internal.recompile;
+
 
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
@@ -14,6 +16,7 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -33,16 +36,17 @@ import gameView.Coordinate;
  */
 public class WorldAnimator {
 	// private Stage myStage;
-	public static final int FRAMES_PER_SECOND = 60;
+	public static final int FRAMES_PER_SECOND = 45;
 	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
 	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
 	public static final int KEY_INPUT_SPEED = 3;
+	public static final int WIDTH = 500;
+	public static final int LENGTH = 1000;
 	
-	private ArrayList<KeyCode> keysPressed = new ArrayList<KeyCode>();
+	private HashSet<KeyCode> keysPressed = new HashSet<KeyCode>();
 
 	private Scene myScene;
 	private Timeline animation;
-	private GameBuilder myGameBuilder;
 	private Group root;
 
 	private Map<Integer, ImageView> imageMap= new HashMap<Integer, ImageView>();
@@ -55,14 +59,15 @@ public class WorldAnimator {
 	public void start (Stage s, GameEngine myGameEngine){
 		root = new Group();
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
-		myGameBuilder = new GameBuilder();
-//		myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
-		myScene = new Scene(root,500,500);
+		//myGameBuilder = new GameBuilder();
+
+		//myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
+		myScene = new Scene(root,LENGTH,WIDTH);
 		createMap(restrictedEntityManager);
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
 		}
-		s.setScene(myScene);// FILL
+		s.setScene(myScene);
 		s.show();
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
@@ -72,7 +77,7 @@ public class WorldAnimator {
 		this.animation = new Timeline();
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
-		animation.play();
+		//animation.play();
 	}
 	
 	public Scene getScene() {
@@ -91,8 +96,6 @@ public class WorldAnimator {
 	private void step(double elapsedTime, GameEngine myGameEngine){
 		Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
 		HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);
-		
-		
 	}
 	private void handleKeyReleased(KeyCode keyCode) {
 		keysPressed.remove(keyCode);
@@ -104,16 +107,23 @@ public class WorldAnimator {
 	}
 	
 	private void externalKeyHandler(KeyCode code){
-		if(code == KeyCode.P && !pause){
-			pause = true;
-			animation.pause();
-		}
-		if (code == KeyCode.P && pause) {
-			pause = false;
+		if(code == KeyCode.S){
 			animation.play();
+		}
+		if(code == KeyCode.P && !pause){
+			animation.pause();
+			pause=true;
+		}
+		else if (code == KeyCode.P && pause) {
+			animation.play();
+			pause =false;
 		}
 	}
 
+	public void setKeys(Scene s) {
+		s.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
+		s.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
+	}
 
 	private HashMap<Integer, ImageView> fillMapAndDisplay(Collection<RestrictedEntity> entities){
 		HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
@@ -137,6 +147,7 @@ public class WorldAnimator {
 			if (imageMap.containsKey(entity.getID())){
 //				FadeTransition ft = makeFade(imageMap.get(entity.getID()));
 //				trans.getChildren().add(ft);
+
 				root.getChildren().remove(imageMap.get(entity.getID()));
 				imageMap.remove(entity.getID());
 			}
@@ -149,6 +160,7 @@ public class WorldAnimator {
 			updateImage(imageView,entity);
 //			FadeTransition ft = makeAppear(imageView);
 //			trans.getChildren().add(ft);
+
 			imageMap.put(entity.getID(), imageView);
 		}
 	}
@@ -156,9 +168,6 @@ public class WorldAnimator {
 		if(imageMap.containsKey(entity.getID())){
 			ImageView currentImage = imageMap.get(entity.getID());
 			updateImage(currentImage,entity);
-//			PathTransition pt = moveToLocation(currentImage, entity.getLocation());
-//			trans.getChildren().add(pt);
-//			root.getChildren().add(imageMap.get(entity.getID()));
 		}
 	}
 	private void updateImage(ImageView currentImage, RestrictedEntity re){
@@ -190,5 +199,13 @@ public class WorldAnimator {
 		FadeTransition ft = new FadeTransition(Duration.millis(KEY_INPUT_SPEED), imageView);
 		ft.setToValue(newOpacity);
 		return ft;
+	}
+	
+	public void start(){
+		animation.play();
+	}
+	
+	public void pause(){
+		animation.pause();
 	}
 }

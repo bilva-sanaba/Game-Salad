@@ -1,0 +1,28 @@
+.button {
+	-fx-background-image: url("images/file.png");
+	-fx-background-repeat: stretch;
+	-fx-background-image-position: center;
+	-fx-background-color: rgba(0, 0, 0, 0);
+	-fx-text-fill: white;
+	-fx-font-size: 20;
+	-fx-content-display: top;
+	-fx-background-size: cover;
+}
+
+.button:hover {
+	-fx-background-color: #2f4f4f;
+}
+
+#main {
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+	-fx-background-repeat: stretch;
+	-fx-alignment: center;
+	-fx-spacing: 10;
+	-fx-padding: 10;
+}
+#subbox {
+	-fx-background-repeat: stretch;
+	-fx-spacing: 10;
+	-fx-alignment: center
+	-fx-padding: 10;
+}
