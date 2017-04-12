@@ -42,11 +42,11 @@ public class ComponentFactory implements newComponentFactory {
 	}
 
 
-	public ComponentEditor getComponentEditor(String comp) {
+	public ComponentEditor getComponentEditor(String comp, UtilityFactory myUtilF) {
 		System.out.println(EDITOR_PREFIX + comp + EDITOR_SUFFIX);
 		ComponentEditor reflectedComponent;
 		try {
-			reflectedComponent = (ComponentEditor) Reflection.createInstance(EDITOR_PREFIX + comp + EDITOR_SUFFIX);
+			reflectedComponent = (ComponentEditor) Reflection.createInstance(EDITOR_PREFIX + comp + EDITOR_SUFFIX, myUtilF);
 			System.out.println(reflectedComponent.getInputNode());
 		} catch (Exception e) {
 			System.out.println("i shouldnt be here");

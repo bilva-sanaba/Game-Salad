@@ -1,4 +1,4 @@
-package components;
+package components.entityComponents;
 
 public enum MonsterMovementPattern {
 
