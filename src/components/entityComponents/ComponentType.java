@@ -10,6 +10,7 @@ public enum ComponentType {
 	Acceleration(),
 	KeyInput(),
 	Splash(),
-	Background();
+	Background(),
+	Level();
 	
 }

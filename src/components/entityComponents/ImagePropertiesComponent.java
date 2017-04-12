@@ -11,6 +11,11 @@ public class ImagePropertiesComponent implements IComponent {
 		imageWidth = w;
 	}
 	
+	public ImagePropertiesComponent(int h, int w) {
+		imageHeight = h;
+		imageWidth = w;
+	}
+	
 	public ImagePropertiesComponent() {
 		super();
 	}
