@@ -30,6 +30,7 @@ import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 import gameView.Coordinate;
+import gameView.UIView;
 
 /**
  * 
@@ -91,8 +92,8 @@ public class WorldAnimator {
 		for (RestrictedEntity e: entities){
 			String[] test = e.getImagePath().split("[\\\\/]");
 			imageMap.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
-			imageMap.get(e.getID()).setX(e.getLocation().getX());
-			imageMap.get(e.getID()).setY(e.getLocation().getY());
+			imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
+			imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
 		}
 	}
 
@@ -169,8 +170,8 @@ public class WorldAnimator {
 	}
 	private void updateImage(ImageView currentImage, RestrictedEntity re){
 		currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(re.getImagePath())));
-		currentImage.setX(re.getLocation().getX());
-		currentImage.setY(re.getLocation().getY());		
+		currentImage.setX(re.getLocation().getX()*50-475);
+		currentImage.setY(re.getLocation().getY()*50-175);	
 	}
 	private FadeTransition makeFade(ImageView imageView){
 		double newOpacity = 0.0;

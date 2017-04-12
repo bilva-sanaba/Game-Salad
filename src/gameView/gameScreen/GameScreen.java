@@ -12,12 +12,10 @@ import gameView.commands.AbstractCommand;
 import gameView.displayComponents.UIDisplayComponent;
 import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
-import javafx.beans.binding.NumberBinding;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -53,7 +51,8 @@ public class GameScreen extends AbstractViewer {
 	}
 
 	public Scene getScene() {
-		myPane.getChildren().add(myAnimation.getScene().getRoot());
+		System.out.println(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
+		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
 //
 //		myAnimation = new RunnerTest().getAnimator();
 //		myAnimation.setKeys(myScene);
@@ -95,7 +94,6 @@ public class GameScreen extends AbstractViewer {
 	private void initializeBoxes() {
 		myTopBox = setHBox("top", UIView.DEFAULT_SIZE.width);
 		myPane = new StackPane();
-		insidepane = new BorderPane();
 		// myBottomBox = setHBox("bottom", UIView.DEFAULT_SIZE.width, 100);
 		// myLeftBox = setSides("left", 100, UIView.DEFAULT_SIZE.height);
 		// myRightBox = setSides("right", 100, UIView.DEFAULT_SIZE.height);
