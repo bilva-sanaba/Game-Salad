@@ -1,7 +1,11 @@
 package gameObject;
 
 import java.util.Observable;
-
+/**
+ * 
+ * @author Jacob
+ *
+ */
 public class AbstractGameConfig extends Observable {
 	
 	protected int myID;

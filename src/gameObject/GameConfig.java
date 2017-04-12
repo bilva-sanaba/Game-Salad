@@ -6,8 +6,8 @@ package gameObject;
  */
 public class GameConfig extends AbstractGameConfig{
 	
-	public GameConfig(int myID, int lives, int score){
-		super(myID, lives, score);
+	public GameConfig(int myID, int lives){
+		super(myID, lives, 0);
 	}
 	
 	public int getID(){

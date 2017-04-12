@@ -11,10 +11,10 @@ import javafx.scene.text.Font;
 public class ScoreComponent extends UIDisplayComponent {
 
 	private HBox myScore;
-	private int playerScore=0;
 	
 	public ScoreComponent(String name){
 		super(name);
+		//playerScore = getConfig().getScore();
 	}
 	@Override
 	public Region getDisplay() {
@@ -30,15 +30,10 @@ public class ScoreComponent extends UIDisplayComponent {
 	@Override
 	protected void setID() {
 		// TODO Auto-generated method stub
-		Label lbl = new Label("Score: " + playerScore);
+		Label lbl = new Label("Score: " + getConfig().getScore());
 		lbl.setFont(new Font("Arial", 30));
 		myScore = new HBox();
 		myScore.setPrefSize((UIView.DEFAULT_SIZE.width/20)*3, (UIView.DEFAULT_SIZE.width/10)*0.5);
 		myScore.getChildren().add(lbl);
 	}
-	
-	public void increaseScore(){
-		playerScore++;
-	}
-
 }
