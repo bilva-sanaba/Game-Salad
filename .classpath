@@ -3,12 +3,15 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="images"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 
 </classpath>
 =======
+=======
+>>>>>>> b16f4689448b652ec546588961808bd573697618
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/><classpathentry kind="lib" path="lib/groovy-all-2.4.10-indy.jar"/>
 	<classpathentry kind="lib" path="lib/groovy-doc.jar"/>
 	<classpathentry kind="lib" path="lib/groovy-src.jar"/>
@@ -16,4 +19,7 @@
 	<classpathentry kind="lib" path="lib/xstream-doc.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-src.jar"/><classpathentry kind="output" path="bin"/>
 </classpath>
+<<<<<<< HEAD
+>>>>>>> b16f4689448b652ec546588961808bd573697618
+=======
 >>>>>>> b16f4689448b652ec546588961808bd573697618
