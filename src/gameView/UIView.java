@@ -39,7 +39,6 @@ public class UIView implements UIViewInterface {
 		myGameScene = new GameScreen(this, myAnimation);
 		//runGame();
 		getSplashScreen();
-		//getSplashScreen();
 	}
 
 	public void getSplashScreen() {
