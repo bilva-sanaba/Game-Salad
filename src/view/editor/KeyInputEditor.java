@@ -7,7 +7,7 @@ import java.util.Map;
 import components.IComponent;
 import engines.IKeyInputPanel;
 import engines.KeyInputPanel;
-import components.entityComponents.KeyExpression;
+import components.entityComponents.IKeyExpression;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -24,7 +24,7 @@ import view.UtilityFactory;
 public class KeyInputEditor extends ComponentEditor {
 	private static final String ComponentName = "KeyInput";
 	private static final String KEYINPUT = "KeyInput : ";
-	private Map<KeyCode,KeyExpression> inputMap = new HashMap<KeyCode,KeyExpression>();
+	private Map<KeyCode,IKeyExpression> inputMap = new HashMap<KeyCode,IKeyExpression>();
 		
 		private HBox myBox;
 		private Text myLabel = new Text(KEYINPUT);
