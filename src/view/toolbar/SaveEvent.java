@@ -21,6 +21,7 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		XMLWriter xw = new XMLWriter();
 		String fileName;
 		List <Entity> l = new ArrayList<Entity>();
+		l.add(myData.getLevelEntity());
 		updateList(l, myData.getDefinedEntityMap());
 		updateList(l, myData.getPlacedEntityMap());
 		//updateList(l, myData.getConfigurationEntityMap());
