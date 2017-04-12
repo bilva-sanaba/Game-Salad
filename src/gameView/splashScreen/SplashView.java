@@ -38,6 +38,9 @@ public class SplashView extends AbstractViewer {
 		this.transitionToMain();
 	}
 
+	public SplashEntity getSE() {
+		return se;
+	}
 	public Scene getScene() {
 		return myScene;
 	}
@@ -68,7 +71,7 @@ public class SplashView extends AbstractViewer {
 		BorderPane.setMargin(title, new Insets(10, 10, 10, 10));
 		myPane.setTop(title);
 		Label lbl = makeLabel(se.getInstructions(), "instructions");
-		myPane.setCenter(lbl); //Reposition label
+		myPane.setBottom(lbl); //Reposition label
 		VBox box = new VBox(20);
 		box.setId("mainbox");
 		box.setAlignment(Pos.CENTER);
