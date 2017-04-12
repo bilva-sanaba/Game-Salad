@@ -43,7 +43,7 @@ public class GameScreen extends AbstractViewer {
 	public GameScreen(UIView view, WorldAnimator animation) {
 		super(view);
 		myCommands = getCommands(myName);
-		//myAnimation = animation;
+		myAnimation = animation;
 		initializeBoxes();
 		buildMainScene();
 		myBP.applyCss();
@@ -54,7 +54,7 @@ public class GameScreen extends AbstractViewer {
 
 	public Scene getScene() {
 		//myPane.getChildren().add(myAnimation.getScene().getRoot());
-		
+
 		myAnimation = new RunnerTest().getAnimator();
 		myAnimation.setKeys(myScene);
 		Scene test = myAnimation.getScene();

@@ -1,10 +1,13 @@
 package view;
 
 import entity.Entity;
+import entity.LevelEntity;
+import entity.SplashEntity;
 
 import java.util.HashMap;
 import java.util.Observable;
 import components.*;
+import components.entityComponents.LocationComponent;
 
 /**
  * Casting takes place to be able to edit the component because we are using enums to choose the specific component
@@ -16,14 +19,22 @@ import components.*;
  *
  */
 public class ViewData extends Observable {
+	
+	private static final int STARTINGROWS = 10;
+	private static final int STARTINGCOLS = 10;
+	
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, Entity> placedEntityMap;
+	private LevelEntity myLevelEntity;
+	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
 	private String gameName;
 
 	public ViewData() {
 		definedEntityMap = new HashMap<Integer, Entity>();
 		placedEntityMap = new HashMap<Integer, Entity>();
+		myLevelEntity = new LevelEntity(0, STARTINGROWS, STARTINGCOLS, "");
+		mySplashEntity = new SplashEntity(1, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
 		gameName = "";
 	}
@@ -68,6 +79,22 @@ public class ViewData extends Observable {
 	
 	public HashMap<Integer, Entity> getPlacedEntityMap() {
 		return placedEntityMap;
+	}
+	
+	public LevelEntity getLevelEntity () {
+		return myLevelEntity;
+	}
+	
+	public void setLevelEntity(LevelEntity l) {
+		myLevelEntity = l;
+	}
+	
+	public SplashEntity getSplashEntity() {
+		return mySplashEntity;
+	}
+	
+	public void setSplashEntity(SplashEntity s) {
+		mySplashEntity = s;
 	}
 
 	public void setGameName(String s) {

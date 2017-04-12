@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import components.ComponentType;
 import components.IComponent;
-import components.ImagePropertiesComponent;
-import components.LocationComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
+import components.entityComponents.LocationComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -66,10 +66,6 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	
 	
 	private void checkIndividualCollision(IComponent location0, IComponent location1, IComponent imageProp0, IComponent imageProp1, int index0, int index1) {
-		ImagePropertiesComponent img0 = (ImagePropertiesComponent) imageProp0;
-		ImagePropertiesComponent img1 = (ImagePropertiesComponent) imageProp1;
-		LocationComponent loc0 = (LocationComponent) location0;
-		LocationComponent loc1 = (LocationComponent) location1;
 		List<ComponentType> necessaryCollisionCheckingComponents = collisionMethod.needsComponents();
 		HashMap<ComponentType, IComponent> obj0Map = new HashMap<ComponentType, IComponent>();
 		HashMap<ComponentType, IComponent> obj1Map = new HashMap<ComponentType, IComponent>();
@@ -110,6 +106,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 
 
 	public Collection<IEntity> update(Collection<KeyCode> keys) {
+		System.out.println("is this being called");
 		newEntitiesCreated = new ArrayList<IEntity>();
 		checkCollisionsOccurred();
 		return newEntitiesCreated;

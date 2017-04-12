@@ -2,7 +2,7 @@ package engines;
 
 import java.util.List;
 
-import components.ComponentType;
+import components.entityComponents.ComponentType;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;

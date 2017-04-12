@@ -23,10 +23,9 @@ import javafx.stage.Stage;
 public class GameChooser {
 	
 
-	private static final String FILE_EXTENSION = "*.xlm";
-	private static final String GAME_PATH = "/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/games";
-
 	private Stage myStage;
+	private static final String FILE_EXTENSION = ".xml";
+	private static final String GAME_PATH = "games" + File.separator;
 	private ArrayList<String> myFiles;
 	private VBox myBox;
 	private ArrayList<HBox> mySubBoxes;
@@ -53,7 +52,7 @@ public class GameChooser {
 		File directory = new File(GAME_PATH);
 		String[] allFiles = directory.list();
 		for (String each: allFiles) {
-			if(each.endsWith(".xml")||each.endsWith(".XML")) { 
+			if(each.endsWith(FILE_EXTENSION)) { 
 				myFiles.add(each); 
 			} 
 		} 

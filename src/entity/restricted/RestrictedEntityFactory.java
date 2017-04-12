@@ -1,8 +1,8 @@
 package entity.restricted;
 
-import components.ComponentType;
-import components.SpriteComponent;
-import components.XYComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.SpriteComponent;
+import components.entityComponents.XYComponent;
 import entity.Entity;
 import entity.IEntity;
 import gameView.Coordinate;

@@ -1,4 +1,4 @@
-package components;
+package components.entityComponents;
 
 public enum ComponentType {
 	Label(), 
@@ -10,6 +10,7 @@ public enum ComponentType {
 	Acceleration(),
 	KeyInput(),
 	Splash(),
-	Background();
+	Background(),
+	Level();
 	
 }

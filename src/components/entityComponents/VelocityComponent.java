@@ -1,4 +1,6 @@
-package components;
+package components.entityComponents;
+
+import components.IComponent;
 
 public class VelocityComponent extends XYComponent implements IComponent {
 	public VelocityComponent(double x, double y) {

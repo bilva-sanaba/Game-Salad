@@ -11,8 +11,8 @@ import java.util.List;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import components.LocationComponent;
-import components.SpriteComponent;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.SpriteComponent;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
 

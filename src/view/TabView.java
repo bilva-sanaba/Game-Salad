@@ -2,8 +2,8 @@ package view;
 
 import java.util.HashMap;
 
-import components.ComponentType;
-import components.SpriteComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;
@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
@@ -19,10 +20,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.util.Callback;
 
 public class TabView extends GUIComponent {
-	private ObservableList<Entity> blocksList = FXCollections
-			.observableArrayList();
+	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
 	private ListView<Entity> blocksView = new ListView<Entity>();
 	private GridPane pane = new GridPane();
 	private TabPane myTab = new TabPane();
@@ -41,17 +42,36 @@ public class TabView extends GUIComponent {
 		util = utilIn;
 		entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
 		blocksView.setItems(blocksList);
+		blocksView.setCellFactory(e -> new ListCell<Entity>() {
+			@Override
+			protected void updateItem(Entity item, boolean empty) {
+				super.updateItem(item, empty);
+				if (empty || item == null || item.getComponent(ComponentType.Sprite) == null) {
+					this.setGraphic(null);
+				} else {
+					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
+					ImageView spriteImage = new ImageView(entitySprite.getSprite());
+					this.setGraphic(spriteImage);
+				}
+			}
+		});
+		// blocksView.cellFactoryProperty().addListener(new ChangeListener<?
+		// super Callback<ListView<Entity>,ListCell<Entity>>>(){
+		// public ListCell<Entity> call(ListView<Entity> l){
+		// SpriteComponent entitySprite = (SpriteComponent)
+		// entity.getComponent(ComponentType.Sprite);
+		// ImageView spriteImage = new ImageView(entitySprite.getSprite());
+		// return new ImageView();
+		// }
+		// });
 		blocksView.setOrientation(Orientation.VERTICAL);
-		blocksView.getSelectionModel().selectedItemProperty()
-				.addListener(new ChangeListener<Entity>() {
-					@Override
-					public void changed(
-							ObservableValue<? extends Entity> observable,
-							Entity oldVal, Entity newVal) {
-						myData.setUserSelectedEntity(newVal);
-						System.out.println("asd");
-					}
-				});
+		blocksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Entity>() {
+			@Override
+			public void changed(ObservableValue<? extends Entity> observable, Entity oldVal, Entity newVal) {
+				myData.setUserSelectedEntity(newVal);
+				System.out.println("asd");
+			}
+		});
 		Tab blockTab = util.buildTab("BlockTabLabel", false);
 		blockTab.setContent(blocksView);
 		b = util.buildButton("AddEntityButton", e -> {
