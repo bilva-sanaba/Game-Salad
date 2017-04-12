@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.KeyExpression;
@@ -47,6 +48,7 @@ public class GameEngine implements GameEngineInterface {
 	private List<AbstractEngine> myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
+	private Entity mainCharacter;
 
 	public GameEngine(){
 		initializeRestrictedEntities();
@@ -109,14 +111,20 @@ public class GameEngine implements GameEngineInterface {
 		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		t.addComponent(new KeyInputComponent());
 		t.addComponent(new AccelerationComponent(0,0));
+		//t.addComponent(new TerminalVelComponent(5, 5));
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
 		e.add(t);
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());
 		e.add(t);
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
 		e.add(t);
+		mainCharacter = t;
 		myEntityManager=new EntityManager(e);    
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
 		initializeRestrictedEntities();
+	}
+	
+	public Entity getMainCharacter(){
+		return mainCharacter;
 	}
 }
