@@ -36,4 +36,8 @@ public class LevelEntity extends Entity {
 	public void addCol() {
 		cols++;
 	}
+	
+	public void setBackgroundFilePath(String fileP) {
+		backgroundFilePath = fileP;
+	}
 }
