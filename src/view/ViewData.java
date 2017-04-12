@@ -2,6 +2,7 @@ package view;
 
 import entity.Entity;
 import entity.LevelEntity;
+import entity.SplashEntity;
 
 import java.util.HashMap;
 import java.util.Observable;
@@ -24,6 +25,7 @@ public class ViewData extends Observable {
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, Entity> placedEntityMap;
 	private LevelEntity myLevelEntity;
+	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
 	private String gameName;
 
@@ -31,6 +33,7 @@ public class ViewData extends Observable {
 		definedEntityMap = new HashMap<Integer, Entity>();
 		placedEntityMap = new HashMap<Integer, Entity>();
 		myLevelEntity = new LevelEntity(0, STARTINGROWS, STARTINGCOLS, "");
+		mySplashEntity = new SplashEntity(1, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
 		gameName = "";
 	}
@@ -83,6 +86,14 @@ public class ViewData extends Observable {
 	
 	public void setLevelEntity(LevelEntity l) {
 		myLevelEntity = l;
+	}
+	
+	public SplashEntity getSplashEntity() {
+		return mySplashEntity;
+	}
+	
+	public void setSplashEntity(SplashEntity s) {
+		mySplashEntity = s;
 	}
 
 	public void setGameName(String s) {
