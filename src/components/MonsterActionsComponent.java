@@ -6,30 +6,22 @@ import java.util.Map;
 import javafx.scene.input.KeyCode;
 
 public class MonsterActionsComponent implements IComponent {
-	private Map<KeyCode,KeyExpression> actionMap = new HashMap<KeyCode,KeyExpression>();
+	private MonsterMovementPattern myMMP;
 	
-	public MonsterActionsComponent(Map<KeyCode, KeyExpression> keyMap){
-		actionMap=keyMap;
+	public MonsterActionsComponent(MonsterMovementPattern mmp){
+		myMMP=mmp;
 	}
 	
 	public MonsterActionsComponent(){
 	}
 	
 	
-	public Map<KeyCode,KeyExpression> getMap(){
-		return actionMap;
+	public MonsterMovementPattern getMMP(){
+		return myMMP;
 	}
 	
-	public void setMap(Map<KeyCode,KeyExpression> map){
-		actionMap=map;
-	}
-	
-	public void addToMap(KeyCode kc, KeyExpression ke){
-		actionMap.put(kc, ke);
-	}
-	
-	public void removeFromMap(KeyCode kc){
-		actionMap.remove(kc);
+	public void setMMP(MonsterMovementPattern mmp){
+		myMMP = mmp;
 	}
 	
 	@Override
@@ -39,7 +31,7 @@ public class MonsterActionsComponent implements IComponent {
 
 	@Override
 	public IComponent newCopy() {
-		return new MonsterActionsComponent(actionMap);
+		return new MonsterActionsComponent(getMMP());
 	}
 }
 
