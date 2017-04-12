@@ -1,0 +1,118 @@
+<list>
+  <entity.SplashEntity>
+    <identifier>1</identifier>
+    <myComponents class="list"/>
+    <displayName>The game</displayName>
+    <instructions>Don&apos;t lose</instructions>
+    <backgroundFilePath>images/background1.png</backgroundFilePath>
+  </entity.SplashEntity>
+  <entity.LevelEntity>
+    <identifier>0</identifier>
+    <myComponents class="list"/>
+    <rows>10</rows>
+    <cols>10</cols>
+    <backgroundFilePath></backgroundFilePath>
+  </entity.LevelEntity>
+  <entity.Entity>
+    <identifier>0</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/platform_tile_001.png</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>rwg</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>25.09523854936872</imageHeight>
+        <imageWidth>21.52380861554827</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/platform_tile_004.png</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>sgf</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>22.499999545869372</imageHeight>
+        <imageWidth>13.452380952380954</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.VelocityComponent>
+        <x>3.5925925925925926</x>
+        <y>3.481481481481482</y>
+      </components.entityComponents.VelocityComponent>
+      <components.entityComponents.HealthComponent>
+        <health>69</health>
+      </components.entityComponents.HealthComponent>
+      <components.entityComponents.AccelerationComponent>
+        <x>2.481481481481482</x>
+        <y>3.333333333333333</y>
+      </components.entityComponents.AccelerationComponent>
+      <components.entityComponents.StrengthComponent>
+        <strength>66.19047619047619</strength>
+      </components.entityComponents.StrengthComponent>
+      <components.entityComponents.KeyInputComponent>
+        <inputMap/>
+      </components.entityComponents.KeyInputComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1000</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/platform_tile_001.png</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>rwg</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>25.09523854936872</imageHeight>
+        <imageWidth>21.52380861554827</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LocationComponent>
+        <x>1.0</x>
+        <y>1.0</y>
+      </components.entityComponents.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1001</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/platform_tile_004.png</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>sgf</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>22.499999545869372</imageHeight>
+        <imageWidth>13.452380952380954</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.VelocityComponent>
+        <x>3.5925925925925926</x>
+        <y>3.481481481481482</y>
+      </components.entityComponents.VelocityComponent>
+      <components.entityComponents.HealthComponent>
+        <health>69</health>
+      </components.entityComponents.HealthComponent>
+      <components.entityComponents.AccelerationComponent>
+        <x>2.481481481481482</x>
+        <y>3.333333333333333</y>
+      </components.entityComponents.AccelerationComponent>
+      <components.entityComponents.StrengthComponent>
+        <strength>66.19047619047619</strength>
+      </components.entityComponents.StrengthComponent>
+      <components.entityComponents.KeyInputComponent>
+        <inputMap reference="../../../../entity.Entity[2]/myComponents/components.entityComponents.KeyInputComponent/inputMap"/>
+      </components.entityComponents.KeyInputComponent>
+      <components.entityComponents.LocationComponent>
+        <x>3.0</x>
+        <y>5.0</y>
+      </components.entityComponents.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+</list>

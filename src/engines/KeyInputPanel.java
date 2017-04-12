@@ -50,7 +50,9 @@ public class KeyInputPanel implements IKeyInputPanel{
 		add.setOnAction(e -> {
 			if (current!=null){
 				keyMap.put(current,currentKC);
+				System.out.println("insideif");
 			}
+			System.out.println(keyMap);
 		});
 		Pane n = new Pane();
 		root.setTop(add);
@@ -71,7 +73,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 		for (ConcreteKeyExpressions y : x){
 			myComboBox.getItems().add(y.toString());
 		}
-		myComboBox.valueProperty().addListener((x, y, newValue) -> currentKC = ConcreteKeyExpressions.valueOf(newValue).getKeyExpression());  
+		myComboBox.valueProperty().addListener((x, y, newValue) -> {currentKC = ConcreteKeyExpressions.valueOf(newValue).getKeyExpression(); System.out.println(currentKC);});  
 		myComboBox.setPromptText("Fuck");
 		return myComboBox;
 	}

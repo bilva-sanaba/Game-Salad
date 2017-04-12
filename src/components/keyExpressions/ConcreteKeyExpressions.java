@@ -51,6 +51,7 @@ public enum ConcreteKeyExpressions {
 
     ConcreteKeyExpressions(KeyExpression ke) {
         this.keyExpression = ke;
+        System.out.println(ke+"shit");
     }
     
     public KeyExpression getKeyExpression(){
