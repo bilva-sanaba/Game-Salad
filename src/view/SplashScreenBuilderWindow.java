@@ -24,7 +24,7 @@ public class SplashScreenBuilderWindow {
 		root.setPadding(new Insets(10));
 		root.setHgap(20);
 		root.setVgap(20);
-		pickColor(root);
+//		pickColor(root);
 		selectText(root);
 		Button okayButton = new Button("OkayButtonLabel");
 		okayButton.setOnAction(e -> {
@@ -43,17 +43,17 @@ public class SplashScreenBuilderWindow {
 		stage.show();
 	}
 	
-	private void pickColor(Pane root){
-		Label backgroundColorTitle = new Label("Background Color");
-		GridPane.setConstraints(backgroundColorTitle, 0, 0);
-		ColorPicker colorPicker = new ColorPicker();
-		GridPane.setConstraints(colorPicker, 1, 1);
-		Circle circle = new Circle(50);
-		GridPane.setConstraints(circle, 0, 1);
-		circle.setFill(colorPicker.getValue());
-		colorPicker.setOnAction(e -> circle.setFill(colorPicker.getValue()));
-		root.getChildren().addAll(backgroundColorTitle, circle, colorPicker);	
-	}
+//	private void pickColor(Pane root){
+//		Label backgroundColorTitle = new Label("Background Color");
+//		GridPane.setConstraints(backgroundColorTitle, 0, 0);
+//		ColorPicker colorPicker = new ColorPicker();
+//		GridPane.setConstraints(colorPicker, 1, 1);
+//		Circle circle = new Circle(50);
+//		GridPane.setConstraints(circle, 0, 1);
+//		circle.setFill(colorPicker.getValue());
+//		colorPicker.setOnAction(e -> circle.setFill(colorPicker.getValue()));
+//		root.getChildren().addAll(backgroundColorTitle, circle, colorPicker);	
+//	}
 	
 	private void selectText(Pane root){
 		Label title = new Label("Game Title:");
