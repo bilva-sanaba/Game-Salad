@@ -1,6 +1,8 @@
 package view.toolbar;
 
 
+import entity.SplashEntity;
+import view.SplashScreenBuilderWindow;
 import view.ViewData;
 
 public class SplashScreenEvent implements ToolBarButtonEvent {
@@ -13,7 +15,9 @@ public class SplashScreenEvent implements ToolBarButtonEvent {
 	
 	@Override
 	public void event() {
+		SplashScreenBuilderWindow ssbw = new SplashScreenBuilderWindow();
+		SplashEntity s = ssbw.openWindow();
 		
-		
+		myData.setSplashEntity(s);
 	}
 }
