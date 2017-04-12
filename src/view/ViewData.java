@@ -33,8 +33,8 @@ public class ViewData extends Observable {
 	public ViewData() {
 		definedEntityMap = new HashMap<Integer, Entity>();
 		placedEntityMap = new HashMap<Integer, Entity>();
-		myLevelEntity = new LevelEntity(0, STARTINGROWS, STARTINGCOLS, "");
-		mySplashEntity = new SplashEntity(1, "The game", "Don't lose", "images/background1.png");
+		myLevelEntity = new LevelEntity(-1, STARTINGROWS, STARTINGCOLS, "images/background1.png");
+		mySplashEntity = new SplashEntity(-2, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
 		gameName = "";
 	}
