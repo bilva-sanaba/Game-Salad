@@ -3,6 +3,7 @@ package view;
 import java.util.HashMap;
 
 import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ObservableValue;
@@ -51,8 +52,9 @@ public class TabView extends GUIComponent {
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
-					spriteImage.setFitHeight();
-					spriteImage.setFitWidth(value);
+					ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item.getComponent(ComponentType.ImageProperties);
+					spriteImage.setFitHeight(imageProp.getHeight());
+					spriteImage.setFitWidth(imageProp.getWidth());
 					this.setGraphic(spriteImage);
 				}
 			}

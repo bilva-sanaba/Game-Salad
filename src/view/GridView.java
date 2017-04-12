@@ -70,10 +70,6 @@ public class GridView extends GUIComponent implements Observer {
 		for (i=0;i<myRow;i++){
 			Rectangle rect = new Rectangle(40, 40);
 			rect.getStyleClass().add("view-grid-cell");
-<<<<<<< HEAD
-			
-=======
->>>>>>> master
 			myGrid.add(rect, myCol, i);
 			addMouseListenerPane(myCol, i);
 		}
@@ -85,10 +81,6 @@ public class GridView extends GUIComponent implements Observer {
 		for (i=0;i<myCol;i++){
 			Rectangle rect = new Rectangle(40, 40);
 			rect.getStyleClass().add("view-grid-cell");
-<<<<<<< HEAD
-			
-=======
->>>>>>> master
 			myGrid.add(rect, i, myRow);
 			addMouseListenerPane(i, myRow);
 		}
