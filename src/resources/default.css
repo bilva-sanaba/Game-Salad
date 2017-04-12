@@ -1,7 +1,6 @@
 .view-grid {
 	-fx-padding: 10;
 	-fx-grid-lines-visible: false;
-	-fx-background-image: url("images/background.gif");
 }
 
 .view-grid-cell {
