@@ -3,7 +3,7 @@ package components.keyExpressions;
 
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
-import components.entityComponents.KeyExpression;
+import components.entityComponents.IKeyExpression;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
@@ -47,14 +47,14 @@ public enum ConcreteKeyExpressions {
 		}*/
 	});
 
-    private KeyExpression keyExpression; 
+    private IKeyExpression keyExpression; 
 
-    ConcreteKeyExpressions(KeyExpression ke) {
+    ConcreteKeyExpressions(IKeyExpression ke) {
         this.keyExpression = ke;
         System.out.println(ke+"shit");
     }
     
-    public KeyExpression getKeyExpression(){
+    public IKeyExpression getKeyExpression(){
     	return keyExpression;
     }
 

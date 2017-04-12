@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import components.keyExpressions.ConcreteKeyExpressions;
-import components.entityComponents.KeyExpression;
+import components.keyExpressions.KeyExpression;
+import components.entityComponents.IKeyExpression;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -19,9 +20,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class KeyInputPanel implements IKeyInputPanel{
-	private Map<KeyCode, KeyExpression> keyMap = new HashMap<KeyCode, KeyExpression>();
+	private Map<KeyCode, IKeyExpression> keyMap = new HashMap<KeyCode, IKeyExpression>();
 	private KeyCode current; 
-	private KeyExpression currentKC;
+	private IKeyExpression currentKC;
 	private String currentString;
 	private Text t = new Text();
 	private Scene myScene;
@@ -31,7 +32,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 		
 	}
 
-	public Map<KeyCode, KeyExpression> getMap() {
+	public Map<KeyCode, IKeyExpression> getMap() {
 		// TODO Auto-generated method stub
 		return keyMap;
 	}
@@ -48,7 +49,9 @@ public class KeyInputPanel implements IKeyInputPanel{
 		});
 		Button add = new Button("Add");
 		add.setOnAction(e -> {
-			if (current!=null){
+			if (current!=null && currentKC!=null){
+				System.out.println(current);
+				System.out.println(currentKC.getClass());
 				keyMap.put(current,currentKC);
 				System.out.println("insideif");
 			}
@@ -63,18 +66,25 @@ public class KeyInputPanel implements IKeyInputPanel{
 		myScene = new Scene(root, 230, 400);
 		createKeyHandle();
 		stage.setScene(myScene);
-		stage.show();
+		stage.showAndWait();
 	}
 	private void createKeyHandle(){
-		myScene.setOnKeyPressed(e->t.setText(e.getCode().toString()));
+		myScene.setOnKeyPressed(e->keypress(e.getCode()));
 	}
+	private void keypress(KeyCode keyCode) {
+		current = keyCode;
+		t.setText(keyCode.toString());
+	}
+
 	private ComboBox<String> createKeyInput(){
 		ComboBox<String> myComboBox = new ComboBox<String>();
 		for (ConcreteKeyExpressions y : x){
 			myComboBox.getItems().add(y.toString());
 		}
-		myComboBox.valueProperty().addListener((x, y, newValue) -> {currentKC = ConcreteKeyExpressions.valueOf(newValue).getKeyExpression(); System.out.println(currentKC);});  
-		myComboBox.setPromptText("Fuck");
+
+		currentKC = new KeyExpression();
+		myComboBox.valueProperty().addListener((x, y, newValue) -> currentKC = ConcreteKeyExpressions.valueOf(newValue).getKeyExpression());  
+		myComboBox.setPromptText("Pick an Action");
 		return myComboBox;
 	}
 }
