@@ -3,6 +3,7 @@ package view;
 import entity.Entity;
 import entity.SplashEntity;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -11,12 +12,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SplashScreenBuilderWindow {	
+	private UtilityFactory utilF;
+	private Text myFilePathDisplay;
+	private String splashScreenImagePath;
+	private String gameTitle;
+	private String instructions;
+	private TextField gameTitleInput;
+	private TextField instructionsInput;
+	
+	public SplashScreenBuilderWindow() {
+		myFilePathDisplay = new Text("");
+	}
 	
 //	This shit needs to be refactored
-	public void openWindow(){
+	public SplashEntity openWindow() {
 		Stage stage = new Stage();
 		GridPane root = new GridPane();
 		root.setPadding(new Insets(10));
@@ -24,32 +37,36 @@ public class SplashScreenBuilderWindow {
 		root.setVgap(20);
 //		pickColor(root);
 		selectText(root);
+		myFilePathDisplay = new Text("");
 		Button chooseImageButton = new Button("Choose Image");
 		chooseImageButton.setOnAction(e -> {
 			ImageChooser ic = new ImageChooser();
-			String splashScreenImagePath = ic.chooseFile();
+			splashScreenImagePath = ic.chooseFile();
+			myFilePathDisplay.setText(splashScreenImagePath);
 		});
 		Button okayButton = new Button("OkayButtonLabel");
 		okayButton.setOnAction(e -> {
-			//TODO: pass the color to a new entity or something?
-			//Entity myEntity = new Entity();
-			//myEntity.addComponent();
-			//myData.addToConfigurationEntityList(myEntity);
-			
+			gameTitle = gameTitleInput.getText();
+			instructions = instructionsInput.getText();
 			stage.close();
 		});
 		root.getChildren().add(okayButton);
-		GridPane.setConstraints(okayButton, 0, 5);
+		GridPane.setConstraints(okayButton, 0, 8);
 		GridPane.setColumnSpan(okayButton, 2);
+		root.getChildren().add(myFilePathDisplay);
+		GridPane.setConstraints(myFilePathDisplay, 0, 2);
+		GridPane.setColumnSpan(myFilePathDisplay, 2);
+		root.getChildren().add(chooseImageButton);
+		GridPane.setConstraints(chooseImageButton, 0, 0);
+		GridPane.setColumnSpan(chooseImageButton, 2);
 		Scene scene = new Scene(root, 350, 300);
 		stage.setScene(scene);
 		stage.setTitle("Customize Splash Screen");
 		stage.show();
 		
-		
 //		beneath here is a splash entity which you instantiate with all the values you just found at the x's
-//		SplashEntity s = new SplashEntity(1, x,x,x);
-//		return s;
+		SplashEntity s = new SplashEntity(1, gameTitle, instructions, splashScreenImagePath);
+		return s;
 	}
 	
 //	private void pickColor(Pane root){
@@ -65,10 +82,16 @@ public class SplashScreenBuilderWindow {
 //	}
 	
 	private void selectText(Pane root){
-		Label title = new Label("Game Title:");
-		GridPane.setConstraints(title, 0, 2);
-		TextField input = new TextField ();
-		GridPane.setConstraints(input, 1, 2);
-		root.getChildren().addAll(title, input);
+		Label getGameTitle = new Label("Game Title:");
+		GridPane.setConstraints(getGameTitle, 0, 4);
+		gameTitleInput = new TextField();
+		GridPane.setConstraints(gameTitleInput, 3, 4);
+		root.getChildren().addAll(getGameTitle, gameTitleInput);
+		
+		Label getInstructions = new Label("Instructions:");
+		GridPane.setConstraints(getInstructions, 0, 6);
+		instructionsInput = new TextField();
+		GridPane.setConstraints(instructionsInput, 3, 6);
+		root.getChildren().addAll(getInstructions, instructionsInput);
 	}
 }
