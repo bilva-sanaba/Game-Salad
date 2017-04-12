@@ -59,8 +59,7 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void loadGame(String file) {
-		System.out.println(file);
-		myController.loadNewGame(file);
+		addEntities(myController.loadNewGame(file));
 	}
 	
 	public void authorGame() {
