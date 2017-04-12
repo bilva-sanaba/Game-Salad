@@ -41,7 +41,7 @@ public class SplashView extends AbstractViewer {
 	}
 
 	private void setBorderPane() {
-		Label lab = makeLabel("RainDrop salad", "splashlabel");
+		Label lab = makeLabel("RainDrop Salad", "splashlabel");
 		myPane.setCenter(lab);
 	}
 

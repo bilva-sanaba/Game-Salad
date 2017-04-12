@@ -75,16 +75,15 @@ public class DisplayManager {
 	private void setBounds(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
 		myWidthBound = width;
 		myHeightBound = height;
-		myWidthBound.addListener(new ChangeListener() {
-		      @Override
-		      public void changed(ObservableValue o, Object oldVal, Object newVal) {
+		myWidthBound.addListener(new ChangeListener<Number>() {
+		      public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
 		        myAllDisplays.values().stream()
 		        	.forEach(c -> updateX(c, (Double) newVal));
 		      }
 		    });
-		myHeightBound.addListener(new ChangeListener() {
+		myHeightBound.addListener(new ChangeListener<Number>() {
 		      @Override
-		      public void changed(ObservableValue o, Object oldVal, Object newVal) {
+		      public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
 		    	  myAllDisplays.values().stream()
 		        	.forEach(c -> updateY(c, (Double) newVal));
 		      }

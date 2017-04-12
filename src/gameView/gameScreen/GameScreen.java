@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import controller.WorldAnimator;
 import entity.restricted.IRestrictedEntityManager;
+import gameEngine_interface.GameEngine;
 import gameEngine_interface.RunnerTest;
 import gameView.AbstractViewer;
 import gameView.ImageManager;
@@ -130,11 +131,6 @@ public class GameScreen extends AbstractViewer {
 				myTopBox.getChildren().add(makeButton(c));
 			});
 		myBP.setCenter(myPane);
-		//myPane.getChildren().add(insidepane);
-//		Scene test = myAnimation.getScene();
-//		Pane newPane = new Pane();
-//		newPane.getChildren().add(test.getRoot());
-//		myBP.setCenter(test.getRoot());
 	}
 
 	@Override
@@ -144,14 +140,15 @@ public class GameScreen extends AbstractViewer {
 	}
 	
 	public void removeComponent(UIDisplayComponent toRemove) {
-		//myBP.getChildren().remove(toRemove);
 		myPane.getChildren().remove(toRemove.getDisplay());
 	} 
 	
 	public void addComponent(UIDisplayComponent toAdd) {
 		myPane.getChildren().add(toAdd.getDisplay());
-		//((Group) myAnimation.getScene().getRoot()).getChildren().add(toAdd.getDisplay());
-		//System.out.println(((Group) myAnimation.getScene().getRoot()).getChildren());
 	} 
+	
+	public void addGameEngine(GameEngine game) {
+		myAnimation.start(game);
+	}
 
 }
