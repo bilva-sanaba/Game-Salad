@@ -76,5 +76,8 @@ public abstract class AbstractViewer implements ICommandView {
 	public void pauseGame() {
 		System.out.println("ABSTRACT");
 	}
+	public String getInstructions(){
+		return null;
+	}
 	
 }

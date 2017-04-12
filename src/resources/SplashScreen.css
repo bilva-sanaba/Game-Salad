@@ -1,5 +1,5 @@
 #splashpane{
-    -fx-background-image: url("images/background.gif");
+    -fx-background-image: url("images/background1.gif");
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
     -fx-background-size: cover;
@@ -7,8 +7,8 @@
 
 #splashlabel {
 	-fx-font-family: sans-serif;
-	-fx-alignment: bottom-right;
-	-fx-font-size: 50;
+	-fx-alignment: top-left;
+	-fx-font-size: 200;
 	-fx-text-fill: white;
 }
 
@@ -37,5 +37,11 @@
 .button:hover {
 	-fx-background-color: #2f4f4f;
 	
+}
+
+.label {
+	-fx-font-family: sans-serif;
+	-fx-font-size: 75;
+	-fx-text-fill: black;
 }
 

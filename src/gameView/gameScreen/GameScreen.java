@@ -30,7 +30,6 @@ public class GameScreen extends AbstractViewer {
 	private IRestrictedEntityManager myEntities;
 	private ImageManager myManager;
 	private HBox myTopBox;
-	private BorderPane insidepane;
 	private VBox myLeftBox;
 	private VBox myRightBox;
 	private StackPane myPane;
@@ -126,7 +125,7 @@ public class GameScreen extends AbstractViewer {
 				myLeftBox);
 		myBP.setId("main");
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));//getStyleSheets(this, myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
 		myCommands.stream()
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
