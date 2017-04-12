@@ -17,9 +17,14 @@ import gameView.Coordinate;
 
 public class EntityManager implements IEntityManager {
 	private Collection<Entity> myEntities;
-
+	
 	public EntityManager(Collection<Entity> entities){
-		myEntities = entities;
+		myEntities = new ArrayList<Entity>();
+		for (Entity e: entities) {
+			if (e.getComponent(ComponentType.Location)!=null){
+				myEntities.add(e);
+			}
+		}
 	}
 
 	@Override
