@@ -25,7 +25,6 @@ import engines.MovementEngine;
 import engines.NewMovementEngine;
 import entity.Entity;
 import entity.EntityManager;
-import entity.GamePlayerEntityManager;
 import entity.IEntity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
@@ -48,14 +47,12 @@ public class GameEngine implements GameEngineInterface {
 	private List<AbstractEngine> myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
-	private GamePlayerEntityManager myGamePlayerEntityManager;
 
 	public GameEngine(){
 		initializeRestrictedEntities();
 	}
 	public void loadData(Communicator c){
 		myEntityManager = new EntityManager(c.getData());
-		myGamePlayerEntityManager = new GamePlayerEntityManager(c.getData());
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		initializeRestrictedEntities();
 	}

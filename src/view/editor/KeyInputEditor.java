@@ -6,7 +6,6 @@ import java.util.Map;
 
 import components.IComponent;
 import components.entityComponents.KeyExpression;
-import engines.KeyInputPanel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -22,7 +21,7 @@ import javafx.scene.text.Text;
 public class KeyInputEditor extends ComponentEditor {
 	private static final String ComponentName = "KeyInput";
 	private static final String KEYINPUT = "KeyInput : ";
-	private KeyInputPanel kip = new KeyInputPanel();
+	private Map<KeyCode,KeyExpression> inputMap = new HashMap<KeyCode,KeyExpression>();
 		
 		private HBox myBox;
 		private Text myLabel = new Text(KEYINPUT);
@@ -42,7 +41,7 @@ public class KeyInputEditor extends ComponentEditor {
 		
 		@Override
 		public IComponent getComponent() {
-			return getCompF().getComponent(ComponentName, kip.getMap());
+			return getCompF().getComponent(ComponentName, inputMap);
 		}
 		
 		
@@ -63,9 +62,10 @@ public class KeyInputEditor extends ComponentEditor {
 			group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 				public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 					if (new_toggle.equals(rb1)) {
-						kip.openWindow();
+						//KeyInputPanel kip = new KeyInputPanel();
+						//inputMap = kip.getMap();
 					} else{
-						kip.clear();
+						inputMap.clear();
 					}
 				}
 			});
