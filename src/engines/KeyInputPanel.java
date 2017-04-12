@@ -34,6 +34,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 
 	public Map<KeyCode, IKeyExpression> getMap() {
 		// TODO Auto-generated method stub
+		System.out.println(keyMap);
 		return keyMap;
 	}
 	public void openWindow(){
