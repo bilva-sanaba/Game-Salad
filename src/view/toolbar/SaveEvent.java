@@ -21,8 +21,11 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		XMLWriter xw = new XMLWriter();
 		String fileName;
 		List <Entity> l = new ArrayList<Entity>();
+		l.add(myData.getSplashEntity());
+		l.add(myData.getLevelEntity());
 		updateList(l, myData.getDefinedEntityMap());
 		updateList(l, myData.getPlacedEntityMap());
+		//updateList(l, myData.getConfigurationEntityMap());
 		TextInputDialog tid = new TextInputDialog(myData.getGameName());
 		tid.setTitle("Saving File");
 		tid.setHeaderText("Please choose a name for your game: ");

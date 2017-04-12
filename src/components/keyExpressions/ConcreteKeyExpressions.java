@@ -1,11 +1,11 @@
 package components.keyExpressions;
 
-import components.AccelerationComponent;
-import components.ComponentType;
-import components.KeyExpression;
-import components.LocationComponent;
-import components.TerminalVelComponent;
-import components.VelocityComponent;
+
+import components.entityComponents.AccelerationComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.KeyExpression;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import javafx.scene.input.KeyCode;
 

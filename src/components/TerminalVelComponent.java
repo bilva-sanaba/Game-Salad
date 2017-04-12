@@ -1,5 +1,7 @@
 package components;
 
+import components.entityComponents.ComponentType;
+
 public class TerminalVelComponent implements IComponent{
 	
 	double terminalX;

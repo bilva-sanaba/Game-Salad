@@ -17,6 +17,10 @@ public class ViewController implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-
+		myGrid.clearEntitiesOnGrid();
+		myGrid.placeEntitiesFromFile();
+		
+		myTab.clearEntitiesOnTab();
+		myTab.placeEntitiesFromFile();
 	}
 }

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
 
-import components.ComponentType;
 import components.IComponent;
-import components.LabelComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.LabelComponent;
 import engines.IRestrictEntity;
 import entity.restricted.IRestrictedEntity;
 import gameView.Coordinate;
@@ -92,6 +92,9 @@ public class Entity implements IEntity, IRestrictEntity {
 	
 	@Override
 	public String toString(){
-		return ((LabelComponent)this.getComponent(ComponentType.Label)).getLabel();
+		if(((LabelComponent)this.getComponent(ComponentType.Label)).getLabel() != null){
+			return ((LabelComponent)this.getComponent(ComponentType.Label)).getLabel();
+		}
+		return "null label component";
 	}
 }

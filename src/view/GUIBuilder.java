@@ -14,16 +14,17 @@ import view.toolbar.ToolBarView;
  */
 public class GUIBuilder {
 	public static final String RESOURCE_PACKAGE = "resources/";
-	public static final String STYLESHEET = "default.css";
+	public static final String STYLESHEET = "GridView.css";
 
 	private static final double SCREEN_HEIGHT = 650;
 	private static final double SCREEN_WIDTH = 1000;
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
-	private GUIComponent grid;
-	private GUIComponent tab;
+	private GridView grid;
+	private TabView tab;
 	private GUIComponent toolbar;
 	private ViewData myData;
+	private ViewController viewController;
 
 	/**
 	 * Initializes the main Scene and Stage.
@@ -33,6 +34,8 @@ public class GUIBuilder {
 		grid = new GridView(utilF, myData, 10, 10);
 		tab = new TabView(utilF, myData);
 		toolbar = new ToolBarView(utilF, myData);
+		//viewController = new ViewController(myData, grid, tab);
+		
 
 		myComp.add(grid);
 		myComp.add(tab);

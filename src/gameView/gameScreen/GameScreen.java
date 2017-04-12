@@ -41,14 +41,14 @@ public class GameScreen extends AbstractViewer {
 	public GameScreen(UIView view, WorldAnimator animation) {
 		super(view);
 		myCommands = getCommands(myName);
-		//myAnimation = animation;
+		myAnimation = animation;
 		initializeBoxes();
 		buildMainScene();
 		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS);
 	}
 
 	public Scene getScene() {
-		//myBP.setCenter(myAnimation.getScene().getRoot());
+		//myPane.getChildren().add(myAnimation.getScene().getRoot());
 		myAnimation = new RunnerTest().getAnimator();
 		myAnimation.setKeys(myScene);
 		Scene test = myAnimation.getScene();

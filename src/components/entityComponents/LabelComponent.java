@@ -1,4 +1,6 @@
-package components;
+package components.entityComponents;
+
+import components.IComponent;
 
 /**
  * Component which is useful for grouping together objects with similar

@@ -1,7 +1,11 @@
 package engines;
 
-import components.ImagePropertiesComponent;
-import components.LocationComponent;
+import java.util.List;
+import java.util.Map;
+
+import components.IComponent;
+import components.entityComponents.ComponentType;
+
 
 /**
  * The point of this interface, as opposed to the ICollision interface, is that this interface is specifically to check for collisions between two objects given their locations
@@ -11,16 +15,30 @@ import components.LocationComponent;
  *
  */
 public interface ITwoObjectCollide {
+	
+	public static final String LEFT = "Left";
+	public static final String RIGHT = "Right";
+	public static final String TOP = "Top";
+	public static final String BOTTOM = "Bottom";
+	public static final String NONE = "No Collision";
+
+
+
+
 
 	/**
-	 * Determines whether or not two objects collide given their location components and ImagePropertiesComponent (bounding box width and height).
-	 * @param location0 LocationComponent of first object
-	 * @param location1 LocationComponent of second object
-	 * @param image0 ImagePropertiesComponent of first object
-	 * @param image1 ImagePropertiesComponent of second object
-	 * @return boolean whether or not the two objects collide or overlap
+	 * Determines whether or not two objects collide given the Components that are specified in the neededComponentsMethod().
+	 * @param obj0 Map of components for first object
+	 * @param obj1 Map of components for second object
+	 * @return String specifying which side of object1 that object0 collides with. Use the public static finals for this returned string. 
 	 */
-	public boolean collides(LocationComponent location0, LocationComponent location1, ImagePropertiesComponent image0, ImagePropertiesComponent image1);
+	public String collides(Map<ComponentType, IComponent> obj0, Map<ComponentType, IComponent> obj1);
 	
+	
+	/**
+	 * This returns the components the collisionCheckingMethod needs to do its job.
+	 * @return List<ComponentType> the components the method needs.
+	 */
+	public List<ComponentType> needsComponents();
 	
 }

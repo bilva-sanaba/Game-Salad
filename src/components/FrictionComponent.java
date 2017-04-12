@@ -1,5 +1,7 @@
 package components;
 
+import components.entityComponents.ComponentType;
+
 public class FrictionComponent implements IComponent{
 	
 	private double friction;

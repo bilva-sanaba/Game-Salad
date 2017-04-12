@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import components.ComponentType;
 import components.IComponent;
-import components.ImagePropertiesComponent;
-import components.LocationComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
+import components.entityComponents.LocationComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -66,21 +66,28 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	
 	
 	private void checkIndividualCollision(IComponent location0, IComponent location1, IComponent imageProp0, IComponent imageProp1, int index0, int index1) {
-		ImagePropertiesComponent img0 = (ImagePropertiesComponent) imageProp0;
-		ImagePropertiesComponent img1 = (ImagePropertiesComponent) imageProp1;
-		LocationComponent loc0 = (LocationComponent) location0;
-		LocationComponent loc1 = (LocationComponent) location1;
-		boolean collisionOccurs = collisionMethod.collides(loc0, loc1, img0, img1);
-		if (collisionOccurs){
-			System.out.println("Collision");
+		List<ComponentType> necessaryCollisionCheckingComponents = collisionMethod.needsComponents();
+		HashMap<ComponentType, IComponent> obj0Map = new HashMap<ComponentType, IComponent>();
+		HashMap<ComponentType, IComponent> obj1Map = new HashMap<ComponentType, IComponent>();
+		for (ComponentType ct : necessaryCollisionCheckingComponents) {
+			Map<Integer, IComponent> allEntityMap = entManager.getCertainComponents(ct);
+			obj0Map.put(ct, allEntityMap.get(index0));
+			obj1Map.put(ct, allEntityMap.get(index1));
 		}
-		sendCollisionToSubEngines(index0, index1, collisionOccurs);
+
+		
+		String collisionSide = collisionMethod.collides(obj0Map, obj1Map);
+		sendCollisionToSubEngines(index0, index1, collisionSide);
 	}
 
-	private void sendCollisionToSubEngines(int index0, int index1, boolean collisionOccurs) {
+	private void sendCollisionToSubEngines(int index0, int index1, String collisionSide) {
+		boolean collisionOccurs = false;
+		if (collisionSide != ITwoObjectCollide.NONE) {
+			collisionOccurs = true;
+		}
 		if (collisionOccurs) {
 			for(ISubEngine subEngine: subEngines) {
-				List<ComponentType> subEngineNeededComponents = subEngine.getNecessaryComponents();
+				List<ComponentType> subEngineNeededComponents = subEngine.getNecessaryComponents(collisionSide);
 				for(ComponentType comp : subEngineNeededComponents) {
 					Map<Integer, IComponent> componentFromAllEntities = entManager.getCertainComponents(comp);
 					CollisionPair dataTransmitter = new CollisionPair();
@@ -99,6 +106,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 
 
 	public Collection<IEntity> update(Collection<KeyCode> keys) {
+		System.out.println("is this being called");
 		newEntitiesCreated = new ArrayList<IEntity>();
 		checkCollisionsOccurred();
 		return newEntitiesCreated;

@@ -1,4 +1,5 @@
 package gameEngine_interface;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -6,16 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import components.LocationComponent;
-import components.SpriteComponent;
-import components.TerminalVelComponent;
-import components.AccelerationComponent;
-import components.ComponentType;
-import components.KeyExpression;
-import components.KeyInputComponent;
-import components.LocationComponent;
-import components.SpriteComponent;
-import components.VelocityComponent;
+
+import components.entityComponents.AccelerationComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.KeyExpression;
+import components.entityComponents.KeyInputComponent;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.SpriteComponent;
+import components.entityComponents.VelocityComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
@@ -112,7 +111,7 @@ public class GameEngine implements GameEngineInterface {
 		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		t.addComponent(new KeyInputComponent());
 		t.addComponent(new AccelerationComponent(0,0));
-		t.addComponent(new TerminalVelComponent(5, 5));
+		//t.addComponent(new TerminalVelComponent(5, 5));
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
 		e.add(t);
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());

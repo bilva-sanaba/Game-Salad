@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import components.ComponentType;
 import components.IComponent;
-import components.SpriteComponent;
-import components.XYComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.SpriteComponent;
+import components.entityComponents.XYComponent;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;

@@ -1,6 +1,6 @@
 package controller;
 
-import components.LocationComponent;
+import components.entityComponents.LocationComponent;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,13 +19,13 @@ public class Camera {
 	private Parent root;
 	private LocationComponent followerLoc;
 	
-	public Camera(int levelLength, Scene frame, LocationComponent loc){
-		myLevelLength = levelLength;
-		myFrame = frame;
+	public Camera(int length, Scene myScene, LocationComponent component) {
+		myLevelLength = length;
+		myFrame = myScene;
 		root = myFrame.getRoot();
-		followerLoc = loc;
+		followerLoc = component;
 	}
-	
+
 	public void updateCamera(){
 		if(( (myFrame.getWidth() - root.getTranslateX()) - (followerLoc.getX() ) <= RIGHT_BOUND_FROM_EDGE) && myFrame.getWidth()-root.getTranslateX() < myLevelLength){
 			root.setTranslateX(root.getTranslateX() - 2 );

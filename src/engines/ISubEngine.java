@@ -2,7 +2,7 @@ package engines;
 
 import java.util.List;
 
-import components.ComponentType;
+import components.entityComponents.ComponentType;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -31,6 +31,6 @@ public interface ISubEngine {
 	 * This method will return the ComponentType that the subEngine needs so that it receives that component, and nothing more.
 	 * @return
 	 */
-	public List<ComponentType> getNecessaryComponents();
+	public List<ComponentType> getNecessaryComponents(String sideOfCollision);
 	
 }

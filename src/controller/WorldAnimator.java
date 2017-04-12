@@ -10,11 +10,8 @@ import java.util.Set;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
-import components.ComponentType;
-import components.LocationComponent;
-import components.VelocityComponent;
-import components.XYComponent;
-
+import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
@@ -78,7 +75,8 @@ public class WorldAnimator {
 		//myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 		//myScene = new Scene(root,LENGTH,WIDTH);
 		myScene = new Scene(root,LENGTH - 200,WIDTH);
-		myCamera = new Camera(LENGTH ,myScene, (LocationComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location));
+		LocationComponent lc = (LocationComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location);
+		myCamera = new Camera(LENGTH ,myScene, lc);
 		createMap(restrictedEntityManager);
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
@@ -130,9 +128,6 @@ public class WorldAnimator {
 	}
 	
 	private void externalKeyHandler(KeyCode code){
-		if(code == KeyCode.S){
-			animation.play();
-		}
 		if(code == KeyCode.P && !pause){
 			animation.pause();
 			pause=true;
@@ -140,7 +135,6 @@ public class WorldAnimator {
 		else if (code == KeyCode.P && pause) {
 			animation.play();
 			pause =false;
-
 		}
 	}
 
@@ -156,12 +150,6 @@ public class WorldAnimator {
 			removeEntity(entity,trans);
 			updateEntity(entity,trans);
 			createEntity(entity,trans);
-//			for (Integer id : imageMap.keySet()) {
-//				imageMap.get(id).setX(imageMap.get(id).getX()+5);
-//			}
-//			if (trans.getChildren().size()>0){
-//				trans.play();
-//			}
 		}
 		return map;
 	}
@@ -203,17 +191,8 @@ public class WorldAnimator {
 		currentImage.setX(re.getLocation().getX());
 		currentImage.setY(re.getLocation().getY());		
 	}
-	
-	
-	private PathTransition moveToLocation(ImageView imageView, Coordinate c){
-		Path path = new Path();
-		double xLoc = c.getX();
-		double yLoc = c.getY();
-		path.getElements().add(new MoveTo(xLoc, yLoc));
-		PathTransition pathTransition = new PathTransition(Duration.millis(KEY_INPUT_SPEED), path, imageView);
-		return pathTransition;
-	}
-	
+
+
 	private FadeTransition makeFade(ImageView imageView){
 		double newOpacity = 0.0;
 		return createFade(newOpacity, imageView);

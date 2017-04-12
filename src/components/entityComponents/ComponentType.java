@@ -1,4 +1,4 @@
-package components;
+package components.entityComponents;
 
 public enum ComponentType {
 	Label(), 
@@ -9,7 +9,11 @@ public enum ComponentType {
 	Health(), 
 	Acceleration(),
 	KeyInput(),
+	Splash(),
+	Background(),
+	Level(),
 	TerminalVelComponent(),
 	FrictionComponent();
+
 	
 }
