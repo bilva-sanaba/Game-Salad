@@ -69,11 +69,8 @@ public class EntityManager implements IEntityManager {
 									.getComponent(ComponentType.Location)),
 							((SpriteComponent) e
 									.getComponent(ComponentType.Sprite))
-<<<<<<< HEAD
 									.getClassPath(),(ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties)));
-=======
-									.getClassPath(), (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties)));
->>>>>>> 1599ec83b7a7725f6ff7c7ad91bed78c18f3faf9
+
 		}
 		;
 		return entityToRestricted;
