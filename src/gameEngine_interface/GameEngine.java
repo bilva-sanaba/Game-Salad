@@ -26,6 +26,7 @@ import engines.MovementEngine;
 import engines.NewMovementEngine;
 import entity.Entity;
 import entity.EntityManager;
+import entity.GPEntityManager;
 import entity.IEntity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
@@ -33,6 +34,7 @@ import entity.restricted.RestrictedEntityFactory;
 import entity.restricted.RestrictedEntityManager;
 import engines.AbstractEngine;
 import entity.IEntityManager;
+import entity.SplashEntity;
 
 /**
  * Basic GameEngine class Note: the engines must be created in someway, likely
@@ -49,18 +51,23 @@ public class GameEngine implements GameEngineInterface {
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	private Entity mainCharacter;
+	private GPEntityManager GPEM;
 
 	public GameEngine(){
 		initializeRestrictedEntities();
 	}
 	public void loadData(Communicator c){
 		myEntityManager = new EntityManager(c.getData());
+		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		initializeRestrictedEntities();
 	}
 	public Collection<Entity> save(){
 		
 		return myEntityManager.copy();
+	}
+	public SplashEntity getSplashEntity(){
+		return GPEM.getSplash();
 	}
 	private void initializeRestrictedEntities(){
 		myRestrictedEntityManager = myEntityManager.getRestricted();
@@ -124,7 +131,12 @@ public class GameEngine implements GameEngineInterface {
 		initializeRestrictedEntities();
 	}
 	
-	public Entity getMainCharacter(){
-		return mainCharacter;
+	public IEntity getMainCharacter(){
+		for(IEntity e : myEntityManager.getEntityMap().keySet()){
+			if(e.getComponent(ComponentType.KeyInput) != null){
+				return e;
+			}
+		}
+		return null;
 	}
 }
