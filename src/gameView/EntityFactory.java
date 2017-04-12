@@ -8,13 +8,7 @@ public class EntityFactory {
 	}
 
 	public Entity genEntity() {
+		return null;
 		// use reflection to create entity
-		Class<?> clazz = Class.forName("entities." + className);
-		try {
-			return (Entity) clazz.getDeclaredConstructor(parameterTypes)
-					.newInstance(indexedParameters);
-		} catch (Exception e) {
-			return null;
-		}
 	}
 }

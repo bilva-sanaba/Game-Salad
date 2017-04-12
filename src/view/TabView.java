@@ -51,19 +51,12 @@ public class TabView extends GUIComponent {
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
+					spriteImage.setFitHeight();
+					spriteImage.setFitWidth(value);
 					this.setGraphic(spriteImage);
 				}
 			}
 		});
-		// blocksView.cellFactoryProperty().addListener(new ChangeListener<?
-		// super Callback<ListView<Entity>,ListCell<Entity>>>(){
-		// public ListCell<Entity> call(ListView<Entity> l){
-		// SpriteComponent entitySprite = (SpriteComponent)
-		// entity.getComponent(ComponentType.Sprite);
-		// ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		// return new ImageView();
-		// }
-		// });
 		blocksView.setOrientation(Orientation.VERTICAL);
 		blocksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Entity>() {
 			@Override

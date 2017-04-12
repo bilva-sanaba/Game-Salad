@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.KeyExpression;
@@ -25,6 +26,7 @@ import engines.MovementEngine;
 import engines.NewMovementEngine;
 import entity.Entity;
 import entity.EntityManager;
+import entity.GPEntityManager;
 import entity.IEntity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
@@ -32,6 +34,7 @@ import entity.restricted.RestrictedEntityFactory;
 import entity.restricted.RestrictedEntityManager;
 import engines.AbstractEngine;
 import entity.IEntityManager;
+import entity.SplashEntity;
 
 /**
  * Basic GameEngine class Note: the engines must be created in someway, likely
@@ -47,18 +50,24 @@ public class GameEngine implements GameEngineInterface {
 	private List<AbstractEngine> myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
+	private Entity mainCharacter;
+	private GPEntityManager GPEM;
 
 	public GameEngine(){
 		initializeRestrictedEntities();
 	}
 	public void loadData(Communicator c){
 		myEntityManager = new EntityManager(c.getData());
+		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		initializeRestrictedEntities();
 	}
 	public Collection<Entity> save(){
 		
 		return myEntityManager.copy();
+	}
+	public SplashEntity getSplashEntity(){
+		return GPEM.getSplash();
 	}
 	private void initializeRestrictedEntities(){
 		myRestrictedEntityManager = myEntityManager.getRestricted();
@@ -109,14 +118,25 @@ public class GameEngine implements GameEngineInterface {
 		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		t.addComponent(new KeyInputComponent());
 		t.addComponent(new AccelerationComponent(0,0));
+		//t.addComponent(new TerminalVelComponent(5, 5));
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
 		e.add(t);
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());
 		e.add(t);
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
 		e.add(t);
+		mainCharacter = t;
 		myEntityManager=new EntityManager(e);    
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
 		initializeRestrictedEntities();
+	}
+	
+	public IEntity getMainCharacter(){
+		for(IEntity e : myEntityManager.getEntityMap().keySet()){
+			if(e.getComponent(ComponentType.KeyInput) != null){
+				return e;
+			}
+		}
+		return null;
 	}
 }

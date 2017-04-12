@@ -29,7 +29,7 @@ import javafx.scene.paint.Color;
  * @author Justin Yang
  * @author Jack Bloomfeld
  */
-public class GridView extends GUIComponent implements Observer{
+public class GridView extends GUIComponent implements Observer {
 	private ScrollPane myScroll;
 	private GridPane myGrid;
 	private ViewData myData;
@@ -70,7 +70,10 @@ public class GridView extends GUIComponent implements Observer{
 		for (i=0;i<myRow;i++){
 			Rectangle rect = new Rectangle(40, 40);
 			rect.getStyleClass().add("view-grid-cell");
+<<<<<<< HEAD
 			
+=======
+>>>>>>> master
 			myGrid.add(rect, myCol, i);
 			addMouseListenerPane(myCol, i);
 		}
@@ -82,7 +85,10 @@ public class GridView extends GUIComponent implements Observer{
 		for (i=0;i<myCol;i++){
 			Rectangle rect = new Rectangle(40, 40);
 			rect.getStyleClass().add("view-grid-cell");
+<<<<<<< HEAD
 			
+=======
+>>>>>>> master
 			myGrid.add(rect, i, myRow);
 			addMouseListenerPane(i, myRow);
 		}
@@ -114,10 +120,11 @@ public class GridView extends GUIComponent implements Observer{
 	}
 
 	private void drawEntity(Entity entity) {
-		LocationComponent entityLocation = (LocationComponent) entity
-				.getComponent(ComponentType.Location);
-		SpriteComponent entitySprite = (SpriteComponent) entity
-				.getComponent(ComponentType.Sprite);
+//		LocationComponent entityLocation = (LocationComponent) entity
+//				.getComponent(ComponentType.Location);
+		
+		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
+		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
 		spriteImage.setFitHeight(40);
 		spriteImage.setFitWidth(40);
@@ -144,7 +151,6 @@ public class GridView extends GUIComponent implements Observer{
 	public void setUpLevel() {
 		int totalRow = myData.getLevelEntity().getRows();
 		int totalCol = myData.getLevelEntity().getCols();
-		
 		
 		while (myCol != totalCol) {
 			addHo();

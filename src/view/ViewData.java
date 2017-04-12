@@ -47,10 +47,10 @@ public class ViewData extends Observable {
 	}
 
 	public void setEntityLocation(int entityID, int row, int col) {
-
 		LocationComponent locComp = new LocationComponent(row, col);
 
-		placedEntityMap.get(entityID).addComponent(locComp);
+		Entity newE = placedEntityMap.get(entityID);
+		newE.addComponent(locComp);
 		/*	LocationComponent locComp = (LocationComponent) definedEntityList.get(entityID).getComponent(ComponentType.Location);
 		locComp.setX(row);
 		locComp.setY(col); */

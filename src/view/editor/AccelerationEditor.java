@@ -1,39 +1,39 @@
 package view.editor;
 
 import components.IComponent;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import view.UtilityFactory;
 
 public class AccelerationEditor extends ComponentEditor {
 	private static final String ComponentName = "Acceleration";
-	private static final String ACCELERATION = "Acceleration : 0 m/s/s";
 	
-	private HBox myBox;
-	private Text myLabel = new Text(ACCELERATION);
-	private Slider myAccelerationSlider;
-	private int myAcceleration; 
+	private VBox myBox;
+	private double myXAcceleration; 
+	private double myYAcceleration; 
 	
-	public AccelerationEditor() {
-		System.out.println("kill yourself");
-		myBox = new HBox();
-		myAccelerationSlider = new Slider();
-		System.out.println("kill yourself now asshole");
-		myBox.getChildren().add(myLabel);
-		myBox.getChildren().add(myAccelerationSlider);
-		
-		myAccelerationSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-			myAccelerationSlider.setValue(newValue.intValue());
-			myLabel.setText(
-					String.format("Acceleration : " + Integer.toString(newValue.intValue()) + " m/s/s"));
-			myAcceleration = newValue.intValue();
+	public AccelerationEditor(UtilityFactory utilf) {
+		myBox = new VBox();
+		HBox xaccel = utilf.buildSlider(ComponentName+"X", new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				myXAcceleration = newValue.doubleValue(); 
+			}
 		});
-		System.out.println(myBox);
+		HBox yaccel = utilf.buildSlider(ComponentName+"Y", new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				myYAcceleration = newValue.doubleValue(); 
+			}
+		});
+		myBox.getChildren().addAll(xaccel,yaccel);
 		setInputNode(myBox);
 	}
 	
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myAcceleration, myAcceleration);
+		return getCompF().getComponent(ComponentName, myXAcceleration, myYAcceleration);
 	}
 }

@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import view.UtilityFactory;
 
 public class LabelEditor extends ComponentEditor {
 	private static final String ComponentName = "Label";
@@ -14,12 +15,11 @@ public class LabelEditor extends ComponentEditor {
 	private Text myLabel = new Text(LABEL);
 	private TextField myTextInputField;
 	
-	public LabelEditor() {
+	public LabelEditor(UtilityFactory utilf) {
 		myBox = new HBox();
 		myTextInputField = new TextField();
 		myBox.getChildren().add(myLabel);
 		myBox.getChildren().add(myTextInputField);
-		System.out.println(myBox);
 		setInputNode(myBox);
 	}
 	
