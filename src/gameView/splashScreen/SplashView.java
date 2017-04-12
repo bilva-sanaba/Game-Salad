@@ -27,7 +27,7 @@ public class SplashView extends AbstractViewer {
 	private Collection<AbstractCommand> myCommands;
 	private SplashEntity se;
 	
-
+	
 	public SplashView(UIView view, SplashEntity se) {
 		super(view);
 		myCommands = getCommands(myName);
@@ -66,7 +66,7 @@ public class SplashView extends AbstractViewer {
 		playbox.setId("playbox");
 		playbox.setAlignment(Pos.CENTER);
 		BorderPane.setMargin(playbox, new Insets(10, 30, 10, 10));
-		Button b = new Button("Play");
+		Button b = makeButton(myCommands.iterator().next());
 		playbox.getChildren().add(b);
 		b.setOnAction(e->transitionToMain());
 		myPane.setCenter(playbox);

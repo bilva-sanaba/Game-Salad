@@ -2,6 +2,8 @@ package entity.restricted;
 
 import java.util.Observer;
 
+import components.entityComponents.ImagePropertiesComponent;
+
 import java.util.Observer;
 
 import gameView.Coordinate;
@@ -25,6 +27,11 @@ public interface IRestrictedEntity {
 	 * @return String which is the ImagePath of the Entity
 	 */
 	public String getImagePath();
+	/**
+	 * 
+	 * @return ImagePropertiesComponent
+	 */
+	public ImagePropertiesComponent getIPComponent();
 	
 	
 	public void addObserver(Observer obs);
