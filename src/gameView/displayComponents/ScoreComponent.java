@@ -2,13 +2,14 @@ package gameView.displayComponents;
 
 
 import gameView.UIView;
+import gameView.tools.DisplayEnum;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 
-public class ScoreComponent extends UIDisplayComponent {
+public class ScoreComponent extends UIDisplayComponent { 
 
 	private HBox myScore;
 	
@@ -22,9 +23,8 @@ public class ScoreComponent extends UIDisplayComponent {
 	}
 
 	@Override
-	public Pos getPos() {
-		// TODO Auto-generated method stub
-		return Pos.TOP_CENTER;
+	public DisplayEnum getPos() {
+		return DisplayEnum.TOP_RIGHT;
 	}
 
 	@Override
