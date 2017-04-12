@@ -1,41 +1,38 @@
 package view.editor;
 
 import components.IComponent;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
+import javafx.scene.layout.VBox;
+import view.UtilityFactory;
 
 public class ImagePropertiesEditor extends ComponentEditor {
 	private static final String ComponentName = "ImageProperties";
-	private static final String ImageProp = "Size : 0 px";
 	
-	private HBox myBox;
-	private Text myLabel = new Text(ImageProp);
-	private Slider mySizeSlider;
-	private double mySize;
+	private VBox myBox;
+	private double myX;
+	private double myY;
 	
-	public ImagePropertiesEditor() {
-		System.out.println("kill yourself");
-		myBox = new HBox();
-		mySizeSlider = new Slider();
-		System.out.println("kill yourself now asshole");
-		myBox.getChildren().add(myLabel);
-		myBox.getChildren().add(mySizeSlider);
-		
-		mySizeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-			mySizeSlider.setValue(newValue.doubleValue());
-			myLabel.setText(
-					String.format("Size : " + Integer.toString(newValue.intValue()) + " px"));
-			mySize = newValue.doubleValue();
+	public ImagePropertiesEditor(UtilityFactory utilf) {
+		myBox = new VBox();
+		HBox xsize = utilf.buildSlider(ComponentName+"X", new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				myX = newValue.doubleValue(); 
+			}
 		});
-		System.out.println(myBox);
+		HBox ysize = utilf.buildSlider(ComponentName+"Y", new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				myY = newValue.doubleValue(); 
+			}
+		});
+		myBox.getChildren().addAll(xsize,ysize);
 		setInputNode(myBox);
 	}
 
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, mySize, mySize);
+		return getCompF().getComponent(ComponentName, myX, myY);
 	}
 
 	

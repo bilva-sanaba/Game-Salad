@@ -35,14 +35,12 @@ public class KeyInputComponent implements IComponent {
 	
 	@Override
 	public ComponentType getComponentType() {
-		// TODO Auto-generated method stub
 		return ComponentType.KeyInput;
 	}
 
 	@Override
 	public IComponent newCopy() {
-		// TODO Auto-generated method stub
-		return null;
+		return new KeyInputComponent(inputMap);
 	}
 
 }

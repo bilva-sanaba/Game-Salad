@@ -1,4 +1,6 @@
-package components;
+package components.entityComponents;
+
+import components.IComponent;
 
 public class LevelComponent implements IComponent {
 

@@ -25,7 +25,6 @@ public class SpecificGameSplashView extends SplashView{
 	}
 	
 	private Background makeBackground(String bg){
-		System.out.println(bg);
 		Image background = new Image(getClass().getClassLoader().getResourceAsStream(bg));
 		BackgroundSize size = new BackgroundSize(100, 100, true, true, true, false);
 		BackgroundImage image = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size);

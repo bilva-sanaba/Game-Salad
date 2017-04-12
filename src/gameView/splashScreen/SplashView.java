@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import gameView.AbstractViewer;
 import gameView.ICommandView;
@@ -52,6 +53,9 @@ public class SplashView extends AbstractViewer {
 	private void setBorderPane() {
 		Label lab = makeLabel(se.getDisplayName(), "splashlabel");
 		myPane.setCenter(lab);
+		Label lbl = makeLabel(se.getInstructions(), "instructions");
+		lbl.setFont(new Font("Arial", 30));
+		myPane.setBottom(lbl); 
 	}
 
 	private void transitionToMain() {
@@ -70,8 +74,7 @@ public class SplashView extends AbstractViewer {
 		Label title = makeLabel("Choose A Mode", "mainlabel");
 		BorderPane.setMargin(title, new Insets(10, 10, 10, 10));
 		myPane.setTop(title);
-		Label lbl = makeLabel(se.getInstructions(), "instructions");
-		myPane.setBottom(lbl); //Reposition label
+		//Reposition label
 		VBox box = new VBox(20);
 		box.setId("mainbox");
 		box.setAlignment(Pos.CENTER);
