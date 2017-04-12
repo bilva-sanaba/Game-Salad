@@ -29,7 +29,7 @@ import javafx.scene.paint.Color;
  * @author Justin Yang
  * @author Jack Bloomfeld
  */
-public class GridView extends GUIComponent implements Observer{
+public class GridView extends GUIComponent implements Observer {
 	private ScrollPane myScroll;
 	private GridPane myGrid;
 	private ViewData myData;
@@ -145,7 +145,6 @@ public class GridView extends GUIComponent implements Observer{
 	public void setUpLevel() {
 		int totalRow = myData.getLevelEntity().getRows();
 		int totalCol = myData.getLevelEntity().getCols();
-		
 		
 		while (myCol != totalCol) {
 			addHo();
