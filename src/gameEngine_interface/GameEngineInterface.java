@@ -24,7 +24,7 @@ public interface GameEngineInterface {
 	 */
 
 	public Collection<RestrictedEntity> handleUpdates(
-			Collection<KeyCode> keysPressed);
+			Collection<KeyCode> keysPressed, Collection<KeyCode>);
 
 	/**
 	 * 

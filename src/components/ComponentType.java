@@ -9,6 +9,7 @@ public enum ComponentType {
 	Health(), 
 	Acceleration(),
 	KeyInput(),
-	TerminalVelComponent();
+	TerminalVelComponent(),
+	FrictionComponent();
 	
 }

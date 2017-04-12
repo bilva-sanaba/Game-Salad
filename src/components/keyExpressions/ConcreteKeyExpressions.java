@@ -19,26 +19,24 @@ public enum ConcreteKeyExpressions {
 		}
 	}),
 	RIGHT ((a) -> {
-		/*LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
-		lc.setX(lc.getX()+2);*/
-		AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
+		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
+		lc.setX(lc.getX()+2);
+		/*AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
 		TerminalVelComponent tvc = (TerminalVelComponent) a.getComponent(ComponentType.TerminalVelComponent);
 		VelocityComponent vc = (VelocityComponent) a.getComponent(ComponentType.Velocity);
 		if(tvc.canAccelerateX(vc.getX())){
 			ac.setX(1);
-			System.out.println(vc.getX());
 		}
 		else{
 			vc.setX(tvc.getX());
 			ac.setX(0);
-			System.out.println(vc.getX());
-		}
+		}*/
 		
 	}),
 	LEFT ((a) -> {
-		/*LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
-		lc.setX(lc.getX()-2);*/
-		AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
+		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
+		lc.setX(lc.getX()-2);
+		/*AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
 		TerminalVelComponent tvc = (TerminalVelComponent) a.getComponent(ComponentType.TerminalVelComponent);
 		VelocityComponent vc = (VelocityComponent) a.getComponent(ComponentType.Velocity);
 		if(tvc.canAccelerateX(vc.getX())){
@@ -46,7 +44,7 @@ public enum ConcreteKeyExpressions {
 		}
 		else{
 			ac.setX(0);
-		}
+		}*/
 	});
 
     private KeyExpression keyExpression; 

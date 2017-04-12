@@ -9,7 +9,9 @@ import entity.restricted.*;
 import javafx.scene.input.KeyCode;
 
 public class NewMovementEngine extends AbstractEngine{
+	
 	private RestrictedEntityFactory ref = new RestrictedEntityFactory();
+	
 	public NewMovementEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 	}
@@ -26,6 +28,7 @@ public class NewMovementEngine extends AbstractEngine{
 			if (hasComponent(e,ComponentType.Location)) {
 				updateAllValues(e, entityMap, changed);
 			}
+			
 		}
 		return changed;
 	}
@@ -45,8 +48,6 @@ public class NewMovementEngine extends AbstractEngine{
 	private void updateLocation(IEntity e) {
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-		
 		lc.setXY(lc.getX() + vc.getX(), lc.getY() + vc.getY());
 //		if (lc.getY()>200){
 //			vc.setY(0);
@@ -57,8 +58,24 @@ public class NewMovementEngine extends AbstractEngine{
 	private void updateVelocity(IEntity e) {
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-		
-		vc.setXY(vc.getX() + ac.getX(), vc.getY() + ac.getY());
+		TerminalVelComponent tvc = (TerminalVelComponent) e.getComponent(ComponentType.TerminalVelComponent);
+		if(Math.abs(vc.getX()) < tvc.getX()){
+			vc.setXY(vc.getX() + ac.getX(), vc.getY() + ac.getY());
+		}
+		else{
+			if(ac.getX() > 0){
+				if(vc.getX() < 0){
+					vc.setX(-tvc.getX());
+				}
+				if(vc.getX() > 0){
+					vc.setX(tvc.getX());
+				}
+			}
+			else if(vc.getX() != 0){
+				vc.setX(vc.getX() + ac.getX());
+				System.out.println("Velocity:" + vc.getX());
+			}
+		}
 	}
 	
 	private boolean hasComponent(IEntity e, ComponentType c) {

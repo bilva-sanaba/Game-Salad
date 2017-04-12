@@ -51,6 +51,7 @@ public class WorldAnimator {
 	public static final int LENGTH = 1000;
 	
 	private Set<KeyCode> keysPressed = new HashSet<KeyCode>();
+	private Set<KeyCode> keysReleased = new HashSet<KeyCode>();
 
 
 	private Scene myScene;
@@ -118,15 +119,14 @@ public class WorldAnimator {
 
 	
 	private void handleKeyReleased(KeyCode keyCode) {
-		
+		keysReleased.add(keyCode);
 		keysPressed.remove(keyCode);
-
+		System.out.println(keyCode);
 	}
 
 	private void handleKeyPressed(KeyCode keyCode) {
 		externalKeyHandler(keyCode);
 		keysPressed.add(keyCode);
-		System.out.println(keyCode);
 	}
 	
 	private void externalKeyHandler(KeyCode code){
