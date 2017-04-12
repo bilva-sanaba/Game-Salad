@@ -69,7 +69,6 @@ public class EntityConfigurationWindow {
 		myList.add(myEntity);
 		myStage.close();
 	}
-	
 }
 
 

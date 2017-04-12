@@ -6,6 +6,8 @@ import java.util.Map;
 
 import components.IComponent;
 import components.KeyExpression;
+import engines.IKeyInputPanel;
+import engines.KeyInputPanel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -62,8 +64,9 @@ public class KeyInputEditor extends ComponentEditor {
 			group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 				public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 					if (new_toggle.equals(rb1)) {
-						//KeyInputPanel kip = new KeyInputPanel();
-						//inputMap = kip.getMap();
+						IKeyInputPanel kip = new KeyInputPanel();
+						kip.openWindow();
+						inputMap = kip.getMap();
 					} else{
 						inputMap.clear();
 					}
