@@ -53,6 +53,7 @@ public class EntityManager implements IEntityManager {
 		for (Entity e : myEntities){
 			certainComponents.add( new RestrictedEntity(e.getID(),new Coordinate((XYComponent) e.getComponent(ComponentType.Location)),
 					((SpriteComponent) e.getComponent(ComponentType.Sprite)).getClassPath(), (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties)));
+
 		}
 		return new RestrictedEntityManager(certainComponents);
 	}
@@ -60,10 +61,10 @@ public class EntityManager implements IEntityManager {
 	@Override
 	public Map<IEntity, IRestrictedEntity> getEntityMap() {
 		Map<IEntity, IRestrictedEntity> entityToRestricted = new HashMap<IEntity, IRestrictedEntity>();
-
+		
 		for (Entity e : myEntities) {
-			entityToRestricted.put(
-					e,
+			if (e.getComponent(ComponentType.Location)!=null &&e.getComponent(ComponentType.Sprite)!=null){
+			entityToRestricted.put(e,
 					new RestrictedEntity(e.getID(), new Coordinate(
 							(XYComponent) e
 									.getComponent(ComponentType.Location)),
@@ -72,7 +73,7 @@ public class EntityManager implements IEntityManager {
 									.getClassPath(),(ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties)));
 
 		}
-		;
+		;}
 		return entityToRestricted;
 	}
 	

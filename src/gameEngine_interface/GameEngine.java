@@ -108,7 +108,6 @@ public class GameEngine implements GameEngineInterface {
 			t.addComponent(new SpriteComponent(("dirt.jpg")));
 			if (i<1){
 			Entity t2 = new Entity(i+21);
-			t2.addComponent(new LocationComponent(300,400-i*50));
 			t2.addComponent(new SpriteComponent(("stone.gif")));
 			e.add(t2);
 			}
@@ -155,7 +154,6 @@ public class GameEngine implements GameEngineInterface {
 				x.addComponent(lc);
 			}
 		}
-		
 		initializeRestrictedEntities();
 	}
 	

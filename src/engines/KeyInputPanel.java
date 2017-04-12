@@ -6,6 +6,7 @@ import java.util.Map;
 import components.keyExpressions.ConcreteKeyExpressions;
 import components.keyExpressions.KeyExpression;
 import components.entityComponents.IKeyExpression;
+
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,9 +21,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class KeyInputPanel implements IKeyInputPanel{
+
 	private Map<KeyCode, IKeyExpression> keyMap = new HashMap<KeyCode, IKeyExpression>();
 	private KeyCode current; 
 	private IKeyExpression currentKC;
+
 	private String currentString;
 	private Text t = new Text();
 	private Scene myScene;
@@ -31,6 +34,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 	public KeyInputPanel(){
 		
 	}
+
 
 	public Map<KeyCode, IKeyExpression> getMap() {
 		// TODO Auto-generated method stub
@@ -55,8 +59,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 				System.out.println(currentKC.getClass());
 				keyMap.put(current,currentKC);
 			}
-			System.out.println(keyMap);
-		});
+			System.out.println(keyMap);});
 		Pane n = new Pane();
 		root.setTop(add);
 		root.setBottom(n);
