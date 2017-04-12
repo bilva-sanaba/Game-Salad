@@ -13,7 +13,6 @@ import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
-import components.entityComponents.KeyExpression;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.LocationComponent;
