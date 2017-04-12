@@ -1,9 +1,10 @@
 package engines;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import components.entityComponents.KeyExpression;
 import components.keyExpressions.ConcreteKeyExpressions;
+import components.entityComponents.KeyExpression;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -73,11 +74,5 @@ public class KeyInputPanel implements IKeyInputPanel{
 		myComboBox.valueProperty().addListener((x, y, newValue) -> currentKC = ConcreteKeyExpressions.valueOf(newValue).getKeyExpression());  
 		myComboBox.setPromptText("Fuck");
 		return myComboBox;
-	}
-
-	@Override
-	public void clear() {
-		keyMap.clear();
-		
 	}
 }

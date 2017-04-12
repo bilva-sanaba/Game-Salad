@@ -17,10 +17,10 @@
     <identifier>0</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/images/platform_tile_002.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>huty</label>
+        <label>l;jk</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>0.0</imageHeight>
@@ -32,18 +32,18 @@
     <identifier>1000</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/images/platform_tile_002.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>huty</label>
+        <label>l;jk</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>0.0</imageHeight>
         <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LocationComponent>
-        <x>5.0</x>
-        <y>7.0</y>
+        <x>6.0</x>
+        <y>6.0</y>
       </components.entityComponents.LocationComponent>
     </myComponents>
   </entity.Entity>

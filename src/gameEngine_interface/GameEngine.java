@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.KeyExpression;
@@ -25,7 +26,7 @@ import engines.MovementEngine;
 import engines.NewMovementEngine;
 import entity.Entity;
 import entity.EntityManager;
-import entity.GamePlayerEntityManager;
+import entity.GPEntityManager;
 import entity.IEntity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.RestrictedEntity;
@@ -33,6 +34,7 @@ import entity.restricted.RestrictedEntityFactory;
 import entity.restricted.RestrictedEntityManager;
 import engines.AbstractEngine;
 import entity.IEntityManager;
+import entity.SplashEntity;
 
 /**
  * Basic GameEngine class Note: the engines must be created in someway, likely
@@ -48,20 +50,24 @@ public class GameEngine implements GameEngineInterface {
 	private List<AbstractEngine> myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
-	private GamePlayerEntityManager myGamePlayerEntityManager;
+	private Entity mainCharacter;
+	private GPEntityManager GPEM;
 
 	public GameEngine(){
 		initializeRestrictedEntities();
 	}
 	public void loadData(Communicator c){
 		myEntityManager = new EntityManager(c.getData());
-		myGamePlayerEntityManager = new GamePlayerEntityManager(c.getData());
+		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		initializeRestrictedEntities();
 	}
 	public Collection<Entity> save(){
 		
 		return myEntityManager.copy();
+	}
+	public SplashEntity getSplashEntity(){
+		return GPEM.getSplash();
 	}
 	private void initializeRestrictedEntities(){
 		myRestrictedEntityManager = myEntityManager.getRestricted();
@@ -90,36 +96,46 @@ public class GameEngine implements GameEngineInterface {
 	public RestrictedEntityManager getRestrictedEntityManager() {
 		return myRestrictedEntityManager;
 	}
+	//TODO: Delete once testing is over
+	public void dummyLoad(){
+		Collection<Entity> e = new ArrayList<Entity>();
+		for (int i=0;i<20;i++){
+			Entity t = new Entity(i);
+			t.addComponent(new LocationComponent(i*50,450));
+			t.addComponent(new SpriteComponent(("dirt.jpg")));
+			if (i<1){
+			Entity t2 = new Entity(i+21);
+			t2.addComponent(new LocationComponent(300,400-i*50));
+			t2.addComponent(new SpriteComponent(("stone.gif")));
+			e.add(t2);
+			}
+			e.add(t);
+		}
+		Entity t = new Entity(40);
+		t.addComponent(new LocationComponent(0,200));
+		t.addComponent(new VelocityComponent(0,0));
+		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
+		t.addComponent(new KeyInputComponent());
+		t.addComponent(new AccelerationComponent(0,0));
+		//t.addComponent(new TerminalVelComponent(5, 5));
+		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
+		e.add(t);
+		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());
+		e.add(t);
+		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
+		e.add(t);
+		mainCharacter = t;
+		myEntityManager=new EntityManager(e);    
+		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
+		initializeRestrictedEntities();
+	}
 	
-//	//TODO: Delete once testing is over
-//	public void dummyLoad(){
-//		Collection<Entity> e = new ArrayList<Entity>();
-//		for (int i=0;i<20;i++){
-//			Entity t = new Entity(i);
-//			t.addComponent(new LocationComponent(i*50,450));
-//			t.addComponent(new SpriteComponent(("dirt.jpg")));
-//			if (i<1){
-//			Entity t2 = new Entity(i+21);
-//			t2.addComponent(new LocationComponent(300,400-i*50));
-//			t2.addComponent(new SpriteComponent(("stone.gif")));
-//			e.add(t2);
-//			}
-//			e.add(t);
-//		}
-//		Entity t = new Entity(40);
-//		t.addComponent(new LocationComponent(0,200));
-//		t.addComponent(new VelocityComponent(0,0));
-//		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
-//		t.addComponent(new KeyInputComponent());
-//		t.addComponent(new AccelerationComponent(0,0));
-//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
-//		e.add(t);
-//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());
-//		e.add(t);
-//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
-//		e.add(t);
-//		myEntityManager=new EntityManager(e);    
-//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
-//		initializeRestrictedEntities();
-//	}
+	public IEntity getMainCharacter(){
+		for(IEntity e : myEntityManager.getEntityMap().keySet()){
+			if(e.getComponent(ComponentType.KeyInput) != null){
+				return e;
+			}
+		}
+		return null;
+	}
 }

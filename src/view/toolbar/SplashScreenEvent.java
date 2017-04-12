@@ -16,9 +16,8 @@ public class SplashScreenEvent implements ToolBarButtonEvent {
 	@Override
 	public void event() {
 		SplashScreenBuilderWindow ssbw = new SplashScreenBuilderWindow();
-//		SplashEvent s = 
-		ssbw.openWindow();
+		SplashEntity s = ssbw.openWindow();
 		
-//		myData.setSplashEntity(s);
+		myData.setSplashEntity(s);
 	}
 }

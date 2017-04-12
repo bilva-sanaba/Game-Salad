@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import components.IComponent;
-import components.entityComponents.KeyExpression;
+import engines.IKeyInputPanel;
 import engines.KeyInputPanel;
+import components.entityComponents.KeyExpression;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -18,17 +19,18 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import view.UtilityFactory;
 
 public class KeyInputEditor extends ComponentEditor {
 	private static final String ComponentName = "KeyInput";
 	private static final String KEYINPUT = "KeyInput : ";
-	private KeyInputPanel kip = new KeyInputPanel();
+	private Map<KeyCode,KeyExpression> inputMap = new HashMap<KeyCode,KeyExpression>();
 		
 		private HBox myBox;
 		private Text myLabel = new Text(KEYINPUT);
 
 		
-		public KeyInputEditor() {
+		public KeyInputEditor(UtilityFactory utilf) {
 			System.out.println("kill yourself");
 			myBox = new HBox();
 			
@@ -42,7 +44,7 @@ public class KeyInputEditor extends ComponentEditor {
 		
 		@Override
 		public IComponent getComponent() {
-			return getCompF().getComponent(ComponentName, kip.getMap());
+			return getCompF().getComponent(ComponentName, inputMap);
 		}
 		
 		
@@ -63,9 +65,11 @@ public class KeyInputEditor extends ComponentEditor {
 			group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 				public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 					if (new_toggle.equals(rb1)) {
+						IKeyInputPanel kip = new KeyInputPanel();
 						kip.openWindow();
+						inputMap = kip.getMap();
 					} else{
-						kip.clear();
+						inputMap.clear();
 					}
 				}
 			});

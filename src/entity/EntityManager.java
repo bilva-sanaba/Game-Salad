@@ -17,11 +17,11 @@ import gameView.Coordinate;
 
 public class EntityManager implements IEntityManager {
 	private Collection<Entity> myEntities;
-	
+
 	public EntityManager(Collection<Entity> entities){
 		myEntities = new ArrayList<Entity>();
 		for (Entity e: entities) {
-			if (e.getComponent(ComponentType.Location)!=null){
+			if (e.getComponent(ComponentType.Location) != null) {
 				myEntities.add(e);
 			}
 		}
@@ -72,5 +72,14 @@ public class EntityManager implements IEntityManager {
 		}
 		;
 		return entityToRestricted;
+	}
+	
+	public Entity getEntityByID(int ID){
+		for(Entity currentEntity: myEntities){
+			if(currentEntity.getID() == ID){
+				return currentEntity;
+			}
+		}
+		return null;
 	}
 }
