@@ -13,5 +13,7 @@ public enum ComponentType {
 	Background(),
 	Strength(),
 	MonsterAction(),
-	Level(), Step();
+	Level(),
+	Step(),
+	CollisionSide();
 }

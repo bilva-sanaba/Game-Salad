@@ -15,14 +15,13 @@ public class ButtonFactory extends UtilityFactory {
 
 	private UIView myView;
 	private ResourceBundle myResources;
-	private final String DEFAULT_PATH = "resources/";
 	private String myFile;
 
 	public ButtonFactory(UIView view, String file) {
 		super(file);
 		myView = view;
 		myFile = file;
-		myResources = ResourceBundle.getBundle(DEFAULT_PATH + file);
+		myResources = ResourceBundle.getBundle(UIView.DEFAULT_LOCATION + file);
 	}
 
 	public Button makeButton(AbstractCommand command) {

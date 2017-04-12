@@ -1,8 +1,9 @@
 package components.keyExpressions;
 
+
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
-import components.entityComponents.KeyExpression;
+import components.entityComponents.IKeyExpression;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
@@ -20,19 +21,39 @@ public enum ConcreteKeyExpressions {
 	RIGHT ((a) -> {
 		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
 		lc.setX(lc.getX()+2);
+		/*AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
+		TerminalVelComponent tvc = (TerminalVelComponent) a.getComponent(ComponentType.TerminalVelComponent);
+		VelocityComponent vc = (VelocityComponent) a.getComponent(ComponentType.Velocity);
+		if(tvc.canAccelerateX(vc.getX())){
+			ac.setX(1);
+		}
+		else{
+			vc.setX(tvc.getX());
+			ac.setX(0);
+		}*/
+		
 	}),
 	LEFT ((a) -> {
 		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
 		lc.setX(lc.getX()-2);
+		/*AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
+		TerminalVelComponent tvc = (TerminalVelComponent) a.getComponent(ComponentType.TerminalVelComponent);
+		VelocityComponent vc = (VelocityComponent) a.getComponent(ComponentType.Velocity);
+		if(tvc.canAccelerateX(vc.getX())){
+			ac.setX(-1);
+		}
+		else{
+			ac.setX(0);
+		}*/
 	});
 
-    private KeyExpression keyExpression; 
+    private IKeyExpression keyExpression; 
 
-    ConcreteKeyExpressions(KeyExpression ke) {
+    ConcreteKeyExpressions(IKeyExpression ke) {
         this.keyExpression = ke;
     }
     
-    public KeyExpression getKeyExpression(){
+    public IKeyExpression getKeyExpression(){
     	return keyExpression;
     }
 

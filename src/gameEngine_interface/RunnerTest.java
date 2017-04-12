@@ -2,16 +2,16 @@ package gameEngine_interface;
 
 import controller.WorldAnimator;
 import javafx.stage.Stage;
-
+/*
 public class RunnerTest {
 	
 	private WorldAnimator myWorld;
 	
-	public RunnerTest(){
+	public RunnerTest(Stage s){
 		myWorld = new WorldAnimator();
 		GameEngine ge = new GameEngine();
 		ge.dummyLoad();
-		myWorld.start(ge);
+		myWorld.start(s, ge);
 	}
 	
 	public WorldAnimator getAnimator() {
@@ -19,3 +19,4 @@ public class RunnerTest {
 		return myWorld;
 	}
 }
+*/

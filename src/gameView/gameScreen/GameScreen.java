@@ -4,14 +4,14 @@ import java.util.Collection;
 
 import controller.WorldAnimator;
 import entity.restricted.IRestrictedEntityManager;
-import gameEngine_interface.RunnerTest;
+import gameEngine_interface.GameEngine;
 import gameView.AbstractViewer;
-import gameView.ICommandView;
 import gameView.ImageManager;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
 import gameView.displayComponents.UIDisplayComponent;
 import gameView.tools.DisplayManager;
+import gameView.tools.ResourceRetriever;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -30,7 +30,7 @@ public class GameScreen extends AbstractViewer {
 	private IRestrictedEntityManager myEntities;
 	private ImageManager myManager;
 	private HBox myTopBox;
-	private HBox myBottomBox;
+	private BorderPane insidepane;
 	private VBox myLeftBox;
 	private VBox myRightBox;
 	private StackPane myPane;
@@ -44,15 +44,26 @@ public class GameScreen extends AbstractViewer {
 		myAnimation = animation;
 		initializeBoxes();
 		buildMainScene();
-		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS);
+		myBP.applyCss();
+		myBP.layout();
+		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
+				myPane.widthProperty(), myPane.heightProperty());
 	}
 
 	public Scene getScene() {
-		//myPane.getChildren().add(myAnimation.getScene().getRoot());
-		myAnimation = new RunnerTest().getAnimator();
-		myAnimation.setKeys(myScene);
-		Scene test = myAnimation.getScene();
-		myPane.getChildren().add(test.getRoot());
+		myPane.getChildren().add(myAnimation.getScene().getRoot());
+		
+		
+		
+		System.out.println(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
+		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
+//
+//		myAnimation = new RunnerTest().getAnimator();
+//		myAnimation.setKeys(myScene);
+//		Scene test = myAnimation.getScene();
+//		myPane.getChildren().add(test.getRoot());
+		
+		//USED FOR CHECKING CHILDREN
 //		for (Node each:myPane.getChildren()) {
 //			if (each == test.getRoot()) {
 //				for (Node f: ((Group) each).getChildren()) {
@@ -66,6 +77,8 @@ public class GameScreen extends AbstractViewer {
 //			
 //		}
 		//myBP.setCenter(test.getRoot());
+		
+		
 		return myScene;
 	}
 
@@ -83,45 +96,42 @@ public class GameScreen extends AbstractViewer {
 	}
 
 	private void initializeBoxes() {
-		myTopBox = setHBox("top", UIView.DEFAULT_SIZE.width, 50);
+		myTopBox = setHBox("top", UIView.DEFAULT_SIZE.width);
 		myPane = new StackPane();
 		// myBottomBox = setHBox("bottom", UIView.DEFAULT_SIZE.width, 100);
 		// myLeftBox = setSides("left", 100, UIView.DEFAULT_SIZE.height);
 		// myRightBox = setSides("right", 100, UIView.DEFAULT_SIZE.height);
 	}
 
-	private void setSize(Pane box, String id, double width, double height) {
+	private void setSize(Pane box, String id, double width) {
 		box.setId(id);
-		box.setPrefSize(width, height);
+		//box.setPrefSize(width, 200);
+		box.setPrefWidth(width);
 	}
 
-	private HBox setHBox(String id, double width, double height) {
+	private HBox setHBox(String id, double width) {
 		HBox box = new HBox(8);
-		setSize(box, id, width, height);
+		setSize(box, id, width);
 		return box;
 	}
 
 	private VBox setSides(String id, double width, double height) {
 		VBox box = new VBox(8);
-		setSize(box, id, width, height);
+		setSize(box, id, width);
 		return box;
 	}
 
 	private void buildMainScene() {
-		myBP = new BorderPane(null, myTopBox, myRightBox, myBottomBox,
+		myBP = new BorderPane(null, myTopBox, myRightBox, null,
 				myLeftBox);
 		myBP.setId("main");
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(getStyleSheets(this, myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));//getStyleSheets(this, myName));
 		myCommands.stream()
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
 			});
 		myBP.setCenter(myPane);
-//		Scene test = myAnimation.getScene();
-//		Pane newPane = new Pane();
-//		newPane.getChildren().add(test.getRoot());
-//		myBP.setCenter(test.getRoot());
 	}
 
 	@Override
@@ -131,16 +141,15 @@ public class GameScreen extends AbstractViewer {
 	}
 	
 	public void removeComponent(UIDisplayComponent toRemove) {
-		//myBP.getChildren().remove(toRemove);
 		myPane.getChildren().remove(toRemove.getDisplay());
 	} 
 	
 	public void addComponent(UIDisplayComponent toAdd) {
-		StackPane.setAlignment(toAdd.getDisplay(), toAdd.getPos());
-		System.out.println(StackPane.getAlignment(toAdd.getDisplay()));
 		myPane.getChildren().add(toAdd.getDisplay());
-		//((Group) myAnimation.getScene().getRoot()).getChildren().add(toAdd.getDisplay());
-		//System.out.println(((Group) myAnimation.getScene().getRoot()).getChildren());
+	} 
+	
+	public void addGameEngine(GameEngine game) {
+		myAnimation.start(game);
 	}
 
 }

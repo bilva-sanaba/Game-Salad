@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import components.IComponent;
-import components.entityComponents.KeyExpression;
 import components.entityComponents.MonsterMovementPattern;
 import engines.IKeyInputPanel;
 import engines.KeyInputPanel;

@@ -1,22 +1,20 @@
 package engines;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import components.IComponent;
 import components.entityComponents.ComponentType;
+import components.IComponent;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.VelocityComponent;
 import javafx.scene.shape.Rectangle;
-
 public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 	
 	public ObjectCollisionAlgorithm() {
 		
 	}
-
 	
 	public String collides(Map<ComponentType, IComponent> obj0, Map<ComponentType, IComponent> obj1) {
 		ImagePropertiesComponent img0 = (ImagePropertiesComponent) obj0.get(ComponentType.ImageProperties);
@@ -25,14 +23,11 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 		LocationComponent loc1 = (LocationComponent) obj1.get(ComponentType.Location);
 		Rectangle r0 = createRectangle(loc0, img0);
 		Rectangle r1 = createRectangle(loc1, img1);
-		System.out.println("TRIGGERED");
 		if (checkRectangleCollide(r0, r1)) {
-			System.out.println(whichSide(r0,r1));
 			return whichSide(r0, r1);
 		}
 		return ITwoObjectCollide.NONE;
 		
-
 	}
 	
 	private String whichSide(Rectangle r0, Rectangle r1) {
@@ -55,7 +50,6 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 		}
 		return ITwoObjectCollide.BOTTOM;
 		
-
 	}
 	
 	private Rectangle createRectangle(LocationComponent loc0, ImagePropertiesComponent img0) {
@@ -69,7 +63,7 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 	
 	
 	private boolean checkRectangleCollide(Rectangle r0, Rectangle r1) {
-		return r0.getLayoutBounds().intersects(r1.getLayoutBounds());
+		return r0.getBoundsInLocal().intersects(r1.getBoundsInLocal());
 	}
 	
 	@Override
@@ -78,8 +72,5 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 		neededComp.add(ComponentType.ImageProperties);
 		neededComp.add(ComponentType.Location);
 		return neededComp;
-
-
 	}
-
 }

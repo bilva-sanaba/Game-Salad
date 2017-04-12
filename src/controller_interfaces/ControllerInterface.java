@@ -3,9 +3,8 @@ package controller_interfaces;
 import java.util.Observable;
 
 import data_interfaces.XMLException;
-
-
 import entity.restricted.IRestrictedEntityManager;
+import gameEngine_interface.GameEngine;
 import gameView.UIImageModel;
 
 /**
@@ -67,5 +66,7 @@ public interface ControllerInterface {
 	public void run();
 	
 	public void makeGame();
+	
+	public GameEngine getEngine();
 
 }
