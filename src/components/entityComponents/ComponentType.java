@@ -11,6 +11,7 @@ public enum ComponentType {
 	KeyInput(),
 	Splash(),
 	Background(),
+	Strength(),
+	MonsterAction(),
 	Level();
-	
 }
