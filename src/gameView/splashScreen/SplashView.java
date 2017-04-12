@@ -17,6 +17,7 @@ import gameView.AbstractViewer;
 import gameView.ICommandView;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
+import gameView.tools.ResourceRetriever;
 
 public class SplashView extends AbstractViewer {
 
@@ -37,6 +38,8 @@ public class SplashView extends AbstractViewer {
 		myScene = new Scene(myPane, UIView.DEFAULT_SIZE.width,
 				UIView.DEFAULT_SIZE.height);
 		addBackground();
+
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));//getStyleSheets(this, myName));
 		this.setBorderPane();
 		//this.transitionToMain();
 	}
