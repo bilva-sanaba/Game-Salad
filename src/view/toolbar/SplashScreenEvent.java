@@ -1,5 +1,6 @@
 package view.toolbar;
 
+
 import view.ViewData;
 
 public class SplashScreenEvent implements ToolBarButtonEvent {
@@ -15,5 +16,4 @@ public class SplashScreenEvent implements ToolBarButtonEvent {
 		
 		
 	}
-
 }
