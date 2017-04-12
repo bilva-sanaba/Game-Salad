@@ -16,7 +16,6 @@ import components.entityComponents.LocationComponent;
  * @author Jonathan
  * @author Justin
  * @author Jack
- *
  */
 public class ViewData extends Observable {
 	

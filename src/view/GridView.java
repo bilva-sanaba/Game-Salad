@@ -83,7 +83,7 @@ public class GridView extends GUIComponent implements Observer {
 		myCol++;
 		myData.getLevelEntity().addCol();
 	}
-
+		
 	private void addVert() {
 		for (i=0;i<myCol;i++){
 			Rectangle rect = new Rectangle(40, 40);

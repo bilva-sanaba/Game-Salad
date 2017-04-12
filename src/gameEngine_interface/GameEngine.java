@@ -96,7 +96,6 @@ public class GameEngine implements GameEngineInterface {
 	public RestrictedEntityManager getRestrictedEntityManager() {
 		return myRestrictedEntityManager;
 	}
-	
 	//TODO: Delete once testing is over
 	public void dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
