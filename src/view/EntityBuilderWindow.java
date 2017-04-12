@@ -2,7 +2,7 @@ package view;
 
 import java.util.ArrayList;
 
-import components.SpriteComponent;
+import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -35,7 +35,7 @@ public class EntityBuilderWindow {
 	private String[] entityList = BLOCK_ENTITY;
 
 	private static final String[] BLOCK_ENTITY = { "Label", "ImageProperties" };
-	private static final String[] CHARACTER_ENTITY = { "Label", "ImageProperties", "Velocity", "Health", "Acceleration" };
+	private static final String[] CHARACTER_ENTITY = { "Label", "ImageProperties", "Velocity", "Health", "Acceleration", "KeyInput"};
 	private static final String[] POWERUP_ENTITY = { "Label", "ImageProperties" };
 
 	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn) {

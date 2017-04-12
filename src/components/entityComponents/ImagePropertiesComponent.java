@@ -1,10 +1,17 @@
-package components;
+package components.entityComponents;
+
+import components.IComponent;
 
 public class ImagePropertiesComponent implements IComponent {
 	private double imageHeight;
 	private double imageWidth;
 	
 	public ImagePropertiesComponent(double h, double w) {
+		imageHeight = h;
+		imageWidth = w;
+	}
+	
+	public ImagePropertiesComponent(int h, int w) {
 		imageHeight = h;
 		imageWidth = w;
 	}

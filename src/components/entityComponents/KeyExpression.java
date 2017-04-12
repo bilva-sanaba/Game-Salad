@@ -1,4 +1,4 @@
-package components;
+package components.entityComponents;
 
 import entity.Entity;
 import entity.IEntity;

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
 
-import components.ComponentType;
 import components.IComponent;
-import components.LabelComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.LabelComponent;
 import engines.IRestrictEntity;
 import entity.restricted.IRestrictedEntity;
 import gameView.Coordinate;

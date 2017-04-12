@@ -34,6 +34,6 @@ private static final String VELOCITY = "Velocity : 0 m/s";
 	
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myVelocity, myVelocity);
+		return getCompF().getComponent(ComponentName, myVelocity, 0);
 	}
 }

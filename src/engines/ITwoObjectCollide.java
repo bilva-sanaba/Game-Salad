@@ -3,8 +3,8 @@ package engines;
 import java.util.List;
 import java.util.Map;
 
-import components.ComponentType;
 import components.IComponent;
+import components.entityComponents.ComponentType;
 
 
 /**
@@ -20,7 +20,7 @@ public interface ITwoObjectCollide {
 	public static final String RIGHT = "Right";
 	public static final String TOP = "Top";
 	public static final String BOTTOM = "Bottom";
-	public static final String NONE = "";
+	public static final String NONE = "No Collision";
 
 
 
