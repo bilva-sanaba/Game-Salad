@@ -70,8 +70,6 @@ public class GridView extends GUIComponent implements Observer{
 		for (i=0;i<myRow;i++){
 			Rectangle rect = new Rectangle(40, 40);
 			rect.getStyleClass().add("view-grid-cell");
-			
-			
 			myGrid.add(rect, myCol, i);
 			addMouseListenerPane(myCol, i);
 		}
@@ -85,8 +83,6 @@ public class GridView extends GUIComponent implements Observer{
 		for (i=0;i<myCol;i++){
 			Rectangle rect = new Rectangle(40, 40);
 			rect.getStyleClass().add("view-grid-cell");
-			
-			
 			myGrid.add(rect, i, myRow);
 			addMouseListenerPane(i, myRow);
 		}
@@ -118,10 +114,11 @@ public class GridView extends GUIComponent implements Observer{
 	}
 
 	private void drawEntity(Entity entity) {
-		LocationComponent entityLocation = (LocationComponent) entity
-				.getComponent(ComponentType.Location);
-		SpriteComponent entitySprite = (SpriteComponent) entity
-				.getComponent(ComponentType.Sprite);
+//		LocationComponent entityLocation = (LocationComponent) entity
+//				.getComponent(ComponentType.Location);
+		
+		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
+		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
 		spriteImage.setFitHeight(40);
 		spriteImage.setFitWidth(40);
