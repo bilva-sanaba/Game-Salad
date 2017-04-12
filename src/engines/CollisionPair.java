@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import components.ComponentType;
 import components.IComponent;
+import components.entityComponents.ComponentType;
 
 public class CollisionPair {
 	

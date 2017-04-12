@@ -3,8 +3,8 @@ package view.toolbar;
 import java.io.File;
 import java.util.*;
 
-import components.ComponentType;
-import components.LocationComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
 import data_interfaces.*;
 import entity.*;
 
