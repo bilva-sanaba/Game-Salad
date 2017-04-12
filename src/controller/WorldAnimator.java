@@ -1,6 +1,7 @@
 package controller;
 
-import java.awt.Component;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -32,6 +33,7 @@ import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 import gameView.Coordinate;
+import gameView.UIView;
 
 /**
  * 
@@ -64,7 +66,7 @@ public class WorldAnimator {
 	public WorldAnimator(){
 	}
 
-	public void start (Stage s, GameEngine myGameEngine){
+	public void start (GameEngine myGameEngine){
 		root = new Group();
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		myGameBuilder = new GameBuilder();
@@ -75,14 +77,12 @@ public class WorldAnimator {
 		//myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 		//myScene = new Scene(root,LENGTH,WIDTH);
 		myScene = new Scene(root,LENGTH - 200,WIDTH);
-		LocationComponent lc = (LocationComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location);
-		myCamera = new Camera(LENGTH ,myScene, lc);
+		//LocationComponent lc = (LocationComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location);
+		myCamera = new Camera(LENGTH ,myScene, null);
 		createMap(restrictedEntityManager);
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
 		}
-		s.setScene(myScene);
-		s.show();
 
 		myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 		myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
@@ -101,9 +101,10 @@ public class WorldAnimator {
 	private void createMap(RestrictedEntityManager manager) {
 		Collection<RestrictedEntity> entities = manager.getEntities();
 		for (RestrictedEntity e: entities){
-			imageMap.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(e.getImagePath()))));
-			imageMap.get(e.getID()).setX(e.getLocation().getX());
-			imageMap.get(e.getID()).setY(e.getLocation().getY());
+			String[] test = e.getImagePath().split("[\\\\/]");
+			imageMap.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
+			imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
+			imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
 		}
 	}
 
@@ -187,9 +188,8 @@ public class WorldAnimator {
 	}
 	private void updateImage(ImageView currentImage, RestrictedEntity re){
 		currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(re.getImagePath())));
-
-		currentImage.setX(re.getLocation().getX());
-		currentImage.setY(re.getLocation().getY());		
+		currentImage.setX(re.getLocation().getX()*50-475);
+		currentImage.setY(re.getLocation().getY()*50-175);	
 	}
 
 

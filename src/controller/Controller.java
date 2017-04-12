@@ -78,8 +78,7 @@ public class Controller implements ControllerInterface {
 	public void run() {
 		myWorldAnimator.start(myGameEngine);
 	}
-
-
+	
 	public void makeGame() {
 		myStage.setScene(myGUIBuilder.buildScene());
 		myStage.show();

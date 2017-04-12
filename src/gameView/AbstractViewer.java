@@ -29,11 +29,6 @@ public abstract class AbstractViewer implements ICommandView {
 		return myView;
 	}
 	
-	protected String getStyleSheets(AbstractViewer obj, String name) {
-		return obj.getClass().getResource("/" + UIView.DEFAULT_LOCATION + 
-				ResourceBundle.getBundle(UIView.DEFAULT_LOCATION+UIView.DEFAULT_STYLING).getString(name)).toExternalForm();
-	}
-	
 	protected Collection<AbstractCommand> getCommands(String name) {
 		CommandFactory commands = new CommandFactory(name, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS);
 		return commands.getCommands(this);
