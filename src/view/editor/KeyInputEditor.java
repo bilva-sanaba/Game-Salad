@@ -19,6 +19,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import view.UtilityFactory;
 
 public class KeyInputEditor extends ComponentEditor {
 	private static final String ComponentName = "KeyInput";
@@ -29,7 +30,7 @@ public class KeyInputEditor extends ComponentEditor {
 		private Text myLabel = new Text(KEYINPUT);
 
 		
-		public KeyInputEditor() {
+		public KeyInputEditor(UtilityFactory utilf) {
 			System.out.println("kill yourself");
 			myBox = new HBox();
 			

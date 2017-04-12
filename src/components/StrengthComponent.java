@@ -1,9 +1,9 @@
 package components;
 
 public class StrengthComponent implements IComponent {
-	private int strength;
+	private double strength;
 
-	public StrengthComponent(int s) {
+	public StrengthComponent(double s) {
 		strength = s;
 	}
 	
@@ -17,15 +17,15 @@ public class StrengthComponent implements IComponent {
 		return ComponentType.Strength;
 	}
 
-	public int getStrength() {
+	public double getStrength() {
 		return strength;
 	}
 
-	public void setHealth(int s) {
+	public void setHealth(double s) {
 		strength = s;
 	}
 
 	public IComponent newCopy() {
-		return new HealthComponent(getStrength());
+		return new StrengthComponent(getStrength());
 	}
 }

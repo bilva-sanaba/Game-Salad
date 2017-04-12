@@ -137,7 +137,7 @@ public class UtilityFactory {
 	}
 	
 	
-	public HBox buildSlider(String compName, double myVal, ChangeListener<? super Number> listener){
+	public HBox buildSlider(String compName, ChangeListener<? super Number> listener){
 		HBox myBox = new HBox();
 		String[] sliderProp = myResources.getString(compName+"Slider").split(SPLIT_REGEX);
 		Text myLabel = new Text(sliderProp[0]);

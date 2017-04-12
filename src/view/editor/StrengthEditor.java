@@ -13,8 +13,7 @@ public class StrengthEditor extends ComponentEditor {
 	private double myStrength;
 
 	public StrengthEditor(UtilityFactory utilf) {
-		System.out.println("kill yourself");
-		myBox = utilf.buildSlider(ComponentName, myStrength, new ChangeListener<Number>() {
+		myBox = utilf.buildSlider(ComponentName, new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myStrength = newValue.doubleValue(); 
 			}
