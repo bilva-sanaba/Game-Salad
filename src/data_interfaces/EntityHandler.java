@@ -46,6 +46,7 @@ public class EntityHandler {
 		Element curr = (Element) n;
 		return createSplashEntity(curr);
 	}
+	
 	private SplashEntity createSplashEntity(Element curr) {
 		NodeList children = curr.getChildNodes();
 		int id = -1;
