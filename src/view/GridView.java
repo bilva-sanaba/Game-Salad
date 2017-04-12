@@ -29,7 +29,8 @@ import javafx.scene.paint.Color;
  * @author Justin Yang
  * @author Jack Bloomfeld
  */
-public class GridView extends GUIComponent implements Observer {
+public class GridView extends GUIComponent{ 
+//implements Observer {
 	private ScrollPane myScroll;
 	private GridPane myGrid;
 	private ViewData myData;
@@ -48,7 +49,7 @@ public class GridView extends GUIComponent implements Observer {
 		myGrid = new GridPane();
 		myGrid.getStyleClass().add("view-grid");
 		myGrid.setAlignment(Pos.CENTER);
-		myData.addObserver(this);
+//		myData.addObserver(this);
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < cols; col++) {
 				addMouseListenerPane(row, col);
@@ -112,9 +113,6 @@ public class GridView extends GUIComponent implements Observer {
 	}
 
 	private void drawEntity(Entity entity) {
-//		LocationComponent entityLocation = (LocationComponent) entity
-//				.getComponent(ComponentType.Location);
-		
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
@@ -141,6 +139,15 @@ public class GridView extends GUIComponent implements Observer {
 	}
 	
 	public void setUpLevel() {
+		myGrid = new GridPane();
+		myGrid.getStyleClass().add("view-grid");
+		myGrid.setAlignment(Pos.CENTER);
+//		myData.addObserver(this);
+		for (int row = 0; row < 10; row++) {
+			for (int col = 0; col < 10; col++) {
+				addMouseListenerPane(row, col);
+			}
+		}
 		int totalRow = myData.getLevelEntity().getRows();
 		int totalCol = myData.getLevelEntity().getCols();
 		
@@ -162,11 +169,11 @@ public class GridView extends GUIComponent implements Observer {
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
 
-	@Override
+/*	@Override
 	public void update(Observable arg0, Object arg1) {
 		updateBackground();
 		setUpLevel();
 		clearEntitiesOnGrid();
 		placeEntitiesFromFile();
-	}
+	}*/
 }

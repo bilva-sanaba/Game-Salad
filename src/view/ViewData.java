@@ -107,8 +107,8 @@ public class ViewData extends Observable {
 	public void clearData(){
 		definedEntityMap.clear();
 		placedEntityMap.clear();
-		
 	}
+	
 	public void refresh(){
 		setChanged();
 		notifyObservers("refresh");

@@ -51,7 +51,7 @@ public class EntityBuilderWindow {
 	private Scene buildScene() {
 		buildNodes();
 		GridPane pane = buildPane();
-		return new Scene(pane, 350, 350);
+		return new Scene(pane, 350, 400);
 	}
 
 	public ImageView getImage() {
