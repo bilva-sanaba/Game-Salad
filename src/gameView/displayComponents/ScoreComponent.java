@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 
-public class ScoreComponent extends UIDisplayComponent {
+public class ScoreComponent extends UIDisplayComponent { 
 
 	private HBox myScore;
 	
