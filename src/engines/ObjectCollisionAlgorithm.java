@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import components.ComponentType;
 import components.IComponent;
-import components.ImagePropertiesComponent;
-import components.LocationComponent;
-import components.VelocityComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.VelocityComponent;
 import javafx.scene.shape.Rectangle;
 
 public class ObjectCollisionAlgorithm implements ITwoObjectCollide {

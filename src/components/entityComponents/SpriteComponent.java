@@ -1,6 +1,7 @@
-package components;
+package components.entityComponents;
 
 
+import components.IComponent;
 import javafx.scene.image.Image;
 
 public class SpriteComponent implements IComponent {
