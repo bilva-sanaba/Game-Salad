@@ -13,12 +13,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class SplashScreenBuilderWindow {
-
-	public SplashScreenBuilderWindow(){
-		
-	}
+public class SplashScreenBuilderWindow {	
 	
+//	This shit needs to be refactored
 	public void openWindow(){
 		Stage stage = new Stage();
 		GridPane root = new GridPane();
@@ -27,12 +24,18 @@ public class SplashScreenBuilderWindow {
 		root.setVgap(20);
 //		pickColor(root);
 		selectText(root);
+		Button chooseImageButton = new Button("Choose Image");
+		chooseImageButton.setOnAction(e -> {
+			ImageChooser ic = new ImageChooser();
+			String splashScreenImagePath = ic.chooseFile();
+		});
 		Button okayButton = new Button("OkayButtonLabel");
 		okayButton.setOnAction(e -> {
 			//TODO: pass the color to a new entity or something?
 			//Entity myEntity = new Entity();
 			//myEntity.addComponent();
 			//myData.addToConfigurationEntityList(myEntity);
+			
 			stage.close();
 		});
 		root.getChildren().add(okayButton);
