@@ -55,7 +55,7 @@ public class EntityConfigurationWindow {
 
 	private void buildComponentEditor() {
 		for (String comp : componentList) {
-			ComponentEditor editor = myCompF.getComponentEditor(comp);
+			ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
 			myCompEdits.add(editor);
 			root.getChildren().add(editor.getInputNode());
 		}

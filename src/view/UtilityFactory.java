@@ -7,15 +7,25 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Box;
+import javafx.scene.text.Text;
 
 /**
  * 
@@ -28,8 +38,8 @@ import javafx.scene.image.ImageView;
 public class UtilityFactory {
 	
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources" + File.separator;
-    
-	ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
+    public static final String SPLIT_REGEX = ", ";
+	private ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
 	private ResourceBundle myResources;
 	
 	public UtilityFactory(String language){
@@ -90,17 +100,19 @@ public class UtilityFactory {
 		return myMenuItem;
 	}
 
-	public RadioButton buildRadioButton(String property, boolean selected, ToggleGroup group){
+	private RadioButton buildRadioButton(String property, boolean selected, ToggleGroup group, VBox vbox){
 		RadioButton myButton = new RadioButton(property);
 		myButton.setSelected(selected);
 		myButton.setToggleGroup(group);
+		myButton.setUserData(myResources.getString(property+"RadioButton").split(SPLIT_REGEX));
+		vbox.getChildren().add(myButton);
 		return myButton;
 	}
 	
 	public List<Button> makeToolBarButtons(ViewData data) {
 		List<Button> toolButtons = new ArrayList<Button>();
-		String[] names = imagesResources.getString("IconNames").split(", ");
-		String[] events = imagesResources.getString("EventNames").split(", ");
+		String[] names = imagesResources.getString("IconNames").split(SPLIT_REGEX);
+		String[] events = imagesResources.getString("EventNames").split(SPLIT_REGEX);
 		for(int i = 0; i < names.length; i++){
 			toolButtons.add(buildButton(names[i], events[i], data));
 		}
@@ -110,5 +122,36 @@ public class UtilityFactory {
 	public Integer convertToInt(Double d){
 		Integer i = d.intValue();
 		return i;
+	}
+
+	public ToggleGroup buildRadioButtonGroup(String string, List<Node> nodeList) {
+		ToggleGroup group = new ToggleGroup();
+		VBox vbox = new VBox();
+		String[] radioButton = myResources.getString(string).split(SPLIT_REGEX);
+		Integer buttonNum = Integer.parseInt(radioButton[0]);
+		for (int i = 1; i <= buttonNum; i++){
+			buildRadioButton(radioButton[i], Boolean.getBoolean(radioButton[i+buttonNum]), group, vbox);
+		}
+		nodeList.add(vbox);
+		return group;
+	}
+	
+	
+	public HBox buildSlider(String compName, double myVal, ChangeListener<? super Number> listener){
+		HBox myBox = new HBox();
+		String[] sliderProp = myResources.getString(compName+"Slider").split(SPLIT_REGEX);
+		Text myLabel = new Text(sliderProp[0]);
+		Slider mySlider = new Slider(Double.parseDouble(sliderProp[1]), Double.parseDouble(sliderProp[2]), Double.parseDouble(sliderProp[3]) );
+		myBox.getChildren().add(myLabel);
+		myBox.getChildren().add(mySlider);
+		mySlider.setSnapToTicks(Boolean.getBoolean(sliderProp[5]));
+		mySlider.setMajorTickUnit(Double.parseDouble(sliderProp[6]));
+		mySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+			mySlider.setValue(newValue.doubleValue());
+			myLabel.setText(
+					String.format(sliderProp[4], newValue.doubleValue()));
+		});
+		mySlider.valueProperty().addListener(listener);
+		return myBox;
 	}
 }

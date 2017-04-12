@@ -41,11 +41,11 @@ public class ComponentFactory implements newComponentFactory {
 		return reflectedComponent;
 	}
 
-	public ComponentEditor getComponentEditor(String comp) {
+	public ComponentEditor getComponentEditor(String comp, UtilityFactory myUtilF) {
 		System.out.println(PREFI + comp + SUFFI);
 		ComponentEditor reflectedComponent;
 		try {
-			reflectedComponent = (ComponentEditor) Reflection.createInstance(PREFI + comp + SUFFI);
+			reflectedComponent = (ComponentEditor) Reflection.createInstance(PREFI + comp + SUFFI, myUtilF);
 			System.out.println(reflectedComponent.getInputNode());
 		} catch (Exception e) {
 			System.out.println("i shouldnt be here");
