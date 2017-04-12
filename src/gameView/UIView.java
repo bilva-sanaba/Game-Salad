@@ -26,9 +26,9 @@ public class UIView implements UIViewInterface {
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
-	private GameScreen myGameScene;
+	private GameScreen myGameScene; //move to splash
 	private IRestrictedEntityManager myEntities; 
-	private WorldAnimator myAnimation;
+	private WorldAnimator myAnimation; //move to splash
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
@@ -54,7 +54,7 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		setStage(myGameScene.getScene());
+		setStage(myGameScene.getScene());//mySplash
 		
 	}
 	
