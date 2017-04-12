@@ -74,6 +74,7 @@ public class GridView extends GUIComponent implements Observer{
 			addMouseListenerPane(myCol, i);
 		}
 		myCol++;
+		myData.getLevelEntity().addCol();
 	}
 		
 	
@@ -86,7 +87,7 @@ public class GridView extends GUIComponent implements Observer{
 			addMouseListenerPane(i, myRow);
 		}
 		myRow++;
-		
+		myData.getLevelEntity().addRow();
 	}
 
 	private void addMouseListenerPane(int row, int col) {
@@ -140,14 +141,35 @@ public class GridView extends GUIComponent implements Observer{
 			drawEntity(tempEntity);
 		}
 	}
+	
+	public void setUpLevel() {
+		int totalRow = myData.getLevelEntity().getRows();
+		int totalCol = myData.getLevelEntity().getCols();
+		
+		
+		while (myCol != totalCol) {
+			addHo();
+		}
+		while (myRow != totalRow) {
+			addVert();
+		}
+	}
 
 	@Override
 	public Region buildComponent() {
 		return bp;
 	}
+	
+	public void updateBackground() {
+		String filePath = myData.getLevelEntity().getBackgroundFilePath();
+		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
+	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		System.out.println("JONATHAN RUB SUCKS PENIS");
+		updateBackground();
+		setUpLevel();
 		clearEntitiesOnGrid();
 		placeEntitiesFromFile();
 	}

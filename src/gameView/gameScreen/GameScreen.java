@@ -41,7 +41,7 @@ public class GameScreen extends AbstractViewer {
 	public GameScreen(UIView view, WorldAnimator animation) {
 		super(view);
 		myCommands = getCommands(myName);
-		//myAnimation = animation;
+		myAnimation = animation;
 		initializeBoxes();
 		buildMainScene();
 		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS);

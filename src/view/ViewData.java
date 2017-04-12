@@ -1,6 +1,7 @@
 package view;
 
 import entity.Entity;
+import entity.LevelEntity;
 
 import java.util.HashMap;
 import java.util.Observable;
@@ -16,14 +17,20 @@ import components.*;
  *
  */
 public class ViewData extends Observable {
+	
+	private static final int STARTINGROWS = 10;
+	private static final int STARTINGCOLS = 10;
+	
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, Entity> placedEntityMap;
+	private LevelEntity myLevelEntity;
 	private Entity userSelectedEntity;
 	private String gameName;
 
 	public ViewData() {
 		definedEntityMap = new HashMap<Integer, Entity>();
 		placedEntityMap = new HashMap<Integer, Entity>();
+		myLevelEntity = new LevelEntity(0, STARTINGROWS, STARTINGCOLS, "");
 		userSelectedEntity = null;
 		gameName = "";
 	}
@@ -68,6 +75,14 @@ public class ViewData extends Observable {
 	
 	public HashMap<Integer, Entity> getPlacedEntityMap() {
 		return placedEntityMap;
+	}
+	
+	public LevelEntity getLevelEntity () {
+		return myLevelEntity;
+	}
+	
+	public void setLevelEntity(LevelEntity l) {
+		myLevelEntity = l;
 	}
 
 	public void setGameName(String s) {
