@@ -3,6 +3,7 @@ package view;
 import java.util.HashMap;
 
 import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ObservableValue;
@@ -51,19 +52,13 @@ public class TabView extends GUIComponent {
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
+					ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item.getComponent(ComponentType.ImageProperties);
+					spriteImage.setFitHeight(imageProp.getHeight());
+					spriteImage.setFitWidth(imageProp.getWidth());
 					this.setGraphic(spriteImage);
 				}
 			}
 		});
-		// blocksView.cellFactoryProperty().addListener(new ChangeListener<?
-		// super Callback<ListView<Entity>,ListCell<Entity>>>(){
-		// public ListCell<Entity> call(ListView<Entity> l){
-		// SpriteComponent entitySprite = (SpriteComponent)
-		// entity.getComponent(ComponentType.Sprite);
-		// ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		// return new ImageView();
-		// }
-		// });
 		blocksView.setOrientation(Orientation.VERTICAL);
 		blocksView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Entity>() {
 			@Override
