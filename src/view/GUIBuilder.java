@@ -35,7 +35,6 @@ public class GUIBuilder {
 		tab = new TabView(utilF, myData);
 		toolbar = new ToolBarView(utilF, myData);
 		//viewController = new ViewController(myData, grid, tab);
-		
 
 		myComp.add(grid);
 		myComp.add(tab);

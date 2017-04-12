@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import gameView.ICommandView;
 import gameView.UIView;
 import gameView.tools.DisplayManager;
+import gameView.tools.GameChooser;
+import gameView.tools.ResourceRetriever;
 import gameView.tools.ScrollablePopup;
 
 public class PreferencesCommand extends AbstractCommand {
@@ -55,7 +57,9 @@ public class PreferencesCommand extends AbstractCommand {
 		myBox = new VBox(); 
 		myBox.setId("box");
 		myStage = new Stage();
-		myPopup = new ScrollablePopup("Preferences", "/" + UIView.DEFAULT_LOCATION + "Preferences.css", myBox, makeCloseButton(),
+		myPopup = new ScrollablePopup("Preferences", new ResourceRetriever().
+				getStyleSheets(this, PreferencesCommand.class.getSimpleName()),//"/" + UIView.DEFAULT_LOCATION + "Preferences.css", 
+				myBox, makeCloseButton(),
 				new Dimension(UIView.DEFAULT_SIZE.width/3, UIView.DEFAULT_SIZE.height/3));
 		myDisplays = ((ICommandView) getView()).getComponents();
 	}

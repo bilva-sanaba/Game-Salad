@@ -4,6 +4,8 @@ import components.IComponent;
 
 import components.entityComponents.ComponentType;
 
+import components.entityComponents.ComponentType;
+
 public class LevelComponent implements IComponent {
 
 	private int level;
