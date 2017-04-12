@@ -91,7 +91,6 @@ public class EntityBuilderWindow {
 		nodeList.add(entityType);
 		GridPane.setConstraints(entityType, 0, 2);
 
-		//final ToggleGroup group = addRadioButtons();
 		final ToggleGroup group = util.buildRadioButtonGroup("SelectEntityType", nodeList);
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {

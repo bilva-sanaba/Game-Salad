@@ -21,6 +21,7 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -106,6 +107,7 @@ public class UtilityFactory {
 		myButton.setToggleGroup(group);
 		myButton.setUserData(myResources.getString(property+"RadioButton").split(SPLIT_REGEX));
 		vbox.getChildren().add(myButton);
+		
 		return myButton;
 	}
 	
@@ -127,6 +129,7 @@ public class UtilityFactory {
 	public ToggleGroup buildRadioButtonGroup(String string, List<Node> nodeList) {
 		ToggleGroup group = new ToggleGroup();
 		VBox vbox = new VBox();
+		GridPane.setConstraints(vbox, 0, 3);
 		String[] radioButton = myResources.getString(string).split(SPLIT_REGEX);
 		Integer buttonNum = Integer.parseInt(radioButton[0]);
 		for (int i = 1; i <= buttonNum; i++){
