@@ -63,7 +63,7 @@ public interface ControllerInterface {
 	 */
 	public void resetCurrentGame() throws XMLException;
 
-	public void run();
+	public void runGameAnimation();
 	
 	public void makeGame();
 	

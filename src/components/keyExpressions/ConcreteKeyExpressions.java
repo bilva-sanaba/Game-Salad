@@ -56,5 +56,4 @@ public enum ConcreteKeyExpressions {
     public IKeyExpression getKeyExpression(){
     	return keyExpression;
     }
-
 }
