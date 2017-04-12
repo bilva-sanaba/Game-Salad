@@ -55,9 +55,12 @@ public class DisplayManager {
 		String comps = bundle.getString(BUNDLE_KEY);
 		String[] allComps = comps.split(", ");
 		for (String each: allComps) {
+			System.out.println(each);
 			UIDisplayComponent newDisplay = (UIDisplayComponent) Reflection.createInstance(COMPONENT_LOCATION+each+"Component", each);
-			updateX(newDisplay, newDisplay.getSize().getWidth());
-			updateY(newDisplay, newDisplay.getSize().getHeight());
+			updateX(newDisplay, myWidthBound.doubleValue());
+			updateY(newDisplay, myHeightBound.doubleValue());
+			System.out.println(newDisplay.getDisplay().getTranslateX());
+			System.out.println(newDisplay.getDisplay().getTranslateY());
 			displays.put(each, newDisplay);
 		}
 		return displays;
@@ -89,17 +92,16 @@ public class DisplayManager {
 	}
 	
 	private void updateX(UIDisplayComponent width, Double newVal) {
-		double x = width.getPos().x();
+		double x = (width.getPos().x())/100;
 		if (x!= 0) {
-			width.getDisplay().setTranslateX(newVal*x-width.getSize().getWidth());
+			width.getDisplay().setTranslateX(newVal*x-(width.getSize().getWidth()*x));
 		}
 	}
 	
 	private void updateY(UIDisplayComponent height, Double newVal) {
-
-		double x = height.getPos().y();
-		if (x!= 0) {
-			height.getDisplay().setTranslateY(newVal*x-height.getSize().getHeight());
+		double y = (height.getPos().y())/100;
+		if (y!= 0) {
+			height.getDisplay().setTranslateY(newVal*y-(height.getSize().getHeight()*y));
 		}
 	}
 }
