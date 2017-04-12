@@ -5,7 +5,6 @@ import java.util.Collection;
 import controller.WorldAnimator;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
-import gameEngine_interface.RunnerTest;
 import gameView.AbstractViewer;
 import gameView.ImageManager;
 import gameView.UIView;
@@ -54,12 +53,12 @@ public class GameScreen extends AbstractViewer {
 	}
 
 	public Scene getScene() {
-		//myPane.getChildren().add(myAnimation.getScene().getRoot());
-
-		myAnimation = new RunnerTest().getAnimator();
-		myAnimation.setKeys(myScene);
-		Scene test = myAnimation.getScene();
-		myPane.getChildren().add(test.getRoot());
+		myPane.getChildren().add(myAnimation.getScene().getRoot());
+//
+//		myAnimation = new RunnerTest().getAnimator();
+//		myAnimation.setKeys(myScene);
+//		Scene test = myAnimation.getScene();
+//		myPane.getChildren().add(test.getRoot());
 		
 		//USED FOR CHECKING CHILDREN
 //		for (Node each:myPane.getChildren()) {

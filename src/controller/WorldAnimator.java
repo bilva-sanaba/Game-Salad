@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.sun.org.apache.regexp.internal.recompile;
-
 
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
@@ -88,11 +89,8 @@ public class WorldAnimator {
 	private void createMap(RestrictedEntityManager manager) {
 		Collection<RestrictedEntity> entities = manager.getEntities();
 		for (RestrictedEntity e: entities){
-			System.out.println("ID:    " + e.getID());
-			System.out.println(e.getImagePath());
-			String[] test = e.getImagePath().split("/");
-			System.out.println("images/" + test[test.length-1]);
-			imageMap.put(e.getID(), new ImageView(new Image("images/platform_tile_002.png")));//"images/" + test[test.length-1])));//e.getImagePath()))));
+			String[] test = e.getImagePath().split("[\\\\/]");
+			imageMap.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
 			imageMap.get(e.getID()).setX(e.getLocation().getX());
 			imageMap.get(e.getID()).setY(e.getLocation().getY());
 		}

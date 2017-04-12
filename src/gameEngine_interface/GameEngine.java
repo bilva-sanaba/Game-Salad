@@ -91,35 +91,35 @@ public class GameEngine implements GameEngineInterface {
 		return myRestrictedEntityManager;
 	}
 	
-	//TODO: Delete once testing is over
-	public void dummyLoad(){
-		Collection<Entity> e = new ArrayList<Entity>();
-		for (int i=0;i<20;i++){
-			Entity t = new Entity(i);
-			t.addComponent(new LocationComponent(i*50,450));
-			t.addComponent(new SpriteComponent(("dirt.jpg")));
-			if (i<1){
-			Entity t2 = new Entity(i+21);
-			t2.addComponent(new LocationComponent(300,400-i*50));
-			t2.addComponent(new SpriteComponent(("stone.gif")));
-			e.add(t2);
-			}
-			e.add(t);
-		}
-		Entity t = new Entity(40);
-		t.addComponent(new LocationComponent(0,200));
-		t.addComponent(new VelocityComponent(0,0));
-		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
-		t.addComponent(new KeyInputComponent());
-		t.addComponent(new AccelerationComponent(0,0));
-		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
-		e.add(t);
-		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());
-		e.add(t);
-		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
-		e.add(t);
-		myEntityManager=new EntityManager(e);    
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
-		initializeRestrictedEntities();
-	}
+//	//TODO: Delete once testing is over
+//	public void dummyLoad(){
+//		Collection<Entity> e = new ArrayList<Entity>();
+//		for (int i=0;i<20;i++){
+//			Entity t = new Entity(i);
+//			t.addComponent(new LocationComponent(i*50,450));
+//			t.addComponent(new SpriteComponent(("dirt.jpg")));
+//			if (i<1){
+//			Entity t2 = new Entity(i+21);
+//			t2.addComponent(new LocationComponent(300,400-i*50));
+//			t2.addComponent(new SpriteComponent(("stone.gif")));
+//			e.add(t2);
+//			}
+//			e.add(t);
+//		}
+//		Entity t = new Entity(40);
+//		t.addComponent(new LocationComponent(0,200));
+//		t.addComponent(new VelocityComponent(0,0));
+//		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
+//		t.addComponent(new KeyInputComponent());
+//		t.addComponent(new AccelerationComponent(0,0));
+//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
+//		e.add(t);
+//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());
+//		e.add(t);
+//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
+//		e.add(t);
+//		myEntityManager=new EntityManager(e);    
+//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
+//		initializeRestrictedEntities();
+//	}
 }
