@@ -21,6 +21,8 @@ public class EntityHandler {
 	private static final String ROWSTRING = "rows";
 	private static final String COLSTRING = "cols";
 	private static final String BACKGROUNDSTRING = "backgroundFilePath";
+	private static final String DNSTRING = "displayName";
+	private static final String INSTSTRING = "instructions";
 
 	/**
 	 * 
@@ -30,11 +32,52 @@ public class EntityHandler {
 	 */
 	public Collection<Entity> getCollection(Element d) {
 		Collection<Entity> ret = new ArrayList<Entity>();
-		NodeList nm = d.getElementsByTagName("entity.LevelEntity");
+		NodeList nm = d.getElementsByTagName("entity.SplashEntity");
+		ret.add(getSplashEntity(nm));
+		nm = d.getElementsByTagName("entity.LevelEntity");
 		ret.add(getLevelEntity(nm));
 		nm = d.getElementsByTagName("entity.Entity");
 		doEntirely(ret, nm);
 		return ret;
+	}
+	
+	private SplashEntity getSplashEntity(NodeList nm) {
+		Node n = nm.item(0);
+		Element curr = (Element) n;
+		return createSplashEntity(curr);
+	}
+	private SplashEntity createSplashEntity(Element curr) {
+		NodeList children = curr.getChildNodes();
+		int id = -1;
+		String displayName = "";
+		String instructions = "";
+		String bfp = "";
+		List <IComponent> myCom = new ArrayList<IComponent>();
+		
+		for (int i = 0; i < children.getLength(); i++) {
+			Node n2 = children.item(i);
+			if (n2.getNodeType() == Node.ELEMENT_NODE) {
+				Element e = (Element) n2;
+				if (e.getNodeName().equals(IDSTRING)) {
+					id = Integer.parseInt(e.getTextContent());
+				} else if (e.getNodeName().equals(COMPONENTSTRING)) {
+					myCom = setComponents(e);
+				} else if (e.getNodeName().equals(DNSTRING)) {
+					displayName = e.getTextContent();
+				} else if (e.getNodeName().equals(INSTSTRING)) {
+					instructions = e.getTextContent();
+				} else if (e.getNodeName().equals(BACKGROUNDSTRING)) {
+					bfp = e.getTextContent();
+				}
+			}
+		}
+		
+		return initializeSplashEntity(id, displayName, instructions, bfp, myCom);
+	}
+	
+	private SplashEntity initializeSplashEntity(int id, String displayName, String instructions, String bfp, List<IComponent> myCom) {
+		SplashEntity ret = new SplashEntity(id, displayName, instructions, bfp);
+		return (SplashEntity)attachComponents(ret,myCom);
 	}
 	
 	private LevelEntity getLevelEntity(NodeList nm) {
