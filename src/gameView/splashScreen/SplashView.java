@@ -7,6 +7,7 @@ import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -20,6 +21,7 @@ import gameView.commands.AbstractCommand;
 public class SplashView extends AbstractViewer {
 
 	private static final String myName = SplashView.class.getSimpleName();
+	private final String NEWLINE = "\n";
 	protected Scene myScene;
 	private BorderPane myPane;
 	private Collection<AbstractCommand> myCommands;
@@ -36,7 +38,7 @@ public class SplashView extends AbstractViewer {
 				UIView.DEFAULT_SIZE.height);
 		addBackground();
 		this.setBorderPane();
-		this.transitionToMain();
+		//this.transitionToMain();
 	}
 
 	public SplashEntity getSE() {
@@ -52,20 +54,33 @@ public class SplashView extends AbstractViewer {
 
 	private void setBorderPane() {
 		Label lab = makeLabel(se.getDisplayName(), "splashlabel");
-		myPane.setCenter(lab);
-		Label lbl = makeLabel(se.getInstructions(), "instructions");
-		lbl.setFont(new Font("Arial", 30));
-		myPane.setBottom(lbl); 
+		VBox vb = new VBox();
+		vb.getChildren().add(lab);
+		lab.setFont(new Font("Arial", 30));
+		Label lbl = makeLabel(NEWLINE + se.getInstructions(), "instructions");
+		lbl.setFont(new Font("Verdana", 20));
+		vb.getChildren().add(lbl);
+		BorderPane.setAlignment(vb, Pos.CENTER);
+		myPane.setCenter(vb);
+		VBox playbox = new VBox(20);
+		playbox.setId("playbox");
+		playbox.setAlignment(Pos.CENTER);
+		BorderPane.setMargin(playbox, new Insets(10, 30, 10, 10));
+		Button b = new Button("Play");
+		playbox.getChildren().add(b);
+		b.setOnAction(e->transitionToMain());
+		myPane.setCenter(playbox);
 	}
 
 	private void transitionToMain() {
 		buildMainScene();
-		PauseTransition pause = new PauseTransition(Duration.seconds(7));
+		/*PauseTransition pause = new PauseTransition(Duration.seconds(7));
 		pause.setOnFinished(event -> {
 			//myPane = newScene;
 			myScene.setRoot(myPane);
-		});
-		pause.play();
+		});*/
+		myScene.setRoot(myPane);
+		//pause.play();
 	}
 
 	private void buildMainScene() {
