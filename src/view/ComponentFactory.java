@@ -10,10 +10,10 @@ import voogasalad.util.reflection.Reflection;
 import voogasalad.util.reflection.ReflectionException;
 
 public class ComponentFactory implements newComponentFactory {
-	private static final String PREFIX = "components.";
-	private static final String PREFI = "view.editor.";
+	private static final String PREFIX = "components.entityComponents.";
+	private static final String EDITOR_PREFIX = "view.editor.";
 	private static final String SUFFIX = "Component";
-	private static final String SUFFI = "Editor";
+	private static final String EDITOR_SUFFIX = "Editor";
 	
 	public ComponentFactory(){
 		System.out.println("bloomfeld is actually bloomfeild");
@@ -41,11 +41,12 @@ public class ComponentFactory implements newComponentFactory {
 		return reflectedComponent;
 	}
 
-	public ComponentEditor getComponentEditor(String comp) {
-		System.out.println(PREFI + comp + SUFFI);
+
+	public ComponentEditor getComponentEditor(String comp, UtilityFactory myUtilF) {
+		System.out.println(EDITOR_PREFIX + comp + EDITOR_SUFFIX);
 		ComponentEditor reflectedComponent;
 		try {
-			reflectedComponent = (ComponentEditor) Reflection.createInstance(PREFI + comp + SUFFI);
+			reflectedComponent = (ComponentEditor) Reflection.createInstance(EDITOR_PREFIX + comp + EDITOR_SUFFIX, myUtilF);
 			System.out.println(reflectedComponent.getInputNode());
 		} catch (Exception e) {
 			System.out.println("i shouldnt be here");

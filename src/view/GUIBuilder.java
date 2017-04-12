@@ -14,7 +14,7 @@ import view.toolbar.ToolBarView;
  */
 public class GUIBuilder {
 	public static final String RESOURCE_PACKAGE = "resources/";
-	public static final String STYLESHEET = "default.css";
+	public static final String STYLESHEET = "GridView.css";
 
 	private static final double SCREEN_HEIGHT = 650;
 	private static final double SCREEN_WIDTH = 1000;
