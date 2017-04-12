@@ -2,6 +2,8 @@ package components.entityComponents;
 
 import components.IComponent;
 
+import components.entityComponents.ComponentType;
+
 public class LevelComponent implements IComponent {
 
 	private int level;
