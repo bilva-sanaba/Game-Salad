@@ -88,7 +88,11 @@ public class WorldAnimator {
 	private void createMap(RestrictedEntityManager manager) {
 		Collection<RestrictedEntity> entities = manager.getEntities();
 		for (RestrictedEntity e: entities){
-			imageMap.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(e.getImagePath()))));
+			System.out.println("ID:    " + e.getID());
+			System.out.println(e.getImagePath());
+			String[] test = e.getImagePath().split("/");
+			System.out.println("images/" + test[test.length-1]);
+			imageMap.put(e.getID(), new ImageView(new Image("images/platform_tile_002.png")));//"images/" + test[test.length-1])));//e.getImagePath()))));
 			imageMap.get(e.getID()).setX(e.getLocation().getX());
 			imageMap.get(e.getID()).setY(e.getLocation().getY());
 		}
