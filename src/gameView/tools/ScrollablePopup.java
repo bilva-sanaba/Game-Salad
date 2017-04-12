@@ -23,7 +23,7 @@ public class ScrollablePopup {
 		setUpScroll(contentToScroll);
 		setUpBorderPane(button);
 		myScene = new Scene(myPane, dim.width, dim.height);
-		myScene.getStylesheets().add(this.getClass().getResource(cssFile).toExternalForm());
+		myScene.getStylesheets().add(cssFile);//this.getClass().getResource(cssFile).toExternalForm());
 	}
 	
 	public Scene getScene() {
