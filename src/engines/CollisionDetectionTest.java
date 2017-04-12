@@ -8,10 +8,10 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import components.ComponentType;
 import components.IComponent;
-import components.ImagePropertiesComponent;
-import components.LocationComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
+import components.entityComponents.LocationComponent;
 
 public class CollisionDetectionTest {
 	

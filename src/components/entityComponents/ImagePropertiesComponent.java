@@ -1,4 +1,6 @@
-package components;
+package components.entityComponents;
+
+import components.IComponent;
 
 public class ImagePropertiesComponent implements IComponent {
 	private double imageHeight;

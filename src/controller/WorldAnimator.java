@@ -108,13 +108,9 @@ public class WorldAnimator {
 	private void handleKeyPressed(KeyCode keyCode) {
 		externalKeyHandler(keyCode);
 		keysPressed.add(keyCode);
-		System.out.println(keyCode);
 	}
 	
 	private void externalKeyHandler(KeyCode code){
-		if(code == KeyCode.S){
-			animation.play();
-		}
 		if(code == KeyCode.P && !pause){
 			animation.pause();
 			pause=true;
@@ -122,7 +118,6 @@ public class WorldAnimator {
 		else if (code == KeyCode.P && pause) {
 			animation.play();
 			pause =false;
-
 		}
 	}
 
@@ -138,12 +133,6 @@ public class WorldAnimator {
 			removeEntity(entity,trans);
 			updateEntity(entity,trans);
 			createEntity(entity,trans);
-//			for (Integer id : imageMap.keySet()) {
-//				imageMap.get(id).setX(imageMap.get(id).getX()+5);
-//			}
-//			if (trans.getChildren().size()>0){
-//				trans.play();
-//			}
 		}
 		return map;
 	}
@@ -181,16 +170,6 @@ public class WorldAnimator {
 		currentImage.setX(re.getLocation().getX());
 		currentImage.setY(re.getLocation().getY());		
 	}
-	
-	private PathTransition moveToLocation(ImageView imageView, Coordinate c){
-		Path path = new Path();
-		double xLoc = c.getX();
-		double yLoc = c.getY();
-		path.getElements().add(new MoveTo(xLoc, yLoc));
-		PathTransition pathTransition = new PathTransition(Duration.millis(KEY_INPUT_SPEED), path, imageView);
-		return pathTransition;
-	}
-	
 	private FadeTransition makeFade(ImageView imageView){
 		double newOpacity = 0.0;
 		return createFade(newOpacity, imageView);

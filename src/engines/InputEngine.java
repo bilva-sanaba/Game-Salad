@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import components.ComponentType;
 import components.IComponent;
-import components.KeyInputComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.KeyInputComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
