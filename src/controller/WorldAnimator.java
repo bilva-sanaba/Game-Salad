@@ -103,6 +103,11 @@ public class WorldAnimator {
 		for (RestrictedEntity e: entities){
 			String[] test = e.getImagePath().split("[\\\\/]");
 			imageMap.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
+			imageMap.get(e.getID()).setX(e.getLocation().getX());
+			imageMap.get(e.getID()).setY(e.getLocation().getY());
+			imageMap.get(e.getID()).setFitHeight(e.getImageHeight());
+			imageMap.get(e.getID()).setFitWidth(e.getImageWidth());
+
 			imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
 			imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
 		}

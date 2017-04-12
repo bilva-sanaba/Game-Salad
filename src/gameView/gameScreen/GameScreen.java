@@ -51,6 +51,10 @@ public class GameScreen extends AbstractViewer {
 	}
 
 	public Scene getScene() {
+		myPane.getChildren().add(myAnimation.getScene().getRoot());
+		
+		
+		
 		System.out.println(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
 		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
 //

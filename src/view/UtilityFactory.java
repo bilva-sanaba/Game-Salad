@@ -130,7 +130,7 @@ public class UtilityFactory {
 		String[] radioButton = myResources.getString(string).split(SPLIT_REGEX);
 		Integer buttonNum = Integer.parseInt(radioButton[0]);
 		for (int i = 1; i <= buttonNum; i++){
-			buildRadioButton(radioButton[i], Boolean.getBoolean(radioButton[i+buttonNum]), group, vbox);
+			buildRadioButton(radioButton[i], Boolean.getBoolean(radioButton[i+buttonNum].trim()), group, vbox);
 		}
 		nodeList.add(vbox);
 		return group;
