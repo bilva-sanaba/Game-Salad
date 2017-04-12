@@ -52,7 +52,7 @@ public class SplashView extends AbstractViewer {
 	}
 	
 	public void addBackground() {
-		myScene.getStylesheets().add(getStyleSheets(this, myName));
+		myScene.getStylesheets().add(this.getClass().getResource("/resources/SplashScreen.css").toExternalForm());
 	}
 
 	private void setBorderPane() {
