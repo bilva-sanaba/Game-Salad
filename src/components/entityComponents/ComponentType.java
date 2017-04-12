@@ -13,5 +13,5 @@ public enum ComponentType {
 	Background(),
 	Strength(),
 	MonsterAction(),
-	Level();
+	Level(), Step();
 }
