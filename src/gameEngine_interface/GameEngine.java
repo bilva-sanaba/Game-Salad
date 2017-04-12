@@ -124,7 +124,12 @@ public class GameEngine implements GameEngineInterface {
 		initializeRestrictedEntities();
 	}
 	
-	public Entity getMainCharacter(){
-		return mainCharacter;
+	public IEntity getMainCharacter(){
+		for(IEntity e : myEntityManager.getEntityMap().keySet()){
+			if(e.getComponent(ComponentType.KeyInput) != null){
+				return e;
+			}
+		}
+		return null;
 	}
 }
