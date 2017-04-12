@@ -7,16 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import components.LocationComponent;
-import components.SpriteComponent;
-
-import components.AccelerationComponent;
-import components.ComponentType;
-import components.KeyExpression;
-import components.KeyInputComponent;
-import components.LocationComponent;
-import components.SpriteComponent;
-import components.VelocityComponent;
+import components.entityComponents.AccelerationComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.KeyExpression;
+import components.entityComponents.KeyInputComponent;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.SpriteComponent;
+import components.entityComponents.VelocityComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;

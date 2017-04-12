@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import components.ComponentType;
-import components.LocationComponent;
-import components.VelocityComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;

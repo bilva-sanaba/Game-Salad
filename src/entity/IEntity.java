@@ -2,8 +2,8 @@ package entity;
 
 import java.util.Collection;
 
-import components.ComponentType;
 import components.IComponent;
+import components.entityComponents.ComponentType;
 
 /**
  * Interface for Entity object which represents any object displayed in the game

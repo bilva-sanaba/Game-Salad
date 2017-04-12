@@ -4,8 +4,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import components.ComponentType;
 import components.IComponent;
+import components.entityComponents.ComponentType;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 

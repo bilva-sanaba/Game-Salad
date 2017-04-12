@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import components.ComponentType;
 import components.IComponent;
+import components.entityComponents.ComponentType;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;

@@ -2,7 +2,7 @@ package view;
 
 import java.util.ArrayList;
 
-import components.SpriteComponent;
+import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

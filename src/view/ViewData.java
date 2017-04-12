@@ -7,6 +7,7 @@ import entity.SplashEntity;
 import java.util.HashMap;
 import java.util.Observable;
 import components.*;
+import components.entityComponents.LocationComponent;
 
 /**
  * Casting takes place to be able to edit the component because we are using enums to choose the specific component

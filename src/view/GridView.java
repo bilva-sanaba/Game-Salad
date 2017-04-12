@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-import components.ComponentType;
-import components.LocationComponent;
-import components.SpriteComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
