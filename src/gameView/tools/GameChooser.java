@@ -21,15 +21,18 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class GameChooser {
+	
 
-	private Stage myStage;
 	private static final String FILE_EXTENSION = "*.xlm";
 	private static final String GAME_PATH = "/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/games";
+
+	private Stage myStage;
 	private ArrayList<String> myFiles;
 	private VBox myBox;
 	private ArrayList<HBox> mySubBoxes;
 	private String myChosenFile;
 	private static final Dimension SCENE_DIMENSIONS = new Dimension(UIView.DEFAULT_SIZE.width/2, UIView.DEFAULT_SIZE.height/2);
+	
 	public GameChooser(Stage s) {
 		//myStage = s;
 		myStage = new Stage();
@@ -55,8 +58,9 @@ public class GameChooser {
 			} 
 		} 
 		makeVBox();
-		ScrollablePopup myPopup = new ScrollablePopup("File Chooser", "/resources/GameChooser.css", myBox, null, 
-				new Dimension(SCENE_DIMENSIONS.width, SCENE_DIMENSIONS.height));
+		ScrollablePopup myPopup = new ScrollablePopup("File Chooser", new ResourceRetriever().
+				getStyleSheets(this, GameChooser.class.getSimpleName()),
+				myBox, null, new Dimension(SCENE_DIMENSIONS.width, SCENE_DIMENSIONS.height));
 		myStage.setScene(myPopup.getScene());
 		return myStage; 
 	}

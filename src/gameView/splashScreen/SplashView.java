@@ -14,6 +14,7 @@ import gameView.AbstractViewer;
 import gameView.ICommandView;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
+import gameView.tools.ResourceRetriever;
 
 public class SplashView extends AbstractViewer {
 
@@ -30,7 +31,7 @@ public class SplashView extends AbstractViewer {
 		myPane.setId("splashpane");
 		myScene = new Scene(myPane, UIView.DEFAULT_SIZE.width,
 				UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(getStyleSheets(this, myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));//getStyleSheets(this, myName));
 		this.setBorderPane();
 		this.transitionToMain();
 	}

@@ -7,6 +7,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import voogasalad.util.reflection.Reflection;
 
 public class DisplayManager {
@@ -17,9 +20,12 @@ public class DisplayManager {
 	private HashMap<String, UIDisplayComponent> myAllDisplays;
 	private HashMap<String, UIDisplayComponent> myActiveDisplays;
 	private GameScreen myScreen;
+	private ReadOnlyDoubleProperty myWidthBound;
+	private ReadOnlyDoubleProperty myHeightBound;
 	
-	public DisplayManager(GameScreen screen, String filePath) {
+	public DisplayManager(GameScreen screen, String filePath, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
 		myScreen = screen;
+		setBounds(width, height);
 		myAllDisplays = makeComponents(filePath);
 		myActiveDisplays = new HashMap<String, UIDisplayComponent>();
 		copyMap(myAllDisplays);
@@ -50,7 +56,8 @@ public class DisplayManager {
 		String[] allComps = comps.split(", ");
 		for (String each: allComps) {
 			UIDisplayComponent newDisplay = (UIDisplayComponent) Reflection.createInstance(COMPONENT_LOCATION+each+"Component", each);
-			newDisplay.setId(newDisplay.getName());
+			updateX(newDisplay, newDisplay.getSize().getWidth());
+			updateY(newDisplay, newDisplay.getSize().getHeight());
 			displays.put(each, newDisplay);
 		}
 		return displays;
@@ -59,6 +66,40 @@ public class DisplayManager {
 	private void copyMap(HashMap<String, UIDisplayComponent> toCopy) {
 		for (String key: toCopy.keySet()) {
 			add(key);
+		}
+	}
+	
+	private void setBounds(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
+		myWidthBound = width;
+		myHeightBound = height;
+		myWidthBound.addListener(new ChangeListener() {
+		      @Override
+		      public void changed(ObservableValue o, Object oldVal, Object newVal) {
+		        myAllDisplays.values().stream()
+		        	.forEach(c -> updateX(c, (Double) newVal));
+		      }
+		    });
+		myHeightBound.addListener(new ChangeListener() {
+		      @Override
+		      public void changed(ObservableValue o, Object oldVal, Object newVal) {
+		    	  myAllDisplays.values().stream()
+		        	.forEach(c -> updateY(c, (Double) newVal));
+		      }
+		    });
+	}
+	
+	private void updateX(UIDisplayComponent width, Double newVal) {
+		double x = width.getPos().x();
+		if (x!= 0) {
+			width.getDisplay().setTranslateX(newVal*x-width.getSize().getWidth());
+		}
+	}
+	
+	private void updateY(UIDisplayComponent height, Double newVal) {
+
+		double x = height.getPos().y();
+		if (x!= 0) {
+			height.getDisplay().setTranslateY(newVal*x-height.getSize().getHeight());
 		}
 	}
 }
