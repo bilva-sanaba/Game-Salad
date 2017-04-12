@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import components.IComponent;
-import components.KeyExpression;
 import engines.IKeyInputPanel;
 import engines.KeyInputPanel;
+import components.entityComponents.KeyExpression;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;

@@ -2,8 +2,8 @@ package view;
 
 import java.util.HashMap;
 
-import components.ComponentType;
-import components.SpriteComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;

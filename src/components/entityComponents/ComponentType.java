@@ -1,4 +1,4 @@
-package components;
+package components.entityComponents;
 
 public enum ComponentType {
 	Label(), 
@@ -12,5 +12,6 @@ public enum ComponentType {
 	Splash(),
 	Background(),
 	Strength(),
-	MonsterAction();
+	MonsterAction(),
+	Level();
 }

@@ -2,7 +2,7 @@ package engines;
 
 import java.util.Map;
 
-import components.KeyExpression;
+import components.entityComponents.KeyExpression;
 import javafx.scene.input.KeyCode;
 
 public interface IKeyInputPanel {

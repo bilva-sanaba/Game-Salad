@@ -3,8 +3,8 @@ package engines;
 import java.util.HashMap;
 import java.util.Map;
 
-import components.KeyExpression;
 import components.keyExpressions.ConcreteKeyExpressions;
+import components.entityComponents.KeyExpression;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;

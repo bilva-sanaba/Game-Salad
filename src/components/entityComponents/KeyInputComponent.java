@@ -1,8 +1,9 @@
-package components;
+package components.entityComponents;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import components.IComponent;
 import javafx.scene.input.KeyCode;
 
 public class KeyInputComponent implements IComponent {

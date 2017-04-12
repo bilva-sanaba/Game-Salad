@@ -10,9 +10,9 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import components.AccelerationComponent;
-import components.ComponentType;
 import components.IComponent;
+import components.entityComponents.AccelerationComponent;
+import components.entityComponents.ComponentType;
 
 public class CollisionPairTest {
 	

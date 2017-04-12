@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import components.ComponentType;
 import components.IComponent;
-import components.ImagePropertiesComponent;
-import components.LocationComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
+import components.entityComponents.LocationComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -106,6 +106,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 
 
 	public Collection<IEntity> update(Collection<KeyCode> keys) {
+		System.out.println("is this being called");
 		newEntitiesCreated = new ArrayList<IEntity>();
 		checkCollisionsOccurred();
 		return newEntitiesCreated;
