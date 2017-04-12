@@ -4,13 +4,17 @@ package gameView;
 import java.awt.Dimension;
 
 import data_interfaces.XMLException;
+import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameView.gameScreen.GameScreen;
 import com.sun.jmx.snmp.Timestamp;
+
+import gameView.splashScreen.SpecificGameSplashView;
 import gameView.splashScreen.SplashView;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import view_interfaces.UIViewInterface;
 
@@ -35,8 +39,10 @@ public class UIView implements UIViewInterface {
 		s.setTitle(STAGE_TITLE);
 		myController = controller;
 		myAnimation = new WorldAnimator();
-		mySplash = new SplashView(this);
-		myGameScene = new GameScreen(this, myAnimation);
+		//mySplash = new SplashView(this, new SplashEntity(1, "", "", ""));
+     	Image i = new Image(getClass().getClassLoader().getResourceAsStream("background1.png"));
+		mySplash = new SpecificGameSplashView(this, new SplashEntity(1, "PENIS", "BALLSBALLSBALLS", "background2.png")); //ADD splashentity
+		//myGameScene = new GameScreen(this, myAnimation);
 		runGame();//getSplashScreen();
 		//getSplashScreen();
 	}
@@ -54,7 +60,7 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		setStage(myGameScene.getScene());//mySplash
+		setStage(mySplash.getScene());//mySplash
 		
 	}
 	

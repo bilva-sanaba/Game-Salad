@@ -2,6 +2,7 @@ package gameView.splashScreen;
 
 import java.util.Collection;
 
+import entity.SplashEntity;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,19 +19,21 @@ import gameView.commands.AbstractCommand;
 public class SplashView extends AbstractViewer {
 
 	private static final String myName = SplashView.class.getSimpleName();
-	private Scene myScene;
+	protected Scene myScene;
 	private BorderPane myPane;
 	private Collection<AbstractCommand> myCommands;
+	private SplashEntity se;
 	
 
-	public SplashView(UIView view) {
+	public SplashView(UIView view, SplashEntity se) {
 		super(view);
 		myCommands = getCommands(myName);
 		myPane = new BorderPane();
+		this.se=se;
 		myPane.setId("splashpane");
 		myScene = new Scene(myPane, UIView.DEFAULT_SIZE.width,
 				UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(getStyleSheets(this, myName));
+		addBackground();
 		this.setBorderPane();
 		this.transitionToMain();
 	}
@@ -38,9 +41,13 @@ public class SplashView extends AbstractViewer {
 	public Scene getScene() {
 		return myScene;
 	}
+	
+	public void addBackground() {
+		myScene.getStylesheets().add(getStyleSheets(this, myName));
+	}
 
 	private void setBorderPane() {
-		Label lab = makeLabel("RainDrop salad", "splashlabel");
+		Label lab = makeLabel(se.getDisplayName(), "splashlabel");
 		myPane.setCenter(lab);
 	}
 
@@ -60,6 +67,8 @@ public class SplashView extends AbstractViewer {
 		Label title = makeLabel("Choose A Mode", "mainlabel");
 		BorderPane.setMargin(title, new Insets(10, 10, 10, 10));
 		myPane.setTop(title);
+		Label lbl = makeLabel(se.getInstructions(), "instructions");
+		myPane.setCenter(lbl); //Reposition label
 		VBox box = new VBox(20);
 		box.setId("mainbox");
 		box.setAlignment(Pos.CENTER);
@@ -68,5 +77,9 @@ public class SplashView extends AbstractViewer {
 			box.getChildren().add(makeButton(c));
 		});
 		myPane.setRight(box);
+	}
+	
+	public BorderPane getRoot(){
+		return myPane;
 	}
 }
