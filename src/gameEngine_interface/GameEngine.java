@@ -7,11 +7,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import actions.BlockTopRegularCollision;
+import components.collisionComponents.CollisionComponentType;
+import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyExpression;
 import components.entityComponents.KeyInputComponent;
+import components.entityComponents.LabelComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.VelocityComponent;
@@ -109,6 +113,15 @@ public class GameEngine implements GameEngineInterface {
 			t2.addComponent(new SpriteComponent(("stone.gif")));
 			e.add(t2);
 			}
+			ImagePropertiesComponent ic = new ImagePropertiesComponent();
+			ic.setHeight(50);
+			ic.setWidth(50);
+			t.addComponent(ic);
+			
+			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision());
+			t.addComponent(scc);
+			
+			t.addComponent(new LabelComponent("Block"));
 			e.add(t);
 		}
 		Entity t = new Entity(40);
@@ -117,6 +130,11 @@ public class GameEngine implements GameEngineInterface {
 		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		t.addComponent(new KeyInputComponent());
 		t.addComponent(new AccelerationComponent(0,0));
+		t.addComponent(new LabelComponent("notb"));
+		ImagePropertiesComponent ic = new ImagePropertiesComponent();
+		ic.setHeight(100);
+		ic.setWidth(100);
+		t.addComponent(ic);
 		//t.addComponent(new TerminalVelComponent(5, 5));
 		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
 		e.add(t);
@@ -126,7 +144,19 @@ public class GameEngine implements GameEngineInterface {
 		e.add(t);
 		mainCharacter = t;
 		myEntityManager=new EntityManager(e);    
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
+		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager), new CollisionEngine(myEntityManager));
+		for (IEntity x : myEntityManager.getEntityMap().keySet()) {
+			if (x.getComponent(ComponentType.ImageProperties) == null) {
+				ic.setHeight(50);
+				ic.setWidth(50);
+				x.addComponent(ic);
+			}
+			if (x.getComponent(ComponentType.Label) == null) {
+				LabelComponent lc = new LabelComponent("Block");
+				x.addComponent(lc);
+			}
+		}
+		
 		initializeRestrictedEntities();
 	}
 	

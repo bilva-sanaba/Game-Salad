@@ -40,21 +40,17 @@ public class GridView extends GUIComponent{
 	private int myCol;
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
 	private BorderPane bp;
+	
+	private static final int STARTINGROWS = 10;
+	private static final int STARTINGCOLS = 10;
 
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
 		util = utilIn;
 		myRow = rows;
 		myCol = cols;
 		myData = data;
-		myGrid = new GridPane();
-		myGrid.getStyleClass().add("view-grid");
-		myGrid.setAlignment(Pos.CENTER);
+		setGrid();
 //		myData.addObserver(this);
-		for (int row = 0; row < rows; row++) {
-			for (int col = 0; col < cols; col++) {
-				addMouseListenerPane(row, col);
-			}
-		}
 		bp = new BorderPane();
 		Button butt = util.buildButton("addHo", e-> addHo());
 		util.buildButton("addHo", e->addHo());
@@ -65,6 +61,17 @@ public class GridView extends GUIComponent{
 		
 		myScroll = new ScrollPane(myGrid);
 		bp.setCenter(myScroll);
+	}
+	
+	private void setGrid() {
+		myGrid = new GridPane();
+		myGrid.getStyleClass().add("view-grid");
+		myGrid.setAlignment(Pos.CENTER);
+		for (int row = 0; row < myRow; row++) {
+			for (int col = 0; col < myCol; col++) {
+				addMouseListenerPane(row, col);
+			}
+		}
 	}
 
 	private void addHo() {
@@ -138,16 +145,10 @@ public class GridView extends GUIComponent{
 		}
 	}
 	
-	public void setUpLevel() {
-		myGrid = new GridPane();
-		myGrid.getStyleClass().add("view-grid");
-		myGrid.setAlignment(Pos.CENTER);
-//		myData.addObserver(this);
-		for (int row = 0; row < 10; row++) {
-			for (int col = 0; col < 10; col++) {
-				addMouseListenerPane(row, col);
-			}
-		}
+	private void setUpLevel() {
+		myRow = STARTINGROWS;
+		myCol = STARTINGCOLS;
+		setGrid();
 		int totalRow = myData.getLevelEntity().getRows();
 		int totalCol = myData.getLevelEntity().getCols();
 		

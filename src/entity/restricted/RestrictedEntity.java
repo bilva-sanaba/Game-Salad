@@ -4,12 +4,13 @@ import java.util.Observable;
 
 import java.util.Observer;
 
+import components.entityComponents.ImagePropertiesComponent;
 import gameView.Coordinate;
 import javafx.beans.InvalidationListener;
 
 public class RestrictedEntity extends AbstractRestrictedEntity implements IRestrictedEntity {
-	public RestrictedEntity(int id, Coordinate c, String image){
-		super(id, c,image);
+	public RestrictedEntity(int id, Coordinate c, String image, ImagePropertiesComponent comp){
+		super(id, c, image, comp);
 	}
 	@Override
 	public Coordinate getLocation() {
@@ -37,5 +38,17 @@ public class RestrictedEntity extends AbstractRestrictedEntity implements IRestr
 	public int getID() {
 		// TODO Auto-generated method stub
 		return myID;
+	}
+	
+	public ImagePropertiesComponent getIPComponent(){
+		return iPComponent;
+	}
+	
+	public double getImageHeight(){
+		return getIPComponent().getHeight();
+	}
+	
+	public double getImageWidth(){
+		return getIPComponent().getWidth();
 	}
 }

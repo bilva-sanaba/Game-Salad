@@ -4,13 +4,17 @@ package gameView;
 import java.awt.Dimension;
 
 import data_interfaces.XMLException;
+import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameView.gameScreen.GameScreen;
 import com.sun.jmx.snmp.Timestamp;
+
+import gameView.splashScreen.SpecificGameSplashView;
 import gameView.splashScreen.SplashView;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import view_interfaces.UIViewInterface;
 
@@ -26,19 +30,22 @@ public class UIView implements UIViewInterface {
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
-	private GameScreen myGameScene;
+	private GameScreen myGameScene; //move to splash
 	private IRestrictedEntityManager myEntities; 
-	private WorldAnimator myAnimation;
+	private WorldAnimator myAnimation; //move to splash
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
 		s.setTitle(STAGE_TITLE);
 		myController = controller;
 		myAnimation = new WorldAnimator();
-		mySplash = new SplashView(this);
-		myGameScene = new GameScreen(this, myAnimation);
-		//runGame();
-		getSplashScreen();
+		//mySplash = new SplashView(this, new SplashEntity(1, "", "", ""));
+     	Image i = new Image(getClass().getClassLoader().getResourceAsStream("background1.png"));
+		//mySplash = new SpecificGameSplashView(this, new SplashEntity(1, "PENIS", "BALLSBALLSBALLS", "background2.png")); //ADD splashentity
+		mySplash = new SplashView(this, new SplashEntity(1, "", "", ""));
+     	//myGameScene = new GameScreen(this, myAnimation);
+		runGame();//getSplashScreen();
+		//getSplashScreen();
 	}
 
 	public void getSplashScreen() {
@@ -54,7 +61,7 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		setStage(myGameScene.getScene());
+		setStage(mySplash.getScene());//mySplash
 		
 	}
 	
