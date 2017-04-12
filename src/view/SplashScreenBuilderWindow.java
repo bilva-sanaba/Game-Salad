@@ -1,6 +1,7 @@
 package view;
 
 import entity.Entity;
+import entity.SplashEntity;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -41,6 +42,11 @@ public class SplashScreenBuilderWindow {
 		stage.setScene(scene);
 		stage.setTitle("Customize Splash Screen");
 		stage.show();
+		
+		
+//		beneath here is a splash entity which you instantiate with all the values you just found at the x's
+//		SplashEntity s = new SplashEntity(1, x,x,x);
+//		return s;
 	}
 	
 //	private void pickColor(Pane root){

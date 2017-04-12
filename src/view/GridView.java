@@ -170,7 +170,6 @@ public class GridView extends GUIComponent implements Observer{
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println("JONATHAN RUB SUCKS PENIS");
 		updateBackground();
 		setUpLevel();
 		clearEntitiesOnGrid();

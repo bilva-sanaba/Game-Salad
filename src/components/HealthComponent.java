@@ -18,7 +18,6 @@ public class HealthComponent implements IComponent {
 
 	@Override
 	public ComponentType getComponentType() {
-		// TODO Auto-generated method stub
 		return ComponentType.Health;
 	}
 
