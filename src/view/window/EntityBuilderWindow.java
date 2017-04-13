@@ -1,4 +1,4 @@
-package view;
+package view.window;
 
 import java.util.ArrayList;
 import components.entityComponents.SpriteComponent;
@@ -18,8 +18,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.ImageChooser;
+import view.UtilityFactory;
+import view.ViewData;
 
-public class EntityBuilderWindow {
+public class EntityBuilderWindow implements IWindow{
 
 	private ObservableList<Entity> blocksList;
 	private ArrayList<Node> nodeList = new ArrayList<Node>();
@@ -29,7 +32,6 @@ public class EntityBuilderWindow {
 	private Entity myEntity;
 	private ImageChooser imageChooser = new ImageChooser();
 	private UtilityFactory util;
-	private Stage myStage = new Stage();
 	private ViewData myData;
 	private int i = 0;
 	private String[] entityList = {"Error"};
@@ -41,10 +43,10 @@ public class EntityBuilderWindow {
 		nodeList.add(myImage);
 		GridPane.setConstraints(myImage, 0, 0);
 		GridPane.setColumnSpan(myImage, 3);
-		myStage.setScene(buildScene());
 	}
 
 	public void showEntityBuilder() {
+		myStage.setScene(buildScene());
 		myStage.show();
 	}
 
@@ -103,6 +105,11 @@ public class EntityBuilderWindow {
 		GridPane pane = new GridPane();
 		pane.getChildren().addAll(nodeList);
 		return pane;
+	}
+
+	@Override
+	public void openWindow() {
+		myStage.show();
 	}
 
 }

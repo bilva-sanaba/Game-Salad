@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
@@ -70,10 +71,7 @@ public class GridView extends GUIComponent{
 		for(Rectangle r: placedGrids){
 			myGrid.getChildren().remove(r);
 		}
-		//myGrid = new GridPane();
 		myGrid.getChildren().clear();
-	//	myGrid.getStyleClass().add("view-grid");
-	//	myGrid.setAlignment(Pos.CENTER);
 		for (int row = 0; row < myRow; row++) {
 			for (int col = 0; col < myCol; col++) {
 				addMouseListenerPane(row, col);
@@ -131,8 +129,15 @@ public class GridView extends GUIComponent{
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		spriteImage.setFitHeight(40);
-		spriteImage.setFitWidth(40);
+		if(entity.getComponent(ComponentType.ImageProperties) != null){
+			ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
+			spriteImage.setFitHeight(imageProp.getHeight());
+			spriteImage.setFitWidth(imageProp.getWidth());
+		}
+		else{
+			spriteImage.setFitHeight(50);
+			spriteImage.setFitWidth(50);
+		}
 		placedImages.add(spriteImage);
 		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
 	}

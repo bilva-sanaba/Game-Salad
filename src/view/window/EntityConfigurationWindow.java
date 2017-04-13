@@ -1,4 +1,4 @@
-package view;
+package view.window;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.ComponentFactory;
+import view.UtilityFactory;
+import view.ViewData;
 import view.editor.ComponentEditor;
 
 /**
@@ -17,11 +20,10 @@ import view.editor.ComponentEditor;
  * @author Justin
  * @author Jonathan
  */
-public class EntityConfigurationWindow {
+public class EntityConfigurationWindow implements IWindow {
 
 	private UtilityFactory myUtilF;
 	private ViewData myData;
-	private Stage myStage;
 	private String myEntityType;
 	private String[] componentList;
 	private ComponentFactory myCompF;
@@ -36,7 +38,6 @@ public class EntityConfigurationWindow {
 		myData = entityData;
 		myEntity = myData.getUserSelectedEntity();
 		myData.setUserSelectedEntity(myEntity);
-		myStage = new Stage();
 		componentList = entityType;
 		myCompEdits = new ArrayList<ComponentEditor>();
 		myList = blocksList;
@@ -68,6 +69,11 @@ public class EntityConfigurationWindow {
 		}
 		myList.add(myEntity);
 		myStage.close();
+	}
+
+	@Override
+	public void openWindow() {
+		myStage.show();
 	}
 }
 
