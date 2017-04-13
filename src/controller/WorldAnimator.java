@@ -91,7 +91,7 @@ public class WorldAnimator {
         this.animation = new Timeline();
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.getKeyFrames().add(frame);
-        animation.play();
+        //animation.play();
     }
     
     public Scene getScene() {
@@ -107,8 +107,8 @@ public class WorldAnimator {
             imageMap.get(e.getID()).setY(e.getLocation().getY());
             imageMap.get(e.getID()).setFitHeight(e.getImageHeight());
             imageMap.get(e.getID()).setFitWidth(e.getImageWidth());
-            imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
-			imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
+            //imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
+			//imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
         }
     }
 
@@ -124,7 +124,7 @@ public class WorldAnimator {
     private void handleKeyReleased(KeyCode keyCode) {
         keysReleased.add(keyCode);
         keysPressed.remove(keyCode);
-        System.out.println(keyCode);
+        System.out.println("IN WORLD ANIMATOR" + keyCode);
     }
 
     private void handleKeyPressed(KeyCode keyCode) {
@@ -197,8 +197,8 @@ private void createEntity(RestrictedEntity entity, SequentialTransition trans){
         currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(image[image.length-1])));
         currentImage.setX(re.getLocation().getX());
         currentImage.setY(re.getLocation().getY());   
-        currentImage.setTranslateX(re.getLocation().getX()*50-475);
-		currentImage.setTranslateY(re.getLocation().getY()*50-175);
+        //currentImage.setTranslateX(re.getLocation().getX()*50-475);
+		//currentImage.setTranslateY(re.getLocation().getY()*50-175);
     }
 
 
