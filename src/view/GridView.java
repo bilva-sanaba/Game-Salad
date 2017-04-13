@@ -32,13 +32,14 @@ import javafx.scene.paint.Color;
 public class GridView extends GUIComponent{ 
 //implements Observer {
 	private ScrollPane myScroll;
-	private GridPane myGrid;
+	private GridPane myGrid = new GridPane();
 	private ViewData myData;
 	private UtilityFactory util;
 	private int i = 1000;
 	private int myRow;
 	private int myCol;
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
+	private ArrayList<Rectangle> placedGrids = new ArrayList<Rectangle>();
 	private BorderPane bp;
 	
 	private static final int STARTINGROWS = 10;
@@ -49,6 +50,8 @@ public class GridView extends GUIComponent{
 		myRow = rows;
 		myCol = cols;
 		myData = data;
+		myGrid.getStyleClass().add("view-grid");
+		myGrid.setAlignment(Pos.CENTER);
 		setGrid();
 //		myData.addObserver(this);
 		bp = new BorderPane();
@@ -64,9 +67,13 @@ public class GridView extends GUIComponent{
 	}
 	
 	private void setGrid() {
-		myGrid = new GridPane();
-		myGrid.getStyleClass().add("view-grid");
-		myGrid.setAlignment(Pos.CENTER);
+		for(Rectangle r: placedGrids){
+			myGrid.getChildren().remove(r);
+		}
+		//myGrid = new GridPane();
+		myGrid.getChildren().clear();
+	//	myGrid.getStyleClass().add("view-grid");
+	//	myGrid.setAlignment(Pos.CENTER);
 		for (int row = 0; row < myRow; row++) {
 			for (int col = 0; col < myCol; col++) {
 				addMouseListenerPane(row, col);
@@ -117,6 +124,7 @@ public class GridView extends GUIComponent{
 			}
 		});
 		myGrid.add(rect, row, col);
+		placedGrids.add(rect);
 	}
 
 	private void drawEntity(Entity entity) {
