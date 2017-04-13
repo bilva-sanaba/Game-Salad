@@ -7,6 +7,7 @@ import data_interfaces.XMLException;
 import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameView.gameScreen.GameScreen;
+//import gameView.gameScreen.SpecificGameSplashView;
 import gameView.gameScreen.SpecificGameSplashView;
 
 import com.sun.jmx.snmp.Timestamp;
@@ -41,13 +42,13 @@ public class UIView implements UIViewInterface {
 		myController = controller;
 		myAnimation = new WorldAnimator();
 		mySplash = new SplashView(this);
+     	Image i = new Image(getClass().getClassLoader().getResourceAsStream("background1.png"));
      	myGameScene = new GameScreen(this, myAnimation);
-		//runGame();//getSplashScreen();
 		getSplashScreen();
-		
 		//TODO UNCOMMENT TO USE
-//     	SplashEntity test = new SplashEntity(1, "Splash", "instructions", "background1.png");
-//		setStage(new SpecificGameSplashView(this, test).getScene());
+		//getSplashScreen();
+     	//SplashEntity test = new SplashEntity(1, "Splash", "instructions", "background1.png");
+		//setStage(new SpecificGameSplashView(this, test).getScene());
 	}
 
 	public void getSplashScreen() {
