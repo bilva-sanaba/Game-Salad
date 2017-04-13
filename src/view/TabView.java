@@ -19,6 +19,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import view.window.EntityBuilderWindow;
 
 public class TabView extends GUIComponent {
 	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
