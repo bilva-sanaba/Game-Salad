@@ -88,7 +88,7 @@ public class NewMovementEngine extends AbstractEngine{
 //		}
 	}
 	private void resetAcceleration(IEntity e){
-		((AccelerationComponent) e.getComponent(ComponentType.Acceleration)).setY(0.01);
+		((AccelerationComponent) e.getComponent(ComponentType.Acceleration)).setY(0.05);
 	}
 	private void updateMovement(IEntity e, ComponentType c1, ComponentType c2) {
 		XYComponent xy1 = (XYComponent) e.getComponent(c1);
