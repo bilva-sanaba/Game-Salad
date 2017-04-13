@@ -81,7 +81,7 @@ public class GridView extends GUIComponent{
 
 	private void addHo() {
 		for (i=0;i<myRow;i++){
-			Rectangle rect = new Rectangle(40, 40);
+			Rectangle rect = new Rectangle(50, 50);
 			rect.getStyleClass().add("view-grid-cell");
 			myGrid.add(rect, myCol, i);
 			addMouseListenerPane(myCol, i);
@@ -92,7 +92,7 @@ public class GridView extends GUIComponent{
 		
 	private void addVert() {
 		for (i=0;i<myCol;i++){
-			Rectangle rect = new Rectangle(40, 40);
+			Rectangle rect = new Rectangle(50, 50);
 			rect.getStyleClass().add("view-grid-cell");
 			myGrid.add(rect, i, myRow);
 			addMouseListenerPane(i, myRow);
@@ -102,7 +102,7 @@ public class GridView extends GUIComponent{
 	}
 
 	private void addMouseListenerPane(int row, int col) {
-		Rectangle rect = new Rectangle(40, 40);
+		Rectangle rect = new Rectangle(50, 50);
 		rect.getStyleClass().add("view-grid-cell");
 		rect.setFill(Color.GREY);
 		rect.setOnMouseClicked(new EventHandler<MouseEvent>() {

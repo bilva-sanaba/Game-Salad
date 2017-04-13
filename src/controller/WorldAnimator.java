@@ -77,8 +77,8 @@ public class WorldAnimator {
 		//myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 		//myScene = new Scene(root,LENGTH,WIDTH);
 		myScene = new Scene(root,LENGTH - 200,WIDTH);
-		//LocationComponent lc = (LocationComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location);
-		myCamera = new Camera(LENGTH ,myScene, null);
+		LocationComponent lc = (LocationComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location);
+		myCamera = new Camera(LENGTH ,myScene, lc);
 		createMap(restrictedEntityManager);
 		for (Integer id : imageMap.keySet()) {
 			root.getChildren().add(imageMap.get(id));
