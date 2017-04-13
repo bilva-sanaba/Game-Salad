@@ -148,12 +148,14 @@ public class GridView extends GUIComponent{
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
 		for(Integer i: myMap.keySet()){
+			System.out.println("THINGS ARE PLACED");
 			tempEntity = myMap.get(i);
 			drawEntity(tempEntity);
 		}
 	}
 	
 	private void setUpLevel() {
+		System.out.println("NEW METHOD HAPPENS");
 		myRow = STARTINGROWS;
 		myCol = STARTINGCOLS;
 		setGrid();
@@ -161,9 +163,11 @@ public class GridView extends GUIComponent{
 		int totalCol = myData.getLevelEntity().getCols();
 		
 		while (myCol != totalCol) {
+			System.out.println("HORIZONTAL IS DONE");
 			addHo();
 		}
 		while (myRow != totalRow) {
+			System.out.println("VERTICAL IS DONE");
 			addVert();
 		}
 	}

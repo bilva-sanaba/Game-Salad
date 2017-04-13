@@ -24,7 +24,7 @@ import view.UtilityFactory;
 public class KeyInputEditor extends ComponentEditor {
 	private static final String ComponentName = "KeyInput";
 	private static final String KEYINPUT = "KeyInput : ";
-	private Map<KeyCode,IKeyExpression> inputMap = new HashMap<KeyCode,IKeyExpression>();
+	private Map<KeyCode,String> inputMap = new HashMap<KeyCode,String>();
 		
 		private HBox myBox;
 		private Text myLabel = new Text(KEYINPUT);
