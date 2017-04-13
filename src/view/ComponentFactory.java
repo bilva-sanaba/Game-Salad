@@ -16,13 +16,13 @@ public class ComponentFactory implements newComponentFactory {
 	private static final String EDITOR_SUFFIX = "Editor";
 	
 	public ComponentFactory(){
-		System.out.println("bloomfeld is actually bloomfeild");
+		System.out.println("rub is actually roob");
 	}
 
 	public IComponent getComponent(String componentName) {
 		IComponent reflectedComponent;
 		try {
-			System.out.println(PREFIX + componentName + SUFFIX + "WHAT THE FUCK \n");
+			System.out.println(PREFIX + componentName + SUFFIX + "WHAT THE F*** \n");
 			reflectedComponent = (IComponent) Reflection.createInstance(PREFIX + componentName + SUFFIX);
 		} catch (Exception e) {
 			throw new ReflectionException(ReflectionException.COMPONENT_REFLECTION_ERROR);

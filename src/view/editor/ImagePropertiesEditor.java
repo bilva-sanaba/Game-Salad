@@ -11,8 +11,8 @@ public class ImagePropertiesEditor extends ComponentEditor {
 	private static final String ComponentName = "ImageProperties";
 	
 	private VBox myBox;
-	private double myX;
-	private double myY;
+	private double myX = 40;
+	private double myY = 40;
 	
 	public ImagePropertiesEditor(UtilityFactory utilf) {
 		myBox = new VBox();
