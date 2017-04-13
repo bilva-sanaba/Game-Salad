@@ -5,6 +5,7 @@ import java.util.Collection;
 import controller.WorldAnimator;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
+import gameEngine_interface.RunnerTest;
 import gameView.AbstractViewer;
 import gameView.ImageManager;
 import gameView.UIView;
@@ -12,10 +13,7 @@ import gameView.commands.AbstractCommand;
 import gameView.displayComponents.UIDisplayComponent;
 import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -40,7 +38,7 @@ public class GameScreen extends AbstractViewer {
 	public GameScreen(UIView view, WorldAnimator animation) {
 		super(view);
 		myCommands = getCommands(myName);
-		myAnimation = animation;
+		//myAnimation = animation;
 		initializeBoxes();
 		buildMainScene();
 		myBP.applyCss();
@@ -50,17 +48,16 @@ public class GameScreen extends AbstractViewer {
 	}
 
 	public Scene getScene() {
-		myPane.getChildren().add(myAnimation.getScene().getRoot());
+//		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
+//		System.out.println(myPane.getChildren());
+//		System.out.println(myPane.getChildren().get(2).getTranslateX());
+//		System.out.println(myPane.getChildren().get(2).getTranslateY());
 		
-		
-		
-		System.out.println(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
-		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
 //
-//		myAnimation = new RunnerTest().getAnimator();
-//		myAnimation.setKeys(myScene);
-//		Scene test = myAnimation.getScene();
-//		myPane.getChildren().add(test.getRoot());
+		myAnimation = new RunnerTest(getView().getStage()).getAnimator();
+		myAnimation.setKeys(myScene);
+		Scene test = myAnimation.getScene();
+		myPane.getChildren().add(test.getRoot());
 		
 		//USED FOR CHECKING CHILDREN
 //		for (Node each:myPane.getChildren()) {
@@ -131,7 +128,7 @@ public class GameScreen extends AbstractViewer {
 				myTopBox.getChildren().add(makeButton(c));
 			});
 		myBP.setCenter(myPane);
-		myAnimation.setKeys(myScene);
+		//myAnimation.setKeys(myScene);
 	}
 
 	@Override
@@ -150,6 +147,14 @@ public class GameScreen extends AbstractViewer {
 	
 	public void addGameEngine(GameEngine game) {
 		myAnimation.start(game);
+	}
+	
+	@Override
+	public void loadGame(String filePath) {
+		//myPane.getChildren().clear();
+		//myDisplays.addAllActive();
+		//myAnimation.clearRoot();
+		super.loadGame(filePath);
 	}
 
 }
