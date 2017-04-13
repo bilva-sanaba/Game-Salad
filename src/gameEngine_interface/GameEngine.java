@@ -160,7 +160,7 @@ public class GameEngine implements GameEngineInterface {
 		Entity t = new Entity(40);
 		t.addComponent(new LocationComponent(0,200));
 		t.addComponent(new VelocityComponent(0,0));
-		t.addComponent(new SpriteComponent(("dirt.jpg")));
+		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		t.addComponent(new AccelerationComponent(0,0));
 		t.addComponent(new LabelComponent("notb"));
 		t.addComponent(new KeyInputComponent());

@@ -22,6 +22,5 @@ public class BlockTopRegularCollision implements IAction {
 				ac.setY(0);
 			}
 		}
-		
 	}
 }
