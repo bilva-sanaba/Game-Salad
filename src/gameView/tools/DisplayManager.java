@@ -32,7 +32,9 @@ public class DisplayManager {
 	}
 	
 	public void add(String toAdd) {
-		myActiveDisplays.put(toAdd, myAllDisplays.get(toAdd));
+		if (!myActiveDisplays.containsKey(toAdd)) {
+			myActiveDisplays.put(toAdd, myAllDisplays.get(toAdd));
+		}
 		myScreen.addComponent(myAllDisplays.get(toAdd));
 	}
 	
@@ -49,18 +51,20 @@ public class DisplayManager {
 		return myActiveDisplays.containsKey(key);
 	}
 	
+	public void addAllActive() {
+		myActiveDisplays.keySet().stream()
+			.forEach(c -> add(c));
+	}
+	
 	private HashMap<String, UIDisplayComponent> makeComponents(String filePath) {
 		HashMap<String, UIDisplayComponent> displays = new HashMap<String, UIDisplayComponent>();
 		ResourceBundle bundle = ResourceBundle.getBundle(filePath);
 		String comps = bundle.getString(BUNDLE_KEY);
 		String[] allComps = comps.split(", ");
 		for (String each: allComps) {
-			System.out.println(each);
 			UIDisplayComponent newDisplay = (UIDisplayComponent) Reflection.createInstance(COMPONENT_LOCATION+each+"Component", each);
 			updateX(newDisplay, myWidthBound.doubleValue());
 			updateY(newDisplay, myHeightBound.doubleValue());
-			System.out.println(newDisplay.getDisplay().getTranslateX());
-			System.out.println(newDisplay.getDisplay().getTranslateY());
 			displays.put(each, newDisplay);
 		}
 		return displays;

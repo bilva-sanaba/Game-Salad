@@ -12,10 +12,7 @@ import gameView.commands.AbstractCommand;
 import gameView.displayComponents.UIDisplayComponent;
 import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -50,11 +47,7 @@ public class GameScreen extends AbstractViewer {
 	}
 
 	public Scene getScene() {
-		myPane.getChildren().add(myAnimation.getScene().getRoot());
-		
-		
-		
-		System.out.println(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
+		//myPane.getChildren().add(myAnimation.getScene().getRoot());
 		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
 //
 //		myAnimation = new RunnerTest().getAnimator();
@@ -149,6 +142,14 @@ public class GameScreen extends AbstractViewer {
 	
 	public void addGameEngine(GameEngine game) {
 		myAnimation.start(game);
+	}
+	
+	@Override
+	public void loadGame(String filePath) {
+		myPane.getChildren().clear();
+		myDisplays.addAllActive();
+		myAnimation.clearRoot();
+		super.loadGame(filePath);
 	}
 
 }
