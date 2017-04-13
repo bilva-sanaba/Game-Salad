@@ -11,6 +11,7 @@ import org.w3c.dom.NodeList;
 import components.IComponent;
 import components.entityComponents.KeyInputComponent;
 import entity.*;
+import javafx.scene.input.KeyCode;
 import voogasalad.util.reflection.*;
 
 public class EntityHandler {
@@ -187,14 +188,15 @@ public class EntityHandler {
 		Object[] paramArray;
 		List paramList = new ArrayList();
 		
-		if (e.getNodeName().equals("components.KeyInputComponent")) {
-			Map <String, String> m = new HashMap<String, String>();
+		if (e.getNodeName().equals("components.entityComponents.KeyInputComponent")) {
+			Map <KeyCode, String> m = new HashMap<KeyCode, String>();
 			boolean firstUse = true;
-			String s1;
-			String s2;
+			String s1 = "";
+			String s2 = "";
 			for (int i = 0; i < nl.getLength(); i++) {
 				if (nl.item(i).getNodeType() == Node.ELEMENT_NODE) {
 					Element param = (Element) nl.item(i);
+					System.out.println(param.getTextContent());
 					if (firstUse) {
 						firstUse = false;
 						s1 = param.getTextContent();
@@ -202,7 +204,7 @@ public class EntityHandler {
 					else {
 						firstUse = true;
 						s2 = param.getTextContent();
-						m.put(s1, s2);
+						m.put(KeyCode.getKeyCode(s1), s2);
 					}
 				}
 			}

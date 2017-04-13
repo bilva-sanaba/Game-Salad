@@ -5,5 +5,5 @@ public enum MonsterMovementPattern {
 	UpAndDownUntilCollision(),
 	LeftAndRightUntilCollision(),
 	UpAndDown(),
-	LeftAndRight;
+	LeftAndRight();
 }
