@@ -128,9 +128,6 @@ public class UtilityFactory {
 		ToggleGroup group = new ToggleGroup();
 		VBox vbox = new VBox();
 		String[] radioButton = myResources.getString(string).split(SPLIT_REGEX);
-		for(String s: radioButton){
-			System.out.println(s);
-		}
 		Integer buttonNum = Integer.parseInt(radioButton[0]);
 		for (int i = 1; i <= buttonNum; i++){
 			boolean marked = radioButton[i+buttonNum].trim().equals("true"); // sees if button should be initally marked

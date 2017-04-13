@@ -1,5 +1,6 @@
 package view.editor;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,22 +24,26 @@ import view.UtilityFactory;
 
 public class KeyInputEditor extends ComponentEditor {
 	private static final String ComponentName = "KeyInput";
-	private static final String KEYINPUT = "KeyInput : ";
+	private String[] myKeyString = {"false"}; // Initialize array
+	private ArrayList<Node> nodeList = new ArrayList<Node>();
 	private Map<KeyCode,String> inputMap = new HashMap<KeyCode,String>();
-		
-		private HBox myBox;
-		private Text myLabel = new Text(KEYINPUT);
 
+		private HBox myBox;
 		
 		public KeyInputEditor(UtilityFactory utilf) {
-			System.out.println("kill yourself");
 			myBox = new HBox();
-			
-			System.out.println("kill yourself now asshole");
-			myBox.getChildren().add(myLabel);
-			addRadioButtons(myBox.getChildren());
-                                
-			System.out.println(myBox);
+			final ToggleGroup group = utilf.buildRadioButtonGroup("SelectCharacterType", nodeList);
+			group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+				public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+					myKeyString = (String[]) new_toggle.getUserData();
+					if (myKeyString[0].equals("true")){ // boolean if true
+						IKeyInputPanel kip = new KeyInputPanel();
+						kip.openWindow();
+						inputMap = kip.getMap();
+					}
+				}
+			});			
+			myBox.getChildren().addAll(nodeList);
 			setInputNode(myBox);
 		}
 		
@@ -46,35 +51,4 @@ public class KeyInputEditor extends ComponentEditor {
 		public IComponent getComponent() {
 			return getCompF().getComponent(ComponentName, inputMap);
 		}
-		
-		
-		private ToggleGroup addRadioButtons(List<Node> nodeList) {
-			ToggleGroup group = new ToggleGroup();
-
-			RadioButton rb1 = new RadioButton("Hero");
-			rb1.setToggleGroup(group);
-			GridPane.setConstraints(rb1, 0, 3);
-			nodeList.add(rb1);
-
-			RadioButton rb2 = new RadioButton("Non Playable");
-			rb2.setToggleGroup(group);
-			rb2.setSelected(true);
-			GridPane.setConstraints(rb2, 1, 3);
-			nodeList.add(rb2);
-
-			group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-				public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-					if (new_toggle.equals(rb1)) {
-						IKeyInputPanel kip = new KeyInputPanel();
-						kip.openWindow();
-						inputMap = kip.getMap();
-					} else{
-						inputMap.clear();
-					}
-				}
-			});
-
-			return group;
-		}
-
 }
