@@ -21,7 +21,7 @@ public class ViewController implements Observer {
 		myTab.placeEntitiesFromFile();
 		
 		myGrid.updateBackground();
-		//myGrid.setUpLevel();
+		myGrid.setUpLevel();
 		myGrid.clearEntitiesOnGrid();
 		myGrid.placeEntitiesFromFile();
 	}

@@ -154,7 +154,7 @@ public class GridView extends GUIComponent{
 		}
 	}
 	
-	private void setUpLevel() {
+	public void setUpLevel() {
 		System.out.println("NEW METHOD HAPPENS");
 		myRow = STARTINGROWS;
 		myCol = STARTINGCOLS;
