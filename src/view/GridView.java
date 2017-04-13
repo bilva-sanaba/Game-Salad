@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
@@ -29,15 +30,17 @@ import javafx.scene.paint.Color;
  * @author Justin Yang
  * @author Jack Bloomfeld
  */
-public class GridView extends GUIComponent implements Observer {
+public class GridView extends GUIComponent{ 
+//implements Observer {
 	private ScrollPane myScroll;
-	private GridPane myGrid;
+	private GridPane myGrid = new GridPane();
 	private ViewData myData;
 	private UtilityFactory util;
 	private int i = 1000;
 	private int myRow;
 	private int myCol;
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
+	private ArrayList<Rectangle> placedGrids = new ArrayList<Rectangle>();
 	private BorderPane bp;
 	
 	private static final int STARTINGROWS = 10;
@@ -48,8 +51,10 @@ public class GridView extends GUIComponent implements Observer {
 		myRow = rows;
 		myCol = cols;
 		myData = data;
+		myGrid.getStyleClass().add("view-grid");
+		myGrid.setAlignment(Pos.CENTER);
 		setGrid();
-		myData.addObserver(this);
+//		myData.addObserver(this);
 		bp = new BorderPane();
 		Button butt = util.buildButton("addHo", e-> addHo());
 		util.buildButton("addHo", e->addHo());
@@ -63,9 +68,10 @@ public class GridView extends GUIComponent implements Observer {
 	}
 	
 	private void setGrid() {
-		myGrid = new GridPane();
-		myGrid.getStyleClass().add("view-grid");
-		myGrid.setAlignment(Pos.CENTER);
+		for(Rectangle r: placedGrids){
+			myGrid.getChildren().remove(r);
+		}
+		myGrid.getChildren().clear();
 		for (int row = 0; row < myRow; row++) {
 			for (int col = 0; col < myCol; col++) {
 				addMouseListenerPane(row, col);
@@ -116,17 +122,22 @@ public class GridView extends GUIComponent implements Observer {
 			}
 		});
 		myGrid.add(rect, row, col);
+		placedGrids.add(rect);
 	}
 
 	private void drawEntity(Entity entity) {
-//		LocationComponent entityLocation = (LocationComponent) entity
-//				.getComponent(ComponentType.Location);
-		
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		spriteImage.setFitHeight(40);
-		spriteImage.setFitWidth(40);
+		if(entity.getComponent(ComponentType.ImageProperties) != null){
+			ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
+			spriteImage.setFitHeight(imageProp.getHeight());
+			spriteImage.setFitWidth(imageProp.getWidth());
+		}
+		else{
+			spriteImage.setFitHeight(50);
+			spriteImage.setFitWidth(50);
+		}
 		placedImages.add(spriteImage);
 		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
 	}
@@ -148,7 +159,7 @@ public class GridView extends GUIComponent implements Observer {
 		}
 	}
 	
-	private void setUpLevel() {
+	public void setUpLevel() {
 		System.out.println("NEW METHOD HAPPENS");
 		myRow = STARTINGROWS;
 		myCol = STARTINGCOLS;
@@ -176,11 +187,11 @@ public class GridView extends GUIComponent implements Observer {
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
 
-	@Override
+/*	@Override
 	public void update(Observable arg0, Object arg1) {
 		updateBackground();
 		setUpLevel();
 		clearEntitiesOnGrid();
 		placeEntitiesFromFile();
-	}
+	}*/
 }
