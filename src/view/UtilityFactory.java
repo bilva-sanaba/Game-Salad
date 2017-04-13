@@ -128,9 +128,13 @@ public class UtilityFactory {
 		ToggleGroup group = new ToggleGroup();
 		VBox vbox = new VBox();
 		String[] radioButton = myResources.getString(string).split(SPLIT_REGEX);
+		for(String s: radioButton){
+			System.out.println(s);
+		}
 		Integer buttonNum = Integer.parseInt(radioButton[0]);
 		for (int i = 1; i <= buttonNum; i++){
-			buildRadioButton(radioButton[i], Boolean.getBoolean(radioButton[i+buttonNum].trim()), group, vbox);
+			boolean marked = radioButton[i+buttonNum].trim().equals("true"); // sees if button should be initally marked
+			buildRadioButton(radioButton[i], marked, group, vbox);
 		}
 		nodeList.add(vbox);
 		return group;

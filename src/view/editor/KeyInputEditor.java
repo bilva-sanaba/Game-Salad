@@ -56,7 +56,7 @@ public class KeyInputEditor extends ComponentEditor {
 			GridPane.setConstraints(rb1, 0, 3);
 			nodeList.add(rb1);
 
-			RadioButton rb2 = new RadioButton("Monster");
+			RadioButton rb2 = new RadioButton("Non Playable");
 			rb2.setToggleGroup(group);
 			rb2.setSelected(true);
 			GridPane.setConstraints(rb2, 1, 3);
