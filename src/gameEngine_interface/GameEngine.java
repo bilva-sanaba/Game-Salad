@@ -13,7 +13,6 @@ import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
-import components.entityComponents.KeyExpression;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.LocationComponent;
@@ -109,7 +108,6 @@ public class GameEngine implements GameEngineInterface {
 			t.addComponent(new SpriteComponent(("dirt.jpg")));
 			if (i<1){
 			Entity t2 = new Entity(i+21);
-			t2.addComponent(new LocationComponent(300,400-i*50));
 			t2.addComponent(new SpriteComponent(("stone.gif")));
 			e.add(t2);
 			}
@@ -156,7 +154,6 @@ public class GameEngine implements GameEngineInterface {
 				x.addComponent(lc);
 			}
 		}
-		
 		initializeRestrictedEntities();
 	}
 	

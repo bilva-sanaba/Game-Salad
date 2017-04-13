@@ -23,7 +23,7 @@ import view.UtilityFactory;
 
 public class MonsterEditor  extends ComponentEditor {
 	private static final String ComponentName = "MonsterActions";
-	private MonsterMovementPattern myMMP;
+	private MonsterMovementPattern myMMP= MonsterMovementPattern.UpAndDown;
 	private ArrayList<Node> nodeList = new ArrayList<Node>();
 		
 		private HBox myBox;

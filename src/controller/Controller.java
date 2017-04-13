@@ -75,7 +75,7 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-	public void run() {
+	public void runGameAnimation() {
 		myWorldAnimator.start(myGameEngine);
 	}
 	

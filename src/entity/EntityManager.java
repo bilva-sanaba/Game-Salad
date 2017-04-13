@@ -8,6 +8,7 @@ import java.util.Map;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.XYComponent;
 import entity.restricted.IRestrictedEntity;
@@ -51,7 +52,8 @@ public class EntityManager implements IEntityManager {
 		Collection<RestrictedEntity> certainComponents = new ArrayList<RestrictedEntity>();
 		for (Entity e : myEntities){
 			certainComponents.add( new RestrictedEntity(e.getID(),new Coordinate((XYComponent) e.getComponent(ComponentType.Location)),
-					((SpriteComponent) e.getComponent(ComponentType.Sprite)).getClassPath()));
+					((SpriteComponent) e.getComponent(ComponentType.Sprite)).getClassPath(), (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties)));
+
 		}
 		return new RestrictedEntityManager(certainComponents);
 	}
@@ -59,18 +61,19 @@ public class EntityManager implements IEntityManager {
 	@Override
 	public Map<IEntity, IRestrictedEntity> getEntityMap() {
 		Map<IEntity, IRestrictedEntity> entityToRestricted = new HashMap<IEntity, IRestrictedEntity>();
-
+		
 		for (Entity e : myEntities) {
-			entityToRestricted.put(
-					e,
+			if (e.getComponent(ComponentType.Location)!=null &&e.getComponent(ComponentType.Sprite)!=null){
+			entityToRestricted.put(e,
 					new RestrictedEntity(e.getID(), new Coordinate(
 							(XYComponent) e
 									.getComponent(ComponentType.Location)),
 							((SpriteComponent) e
 									.getComponent(ComponentType.Sprite))
-									.getClassPath()));
+									.getClassPath(),(ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties)));
+
 		}
-		;
+		;}
 		return entityToRestricted;
 	}
 	
