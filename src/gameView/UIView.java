@@ -74,10 +74,10 @@ public class UIView implements UIViewInterface {
 		myGameScene.addGameEngine(myController.getEngine());
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
-		runGame();
+		//runGame();
 		
 		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
-		//setStage(new SpecificGameSplashView(this, myController.getEngine().getSplashEntity()).getScene());
+		setStage(new SpecificGameSplashView(this, myController.getEngine().getSplashEntity()).getScene());
 		
 	}
 	
