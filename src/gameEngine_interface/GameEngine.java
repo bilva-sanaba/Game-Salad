@@ -100,62 +100,62 @@ public class GameEngine implements GameEngineInterface {
 		return myRestrictedEntityManager;
 	}
 	//TODO: Delete once testing is over
-	public void dummyLoad(){
-		Collection<Entity> e = new ArrayList<Entity>();
-		for (int i=0;i<20;i++){
-			Entity t = new Entity(i);
-			t.addComponent(new LocationComponent(i*50,450));
-			t.addComponent(new SpriteComponent(("dirt.jpg")));
-			if (i<1){
-			Entity t2 = new Entity(i+21);
-			t2.addComponent(new SpriteComponent(("stone.gif")));
-			e.add(t2);
-			}
-			ImagePropertiesComponent ic = new ImagePropertiesComponent();
-			ic.setHeight(50);
-			ic.setWidth(50);
-			t.addComponent(ic);
-			
-			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision());
-			t.addComponent(scc);
-			
-			t.addComponent(new LabelComponent("Block"));
-			e.add(t);
-		}
-		Entity t = new Entity(40);
-		t.addComponent(new LocationComponent(0,200));
-		t.addComponent(new VelocityComponent(0,0));
-		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
-		t.addComponent(new KeyInputComponent());
-		t.addComponent(new AccelerationComponent(0,0));
-		t.addComponent(new LabelComponent("notb"));
-		ImagePropertiesComponent ic = new ImagePropertiesComponent();
-		ic.setHeight(100);
-		ic.setWidth(100);
-		t.addComponent(ic);
-		//t.addComponent(new TerminalVelComponent(5, 5));
-		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
-		e.add(t);
-		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());
-		e.add(t);
-		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
-		e.add(t);
-		mainCharacter = t;
-		myEntityManager=new EntityManager(e);    
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager), new CollisionEngine(myEntityManager));
-		for (IEntity x : myEntityManager.getEntityMap().keySet()) {
-			if (x.getComponent(ComponentType.ImageProperties) == null) {
-				ic.setHeight(50);
-				ic.setWidth(50);
-				x.addComponent(ic);
-			}
-			if (x.getComponent(ComponentType.Label) == null) {
-				LabelComponent lc = new LabelComponent("Block");
-				x.addComponent(lc);
-			}
-		}
-		initializeRestrictedEntities();
-	}
+//	public void dummyLoad(){
+//		Collection<Entity> e = new ArrayList<Entity>();
+//		for (int i=0;i<20;i++){
+//			Entity t = new Entity(i);
+//			t.addComponent(new LocationComponent(i*50,450));
+//			t.addComponent(new SpriteComponent(("dirt.jpg")));
+//			if (i<1){
+//			Entity t2 = new Entity(i+21);
+//			t2.addComponent(new SpriteComponent(("stone.gif")));
+//			e.add(t2);
+//			}
+//			ImagePropertiesComponent ic = new ImagePropertiesComponent();
+//			ic.setHeight(50);
+//			ic.setWidth(50);
+//			t.addComponent(ic);
+//			
+//			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision());
+//			t.addComponent(scc);
+//			
+//			t.addComponent(new LabelComponent("Block"));
+//			e.add(t);
+//		}
+//		Entity t = new Entity(40);
+//		t.addComponent(new LocationComponent(0,200));
+//		t.addComponent(new VelocityComponent(0,0));
+//		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
+//		t.addComponent(new KeyInputComponent());
+//		t.addComponent(new AccelerationComponent(0,0));
+//		t.addComponent(new LabelComponent("notb"));
+//		ImagePropertiesComponent ic = new ImagePropertiesComponent();
+//		ic.setHeight(100);
+//		ic.setWidth(100);
+//		t.addComponent(ic);
+//		//t.addComponent(new TerminalVelComponent(5, 5));
+//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W,ConcreteKeyExpressions.JUMP.getKeyExpression());
+//		e.add(t);
+//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A,ConcreteKeyExpressions.LEFT.getKeyExpression());
+//		e.add(t);
+//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D,ConcreteKeyExpressions.RIGHT.getKeyExpression());
+//		e.add(t);
+//		mainCharacter = t;
+//		myEntityManager=new EntityManager(e);    
+//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager), new CollisionEngine(myEntityManager));
+//		for (IEntity x : myEntityManager.getEntityMap().keySet()) {
+//			if (x.getComponent(ComponentType.ImageProperties) == null) {
+//				ic.setHeight(50);
+//				ic.setWidth(50);
+//				x.addComponent(ic);
+//			}
+//			if (x.getComponent(ComponentType.Label) == null) {
+//				LabelComponent lc = new LabelComponent("Block");
+//				x.addComponent(lc);
+//			}
+//		}
+//		initializeRestrictedEntities();
+//	}
 	
 	public IEntity getMainCharacter(){
 		for(IEntity e : myEntityManager.getEntityMap().keySet()){

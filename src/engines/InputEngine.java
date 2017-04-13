@@ -7,6 +7,7 @@ import java.util.List;
 import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.KeyInputComponent;
+import components.keyExpressions.ConcreteKeyExpressions;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -37,7 +38,7 @@ public class InputEngine extends AbstractEngine{
 		KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 		for (KeyCode key : keys){
 			if (ic.getMap().containsKey(key)){
-				ic.getMap().get(key).operation(e);
+				ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
 			}
 		}
 		}
