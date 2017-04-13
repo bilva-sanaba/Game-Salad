@@ -221,4 +221,8 @@ public class WorldAnimator {
 	public void pause(){
 		animation.pause();
 	}
+	
+	public void clearRoot(){
+		root.getChildren().clear();
+	}
 }
