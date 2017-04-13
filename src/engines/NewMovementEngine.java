@@ -40,10 +40,13 @@ public class NewMovementEngine extends AbstractEngine{
 
 	private void updateAllValues(IEntity e, Map<IEntity, IRestrictedEntity> entityMap, Collection<IEntity> changed) {
 		if (hasComponent(e, ComponentType.Velocity)) {
-			updateMovement(e, ComponentType.Location, ComponentType.Velocity);
+			updateLocation(e);
 			if (hasComponent(e, ComponentType.Acceleration)) {
 				updateMovement(e, ComponentType.Velocity, ComponentType.Acceleration);
+				resetAcceleration(e);
 			}
+			
+			
 			placeInMap(entityMap, e);
 			//TODO: fix cast issue
 			changed.add((Entity) e);
@@ -63,26 +66,30 @@ public class NewMovementEngine extends AbstractEngine{
 	private void updateVelocity(IEntity e) {
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-		TerminalVelComponent tvc = (TerminalVelComponent) e.getComponent(ComponentType.TerminalVelComponent);
-		if(Math.abs(vc.getX()) < tvc.getX()){
-			vc.setXY(vc.getX() + ac.getX(), vc.getY() + ac.getY());
-		}
-		else{
-			if(ac.getX() > 0){
-				if(vc.getX() < 0){
-					vc.setX(-tvc.getX());
-				}
-				if(vc.getX() > 0){
-					vc.setX(tvc.getX());
-				}
-			}
-			else if(vc.getX() != 0){
-				vc.setX(vc.getX() + ac.getX());
-				System.out.println("Velocity:" + vc.getX());
-			}
-		}
+		vc.setX(vc.getX()+ac.getX());
+		vc.setY(vc.getY()+ac.getY());
+////		TerminalVelComponent tvc = (TerminalVelComponent) e.getComponent(ComponentType.TerminalVelComponent);
+//		if(Math.abs(vc.getX()) < tvc.getX()){
+//			vc.setXY(vc.getX() + ac.getX(), vc.getY() + ac.getY());
+//		}
+//		else{
+//			if(ac.getX() > 0){
+//				if(vc.getX() < 0){
+//					vc.setX(-tvc.getX());
+//				}
+//				if(vc.getX() > 0){
+//					vc.setX(tvc.getX());
+//				}
+//			}
+//			else if(vc.getX() != 0){
+//				vc.setX(vc.getX() + ac.getX());
+//				System.out.println("Velocity:" + vc.getX());
+//			}
+//		}
 	}
-	
+	private void resetAcceleration(IEntity e){
+		((AccelerationComponent) e.getComponent(ComponentType.Acceleration)).setY(0.05);
+	}
 	private void updateMovement(IEntity e, ComponentType c1, ComponentType c2) {
 		XYComponent xy1 = (XYComponent) e.getComponent(c1);
 		XYComponent xy2 = (XYComponent) e.getComponent(c2);
