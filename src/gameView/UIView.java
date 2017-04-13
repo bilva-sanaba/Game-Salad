@@ -43,7 +43,7 @@ public class UIView implements UIViewInterface {
      	Image i = new Image(getClass().getClassLoader().getResourceAsStream("background1.png"));
 		//mySplash = new SpecificGameSplashView(this, new SplashEntity(1, "PENIS", "BALLSBALLSBALLS", "background2.png")); //ADD splashentity
 		mySplash = new SplashView(this, new SplashEntity(1, "", "", ""));
-     	//myGameScene = new GameScreen(this, myAnimation);
+     	myGameScene = new GameScreen(this, myAnimation);
 		runGame();//getSplashScreen();
 		//getSplashScreen();
 	}
