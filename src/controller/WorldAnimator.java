@@ -196,7 +196,9 @@ private void createEntity(RestrictedEntity entity, SequentialTransition trans){
     	String[] image = re.getImagePath().split("[\\\\/]");
         currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(image[image.length-1])));
         currentImage.setX(re.getLocation().getX());
-        currentImage.setY(re.getLocation().getY());        
+        currentImage.setY(re.getLocation().getY());   
+        currentImage.setTranslateX(re.getLocation().getX()*50-475);
+		currentImage.setTranslateY(re.getLocation().getY()*50-175);
     }
 
 
