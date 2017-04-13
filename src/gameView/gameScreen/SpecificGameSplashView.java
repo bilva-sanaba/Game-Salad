@@ -40,7 +40,6 @@ public class SpecificGameSplashView extends AbstractViewer {
 		myCommands = getCommands(myName);
 		myBP = new BorderPane();
 		buildScene();
-		
 	}
 
 	@Override

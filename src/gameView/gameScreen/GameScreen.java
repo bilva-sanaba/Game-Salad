@@ -123,6 +123,7 @@ public class GameScreen extends AbstractViewer {
 				myTopBox.getChildren().add(makeButton(c));
 			});
 		myBP.setCenter(myPane);
+		myAnimation.setKeys(myScene);
 	}
 
 	@Override
