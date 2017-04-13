@@ -15,5 +15,8 @@ public enum ComponentType {
 	MonsterAction(),
 	Level(),
 	Step(),
-	CollisionSide(), Duration;
+	CollisionSide(), 
+	GameTitle(),
+	GameInstructions(),
+	Duration();
 }

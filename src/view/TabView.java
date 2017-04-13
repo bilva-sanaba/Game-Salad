@@ -14,14 +14,11 @@ import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.util.Callback;
 
 public class TabView extends GUIComponent {
 	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
@@ -52,9 +49,15 @@ public class TabView extends GUIComponent {
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
-					ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item.getComponent(ComponentType.ImageProperties);
-					spriteImage.setFitHeight(imageProp.getHeight());
-					spriteImage.setFitWidth(imageProp.getWidth());
+					if(item.getComponent(ComponentType.ImageProperties) != null){
+						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item.getComponent(ComponentType.ImageProperties);
+						spriteImage.setFitHeight(imageProp.getHeight());
+						spriteImage.setFitWidth(imageProp.getWidth());
+					}
+					else{
+						spriteImage.setFitHeight(40);
+						spriteImage.setFitWidth(40);
+					}
 					this.setGraphic(spriteImage);
 				}
 			}
@@ -74,14 +77,16 @@ public class TabView extends GUIComponent {
 		});
 		myTab.getTabs().add(blockTab);
 	}
-	
+
 	public void clearEntitiesOnTab(){
 		blocksList.clear();
 	}
+
 	public void placeEntitiesFromFile(){
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getDefinedEntityMap();
 		for(Integer i: myMap.keySet()){
+			System.out.println("loop");
 			tempEntity = myMap.get(i);
 			blocksList.add(tempEntity);
 		}
