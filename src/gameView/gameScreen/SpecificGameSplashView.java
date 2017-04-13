@@ -40,7 +40,6 @@ public class SpecificGameSplashView extends AbstractViewer {
 		myCommands = getCommands(myName);
 		myBP = new BorderPane();
 		buildScene();
-		
 	}
 
 	@Override
@@ -54,7 +53,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 	
 	private void buildScene() {
 		addBackground();
-		Label lab = makeLabel(mySplashEntity.getDisplayName(), "gamelabel");
+		Label lab = makeLabel(mySplashEntity.getGameTitle(), "gamelabel");
 		BorderPane.setAlignment(lab, Pos.CENTER);
 		HBox hbox = new HBox();
 		hbox.setAlignment(Pos.CENTER);
@@ -77,7 +76,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 		myBP.setCenter(lab);
 	}
 	private void addBackground(){
-		myBackground = mySplashEntity.getBackgroundFilePath();
+		myBackground = mySplashEntity.getSpriteImagePath();
 		myBP.setBackground(makeBackground(myBackground));
 	}
 	
