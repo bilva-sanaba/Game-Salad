@@ -7,9 +7,10 @@ import data_interfaces.XMLException;
 import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameView.gameScreen.GameScreen;
+import gameView.gameScreen.SpecificGameSplashView;
+
 import com.sun.jmx.snmp.Timestamp;
 
-import gameView.splashScreen.SpecificGameSplashView;
 import gameView.splashScreen.SplashView;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
@@ -30,22 +31,23 @@ public class UIView implements UIViewInterface {
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
-	private GameScreen myGameScene; //move to splash
+	private GameScreen myGameScene;
 	private IRestrictedEntityManager myEntities; 
-	private WorldAnimator myAnimation; //move to splash
+	private WorldAnimator myAnimation; 
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
 		s.setTitle(STAGE_TITLE);
 		myController = controller;
 		myAnimation = new WorldAnimator();
-		//mySplash = new SplashView(this, new SplashEntity(1, "", "", ""));
-     	Image i = new Image(getClass().getClassLoader().getResourceAsStream("background1.png"));
-		//mySplash = new SpecificGameSplashView(this, new SplashEntity(1, "PENIS", "BALLSBALLSBALLS", "background2.png")); //ADD splashentity
-		mySplash = new SplashView(this, new SplashEntity(1, "", "", ""));
-     	//myGameScene = new GameScreen(this, myAnimation);
-		runGame();//getSplashScreen();
-		//getSplashScreen();
+		mySplash = new SplashView(this);
+     	myGameScene = new GameScreen(this, myAnimation);
+		//runGame();//getSplashScreen();
+		getSplashScreen();
+		
+		//TODO UNCOMMENT TO USE
+//     	SplashEntity test = new SplashEntity(1, "Splash", "instructions", "background1.png");
+//		setStage(new SpecificGameSplashView(this, test).getScene());
 	}
 
 	public void getSplashScreen() {
@@ -61,16 +63,21 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		setStage(mySplash.getScene());//mySplash
+		setStage(myGameScene.getScene());//mySplash
 		
 	}
 	
 	public void loadGame(String file) {
-
 		//addEntities(myController.loadNewGame(file));
 		myController.loadNewGame(file);
 		myGameScene.addGameEngine(myController.getEngine());
+		
+		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
 		runGame();
+		
+		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
+		//setStage(new SpecificGameSplashView(this, myController.getEngine().getSplashEntity()).getScene());
+		
 	}
 	
 	public void authorGame() {

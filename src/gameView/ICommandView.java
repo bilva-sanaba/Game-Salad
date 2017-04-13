@@ -11,5 +11,5 @@ public interface ICommandView {
 	public void makeGame();
 	public DisplayManager getComponents();
 	public void pauseGame();
-
+	public String getInstructions();
 }
