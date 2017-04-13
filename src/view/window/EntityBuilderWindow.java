@@ -97,6 +97,9 @@ public class EntityBuilderWindow implements IWindow{
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 				entityList = (String[]) new_toggle.getUserData();
+				for(String s: entityList){
+					System.out.println(s);
+				}
 			}
 		});
 	}

@@ -38,6 +38,7 @@ public class InputEngine extends AbstractEngine{
 		KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 		for (KeyCode key : keys){
 			if (ic.getMap().containsKey(key)){
+				System.out.println(key);
 				ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
 			}
 		}
