@@ -34,11 +34,15 @@ public class InputEngine extends AbstractEngine{
 		return new ArrayList<IEntity>();
 	}
 	private void handleInput(IEntity e, Collection<KeyCode> keys){
+		
 		if (e.getComponent(ComponentType.KeyInput)!=null){
 		KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
+		System.out.println(ic.getMap());
+		
 		for (KeyCode key : keys){
 			if (ic.getMap().containsKey(key)){
 				System.out.println(key);
+				System.out.println("QWPEORIUAJSL;DKFJPOQIEJTAL;SKDFJOIQWEJKTAS;DIFJLOQW;EITJGAS;DF");
 				ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
 			}
 		}

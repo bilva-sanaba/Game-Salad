@@ -42,8 +42,8 @@ public class UIView implements UIViewInterface {
 		myController = controller;
 		myAnimation = new WorldAnimator();
 		mySplash = new SplashView(this);
-     	Image i = new Image(getClass().getClassLoader().getResourceAsStream("background1.png"));
-     	myGameScene = new GameScreen(this, myAnimation);
+		myGameScene = new GameScreen(this, myAnimation);
+		//runGame();//getSplashScreen();
 		getSplashScreen();
 		//TODO UNCOMMENT TO USE
 		//getSplashScreen();
@@ -70,10 +70,11 @@ public class UIView implements UIViewInterface {
 	
 	public void loadGame(String file) {
 		//addEntities(myController.loadNewGame(file));
-		myController.loadNewGame(file);
-		myGameScene.addGameEngine(myController.getEngine());
+		//myController.loadNewGame(file);
+		//myGameScene.addGameEngine(myController.getEngine());
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
+		
 		runGame();
 		
 		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
