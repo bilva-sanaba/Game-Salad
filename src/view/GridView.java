@@ -12,6 +12,9 @@ import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -33,7 +36,10 @@ import javafx.scene.paint.Color;
 public class GridView extends GUIComponent{ 
 //implements Observer {
 	private ScrollPane myScroll;
-	private GridPane myGrid = new GridPane();
+	private double Initial_X = 500.0;
+	private double Initial_Y = 500.0;
+	private Canvas myGrid = new Canvas(Initial_X,Initial_Y);
+    private GraphicsContext gc = myGrid.getGraphicsContext2D();
 	private ViewData myData;
 	private UtilityFactory util;
 	private int i = 1000;
@@ -42,18 +48,13 @@ public class GridView extends GUIComponent{
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
 	private ArrayList<Rectangle> placedGrids = new ArrayList<Rectangle>();
 	private BorderPane bp;
-	
-	private static final int STARTINGROWS = 10;
-	private static final int STARTINGCOLS = 10;
 
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
 		util = utilIn;
 		myRow = rows;
 		myCol = cols;
 		myData = data;
-		myGrid.getStyleClass().add("view-grid");
-		myGrid.setAlignment(Pos.CENTER);
-		setGrid();
+		myGrid.setCursor(Cursor.CROSSHAIR);
 //		myData.addObserver(this);
 		bp = new BorderPane();
 		Button butt = util.buildButton("addHo", e-> addHo());
@@ -62,42 +63,34 @@ public class GridView extends GUIComponent{
 		util.buildButton("addVert", e -> addVert());
 		HBox box = new HBox(butt,butt2);
 		bp.setTop(box);
-		
 		myScroll = new ScrollPane(myGrid);
+	//	myScroll.getStyleClass().add("myGrid");
 		bp.setCenter(myScroll);
-	}
-	
-	private void setGrid() {
-		for(Rectangle r: placedGrids){
-			myGrid.getChildren().remove(r);
-		}
-		myGrid.getChildren().clear();
-		for (int row = 0; row < myRow; row++) {
-			for (int col = 0; col < myCol; col++) {
-				addMouseListenerPane(row, col);
+		myGrid.setOnMouseClicked(e -> {
+			int row = (int) (Math.round(e.getX()/50));
+			int col = (int) (Math.round(e.getY()/50));
+			System.out.println(Math.round(e.getX()/50)*50 + "   " + Math.round(e.getY()/50)*50);
+			System.out.println(Math.round(e.getX()/50) + "   " + Math.round(e.getY()/50));
+			Entity userSelectedEntity = myData.getUserSelectedEntity();
+			if (userSelectedEntity != null) {
+				Entity placedEntity = userSelectedEntity.clone();
+				placedEntity.setID(i);
+				i++;
+				myData.placeEntity(placedEntity);
+				myData.setEntityLocation(placedEntity.getID(), (int) Math.round(e.getX()/50)*50 , (int) Math.round(e.getY()/50)*50);
+				drawEntity(placedEntity);
 			}
-		}
+		});
 	}
 
-	private void addHo() {
-		for (i=0;i<myRow;i++){
-			Rectangle rect = new Rectangle(40, 40);
-			rect.getStyleClass().add("view-grid-cell");
-			myGrid.add(rect, myCol, i);
-			addMouseListenerPane(myCol, i);
-		}
-		myCol++;
+
+	private void addVert() {
+		myGrid.setHeight(Initial_Y+=50);
 		myData.getLevelEntity().addCol();
 	}
 		
-	private void addVert() {
-		for (i=0;i<myCol;i++){
-			Rectangle rect = new Rectangle(40, 40);
-			rect.getStyleClass().add("view-grid-cell");
-			myGrid.add(rect, i, myRow);
-			addMouseListenerPane(i, myRow);
-		}
-		myRow++;
+	private void addHo() {
+		myGrid.setWidth(Initial_X+=50);
 		myData.getLevelEntity().addRow();
 	}
 
@@ -121,7 +114,6 @@ public class GridView extends GUIComponent{
 				}
 			}
 		});
-		myGrid.add(rect, row, col);
 		placedGrids.add(rect);
 	}
 
@@ -129,8 +121,14 @@ public class GridView extends GUIComponent{
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
+		double h =0;
+		double w =0; 
 		if(entity.getComponent(ComponentType.ImageProperties) != null){
 			ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
+			System.out.println(imageProp.getHeight());
+			System.out.println(imageProp.getWidth());
+			h=imageProp.getHeight();
+			w=imageProp.getWidth();
 			spriteImage.setFitHeight(imageProp.getHeight());
 			spriteImage.setFitWidth(imageProp.getWidth());
 		}
@@ -139,13 +137,11 @@ public class GridView extends GUIComponent{
 			spriteImage.setFitWidth(50);
 		}
 		placedImages.add(spriteImage);
-		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
+		gc.drawImage(spriteImage.imageProperty().get(), entityLocation.getX(), entityLocation.getY(), w, h);
 	}
 	
 	public void clearEntitiesOnGrid(){
-		for(ImageView i: placedImages){
-			myGrid.getChildren().remove(i);
-		}
+		gc.clearRect(0, 0, Initial_X, Initial_Y);
 		placedImages.clear();
 	}
 	
@@ -161,9 +157,6 @@ public class GridView extends GUIComponent{
 	
 	public void setUpLevel() {
 		System.out.println("NEW METHOD HAPPENS");
-		myRow = STARTINGROWS;
-		myCol = STARTINGCOLS;
-		setGrid();
 		int totalRow = myData.getLevelEntity().getRows();
 		int totalCol = myData.getLevelEntity().getCols();
 		
