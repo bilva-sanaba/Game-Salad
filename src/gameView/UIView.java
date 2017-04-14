@@ -7,6 +7,7 @@ import data_interfaces.XMLException;
 import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameView.gameScreen.GameScreen;
+//import gameView.gameScreen.SpecificGameSplashView;
 import gameView.gameScreen.SpecificGameSplashView;
 
 import com.sun.jmx.snmp.Timestamp;
@@ -41,13 +42,13 @@ public class UIView implements UIViewInterface {
 		myController = controller;
 		myAnimation = new WorldAnimator();
 		mySplash = new SplashView(this);
-     	myGameScene = new GameScreen(this, myAnimation);
+		myGameScene = new GameScreen(this, myAnimation);
 		//runGame();//getSplashScreen();
 		getSplashScreen();
-		
 		//TODO UNCOMMENT TO USE
-//     	SplashEntity test = new SplashEntity(1, "Splash", "instructions", "background1.png");
-//		setStage(new SpecificGameSplashView(this, test).getScene());
+		//getSplashScreen();
+     	//SplashEntity test = new SplashEntity(1, "Splash", "instructions", "background1.png");
+		//setStage(new SpecificGameSplashView(this, test).getScene());
 	}
 
 	public void getSplashScreen() {
@@ -69,10 +70,11 @@ public class UIView implements UIViewInterface {
 	
 	public void loadGame(String file) {
 		//addEntities(myController.loadNewGame(file));
-		myController.loadNewGame(file);
-		myGameScene.addGameEngine(myController.getEngine());
+		//myController.loadNewGame(file);
+		//myGameScene.addGameEngine(myController.getEngine());
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
+		
 		runGame();
 		
 		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN

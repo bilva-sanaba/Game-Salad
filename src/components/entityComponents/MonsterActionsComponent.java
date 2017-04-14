@@ -13,6 +13,14 @@ public class MonsterActionsComponent implements IComponent {
 		myMMP=mmp;
 	}
 	
+	public MonsterActionsComponent(String s) {
+		for (MonsterMovementPattern p: MonsterMovementPattern.values()) {
+			if (s.equals(p.toString())) {
+				myMMP = p;
+			}
+		}
+	}
+	
 	public MonsterActionsComponent(){
 	}
 	

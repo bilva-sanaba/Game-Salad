@@ -1,31 +1,16 @@
 package controller;
 
 import data_interfaces.*;
-import gameView.UIImageModel;
-import gameView.UIImageProperty;
 import gameView.UIView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
-
-import data_interfaces.*;
 import view_interfaces.UIViewInterface;
 import javafx.stage.Stage;
 import data_interfaces.XMLException;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
-import entity.EntityManager;
-
 import entity.restricted.IRestrictedEntityManager;
-import entity.restricted.RestrictedEntity;
-
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
-import gameView.UIView;
 
 /**
  * 
@@ -61,6 +46,7 @@ public class Controller implements ControllerInterface {
 	public IRestrictedEntityManager loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
 		myGameEngine.loadData(c); //c
+		//myGameEngine.dummyLoad();
 		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
 		return restrictedEntityManager;
 	}

@@ -48,11 +48,15 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 					System.out.println("Level entity is set");
 					myData.setLevelEntity((LevelEntity) e);
 				}
+				else if (e.getClass().toString().equals("class entity.SplashEntity")) {
+					myData.setSplashEntity((SplashEntity)e);
+				}
 				else if (isPlaced(e)) {
-					System.out.println("this happens");
+					System.out.println("isplaced");
 					myData.placeEntity(e);
 				}
 				else {
+					System.out.println("defines an entity");
 					myData.defineEntity(e);
 				}
 			}
