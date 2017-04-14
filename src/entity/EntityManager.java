@@ -15,7 +15,6 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.XYComponent;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
-import entity.restricted.RestrictedEntityManager;
 import gameView.Coordinate;
 
 public class EntityManager extends Observable implements IEntityManager, IRestrictedEntityManager  {
