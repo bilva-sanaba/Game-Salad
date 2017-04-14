@@ -28,6 +28,8 @@ public class ViewData extends Observable {
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
 	private String gameName;
+	private Boolean saved = true;
+	//TODO: implement the saved boolean to track whether the current state is saved
 
 	public ViewData() {
 		definedEntityMap = new HashMap<Integer, Entity>();
