@@ -18,5 +18,7 @@ public enum ComponentType {
 	CollisionSide(), 
 	GameTitle(),
 	GameInstructions(),
-	Duration();
+	Duration(),
+	Lives(),
+	Score();
 }
