@@ -112,9 +112,5 @@ public class UIView implements UIViewInterface {
 		myEntities = entity;
 		myGameScene.addEntity(entity);
 	}
-	
-	public Scene getGameScene() {
-		return myAnimation.getScene();
-	}
 
 }

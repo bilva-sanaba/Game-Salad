@@ -44,9 +44,9 @@ public class GameChooser {
 	} 
 
 	/**
-	 * 
-	 * @param extension
-	 * @return The pop-up file chooser
+	 * Creates a pop-up using the ScrollablePopup to allow the user to select a file from a specific file path (GAME_PATH).
+	 * Creates a new Stage and returns the new stage to allow the user to show the stage at their preference. 
+	 * @return The pop-up file chooser stage
 	 */
 	public Stage selectFile() {
 		File directory = new File(GAME_PATH);
@@ -64,6 +64,9 @@ public class GameChooser {
 		return myStage; 
 	}
 	
+	/**
+	 * @return the string of the chosen file in its full path
+	 */
 	public String getFile() {
 		return myChosenFile; 
 	}

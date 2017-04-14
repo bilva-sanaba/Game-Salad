@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class GameScreen extends AbstractViewer {
+public class GameScreen extends AbstractViewer implements IGameScreenDisplays, IGameScreenEntity {
 
 	private static final String myName = GameScreen.class.getSimpleName();
 	private Scene myScene;
@@ -151,9 +151,9 @@ public class GameScreen extends AbstractViewer {
 	
 	@Override
 	public void loadGame(String filePath) {
-		//myPane.getChildren().clear();
-		//myDisplays.addAllActive();
-		//myAnimation.clearRoot();
+		myPane.getChildren().clear();
+		myDisplays.addAllActive();
+		myAnimation.clearRoot();
 		super.loadGame(filePath);
 	}
 

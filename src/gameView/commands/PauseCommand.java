@@ -13,8 +13,8 @@ public class PauseCommand extends AbstractCommand {
 	@Override
 	public void execute(Stage s) {
 		((ICommandView) getView()).pauseGame();
-		VoogaAlert v = new VoogaAlert("Vooga", "Pause");
-		v.showAlert();
+//		VoogaAlert v = new VoogaAlert("Vooga", "Pause");
+//		v.showAlert();
 	}
 
 	@Override
