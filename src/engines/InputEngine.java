@@ -27,11 +27,10 @@ public class InputEngine extends AbstractEngine{
 	}
 
 	@Override
-	public Collection<IEntity> update(Collection<KeyCode> keys) {
-		for (IEntity e : getEManager().getEntityMap().keySet()){
+	public void update(Collection<KeyCode> keys) {
+		for (IEntity e : getEManager().getEntities()){
 			handleInput(e,keys);
 		}
-		return new ArrayList<IEntity>();
 	}
 	private void handleInput(IEntity e, Collection<KeyCode> keys){
 		

@@ -1,6 +1,8 @@
-package components.entityComponents;
+package components.movementcomponents;
 
 import components.IComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.XYComponent;
 
 /**
  * Component used for determining the location of an object

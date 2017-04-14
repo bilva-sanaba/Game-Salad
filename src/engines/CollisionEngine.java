@@ -54,7 +54,7 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 	}
 	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
 		int playerId = 0;
-		for (IEntity x : entManager.getEntityMap().keySet()) {
+		for (IEntity x : entManager.getEntities()) {
 			Entity x1 = (Entity) x;
 			LabelComponent lc1 = (LabelComponent) x1.getComponent(ComponentType.Label);
 			if (!lc1.getLabel().equals("Block")) {
@@ -99,10 +99,9 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 			collisionOccurs = true;
 		}
 		if (collisionOccurs) {
-			Map<IEntity, IRestrictedEntity> em = entManager.getEntityMap();
 			Entity o0 = null;
 			Entity o1 = null;
-			for (IEntity x : em.keySet()) {
+			for (IEntity x : entManager.getEntities()) {
 				
 				if (x.getID() == index0) {
 					o0 = (Entity) x;
@@ -133,9 +132,8 @@ public class CollisionEngine extends AbstractEngine implements ICollision{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public Collection<IEntity> update(Collection<KeyCode> keys) {
+	public void update(Collection<KeyCode> keys) {
 		newEntitiesCreated = new ArrayList<IEntity>();
 		checkCollisionsOccurred();
-		return newEntitiesCreated;
 	}
 }

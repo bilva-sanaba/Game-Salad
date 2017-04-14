@@ -11,13 +11,13 @@ import javafx.beans.Observable;
  * @author Bilva
  *
  */
-public interface IRestrictedEntityManager {
+public interface IRestrictedEntityManager  {
 	/**
 	 * 
 	 * @return Collection of entities with restricted data
 	 */
-	public Collection<RestrictedEntity> getEntities();
-	public Collection<IRestrictedEntity> getIEntities();
+
+	public Collection<IRestrictedEntity> getRestrictedEntities();
 
 	public void addObserver(Observer obs);
 

@@ -2,8 +2,7 @@ package gameEngine_interface;
 
 
 import entity.Entity;
-import entity.restricted.RestrictedEntity;
-import entity.restricted.RestrictedEntityManager;
+import entity.IEntity;
 import javafx.scene.input.KeyCode;
 
 import java.util.Collection;
@@ -23,15 +22,10 @@ public interface GameEngineInterface {
 	 * @return
 	 */
 
-	public Collection<RestrictedEntity> handleUpdates(
+	public void handleUpdates(
 			Collection<KeyCode> keysPressed);
 
-	/**
-	 * 
-	 * @return Encapsulation of all Entities
-	 */
-	public RestrictedEntityManager getRestrictedEntityManager();
 	
-	public Collection<Entity> save();
+	public Collection<IEntity> save();
 
 }

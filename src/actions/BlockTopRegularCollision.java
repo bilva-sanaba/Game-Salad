@@ -1,8 +1,8 @@
 package actions;
-import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
-import components.entityComponents.VelocityComponent;
+import components.movementcomponents.AccelerationComponent;
+import components.movementcomponents.VelocityComponent;
 import entity.Entity;
 public class BlockTopRegularCollision implements IAction {
 	@Override

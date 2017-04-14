@@ -70,8 +70,8 @@ public class UIView implements UIViewInterface {
 	
 	public void loadGame(String file) {
 		//addEntities(myController.loadNewGame(file));
-		//myController.loadNewGame(file);
-		//myGameScene.addGameEngine(myController.getEngine());
+		myController.loadNewGame(file);
+		myGameScene.addGameEngine(myController.getEngine());
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
 		
