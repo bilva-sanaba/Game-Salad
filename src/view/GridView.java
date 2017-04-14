@@ -27,6 +27,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * @author Jonathan Rub
@@ -67,17 +68,17 @@ public class GridView extends GUIComponent{
 	//	myScroll.getStyleClass().add("myGrid");
 		bp.setCenter(myScroll);
 		myGrid.setOnMouseClicked(e -> {
-			int row = (int) (Math.round(e.getX()/50));
-			int col = (int) (Math.round(e.getY()/50));
-			System.out.println(Math.round(e.getX()/50)*50 + "   " + Math.round(e.getY()/50)*50);
-			System.out.println(Math.round(e.getX()/50) + "   " + Math.round(e.getY()/50));
+			int row = (int) (Math.round(e.getX()/10));
+			int col = (int) (Math.round(e.getY()/10));
+			System.out.println(Math.round(e.getX()/10)*10 + "   " + Math.round(e.getY()/10)*10);
+			System.out.println(Math.round(e.getX()/10) + "   " + Math.round(e.getY()/10));
 			Entity userSelectedEntity = myData.getUserSelectedEntity();
 			if (userSelectedEntity != null) {
 				Entity placedEntity = userSelectedEntity.clone();
 				placedEntity.setID(i);
 				i++;
 				myData.placeEntity(placedEntity);
-				myData.setEntityLocation(placedEntity.getID(), (int) Math.round(e.getX()/50)*50 , (int) Math.round(e.getY()/50)*50);
+				myData.setEntityLocation(placedEntity.getID(), row*10 , col*10);
 				drawEntity(placedEntity);
 			}
 		});
@@ -85,36 +86,13 @@ public class GridView extends GUIComponent{
 
 
 	private void addVert() {
-		myGrid.setHeight(Initial_Y+=50);
+		myGrid.setHeight(Initial_Y+=10);
 		myData.getLevelEntity().addCol();
 	}
 		
 	private void addHo() {
-		myGrid.setWidth(Initial_X+=50);
+		myGrid.setWidth(Initial_X+=10);
 		myData.getLevelEntity().addRow();
-	}
-
-	private void addMouseListenerPane(int row, int col) {
-		Rectangle rect = new Rectangle(40, 40);
-		rect.getStyleClass().add("view-grid-cell");
-		rect.setFill(Color.GREY);
-		rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				System.out.println(String.format("Click at row %d col %d", row,
-						col));
-				Entity userSelectedEntity = myData.getUserSelectedEntity();
-				if (userSelectedEntity != null) {
-					Entity placedEntity = userSelectedEntity.clone();
-					placedEntity.setID(i);
-					i++;
-					myData.placeEntity(placedEntity);
-					myData.setEntityLocation(placedEntity.getID(), row, col);
-					drawEntity(placedEntity);
-				}
-			}
-		});
-		placedGrids.add(rect);
 	}
 
 	private void drawEntity(Entity entity) {
