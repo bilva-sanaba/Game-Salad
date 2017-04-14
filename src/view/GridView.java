@@ -25,6 +25,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -34,13 +35,16 @@ import javafx.scene.paint.Paint;
  * @author Justin Yang
  * @author Jack Bloomfeld
  */
-public class GridView extends GUIComponent{ 
+public class GridView extends GUIComponent { 
 //implements Observer {
 	private ScrollPane myScroll;
 	private double Initial_X = 500.0;
 	private double Initial_Y = 500.0;
-	private Canvas myGrid = new Canvas(Initial_X,Initial_Y);
-    private GraphicsContext gc = myGrid.getGraphicsContext2D();
+	private Canvas myBackgroundGrid = new Canvas(Initial_X, Initial_Y);
+	private Canvas myEntityGrid = new Canvas(Initial_X, Initial_Y);
+	private StackPane myStack;
+    private GraphicsContext myEntityGC = myEntityGrid.getGraphicsContext2D();
+    private GraphicsContext myBackgroundGridGC = myBackgroundGrid.getGraphicsContext2D();
 	private ViewData myData;
 	private UtilityFactory util;
 	private int i = 1000;
@@ -55,7 +59,8 @@ public class GridView extends GUIComponent{
 		myRow = rows;
 		myCol = cols;
 		myData = data;
-		myGrid.setCursor(Cursor.CROSSHAIR);
+		myStack = new StackPane();
+		myEntityGrid.setCursor(Cursor.CROSSHAIR);
 //		myData.addObserver(this);
 		bp = new BorderPane();
 		Button butt = util.buildButton("addHo", e-> addHo());
@@ -64,10 +69,11 @@ public class GridView extends GUIComponent{
 		util.buildButton("addVert", e -> addVert());
 		HBox box = new HBox(butt,butt2);
 		bp.setTop(box);
-		myScroll = new ScrollPane(myGrid);
-	//	myScroll.getStyleClass().add("myGrid");
-		bp.setCenter(myScroll);
-		myGrid.setOnMouseClicked(e -> {
+		myScroll = new ScrollPane(myEntityGrid);
+		myEntityGrid.getStyleClass().add("myGrid");
+		myStack.getChildren().addAll(myBackgroundGrid, myScroll);
+		bp.setCenter(myStack);
+		myEntityGrid.setOnMouseClicked(e -> {
 			int row = (int) (Math.round(e.getX()/10));
 			int col = (int) (Math.round(e.getY()/10));
 			System.out.println(Math.round(e.getX()/10)*10 + "   " + Math.round(e.getY()/10)*10);
@@ -86,12 +92,12 @@ public class GridView extends GUIComponent{
 
 
 	private void addVert() {
-		myGrid.setHeight(Initial_Y+=10);
+		myEntityGrid.setHeight(Initial_Y+=10);
 		myData.getLevelEntity().addCol();
 	}
 		
 	private void addHo() {
-		myGrid.setWidth(Initial_X+=10);
+		myEntityGrid.setWidth(Initial_X+=10);
 		myData.getLevelEntity().addRow();
 	}
 
@@ -115,11 +121,11 @@ public class GridView extends GUIComponent{
 			spriteImage.setFitWidth(50);
 		}
 		placedImages.add(spriteImage);
-		gc.drawImage(spriteImage.imageProperty().get(), entityLocation.getX(), entityLocation.getY(), w, h);
+		myEntityGC.drawImage(spriteImage.imageProperty().get(), entityLocation.getX(), entityLocation.getY(), w, h);
 	}
 	
 	public void clearEntitiesOnGrid(){
-		gc.clearRect(0, 0, Initial_X, Initial_Y);
+		myEntityGC.clearRect(0, 0, Initial_X, Initial_Y);
 		placedImages.clear();
 	}
 	
@@ -155,7 +161,9 @@ public class GridView extends GUIComponent{
 	
 	public void updateBackground() {
 		String filePath = myData.getLevelEntity().getBackgroundFilePath();
-		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
+		Image backgroundImage = new Image(filePath);
+		myBackgroundGridGC.drawImage(backgroundImage, 10, 10);
+		System.out.println("avast landlubber");
 	}
 
 /*	@Override
