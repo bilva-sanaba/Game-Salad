@@ -19,6 +19,7 @@ import view.editor.ComponentEditor;
  * 
  * @author Justin
  * @author Jonathan
+ * @author Jack
  */
 public class EntityConfigurationWindow implements IWindow {
 
@@ -33,6 +34,18 @@ public class EntityConfigurationWindow implements IWindow {
 	private ObservableList<Entity> myList;
 
 	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, ObservableList<Entity> blocksList) {
+		myCompF = new ComponentFactory();
+		myUtilF = utilF;
+		myData = entityData;
+		myEntity = myData.getUserSelectedEntity();
+		myData.setUserSelectedEntity(myEntity);
+		componentList = entityType;
+		myCompEdits = new ArrayList<ComponentEditor>();
+		myList = blocksList;
+		myStage.setScene(buildScene());
+	}
+	
+	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, ObservableList<Entity> blocksList, Entity e) {
 		myCompF = new ComponentFactory();
 		myUtilF = utilF;
 		myData = entityData;
