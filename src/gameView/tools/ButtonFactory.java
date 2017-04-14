@@ -24,6 +24,11 @@ public class ButtonFactory extends UtilityFactory {
 		myResources = ResourceBundle.getBundle(UIView.DEFAULT_LOCATION + file);
 	}
 
+	/**
+	 * Creates a button for the given command, and sets the properties of the button to execute the command on click
+	 * @param command
+	 * @return
+	 */
 	public Button makeButton(AbstractCommand command) {
 		Button button;
 		try {

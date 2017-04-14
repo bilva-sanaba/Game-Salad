@@ -43,9 +43,19 @@ public enum DisplayEnum {
 //	public double left() {
 //		return myLeft;
 //	}
+	
+	/**
+	 * Returns the percentage of the X that the object should be located at. I.E. TOP_CENTER returns 50 because an item at the
+	 * top in the center should be 50% of the width of the screen
+	 * @return
+	 */
 	public double x() {
 		return myX;
 	}
+	/**
+	 * Returns the percentage of the Y that the object should be located at. I.E. CENTER_LEFT returns 50 because an item at the
+	 * center on the left should be 50% of the height of the screen
+	 */
 	
 	public double y() {
 		return myY;

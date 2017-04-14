@@ -3,6 +3,7 @@ package controller;
 import data_interfaces.*;
 import gameView.UIView;
 import view_interfaces.UIViewInterface;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import data_interfaces.XMLException;
 import view.GUIBuilder;
@@ -66,8 +67,10 @@ public class Controller implements ControllerInterface {
 	}
 	
 	public void makeGame() {
-		myStage.setScene(myGUIBuilder.buildScene());
-		myStage.show();
+		Stage authorStage = new Stage();
+		authorStage.setScene(myGUIBuilder.buildScene());
+		authorStage.showAndWait();
+		authorStage.getScene().setRoot(new Region());
 	}
 	
 	public GameEngine getEngine() {
