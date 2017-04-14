@@ -21,7 +21,9 @@ public class ButtonFactory extends UtilityFactory {
 		super(file);
 		myView = view;
 		myFile = file;
-		myResources = ResourceBundle.getBundle(UIView.DEFAULT_LOCATION + file);
+		if (myFile != null) {
+			myResources = ResourceBundle.getBundle(UIView.DEFAULT_LOCATION + file);
+		}
 	}
 
 	/**

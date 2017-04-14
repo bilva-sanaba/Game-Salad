@@ -6,6 +6,7 @@ import components.entityComponents.ImagePropertiesComponent;
 
 import java.util.Observer;
 
+import javafx.geometry.Dimension2D;
 import gameView.Coordinate;
 import javafx.geometry.Dimension2D;
 /**
@@ -22,6 +23,7 @@ public interface IRestrictedEntity {
 	 * 
 	 * @return Coordinate of Entities location
 	 */
+
 	public Dimension2D getRestrictedLocation();
 	/**
 	 * 

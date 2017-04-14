@@ -15,6 +15,7 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.XYComponent;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
+
 import gameView.Coordinate;
 
 public class EntityManager extends Observable implements IEntityManager, IRestrictedEntityManager  {
@@ -60,7 +61,9 @@ public class EntityManager extends Observable implements IEntityManager, IRestri
 	@Override
 	public Collection<IRestrictedEntity> getRestrictedEntities() {
 		Collection<IRestrictedEntity> restricted = new ArrayList<IRestrictedEntity>();
+
 		for (IEntity e : myEntities){
+
 			restricted.add((IRestrictedEntity) e);
 		}
 		return restricted;
@@ -70,4 +73,5 @@ public class EntityManager extends Observable implements IEntityManager, IRestri
 		// TODO Auto-generated method stub
 		return myEntities;
 	}
+
 }

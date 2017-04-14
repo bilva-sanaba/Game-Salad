@@ -13,6 +13,7 @@ import gameView.commands.AbstractCommand;
 import gameView.displayComponents.UIDisplayComponent;
 import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
+import gamedata.GameData;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -25,7 +26,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private static final String myName = GameScreen.class.getSimpleName();
 	private Scene myScene;
 	private BorderPane myBP;
-	private IRestrictedEntityManager myEntities;
+	private GameData myData;
 	private ImageManager myManager;
 	private HBox myTopBox;
 	private VBox myLeftBox;
@@ -78,9 +79,10 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		return myScene;
 	}
 
-	public void addEntity(IRestrictedEntityManager entity) {
-		myEntities = entity;
-		myManager = new ImageManager(entity);
+	public void addData(GameData data) {
+		myData = data;
+		myAnimation.start(myData);
+		//myManager = new ImageManager(myData);
 	}
 
 	public void runGame() {
@@ -146,7 +148,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	} 
 	
 	public void addGameEngine(GameEngine game) {
-		myAnimation.start(game);
+		//myAnimation.start(game);
 	}
 	
 	@Override

@@ -37,6 +37,7 @@ import gamedata.GameData;
 import engines.AbstractEngine;
 import entity.IEntityManager;
 import entity.SplashEntity;
+import gamedata.GameData;
 
 /**
  * Basic GameEngine class Note: the engines must be created in someway, likely

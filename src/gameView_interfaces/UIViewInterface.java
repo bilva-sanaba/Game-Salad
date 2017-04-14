@@ -1,7 +1,11 @@
-package view_interfaces;
+package gameView_interfaces;
+
+import java.util.Set;
 
 import entity.restricted.IRestrictedEntityManager;
+import gamedata.GameData;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 /**
@@ -74,7 +78,9 @@ public interface UIViewInterface {
 	 * Add an entity to the manager
 	 * @param entity - entity to add
 	 */
-	public void addEntities(IRestrictedEntityManager entity);
+	public void addData(GameData data);
+	
+	public void step(Set<KeyCode> keysPressed);
 	
 
 }
