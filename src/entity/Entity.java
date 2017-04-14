@@ -3,14 +3,18 @@ package entity;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
+import java.util.Observer;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
-import engines.IRestrictEntity;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.SpriteComponent;
 import entity.restricted.IRestrictedEntity;
 import gameView.Coordinate;
 import javafx.beans.InvalidationListener;
+import javafx.geometry.Dimension2D;
 
 /**
  * Class which will represent each GameObject Contains an identifier int and a
@@ -19,7 +23,7 @@ import javafx.beans.InvalidationListener;
  * @author Bilva
  *
  */
-public class Entity implements IEntity, IRestrictEntity {
+public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	private int identifier;
 	Collection<IComponent> myComponents;
 
@@ -56,18 +60,6 @@ public class Entity implements IEntity, IRestrictEntity {
 		return myComponents;
 	}
 
-	/*
-	 * @Override public void addListener(InvalidationListener arg0) { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * }
-	 * 
-	 * @Override public void removeListener(InvalidationListener arg0) { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * }
-	 */
-
 	public IComponent getComponent(ComponentType ct) {
 		for (IComponent myComponent : myComponents) {
 			if (myComponent.getComponentType() == ct) {
@@ -77,18 +69,6 @@ public class Entity implements IEntity, IRestrictEntity {
 		
 		return null;
 	}
-
-	@Override
-	public void addListener(InvalidationListener arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeListener(InvalidationListener arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	@Override
 	public String toString(){
@@ -97,4 +77,23 @@ public class Entity implements IEntity, IRestrictEntity {
 		}
 		return "null label component";
 	}
+
+	@Override
+	public Dimension2D getLocation() {
+		LocationComponent lc = (LocationComponent) getComponent(ComponentType.Location);
+		return new Dimension2D(lc.getX(), lc.getY());
+	}
+
+	@Override
+	public String getRestrictedImagePath() {
+		SpriteComponent sc = (SpriteComponent) getComponent(ComponentType.Location);
+		return sc.getClassPath();
+	}
+
+	@Override
+	public Dimension2D getRestrictedIPComponent() {
+		ImagePropertiesComponent ic = (ImagePropertiesComponent) getComponent(ComponentType.Location);
+		return new Dimension2D(ic.getWidth(), ic.getHeight());
+	}
+
 }

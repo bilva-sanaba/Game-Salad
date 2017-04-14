@@ -1,4 +1,4 @@
-package view_interfaces;
+package gameView_interfaces;
 
 import gameView.Coordinate;
 import gameView.UIImageProperty;

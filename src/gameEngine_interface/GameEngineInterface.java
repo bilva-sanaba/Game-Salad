@@ -30,7 +30,7 @@ public interface GameEngineInterface {
 	 * 
 	 * @return Encapsulation of all Entities
 	 */
-	public RestrictedEntityManager getRestrictedEntityManager();
+	//public RestrictedEntityManager getRestrictedEntityManager();
 	
 	public Collection<Entity> save();
 

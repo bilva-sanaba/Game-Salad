@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
@@ -12,11 +14,12 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.XYComponent;
 import entity.restricted.IRestrictedEntity;
+import entity.restricted.IRestrictedEntityManager;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameView.Coordinate;
 
-public class EntityManager implements IEntityManager {
+public class EntityManager extends Observable implements IEntityManager, IRestrictedEntityManager {
 	private Collection<Entity> myEntities;
 
 	public EntityManager(Collection<Entity> entities){
@@ -84,5 +87,14 @@ public class EntityManager implements IEntityManager {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public Collection<IRestrictedEntity> getRestrictedEntities() {
+		Collection<IRestrictedEntity> restricted = new ArrayList<IRestrictedEntity>();
+		for (Entity e : myEntities) {
+			restricted.add((IRestrictedEntity) e);
+		}
+		return restricted;
 	}
 }

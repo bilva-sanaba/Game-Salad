@@ -29,10 +29,15 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.MoveTo;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import entity.restricted.IRestrictedEntity;
+import entity.restricted.IRestrictedEntityManager;
 import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 import gameView.Coordinate;
+import gameView.observers.ObserverManager;
+import gameView_interfaces.UIViewInterface;
+import gamedata.GameData;
 
 /**
  *
@@ -57,17 +62,21 @@ public class WorldAnimator {
     private Group root;
     private GameBuilder myGameBuilder;
     private Camera myCamera;
-
+    private UIViewInterface myView;
+    private	ObserverManager myObservers;
+    
     private Map<Integer, ImageView> imageMap= new HashMap<Integer, ImageView>();
 
     private boolean pause = false;
 
-    public WorldAnimator(){
+    public WorldAnimator(UIViewInterface view){
+    	myView = view;
     }
 
-    public void start (GameEngine myGameEngine){
+    public void start (GameData myData){
         root = new Group();
-        RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
+        IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
+        myObservers = new ObserverManager(this, restrictedEntityManager);
         myGameBuilder = new GameBuilder();
 //        myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 
@@ -75,8 +84,8 @@ public class WorldAnimator {
 
         //myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
         //myScene = new Scene(root,LENGTH,WIDTH);
-        myScene = new Scene(root,LENGTH - 200,WIDTH);
-        LocationComponent lc = (LocationComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Location);
+        //myScene = new Scene(root,LENGTH - 200,WIDTH);
+        LocationComponent lc = myData.getMainLocation();
         myCamera = new Camera(LENGTH ,myScene, lc);
         createMap(restrictedEntityManager);
         for (Integer id : imageMap.keySet()) {
@@ -87,7 +96,7 @@ public class WorldAnimator {
         myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
         
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
-                e-> step(SECOND_DELAY, myGameEngine));
+                e-> step(SECOND_DELAY));
         this.animation = new Timeline();
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.getKeyFrames().add(frame);
@@ -98,23 +107,23 @@ public class WorldAnimator {
         return myScene;
     }
 
-    private void createMap(RestrictedEntityManager manager) {
-        Collection<RestrictedEntity> entities = manager.getEntities();
-        for (RestrictedEntity e: entities){
-            String[] test = e.getImagePath().split("[\\\\/]");
+    private void createMap(IRestrictedEntityManager manager) {
+        Collection<IRestrictedEntity> entities = manager.getRestrictedEntities();
+        for (IRestrictedEntity e: entities){
+            String[] test = e.getRestrictedImagePath().split("[\\\\/]");
             imageMap.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
-            imageMap.get(e.getID()).setX(e.getLocation().getX());
-            imageMap.get(e.getID()).setY(e.getLocation().getY());
-            imageMap.get(e.getID()).setFitHeight(e.getImageHeight());
-            imageMap.get(e.getID()).setFitWidth(e.getImageWidth());
+            imageMap.get(e.getID()).setX(e.getLocation().getWidth());
+            imageMap.get(e.getID()).setY(e.getLocation().getHeight());
+            imageMap.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
+            imageMap.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
             //imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
 			//imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
         }
     }
 
-    private void step(double elapsedTime, GameEngine myGameEngine){
-        Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
-        HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay(updatedEntities);
+    private void step(double elapsedTime){
+    	myView.step(keysPressed);
+        HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay();
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
@@ -148,9 +157,12 @@ public class WorldAnimator {
         s.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
     }
 
-    private HashMap<Integer, ImageView> fillMapAndDisplay(Collection<RestrictedEntity> entities){
+    private HashMap<Integer, ImageView> fillMapAndDisplay(){
+    	
+    	//MYOBSERVERS RETURNS COLLECTION OF IMAGEVIEW THAT ARE CORRECTLY UPDATED
+    	Collection<IRestrictedEntity> entities = myObservers.getCollection();
         HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
-        for(RestrictedEntity entity : entities){
+        for(IRestrictedEntity entity : entities){
             SequentialTransition trans = new SequentialTransition();
             removeEntity(entity,trans);
             updateEntity(entity,trans);
@@ -159,8 +171,8 @@ public class WorldAnimator {
         return map;
     }
     
-    private void removeEntity(RestrictedEntity entity, SequentialTransition trans){
-        if(entity.getLocation() == null && entity.getImagePath().equals(null)){
+    private void removeEntity(IRestrictedEntity entity, SequentialTransition trans){
+        if(entity.getLocation() == null && entity.getRestrictedImagePath().equals(null)){
             if (imageMap.containsKey(entity.getID())){
 //                FadeTransition ft = makeFade(imageMap.get(entity.getID()));
 //                trans.getChildren().add(ft);
@@ -171,9 +183,9 @@ public class WorldAnimator {
         }
     }
 
-private void createEntity(RestrictedEntity entity, SequentialTransition trans){
-        if (!imageMap.containsKey(entity.getID()) && entity.getImagePath()!=null && entity.getLocation()!=null){
-            Image image = new Image(getClass().getClassLoader().getResourceAsStream(entity.getImagePath()));
+private void createEntity(IRestrictedEntity entity, SequentialTransition trans){
+        if (!imageMap.containsKey(entity.getID()) && entity.getRestrictedImagePath()!=null && entity.getLocation()!=null){
+            Image image = new Image(getClass().getClassLoader().getResourceAsStream(entity.getRestrictedImagePath()));
             ImageView imageView = new ImageView(image);
             updateImage(imageView,entity);
 //            FadeTransition ft = makeAppear(imageView);
@@ -182,7 +194,7 @@ private void createEntity(RestrictedEntity entity, SequentialTransition trans){
             imageMap.put(entity.getID(), imageView);
         }
     }
-    private void updateEntity(RestrictedEntity entity, SequentialTransition trans){
+    private void updateEntity(IRestrictedEntity entity, SequentialTransition trans){
         if(imageMap.containsKey(entity.getID())){
         	
             ImageView currentImage = imageMap.get(entity.getID());
@@ -192,11 +204,11 @@ private void createEntity(RestrictedEntity entity, SequentialTransition trans){
 //            root.getChildren().add(imageMap.get(entity.getID()));
         }
     }
-    private void updateImage(ImageView currentImage, RestrictedEntity re){
-    	String[] image = re.getImagePath().split("[\\\\/]");
+    private void updateImage(ImageView currentImage, IRestrictedEntity re){
+    	String[] image = re.getRestrictedImagePath().split("[\\\\/]");
         currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(image[image.length-1])));
-        currentImage.setX(re.getLocation().getX());
-        currentImage.setY(re.getLocation().getY());   
+        currentImage.setX(re.getLocation().getWidth());
+        currentImage.setY(re.getLocation().getHeight());   
         //currentImage.setTranslateX(re.getLocation().getX()*50-475);
 		//currentImage.setTranslateY(re.getLocation().getY()*50-175);
     }
@@ -230,4 +242,5 @@ private void createEntity(RestrictedEntity entity, SequentialTransition trans){
     	imageMap.clear();
     	root.getChildren().clear();
     }
+    
 }

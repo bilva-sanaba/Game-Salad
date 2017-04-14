@@ -38,6 +38,7 @@ import entity.restricted.RestrictedEntityManager;
 import engines.AbstractEngine;
 import entity.IEntityManager;
 import entity.SplashEntity;
+import gamedata.GameData;
 
 /**
  * Basic GameEngine class Note: the engines must be created in someway, likely
@@ -59,11 +60,12 @@ public class GameEngine implements GameEngineInterface {
 	public GameEngine(){
 		initializeRestrictedEntities();
 	}
-	public void loadData(Communicator c){
+	public GameData loadData(Communicator c){
 		myEntityManager = new EntityManager(c.getData());
 		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager));
 		initializeRestrictedEntities();
+		return null;//new GameData(null, null, null, null);
 	}
 	public Collection<Entity> save(){
 		
@@ -97,10 +99,11 @@ public class GameEngine implements GameEngineInterface {
 		return changedRestrictedEntity;
 	}
 
-	@Override
-	public RestrictedEntityManager getRestrictedEntityManager() {
-		return myRestrictedEntityManager;
-	}
+//	@Override
+//	public GameData getData() {
+//		return myRestrictedEntityManager;
+//	}
+	
 	//TODO: Delete once testing is over
 	public void dummyLoad(){
 		/*Collection<Entity> e = new ArrayList<Entity>();

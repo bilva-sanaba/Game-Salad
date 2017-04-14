@@ -1,8 +1,15 @@
 package controller;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Set;
+
 import data_interfaces.*;
 import gameView.UIView;
-import view_interfaces.UIViewInterface;
+import gameView_interfaces.UIViewInterface;
+import gamedata.GameData;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import data_interfaces.XMLException;
@@ -10,6 +17,7 @@ import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
 import entity.restricted.IRestrictedEntityManager;
+import entity.restricted.RestrictedEntity;
 import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
@@ -32,7 +40,6 @@ public class Controller implements ControllerInterface {
 		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
 		myGameEngine = new GameEngine();
-		myWorldAnimator = new WorldAnimator();
 		myGameView = new UIView(s, this);
 	}
 
@@ -44,12 +51,11 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public IRestrictedEntityManager loadNewGame(String gameName) { //IRestrictedEntityManager
+	public GameData loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
-		myGameEngine.loadData(c); //c
+		GameData gameData = myGameEngine.loadData(c); //c
 		//myGameEngine.dummyLoad();
-		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
-		return restrictedEntityManager;
+		return gameData;
 	}
 
 	@Override
@@ -62,9 +68,9 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-	public void runGameAnimation() {
-		myWorldAnimator.start(myGameEngine);
-	}
+//	public void runGameAnimation() {
+//		myWorldAnimator.start(myGameEngine);
+//	}
 	
 	public void makeGame() {
 		Stage authorStage = new Stage();
@@ -76,4 +82,8 @@ public class Controller implements ControllerInterface {
 	public GameEngine getEngine() {
 		return myGameEngine;
 	}
+	
+	public void step(Set<KeyCode> keysPressed ){
+        Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
+    }
 }

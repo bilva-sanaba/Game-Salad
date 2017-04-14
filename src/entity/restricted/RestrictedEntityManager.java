@@ -15,7 +15,6 @@ public class RestrictedEntityManager extends Observable implements
 		myRestrictedEntities = entities;
 	}
 
-	@Override
 	public Collection<RestrictedEntity> getEntities() {
 		return myRestrictedEntities;
 	}
