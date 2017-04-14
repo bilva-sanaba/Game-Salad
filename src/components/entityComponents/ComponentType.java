@@ -19,5 +19,7 @@ public enum ComponentType {
 	GameTitle(),
 	GameInstructions(),
 	Duration(),
+	Lives(),
+	Score(),
 	Type();
 }
