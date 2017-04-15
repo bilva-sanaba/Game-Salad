@@ -48,7 +48,6 @@ public class SplashScreenBuilderWindow implements IWindow{
 			instructions = instructionsInput.getText();
 			myStage.close();
 		});
-<<<<<<< HEAD:src/view/SplashScreenBuilderWindow.java
 		root.getChildren().add(okayButton);
 		GridPane.setConstraints(okayButton, 0, 8);
 		GridPane.setColumnSpan(okayButton, 2);
@@ -62,16 +61,7 @@ public class SplashScreenBuilderWindow implements IWindow{
 		stage.setScene(scene);
 		stage.setTitle("Customize Splash Screen");
 		stage.showAndWait();
-=======
-		myRoot.getChildren().add(chooseImageButton);
-		myRoot.getChildren().add(myFilePathDisplay);
-		myRoot.getChildren().add(okayButton);
-		Scene scene = new Scene(myRoot, 350, 300);
-		myStage.setScene(scene);
-		myStage.setTitle("Customize Splash Screen");
-		openWindow();
->>>>>>> master:src/view/window/SplashScreenBuilderWindow.java
-		
+
 //		beneath here is a splash entity which you instantiate with all the values you just found at the x's
 		SplashEntity s = new SplashEntity(1, gameTitle, instructions, splashScreenImagePath);
 		return s;
