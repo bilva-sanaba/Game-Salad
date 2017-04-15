@@ -39,7 +39,7 @@ import gameView.Coordinate;
  * @author Jacob
  *
  */
-public class WorldAnimator {
+public class WorldAnimator{
     // private Stage myStage;
     public static final int FRAMES_PER_SECOND = 45;
     public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
@@ -226,7 +226,7 @@ private void createEntity(RestrictedEntity entity, SequentialTransition trans){
         animation.pause();
     }
     
-    public void clearRoot() {
+    public void clearRoot(){
     	imageMap.clear();
     	root.getChildren().clear();
     }
