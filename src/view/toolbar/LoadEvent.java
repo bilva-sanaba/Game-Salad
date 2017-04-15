@@ -32,7 +32,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 				new ExtensionFilter("Text Files", "*" + getSuffix()));
 
 		File dataFile = fc.showOpenDialog(newStage);
-		if (!dataFile.equals(null)) {
+		if (dataFile != null) {
 			String dataPath = dataFile.getAbsolutePath();
 			String[] splitS = dataPath.split("[\\\\/]");
 			String firstSplit = splitS[splitS.length - 1];
@@ -47,6 +47,9 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 				if (e.getClass().toString().equals("class entity.LevelEntity")) {
 					System.out.println("Level entity is set");
 					myData.setLevelEntity((LevelEntity) e);
+				}
+				else if (e.getClass().toString().equals("class entity.SplashEntity")) {
+					myData.setSplashEntity((SplashEntity) e);
 				}
 				else if (isPlaced(e)) {
 					System.out.println("this happens");

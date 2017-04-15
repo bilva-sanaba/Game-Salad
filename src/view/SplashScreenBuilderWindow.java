@@ -62,7 +62,7 @@ public class SplashScreenBuilderWindow {
 		Scene scene = new Scene(root, 350, 300);
 		stage.setScene(scene);
 		stage.setTitle("Customize Splash Screen");
-		stage.show();
+		stage.showAndWait();
 		
 //		beneath here is a splash entity which you instantiate with all the values you just found at the x's
 		SplashEntity s = new SplashEntity(1, gameTitle, instructions, splashScreenImagePath);
