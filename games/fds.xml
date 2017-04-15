@@ -1,0 +1,13 @@
+<list>
+  <entity.SplashEntity>
+    <identifier>1</identifier>
+    <myComponents class="list"/>
+  </entity.SplashEntity>
+  <entity.LevelEntity>
+    <identifier>0</identifier>
+    <myComponents class="list"/>
+    <rows>10</rows>
+    <cols>10</cols>
+    <backgroundFilePath></backgroundFilePath>
+  </entity.LevelEntity>
+</list>

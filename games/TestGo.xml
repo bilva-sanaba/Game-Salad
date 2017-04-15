@@ -2,75 +2,69 @@
   <entity.SplashEntity>
     <identifier>1</identifier>
     <myComponents class="list"/>
+    <displayName>The game</displayName>
+    <instructions>Don&apos;t lose</instructions>
+    <backgroundFilePath>images/background1.png</backgroundFilePath>
   </entity.SplashEntity>
   <entity.LevelEntity>
     <identifier>0</identifier>
     <myComponents class="list"/>
     <rows>10</rows>
-    <cols>10</cols>
+    <cols>14</cols>
     <backgroundFilePath></backgroundFilePath>
   </entity.LevelEntity>
   <entity.Entity>
     <identifier>0</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
-      <components.entityComponents.LabelComponent>
-        <label>nh</label>
-      </components.entityComponents.LabelComponent>
-      <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
-      </components.entityComponents.ImagePropertiesComponent>
     </myComponents>
   </entity.Entity>
   <entity.Entity>
     <identifier>1</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>jhj</label>
+        <label>Dirt</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>15.119047619047617</imageHeight>
-        <imageWidth>17.023809523809526</imageWidth>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>2</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/character1.gif</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>Guy</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.VelocityComponent>
         <x>0.0</x>
         <y>0.0</y>
       </components.entityComponents.VelocityComponent>
       <components.entityComponents.HealthComponent>
-        <health>32</health>
+        <health>0</health>
       </components.entityComponents.HealthComponent>
       <components.entityComponents.AccelerationComponent>
         <x>0.0</x>
         <y>0.0</y>
       </components.entityComponents.AccelerationComponent>
       <components.entityComponents.StrengthComponent>
-        <strength>20.270270721332448</strength>
+        <strength>0.0</strength>
       </components.entityComponents.StrengthComponent>
       <components.entityComponents.KeyInputComponent>
-        <inputMap>
-          <entry>
-            <javafx.scene.input.KeyCode>D</javafx.scene.input.KeyCode>
-            <string>RIGHT</string>
-          </entry>
-          <entry>
-            <javafx.scene.input.KeyCode>A</javafx.scene.input.KeyCode>
-            <string>LEFT</string>
-          </entry>
-          <entry>
-            <javafx.scene.input.KeyCode>W</javafx.scene.input.KeyCode>
-            <string>JUMP</string>
-          </entry>
-          <entry>
-            <javafx.scene.input.KeyCode>H</javafx.scene.input.KeyCode>
-            <string>JUMP</string>
-          </entry>
-        </inputMap>
+        <inputMap/>
       </components.entityComponents.KeyInputComponent>
       <components.entityComponents.MonsterActionsComponent>
         <myMMP>UpAndDown</myMMP>
@@ -79,105 +73,24 @@
         <steps>0</steps>
         <stepsLeft>0</stepsLeft>
       </components.entityComponents.StepComponent>
-    </myComponents>
-  </entity.Entity>
-  <entity.Entity>
-    <identifier>1008</identifier>
-    <myComponents class="list">
-      <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
-      </components.entityComponents.SpriteComponent>
-      <components.entityComponents.LabelComponent>
-        <label>nh</label>
-      </components.entityComponents.LabelComponent>
-      <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
-      </components.entityComponents.ImagePropertiesComponent>
-      <components.entityComponents.LocationComponent>
-        <x>8.0</x>
-        <y>8.0</y>
-      </components.entityComponents.LocationComponent>
-    </myComponents>
-  </entity.Entity>
-  <entity.Entity>
-    <identifier>1009</identifier>
-    <myComponents class="list">
-      <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
-      </components.entityComponents.SpriteComponent>
-      <components.entityComponents.LabelComponent>
-        <label>nh</label>
-      </components.entityComponents.LabelComponent>
-      <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
-      </components.entityComponents.ImagePropertiesComponent>
-      <components.entityComponents.LocationComponent>
-        <x>9.0</x>
-        <y>8.0</y>
-      </components.entityComponents.LocationComponent>
-    </myComponents>
-  </entity.Entity>
-  <entity.Entity>
-    <identifier>1010</identifier>
-    <myComponents class="list">
-      <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character1.gif</classPath>
-      </components.entityComponents.SpriteComponent>
-      <components.entityComponents.LabelComponent>
-        <label>jhj</label>
-      </components.entityComponents.LabelComponent>
-      <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>15.119047619047617</imageHeight>
-        <imageWidth>17.023809523809526</imageWidth>
-      </components.entityComponents.ImagePropertiesComponent>
-      <components.entityComponents.VelocityComponent>
-        <x>0.0</x>
-        <y>0.0</y>
-      </components.entityComponents.VelocityComponent>
-      <components.entityComponents.HealthComponent>
-        <health>32</health>
-      </components.entityComponents.HealthComponent>
-      <components.entityComponents.AccelerationComponent>
-        <x>0.0</x>
-        <y>0.0</y>
-      </components.entityComponents.AccelerationComponent>
-      <components.entityComponents.StrengthComponent>
-        <strength>20.270270721332448</strength>
-      </components.entityComponents.StrengthComponent>
-      <components.entityComponents.KeyInputComponent>
-        <inputMap reference="../../../../entity.Entity[2]/myComponents/components.entityComponents.KeyInputComponent/inputMap"/>
-      </components.entityComponents.KeyInputComponent>
-      <components.entityComponents.MonsterActionsComponent>
-        <myMMP>UpAndDown</myMMP>
-      </components.entityComponents.MonsterActionsComponent>
-      <components.entityComponents.StepComponent>
-        <steps>0</steps>
-        <stepsLeft>0</stepsLeft>
-      </components.entityComponents.StepComponent>
-      <components.entityComponents.LocationComponent>
-        <x>0.0</x>
-        <y>6.0</y>
-      </components.entityComponents.LocationComponent>
     </myComponents>
   </entity.Entity>
   <entity.Entity>
     <identifier>1000</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>nh</label>
+        <label>Dirt</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LocationComponent>
         <x>0.0</x>
-        <y>8.0</y>
+        <y>9.0</y>
       </components.entityComponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -185,18 +98,18 @@
     <identifier>1001</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>nh</label>
+        <label>Dirt</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LocationComponent>
         <x>1.0</x>
-        <y>8.0</y>
+        <y>9.0</y>
       </components.entityComponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -204,18 +117,37 @@
     <identifier>1002</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>nh</label>
+        <label>Dirt</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LocationComponent>
         <x>2.0</x>
-        <y>8.0</y>
+        <y>9.0</y>
+      </components.entityComponents.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>10</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>Dirt</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LocationComponent>
+        <x>13.0</x>
+        <y>9.0</y>
       </components.entityComponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -223,17 +155,60 @@
     <identifier>1003</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>nh</label>
+        <label>Dirt</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LocationComponent>
         <x>3.0</x>
+        <y>9.0</y>
+      </components.entityComponents.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>11</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/character1.gif</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>Guy</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.VelocityComponent>
+        <x>0.0</x>
+        <y>0.0</y>
+      </components.entityComponents.VelocityComponent>
+      <components.entityComponents.HealthComponent>
+        <health>0</health>
+      </components.entityComponents.HealthComponent>
+      <components.entityComponents.AccelerationComponent>
+        <x>0.0</x>
+        <y>0.0</y>
+      </components.entityComponents.AccelerationComponent>
+      <components.entityComponents.StrengthComponent>
+        <strength>0.0</strength>
+      </components.entityComponents.StrengthComponent>
+      <components.entityComponents.KeyInputComponent>
+        <inputMap reference="../../../../entity.Entity[3]/myComponents/components.entityComponents.KeyInputComponent/inputMap"/>
+      </components.entityComponents.KeyInputComponent>
+      <components.entityComponents.MonsterActionsComponent>
+        <myMMP>UpAndDown</myMMP>
+      </components.entityComponents.MonsterActionsComponent>
+      <components.entityComponents.StepComponent>
+        <steps>0</steps>
+        <stepsLeft>0</stepsLeft>
+      </components.entityComponents.StepComponent>
+      <components.entityComponents.LocationComponent>
+        <x>1.0</x>
         <y>8.0</y>
       </components.entityComponents.LocationComponent>
     </myComponents>
@@ -242,18 +217,37 @@
     <identifier>1004</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>nh</label>
+        <label>Dirt</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LocationComponent>
         <x>4.0</x>
-        <y>8.0</y>
+        <y>9.0</y>
+      </components.entityComponents.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>12</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>Dirt</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LocationComponent>
+        <x>12.0</x>
+        <y>9.0</y>
       </components.entityComponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -261,18 +255,18 @@
     <identifier>1005</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>nh</label>
+        <label>Dirt</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LocationComponent>
         <x>5.0</x>
-        <y>8.0</y>
+        <y>9.0</y>
       </components.entityComponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -280,18 +274,18 @@
     <identifier>1006</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>nh</label>
+        <label>Dirt</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LocationComponent>
-        <x>6.0</x>
-        <y>8.0</y>
+        <x>7.0</x>
+        <y>9.0</y>
       </components.entityComponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -299,18 +293,56 @@
     <identifier>1007</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.LabelComponent>
-        <label>nh</label>
+        <label>Dirt</label>
       </components.entityComponents.LabelComponent>
       <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>17.023809523809526</imageHeight>
-        <imageWidth>14.166666666666668</imageWidth>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LocationComponent>
-        <x>7.0</x>
-        <y>8.0</y>
+        <x>6.0</x>
+        <y>9.0</y>
+      </components.entityComponents.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1008</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>Dirt</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LocationComponent>
+        <x>8.0</x>
+        <y>9.0</y>
+      </components.entityComponents.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <identifier>1009</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/Users/jwei528/Documents/Spring2017/voogasalad_raindrop/images/dirt.jpg</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.LabelComponent>
+        <label>Dirt</label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>0.0</imageHeight>
+        <imageWidth>0.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LocationComponent>
+        <x>9.0</x>
+        <y>9.0</y>
       </components.entityComponents.LocationComponent>
     </myComponents>
   </entity.Entity>

@@ -240,8 +240,8 @@ public class EntityHandler implements Handler {
 		System.out.println(e.getNodeName());
 
 		for (int i = 0; i < paramArray.length; i++) {
-			//System.out.println("this param: " + paramArray[i]);
-			//System.out.println("this type: " + paramArray[i].getClass());
+			System.out.println("this param: " + paramArray[i]);
+			System.out.println("this type: " + paramArray[i].getClass());
 		}
 		//System.out.println();
 		return (IComponent) reflector.createInstance(className, paramArray);

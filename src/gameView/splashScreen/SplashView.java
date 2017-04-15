@@ -48,40 +48,6 @@ public class SplashView extends AbstractViewer {
 	public void addBackground() {
 		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
 	}
-//
-//	private void setBorderPane() {
-//		Label lab = makeLabel(mySplashEntity.getDisplayName(), "splashlabel");
-//		VBox vb = new VBox();
-//		
-//	}
-
-//	private void someshit() {
-//		vb.getChildren().add(lab);
-//		lab.setFont(new Font("Arial", 30));
-//		Label lbl = makeLabel(NEWLINE + se.getInstructions(), "instructions");
-//		lbl.setFont(new Font("Verdana", 20));
-//		vb.getChildren().add(lbl);
-//		BorderPane.setAlignment(vb, Pos.CENTER);
-//		myPane.setCenter(vb);
-//		VBox playbox = new VBox(20);
-//		playbox.setId("playbox");
-//		playbox.setAlignment(Pos.CENTER);
-//		BorderPane.setMargin(playbox, new Insets(10, 30, 10, 10));
-//		Button b = makeButton(myCommands.iterator().next());
-//		playbox.getChildren().add(b);
-//		b.setOnAction(e->transitionToMain());
-//		myPane.setCenter(playbox);
-//	}
-//	private void transitionToMain() {
-//		buildMainScene();
-//		PauseTransition pause = new PauseTransition(Duration.seconds(7));
-//		pause.setOnFinished(event -> {
-//			//myPane = newScene;   
-//			myScene.setRoot(myPane);
-//		});
-//		myScene.setRoot(myPane);
-//		//pause.play();
-//	}
 
 	private void buildMainScene() {
 		Label lab = makeLabel(SPLASH_LABEL, "mainlabel");
