@@ -32,7 +32,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 				new ExtensionFilter("Text Files", "*" + getSuffix()));
 
 		File dataFile = fc.showOpenDialog(newStage);
-		if (dataFile != null) {
+		if (!dataFile.equals(null)) {
 			String dataPath = dataFile.getAbsolutePath();
 			String[] splitS = dataPath.split("[\\\\/]");
 			String firstSplit = splitS[splitS.length - 1];

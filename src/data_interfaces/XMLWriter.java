@@ -16,7 +16,7 @@ import components.entityComponents.SpriteComponent;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
 
-public class XMLWriter extends GameSavingDataTool implements Writer {
+public class XMLWriter extends GameSavingDataTool {
 
 	private void createFile(String fileName, Object data) {
 		try {

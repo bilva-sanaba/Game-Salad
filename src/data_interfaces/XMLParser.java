@@ -19,7 +19,7 @@ import java.io.*;
 
 import entity.IEntityManager;
 
-public class XMLParser implements Parser {
+public class XMLParser {
 
 	private Element loadFile(String fileName) {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

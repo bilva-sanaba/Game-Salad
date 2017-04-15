@@ -6,7 +6,7 @@ import org.w3c.dom.Element;
 
 import entity.*;
 
-public class Communicator extends GameSavingDataTool implements EncapsulatedCommunication {
+public class Communicator extends GameSavingDataTool {
 
 	private String fileName;
 
