@@ -25,6 +25,7 @@ public class SplashScreenBuilderWindow implements IWindow{
 	private String instructions;
 	private TextField gameTitleInput;
 	private TextField instructionsInput;
+	private Stage myStage;
 	
 	public SplashScreenBuilderWindow() {
 		myFilePathDisplay = new Text("");
@@ -32,6 +33,7 @@ public class SplashScreenBuilderWindow implements IWindow{
 	
 //	This shit needs to be refactored
 	public SplashEntity createEntity() {
+		myStage = new Stage();
 		myRoot.setPadding(new Insets(10));
 //		pickColor(root);
 		selectText(myRoot);
@@ -48,19 +50,19 @@ public class SplashScreenBuilderWindow implements IWindow{
 			instructions = instructionsInput.getText();
 			myStage.close();
 		});
-		root.getChildren().add(okayButton);
+		myRoot.getChildren().add(okayButton);
 		GridPane.setConstraints(okayButton, 0, 8);
 		GridPane.setColumnSpan(okayButton, 2);
-		root.getChildren().add(myFilePathDisplay);
+		myRoot.getChildren().add(myFilePathDisplay);
 		GridPane.setConstraints(myFilePathDisplay, 0, 2);
 		GridPane.setColumnSpan(myFilePathDisplay, 2);
-		root.getChildren().add(chooseImageButton);
+		myRoot.getChildren().add(chooseImageButton);
 		GridPane.setConstraints(chooseImageButton, 0, 0);
 		GridPane.setColumnSpan(chooseImageButton, 2);
-		Scene scene = new Scene(root, 350, 300);
-		stage.setScene(scene);
-		stage.setTitle("Customize Splash Screen");
-		stage.showAndWait();
+		Scene scene = new Scene(myRoot, 350, 300);
+		myStage.setScene(scene);
+		myStage.setTitle("Customize Splash Screen");
+		myStage.showAndWait();
 
 //		beneath here is a splash entity which you instantiate with all the values you just found at the x's
 		SplashEntity s = new SplashEntity(1, gameTitle, instructions, splashScreenImagePath);
