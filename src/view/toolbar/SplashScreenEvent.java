@@ -2,8 +2,7 @@ package view.toolbar;
 
 
 import entity.SplashEntity;
-import view.ViewData;
-import view.window.SplashScreenBuilderWindow;
+import view.*;
 
 public class SplashScreenEvent implements ToolBarButtonEvent {
 
@@ -16,8 +15,10 @@ public class SplashScreenEvent implements ToolBarButtonEvent {
 	@Override
 	public void event() {
 		SplashScreenBuilderWindow ssbw = new SplashScreenBuilderWindow();
-		SplashEntity s = ssbw.createEntity();
+		SplashEntity s = ssbw.openWindow();
+		System.out.println(s.getDisplayName()+"<- THIS IS THIS THING");
+
 		
-		myData.setSplashEntity(s);
+		myData.setSplashEntity(new SplashEntity(s.getID(), s.getDisplayName(), s.getInstructions(), s.getBackgroundFilePath()));
 	}
 }
