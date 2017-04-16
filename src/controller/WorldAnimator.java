@@ -121,7 +121,7 @@ public class WorldAnimator{
 
     private void step(double elapsedTime){
     	myView.step(keysPressed);
-        HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay();
+        fillMapAndDisplay();
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
