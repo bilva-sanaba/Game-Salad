@@ -14,6 +14,7 @@ import gameView.displayComponents.UIDisplayComponent;
 import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
 import gamedata.GameData;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -49,17 +50,22 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	}
 
 	public Scene getScene() {
-		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
-		System.out.println(myPane.getChildren());
-		System.out.println(myPane.getChildren().get(2).getTranslateX());
-		System.out.println(myPane.getChildren().get(2).getTranslateY());
+//		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
+//		System.out.println(myPane.getChildren());
+//		System.out.println(myPane.getChildren().get(2).getTranslateX());
+//		System.out.println(myPane.getChildren().get(2).getTranslateY());
+//		
+////
+		RunnerTest s = new RunnerTest(getView().getStage(), getView());
+		myAnimation = s.getAnimator();
+		myAnimation.setKeys(myScene);
+		myAnimation.giveEngine(s.getEngine());
+		Scene test = myAnimation.getScene();
+		myPane.getChildren().addAll(test.getRoot());
+		System.out.println(((Group) test.getRoot()).getChildren().get(0));
 		
-//
-//		myAnimation = new RunnerTest(getView().getStage()).getAnimator();
-//		myAnimation.setKeys(myScene);
-//		Scene test = myAnimation.getScene();
-//		myPane.getChildren().add(test.getRoot());
 		
+//		
 		//USED FOR CHECKING CHILDREN
 //		for (Node each:myPane.getChildren()) {
 //			if (each == test.getRoot()) {
@@ -80,8 +86,8 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	}
 
 	public void addData(GameData data) {
-		myData = data;
-		myAnimation.start(myData);
+//		myData = data;
+//		myAnimation.start(myData);
 		//myManager = new ImageManager(myData);
 	}
 

@@ -58,10 +58,15 @@ public class WorldAnimator{
     private Scene myScene;
     private Timeline animation;
     private Group root;
+
 //    private GameBuilder myGameBuilder;
+
     private Camera myCamera;
     private UIViewInterface myView;
     private	ObserverManager myObservers;
+    
+    //FOR TESTING
+    private GameEngine myEngine;
     
     private Map<Integer, ImageView> imageMap= new HashMap<Integer, ImageView>();
 
@@ -78,21 +83,21 @@ public class WorldAnimator{
 //        myGameBuilder = new GameBuilder();
 //        myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 
+
 //BELALS SHIT
 
         //myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
-        //myScene = new Scene(root,LENGTH,WIDTH);
-        //myScene = new Scene(root,LENGTH - 200,WIDTH);
+        myScene = new Scene(root,LENGTH,WIDTH);
         LocationComponent lc = myData.mainLocation();
         myCamera = new Camera(LENGTH ,myScene, lc);
         fillMapAndDisplay();
-        for (Integer id : imageMap.keySet()) {
-            root.getChildren().add(imageMap.get(id));
-        }
+//        for (Integer id : imageMap.keySet()) {
+//            root.getChildren().add(imageMap.get(id));
+//        }
 
-        myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
-        myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
-        
+//        myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
+//        myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
+//        
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                 e-> step(SECOND_DELAY));
         this.animation = new Timeline();
@@ -120,11 +125,13 @@ public class WorldAnimator{
     }*/
 
     private void step(double elapsedTime){
-    	myView.step(keysPressed);
-        HashMap<Integer, ImageView> updatedMap = fillMapAndDisplay();
+    	//myView.step(keysPressed);
+    	myEngine.handleUpdates(keysPressed);
+    	fillMapAndDisplay();
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
+        System.out.println(imageMap);
     }
 
     
@@ -163,7 +170,7 @@ public class WorldAnimator{
         for(Integer entity : entities.keySet()){
             //SequentialTransition trans = new SequentialTransition();
             removeEntity(entity,entities);
-            //updateEntity(entity,entities);
+            updateEntity(entity,entities);
             createEntity(entity,entities);
         }
     }
@@ -182,26 +189,23 @@ private void createEntity(Integer entity, Map<Integer, ImageView> entities){
             ImageView imageView = entities.get(entity);
             imageMap.put(entity, imageView);
             root.getChildren().add(imageMap.get(entity));
+        } else {
+        	
         }
     }
-  /*  private void updateEntity(Integer entity, Map<Integer, ImageView> entities){
-        if(imageMap.containsKey(entity.getID())){
-        	
-            ImageView currentImage = imageMap.get(entity.getID());
-            updateImage(currentImage, entity);
-//            PathTransition pt = moveToLocation(currentImage, entity.getLocation());
-//            trans.getChildren().add(pt);
-//            root.getChildren().add(imageMap.get(entity.getID()));
-        }
-    }*/
-   /* private void updateImage(ImageView currentImage, IRestrictedEntity re){
-    	String[] image = re.getRestrictedImagePath().split("[\\\\/]");
-        currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(image[image.length-1])));
-        currentImage.setX(re.getRestrictedLocation().getWidth());
-        currentImage.setY(re.getRestrictedLocation().getHeight());   
+    private void updateEntity(Integer entity, Map<Integer, ImageView> entities){	
+		updateImage(imageMap.get(entity), entities.get(entity));
+		//PathTransition pt = moveToLocation(currentImage, entity.getLocation());
+		//trans.getChildren().add(pt);
+		root.getChildren().add(entities.get(entity));
+
+    }
+    private void updateImage(ImageView currentImage, ImageView newImage){
+        currentImage.setX(newImage.getX());
+        currentImage.setY(newImage.getY());   
         //currentImage.setTranslateX(re.getLocation().getX()*50-475);
 		//currentImage.setTranslateY(re.getLocation().getY()*50-175);
-    }*/
+    }
 
 
     private FadeTransition makeFade(ImageView imageView){
@@ -231,6 +235,12 @@ private void createEntity(Integer entity, Map<Integer, ImageView> entities){
     public void clearRoot(){
     	imageMap.clear();
     	root.getChildren().clear();
+    }
+    
+    
+    //FOR RUNNER TESTING
+    public void giveEngine(GameEngine f) {
+    	myEngine = f;
     }
     
 }

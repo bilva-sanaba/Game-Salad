@@ -47,8 +47,8 @@ import gamedata.GameData;
  *
  */
 public class GameEngine implements GameEngineInterface {
-	private EntityManager myEntityManager = new EntityManager(new ArrayList<Entity>()); 
-	private List<AbstractEngine> myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager));
+	private EntityManager myEntityManager;// = new EntityManager(new ArrayList<Entity>()); 
+	private List<AbstractEngine> myEngines;// = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager));
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	private Entity mainCharacter;
@@ -90,7 +90,7 @@ public class GameEngine implements GameEngineInterface {
 	}
 
 	//TODO: Delete once testing is over
-	public void dummyLoad(){
+	public GameData dummyLoad(){
 //		Entity t = new Entity(40);
 //		t.addComponent(new LocationComponent(0,200));
 //		t.addComponent(new VelocityComponent(0,0));
@@ -118,7 +118,22 @@ public class GameEngine implements GameEngineInterface {
 //		g.addComponent(new SideCollisionComponent(CollisionComponentType.Bottom, new BlockTopRegularCollision()));
 //		g.addComponent(new SideCollisionComponent(CollisionComponentType.Left, new BlockTopRegularCollision()));
 //		g.addComponent(new SideCollisionComponent(CollisionComponentType.Right, new BlockTopRegularCollision()));
-//		Collection<Entity> e = new ArrayList<Entity>();
+		Collection<Entity> e = new ArrayList<Entity>();
+		Entity x = new Entity(10);
+		x.addComponent(new LocationComponent(50,450));
+		x.addComponent(new SpriteComponent(("dirt.jpg")));
+
+		ImagePropertiesComponent xc = new ImagePropertiesComponent();
+		xc.setHeight(50);
+		xc.setWidth(50);
+		x.addComponent(xc);
+
+		x.addComponent(new VelocityComponent(1,0));
+
+		x.addComponent(new LabelComponent("Block"));
+		x.addComponent(new KeyInputComponent());
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
+		e.add(x);
 //		for (int i=0;i<20;i++){
 //			Entity x = new Entity(i);
 //			x.addComponent(new LocationComponent(i*50,450));
@@ -136,11 +151,12 @@ public class GameEngine implements GameEngineInterface {
 //			e.add(x);
 //		}
 //		e.add(g);e.add(t);
-//
-//		myEntityManager = new EntityManager(e);
-//		initializeRestrictedEntities();
+		
+		myEntityManager = new EntityManager(e);
+		
 //		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
-
+		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager));
+		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
 	}
 
 	public IEntity getMainCharacter(){

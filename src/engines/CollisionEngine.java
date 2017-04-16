@@ -23,7 +23,7 @@ import javafx.scene.input.KeyCode;
  * @author Bilva, Hamsa
  *
  */
-public class CollisionEngine extends AbstractEngine implements ICollision{
+public class CollisionEngine extends AbstractEngine {
 	
 	private List<ISubEngine> subEngines;
 	private IEntityManager entManager;
