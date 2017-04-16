@@ -12,10 +12,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
-public abstract class UIDisplayComponent  {
+public abstract class UIDisplayComponent implements IDisplayComponent {
 
 	private String myDisplayName;
-	protected GameConfig gameConfig;
+	private GameConfig gameConfig;
 	
 	public UIDisplayComponent(String name) {
 		myDisplayName = name;

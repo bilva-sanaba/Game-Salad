@@ -2,6 +2,7 @@
 package gameView;
 
 import java.awt.Dimension;
+import java.util.Set;
 
 import data_interfaces.XMLException;
 import entity.SplashEntity;
@@ -13,12 +14,14 @@ import gameView.gameScreen.SpecificGameSplashView;
 import com.sun.jmx.snmp.Timestamp;
 
 import gameView.splashScreen.SplashView;
+import gameView_interfaces.UIViewInterface;
+import gamedata.GameData;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import view_interfaces.UIViewInterface;
 
 
 public class UIView implements UIViewInterface {
@@ -33,14 +36,14 @@ public class UIView implements UIViewInterface {
 	private ControllerInterface myController;
 	private SplashView mySplash;
 	private GameScreen myGameScene;
-	private IRestrictedEntityManager myEntities; 
+	private GameData myData; 
 	private WorldAnimator myAnimation; 
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
 		s.setTitle(STAGE_TITLE);
 		myController = controller;
-		myAnimation = new WorldAnimator();
+		myAnimation = new WorldAnimator(this);
 		mySplash = new SplashView(this);
 		myGameScene = new GameScreen(this, myAnimation);
 		//runGame();//getSplashScreen();
@@ -70,7 +73,7 @@ public class UIView implements UIViewInterface {
 	
 	public void loadGame(String file) {
 		//addEntities(myController.loadNewGame(file));
-		//myController.loadNewGame(file);
+		myGameScene.addData(myController.loadNewGame(file));
 		//myGameScene.addGameEngine(myController.getEngine());
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
@@ -108,13 +111,13 @@ public class UIView implements UIViewInterface {
 		return myStage;
 	}
 	
-	public void addEntities(IRestrictedEntityManager entity) {
-		myEntities = entity;
-		myGameScene.addEntity(entity);
+	public void addData(GameData data) {
+		myData = data;
+		myGameScene.addData(data);
 	}
 	
-	public Scene getGameScene() {
-		return myAnimation.getScene();
+	public void step(Set<KeyCode> keysPressed) {
+		myController.step(keysPressed);
 	}
 
 }

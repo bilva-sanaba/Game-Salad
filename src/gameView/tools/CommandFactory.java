@@ -21,6 +21,12 @@ public class CommandFactory {
 		myKey = resource;
 	} 
 	
+	/**
+	 * Returns all reflected made commands for a given resource
+	 * @param s - the AbstractViewer interface that all commands will be given to call
+	 * @return
+	 */
+	
 	public Collection<AbstractCommand> getCommands(ICommandView s) {
 		Collection<AbstractCommand> commands = new ArrayList<AbstractCommand>();
 		String buttons = myBundle.getString(myKey); 

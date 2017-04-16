@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.*;
 
 import components.entityComponents.ComponentType;
-import components.entityComponents.LocationComponent;
+import components.movementcomponents.LocationComponent;
 import data_interfaces.*;
 import entity.*;
 

@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
@@ -12,11 +14,11 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.XYComponent;
 import entity.restricted.IRestrictedEntity;
-import entity.restricted.RestrictedEntity;
-import entity.restricted.RestrictedEntityManager;
+import entity.restricted.IRestrictedEntityManager;
+
 import gameView.Coordinate;
 
-public class EntityManager implements IEntityManager {
+public class EntityManager extends Observable implements IEntityManager, IRestrictedEntityManager  {
 	private Collection<Entity> myEntities;
 
 	public EntityManager(Collection<Entity> entities){
@@ -32,7 +34,7 @@ public class EntityManager implements IEntityManager {
 	public Map<Integer, IComponent> getCertainComponents(
 			ComponentType certainComponent) {
 		Map<Integer, IComponent> certainComponents = new HashMap<Integer, IComponent>();
-		for (Entity e : myEntities) {
+		for (IEntity e : myEntities) {
 
 			certainComponents.put(e.getID(), e.getComponent(certainComponent));
 		}
@@ -46,43 +48,30 @@ public class EntityManager implements IEntityManager {
 		}
 		return copy;
 	}
-
-	@Override
-	public RestrictedEntityManager getRestricted() {
-		Collection<RestrictedEntity> certainComponents = new ArrayList<RestrictedEntity>();
-		for (Entity e : myEntities){
-			certainComponents.add( new RestrictedEntity(e.getID(),new Coordinate((XYComponent) e.getComponent(ComponentType.Location)),
-					((SpriteComponent) e.getComponent(ComponentType.Sprite)).getClassPath(), (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties)));
-
-		}
-		return new RestrictedEntityManager(certainComponents);
-	}
-
-	@Override
-	public Map<IEntity, IRestrictedEntity> getEntityMap() {
-		Map<IEntity, IRestrictedEntity> entityToRestricted = new HashMap<IEntity, IRestrictedEntity>();
-		
-		for (Entity e : myEntities) {
-			if (e.getComponent(ComponentType.Location)!=null &&e.getComponent(ComponentType.Sprite)!=null){
-			entityToRestricted.put(e,
-					new RestrictedEntity(e.getID(), new Coordinate(
-							(XYComponent) e
-									.getComponent(ComponentType.Location)),
-							((SpriteComponent) e
-									.getComponent(ComponentType.Sprite))
-									.getClassPath(),(ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties)));
-
-		}
-		;}
-		return entityToRestricted;
-	}
 	
-	public Entity getEntityByID(int ID){
-		for(Entity currentEntity: myEntities){
+	public IEntity getEntityByID(int ID){
+		for(IEntity currentEntity: myEntities){
 			if(currentEntity.getID() == ID){
 				return currentEntity;
 			}
 		}
 		return null;
 	}
+
+	@Override
+	public Collection<IRestrictedEntity> getRestrictedEntities() {
+		Collection<IRestrictedEntity> restricted = new ArrayList<IRestrictedEntity>();
+
+		for (IEntity e : myEntities){
+
+			restricted.add((IRestrictedEntity) e);
+		}
+		return restricted;
+	}
+
+	public Collection<IEntity> getEntities() {
+		// TODO Auto-generated method stub
+		return myEntities;
+	}
+
 }

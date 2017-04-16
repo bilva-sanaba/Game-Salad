@@ -4,18 +4,17 @@ package engines;
 import java.util.*;
 
 import components.*;
-import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
-import components.entityComponents.LocationComponent;
-import components.entityComponents.VelocityComponent;
 import components.entityComponents.XYComponent;
+import components.movementcomponents.AccelerationComponent;
+import components.movementcomponents.LocationComponent;
+import components.movementcomponents.VelocityComponent;
 import entity.*;
 import entity.restricted.*;
 import javafx.scene.input.KeyCode;
 
 public class NewMovementEngine extends AbstractEngine{
 	
-	private RestrictedEntityFactory ref = new RestrictedEntityFactory();
 	
 	public NewMovementEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
@@ -26,19 +25,17 @@ public class NewMovementEngine extends AbstractEngine{
 		return null;
 	}
 
-	public Collection<IEntity> update(Collection<KeyCode> keys) {
+	public void update(Collection<KeyCode> keys) {
 		Collection<IEntity> changed = new ArrayList<IEntity>();
-		Map<IEntity, IRestrictedEntity> entityMap = getEManager().getEntityMap();
-		for (IEntity e: entityMap.keySet()) {
+		for (IEntity e: getEManager().getEntities()) {
 			if (hasComponent(e,ComponentType.Location)) {
-				updateAllValues(e, entityMap, changed);
+				updateAllValues(e);
 			}
 			
 		}
-		return changed;
 	}
 
-	private void updateAllValues(IEntity e, Map<IEntity, IRestrictedEntity> entityMap, Collection<IEntity> changed) {
+	private void updateAllValues(IEntity e) {
 		if (hasComponent(e, ComponentType.Velocity)) {
 			updateLocation(e);
 			if (hasComponent(e, ComponentType.Acceleration)) {
@@ -47,9 +44,9 @@ public class NewMovementEngine extends AbstractEngine{
 			}
 			
 			
-			placeInMap(entityMap, e);
-			//TODO: fix cast issue
-			changed.add((Entity) e);
+//			placeInMap(entityMap, e);
+//			//TODO: fix cast issue
+//			changed.add((Entity) e);
 		}
 	}
 	
@@ -57,6 +54,8 @@ public class NewMovementEngine extends AbstractEngine{
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		lc.setXY(lc.getX() + vc.getX(), lc.getY() + vc.getY());
+		e.changed(null);
+		
 //		if (lc.getY()>200){
 //			vc.setY(0);
 //			ac.setY(0);
@@ -101,7 +100,7 @@ public class NewMovementEngine extends AbstractEngine{
 		return (e.getComponent(c)!=null);
 	}
 	
-	private void placeInMap (Map <IEntity, IRestrictedEntity> entityMap, IEntity e) {
-		entityMap.put(e, ref.createRestrictedEntity(e));
-	}
+//	private void placeInMap (Map <IEntity, IRestrictedEntity> entityMap, IEntity e) {
+//		entityMap.put(e, ref.createRestrictedEntity(e));
+//	}
 }
