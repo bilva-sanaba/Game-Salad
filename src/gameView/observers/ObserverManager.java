@@ -40,12 +40,12 @@ public class ObserverManager {
     }
 	
 	private void updateImageView(IRestrictedEntity e) {
-		 myEntities.get(e.getID()).setX(e.getRestrictedLocation().getWidth());
-         myEntities.get(e.getID()).setY(e.getRestrictedLocation().getHeight());
+//		 myEntities.get(e.getID()).setX(e.getRestrictedLocation().getWidth());
+//         myEntities.get(e.getID()).setY(e.getRestrictedLocation().getHeight());
          myEntities.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
          myEntities.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
-		//imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
-		//imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
+         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
+         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()*50-175);
 	}
 	
 	public void updateMap(IRestrictedEntity arg) {

@@ -54,7 +54,7 @@ public class NewMovementEngine extends AbstractEngine{
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		lc.setXY(lc.getX() + vc.getX(), lc.getY() + vc.getY());
-		e.changed(null);
+		((IRestrictedEntity) e).changed(null);
 		
 //		if (lc.getY()>200){
 //			vc.setY(0);

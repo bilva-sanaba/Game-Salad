@@ -17,8 +17,6 @@ import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
 import entity.restricted.IRestrictedEntityManager;
-import entity.restricted.RestrictedEntity;
-import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
 /**

@@ -15,6 +15,7 @@ import components.entityComponents.SpriteComponent;
 import components.movementcomponents.LocationComponent;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
+import entity.IEntity;
 
 public class XMLWriter extends GameSavingDataTool {
 
@@ -37,7 +38,7 @@ public class XMLWriter extends GameSavingDataTool {
 	 * @param gameData
 	 *            the data which should be saved
 	 */
-	public void writeFile(String fileName, Collection<Entity> gameData) {
+	public void writeFile(String fileName, Collection<IEntity> gameData) {
 		ClassLoader loader = new LocalClassLoader();
 		XStream serializer = new XStream(new DomDriver());
 		String ret;
