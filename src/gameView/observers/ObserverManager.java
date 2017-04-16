@@ -24,8 +24,8 @@ public class ObserverManager {
 		createMap(entity.getRestrictedEntities());
 	}
 	
-	public Collection<ImageView> getCollection() {
-		return myEntities.values();
+	public Map<Integer, ImageView> getEntityMap() {
+		return myEntities;
 	}
 	
 	private void createMap(Collection<IRestrictedEntity> manager) {
@@ -40,8 +40,8 @@ public class ObserverManager {
     }
 	
 	private void updateImageView(IRestrictedEntity e) {
-		 myEntities.get(e.getID()).setX(e.getLocation().getWidth());
-         myEntities.get(e.getID()).setY(e.getLocation().getHeight());
+		 myEntities.get(e.getID()).setX(e.getRestrictedLocation().getWidth());
+         myEntities.get(e.getID()).setY(e.getRestrictedLocation().getHeight());
          myEntities.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
          myEntities.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
 		//imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);

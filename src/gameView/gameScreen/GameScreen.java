@@ -39,7 +39,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	public GameScreen(UIView view, WorldAnimator animation) {
 		super(view);
 		myCommands = getCommands(myName);
-		//myAnimation = animation;
+		myAnimation = animation;
 		initializeBoxes();
 		buildMainScene();
 		myBP.applyCss();
@@ -49,16 +49,16 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	}
 
 	public Scene getScene() {
-//		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
-//		System.out.println(myPane.getChildren());
-//		System.out.println(myPane.getChildren().get(2).getTranslateX());
-//		System.out.println(myPane.getChildren().get(2).getTranslateY());
+		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
+		System.out.println(myPane.getChildren());
+		System.out.println(myPane.getChildren().get(2).getTranslateX());
+		System.out.println(myPane.getChildren().get(2).getTranslateY());
 		
 //
-		myAnimation = new RunnerTest(getView().getStage()).getAnimator();
-		myAnimation.setKeys(myScene);
-		Scene test = myAnimation.getScene();
-		myPane.getChildren().add(test.getRoot());
+//		myAnimation = new RunnerTest(getView().getStage()).getAnimator();
+//		myAnimation.setKeys(myScene);
+//		Scene test = myAnimation.getScene();
+//		myPane.getChildren().add(test.getRoot());
 		
 		//USED FOR CHECKING CHILDREN
 //		for (Node each:myPane.getChildren()) {

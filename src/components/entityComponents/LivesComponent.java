@@ -1,8 +1,8 @@
-package components.hudComponents;
+package components.entityComponents;
 
-import components.IHUDComponent;
+import components.IComponent;
 
-public class LivesComponent implements IHUDComponent {
+public class LivesComponent implements IComponent {
 	
 	private int lives;
 	
@@ -21,12 +21,12 @@ public class LivesComponent implements IHUDComponent {
 		return lives;
 	}
 	@Override
-	public HUDComponentType getComponentType() {
-		return HUDComponentType.Lives;
+	public ComponentType getComponentType() {
+		return ComponentType.Lives;
 	}
 
 	@Override
-	public IHUDComponent newCopy() {
+	public IComponent newCopy() {
 		return new LivesComponent(getLives());
 	}
 }

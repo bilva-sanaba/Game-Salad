@@ -9,8 +9,10 @@ import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
-import components.entityComponents.LocationComponent;
+
 import components.entityComponents.SpriteComponent;
+import components.movementcomponents.LocationComponent;
+
 import entity.restricted.IRestrictedEntity;
 import gameView.Coordinate;
 import javafx.beans.InvalidationListener;
@@ -79,9 +81,10 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	}
 
 	@Override
-	public Dimension2D getLocation() {
+	public Dimension2D getRestrictedLocation() {
 		LocationComponent lc = (LocationComponent) getComponent(ComponentType.Location);
 		return new Dimension2D(lc.getX(), lc.getY());
+
 	}
 
 	@Override
@@ -92,8 +95,17 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 
 	@Override
 	public Dimension2D getRestrictedIPComponent() {
-		ImagePropertiesComponent ic = (ImagePropertiesComponent) getComponent(ComponentType.Location);
-		return new Dimension2D(ic.getWidth(), ic.getHeight());
+
+		ImagePropertiesComponent ip = (ImagePropertiesComponent) getComponent(ComponentType.Location);
+		Dimension2D location = new Dimension2D(ip.getWidth(), ip.getHeight());
+		return location;
 	}
 
+	@Override
+	public void changed(Object o) {
+		setChanged();
+		notifyObservers(o);
+		// TODO Auto-generated method stub
+		
+	}
 }

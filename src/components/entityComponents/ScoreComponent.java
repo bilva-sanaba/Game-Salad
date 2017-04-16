@@ -1,8 +1,8 @@
-package components.hudComponents;
+package components.entityComponents;
 
-import components.IHUDComponent;
+import components.IComponent;
 
-public class ScoreComponent implements IHUDComponent {
+public class ScoreComponent implements IComponent {
 
 	private int score;
 	
@@ -22,12 +22,12 @@ public class ScoreComponent implements IHUDComponent {
 		return score;
 	}
 	@Override
-	public HUDComponentType getComponentType() {
-		return HUDComponentType.Score;
+	public ComponentType getComponentType() {
+		return ComponentType.Score;
 	}
 
 	@Override
-	public IHUDComponent newCopy() {
+	public IComponent newCopy() {
 		return new ScoreComponent(getScore());
 	}
 
