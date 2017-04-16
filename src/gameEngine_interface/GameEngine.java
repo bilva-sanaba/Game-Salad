@@ -128,7 +128,7 @@ public class GameEngine implements GameEngineInterface {
 		xc.setWidth(50);
 		x.addComponent(xc);
 
-		x.addComponent(new VelocityComponent(10,0));
+		x.addComponent(new VelocityComponent(0,0));
 
 		x.addComponent(new LabelComponent("Block"));
 		x.addComponent(new KeyInputComponent());
@@ -157,7 +157,7 @@ public class GameEngine implements GameEngineInterface {
 		myEntityManager = new EntityManager(e);
 		
 //		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager));
+		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
 	}
 

@@ -21,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.image.ImageView;
 
 public class GameScreen extends AbstractViewer implements IGameScreenDisplays, IGameScreenEntity {
 
@@ -50,19 +51,22 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	}
 
 	public Scene getScene() {
+		
+		//UNCOMMENT FOR NORMAL
 //		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
 //		System.out.println(myPane.getChildren());
 //		System.out.println(myPane.getChildren().get(2).getTranslateX());
 //		System.out.println(myPane.getChildren().get(2).getTranslateY());
 //		
 ////
+		
+		//UNCOMMENT FOR RUNNERS TEST
 		RunnerTest s = new RunnerTest(getView().getStage(), getView());
 		myAnimation = s.getAnimator();
 		myAnimation.setKeys(myScene);
 		myAnimation.giveEngine(s.getEngine());
 		Scene test = myAnimation.getScene();
-		myPane.getChildren().addAll(test.getRoot());
-		System.out.println(((Group) test.getRoot()).getChildren().get(0));
+		myPane.getChildren().addAll(test.getRoot().getChildrenUnmodifiable());
 		
 		
 //		
@@ -86,8 +90,8 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	}
 
 	public void addData(GameData data) {
-//		myData = data;
-//		myAnimation.start(myData);
+		myData = data;
+		myAnimation.start(myData);
 		//myManager = new ImageManager(myData);
 	}
 

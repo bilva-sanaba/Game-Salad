@@ -34,15 +34,13 @@ public class ObserverManager {
             String[] test = e.getRestrictedImagePath().split("[\\\\/]");
             myEntities.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
             updateImageView(e);
-            //imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
-			//imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
         }
     }
 	
 	private void updateImageView(IRestrictedEntity e) {
 		
-		 myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth());
-         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight());
+		 myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()-475);
+         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()-175);
          myEntities.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
          myEntities.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
          updateImage(e);
