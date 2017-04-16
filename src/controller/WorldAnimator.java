@@ -89,9 +89,9 @@ public class WorldAnimator{
         LocationComponent lc = myData.mainLocation();
         myCamera = new Camera(LENGTH ,myScene, lc);
         fillMapAndDisplay();
-//        for (Integer id : imageMap.keySet()) {
-//            root.getChildren().add(imageMap.get(id));
-//        }
+        for (Integer id : imageMap.keySet()) {
+            root.getChildren().add(imageMap.get(id));
+        }
 
 //        myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 //        myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
@@ -166,11 +166,11 @@ public class WorldAnimator{
     	Map<Integer, ImageView> entities = myObservers.getEntityMap();
         //HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
         for(Integer entity : entities.keySet()){
-            //SequentialTransition trans = new SequentialTransition();
-            removeEntity(entity,entities);
-            //updateEntity(entity,entities);
-            createEntity(entity,entities);
-        }
+		  //SequentialTransition trans = new SequentialTransition();
+		  removeEntity(entity,entities);
+		  updateEntity(entity,entities);
+		  createEntity(entity,entities);
+		}
     }
     
     private void removeEntity(Integer entity, Map<Integer, ImageView> entities){
@@ -182,30 +182,30 @@ public class WorldAnimator{
         }
     }
 
-private void createEntity(Integer entity, Map<Integer, ImageView> entities){
-        if (!imageMap.containsKey(entity)){
-            ImageView imageView = entities.get(entity);
-            imageMap.put(entity, imageView);
-            root.getChildren().add(imageMap.get(entity));
-        } else {
-        	
-        }
-    }
+	private void createEntity(Integer entity, Map<Integer, ImageView> entities){
+	        if (!imageMap.containsKey(entity)){
+	            ImageView imageView = new ImageView();
+	            ImageView old = entities.get(entity);
+	            updateImage(imageView, old);
+	            imageMap.put(entity, imageView);
+	            //root.getChildren().add(imageMap.get(entity));
+	        }
+	  }
     private void updateEntity(Integer entity, Map<Integer, ImageView> entities){
-        	
-		ImageView currentImage = imageMap.get(entity);
-		ImageView updatedImage = entities.get(entity);
-		updateImage(currentImage, updatedImage);
-		PathTransition pt = moveToLocation(currentImage, entity.getLocation());
-		trans.getChildren().add(pt);
-		root.getChildren().add(imageMap.get(entity.getID()));
+        if (imageMap.containsKey(entity)) {
+        	ImageView currentImage = imageMap.get(entity);
+    		ImageView updatedImage = entities.get(entity);
+    		updateImage(currentImage, updatedImage);
+//    		PathTransition pt = moveToLocation(currentImage, entity.getLocation());
+//    		trans.getChildren().add(pt);
+//    		root.getChildren().add(imageMap.get(entity.getID()));
+        }
 
     }
     private void updateImage(ImageView currentImage, ImageView re){
-    	String[] image = re.getRestrictedImagePath().split("[\\\\/]");
-        currentImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(image[image.length-1])));
-        currentImage.setX(re.getRestrictedLocation().getWidth());
-        currentImage.setY(re.getRestrictedLocation().getHeight());   
+        currentImage.setImage(re.getImage());
+        currentImage.setTranslateX(re.getTranslateX());
+        currentImage.setTranslateY(re.getTranslateY());   
         //currentImage.setTranslateX(re.getLocation().getX()*50-475);
 		//currentImage.setTranslateY(re.getLocation().getY()*50-175);
     }

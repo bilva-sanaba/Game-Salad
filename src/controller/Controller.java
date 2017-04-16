@@ -51,6 +51,8 @@ public class Controller implements ControllerInterface {
 	@Override
 	public GameData loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
+		
+		
 		//GameData gameData = myGameEngine.loadData(c); //c
 		//myGameEngine.dummyLoad();
 		return null;//gameData;
