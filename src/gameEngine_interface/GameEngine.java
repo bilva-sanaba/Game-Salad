@@ -120,7 +120,7 @@ public class GameEngine implements GameEngineInterface {
 //		g.addComponent(new SideCollisionComponent(CollisionComponentType.Right, new BlockTopRegularCollision()));
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(10);
-		x.addComponent(new LocationComponent(50,450));
+		x.addComponent(new LocationComponent(500,450));
 		x.addComponent(new SpriteComponent(("dirt.jpg")));
 
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
@@ -128,11 +128,13 @@ public class GameEngine implements GameEngineInterface {
 		xc.setWidth(50);
 		x.addComponent(xc);
 
-		x.addComponent(new VelocityComponent(1,0));
+		x.addComponent(new VelocityComponent(10,0));
 
 		x.addComponent(new LabelComponent("Block"));
 		x.addComponent(new KeyInputComponent());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, "RIGHT");
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");
 		e.add(x);
 //		for (int i=0;i<20;i++){
 //			Entity x = new Entity(i);
