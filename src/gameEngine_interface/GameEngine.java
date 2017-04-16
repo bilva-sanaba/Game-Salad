@@ -67,7 +67,7 @@ public class GameEngine implements GameEngineInterface {
 		GameData dg = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc);
 		return dg;
 	}
-	public Collection<Entity> save(){
+	public Collection<IEntity> save(){
 
 		return myEntityManager.copy();
 	}

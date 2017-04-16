@@ -58,7 +58,7 @@ public class WorldAnimator{
     private Scene myScene;
     private Timeline animation;
     private Group root;
-    private GameBuilder myGameBuilder;
+//    private GameBuilder myGameBuilder;
     private Camera myCamera;
     private UIViewInterface myView;
     private	ObserverManager myObservers;
@@ -75,7 +75,7 @@ public class WorldAnimator{
         root = new Group();
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
         myObservers = new ObserverManager(this, restrictedEntityManager);
-        myGameBuilder = new GameBuilder();
+//        myGameBuilder = new GameBuilder();
 //        myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 
 //BELALS SHIT
