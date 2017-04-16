@@ -84,6 +84,6 @@ public class Controller implements ControllerInterface {
 	}
 	
 	public void step(Set<KeyCode> keysPressed ){
-        Collection<RestrictedEntity> updatedEntities = myGameEngine.handleUpdates(keysPressed);
+        myGameEngine.handleUpdates(keysPressed);
     }
 }

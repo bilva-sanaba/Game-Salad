@@ -19,10 +19,10 @@ import entity.restricted.IRestrictedEntityManager;
 import gameView.Coordinate;
 
 public class EntityManager extends Observable implements IEntityManager, IRestrictedEntityManager  {
-	private Collection<IEntity> myEntities;
+	private Collection<Entity> myEntities;
 
 	public EntityManager(Collection<Entity> entities){
-		myEntities = new ArrayList<IEntity>();
+		myEntities = new ArrayList<Entity>();
 		for (Entity e: entities) {
 			if (e.getComponent(ComponentType.Location) != null) {
 				myEntities.add(e);
@@ -40,10 +40,10 @@ public class EntityManager extends Observable implements IEntityManager, IRestri
 		}
 		return certainComponents;
 	}
-	public Collection<IEntity> copy(){
-		Collection<IEntity> copy = new ArrayList<IEntity>();
-		for (IEntity e: myEntities){
-			IEntity entCopy = e.clone();
+	public Collection<Entity> copy(){
+		Collection<Entity> copy = new ArrayList<Entity>();
+		for (Entity e: myEntities){
+			Entity entCopy = e.clone();
 			copy.add(e);
 		}
 		return copy;

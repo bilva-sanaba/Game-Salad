@@ -25,6 +25,6 @@ public interface GameEngineInterface {
 	public void handleUpdates(
 			Collection<KeyCode> keysPressed);
 	
-	public Collection<IEntity> save();
+	public Collection<Entity> save();
 
 }
