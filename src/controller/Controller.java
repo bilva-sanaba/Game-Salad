@@ -51,15 +51,15 @@ public class Controller implements ControllerInterface {
 	@Override
 	public GameData loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
-		GameData gameData = myGameEngine.loadData(c); //c
+		//GameData gameData = myGameEngine.loadData(c); //c
 		//myGameEngine.dummyLoad();
-		return gameData;
+		return null;//gameData;
 	}
 
 	@Override
 	public void resetCurrentGame() throws XMLException {
 		if(!filePath.equals(null)){
-			myGameEngine.loadData(new Communicator(filePath));;
+			//myGameEngine.loadData(new Communicator(filePath));;
 		}
 		else{
 			throw new XMLException(String.format("No current game"));

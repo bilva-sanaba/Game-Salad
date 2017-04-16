@@ -89,14 +89,14 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 
 	@Override
 	public String getRestrictedImagePath() {
-		SpriteComponent sc = (SpriteComponent) getComponent(ComponentType.Location);
+		SpriteComponent sc = (SpriteComponent) getComponent(ComponentType.Sprite);
 		return sc.getClassPath();
 	}
 
 	@Override
 	public Dimension2D getRestrictedIPComponent() {
 
-		ImagePropertiesComponent ip = (ImagePropertiesComponent) getComponent(ComponentType.Location);
+		ImagePropertiesComponent ip = (ImagePropertiesComponent) getComponent(ComponentType.ImageProperties);
 		Dimension2D location = new Dimension2D(ip.getWidth(), ip.getHeight());
 		return location;
 	}
