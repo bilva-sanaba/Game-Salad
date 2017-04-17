@@ -31,10 +31,10 @@ public class PaintWindow implements Paint{
 	private void buildDrawingArea() {
 		myDrawer = new Pen();
 		myCanvas = new DrawingCanvas(myDrawer);
-		myMenu = new DrawingMenu(myCanvas);
+		myMenu = new Menu(myCanvas);
 	    myToolbar = new DrawingToolBar(myDrawer);
 	    root.getChildren().addAll(myCanvas.getRegion(),
-	    		myMenu.getRegion(), myToolBar.getRegion());
+	    		myMenu.returnRegion(), myToolBar.getRegion());
 	}
 
 	@Override
