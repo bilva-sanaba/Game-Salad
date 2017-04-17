@@ -26,9 +26,9 @@ public class Menu implements IMenu {
 	
 	private ToolBar myToolBar;
 	private final static String PREFIX = "images/";
-	private ICanvas myCanvas;
+	private Canvas myCanvas;
 
-	public Menu(ICanvas myCanvas2) {
+	public Menu(Canvas myCanvas2) {
 		myCanvas = myCanvas2;
 		myToolBar = new ToolBar();
 		Button save = new Button();
@@ -45,21 +45,23 @@ public class Menu implements IMenu {
 		return myToolBar;
 	}
 	
-	private void saveEvent() {
+	private Image saveEvent() {
+		RenderedImage ri;
 		TextInputDialog tid = new TextInputDialog();
 		tid.setTitle("Saving File");
 		tid.setHeaderText("Please choose a name for your image: ");
 		Optional<String> result = tid.showAndWait();
 		try {
-			WritableImage wi = new WritableImage((int)myCanvas.getHeight(), (int)myCanvas.getWidth());
-			myCanvas.snapshot(null, wi);
-			RenderedImage ri = SwingFXUtils.fromFXImage(wi, null);
+			WritableImage wi = new WritableImage((int)myCanvas.getWidth(), (int)myCanvas.getHeight());
+			myCanvas.snapshot(wi);
+			ri = SwingFXUtils.fromFXImage(wi, null);
 			ImageIO.write(ri, ".png", new File(PREFIX + result.get()));
 		} catch (NoSuchElementException e) {
 			return;
 		} catch (IOException e) {
 			return;
 		}
+		return (Image) ri;
 	}
 
 	private void loadEvent() {
@@ -76,6 +78,6 @@ public class Menu implements IMenu {
 		img = new Image(dataFile.getAbsolutePath());
 
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
-		gc.drawImage(img, 0, 0, myCanvas.getHeight(), myCanvas.getWidth());
+		gc.drawImage(img, 0, 0, myCanvas.getWidth(), myCanvas.getHeight());
 	}
 }
