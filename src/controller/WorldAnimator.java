@@ -117,14 +117,12 @@ public class WorldAnimator{
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
-        System.out.println(imageMap);
     }
 
     
     private void handleKeyReleased(KeyCode keyCode) {
         keysReleased.add(keyCode);
         keysPressed.remove(keyCode);
-        System.out.println("IN WORLD ANIMATOR" + keyCode);
     }
 
     private void handleKeyPressed(KeyCode keyCode) {

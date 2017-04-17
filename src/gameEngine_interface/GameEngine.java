@@ -132,34 +132,33 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new AccelerationComponent(0,0));
 
 
-		x.addComponent(new LabelComponent("Block"));
+		x.addComponent(new LabelComponent("grrraah"));
 		x.addComponent(new KeyInputComponent());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, "RIGHT");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");
 		e.add(x);
-//		for (int i=0;i<20;i++){
-//			Entity x = new Entity(i);
-//			x.addComponent(new LocationComponent(i*50,450));
-//			x.addComponent(new SpriteComponent(("dirt.jpg")));
-//
-//			ImagePropertiesComponent xc = new ImagePropertiesComponent();
-//			xc.setHeight(50);
-//			xc.setWidth(50);
-//			x.addComponent(xc);
-//
-//			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision());
-//			x.addComponent(scc);
-//
-//			x.addComponent(new LabelComponent("Block"));
-//			e.add(x);
-//		}
-//		e.add(g);e.add(t);
+		for (int i=0;i<20;i++){
+			Entity p = new Entity(i);
+			p.addComponent(new LocationComponent(i*50,450));
+			p.addComponent(new SpriteComponent(("dirt.jpg")));
+
+			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
+			xpc.setHeight(50);
+			xpc.setWidth(50);
+			p.addComponent(xc);
+
+			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision());
+			p.addComponent(scc);
+
+			p.addComponent(new LabelComponent("Block"));
+			e.add(p);
+		}
 		
 		myEntityManager = new EntityManager(e);
 		
 //		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
+		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
 	}
 
