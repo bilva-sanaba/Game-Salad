@@ -39,11 +39,16 @@ public class ObserverManager {
 	
 	private void updateImageView(IRestrictedEntity e) {
 		
-		 myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()-475);
-         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()-175);
+		
+		
          myEntities.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
          myEntities.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
          updateImage(e);
+         //UNCOMMENT FOR TEST RUNNER
+         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()-475);
+         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()-175);
+         
+         //UNCOMMENT FOR NORMAL
 //         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
 //         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()*50-175);
  		
@@ -52,6 +57,8 @@ public class ObserverManager {
 	private void updateImage(IRestrictedEntity e) {
 		if (!(e.getRestrictedImagePath().equals(""))) {
 			myEntities.get(e.getID()).setImage(makeImage(e));
+		} else {
+			myEntities.put(e.getID(), null);
 		}
 		
 	}
@@ -67,8 +74,13 @@ public class ObserverManager {
         updateImageView(arg);
 	}
 	
-	public void updateEntity(IRestrictedEntity arg) {
-		updateImageView(arg);
+	public void updateEntity(IRestrictedEntity observable, IRestrictedEntity arg) {
+	
+		if (arg != null) {
+			updateImageView(observable);
+		} else {
+			myEntities.put(observable.getID(), null);
+		}
 	}
 	
 	private void setObservers(IRestrictedEntityManager entity) {

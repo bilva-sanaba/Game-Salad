@@ -13,7 +13,7 @@ public class RunnerTest {
 		myWorld = new WorldAnimator(view);
 		myEngine = new GameEngine();
 		//ge.dummyLoad();
-		myWorld.start(myEngine.dummyLoad());
+		//myWorld.start(myEngine.dummyLoad());
 	}
 	
 	public WorldAnimator getAnimator() {

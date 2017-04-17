@@ -155,7 +155,7 @@ public class GameEngine implements GameEngineInterface {
 		myEntityManager = new EntityManager(e);
 		
 //		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager));
+		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
 	}
 

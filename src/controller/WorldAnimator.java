@@ -33,6 +33,7 @@ import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 import gameView.Coordinate;
+import gameView.gameScreen.IGameScreenEntity;
 import gameView.observers.ObserverManager;
 import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
@@ -62,8 +63,9 @@ public class WorldAnimator{
     private Camera myCamera;
     private UIViewInterface myView;
     private	ObserverManager myObservers;
+    private IGameScreenEntity myGameScreen;
     
-    //FOR TESTING
+    //FOR TESTING WITH RUNNER - CAN DELETE FOR NORMAL
     private GameEngine myEngine;
     
     private Map<Integer, ImageView> imageMap= new HashMap<Integer, ImageView>();
@@ -74,7 +76,7 @@ public class WorldAnimator{
     	myView = view;
     }
 
-    public void start (GameData myData){
+    public void start (GameData myData, IGameScreenEntity screen){
         root = new Group();
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
         myObservers = new ObserverManager(this, restrictedEntityManager);
@@ -91,11 +93,7 @@ public class WorldAnimator{
         fillMapAndDisplay();
         for (Integer id : imageMap.keySet()) {
             root.getChildren().add(imageMap.get(id));
-        }
-
-//        myScene.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
-//        myScene.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
-//        
+        }        
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                 e-> step(SECOND_DELAY));
         this.animation = new Timeline();
@@ -108,22 +106,12 @@ public class WorldAnimator{
         return myScene;
     }
 
-    /*private void createMap(IRestrictedEntityManager manager) {
-        Collection<IRestrictedEntity> entities = manager.getRestrictedEntities();
-        for (IRestrictedEntity e: entities){
-            String[] test = e.getRestrictedImagePath().split("[\\\\/]");
-            imageMap.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
-            imageMap.get(e.getID()).setX(e.getRestrictedLocation().getWidth());
-            imageMap.get(e.getID()).setY(e.getRestrictedLocation().getHeight());
-            imageMap.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
-            imageMap.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
-            //imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
-			//imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
-        }
-    }*/
-
     private void step(double elapsedTime){
+    	
+    	//COMMENT TO TEST RUNNER
     	//myView.step(keysPressed);
+    	
+    	//UNCOMMENT TO TEST RUNNER
     	myEngine.handleUpdates(keysPressed);
     	fillMapAndDisplay();
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
@@ -177,6 +165,7 @@ public class WorldAnimator{
         if(entities.get(entity) == null){
             if (imageMap.containsKey(entity)){
                 root.getChildren().remove(imageMap.get(entity));
+                myGameScreen.removeEntity(imageMap.get(entity));
                 imageMap.remove(entity);
             }
         }
@@ -188,6 +177,7 @@ public class WorldAnimator{
 	            ImageView old = entities.get(entity);
 	            updateImage(imageView, old);
 	            imageMap.put(entity, imageView);
+	            myGameScreen.addEntity(imageView);
 	            //root.getChildren().add(imageMap.get(entity));
 	        }
 	  }
@@ -204,8 +194,12 @@ public class WorldAnimator{
     }
     private void updateImage(ImageView currentImage, ImageView re){
         currentImage.setImage(re.getImage());
+        
+        //UNCOMMENT TO TEST RUNNER
         currentImage.setTranslateX(re.getTranslateX());
-        currentImage.setTranslateY(re.getTranslateY());   
+        currentImage.setTranslateY(re.getTranslateY()); 
+        
+        //COMMENT OUT TO TEST RUNNER
         //currentImage.setTranslateX(re.getLocation().getX()*50-475);
 		//currentImage.setTranslateY(re.getLocation().getY()*50-175);
     }
