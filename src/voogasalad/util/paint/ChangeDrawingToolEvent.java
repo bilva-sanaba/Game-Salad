@@ -1,6 +1,6 @@
 package voogasalad.util.paint;
 
-public class ChangeDrawingToolEvent implements IToolbar {
+public class ChangeDrawingToolEvent implements IDrawingToolbar {
 
 	private DrawingTool drawer;
 	
