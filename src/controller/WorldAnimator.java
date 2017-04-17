@@ -170,7 +170,7 @@ public class WorldAnimator{
 
 
 	private void createEntity(Integer entity, Map<Integer, ImageView> entities){
-	        if (!imageMap.containsKey(entity)){
+	        if (!imageMap.containsKey(entity) && entities.get(entity)!=null){
 	            ImageView imageView = new ImageView();
 	            ImageView old = entities.get(entity);
 	            updateImage(imageView, old);
