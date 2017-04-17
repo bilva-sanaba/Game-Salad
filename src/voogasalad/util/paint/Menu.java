@@ -49,6 +49,7 @@ public class Menu implements IMenu {
 	
 	public void saveEvent() {
 		RenderedImage ri;
+		ImageRefiner ir = new ImageRefiner();
 		TextInputDialog tid = new TextInputDialog();
 		tid.setTitle("Saving File");
 		tid.setHeaderText("Please choose a name for your image: ");
@@ -56,8 +57,11 @@ public class Menu implements IMenu {
 		try {
 			WritableImage wi = new WritableImage((int)myCanvas.getWidth(), (int)myCanvas.getHeight());
 			myCanvas.snapshot(wi);
+			ir.turnAllWhiteTransparent(wi);
 			ri = SwingFXUtils.fromFXImage(wi, null);
+			System.out.println(ri.getHeight());
 			boolean bob = ImageIO.write(ri, "png", new File(System.getProperty("user.dir") + File.separator + PREFIX + result.get() + ".png"));
+			System.out.println(bob);
 		} catch (NoSuchElementException e) {
 			return;
 		} catch (IOException e) {
