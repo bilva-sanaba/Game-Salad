@@ -14,12 +14,14 @@ public class ObserverManager {
 	
 	
 	private Map<Integer, ImageView> myEntities;
+	private WorldAnimator myWorld;
 	private EntityManagerObserver myManagerObserver;
 	private EntityObserver myEntityObserver;
 	
 	
 	public ObserverManager(WorldAnimator world, IRestrictedEntityManager entity) {
 		myEntities = new HashMap<Integer, ImageView>();
+		myWorld = world;
 		setObservers(entity );
 		createMap(entity.getRestrictedEntities());
 	}
@@ -87,6 +89,10 @@ public class ObserverManager {
 		myManagerObserver = new EntityManagerObserver(this);
 		myEntityObserver = new EntityObserver(this);
 		entity.addObserver(myManagerObserver);
+	}
+	
+	public WorldAnimator getWorldAnimator(){
+		return myWorld;
 	}
 
 }
