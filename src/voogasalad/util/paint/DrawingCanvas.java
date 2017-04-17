@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
 
@@ -14,7 +15,7 @@ public class DrawingCanvas implements ICanvas {
 	private DrawingTool myPen;
 	private GraphicsContext gc;
 
-	public DrawingCanvas(GetDrawingTool pen, Group root) {
+	public DrawingCanvas(DrawingGet pen, BorderPane root) {
 		c = new Canvas(1000, 1000);
 		myPen = pen.getDrawingTool();
 		gc = c.getGraphicsContext2D();
@@ -23,7 +24,12 @@ public class DrawingCanvas implements ICanvas {
 		if (myPen.getShape() != null) {
 			root.getChildren().add(myPen.getShape());
 		}
+		c.setOnMouseEntered(e -> checkPen(pen));
 		c.addEventHandler(MouseEvent.ANY, e -> myPen.mouseHandeler(e, gc));
+	}
+
+	private void checkPen(DrawingGet pen) {
+		myPen = pen.getDrawingTool();
 	}
 
 	@Override

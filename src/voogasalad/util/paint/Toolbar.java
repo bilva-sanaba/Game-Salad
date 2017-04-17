@@ -2,10 +2,14 @@ package voogasalad.util.paint;
 
 import java.util.ResourceBundle;
 
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.GridPane;
@@ -15,34 +19,37 @@ import javafx.scene.layout.VBox;
 
 public class Toolbar implements IDrawingToolbar {
 	private ToolBar myToolbar;
-	private DrawingTool myPen;
-	private ResourceBundle myResources = ResourceBundle.getBundle("voogasalad.util.paint.paintresourse");;
+	private DrawingTool myDrawer;
+
 	private ColorPicker myColorPicker = new ColorPicker();
 	private TextField penSizeButton = new TextField();
-    public static final String SPLIT_REGEX = ", ";
+	private IDrawingToolChooser myChooser;
+    private static final String SPLIT_REGEX = ", ";
 
 
 	public Toolbar(IDrawingToolChooser t){
-		myPen=t.getDrawingTool();
+		myChooser = t;
+		myDrawer=myChooser.getDrawingTool();
 		addColorPicker();
 		addPenSizeButton();
 		myToolbar = new ToolBar(
 				myColorPicker,
 				new Separator(),
-				penSizeButton   
-				);
+				penSizeButton,   
+				new Separator(),
+				addDrawingToolChooser());
 	}
 	
 	private void addColorPicker(){
-		myColorPicker.setOnAction(e -> myPen.setColor(myColorPicker.getValue()));
+		myColorPicker.setOnAction(e -> myDrawer.setColor(myColorPicker.getValue()));
 	}
 	
 	private void addPenSizeButton(){
 		((TextField) penSizeButton).setPromptText("Enter Pen Size");
 		((TextField) penSizeButton).setOnAction(e -> {
 			try{
-				if (myPen instanceof Pen)
-				((Pen) myPen).setWidth(Double.parseDouble(penSizeButton.getText()));
+				if (myDrawer instanceof Pen)
+				((Pen) myDrawer).setWidth(Double.parseDouble(penSizeButton.getText()));
 				((TextField) penSizeButton).clear();
 			}catch(IllegalArgumentException y){
 
@@ -54,22 +61,44 @@ public class Toolbar implements IDrawingToolbar {
 	private HBox addDrawingToolChooser(){
 		ToggleGroup group = new ToggleGroup();
 		HBox hbox = new HBox();
-		String[] radioButton = myResources.getString("SelectDrawingTools").split(SPLIT_REGEX);
-			boolean marked = radioButton[i+buttonNum].trim().equals("true"); // sees if button should be initally marked
-			buildRadioButton(radioButton[i], marked, group, hbox);
 		
+		RadioButton myPen = new RadioButton("Pen");
+		myPen.setSelected(true);
+		myPen.setToggleGroup(group);
+		hbox.getChildren().add(myPen);
+		
+		RadioButton myCircle = new RadioButton("Cricle");
+		myCircle.setSelected(false);
+		myCircle.setToggleGroup(group);
+		hbox.getChildren().add(myCircle);
+		
+		RadioButton myRectangle = new RadioButton("Rectangle");
+		myRectangle.setSelected(false);
+		myRectangle.setToggleGroup(group);
+		hbox.getChildren().add(myRectangle);
+		
+		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			@Override
+			public void changed(ObservableValue<? extends Toggle> arg0, Toggle oldTog, Toggle newTog) {
+				if (newTog.equals(myPen)){
+					myChooser.setDrawingTool(DrawingToolType.Pen);
+					System.out.println("pen");
+				} else if (newTog.equals(myCircle)){
+					myChooser.setDrawingTool(DrawingToolType.Cirlce);
+					System.out.println("circle");
+
+				} else{
+					myChooser.setDrawingTool(DrawingToolType.Rectangle);
+					System.out.println("rect");
+
+				}
+			}
+		});
 		return hbox;
 	}
 	
-	private RadioButton buildRadioButton(String property, boolean selected, ToggleGroup group, HBox hbox){
-		RadioButton myButton = new RadioButton(property);
-		myButton.setSelected(selected);
-		myButton.setToggleGroup(group);
-		myButton.setUserData(myResources.getString(property+"RadioButton").split(SPLIT_REGEX));
-		hbox.getChildren().add(myButton);
-		return myButton;
-	}
 	
+
 	
 	@Override
 	public Region getRegion() {
