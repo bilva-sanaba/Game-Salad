@@ -33,11 +33,11 @@ public class Menu implements IMenu {
 	public Menu(ICanvas myCanvas2) {
 		myCanvas = myCanvas2;
 		myToolBar = new ToolBar();
-		Button save = new Button();
-		Button load = new Button();
+		Button save = new Button("Save");
+		Button load = new Button("Load");
 		save.setOnAction(e -> saveEvent());
 		load.setOnAction(e -> loadEvent());
-		myToolBar.setOrientation(Orientation.VERTICAL);
+		myToolBar.setOrientation(Orientation.HORIZONTAL);
 		myToolBar.getItems().add(save);
 		myToolBar.getItems().add(load);
 	}
