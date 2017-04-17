@@ -129,7 +129,6 @@ public class UtilityFactory {
 	public ToggleGroup buildRadioButtonGroup(String string, List<Node> nodeList) {
 		ToggleGroup group = new ToggleGroup();
 		VBox vbox = new VBox();
-		GridPane.setConstraints(vbox, 0, 3);
 		String[] radioButton = myResources.getString(string).split(SPLIT_REGEX);
 		Integer buttonNum = Integer.parseInt(radioButton[0]);
 		for (int i = 1; i <= buttonNum; i++){

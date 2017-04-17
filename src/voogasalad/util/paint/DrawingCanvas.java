@@ -1,35 +1,22 @@
 package voogasalad.util.paint;
 
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
+
 
 public class DrawingCanvas implements ICanvas {
 	private Canvas c;
-	private Scene scene;
 	private DrawingTool myPen;
 	private GraphicsContext gc;
 
-	public DrawingCanvas(DrawingTool pen, Group root) {
+	public DrawingCanvas(GetDrawingTool pen, Group root) {
 		c = new Canvas(1000, 1000);
-		myPen = pen;
+		myPen = pen.getDrawingTool();
 		gc = c.getGraphicsContext2D();
 		gc.setFill(Color.WHITE);
 		gc.fillRect(0, 0, c.getWidth(), c.getHeight());
@@ -61,8 +48,7 @@ public class DrawingCanvas implements ICanvas {
 
 	@Override
 	public void snapshot(WritableImage wi) {
-		// TODO Auto-generated method stub
-
+		c.snapshot(null, wi);
 	}
 
 }
