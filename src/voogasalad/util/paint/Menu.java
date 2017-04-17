@@ -16,10 +16,10 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class Menu implements IMenu {
 	
 	private ToolBar myToolBar;
-	private Canvas myCanvas;
+	private ICanvas myCanvas;
 	
-	public Menu(Canvas c) {
-		myCanvas = c;
+	public Menu(ICanvas myCanvas2) {
+		myCanvas = myCanvas2;
 		myToolBar = new ToolBar();
 		Button save = new Button();
 		Button load = new Button();
