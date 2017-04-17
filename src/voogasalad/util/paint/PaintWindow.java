@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class PaintWindow implements Paint{
 	private DrawingTool myDrawer;
-	private IDrawingToolBar myToolbar;
+	private IDrawingToolbar myToolbar;
 	private IMenu myMenu;
 	private ICanvas myCanvas;
 	private Stage myDrawingStage;
