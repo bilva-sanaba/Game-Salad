@@ -6,8 +6,8 @@ import java.util.List;
 
 
 import components.entityComponents.ComponentType;
-import components.entityComponents.LocationComponent;
-import components.entityComponents.VelocityComponent;
+import components.movementcomponents.LocationComponent;
+import components.movementcomponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -32,7 +32,7 @@ public class MovementEngine extends AbstractEngine {
 	}
 
 	@Override
-	public Collection<IEntity> update(Collection<KeyCode> keys) {
+	public void update(Collection<KeyCode> keys) {
 		for(int currentEntity = 0; currentEntity < myComponents.get(LOCATION_LIST).size(); currentEntity++){
 			LocationComponent myLocation = (LocationComponent) myComponents.get(LOCATION_LIST).get(currentEntity);
 			VelocityComponent myVelocity = (VelocityComponent) myComponents.get(VELOCITY_LIST).get(currentEntity);
@@ -42,7 +42,6 @@ public class MovementEngine extends AbstractEngine {
 			//myVelocity.setX(myVelocity.getX() + myAcceleration.getX());
 			//myVelocity.setY(myVelocity.getY() + myAcceleration.getY());
 		}
-		return null;
 	}
 
 	public void add(Entity myEntity) {

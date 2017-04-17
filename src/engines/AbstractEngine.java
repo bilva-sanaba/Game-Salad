@@ -10,7 +10,7 @@ import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
-import entity.restricted.RestrictedEntity;
+
 import javafx.scene.input.KeyCode;
 
 public abstract class AbstractEngine {
@@ -39,7 +39,7 @@ public abstract class AbstractEngine {
 	 * 
 	 * @return
 	 */
-	public abstract Collection<IEntity> update(Collection<KeyCode> keysPressed);
+	public abstract void update(Collection<KeyCode> keysPressed);
 	
 	/**
 	 * Returns the entity manager
