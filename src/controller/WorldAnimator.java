@@ -163,14 +163,16 @@ public class WorldAnimator{
     
 
     public void removeEntity(Integer entity){
-         root.getChildren().remove(imageMap.get(entity));
+    	System.out.println("CHAHCHAHCHA" + entity);
+    	imageMap.get(entity).setImage(null);
+        root.getChildren().remove(imageMap.get(entity));
          //myGameScreen.removeEntity(imageMap.get(entity));
-         imageMap.remove(entity);
+        imageMap.remove(entity);
     }
 
 
 	private void createEntity(Integer entity, Map<Integer, ImageView> entities){
-	        if (!imageMap.containsKey(entity)){
+	        if (!imageMap.containsKey(entity) && entities.get(entity)!=null){
 	            ImageView imageView = new ImageView();
 	            ImageView old = entities.get(entity);
 	            updateImage(imageView, old);

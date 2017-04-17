@@ -14,12 +14,14 @@ public class ObserverManager {
 	
 	
 	private Map<Integer, ImageView> myEntities;
+	private WorldAnimator myWorld;
 	private EntityManagerObserver myManagerObserver;
 	private EntityObserver myEntityObserver;
 	
 	
 	public ObserverManager(WorldAnimator world, IRestrictedEntityManager entity) {
 		myEntities = new HashMap<Integer, ImageView>();
+		myWorld = world;
 		setObservers(entity );
 		createMap(entity.getRestrictedEntities());
 	}
@@ -39,8 +41,11 @@ public class ObserverManager {
 	
 	private void updateImageView(IRestrictedEntity e) {
 		
-		
-		
+		if(myEntities.get(e.getID())==null){
+			System.out.println("CHEHEHEHEHEHHEHEH");
+			myWorld.removeEntity(e.getID());
+		}
+		else{
          myEntities.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
          myEntities.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
          updateImage(e);
@@ -51,6 +56,7 @@ public class ObserverManager {
          //UNCOMMENT FOR NORMAL
 //         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
 //         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()*50-175);
+		}
  		
 	}
 	
@@ -78,8 +84,10 @@ public class ObserverManager {
 	
 		if (arg != null) {
 			updateImageView(observable);
-		} else {
-			myEntities.put(observable.getID(), null);
+		} 
+		else {
+			System.out.println(observable.getID() + "XXXXXXXX");
+			myEntities.put(observable.getID(), null);	
 		}
 	}
 	
@@ -87,6 +95,10 @@ public class ObserverManager {
 		myManagerObserver = new EntityManagerObserver(this);
 		myEntityObserver = new EntityObserver(this);
 		entity.addObserver(myManagerObserver);
+	}
+	
+	public WorldAnimator getWorldAnimator(){
+		return myWorld;
 	}
 
 }
