@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.*;
 
 import components.entityComponents.ComponentType;
-import components.entityComponents.LocationComponent;
+import components.movementcomponents.LocationComponent;
 import data_interfaces.*;
 import entity.*;
 
@@ -32,7 +32,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 				new ExtensionFilter("Text Files", "*" + getSuffix()));
 
 		File dataFile = fc.showOpenDialog(newStage);
-		if (!dataFile.equals(null)) {
+		if (dataFile != null) {
 			String dataPath = dataFile.getAbsolutePath();
 			String[] splitS = dataPath.split("[\\\\/]");
 			String firstSplit = splitS[splitS.length - 1];

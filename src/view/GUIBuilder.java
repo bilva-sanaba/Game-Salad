@@ -25,6 +25,8 @@ public class GUIBuilder {
 	private GUIComponent toolbar;
 	private ViewData myData;
 	private ViewController viewController;
+	
+	private Pane myBP;
 
 	/**
 	 * Initializes the main Scene and Stage.
@@ -39,6 +41,9 @@ public class GUIBuilder {
 		myComp.add(grid);
 		myComp.add(tab);
 		myComp.add(toolbar);
+		
+		//ADDED BY HENRY TO FIX THE STAGE POPUP ERROR IN CONTROLLER
+		myBP = buildPane();
 	}
 
 	public Pane buildPane() {
@@ -53,7 +58,7 @@ public class GUIBuilder {
 	}
 
 	public Scene buildScene() {
-		Scene myScene = new Scene(buildPane());
+		Scene myScene = new Scene(myBP);
 		myScene.getStylesheets().add(RESOURCE_PACKAGE + STYLESHEET);
 		return myScene;
 	}
