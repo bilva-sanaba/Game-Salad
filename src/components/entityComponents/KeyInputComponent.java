@@ -40,7 +40,6 @@ public class KeyInputComponent implements IComponent {
 
 	@Override
 	public IComponent newCopy() {
-		System.out.println("FUCK YOU KOPEN \t"+inputMap);
 		return new KeyInputComponent(inputMap);
 	}
 

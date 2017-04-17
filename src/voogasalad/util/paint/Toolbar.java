@@ -8,12 +8,12 @@ import javafx.scene.layout.Region;
 
 public class Toolbar implements IDrawingToolbar {
 	private ToolBar myToolbar;
-	private Pen myPen;
+	private DrawingTool myPen;
 	private ColorPicker myColorPicker = new ColorPicker();
 	private TextField penSizeButton = new TextField();
 
-	public Toolbar(Pen p){
-		myPen=p;
+	public Toolbar(DrawingTool t){
+		myPen=t;
 		addColorPicker();
 		addPenSizeButton();
 		myToolbar = new ToolBar(
@@ -29,7 +29,8 @@ public class Toolbar implements IDrawingToolbar {
 		((TextField) penSizeButton).setPromptText("Enter Pen Size");
 		((TextField) penSizeButton).setOnAction(e -> {
 			try{
-				myPen.setWidth(Double.parseDouble(penSizeButton.getText()));
+				if (myPen instanceof Pen)
+				((Pen) myPen).setWidth(Double.parseDouble(penSizeButton.getText()));
 				((TextField) penSizeButton).clear();
 			}catch(IllegalArgumentException y){
 
@@ -37,7 +38,9 @@ public class Toolbar implements IDrawingToolbar {
 			catch(NullPointerException i){}
 		});
 	}
-
+	private void addDrawingToolChooser(){
+		
+	}
 	@Override
 	public Region getToolbar() {
 		return myToolbar;
