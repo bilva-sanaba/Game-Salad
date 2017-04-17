@@ -2,6 +2,7 @@ package voogasalad.util.paint;
 
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,11 +15,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class DrawingCanvas {
+public class DrawingCanvas implements ICanvas{
     private Canvas c;
     private Scene scene;
     private Color currentColor;
-    public DrawingCanvas(Stage m){
+    public DrawingCanvas(DrawingTool pen){
         BorderPane root = new BorderPane();
         ColorPicker t = new ColorPicker(Color.BLACK);
         
@@ -39,8 +40,6 @@ public class DrawingCanvas {
         imageView.setX(250);
         imageView.setY(250);
         root.getChildren().add(imageView);
-        m.setScene(scene);
-        m.show();
     }
     private Rectangle createDragBox(){
     Rectangle dragBox = new Rectangle(0, 0, 0, 0);
@@ -63,5 +62,27 @@ public class DrawingCanvas {
     });
     return dragBox;
     }
+    
+	@Override
+	public GraphicsContext getGraphicsContext2D() {
+		return c.getGraphicsContext2D();
+	}
+	@Override
+	public double getHeight() {
+		return c.getHeight();
+	}
+	@Override
+	public double getWidth() {
+		return c.getWidth();
+	}
+	@Override
+	public Node getRegion() {
+		return c;
+	}
+	@Override
+	public Image getImage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -61,6 +61,7 @@ public class CollisionEngine extends AbstractEngine {
 				playerId = x1.getID();
 			}
 		}
+	
 		int counter0 = -1;
 		for (Integer component0index : locationComponents.keySet()) {
 			counter0++;

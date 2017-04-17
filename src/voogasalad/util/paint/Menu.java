@@ -25,11 +25,11 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class Menu implements IMenu {
 	
 	private ToolBar myToolBar;
-	private Canvas myCanvas;
 	private final static String PREFIX = "images/";
-	
-	public Menu(Canvas c) {
-		myCanvas = c;
+	private ICanvas myCanvas;
+
+	public Menu(ICanvas myCanvas2) {
+		myCanvas = myCanvas2;
 		myToolBar = new ToolBar();
 		Button save = new Button();
 		Button load = new Button();

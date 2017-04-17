@@ -21,5 +21,5 @@ public enum ComponentType {
 	Duration(),
 	Lives(),
 	Score(),
-	Type();
+	Type(), Collidable;
 }
