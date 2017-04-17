@@ -7,15 +7,15 @@ import java.util.Observer;
  
 public class EntityManagerObserver implements Observer { 
 
-	private ImageManager myImageManager;
+	private ObserverManager myObserverManager;
 
-	public EntityManagerObserver(ImageManager images) { 
-		myImageManager = images;
+	public EntityManagerObserver(ObserverManager images) { 
+		myObserverManager = images;
 	} 
  
 	@Override  
 	public void update(Observable o, Object arg) {
-		myImageManager.updateMap((IRestrictedEntity) arg);
+		myObserverManager.updateMap((IRestrictedEntity) arg);
 	}
 
 }

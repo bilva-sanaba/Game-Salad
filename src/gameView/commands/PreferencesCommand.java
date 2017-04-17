@@ -61,7 +61,7 @@ public class PreferencesCommand extends AbstractCommand {
 				getStyleSheets(this, PreferencesCommand.class.getSimpleName()),//"/" + UIView.DEFAULT_LOCATION + "Preferences.css", 
 				myBox, makeCloseButton(),
 				new Dimension(UIView.DEFAULT_SIZE.width/3, UIView.DEFAULT_SIZE.height/3));
-		myDisplays = ((ICommandView) getView()).getComponents();
+		myDisplays = getView().getComponents();
 	}
 	
 	private void makeBox() {

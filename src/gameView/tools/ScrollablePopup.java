@@ -26,6 +26,10 @@ public class ScrollablePopup {
 		myScene.getStylesheets().add(cssFile);//this.getClass().getResource(cssFile).toExternalForm());
 	}
 	
+	/**
+	 * Get the scene associated with the scrollable
+	 * @return
+	 */
 	public Scene getScene() {
 		return myScene;
 	}

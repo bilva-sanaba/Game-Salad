@@ -1,6 +1,6 @@
 package gameView;
 
-import view_interfaces.UIImagePropertyInterface;
+import gameView_interfaces.UIImagePropertyInterface;
 
 public class UIImageProperty implements UIImagePropertyInterface {
 

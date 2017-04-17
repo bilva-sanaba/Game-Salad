@@ -11,8 +11,8 @@ import java.util.Map;
 import org.junit.Test;
 
 import components.IComponent;
-import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
+import components.movementcomponents.AccelerationComponent;
 
 public class CollisionPairTest {
 	

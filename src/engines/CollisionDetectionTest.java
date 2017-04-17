@@ -11,7 +11,7 @@ import org.junit.Test;
 import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
-import components.entityComponents.LocationComponent;
+import components.movementcomponents.LocationComponent;
 
 public class CollisionDetectionTest {
 	
