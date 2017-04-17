@@ -26,9 +26,9 @@ public class Menu implements IMenu {
 	
 	private ToolBar myToolBar;
 	private final static String PREFIX = "images/";
-	private ICanvas myCanvas;
+	private Canvas myCanvas;
 
-	public Menu(ICanvas myCanvas2) {
+	public Menu(Canvas myCanvas2) {
 		myCanvas = myCanvas2;
 		myToolBar = new ToolBar();
 		Button save = new Button();
