@@ -65,7 +65,7 @@ public class WorldAnimator{
     private Camera myCamera;
     private UIViewInterface myView;
     private	ObserverManager myObservers;
-    private IGameScreenEntity myGameScreen;
+    //private IGameScreenEntity myGameScreen;
     
     //FOR TESTING WITH RUNNER - CAN DELETE FOR NORMAL
     private GameEngine myEngine;
@@ -110,7 +110,8 @@ public class WorldAnimator{
         return myScene;
     }
     private void step(double elapsedTime){
-    	myView.step(keysPressed);
+    	//myView.step(keysPressed);
+    	myEngine.handleUpdates(keysPressed);
         fillMapAndDisplay();
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
@@ -154,21 +155,17 @@ public class WorldAnimator{
         for(Integer entity : entities.keySet()){
 
 		  //SequentialTransition trans = new SequentialTransition();
-		  removeEntity(entity,entities);
+		  //removeEntity(entity,entities);
 		  updateEntity(entity,entities);
 		  createEntity(entity,entities);
 		}
 
     }
     
-    private void removeEntity(Integer entity, Map<Integer, ImageView> entities){
-        if(entities.get(entity) == null){
-            if (imageMap.containsKey(entity)){
-                root.getChildren().remove(imageMap.get(entity));
-                myGameScreen.removeEntity(imageMap.get(entity));
-                imageMap.remove(entity);
-            }
-        }
+    public void removeEntity(Integer entity){
+         root.getChildren().remove(imageMap.get(entity));
+         //myGameScreen.removeEntity(imageMap.get(entity));
+         imageMap.remove(entity);
     }
 
 
@@ -178,7 +175,7 @@ public class WorldAnimator{
 	            ImageView old = entities.get(entity);
 	            updateImage(imageView, old);
 	            imageMap.put(entity, imageView);
-	            myGameScreen.addEntity(imageView);
+	            //myGameScreen.addEntity(imageView);
 	            //root.getChildren().add(imageMap.get(entity));
 	        }
 	  }

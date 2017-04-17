@@ -40,7 +40,7 @@ public class NewMovementEngine extends AbstractEngine{
 			updateLocation(e);
 			if (hasComponent(e, ComponentType.Acceleration)) {
 				updateMovement(e, ComponentType.Velocity, ComponentType.Acceleration);
-				resetAcceleration(e);
+				//resetAcceleration(e);
 			}
 			
 			
@@ -54,7 +54,7 @@ public class NewMovementEngine extends AbstractEngine{
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		lc.setXY(lc.getX() + vc.getX(), lc.getY() + vc.getY());
-		((IRestrictedEntity) e).changed(null);
+		((IRestrictedEntity) e).changed(e);
 		
 //		if (lc.getY()>200){
 //			vc.setY(0);
@@ -87,7 +87,7 @@ public class NewMovementEngine extends AbstractEngine{
 //		}
 	}
 	private void resetAcceleration(IEntity e){
-		((AccelerationComponent) e.getComponent(ComponentType.Acceleration)).setY(0.05);
+		((AccelerationComponent) e.getComponent(ComponentType.Acceleration)).setY(0);
 	}
 	private void updateMovement(IEntity e, ComponentType c1, ComponentType c2) {
 		XYComponent xy1 = (XYComponent) e.getComponent(c1);
