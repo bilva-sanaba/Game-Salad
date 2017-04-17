@@ -42,9 +42,7 @@ public class Toolbar implements IDrawingToolbar {
 		
 	}
 	@Override
-	public Region getToolbar() {
+	public Region getRegion() {
 		return myToolbar;
 	}
-
-
 }
