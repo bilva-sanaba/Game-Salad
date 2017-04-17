@@ -5,7 +5,7 @@ import javafx.scene.input.MouseEvent;
 
 public enum DrawingToolType {
 
-	Pen((e) -> {
+	Pen(/*(e) -> {
 		if (e.getEventType() == MouseEvent.MOUSE_PRESSED) {
 			gc.setStroke(myPen.getColor());
 			gc.setLineWidth(1);
@@ -17,13 +17,16 @@ public enum DrawingToolType {
 			gc.lineTo(e.getX(), e.getY());
 			gc.stroke();
 		}
-	})
-	// ,Rectangle(),
-	// Cirlce()
-	;
+	}*/)
+	,Rectangle(),
+	 Cirlce();
 
 	private MouseEvent mouseEvent;
 
+	DrawingToolType() {
+		
+	}
+	
 	DrawingToolType(MouseEvent e) {
 		this.mouseEvent = e;
 	}

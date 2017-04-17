@@ -3,12 +3,14 @@ package voogasalad.util.paint;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.geometry.Orientation;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -25,17 +27,17 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class Menu implements IMenu {
 	
 	private ToolBar myToolBar;
-	private final static String PREFIX = "images/";
-	private Canvas myCanvas;
+	private final static String PREFIX = "images" + File.separator;
+	private ICanvas myCanvas;
 
-	public Menu(Canvas myCanvas2) {
+	public Menu(ICanvas myCanvas2) {
 		myCanvas = myCanvas2;
 		myToolBar = new ToolBar();
-		Button save = new Button();
-		Button load = new Button();
+		Button save = new Button("Save");
+		Button load = new Button("Load");
 		save.setOnAction(e -> saveEvent());
 		load.setOnAction(e -> loadEvent());
-		
+		myToolBar.setOrientation(Orientation.HORIZONTAL);
 		myToolBar.getItems().add(save);
 		myToolBar.getItems().add(load);
 	}
@@ -45,7 +47,7 @@ public class Menu implements IMenu {
 		return myToolBar;
 	}
 	
-	private Image saveEvent() {
+	private void saveEvent() {
 		RenderedImage ri;
 		TextInputDialog tid = new TextInputDialog();
 		tid.setTitle("Saving File");
@@ -55,13 +57,12 @@ public class Menu implements IMenu {
 			WritableImage wi = new WritableImage((int)myCanvas.getWidth(), (int)myCanvas.getHeight());
 			myCanvas.snapshot(wi);
 			ri = SwingFXUtils.fromFXImage(wi, null);
-			ImageIO.write(ri, ".png", new File(PREFIX + result.get()));
+			boolean bob = ImageIO.write(ri, "png", new File(System.getProperty("user.dir") + File.separator + PREFIX + result.get() + ".png"));
 		} catch (NoSuchElementException e) {
 			return;
 		} catch (IOException e) {
 			return;
 		}
-		return (Image) ri;
 	}
 
 	private void loadEvent() {
@@ -72,10 +73,14 @@ public class Menu implements IMenu {
 		fc.setTitle("Choose the file to load: ");
 		fc.setInitialDirectory(new File(System.getProperty("user.dir")));
 		fc.getExtensionFilters().setAll(
-				new ExtensionFilter("Image Files", "jpg", "png", "gif", "jpeg"));
+				new ExtensionFilter("Image Files", "*.jpg", "*.png", "*.gif", "*.jpeg"));
 		File dataFile = fc.showOpenDialog(newStage);
-		
-		img = new Image(dataFile.getAbsolutePath());
+		System.out.println(System.getProperty("user.dir") + File.separator + PREFIX + dataFile.getName());
+		try {
+			img = new Image(dataFile.toURI().toURL().toString());
+		} catch (MalformedURLException e) {
+			return;
+		}
 
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
 		gc.drawImage(img, 0, 0, myCanvas.getWidth(), myCanvas.getHeight());
