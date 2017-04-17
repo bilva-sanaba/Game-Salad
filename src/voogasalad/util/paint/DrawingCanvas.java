@@ -27,52 +27,16 @@ public class DrawingCanvas implements ICanvas {
 	private DrawingTool myPen;
 	private GraphicsContext gc;
 
-	public DrawingCanvas(DrawingTool pen) {
+	public DrawingCanvas(DrawingTool pen, Group root) {
 		c = new Canvas(1000, 1000);
 		myPen = pen;
 		gc = c.getGraphicsContext2D();
 		gc.setFill(Color.WHITE);
 		gc.fillRect(0, 0, c.getWidth(), c.getHeight());
-		c.addEventHandler(MouseEvent.ANY, e -> myPen.mouseHandeler(e));
-    }
-
-
-	private void mouseHandeler(MouseEvent e) {
-		if (myPen.getDrawingToolType().equals(DrawingToolType.Pen))
-			if(e.getEventType() == MouseEvent.MOUSE_PRESSED){
-				gc.setStroke(myPen.getColor());
-		        gc.setLineWidth(1);
-		        gc.beginPath();
-		        gc.moveTo(e.getX(), e.getY());
-		        gc.stroke();
-			}
-			if(e.getEventType() == MouseEvent.MOUSE_DRAGGED){
-				gc.lineTo(e.getX(), e.getY());
-		        gc.stroke();
-			}
+		if (myPen.getShape() != null) {
+			root.getChildren().add(myPen.getShape());
 		}
-	}
-	
-	private Rectangle createDragBox() {
-		Rectangle dragBox = new Rectangle(0, 0, 0, 0);
-		dragBox.setVisible(false);
-		scene.addEventFilter(MouseEvent.ANY, new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED) {
-					dragBox.setVisible(true);
-					dragBox.setTranslateX(mouseEvent.getX());
-					dragBox.setTranslateY(mouseEvent.getY());
-				}
-				if (mouseEvent.getEventType() == MouseEvent.MOUSE_MOVED && dragBox.isVisible()) {
-					dragBox.setWidth(mouseEvent.getX() - dragBox.getTranslateX());
-					dragBox.setHeight(mouseEvent.getY() - dragBox.getTranslateY());
-				}
-				if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED)
-					dragBox.setVisible(false);
-			}
-		});
-		return dragBox;
+		c.addEventHandler(MouseEvent.ANY, e -> myPen.mouseHandeler(e, gc));
 	}
 
 	@Override
@@ -95,11 +59,10 @@ public class DrawingCanvas implements ICanvas {
 		return c;
 	}
 
-
 	@Override
 	public void snapshot(WritableImage wi) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -47,7 +47,7 @@ public class Menu implements IMenu {
 		return myToolBar;
 	}
 	
-	private void saveEvent() {
+	public void saveEvent() {
 		RenderedImage ri;
 		TextInputDialog tid = new TextInputDialog();
 		tid.setTitle("Saving File");

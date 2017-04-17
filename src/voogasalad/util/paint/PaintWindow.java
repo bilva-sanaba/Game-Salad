@@ -29,8 +29,9 @@ public class PaintWindow implements Paint{
 	}
 
 	private void buildDrawingArea() {
-		myDrawer = new Pen();
-		myCanvas = new DrawingCanvas(myDrawer);
+		myDrawer = new DrawCircle();
+		
+		myCanvas = new DrawingCanvas(myDrawer, root);
 		myMenu = new Menu(myCanvas);
 	    //myToolbar = new Toolbar(myDrawer);
 	   root.getChildren().addAll(myCanvas.getRegion(), myMenu.returnRegion()/*,
@@ -38,7 +39,7 @@ public class PaintWindow implements Paint{
 	}
 
 	@Override
-	public Image paintImage() {
-		return myMenu.saveEvent();
+	public void paintImage() {
+		myMenu.saveEvent();
 	}
 }

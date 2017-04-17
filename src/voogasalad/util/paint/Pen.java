@@ -1,6 +1,9 @@
 package voogasalad.util.paint;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 
 public class Pen extends DrawingTool{
 	private double width;
@@ -27,5 +30,25 @@ public class Pen extends DrawingTool{
 	
 	public DrawingToolType getDrawingToolType() {
 		return DrawingToolType.Pen;
+	}
+
+	@Override
+	public void mouseHandeler(MouseEvent e, GraphicsContext gc) {
+		if(e.getEventType() == MouseEvent.MOUSE_PRESSED){
+			gc.setStroke(super.getColor());
+	        gc.setLineWidth(width);
+	        gc.beginPath();
+	        gc.moveTo(e.getX(), e.getY());
+	        gc.stroke();
+		}
+		if(e.getEventType() == MouseEvent.MOUSE_DRAGGED){
+			gc.lineTo(e.getX(), e.getY());
+	        gc.stroke();
+		}
+	}
+
+	@Override
+	public Shape getShape() {
+		return null;
 	}
 }
