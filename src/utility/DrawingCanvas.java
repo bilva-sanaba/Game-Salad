@@ -19,6 +19,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
+import voogasalad.util.paint.ImageRefiner;
 
 public class DrawingCanvas {
 	protected static final double MOUSE_CORRECTION_FACTOR = 25;
@@ -30,6 +31,7 @@ public class DrawingCanvas {
 	private EventHandler<MouseEvent> t;
 
 	public DrawingCanvas(Stage m){
+	
 		BorderPane root = new BorderPane();
 		HBox test = new HBox();
 		
@@ -47,10 +49,19 @@ public class DrawingCanvas {
 		root.setCenter(c);
 		scene  = new Scene(root,1000,1000);
 		root.getChildren().add(createDragBox());
-		Image image = new Image(getClass().getClassLoader().getResourceAsStream("dirt.jpg"),500,500,false,false);
-
-		gc.drawImage(image, 110, 110);
-
+		Image image = new Image(getClass().getClassLoader().getResourceAsStream("platform_tile_053.png"),500,500,false,false);
+		//Image image = new Image(getClass().getClassLoader().getResourceAsStream("dirt.jpg"),500,500,false,false);
+		ImageRefiner r = new ImageRefiner();
+		
+		Shape s = r.getBoundedShape(image);
+		//s.setTranslateX(r.getXTransparentOffset(image));
+		//gc.drawImage(image, 110, 110);
+		Image  i2 = r.turnAllWhiteTransparent(image);
+		ImageView i = new ImageView(i2);
+		
+		s.setFill(Color.BLUE);
+		root.getChildren().add(s);
+		root.getChildren().add(i);
 		m.setScene(scene);
 		m.show();
 	}
@@ -66,21 +77,16 @@ public class DrawingCanvas {
 					dragBox.setTranslateX(mouseEvent.getX());
 					dragBox.setTranslateY(mouseEvent.getY());
 				}
-
 				if(mouseEvent.getEventType() == MouseEvent.MOUSE_DRAGGED && dragBox.isVisible()){
 					dragBox.setWidth(mouseEvent.getX() - dragBox.getTranslateX());
-					dragBox.setHeight(mouseEvent.getY() - dragBox.getTranslateY());
-					
+					dragBox.setHeight(mouseEvent.getY() - dragBox.getTranslateY());	
 				}
 				if(mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED){
 					gc.setFill(currentColor);
-
 					gc.fillRect(dragBox.getTranslateX(),dragBox.getTranslateY()-MOUSE_CORRECTION_FACTOR,dragBox.getWidth(),dragBox.getHeight());
 					dragBox.setVisible(false);
 				}
-				
 			}
-			
 		});
 		return dragBox;
 	}
