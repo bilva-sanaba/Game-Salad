@@ -16,7 +16,7 @@ public class EntityObserver implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		myObserverManager.updateEntity((IRestrictedEntity) o);
+		myObserverManager.updateEntity((IRestrictedEntity) o, (IRestrictedEntity) arg);
 
 	}
 
