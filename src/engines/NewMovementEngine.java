@@ -40,7 +40,7 @@ public class NewMovementEngine extends AbstractEngine{
 			updateLocation(e);
 			if (hasComponent(e, ComponentType.Acceleration)) {
 				updateMovement(e, ComponentType.Velocity, ComponentType.Acceleration);
-				resetAcceleration(e);
+				//resetAcceleration(e);
 			}
 			
 			
