@@ -3,6 +3,7 @@ package voogasalad.util.paint;
 import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 
 public interface ICanvas {
 
@@ -14,6 +15,6 @@ public interface ICanvas {
 
 	Node getRegion();
 
-	Image getImage();
+	void snapshot(WritableImage wi);
 
 }
