@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class PaintWindow implements Paint{
 	private DrawingTool myDrawer;
-	private IDrawingToolBar myToolbar;
+	private IDrawingToolbar myToolbar;
 	private IMenu myMenu;
 	private ICanvas myCanvas;
 	private Stage myDrawingStage;
@@ -32,18 +32,13 @@ public class PaintWindow implements Paint{
 		myDrawer = new Pen();
 		myCanvas = new DrawingCanvas(myDrawer);
 		myMenu = new Menu(myCanvas);
-//	    myToolbar = new DrawingToolBar(myDrawer);
-	    root.getChildren().addAll(myCanvas.getRegion(), myMenu.returnRegion()
-	    	//	,myToolBar.getRegion()
-	    		);
+	    myToolbar = new Toolbar(myDrawer);
+	    root.getChildren().addAll(myCanvas.getRegion(), myMenu.returnRegion(),
+	    		myToolbar.getRegion());
 	}
 
 	@Override
 	public Image paintImage() {
-		return myCanvas.getImage();
-	}
-
-	public static void main(String[] arg0){
-		PaintWindow pw = new PaintWindow();
+		return myMenu.saveEvent();
 	}
 }

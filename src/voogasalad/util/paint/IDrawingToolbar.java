@@ -4,5 +4,5 @@ import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
 public interface IDrawingToolbar {
-	public Region getToolbar();
+	public Region getRegion();
 }
