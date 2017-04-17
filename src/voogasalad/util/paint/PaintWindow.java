@@ -32,9 +32,10 @@ public class PaintWindow implements Paint{
 		myDrawer = new Pen();
 		myCanvas = new DrawingCanvas(myDrawer);
 		myMenu = new Menu(myCanvas);
-	    myToolbar = new DrawingToolBar(myDrawer);
-	    root.getChildren().addAll(myCanvas.getRegion(),
-	    		myMenu.returnRegion(), myToolBar.getRegion());
+//	    myToolbar = new DrawingToolBar(myDrawer);
+	    root.getChildren().addAll(myCanvas.getRegion(), myMenu.returnRegion()
+	    	//	,myToolBar.getRegion()
+	    		);
 	}
 
 	@Override
@@ -42,5 +43,7 @@ public class PaintWindow implements Paint{
 		return myCanvas.getImage();
 	}
 
-
+	public static void main(String[] arg0){
+		PaintWindow pw = new PaintWindow();
+	}
 }

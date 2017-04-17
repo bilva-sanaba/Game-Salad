@@ -62,6 +62,7 @@ public class DrawingCanvas implements ICanvas{
     });
     return dragBox;
     }
+    
 	@Override
 	public GraphicsContext getGraphicsContext2D() {
 		return c.getGraphicsContext2D();
