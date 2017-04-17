@@ -110,22 +110,6 @@ public class WorldAnimator{
         return myScene;
     }
 
-//<<<<<<< HEAD
-//    private void createMap() {
-//    	Map<Integer, ImageView> entityMap = myObservers.getEntityMap();
-//        for (Integer entity: entityMap.keySet()){
-//            imageMap.put(entity, entityMap.get(entity));
-//            imageMap.get(entity).setX(entityMap.get(entity).getX());
-//            imageMap.get(entity).setY(entityMap.get(entity).getY());
-//            imageMap.get(entity).setFitHeight(entityMap.get(entity).getFitHeight());
-//            imageMap.get(entity).setFitHeight(entityMap.get(entity).getFitHeight());
-//            //imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
-//			//imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
-//        }
-//    }
-//
-//=======
-//>>>>>>> 385f851b93ea866c58813994f1120cc2d2ad908c
     private void step(double elapsedTime){
     	
     	//COMMENT TO TEST RUNNER
@@ -187,7 +171,7 @@ public class WorldAnimator{
         if(entities.get(entity) == null){
             if (imageMap.containsKey(entity)){
                 root.getChildren().remove(imageMap.get(entity));
-                myGameScreen.removeEntity(imageMap.get(entity));
+//                myGameScreen.removeEntity(imageMap.get(entity));
                 imageMap.remove(entity);
             }
         }
@@ -200,7 +184,7 @@ public class WorldAnimator{
 	            ImageView old = entities.get(entity);
 	            updateImage(imageView, old);
 	            imageMap.put(entity, imageView);
-	            myGameScreen.addEntity(imageView);
+//	            myGameScreen.addEntity(imageView);
 	            //root.getChildren().add(imageMap.get(entity));
 	        }
 	  }

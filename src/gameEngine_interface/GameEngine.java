@@ -129,6 +129,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(xc);
 
 		x.addComponent(new VelocityComponent(0,0));
+		
 
 		x.addComponent(new LabelComponent("Block"));
 		x.addComponent(new KeyInputComponent());

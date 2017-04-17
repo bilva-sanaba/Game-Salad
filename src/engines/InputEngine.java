@@ -41,7 +41,7 @@ public class InputEngine extends AbstractEngine{
 		for (KeyCode key : keys){
 			if (ic.getMap().containsKey(key)){
 				ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
-				((IRestrictedEntity) e).changed(null);
+				((IRestrictedEntity) e).changed(e);
 			}
 		}
 		}
