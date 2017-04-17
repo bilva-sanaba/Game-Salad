@@ -80,8 +80,9 @@ public class ObserverManager {
 	
 		if (arg != null) {
 			updateImageView(observable);
-		} else {
-			myEntities.put(observable.getID(), null);
+		} 
+		else {
+			myEntities.put(observable.getID(), null);	
 		}
 	}
 	
