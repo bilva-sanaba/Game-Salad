@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.ComponentFactory;
+import view.GUIBuilder;
 import view.UtilityFactory;
 import view.ViewData;
 import view.editor.ComponentEditor;
@@ -29,6 +30,7 @@ public class EntityConfigurationWindow implements IWindow {
 	private String[] componentList;
 	private ComponentFactory myCompF;
 	private VBox root;
+	private Stage myStage = new Stage();
 	private Entity myEntity;
 	private ArrayList<ComponentEditor> myCompEdits;
 	private ObservableList<Entity> myList;
@@ -64,7 +66,9 @@ public class EntityConfigurationWindow implements IWindow {
 	private Scene buildScene() {
 		root = new VBox();
 		buildComponentEditor();
-		return new Scene(root);
+		Scene myScene = new Scene(root, 350, 400);
+		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
+		return myScene;
 	}
 
 	private void buildComponentEditor() {

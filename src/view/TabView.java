@@ -79,6 +79,8 @@ public class TabView extends GUIComponent {
 		u = util.buildButton("UploadEnities", e ->{
 			System.out.println("upload f***");
 		});
+		
+		util.setPresets(blocksList);
 	}
 
 	public void clearEntitiesOnTab(){

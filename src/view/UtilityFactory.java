@@ -7,8 +7,10 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
+import entity.Entity;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -41,6 +43,7 @@ public class UtilityFactory {
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources" + File.separator;
     public static final String SPLIT_REGEX = ", ";
 	private ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
+	//private ResourceBundle entityPresets = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "entities");
 	private ResourceBundle myResources;
 	
 	public UtilityFactory(String language){
@@ -157,5 +160,9 @@ public class UtilityFactory {
 		});
 		mySlider.valueProperty().addListener(listener);
 		return myBox;
+	}
+	
+	public void setPresets(ObservableList<Entity> list){
+		
 	}
 }

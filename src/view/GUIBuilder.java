@@ -49,6 +49,7 @@ public class GUIBuilder {
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
 		myPane.setCenter(grid.buildComponent());
+		myPane.setId("root");
 		return myPane;
 	}
 
