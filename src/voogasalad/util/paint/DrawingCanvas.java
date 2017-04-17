@@ -93,9 +93,11 @@ public class DrawingCanvas implements ICanvas {
 		return c;
 	}
 
+
 	@Override
 	public void snapshot(WritableImage wi) {
-		c.snapshot(null, wi);
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -32,9 +32,9 @@ public class PaintWindow implements Paint{
 		myDrawer = new Pen();
 		myCanvas = new DrawingCanvas(myDrawer);
 		myMenu = new Menu(myCanvas);
-	    myToolbar = new Toolbar(myDrawer);
-	    root.getChildren().addAll(myCanvas.getRegion(), myMenu.returnRegion(),
-	    		myToolbar.getRegion());
+	    //myToolbar = new Toolbar(myDrawer);
+	   root.getChildren().addAll(myCanvas.getRegion(), myMenu.returnRegion()/*,
+	    		myToolbar.getRegion()*/);
 	}
 
 	@Override
