@@ -2,36 +2,30 @@ package voogasalad.util.paint;
 
 import javafx.scene.paint.Color;
 
-public class Pen {
+public class Pen extends DrawingTool{
 	private double width;
-	private Color color;
 	
 	private static final double DEFAULTWIDTH = 5;
-	private static final Color DEFAULTCOLOR = Color.BLACK;
 	
 	public Pen() {
+		super();
 		width = DEFAULTWIDTH;
-		color = DEFAULTCOLOR;
 	}
 	
 	public Pen(double w, Color c) {
+		super(c);
 		width = w;
-		color = c;
-	}
-	
-	public Color getColor() {
-		return color;
 	}
 	
 	public double getWidth() {
 		return width;
 	}
 	
-	public void setColor(Color c) {
-		color = c;
-	}
-	
 	public void setWidth(double w) {
 		width = w;
+	}
+	
+	public DrawingToolType getDrawingToolType() {
+		return DrawingToolType.Pen;
 	}
 }
