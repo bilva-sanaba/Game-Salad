@@ -45,6 +45,9 @@ public enum ConcreteKeyExpressions {
 		else{
 			ac.setX(0);
 		}*/
+	}),
+	REMOVE ((a) -> {
+		a.changed(null);
 	});
 
     private IKeyExpression keyExpression; 
