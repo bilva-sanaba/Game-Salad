@@ -12,7 +12,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import voogasalad.util.reflection.Reflection;
 
-public class DisplayManager {
+public class DisplayManager implements IDisplayManager {
 
 	private static final String COMPONENT_LOCATION = "gameView.displayComponents.";
 	private static final String BUNDLE_KEY = DisplayManager.class.getSimpleName();

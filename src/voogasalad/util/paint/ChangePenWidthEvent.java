@@ -6,7 +6,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class ChangePenWidthEvent implements IToolbar {
+public class ChangePenWidthEvent implements IDrawingToolbar {
 	
 	private DrawingTool drawer;
 	

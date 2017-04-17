@@ -6,7 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ChangeColorEvent implements IToolbar {
+public class ChangeColorEvent implements IDrawingToolbar {
 	
 	private DrawingTool drawer;
 	

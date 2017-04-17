@@ -11,10 +11,11 @@ import java.util.List;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
+import components.movementcomponents.LocationComponent;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
+import entity.IEntity;
 
 public class XMLWriter extends GameSavingDataTool implements Writer {
 
@@ -37,7 +38,7 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 	 * @param gameData
 	 *            the data which should be saved
 	 */
-	public void writeFile(String fileName, Collection<Entity> gameData) {
+	public void writeFile(String fileName, Collection<IEntity> gameData) {
 		ClassLoader loader = new LocalClassLoader();
 		XStream serializer = new XStream(new DomDriver());
 		String ret;

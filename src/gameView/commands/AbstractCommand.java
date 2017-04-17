@@ -4,7 +4,7 @@ import javafx.stage.Stage;
 import gameView.ICommandView;
 import gameView.UIView;
 
-public abstract class AbstractCommand {
+public abstract class AbstractCommand implements ICommand {
 
 	private ICommandView myView;
 
