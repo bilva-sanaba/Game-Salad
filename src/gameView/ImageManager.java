@@ -17,7 +17,7 @@ public class ImageManager {
 
 	public ImageManager(IRestrictedEntityManager manager) {
 		myEntities = manager;
-		myEntityObserver = new EntityObserver(this);
+		//myEntityObserver = new EntityObserver(this);
 		addEntityObserver();
 		addAllEntityObservers();
 		createMap();
@@ -25,8 +25,8 @@ public class ImageManager {
 
 	public void updateEntity(IRestrictedEntity entity) {
 		UIImageModel toUpdate = myMap.get(entity);
-		toUpdate.updateImage(entity.getImagePath());
-		toUpdate.updateLocation(entity.getLocation());
+		//toUpdate.updateImage(entity.getImagePath());
+		//toUpdate.updateLocation(entity.getLocation());
 	}
 
 	public void updateMap(IRestrictedEntity entity) {
@@ -42,22 +42,22 @@ public class ImageManager {
 	}
 
 	private void addAllEntityObservers() {
-		for (IRestrictedEntity each : myEntities.getIEntities()) {
-			each.addObserver(myEntityObserver);
-		}
+		//for (IRestrictedEntity each : myEntities.getIEntities()) {
+		//	each.addObserver(myEntityObserver);
+		//}
 	}
 
 	private void createMap() {
 		myMap = new HashMap<IRestrictedEntity, UIImageModel>();
-		for (IRestrictedEntity each : myEntities.getIEntities()) {
-			createImageToMap(each);
-		}
+		//for (IRestrictedEntity each : myEntities.getIEntities()) {
+		//	createImageToMap(each);
+		//}
 	}
 
 	private void createImageToMap(IRestrictedEntity toAdd) {
-		UIImageModel toBeAdded = new UIImageModel(toAdd.getLocation(),
-				toAdd.getImagePath());
-		myMap.put(toAdd, toBeAdded);
+		//UIImageModel toBeAdded = new UIImageModel(toAdd.getLocation(),
+		//		toAdd.getImagePath());
+		//myMap.put(toAdd, toBeAdded);
 	}
 
 }

@@ -45,7 +45,7 @@ public class SplashView extends AbstractViewer {
 		return myScene;
 	}
 	
-	public void addBackground() {
+	private void addBackground() {
 		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
 	}
 
@@ -64,7 +64,7 @@ public class SplashView extends AbstractViewer {
 		myPane.setBottom(box);
 	}
 	
-	public BorderPane getRoot(){
+	private BorderPane getRoot(){
 		return myPane;
 	}
 }
