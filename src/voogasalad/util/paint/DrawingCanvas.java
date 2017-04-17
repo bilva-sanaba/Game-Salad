@@ -33,21 +33,23 @@ public class DrawingCanvas implements ICanvas {
 		gc = c.getGraphicsContext2D();
 		gc.setFill(Color.WHITE);
 		gc.fillRect(0, 0, c.getWidth(), c.getHeight());
-		c.addEventHandler(MouseEvent.ANY, e -> mouseHandeler(e));
+		c.addEventHandler(MouseEvent.ANY, e -> myPen.mouseHandeler(e));
     }
 
 
 	private void mouseHandeler(MouseEvent e) {
-		if(e.getEventType() == MouseEvent.MOUSE_PRESSED){
-			gc.setStroke(myPen.getColor());
-	        gc.setLineWidth(1);
-	        gc.beginPath();
-	        gc.moveTo(e.getX(), e.getY());
-	        gc.stroke();
-		}
-		if(e.getEventType() == MouseEvent.MOUSE_DRAGGED){
-			gc.lineTo(e.getX(), e.getY());
-	        gc.stroke();
+		if (myPen.getDrawingToolType().equals(DrawingToolType.Pen))
+			if(e.getEventType() == MouseEvent.MOUSE_PRESSED){
+				gc.setStroke(myPen.getColor());
+		        gc.setLineWidth(1);
+		        gc.beginPath();
+		        gc.moveTo(e.getX(), e.getY());
+		        gc.stroke();
+			}
+			if(e.getEventType() == MouseEvent.MOUSE_DRAGGED){
+				gc.lineTo(e.getX(), e.getY());
+		        gc.stroke();
+			}
 		}
 	}
 	

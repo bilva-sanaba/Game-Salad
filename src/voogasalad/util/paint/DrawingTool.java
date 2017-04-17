@@ -1,6 +1,7 @@
 package voogasalad.util.paint;
 
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public abstract class DrawingTool {
@@ -26,5 +27,7 @@ public abstract class DrawingTool {
 	}
 	
 	public abstract DrawingToolType getDrawingToolType();
+
+	public abstract void mouseHandeler(MouseEvent e);
 
 }
