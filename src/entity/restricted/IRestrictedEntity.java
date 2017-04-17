@@ -38,5 +38,6 @@ public interface IRestrictedEntity {
 	
 	
 	public void addObserver(Observer obs);
+	public void changed(Object object);
 
 }

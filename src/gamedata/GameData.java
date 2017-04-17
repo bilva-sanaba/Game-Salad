@@ -4,19 +4,21 @@ package gamedata;
 import components.movementcomponents.LocationComponent;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 public class GameData {
-	private DoubleProperty points;
-	private DoubleProperty lives; 
+	private DoubleProperty points = new SimpleDoubleProperty();
+	private DoubleProperty lives = new SimpleDoubleProperty(); 
 	private IRestrictedEntityManager restrictedEntityManager; 
-	private DoubleProperty level; 
+	private DoubleProperty level = new SimpleDoubleProperty(); 
 	private LocationComponent mainPlayerLocation;
 	
 	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc){
-		points.set(p);
-		lives.set(l);
+		points.setValue(p);
+		System.out.println(points.getValue());
+		lives.setValue(l);
 		restrictedEntityManager = rem;
-		level.set(lvl);
+		level.setValue(lvl);
 		mainPlayerLocation = lc;
 		
 	}

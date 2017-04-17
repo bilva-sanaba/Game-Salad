@@ -34,28 +34,53 @@ public class ObserverManager {
             String[] test = e.getRestrictedImagePath().split("[\\\\/]");
             myEntities.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
             updateImageView(e);
-            //imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
-			//imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
         }
     }
 	
 	private void updateImageView(IRestrictedEntity e) {
-		 myEntities.get(e.getID()).setX(e.getRestrictedLocation().getWidth());
-         myEntities.get(e.getID()).setY(e.getRestrictedLocation().getHeight());
+		
+		
+		
          myEntities.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
          myEntities.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
-		//imageMap.get(e.getID()).setTranslateX(e.getLocation().getX()*50-475);
-		//imageMap.get(e.getID()).setTranslateY(e.getLocation().getY()*50-175);
+         updateImage(e);
+         //UNCOMMENT FOR TEST RUNNER
+         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()-475);
+         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()-175);
+         
+         //UNCOMMENT FOR NORMAL
+//         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
+//         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()*50-175);
+ 		
+	}
+	
+	private void updateImage(IRestrictedEntity e) {
+		if (!(e.getRestrictedImagePath().equals(""))) {
+			myEntities.get(e.getID()).setImage(makeImage(e));
+		} else {
+			myEntities.put(e.getID(), null);
+		}
+		
+	}
+	
+	private Image makeImage(IRestrictedEntity e) {
+		String[] test = e.getRestrictedImagePath().split("[\\\\/]");
+        Image newImage = new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]));
+        return newImage;
 	}
 	
 	public void updateMap(IRestrictedEntity arg) {
-		String[] test = arg.getRestrictedImagePath().split("[\\\\/]");
-        myEntities.put(arg.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
+        myEntities.put(arg.getID(), new ImageView(makeImage(arg)));
         updateImageView(arg);
 	}
 	
-	public void updateEntity(IRestrictedEntity arg) {
-		updateImageView(arg);
+	public void updateEntity(IRestrictedEntity observable, IRestrictedEntity arg) {
+	
+		if (arg != null) {
+			updateImageView(observable);
+		} else {
+			myEntities.put(observable.getID(), null);
+		}
 	}
 	
 	private void setObservers(IRestrictedEntityManager entity) {

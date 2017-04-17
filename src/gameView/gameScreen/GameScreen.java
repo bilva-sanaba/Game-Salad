@@ -3,7 +3,6 @@ package gameView.gameScreen;
 import java.util.Collection;
 
 import controller.WorldAnimator;
-import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 import gameEngine_interface.RunnerTest;
 import gameView.AbstractViewer;
@@ -15,6 +14,7 @@ import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
 import gamedata.GameData;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -49,39 +49,31 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	}
 
 	public Scene getScene() {
-		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
-		System.out.println(myPane.getChildren());
-		System.out.println(myPane.getChildren().get(2).getTranslateX());
-		System.out.println(myPane.getChildren().get(2).getTranslateY());
 		
-//
-//		myAnimation = new RunnerTest(getView().getStage()).getAnimator();
-//		myAnimation.setKeys(myScene);
-//		Scene test = myAnimation.getScene();
-//		myPane.getChildren().add(test.getRoot());
+		//UNCOMMENT FOR NORMAL
+//		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
+//		System.out.println(myPane.getChildren());
+//		System.out.println(myPane.getChildren().get(2).getTranslateX());
+//		System.out.println(myPane.getChildren().get(2).getTranslateY());
+//		
+////
 		
-		//USED FOR CHECKING CHILDREN
-//		for (Node each:myPane.getChildren()) {
-//			if (each == test.getRoot()) {
-//				for (Node f: ((Group) each).getChildren()) {
-//					System.out.println(f);
-//					System.out.println(((ImageView) f).getX());
-//					System.out.println(((ImageView) f).getY());
-//				}
-//			}
-//			System.out.println(each.getTranslateX());
-//			System.out.println(each.getTranslateY());
-//			
-//		}
-		//myBP.setCenter(test.getRoot());
+		//UNCOMMENT FOR RUNNERS TEST
+		RunnerTest s = new RunnerTest(getView().getStage(), getView());
+		myAnimation = s.getAnimator();
+		myAnimation.start(s.getEngine().dummyLoad(), this);
+		myAnimation.setKeys(myScene);
+		myAnimation.giveEngine(s.getEngine());
+		Scene test = myAnimation.getScene();
+		myPane.getChildren().addAll(test.getRoot().getChildrenUnmodifiable());
 		
-		
+
 		return myScene;
 	}
 
 	public void addData(GameData data) {
 		myData = data;
-		myAnimation.start(myData);
+		myAnimation.start(myData, this);
 		//myManager = new ImageManager(myData);
 	}
 
@@ -147,16 +139,23 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		myPane.getChildren().add(toAdd.getDisplay());
 	} 
 	
-	public void addGameEngine(GameEngine game) {
-		//myAnimation.start(game);
-	}
-	
 	@Override
 	public void loadGame(String filePath) {
 		myPane.getChildren().clear();
 		myDisplays.addAllActive();
 		myAnimation.clearRoot();
 		super.loadGame(filePath);
+	}
+
+	@Override
+	public void addEntity(ImageView add) {
+		myPane.getChildren().add(add);
+		
+	}
+
+	@Override
+	public void removeEntity(ImageView remove) {
+		myPane.getChildren().remove(remove);
 	}
 
 }

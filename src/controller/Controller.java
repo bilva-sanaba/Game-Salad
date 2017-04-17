@@ -17,8 +17,6 @@ import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
 import entity.restricted.IRestrictedEntityManager;
-import entity.restricted.RestrictedEntity;
-import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
 /**
@@ -53,8 +51,8 @@ public class Controller implements ControllerInterface {
 	@Override
 	public GameData loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
-		GameData gameData = myGameEngine.loadData(c); //c
-		//myGameEngine.dummyLoad();
+		GameData gameData = myGameEngine.loadData(c); 
+		
 		return gameData;
 	}
 
