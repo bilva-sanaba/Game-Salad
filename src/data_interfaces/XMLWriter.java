@@ -17,7 +17,7 @@ import data_interfaces.LocalClassLoader;
 import entity.Entity;
 import entity.IEntity;
 
-public class XMLWriter extends GameSavingDataTool {
+public class XMLWriter extends GameSavingDataTool implements Writer {
 
 	private void createFile(String fileName, Object data) {
 		try {
