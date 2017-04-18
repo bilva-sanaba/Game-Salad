@@ -1,19 +1,68 @@
 package components.collisionComponents;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import actions.IAction;
 import components.entityComponents.ComponentType;
+import components.entityComponents.LabelComponent;
+import components.entityComponents.TypeComponent;
 import components.IComponent;
 import entity.Entity;
+import entity.IEntity;
 public class SideCollisionComponent implements IComponent {
 	private CollisionComponentType sideCollision;
-	private IAction action;
+	private Map<TypeComponent, ArrayList<IAction>> typeActionMap;
+	private Map<LabelComponent, ArrayList<IAction>> labelActionMap;
 	
-	public SideCollisionComponent(CollisionComponentType sideOfCollision, IAction actionForSide) {
+	public SideCollisionComponent(CollisionComponentType sideOfCollision) {
 		sideCollision = sideOfCollision;
-		action = actionForSide;
+		
+		typeActionMap = new HashMap<TypeComponent, ArrayList<IAction>>();
+		labelActionMap = new HashMap<LabelComponent, ArrayList<IAction>>();
 	}
 	
-	public void executeOnCollide(Entity e) {
-		action.executeAction(e);
+	public void addActionForLabel(LabelComponent label, IAction action) {
+		if(!labelActionMap.containsKey(label)) {
+			labelActionMap.put(label, new ArrayList<IAction>());
+		}
+		ArrayList<IAction> actions = labelActionMap.get(label);
+		actions.add(action);
+		labelActionMap.put(label, actions);
+	}
+	
+	public void addActionForType(TypeComponent type, IAction action) {
+		if(!typeActionMap.containsKey(type)) {
+			typeActionMap.put(type, new ArrayList<IAction>());
+		}
+		ArrayList<IAction> actions = typeActionMap.get(type);
+		actions.add(action);
+		typeActionMap.put(type, actions);
+	}
+	
+	
+	
+	public List<IEntity> executeOnCollide(IEntity e) {
+		//maybe should refactor
+		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
+		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
+		List<IEntity> newEntities = new ArrayList<IEntity>();
+		if (labelActionMap.containsKey(entityLabel)) {
+			for (IAction action : labelActionMap.get(entityLabel)) {
+				List<IEntity> actionCreatedEntities = action.executeAction(e);
+				newEntities.addAll(actionCreatedEntities);
+			}
+			return newEntities;
+		}
+		if (typeActionMap.containsKey(entityType)) {
+			for (IAction action : typeActionMap.get(entityType)) {
+				action.executeAction(e);
+				List<IEntity> actionCreatedEntities = action.executeAction(e);
+				newEntities.addAll(actionCreatedEntities);
+			}
+		}
+		return newEntities;
 	}
 	
 	public CollisionComponentType whichSide() {
