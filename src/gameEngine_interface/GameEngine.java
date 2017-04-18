@@ -96,33 +96,6 @@ public class GameEngine implements GameEngineInterface {
 
 	//TODO: Delete once testing is over
 	public GameData dummyLoad(){
-//		Entity t = new Entity(40);
-//		t.addComponent(new LocationComponent(0,200));
-//		t.addComponent(new VelocityComponent(0,0));
-//		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
-//		t.addComponent(new AccelerationComponent(0,0));
-//		t.addComponent(new LabelComponent("notb"));
-//		t.addComponent(new KeyInputComponent());
-//
-//		ImagePropertiesComponent ic = new ImagePropertiesComponent();
-//		ic.setHeight(100);
-//		ic.setWidth(100);
-//		t.addComponent(ic);
-//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
-//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, "RIGHT");
-//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");
-//		Entity g = new Entity(75);
-//		g.addComponent(new LocationComponent(200,200));
-//		g.addComponent(new SpriteComponent(("dirt.jpg")));
-//		g.addComponent(new LabelComponent("Block"));
-//		ImagePropertiesComponent lc = new ImagePropertiesComponent();
-//		lc.setHeight(100);
-//		lc.setWidth(100);
-//		g.addComponent(lc);
-//		g.addComponent(new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision()));
-//		g.addComponent(new SideCollisionComponent(CollisionComponentType.Bottom, new BlockTopRegularCollision()));
-//		g.addComponent(new SideCollisionComponent(CollisionComponentType.Left, new BlockTopRegularCollision()));
-//		g.addComponent(new SideCollisionComponent(CollisionComponentType.Right, new BlockTopRegularCollision()));
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(700,100));
@@ -148,6 +121,9 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, "RIGHT");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
+		
+		
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
 		for (int i=1;i<20;i++){

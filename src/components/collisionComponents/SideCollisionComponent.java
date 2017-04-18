@@ -31,7 +31,6 @@ public class SideCollisionComponent implements IComponent {
 		ArrayList<IAction> actions = labelActionMap.get(label.getLabel());
 		actions.add(action);
 		labelActionMap.put(label.getLabel(), actions);
-		System.out.println(label.getLabel() + " " + action.getClass().getSimpleName());
 	}
 	
 	public void addActionForType(TypeComponent type, IAction action) {
