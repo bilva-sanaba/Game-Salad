@@ -122,6 +122,16 @@ public class GameEngine implements GameEngineInterface {
 		Entity x = new Entity(10);
 		x.addComponent(new LocationComponent(500,450));
 		x.addComponent(new SpriteComponent(("dirt.jpg")));
+		
+		Entity y = new Entity(12);
+		y.addComponent(new LocationComponent(500,200));
+		y.addComponent(new SpriteComponent(("dirt.jpg")));
+		ImagePropertiesComponent yc = new ImagePropertiesComponent();
+		yc.setHeight(50);
+		yc.setWidth(50);
+		y.addComponent(yc);
+		y.addComponent(new LabelComponent("YOO"));
+		
 
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
 		xc.setHeight(50);
@@ -138,6 +148,8 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
+		
+		e.add(y);
 //		for (int i=0;i<20;i++){
 //			Entity x = new Entity(i);
 //			x.addComponent(new LocationComponent(i*50,450));
