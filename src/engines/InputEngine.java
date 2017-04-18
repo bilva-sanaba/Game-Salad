@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+
 import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.KeyInputComponent;
@@ -15,9 +18,10 @@ import entity.restricted.IRestrictedEntity;
 import javafx.scene.input.KeyCode;
 
 public class InputEngine extends AbstractEngine{
-
+	private ScriptEngine engine; 
 	public InputEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
+		engine = new ScriptEngineManager().getEngineByName("groovy");
 		
 	}
 

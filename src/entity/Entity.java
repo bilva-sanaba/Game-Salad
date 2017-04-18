@@ -71,6 +71,17 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 		
 		return null;
 	}
+	public IComponent getComponent(IComponent ic){
+		IComponent it = ic; 
+		
+		for (IComponent myComponent : myComponents) {
+			if (myComponent.getClass().equals(it.getClass()) ){
+				return myComponent;
+			}
+		}
+		
+		return null;
+	}
 	
 	@Override
 	public String toString(){
