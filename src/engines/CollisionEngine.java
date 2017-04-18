@@ -121,12 +121,12 @@ public class CollisionEngine extends AbstractEngine {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public List<IEntity> update(Collection<KeyCode> keys) {
+	public void update(Collection<KeyCode> keys) {
 		newEntitiesCreated = new ArrayList<IEntity>();
 		if (numSubEnginesAdded<=0) {
 			addEngine(new GeneralPostCollisionHandler());
 		}
 		checkCollisionsOccurred();
-		return newEntitiesCreated;
+		System.out.println("I NEED SOME WAY OF RETURNING NEWLY CREATED ENTITIES BACK FROM THE COLLISION ENGINE");
 	}
 }
