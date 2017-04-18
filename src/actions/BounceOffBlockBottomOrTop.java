@@ -1,8 +1,12 @@
 package actions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import components.entityComponents.ComponentType;
-import components.entityComponents.VelocityComponent;
+import components.movementcomponents.VelocityComponent;
 import entity.Entity;
+import entity.IEntity;
 
 public class BounceOffBlockBottomOrTop implements IAction{
 
@@ -11,11 +15,12 @@ public class BounceOffBlockBottomOrTop implements IAction{
 	}
 
 	@Override
-	public void executeAction(Entity e) {
+	public List<IEntity> executeAction(IEntity e) {
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		vc.setY(vc.getY()*-1);
 		//Does anything need to be done about acceleration?
-		
+		return new ArrayList<IEntity>();
+
 	}
 
 }
