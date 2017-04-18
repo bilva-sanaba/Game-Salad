@@ -1,6 +1,8 @@
-package components.entityComponents;
+package components.movementcomponents;
 
 import components.IComponent;
+import components.entityComponents.ComponentType;
+import components.entityComponents.XYComponent;
 
 public class AccelerationComponent extends XYComponent implements IComponent {
 
