@@ -15,20 +15,20 @@ import javafx.scene.input.KeyCode;
 
 public enum ConcreteKeyExpressions {
 	JUMP ((a) -> {
-		ScriptEngine engine = new ScriptEngineManager().getEngineByName("groovy");
+//		ScriptEngine engine = new ScriptEngineManager().getEngineByName("groovy");
 		VelocityComponent vc = (VelocityComponent) a.getComponent(new VelocityComponent(0,0));
 		AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
-//		if (vc.getY()==0){
-//			vc.setY(-3);
-//			ac.setY(.05);
-//		}
-		try {
-			engine.put("vc", vc);
-			engine.put("ac", ac);
-			engine.eval("if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
-		} catch (ScriptException ex) {
-            System.out.println(ex);
-        }
+		if (vc.getY()==0){
+			vc.setY(-3);
+			ac.setY(.05);
+		}
+//		try {
+//			engine.put("vc", vc);
+//			engine.put("ac", ac);
+//			engine.eval("if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
+//		} catch (ScriptException ex) {
+//            System.out.println(ex);
+//        }
 	}),
 	RIGHT ((a) -> {
 		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);

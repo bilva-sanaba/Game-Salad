@@ -125,7 +125,7 @@ public class GameEngine implements GameEngineInterface {
 //		g.addComponent(new SideCollisionComponent(CollisionComponentType.Right, new BlockTopRegularCollision()));
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
-		x.addComponent(new LocationComponent(500,400));
+		x.addComponent(new LocationComponent(700,100));
 		x.addComponent(new SpriteComponent(("dirt.jpg")));
 
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
@@ -152,7 +152,7 @@ public class GameEngine implements GameEngineInterface {
 		e.add(x);
 		for (int i=1;i<20;i++){
 			Entity p = new Entity(i);
-			p.addComponent(new LocationComponent(i*50,450));
+			p.addComponent(new LocationComponent(i*100,i*50));
 			p.addComponent(new SpriteComponent(("dirt.jpg")));
 
 			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
