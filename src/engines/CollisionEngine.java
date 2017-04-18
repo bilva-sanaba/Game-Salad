@@ -91,7 +91,7 @@ public class CollisionEngine extends AbstractEngine {
 	}
 	private void sendCollisionToSubEngines(int index0, int index1, String collisionSide) {
 		boolean collisionOccurs = false;
-		if (collisionSide != ITwoObjectCollide.NONE) {
+		if (!collisionSide.equals(ITwoObjectCollide.NONE)) {
 			collisionOccurs = true;
 		}
 		
