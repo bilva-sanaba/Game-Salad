@@ -30,7 +30,9 @@ public class GeneralPostCollisionHandler implements ISubEngine{
 //			System.out.println(side);
 //			System.out.println(handlerE1.getCollisionComponent(side));
 //			System.out.println(handlerE1.getCollisionComponent(side).executeOnCollide(e0));
-			createdEntities.addAll(handlerE1.getCollisionComponent(side).executeOnCollide(e0));
+			if (handlerE1.getCollisionComponent(side) != null) {
+				createdEntities.addAll(handlerE1.getCollisionComponent(side).executeOnCollide(e0));
+			}
 		}
 		
 		return createdEntities;

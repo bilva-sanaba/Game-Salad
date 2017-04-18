@@ -9,6 +9,7 @@ import java.util.Map;
 
 import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
+import actions.BounceOffBlockBottomOrTop;
 import actions.IAction;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
@@ -163,9 +164,10 @@ public class GameEngine implements GameEngineInterface {
 			//p.addComponent(scc);
 			p.addComponent(new CollisionComponentsHandler());
 			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
-			scc.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
+			scc.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockBottomOrTop());
 			SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
-			scq.addActionForLabel(new LabelComponent("grrraah"), new BlockBottomRegularCollision());
+			scq.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockBottomOrTop());
+			
 			((CollisionComponentsHandler) p.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 			((CollisionComponentsHandler) p.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 			
