@@ -1,5 +1,6 @@
 package view.window;
 
+import java.io.File;
 import java.util.ArrayList;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
@@ -67,6 +68,7 @@ public class EntityBuilderWindow implements IWindow{
 	private void buildNodes() {
 		Node imageButton = util.buildButton("ChooseImageLabel", e -> {
 			myImagePath = imageChooser.chooseFile();
+			System.out.println();
 			Image image = new Image(myImagePath);
 			myImage.setImage(image);
 			myImage.setFitWidth(200);
