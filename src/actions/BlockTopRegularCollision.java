@@ -1,12 +1,18 @@
 package actions;
+import java.util.ArrayList;
+import java.util.List;
+
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
 import components.movementcomponents.AccelerationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.Entity;
+import entity.IEntity;
+
 public class BlockTopRegularCollision implements IAction {
+	
 	@Override
-	public void executeAction(Entity e) {
+	public List<IEntity> executeAction(IEntity e) {
 		LabelComponent lc = (LabelComponent) e.getComponent(ComponentType.Label);
 		if (lc == null) {
 			System.out.println("wtaaaaaaaa");
@@ -22,5 +28,7 @@ public class BlockTopRegularCollision implements IAction {
 				ac.setY(0);
 			}
 		}
+		return new ArrayList<IEntity>();
+
 	}
 }

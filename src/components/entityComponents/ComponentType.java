@@ -21,5 +21,7 @@ public enum ComponentType {
 	Duration(),
 	Lives(),
 	Score(),
-	Type(), Collidable;
+	Type(), 
+	Collidable(),
+	CollisionHandler();
 }
