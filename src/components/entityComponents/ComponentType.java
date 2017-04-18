@@ -23,5 +23,6 @@ public enum ComponentType {
 	Score(),
 	Type(), 
 	Collidable(),
-	CollisionHandler();
+	CollisionHandler(),
+	ObjectCreation();
 }

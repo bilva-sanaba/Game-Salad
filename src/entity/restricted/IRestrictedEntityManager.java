@@ -20,5 +20,5 @@ public interface IRestrictedEntityManager  {
 	public Collection<IRestrictedEntity> getRestrictedEntities();
 
 	public void addObserver(Observer obs);
-
+	public void changed(Object o);
 }
