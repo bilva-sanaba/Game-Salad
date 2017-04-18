@@ -56,9 +56,7 @@ public class CollisionEngine extends AbstractEngine {
 		doubleForLoopCollisionChecking(locationComponents, imageComponents);
 	}
 	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
-		int playerId = 0;
-		
-	
+		int playerId = 0;	
 		int counter0 = -1;
 		for (Integer component0index : locationComponents.keySet()) {
 			counter0++;
@@ -93,11 +91,12 @@ public class CollisionEngine extends AbstractEngine {
 	}
 	private void sendCollisionToSubEngines(int index0, int index1, String collisionSide) {
 		boolean collisionOccurs = false;
-		if (collisionSide != ITwoObjectCollide.NONE) {
+		if (!collisionSide.equals(ITwoObjectCollide.NONE)) {
 			collisionOccurs = true;
 		}
 		
 		if (collisionOccurs) {
+			
 			Entity o0 = null;
 			Entity o1 = null;
 			for (IEntity x : entManager.getEntities()) {
@@ -127,6 +126,8 @@ public class CollisionEngine extends AbstractEngine {
 			addEngine(new GeneralPostCollisionHandler());
 		}
 		checkCollisionsOccurred();
-		System.out.println("I NEED SOME WAY OF RETURNING NEWLY CREATED ENTITIES BACK FROM THE COLLISION ENGINE");
+		for (IEntity e : newEntitiesCreated){
+			entManager.changed(e);
+		}
 	}
 }

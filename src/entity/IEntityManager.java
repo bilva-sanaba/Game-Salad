@@ -33,4 +33,7 @@ public interface IEntityManager {
 	
 	public Collection<IEntity> copy();
 	public Collection<IEntity> getEntities();
+
+
+	void changed(Object o);
 }
