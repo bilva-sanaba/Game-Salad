@@ -35,8 +35,7 @@ import javafx.scene.paint.Paint;
  * @author Justin Yang
  * @author Jack Bloomfeld
  */
-public class GridView extends GUIComponent { 
-//implements Observer {
+public class GridView extends GUIComponent {
 	private ScrollPane myScroll;
 	private double Initial_X = 500.0;
 	private double Initial_Y = 500.0;
@@ -64,40 +63,39 @@ public class GridView extends GUIComponent {
 //		myData.addObserver(this);
 		bp = new BorderPane();
 		Button butt = util.buildButton("addHo", e-> addHo());
-		util.buildButton("addHo", e->addHo());
+		util.buildButton("addHo", e-> addHo());
 		Button butt2 = util.buildButton("addVert", e -> addVert());
 		util.buildButton("addVert", e -> addVert());
-		HBox box = new HBox(butt,butt2);
+		HBox box = new HBox(butt, butt2);
 		bp.setTop(box);
 		myScroll = new ScrollPane(myEntityGrid);
 		myEntityGrid.getStyleClass().add("myGrid");
 		myStack.getChildren().addAll(myBackgroundGrid, myScroll);
 		bp.setCenter(myStack);
 		myEntityGrid.setOnMouseClicked(e -> {
-			int row = (int) (Math.round(e.getX()/10));
-			int col = (int) (Math.round(e.getY()/10));
-			System.out.println(Math.round(e.getX()/10)*10 + "   " + Math.round(e.getY()/10)*10);
-			System.out.println(Math.round(e.getX()/10) + "   " + Math.round(e.getY()/10));
+			int row = (int) (Math.round(e.getX() / 10));
+			int col = (int) (Math.round(e.getY() / 10));
+			System.out.println(Math.round(e.getX() / 10) * 10 + "   " + Math.round(e.getY() / 10) * 10);
+			System.out.println(Math.round(e.getX() / 10) + "   " + Math.round(e.getY() / 10));
 			Entity userSelectedEntity = myData.getUserSelectedEntity();
 			if (userSelectedEntity != null) {
 				Entity placedEntity = userSelectedEntity.clone();
 				placedEntity.setID(i);
 				i++;
 				myData.placeEntity(placedEntity);
-				myData.setEntityLocation(placedEntity.getID(), row*10 , col*10);
+				myData.setEntityLocation(placedEntity.getID(), row * 10 , col * 10);
 				drawEntity(placedEntity);
 			}
 		});
 	}
 
-
 	private void addVert() {
-		myEntityGrid.setHeight(Initial_Y+=10);
+		myEntityGrid.setHeight(Initial_Y += 10);
 		myData.getLevelEntity().addCol();
 	}
 		
 	private void addHo() {
-		myEntityGrid.setWidth(Initial_X+=10);
+		myEntityGrid.setWidth(Initial_X += 10);
 		myData.getLevelEntity().addRow();
 	}
 
@@ -105,14 +103,14 @@ public class GridView extends GUIComponent {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		double h =0;
-		double w =0; 
+		double h = 0;
+		double w = 0;
 		if(entity.getComponent(ComponentType.ImageProperties) != null){
 			ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
 			System.out.println(imageProp.getHeight());
 			System.out.println(imageProp.getWidth());
-			h=imageProp.getHeight();
-			w=imageProp.getWidth();
+			h = imageProp.getHeight();
+			w = imageProp.getWidth();
 			spriteImage.setFitHeight(imageProp.getHeight());
 			spriteImage.setFitWidth(imageProp.getWidth());
 		}
