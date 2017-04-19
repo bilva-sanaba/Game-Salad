@@ -10,6 +10,11 @@ public class StepComponent implements IComponent {
 		steps = s;
 	}
 	
+	public StepComponent(int s, int sl) {
+		steps = s;
+		stepsLeft = sl;
+	}
+	
 	public StepComponent(){
 		super();
 	}

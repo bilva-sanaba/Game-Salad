@@ -1,11 +1,14 @@
 package controller_interfaces;
 
 import java.util.Observable;
+import java.util.Set;
 
+import javafx.scene.input.KeyCode;
 import data_interfaces.XMLException;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 import gameView.UIImageModel;
+import gamedata.GameData;
 
 /**
  * This class defines the behavior of the controller. The controller runs most
@@ -53,7 +56,7 @@ public interface ControllerInterface {
 	 *            - string of the file path to the new data file
 	 * @return 
 	 */
-	public IRestrictedEntityManager loadNewGame(String filePath);
+	public GameData loadNewGame(String filePath);
 
 	/**
 	 * Resets the current game using the original XML file 
@@ -63,10 +66,12 @@ public interface ControllerInterface {
 	 */
 	public void resetCurrentGame() throws XMLException;
 
-	public void run();
+	//public void runGameAnimation();
 	
 	public void makeGame();
 	
 	public GameEngine getEngine();
+	
+	public void step(Set<KeyCode> keysPressed);
 
 }

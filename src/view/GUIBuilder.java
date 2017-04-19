@@ -14,7 +14,7 @@ import view.toolbar.ToolBarView;
  */
 public class GUIBuilder {
 	public static final String RESOURCE_PACKAGE = "resources/";
-	public static final String STYLESHEET = "GridView.css";
+	public static final String STYLESHEET = "AuthoringGUI.css";
 
 	private static final double SCREEN_HEIGHT = 650;
 	private static final double SCREEN_WIDTH = 1000;
@@ -25,6 +25,8 @@ public class GUIBuilder {
 	private GUIComponent toolbar;
 	private ViewData myData;
 	private ViewController viewController;
+	
+	private Pane myBP;
 
 	/**
 	 * Initializes the main Scene and Stage.
@@ -34,11 +36,15 @@ public class GUIBuilder {
 		grid = new GridView(utilF, myData, 10, 10);
 		tab = new TabView(utilF, myData);
 		toolbar = new ToolBarView(utilF, myData);
-		//viewController = new ViewController(myData, grid, tab);
+		viewController = new ViewController(myData, grid, tab);
+		myData.addPresetEntities();
 
 		myComp.add(grid);
 		myComp.add(tab);
 		myComp.add(toolbar);
+		
+		//ADDED BY HENRY TO FIX THE STAGE POPUP ERROR IN CONTROLLER
+		myBP = buildPane();
 	}
 
 	public Pane buildPane() {
@@ -49,11 +55,12 @@ public class GUIBuilder {
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
 		myPane.setCenter(grid.buildComponent());
+		myPane.setId("root");
 		return myPane;
 	}
 
 	public Scene buildScene() {
-		Scene myScene = new Scene(buildPane());
+		Scene myScene = new Scene(myBP);
 		myScene.getStylesheets().add(RESOURCE_PACKAGE + STYLESHEET);
 		return myScene;
 	}

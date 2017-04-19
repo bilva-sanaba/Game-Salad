@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.*;
 
 import components.entityComponents.ComponentType;
-import components.entityComponents.LocationComponent;
+import components.movementcomponents.LocationComponent;
 import data_interfaces.*;
 import entity.*;
 
@@ -32,7 +32,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 				new ExtensionFilter("Text Files", "*" + getSuffix()));
 
 		File dataFile = fc.showOpenDialog(newStage);
-		if (!dataFile.equals(null)) {
+		if (dataFile != null) {
 			String dataPath = dataFile.getAbsolutePath();
 			String[] splitS = dataPath.split("[\\\\/]");
 			String firstSplit = splitS[splitS.length - 1];
@@ -41,22 +41,25 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			myData.setGameName(name);
 			c = new Communicator(name);
 			Collection <Entity> col = c.getData();
-			myData.clearData();
+			myData.refresh();
 			for (Entity e: col) {
 				System.out.println(e.getClass().toString());
 				if (e.getClass().toString().equals("class entity.LevelEntity")) {
 					System.out.println("Level entity is set");
 					myData.setLevelEntity((LevelEntity) e);
 				}
+				else if (e.getClass().toString().equals("class entity.SplashEntity")) {
+					myData.setSplashEntity((SplashEntity)e);
+				}
 				else if (isPlaced(e)) {
-					System.out.println("this happens");
+					System.out.println("isplaced");
 					myData.placeEntity(e);
 				}
 				else {
+					System.out.println("defines an entity");
 					myData.defineEntity(e);
 				}
 			}
-			myData.refresh();
 		}
 		
 	}

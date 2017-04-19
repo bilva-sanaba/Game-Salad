@@ -3,8 +3,8 @@ package gameView.gameScreen;
 import java.util.Collection;
 
 import controller.WorldAnimator;
-import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
+import gameEngine_interface.RunnerTest;
 import gameView.AbstractViewer;
 import gameView.ImageManager;
 import gameView.UIView;
@@ -12,8 +12,7 @@ import gameView.commands.AbstractCommand;
 import gameView.displayComponents.UIDisplayComponent;
 import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
-import javafx.scene.Group;
-import javafx.scene.Node;
+import gamedata.GameData;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -22,15 +21,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class GameScreen extends AbstractViewer {
+public class GameScreen extends AbstractViewer implements IGameScreenDisplays, IGameScreenEntity {
 
 	private static final String myName = GameScreen.class.getSimpleName();
 	private Scene myScene;
 	private BorderPane myBP;
-	private IRestrictedEntityManager myEntities;
+	private GameData myData;
 	private ImageManager myManager;
 	private HBox myTopBox;
-	private BorderPane insidepane;
 	private VBox myLeftBox;
 	private VBox myRightBox;
 	private StackPane myPane;
@@ -51,40 +49,32 @@ public class GameScreen extends AbstractViewer {
 	}
 
 	public Scene getScene() {
-		myPane.getChildren().add(myAnimation.getScene().getRoot());
 		
+		//UNCOMMENT FOR NORMAL
+//		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
+//		System.out.println(myPane.getChildren());
+//		System.out.println(myPane.getChildren().get(2).getTranslateX());
+//		System.out.println(myPane.getChildren().get(2).getTranslateY());
+//		
+////
 		
-		
-		System.out.println(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
-		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
-//
-//		myAnimation = new RunnerTest().getAnimator();
-//		myAnimation.setKeys(myScene);
+		//UNCOMMENT FOR RUNNERS TEST
+		RunnerTest s = new RunnerTest(getView().getStage(), getView());
+		myAnimation = s.getAnimator();
+		myAnimation.start(s.getEngine().dummyLoad(), this);
+		myAnimation.setKeys(myScene);
+		myAnimation.giveEngine(s.getEngine());
 //		Scene test = myAnimation.getScene();
-//		myPane.getChildren().add(test.getRoot());
-		
-		//USED FOR CHECKING CHILDREN
-//		for (Node each:myPane.getChildren()) {
-//			if (each == test.getRoot()) {
-//				for (Node f: ((Group) each).getChildren()) {
-//					System.out.println(f);
-//					System.out.println(((ImageView) f).getX());
-//					System.out.println(((ImageView) f).getY());
-//				}
-//			}
-//			System.out.println(each.getTranslateX());
-//			System.out.println(each.getTranslateY());
-//			
-//		}
-		//myBP.setCenter(test.getRoot());
-		
-		
+//		myPane.getChildren().addAll(test.getRoot().getChildrenUnmodifiable());
+		myBP.setCenter(myAnimation.getGroup());
+
 		return myScene;
 	}
 
-	public void addEntity(IRestrictedEntityManager entity) {
-		myEntities = entity;
-		myManager = new ImageManager(entity);
+	public void addData(GameData data) {
+		myData = data;
+		myAnimation.start(myData, this);
+		//myManager = new ImageManager(myData);
 	}
 
 	public void runGame() {
@@ -126,12 +116,13 @@ public class GameScreen extends AbstractViewer {
 				myLeftBox);
 		myBP.setId("main");
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));//getStyleSheets(this, myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
 		myCommands.stream()
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
 			});
-		myBP.setCenter(myPane);
+//		myBP.setCenter(myPane);
+		//myAnimation.setKeys(myScene);
 	}
 
 	@Override
@@ -148,8 +139,23 @@ public class GameScreen extends AbstractViewer {
 		myPane.getChildren().add(toAdd.getDisplay());
 	} 
 	
-	public void addGameEngine(GameEngine game) {
-		myAnimation.start(game);
+	@Override
+	public void loadGame(String filePath) {
+		myPane.getChildren().clear();
+		myDisplays.addAllActive();
+		myAnimation.clearRoot();
+		super.loadGame(filePath);
+	}
+
+	@Override
+	public void addEntity(ImageView add) {
+		myPane.getChildren().add(add);
+		
+	}
+
+	@Override
+	public void removeEntity(ImageView remove) {
+		myPane.getChildren().remove(remove);
 	}
 
 }

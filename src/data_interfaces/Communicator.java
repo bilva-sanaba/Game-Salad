@@ -6,7 +6,7 @@ import org.w3c.dom.Element;
 
 import entity.*;
 
-public class Communicator extends GameSavingDataTool {
+public class Communicator extends GameSavingDataTool implements EncapsulatedCommunication {
 
 	private String fileName;
 
@@ -18,7 +18,6 @@ public class Communicator extends GameSavingDataTool {
 	public Collection<Entity> getData() {
 		XMLParser xp = new XMLParser();
 		EntityHandler eh = new EntityHandler();
-
 		return eh.getCollection(xp.getData(fileName));
 	}
 }

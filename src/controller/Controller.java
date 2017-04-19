@@ -1,31 +1,23 @@
 package controller;
 
-import data_interfaces.*;
-import gameView.UIImageModel;
-import gameView.UIImageProperty;
-import gameView.UIView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.HashMap;
+import java.util.Set;
 
 import data_interfaces.*;
-import view_interfaces.UIViewInterface;
+import gameView.UIView;
+import gameView_interfaces.UIViewInterface;
+import gamedata.GameData;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import data_interfaces.XMLException;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
-import entity.EntityManager;
-
 import entity.restricted.IRestrictedEntityManager;
-import entity.restricted.RestrictedEntity;
-
-import entity.restricted.RestrictedEntityManager;
 import gameEngine_interface.GameEngine;
-import gameView.UIView;
 
 /**
  * 
@@ -46,7 +38,6 @@ public class Controller implements ControllerInterface {
 		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
 		myGameEngine = new GameEngine();
-		myWorldAnimator = new WorldAnimator();
 		myGameView = new UIView(s, this);
 	}
 
@@ -58,11 +49,11 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public IRestrictedEntityManager loadNewGame(String gameName) { //IRestrictedEntityManager
+	public GameData loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
-		myGameEngine.loadData(c); //c
-		RestrictedEntityManager restrictedEntityManager = myGameEngine.getRestrictedEntityManager();
-		return restrictedEntityManager;
+		GameData gameData = myGameEngine.loadData(c); 
+		
+		return gameData;
 	}
 
 	@Override
@@ -75,16 +66,22 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-	public void run() {
-		myWorldAnimator.start(myGameEngine);
-	}
+//	public void runGameAnimation() {
+//		myWorldAnimator.start(myGameEngine);
+//	}
 	
 	public void makeGame() {
-		myStage.setScene(myGUIBuilder.buildScene());
-		myStage.show();
+		Stage authorStage = new Stage();
+		authorStage.setScene(myGUIBuilder.buildScene());
+		authorStage.showAndWait();
+		authorStage.getScene().setRoot(new Region());
 	}
 	
 	public GameEngine getEngine() {
 		return myGameEngine;
 	}
+	
+	public void step(Set<KeyCode> keysPressed ){
+        myGameEngine.handleUpdates(keysPressed);
+    }
 }

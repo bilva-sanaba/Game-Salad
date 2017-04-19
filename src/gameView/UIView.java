@@ -2,21 +2,26 @@
 package gameView;
 
 import java.awt.Dimension;
+import java.util.Set;
 
 import data_interfaces.XMLException;
 import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameView.gameScreen.GameScreen;
+//import gameView.gameScreen.SpecificGameSplashView;
+import gameView.gameScreen.SpecificGameSplashView;
+
 import com.sun.jmx.snmp.Timestamp;
 
-import gameView.splashScreen.SpecificGameSplashView;
 import gameView.splashScreen.SplashView;
+import gameView_interfaces.UIViewInterface;
+import gamedata.GameData;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import view_interfaces.UIViewInterface;
 
 
 public class UIView implements UIViewInterface {
@@ -25,27 +30,28 @@ public class UIView implements UIViewInterface {
 	public static final String DEFAULT_BUTTONS =  "EnglishCommands";
 	public static final String DEFAULT_LOCATION = "resources/";
 	public static final String DEFAULT_STYLING = "UI";
-	public static final String STAGE_TITLE = "RainDrop Salad";
+	public static final String STAGE_TITLE = "RainDrop Laptop";
 	
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
-	private GameScreen myGameScene; //move to splash
-	private IRestrictedEntityManager myEntities; 
-	private WorldAnimator myAnimation; //move to splash
+	private GameScreen myGameScene;
+	private GameData myData; 
+	private WorldAnimator myAnimation; 
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
 		s.setTitle(STAGE_TITLE);
 		myController = controller;
-		myAnimation = new WorldAnimator();
-		//mySplash = new SplashView(this, new SplashEntity(1, "", "", ""));
-     	Image i = new Image(getClass().getClassLoader().getResourceAsStream("background1.png"));
-		//mySplash = new SpecificGameSplashView(this, new SplashEntity(1, "PENIS", "BALLSBALLSBALLS", "background2.png")); //ADD splashentity
-		mySplash = new SplashView(this, new SplashEntity(1, "", "", ""));
-     	//myGameScene = new GameScreen(this, myAnimation);
-		runGame();//getSplashScreen();
+		myAnimation = new WorldAnimator(this);
+		mySplash = new SplashView(this);
+		myGameScene = new GameScreen(this, myAnimation);
+		//runGame();//getSplashScreen();
+		getSplashScreen();
+		//TODO UNCOMMENT TO USE
 		//getSplashScreen();
+     	//SplashEntity test = new SplashEntity(1, "Splash", "instructions", "background1.png");
+		//setStage(new SpecificGameSplashView(this, test).getScene());
 	}
 
 	public void getSplashScreen() {
@@ -61,15 +67,22 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		setStage(mySplash.getScene());//mySplash
+		setStage(myGameScene.getScene());//mySplash
 		
 	}
 	
 	public void loadGame(String file) {
 		//addEntities(myController.loadNewGame(file));
-		myController.loadNewGame(file);
-		myGameScene.addGameEngine(myController.getEngine());
+		
+		//COMMENT OUT TO TEST WITH RUNNER
+		//myGameScene.addData(myController.loadNewGame(file));
+		
+		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
 		runGame();
+		
+		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
+		//setStage(new SpecificGameSplashView(this, myController.getEngine().getSplashEntity()).getScene());
+		
 	}
 	
 	public void authorGame() {
@@ -98,13 +111,13 @@ public class UIView implements UIViewInterface {
 		return myStage;
 	}
 	
-	public void addEntities(IRestrictedEntityManager entity) {
-		myEntities = entity;
-		myGameScene.addEntity(entity);
+	public void addData(GameData data) {
+		myData = data;
+		myGameScene.addData(data);
 	}
 	
-	public Scene getGameScene() {
-		return myAnimation.getScene();
+	public void step(Set<KeyCode> keysPressed) {
+		myController.step(keysPressed);
 	}
 
 }

@@ -11,6 +11,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ImageChooser {
 
+	static final String delimiter = "\\\\|/";
 	static final String[] EXTENSIONS = new String[] { "gif", "png", "bmp" // and
 																			// other
 																			// formats
@@ -41,6 +42,8 @@ public class ImageChooser {
 			alert.setContentText("Please Select a File");
 			alert.showAndWait();
 		}
+	    String[] directories = imagepath.split(delimiter);
+	    String imageName = directories[directories.length - 1];
 		return imagepath;
 	}
 

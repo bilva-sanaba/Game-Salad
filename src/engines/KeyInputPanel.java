@@ -6,6 +6,7 @@ import java.util.Map;
 import components.keyExpressions.ConcreteKeyExpressions;
 import components.keyExpressions.KeyExpression;
 import components.entityComponents.IKeyExpression;
+
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,9 +21,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class KeyInputPanel implements IKeyInputPanel{
-	private Map<KeyCode, IKeyExpression> keyMap = new HashMap<KeyCode, IKeyExpression>();
+
+	private Map<KeyCode, String> keyMap = new HashMap<KeyCode, String>();
 	private KeyCode current; 
-	private IKeyExpression currentKC;
+	private String currentKC;
+
 	private String currentString;
 	private Text t = new Text();
 	private Scene myScene;
@@ -32,7 +35,8 @@ public class KeyInputPanel implements IKeyInputPanel{
 		
 	}
 
-	public Map<KeyCode, IKeyExpression> getMap() {
+
+	public Map<KeyCode, String> getMap() {
 		// TODO Auto-generated method stub
 		System.out.println(keyMap);
 		return keyMap;
@@ -55,8 +59,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 				System.out.println(currentKC.getClass());
 				keyMap.put(current,currentKC);
 			}
-			System.out.println(keyMap);
-		});
+			System.out.println(keyMap);});
 		Pane n = new Pane();
 		root.setTop(add);
 		root.setBottom(n);
@@ -81,8 +84,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 		for (ConcreteKeyExpressions y : x){
 			myComboBox.getItems().add(y.toString());
 		}
-		currentKC = new KeyExpression();
-		myComboBox.valueProperty().addListener((x, y, newValue) -> currentKC = ConcreteKeyExpressions.valueOf(newValue).getKeyExpression());  
+		myComboBox.valueProperty().addListener((x, y, newValue) -> currentKC = newValue);  
 		myComboBox.setPromptText("Pick an Action");
 		return myComboBox;
 	}

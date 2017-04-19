@@ -6,7 +6,9 @@ import components.entityComponents.ImagePropertiesComponent;
 
 import java.util.Observer;
 
+import javafx.geometry.Dimension2D;
 import gameView.Coordinate;
+import javafx.geometry.Dimension2D;
 /**
  * Interface for objects which the front end will receive
 **/
@@ -21,19 +23,21 @@ public interface IRestrictedEntity {
 	 * 
 	 * @return Coordinate of Entities location
 	 */
-	public Coordinate getLocation();
+
+	public Dimension2D getRestrictedLocation();
 	/**
 	 * 
 	 * @return String which is the ImagePath of the Entity
 	 */
-	public String getImagePath();
+	public String getRestrictedImagePath();
 	/**
 	 * 
 	 * @return ImagePropertiesComponent
 	 */
-	public ImagePropertiesComponent getIPComponent();
+	public Dimension2D getRestrictedIPComponent();
 	
 	
 	public void addObserver(Observer obs);
+	public void changed(Object object);
 
 }

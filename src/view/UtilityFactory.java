@@ -7,8 +7,10 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
+import entity.Entity;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -21,6 +23,7 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -40,6 +43,7 @@ public class UtilityFactory {
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources" + File.separator;
     public static final String SPLIT_REGEX = ", ";
 	private ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
+	//private ResourceBundle entityPresets = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "entities");
 	private ResourceBundle myResources;
 	
 	public UtilityFactory(String language){
@@ -106,6 +110,7 @@ public class UtilityFactory {
 		myButton.setToggleGroup(group);
 		myButton.setUserData(myResources.getString(property+"RadioButton").split(SPLIT_REGEX));
 		vbox.getChildren().add(myButton);
+		
 		return myButton;
 	}
 	
@@ -130,7 +135,8 @@ public class UtilityFactory {
 		String[] radioButton = myResources.getString(string).split(SPLIT_REGEX);
 		Integer buttonNum = Integer.parseInt(radioButton[0]);
 		for (int i = 1; i <= buttonNum; i++){
-			buildRadioButton(radioButton[i], Boolean.getBoolean(radioButton[i+buttonNum].trim()), group, vbox);
+			boolean marked = radioButton[i+buttonNum].trim().equals("true"); // sees if button should be initally marked
+			buildRadioButton(radioButton[i], marked, group, vbox);
 		}
 		nodeList.add(vbox);
 		return group;
@@ -144,7 +150,8 @@ public class UtilityFactory {
 		Slider mySlider = new Slider(Double.parseDouble(sliderProp[1]), Double.parseDouble(sliderProp[2]), Double.parseDouble(sliderProp[3]) );
 		myBox.getChildren().add(myLabel);
 		myBox.getChildren().add(mySlider);
-		mySlider.setSnapToTicks(Boolean.getBoolean(sliderProp[5]));
+		mySlider.setSnapToTicks(sliderProp[5].equals("true"));
+		System.out.println(Double.parseDouble(sliderProp[6]));
 		mySlider.setMajorTickUnit(Double.parseDouble(sliderProp[6]));
 		mySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
 			mySlider.setValue(newValue.doubleValue());
@@ -153,5 +160,9 @@ public class UtilityFactory {
 		});
 		mySlider.valueProperty().addListener(listener);
 		return myBox;
+	}
+	
+	public void setPresets(ObservableList<Entity> list){
+		
 	}
 }

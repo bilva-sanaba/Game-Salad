@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
+import javafx.beans.Observable;
 
 /**
  * Interface for Entity object which represents any object displayed in the game
@@ -45,5 +46,9 @@ public interface IEntity {
 	 * @return the icomponent or null if it does not exist
 	 */
 	public IComponent getComponent(ComponentType ct);
+	public IComponent getComponent(IComponent ic);
+	
+	public IEntity clone();
+	public void changed(Object o);
 
 }

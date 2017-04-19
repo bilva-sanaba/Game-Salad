@@ -30,19 +30,10 @@ public interface IEntityManager {
 	public Map<Integer, IComponent> getCertainComponents(
 			ComponentType certainComponent);
 
-	/**
-	 * Returns an object storing components in a restricted form with pointers
-	 * 
-	 * @return
-	 */
-	public IRestrictedEntityManager getRestricted();
-
-	/**
-	 * 
-	 * @return
-	 */
-	public Map<IEntity,IRestrictedEntity> getEntityMap(); 
-
 	
-	public Collection<Entity> copy();
+	public Collection<IEntity> copy();
+	public Collection<IEntity> getEntities();
+
+
+	void changed(Object o);
 }

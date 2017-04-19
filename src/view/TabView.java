@@ -14,21 +14,20 @@ import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.util.Callback;
+import javafx.scene.layout.VBox;
+import view.window.EntityBuilderWindow;
 
 public class TabView extends GUIComponent {
 	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
 	private ListView<Entity> blocksView = new ListView<Entity>();
-	private GridPane pane = new GridPane();
-	private TabPane myTab = new TabPane();
+	private VBox myBox = new VBox();
 	private Button b;
+	private Button u;
 	private UtilityFactory util;
 	private ViewData myData;
 	private EntityBuilderWindow entityBuilder;
@@ -42,6 +41,7 @@ public class TabView extends GUIComponent {
 		myData = data;
 		util = utilIn;
 		entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
+		blocksView.setId("blocksview");
 		blocksView.setItems(blocksList);
 		blocksView.setCellFactory(e -> new ListCell<Entity>() {
 			@Override
@@ -52,9 +52,15 @@ public class TabView extends GUIComponent {
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
-					ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item.getComponent(ComponentType.ImageProperties);
-					spriteImage.setFitHeight(imageProp.getHeight());
-					spriteImage.setFitWidth(imageProp.getWidth());
+					if(item.getComponent(ComponentType.ImageProperties) != null){
+						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item.getComponent(ComponentType.ImageProperties);
+						spriteImage.setFitHeight(imageProp.getHeight());
+						spriteImage.setFitWidth(imageProp.getWidth());
+					}
+					else{
+						spriteImage.setFitHeight(40);
+						spriteImage.setFitWidth(40);
+					}
 					this.setGraphic(spriteImage);
 				}
 			}
@@ -67,21 +73,29 @@ public class TabView extends GUIComponent {
 				System.out.println("asd");
 			}
 		});
-		Tab blockTab = util.buildTab("BlockTabLabel", false);
-		blockTab.setContent(blocksView);
 		b = util.buildButton("AddEntityButton", e -> {
 			entityBuilder.showEntityBuilder();
 		});
-		myTab.getTabs().add(blockTab);
+		u = util.buildButton("UploadEnities", e ->{
+			System.out.println("upload f***");
+		});
+		
+		util.setPresets(blocksList);
 	}
-	
+
 	public void clearEntitiesOnTab(){
 		blocksList.clear();
 	}
+	
+	public void addEntity(Entity e){
+		blocksList.add(e);
+	}
+
 	public void placeEntitiesFromFile(){
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getDefinedEntityMap();
 		for(Integer i: myMap.keySet()){
+			System.out.println("loop");
 			tempEntity = myMap.get(i);
 			blocksList.add(tempEntity);
 		}
@@ -89,13 +103,10 @@ public class TabView extends GUIComponent {
 
 	@Override
 	public Region buildComponent() {
-		pane.getChildren().add(myTab);
-		GridPane.setConstraints(myTab, 0, 0);
-		pane.getChildren().add(b);
-		GridPane.setConstraints(b, 0, 1);
-		Region myRegion = pane;
-		GridPane.setConstraints(pane, 0, 1);
-		return myRegion;
+		myBox.getChildren().add(blocksView);
+		myBox.getChildren().add(b);
+		myBox.getChildren().add(u);
+		return myBox;
 	}
 
 }
