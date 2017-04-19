@@ -44,8 +44,6 @@ public class EntityBuilderWindow implements IWindow{
 		blocksList = blocksListIn;
 		util = utilIn;
 		nodeList.add(myImage);
-		GridPane.setConstraints(myImage, 0, 0);
-		GridPane.setColumnSpan(myImage, 3);
 	}
 
 	public void showEntityBuilder() {
@@ -55,7 +53,7 @@ public class EntityBuilderWindow implements IWindow{
 
 	private Scene buildScene() {
 		buildNodes();
-		GridPane pane = buildPane();
+		Pane pane = buildPane();
 		Scene myScene = new Scene(pane, 350, 400);
 		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
 		return myScene;
@@ -78,26 +76,21 @@ public class EntityBuilderWindow implements IWindow{
 			myImage.setFitWidth(200);
 			myImage.setFitHeight(200);
 		});
-		GridPane.setColumnSpan(imageButton, 2);
 		nodeList.add(imageButton);
-		GridPane.setConstraints(imageButton, 0, 1);
 
 		Node okayButton = util.buildButton("OkayLabel", e -> {
 			Entity tempEntity = new Entity(i);
 			i++;
 			tempEntity.addComponent(new SpriteComponent(myImagePath));
-			myData.defineEntity(tempEntity);
-			myData.setUserSelectedEntity(tempEntity);
+			//myData.defineEntity(tempEntity);
+			//myData.setUserSelectedEntity(tempEntity);
 			myStage.close();
-			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, blocksList);
+			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, tempEntity);
 			ecw.show();
 		});
-		nodeList.add(okayButton);
-		GridPane.setConstraints(okayButton, 0, 4);
 
 		Node entityType = new Label("Kind of Entity");
 		nodeList.add(entityType);
-		GridPane.setConstraints(entityType, 0, 2);
 
 		final ToggleGroup group = util.buildRadioButtonGroup("SelectEntityType", nodeList);
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
@@ -108,10 +101,12 @@ public class EntityBuilderWindow implements IWindow{
 				}
 			}
 		});
+		
+		nodeList.add(okayButton);
 	}
 
-	private GridPane buildPane() {
-		GridPane pane = new GridPane();
+	private Pane buildPane() {
+		VBox pane = new VBox();
 		pane.getChildren().addAll(nodeList);
 		return pane;
 	}

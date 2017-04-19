@@ -42,18 +42,18 @@ public class EntityConfigurationWindow implements IWindow {
 	private ObservableList<Entity> myList;
 
 	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType,
-			ObservableList<Entity> blocksList) {
+			Entity entityIn) {
 		myCompF = new ComponentFactory();
 		myUtilF = utilF;
 		myData = entityData;
-		myEntity = myData.getUserSelectedEntity();
+		myEntity = entityIn;
 		myData.setUserSelectedEntity(myEntity);
 		componentList = entityType;
 		myCompEdits = new HashMap<String, ComponentEditor>();
-		myList = blocksList;
+		//myList = blocksList;
 		myStage.setScene(buildScene());
 	}
-	
+
 	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, ObservableList<Entity> blocksList, Entity e) {
 		myCompF = new ComponentFactory();
 		myUtilF = utilF;
@@ -105,9 +105,11 @@ public class EntityConfigurationWindow implements IWindow {
 
 	private void enterButton() {
 		for (ComponentEditor comp : myCompEdits.values()) {
-			myEntity.addComponent(comp.getComponent());
+				myEntity.addComponent(comp.getComponent());
 		}
-		myList.add(myEntity);
+		//myList.add(myEntity);
+		myData.defineEntity(myEntity);
+		myData.setUserSelectedEntity(myEntity);
 		myStage.close();
 	}
 
