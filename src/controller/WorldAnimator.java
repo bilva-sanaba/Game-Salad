@@ -95,9 +95,9 @@ public class WorldAnimator{
 
         fillMapAndDisplay();
 
-        for (Integer id : imageMap.keySet()) {
+        /*for (Integer id : imageMap.keySet()) {
             root.getChildren().add(imageMap.get(id));
-        }        
+        }*/        
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                 e-> step(SECOND_DELAY));
         this.animation = new Timeline();
@@ -109,21 +109,21 @@ public class WorldAnimator{
     public Scene getScene() {
         return myScene;
     }
+
     private void step(double elapsedTime){
     	//myView.step(keysPressed);
+    	System.out.println(imageMap.size());
     	myEngine.handleUpdates(keysPressed);
         fillMapAndDisplay();
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
-        System.out.println(imageMap);
     }
 
     
     private void handleKeyReleased(KeyCode keyCode) {
         keysReleased.add(keyCode);
         keysPressed.remove(keyCode);
-        System.out.println("IN WORLD ANIMATOR" + keyCode);
     }
 
     private void handleKeyPressed(KeyCode keyCode) {
@@ -162,6 +162,7 @@ public class WorldAnimator{
 
     }
     
+
     public void removeEntity(Integer entity){
     	System.out.println("CHAHCHAHCHA" + entity);
     	imageMap.get(entity).setImage(null);
@@ -173,15 +174,28 @@ public class WorldAnimator{
 
 	private void createEntity(Integer entity, Map<Integer, ImageView> entities){
 	        if (!imageMap.containsKey(entity) && entities.get(entity)!=null){
+	        	System.out.println("BALLS");
 	            ImageView imageView = new ImageView();
 	            ImageView old = entities.get(entity);
-	            updateImage(imageView, old);
+	            System.out.println(old.getTranslateX() + "   " + old.getTranslateY());
+	            imageView = updateImage(imageView, old);
+	            System.out.println(imageView);
 	            imageMap.put(entity, imageView);
-	            //myGameScreen.addEntity(imageView);
+	            System.out.println(imageMap.get(entity));
+	            System.out.println(imageView.getTranslateX() + "   " + imageView.getTranslateY());
+	            
+	            root.getChildren().add(imageView);
+	
+	            System.out.println(entity);
+
+//	            myGameScreen.addEntity(imageView);
+
 	            //root.getChildren().add(imageMap.get(entity));
 	        }
 	  }
-    private void updateEntity(Integer entity, Map<Integer, ImageView> entities){
+
+
+	private void updateEntity(Integer entity, Map<Integer, ImageView> entities){
         if (imageMap.containsKey(entity)) {
         	ImageView currentImage = imageMap.get(entity);
     		ImageView updatedImage = entities.get(entity);
@@ -192,7 +206,7 @@ public class WorldAnimator{
         }
 
     }
-    private void updateImage(ImageView currentImage, ImageView re){
+    private ImageView updateImage(ImageView currentImage, ImageView re){
         currentImage.setImage(re.getImage());
         
         //UNCOMMENT TO TEST RUNNER
@@ -200,6 +214,7 @@ public class WorldAnimator{
 
         currentImage.setTranslateY(re.getTranslateY()); 
         
+        return currentImage;
         //COMMENT OUT TO TEST RUNNER
 
         //currentImage.setTranslateX(re.getLocation().getX()*50-475);

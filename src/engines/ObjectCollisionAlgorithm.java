@@ -17,6 +17,7 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 	}
 	
 	public String collides(Map<ComponentType, IComponent> obj0, Map<ComponentType, IComponent> obj1) {
+		
 		ImagePropertiesComponent img0 = (ImagePropertiesComponent) obj0.get(ComponentType.ImageProperties);
 		ImagePropertiesComponent img1 = (ImagePropertiesComponent) obj1.get(ComponentType.ImageProperties);
 		LocationComponent loc0 = (LocationComponent) obj0.get(ComponentType.Location);

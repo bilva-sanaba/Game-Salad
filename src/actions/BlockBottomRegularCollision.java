@@ -1,4 +1,5 @@
 package actions;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,10 +7,9 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
 import components.movementcomponents.AccelerationComponent;
 import components.movementcomponents.VelocityComponent;
-import entity.Entity;
 import entity.IEntity;
 
-public class BlockTopRegularCollision implements IAction {
+public class BlockBottomRegularCollision implements IAction {
 	
 	@Override
 	public List<IEntity> executeAction(IEntity e) {
@@ -23,7 +23,7 @@ public class BlockTopRegularCollision implements IAction {
 			
 			
 			System.out.println(vc.getY());
-			if (vc.getY() > 0) {
+			if (vc.getY() <0) {
 				vc.setY(0);
 				ac.setY(0);
 			}
