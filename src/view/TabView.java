@@ -86,6 +86,10 @@ public class TabView extends GUIComponent {
 	public void clearEntitiesOnTab(){
 		blocksList.clear();
 	}
+	
+	public void addEntity(Entity e){
+		blocksList.add(e);
+	}
 
 	public void placeEntitiesFromFile(){
 		Entity tempEntity;
