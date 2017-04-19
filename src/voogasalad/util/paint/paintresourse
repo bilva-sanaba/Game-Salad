@@ -1,0 +1,5 @@
+
+SelectDrawingTools = Pen, Circle, Rectangle, true, false, false 
+PenRadioButton = 
+CircleRadioButton = 
+RectangleRadioButton = 

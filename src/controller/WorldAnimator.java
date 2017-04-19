@@ -109,6 +109,7 @@ public class WorldAnimator{
     public Scene getScene() {
         return myScene;
     }
+
     private void step(double elapsedTime){
     	//myView.step(keysPressed);
     	myEngine.handleUpdates(keysPressed);
@@ -116,14 +117,12 @@ public class WorldAnimator{
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
-        System.out.println(imageMap);
     }
 
     
     private void handleKeyReleased(KeyCode keyCode) {
         keysReleased.add(keyCode);
         keysPressed.remove(keyCode);
-        System.out.println("IN WORLD ANIMATOR" + keyCode);
     }
 
     private void handleKeyPressed(KeyCode keyCode) {
@@ -162,20 +161,25 @@ public class WorldAnimator{
 
     }
     
+
     public void removeEntity(Integer entity){
-         root.getChildren().remove(imageMap.get(entity));
+    	System.out.println("CHAHCHAHCHA" + entity);
+    	imageMap.get(entity).setImage(null);
+        root.getChildren().remove(imageMap.get(entity));
          //myGameScreen.removeEntity(imageMap.get(entity));
-         imageMap.remove(entity);
+        imageMap.remove(entity);
     }
 
 
 	private void createEntity(Integer entity, Map<Integer, ImageView> entities){
-	        if (!imageMap.containsKey(entity)){
+	        if (!imageMap.containsKey(entity) && entities.get(entity)!=null){
 	            ImageView imageView = new ImageView();
 	            ImageView old = entities.get(entity);
 	            updateImage(imageView, old);
 	            imageMap.put(entity, imageView);
-	            //myGameScreen.addEntity(imageView);
+
+//	            myGameScreen.addEntity(imageView);
+
 	            //root.getChildren().add(imageMap.get(entity));
 	        }
 	  }

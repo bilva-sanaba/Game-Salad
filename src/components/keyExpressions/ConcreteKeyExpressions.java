@@ -1,6 +1,10 @@
 package components.keyExpressions;
 
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 import components.entityComponents.ComponentType;
 import components.entityComponents.IKeyExpression;
 import components.movementcomponents.AccelerationComponent;
@@ -11,12 +15,20 @@ import javafx.scene.input.KeyCode;
 
 public enum ConcreteKeyExpressions {
 	JUMP ((a) -> {
-		VelocityComponent vc = (VelocityComponent) a.getComponent(ComponentType.Velocity);
+//		ScriptEngine engine = new ScriptEngineManager().getEngineByName("groovy");
+		VelocityComponent vc = (VelocityComponent) a.getComponent(new VelocityComponent(0,0));
 		AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
 		if (vc.getY()==0){
 			vc.setY(-3);
 			ac.setY(.05);
 		}
+//		try {
+//			engine.put("vc", vc);
+//			engine.put("ac", ac);
+//			engine.eval("if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
+//		} catch (ScriptException ex) {
+//            System.out.println(ex);
+//        }
 	}),
 	RIGHT ((a) -> {
 		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
@@ -45,6 +57,9 @@ public enum ConcreteKeyExpressions {
 		else{
 			ac.setX(0);
 		}*/
+	}),
+	REMOVE ((a) -> {
+		a.changed(null);
 	});
 
     private IKeyExpression keyExpression; 

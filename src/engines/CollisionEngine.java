@@ -8,6 +8,7 @@ import java.util.Map;
 import components.entityComponents.ComponentType;
 import components.IComponent;
 import components.entityComponents.LabelComponent;
+import engines.subengines.GeneralPostCollisionHandler;
 import engines.subengines.ISubEngine;
 import engines.subengines.stopMovementAfterHit;
 import entity.Entity;
@@ -29,17 +30,19 @@ public class CollisionEngine extends AbstractEngine {
 	private IEntityManager entManager;
 	private List<IEntity> newEntitiesCreated;
 	private ITwoObjectCollide collisionMethod = new ObjectCollisionAlgorithm();
-	stopMovementAfterHit smah = new stopMovementAfterHit();
+	private int numSubEnginesAdded;
+
 	public CollisionEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 		subEngines = new ArrayList<ISubEngine>();
 		entManager = myEntityManager;
+		numSubEnginesAdded = 0;
 		
 	}
 	
 	public void addEngine(ISubEngine newSubEngine) {
-		newSubEngine.addEntityManager(entManager);
 		subEngines.add(newSubEngine);
+		numSubEnginesAdded++;
 		
 	}
 	
@@ -53,14 +56,7 @@ public class CollisionEngine extends AbstractEngine {
 		doubleForLoopCollisionChecking(locationComponents, imageComponents);
 	}
 	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
-		int playerId = 0;
-		for (IEntity x : entManager.getEntities()) {
-			Entity x1 = (Entity) x;
-			LabelComponent lc1 = (LabelComponent) x1.getComponent(ComponentType.Label);
-			if (!lc1.getLabel().equals("Block")) {
-				playerId = x1.getID();
-			}
-		}
+		int playerId = 0;	
 		int counter0 = -1;
 		for (Integer component0index : locationComponents.keySet()) {
 			counter0++;
@@ -95,10 +91,12 @@ public class CollisionEngine extends AbstractEngine {
 	}
 	private void sendCollisionToSubEngines(int index0, int index1, String collisionSide) {
 		boolean collisionOccurs = false;
-		if (collisionSide != ITwoObjectCollide.NONE) {
+		if (!collisionSide.equals(ITwoObjectCollide.NONE)) {
 			collisionOccurs = true;
 		}
+		
 		if (collisionOccurs) {
+			
 			Entity o0 = null;
 			Entity o1 = null;
 			for (IEntity x : entManager.getEntities()) {
@@ -110,21 +108,11 @@ public class CollisionEngine extends AbstractEngine {
 					o1 = (Entity) x;
 				}
 			}
-			if (o0 == null || o1 == null) {
-				System.out.println("what's going on");
-			}
-			smah.handleCollision(o0, o1);
 			
-			/*for(ISubEngine subEngine: subEngines) {
-				List<ComponentType> subEngineNeededComponents = subEngine.getNecessaryComponents(collisionSide);
-				for(ComponentType comp : subEngineNeededComponents) {
-					Map<Integer, IComponent> componentFromAllEntities = entManager.getCertainComponents(comp);
-					CollisionPair dataTransmitter = new CollisionPair();
-					dataTransmitter.putPairingFromList(componentFromAllEntities, index0, index1);
-					List<IEntity> newEntitiesCreatedTemp = subEngine.handleCollision(dataTransmitter);
-					newEntitiesCreated.addAll(newEntitiesCreatedTemp);
-				}
-			}*/
+			for (ISubEngine engine : subEngines) {
+				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide));
+			}
+			
 		}
 	}
 	@Override
@@ -134,6 +122,12 @@ public class CollisionEngine extends AbstractEngine {
 	}
 	public void update(Collection<KeyCode> keys) {
 		newEntitiesCreated = new ArrayList<IEntity>();
+		if (numSubEnginesAdded<=0) {
+			addEngine(new GeneralPostCollisionHandler());
+		}
 		checkCollisionsOccurred();
+		for (IEntity e : newEntitiesCreated){
+			entManager.changed(e);
+		}
 	}
 }

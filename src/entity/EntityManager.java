@@ -73,5 +73,12 @@ public class EntityManager extends Observable implements IEntityManager, IRestri
 		// TODO Auto-generated method stub
 		return myEntities;
 	}
+	@Override
+	public void changed(Object o) {
+		setChanged();
+		notifyObservers(o);
+		// TODO Auto-generated method stub
+		
+	}
 
 }

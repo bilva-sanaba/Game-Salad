@@ -30,7 +30,7 @@ public class UIView implements UIViewInterface {
 	public static final String DEFAULT_BUTTONS =  "EnglishCommands";
 	public static final String DEFAULT_LOCATION = "resources/";
 	public static final String DEFAULT_STYLING = "UI";
-	public static final String STAGE_TITLE = "RainDrop Salad";
+	public static final String STAGE_TITLE = "RainDrop Laptop";
 	
 	private Stage myStage;
 	private ControllerInterface myController;
