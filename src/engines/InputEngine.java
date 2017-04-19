@@ -66,8 +66,8 @@ public class InputEngine extends AbstractEngine{
 					((IRestrictedEntity) e).changed(e);
 				}
 				Entity x = new Entity(1000);
-				x.addComponent(new LocationComponent(0,100));
-				x.addComponent(new SpriteComponent(("dirt.jpg")));
+				x.addComponent(new LocationComponent(200,400));
+				x.addComponent(new SpriteComponent(("sand.jpg")));
 
 				ImagePropertiesComponent xc = new ImagePropertiesComponent();
 				xc.setHeight(50);
