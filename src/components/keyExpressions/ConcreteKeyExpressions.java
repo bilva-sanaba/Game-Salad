@@ -32,7 +32,7 @@ public enum ConcreteKeyExpressions {
 	}),
 	RIGHT ((a) -> {
 		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
-		lc.setX(lc.getX()+2);
+		lc.setX(lc.getX()+1);
 		/*AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
 		TerminalVelComponent tvc = (TerminalVelComponent) a.getComponent(ComponentType.TerminalVelComponent);
 		VelocityComponent vc = (VelocityComponent) a.getComponent(ComponentType.Velocity);
@@ -47,7 +47,7 @@ public enum ConcreteKeyExpressions {
 	}),
 	LEFT ((a) -> {
 		LocationComponent lc = (LocationComponent) a.getComponent(ComponentType.Location);
-		lc.setX(lc.getX()-2);
+		lc.setX(lc.getX()-1);
 		/*AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
 		TerminalVelComponent tvc = (TerminalVelComponent) a.getComponent(ComponentType.TerminalVelComponent);
 		VelocityComponent vc = (VelocityComponent) a.getComponent(ComponentType.Velocity);

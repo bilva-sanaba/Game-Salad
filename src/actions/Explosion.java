@@ -11,7 +11,7 @@ import entity.IEntity;
 public class Explosion implements IAction {
 
 	@Override
-	public List<IEntity> executeAction(IEntity e) {
+	public List<IEntity> executeAction(IEntity e, IEntity e2) {
 		ImagePropertiesComponent ic = (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties);
 		return new ArrayList<IEntity>();
 	}

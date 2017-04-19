@@ -100,5 +100,9 @@ public class ObserverManager {
 	public WorldAnimator getWorldAnimator(){
 		return myWorld;
 	}
+	
+	public int size(){
+		return myEntities.size();
+	}
 
 }

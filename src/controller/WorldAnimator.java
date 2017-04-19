@@ -25,7 +25,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.MoveTo;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -77,7 +79,9 @@ public class WorldAnimator{
     public WorldAnimator(UIViewInterface view){
     	myView = view;
     }
-
+    public Group getGroup(){
+    	return root;
+    }
     public void start (GameData myData, IGameScreenEntity screen){
         root = new Group();
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
@@ -95,9 +99,9 @@ public class WorldAnimator{
 
         fillMapAndDisplay();
 
-        for (Integer id : imageMap.keySet()) {
+        /*for (Integer id : imageMap.keySet()) {
             root.getChildren().add(imageMap.get(id));
-        }        
+        }*/        
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                 e-> step(SECOND_DELAY));
         this.animation = new Timeline();
@@ -165,6 +169,7 @@ public class WorldAnimator{
     public void removeEntity(Integer entity){
     	System.out.println("CHAHCHAHCHA" + entity);
     	imageMap.get(entity).setImage(null);
+
         root.getChildren().remove(imageMap.get(entity));
          //myGameScreen.removeEntity(imageMap.get(entity));
         imageMap.remove(entity);
@@ -175,15 +180,18 @@ public class WorldAnimator{
 	        if (!imageMap.containsKey(entity) && entities.get(entity)!=null){
 	            ImageView imageView = new ImageView();
 	            ImageView old = entities.get(entity);
-	            updateImage(imageView, old);
+	            imageView = updateImage(imageView, old);
 	            imageMap.put(entity, imageView);
-
+	            
+	            root.getChildren().add(imageView);
 //	            myGameScreen.addEntity(imageView);
 
 	            //root.getChildren().add(imageMap.get(entity));
 	        }
 	  }
-    private void updateEntity(Integer entity, Map<Integer, ImageView> entities){
+
+
+	private void updateEntity(Integer entity, Map<Integer, ImageView> entities){
         if (imageMap.containsKey(entity)) {
         	ImageView currentImage = imageMap.get(entity);
     		ImageView updatedImage = entities.get(entity);
@@ -194,7 +202,7 @@ public class WorldAnimator{
         }
 
     }
-    private void updateImage(ImageView currentImage, ImageView re){
+    private ImageView updateImage(ImageView currentImage, ImageView re){
         currentImage.setImage(re.getImage());
         
         //UNCOMMENT TO TEST RUNNER
@@ -202,6 +210,7 @@ public class WorldAnimator{
 
         currentImage.setTranslateY(re.getTranslateY()); 
         
+        return currentImage;
         //COMMENT OUT TO TEST RUNNER
 
         //currentImage.setTranslateX(re.getLocation().getX()*50-475);
