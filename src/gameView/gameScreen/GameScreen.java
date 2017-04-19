@@ -64,9 +64,9 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		myAnimation.start(s.getEngine().dummyLoad(), this);
 		myAnimation.setKeys(myScene);
 		myAnimation.giveEngine(s.getEngine());
-		Scene test = myAnimation.getScene();
-		myPane.getChildren().addAll(test.getRoot().getChildrenUnmodifiable());
-		
+//		Scene test = myAnimation.getScene();
+//		myPane.getChildren().addAll(test.getRoot().getChildrenUnmodifiable());
+		myBP.setCenter(myAnimation.getGroup());
 
 		return myScene;
 	}
@@ -121,7 +121,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
 			});
-		myBP.setCenter(myPane);
+//		myBP.setCenter(myPane);
 		//myAnimation.setKeys(myScene);
 	}
 

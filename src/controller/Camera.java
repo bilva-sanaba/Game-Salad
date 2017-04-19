@@ -37,7 +37,4 @@ public class Camera {
 			root.setTranslateX(root.getTranslateX());
 		}
 	}
-	
-	
-	
 }

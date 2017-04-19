@@ -11,9 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
 
@@ -25,7 +27,8 @@ public class SplashScreenBuilderWindow implements IWindow{
 	private String instructions;
 	private TextField gameTitleInput;
 	private TextField instructionsInput;
-	private Stage myStage;
+	private Stage myStage = new Stage();
+	private VBox myRoot = new VBox();
 	
 	public SplashScreenBuilderWindow() {
 		myFilePathDisplay = new Text("");
@@ -59,8 +62,9 @@ public class SplashScreenBuilderWindow implements IWindow{
 		myRoot.getChildren().add(chooseImageButton);
 		GridPane.setConstraints(chooseImageButton, 0, 0);
 		GridPane.setColumnSpan(chooseImageButton, 2);
-		Scene scene = new Scene(myRoot, 350, 300);
-		myStage.setScene(scene);
+		Scene myScene = new Scene(myRoot, 350, 400);
+		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
+		myStage.setScene(myScene);
 		myStage.setTitle("Customize Splash Screen");
 		myStage.showAndWait();
 

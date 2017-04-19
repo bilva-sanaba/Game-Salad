@@ -41,7 +41,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			myData.setGameName(name);
 			c = new Communicator(name);
 			Collection <Entity> col = c.getData();
-			myData.clearData();
+			myData.refresh();
 			for (Entity e: col) {
 				System.out.println(e.getClass().toString());
 				if (e.getClass().toString().equals("class entity.LevelEntity")) {
@@ -60,7 +60,6 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 					myData.defineEntity(e);
 				}
 			}
-			myData.refresh();
 		}
 		
 	}

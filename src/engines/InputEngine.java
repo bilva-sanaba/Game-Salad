@@ -8,10 +8,17 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import actions.BlockTopRegularCollision;
+import actions.BounceOffBlockSide;
 import components.IComponent;
+import components.collisionComponents.CollisionComponentType;
+import components.collisionComponents.CollisionComponentsHandler;
+import components.collisionComponents.SideCollisionComponent;
+import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyInputComponent;
+import components.entityComponents.LabelComponent;
 import components.entityComponents.SpriteComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
 import components.movementcomponents.AccelerationComponent;
@@ -20,11 +27,13 @@ import components.movementcomponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
+import entity.presets.AbstractBlock;
 import entity.restricted.IRestrictedEntity;
 import javafx.scene.input.KeyCode;
 
 public class InputEngine extends AbstractEngine{
 	private ScriptEngine engine; 
+	private boolean x = true;
 	public InputEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 		engine = new ScriptEngineManager().getEngineByName("groovy");
