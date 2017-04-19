@@ -10,6 +10,7 @@ import java.util.Map;
 import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
+import actions.BounceOffBlockSide;
 import actions.IAction;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
@@ -143,9 +144,16 @@ public class GameEngine implements GameEngineInterface {
 			scc.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockBottomOrTop());
 			SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
 			scq.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockBottomOrTop());
+			SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
+			scr.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockSide());
+			SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
+			scb.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockSide());
+			
 			
 			((CollisionComponentsHandler) p.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 			((CollisionComponentsHandler) p.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
+			((CollisionComponentsHandler) p.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);
+			((CollisionComponentsHandler) p.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scr);
 			
 			p.addComponent(new LabelComponent("Blok"));
 			e.add(p);

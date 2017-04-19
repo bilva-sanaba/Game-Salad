@@ -17,7 +17,7 @@ public class BounceOffBlockBottomOrTop implements IAction{
 	@Override
 	public List<IEntity> executeAction(IEntity e) {
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-		vc.setY(Math.signum(vc.getY())*-3);
+		vc.setY(-3);
 		//Does anything need to be done about acceleration?
 		return new ArrayList<IEntity>();
 
