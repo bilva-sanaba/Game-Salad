@@ -9,6 +9,7 @@ import java.util.Map;
 
 import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
+import actions.Explosion;
 import actions.IAction;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
@@ -125,7 +126,7 @@ public class GameEngine implements GameEngineInterface {
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(500,400));
-		x.addComponent(new SpriteComponent(("dirt.jpg")));
+		x.addComponent(new SpriteComponent(("Feuer46.GIF")));
 
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
 		xc.setHeight(50);
@@ -163,7 +164,7 @@ public class GameEngine implements GameEngineInterface {
 			//p.addComponent(scc);
 			p.addComponent(new CollisionComponentsHandler());
 			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
-			scc.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
+			scc.addActionForLabel(new LabelComponent("grrraah"), new Explosion());
 			SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
 			scq.addActionForLabel(new LabelComponent("grrraah"), new BlockBottomRegularCollision());
 			((CollisionComponentsHandler) p.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
