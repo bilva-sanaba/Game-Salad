@@ -25,7 +25,6 @@ public class GUIBuilder {
 	private GUIComponent toolbar;
 	private ViewData myData;
 	private ViewController viewController;
-	
 	private Pane myBP;
 
 	/**

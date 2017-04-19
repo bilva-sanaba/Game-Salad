@@ -61,7 +61,7 @@ public class EntityConfigurationWindow implements IWindow {
 		myEntity = myData.getUserSelectedEntity();
 		myData.setUserSelectedEntity(myEntity);
 		componentList = entityType;
-		myCompEdits = new ArrayList<ComponentEditor>();
+		myCompEdits = new HashMap<String, ComponentEditor>();
 		myList = blocksList;
 		myStage.setScene(buildScene());
 	}
@@ -85,7 +85,7 @@ public class EntityConfigurationWindow implements IWindow {
 			root.getChildren().add(editor.getInputNode());
 		}
 		ObservableList<ComponentType> ObsCopms = FXCollections.observableArrayList(ComponentType.values());
-		ListView components = new ListView(ObsCopms);
+		ListView<ComponentType> components = new ListView<ComponentType>(ObsCopms);
 		root.getChildren().add(components);
 		components.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ComponentType>() {
 			@Override

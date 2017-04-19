@@ -37,20 +37,13 @@ import javafx.scene.paint.Paint;
  */
 public class GridView extends GUIComponent {
 	private ScrollPane myScroll;
-	private double Initial_X = 500.0;
-	private double Initial_Y = 500.0;
-	private Canvas myBackgroundGrid = new Canvas(Initial_X, Initial_Y);
-	private Canvas myEntityGrid = new Canvas(Initial_X, Initial_Y);
-	private StackPane myStack;
-    private GraphicsContext myEntityGC = myEntityGrid.getGraphicsContext2D();
-    private GraphicsContext myBackgroundGridGC = myBackgroundGrid.getGraphicsContext2D();
-	private ViewData myData;
+	private GridPane myGrid;
+    private ViewData myData;
 	private UtilityFactory util;
-	private int i = 1000;
+	private int j = 1000;
 	private int myRow;
 	private int myCol;
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
-	private ArrayList<Rectangle> placedGrids = new ArrayList<Rectangle>();
 	private BorderPane bp;
 
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
@@ -58,117 +51,115 @@ public class GridView extends GUIComponent {
 		myRow = rows;
 		myCol = cols;
 		myData = data;
-		myStack = new StackPane();
-		myEntityGrid.setCursor(Cursor.CROSSHAIR);
-//		myData.addObserver(this);
+		myGrid = new GridPane();
+		myGrid.getStyleClass().add("view-grid");
+		for (int row = 0; row < rows; row++) {
+			for (int col = 0; col < cols; col++) {
+				addMouseListenerPane(row, col);
+			}
+		}
 		bp = new BorderPane();
-		Button butt = util.buildButton("addHo", e-> addHo());
-		util.buildButton("addHo", e-> addHo());
+		Button butt = util.buildButton("addHo", e -> addHo());
+		util.buildButton("addHo", e -> addHo());
 		Button butt2 = util.buildButton("addVert", e -> addVert());
 		util.buildButton("addVert", e -> addVert());
 		HBox box = new HBox(butt, butt2);
 		bp.setTop(box);
-		myScroll = new ScrollPane(myEntityGrid);
-		myEntityGrid.getStyleClass().add("myGrid");
-		myStack.getChildren().addAll(myBackgroundGrid, myScroll);
-		bp.setCenter(myStack);
-		myEntityGrid.setOnMouseClicked(e -> {
-			int row = (int) (Math.round(e.getX() / 10));
-			int col = (int) (Math.round(e.getY() / 10));
-			System.out.println(Math.round(e.getX() / 10) * 10 + "   " + Math.round(e.getY() / 10) * 10);
-			System.out.println(Math.round(e.getX() / 10) + "   " + Math.round(e.getY() / 10));
-			Entity userSelectedEntity = myData.getUserSelectedEntity();
-			if (userSelectedEntity != null) {
-				Entity placedEntity = userSelectedEntity.clone();
-				placedEntity.setID(i);
-				i++;
-				myData.placeEntity(placedEntity);
-				myData.setEntityLocation(placedEntity.getID(), row * 10 , col * 10);
-				drawEntity(placedEntity);
-			}
-		});
+		myScroll = new ScrollPane(myGrid);
+		bp.setCenter(myScroll);
 	}
 
 	private void addVert() {
-		myEntityGrid.setHeight(Initial_Y += 10);
-		myData.getLevelEntity().addCol();
+		for (int i = 0; i < myCol; i++) {
+			Rectangle rect = new Rectangle(40, 40);
+			rect.getStyleClass().add("view-grid-cell");
+			myGrid.add(rect, i, myRow);
+			addMouseListenerPane(i, myRow);
+		}
+		myRow++;
+		myData.getLevelEntity().addRow();
 	}
 		
 	private void addHo() {
-		myEntityGrid.setWidth(Initial_X += 10);
-		myData.getLevelEntity().addRow();
-	}
-
-	private void drawEntity(Entity entity) {
-		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
-		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
-		ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		double h = 0;
-		double w = 0;
-		if(entity.getComponent(ComponentType.ImageProperties) != null){
-			ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
-			System.out.println(imageProp.getHeight());
-			System.out.println(imageProp.getWidth());
-			h = imageProp.getHeight();
-			w = imageProp.getWidth();
-			spriteImage.setFitHeight(imageProp.getHeight());
-			spriteImage.setFitWidth(imageProp.getWidth());
+		for (int i = 0; i < myRow; i++) {
+			Rectangle rect = new Rectangle(40, 40);
+			rect.getStyleClass().add("view-grid-cell");			
+			myGrid.add(rect, myCol, i);
+			addMouseListenerPane(myCol, i);
 		}
-		else{
-			spriteImage.setFitHeight(50);
-			spriteImage.setFitWidth(50);
-		}
-		placedImages.add(spriteImage);
-		myEntityGC.drawImage(spriteImage.imageProperty().get(), entityLocation.getX(), entityLocation.getY(), w, h);
+		myCol++;
+		myData.getLevelEntity().addCol();
 	}
 	
-	public void clearEntitiesOnGrid(){
-		myEntityGC.clearRect(0, 0, Initial_X, Initial_Y);
+	private void addMouseListenerPane(int row, int col) {
+		Rectangle rect = new Rectangle(40, 40);
+		rect.getStyleClass().add("view-grid-cell");
+		rect.setFill(Color.GREY);
+		rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				System.out.println(String.format("Click at row %d col %d", row,
+						col));
+				Entity userSelectedEntity = myData.getUserSelectedEntity();
+				if (userSelectedEntity != null) {
+					Entity placedEntity = userSelectedEntity.clone();
+					placedEntity.setID(j);
+					j++;
+					myData.placeEntity(placedEntity);
+					myData.setEntityLocation(placedEntity.getID(), row, col);
+					drawEntity(placedEntity);
+				}
+			}
+		});
+		myGrid.add(rect, row, col);
+	}
+	
+	private void drawEntity(Entity entity) {
+		LocationComponent entityLocation = (LocationComponent) entity
+				.getComponent(ComponentType.Location);
+		SpriteComponent entitySprite = (SpriteComponent) entity
+				.getComponent(ComponentType.Sprite);
+		ImageView spriteImage = new ImageView(entitySprite.getSprite());
+		spriteImage.setFitHeight(40);
+		spriteImage.setFitWidth(40);
+		placedImages.add(spriteImage);
+		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
+	}
+	
+	public void clearEntitiesOnGrid() {
+		for(ImageView i: placedImages) {
+			myGrid.getChildren().remove(i);
+		}
 		placedImages.clear();
 	}
 	
-	public void placeEntitiesFromFile(){
+	public void placeEntitiesFromFile() {
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
-		for(Integer i: myMap.keySet()){
-			System.out.println("THINGS ARE PLACED");
+		for(Integer i: myMap.keySet()) {
 			tempEntity = myMap.get(i);
 			drawEntity(tempEntity);
 		}
 	}
 	
 	public void setUpLevel() {
-		System.out.println("NEW METHOD HAPPENS");
 		int totalRow = myData.getLevelEntity().getRows();
 		int totalCol = myData.getLevelEntity().getCols();
-		
 		while (myCol != totalCol) {
-			System.out.println("HORIZONTAL IS DONE");
 			addHo();
 		}
 		while (myRow != totalRow) {
-			System.out.println("VERTICAL IS DONE");
 			addVert();
 		}
+	}	
+	
+	public void updateBackground() {
+		String filePath = myData.getLevelEntity().getBackgroundFilePath();
+		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
-
+	
 	@Override
 	public Region buildComponent() {
 		return bp;
 	}
-	
-	public void updateBackground() {
-		String filePath = myData.getLevelEntity().getBackgroundFilePath();
-		Image backgroundImage = new Image(filePath);
-		myBackgroundGridGC.drawImage(backgroundImage, 10, 10);
-		System.out.println("avast landlubber");
-	}
-
-/*	@Override
-	public void update(Observable arg0, Object arg1) {
-		updateBackground();
-		setUpLevel();
-		clearEntitiesOnGrid();
-		placeEntitiesFromFile();
-	}*/
 }
