@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.ComponentFactory;
+import view.GUIBuilder;
 import view.UtilityFactory;
 import view.ViewData;
 import view.editor.ComponentEditor;
@@ -26,6 +27,7 @@ import view.editor.ComponentEditor;
  * 
  * @author Justin
  * @author Jonathan
+ * @author Jack
  */
 public class EntityConfigurationWindow implements IWindow {
 	private UtilityFactory myUtilF;
@@ -34,6 +36,7 @@ public class EntityConfigurationWindow implements IWindow {
 	private String[] componentList;
 	private ComponentFactory myCompF;
 	private VBox root;
+	private Stage myStage = new Stage();
 	private Entity myEntity;
 	private HashMap<String, ComponentEditor> myCompEdits;
 	private ObservableList<Entity> myList;
@@ -50,6 +53,18 @@ public class EntityConfigurationWindow implements IWindow {
 		myList = blocksList;
 		myStage.setScene(buildScene());
 	}
+	
+	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, ObservableList<Entity> blocksList, Entity e) {
+		myCompF = new ComponentFactory();
+		myUtilF = utilF;
+		myData = entityData;
+		myEntity = myData.getUserSelectedEntity();
+		myData.setUserSelectedEntity(myEntity);
+		componentList = entityType;
+		myCompEdits = new ArrayList<ComponentEditor>();
+		myList = blocksList;
+		myStage.setScene(buildScene());
+	}
 
 	public void show() {
 		myStage.show();
@@ -58,7 +73,9 @@ public class EntityConfigurationWindow implements IWindow {
 	private Scene buildScene() {
 		root = new VBox();
 		buildComponentEditor();
-		return new Scene(root);
+		Scene myScene = new Scene(root, 350, 400);
+		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
+		return myScene;
 	}
 
 	private void buildComponentEditor() {
