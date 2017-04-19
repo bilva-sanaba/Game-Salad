@@ -100,6 +100,7 @@ public class GameEngine implements GameEngineInterface {
 	}
 
 	//TODO: Delete once testing is over
+	
 	public GameData dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);

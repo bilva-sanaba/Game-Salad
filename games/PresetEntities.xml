@@ -1,0 +1,71 @@
+<list>
+  <entity.SplashEntity>
+    <changed>false</changed>
+    <obs/>
+    <identifier>-2</identifier>
+    <myComponents class="list"/>
+    <displayName>The game</displayName>
+    <instructions>Don&apos;t lose</instructions>
+    <backgroundFilePath>images/background1.png</backgroundFilePath>
+  </entity.SplashEntity>
+  <entity.LevelEntity>
+    <changed>false</changed>
+    <obs/>
+    <identifier>-1</identifier>
+    <myComponents class="list"/>
+    <rows>10</rows>
+    <cols>10</cols>
+    <backgroundFilePath>images/background1.png</backgroundFilePath>
+  </entity.LevelEntity>
+  <entity.Entity>
+    <changed>false</changed>
+    <obs/>
+    <identifier>0</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/dirt.jpg</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>50.0</imageHeight>
+        <imageWidth>50.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LabelComponent>
+        <label>Dirt</label>
+      </components.entityComponents.LabelComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <changed>false</changed>
+    <obs/>
+    <identifier>1</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/sand.jpg</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>50.0</imageHeight>
+        <imageWidth>50.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LabelComponent>
+        <label>Sand</label>
+      </components.entityComponents.LabelComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <changed>false</changed>
+    <obs/>
+    <identifier>2</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/stone.gif</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>50.0</imageHeight>
+        <imageWidth>50.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LabelComponent>
+        <label>Stone</label>
+      </components.entityComponents.LabelComponent>
+    </myComponents>
+  </entity.Entity>
+</list>
