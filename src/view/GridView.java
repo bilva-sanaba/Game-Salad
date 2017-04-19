@@ -84,7 +84,6 @@ public class GridView extends GUIComponent{
 		});
 	}
 
-
 	private void addVert() {
 		myGrid.setHeight(Initial_Y+=10);
 		myData.getLevelEntity().addCol();

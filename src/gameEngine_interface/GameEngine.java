@@ -95,6 +95,7 @@ public class GameEngine implements GameEngineInterface {
 	}
 
 	//TODO: Delete once testing is over
+	
 	public GameData dummyLoad(){
 //		Entity t = new Entity(40);
 //		t.addComponent(new LocationComponent(0,200));
@@ -123,6 +124,7 @@ public class GameEngine implements GameEngineInterface {
 //		g.addComponent(new SideCollisionComponent(CollisionComponentType.Bottom, new BlockTopRegularCollision()));
 //		g.addComponent(new SideCollisionComponent(CollisionComponentType.Left, new BlockTopRegularCollision()));
 //		g.addComponent(new SideCollisionComponent(CollisionComponentType.Right, new BlockTopRegularCollision()));
+
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(700,100));

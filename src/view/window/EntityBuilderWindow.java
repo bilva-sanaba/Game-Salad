@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
 import view.ViewData;
@@ -34,6 +35,7 @@ public class EntityBuilderWindow implements IWindow{
 	private ImageChooser imageChooser = new ImageChooser();
 	private UtilityFactory util;
 	private ViewData myData;
+	private Stage myStage = new Stage();
 	private int i = 0;
 	private String[] entityList = {"Error"};
 
@@ -54,7 +56,9 @@ public class EntityBuilderWindow implements IWindow{
 	private Scene buildScene() {
 		buildNodes();
 		GridPane pane = buildPane();
-		return new Scene(pane, 350, 400);
+		Scene myScene = new Scene(pane, 350, 400);
+		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
+		return myScene;
 	}
 
 	public ImageView getImage() {
