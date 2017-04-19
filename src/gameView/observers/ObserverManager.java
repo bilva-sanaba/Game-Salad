@@ -46,6 +46,7 @@ public class ObserverManager {
 			myWorld.removeEntity(e.getID());
 		}
 		else{
+			System.out.println(e.getRestrictedIPComponent());
          myEntities.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
          myEntities.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
          updateImage(e);

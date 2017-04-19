@@ -110,8 +110,8 @@ public class GameEngine implements GameEngineInterface {
 
 
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
-		xc.setHeight(50);
-		xc.setWidth(50);
+		xc.setHeight(100);
+		xc.setWidth(100);
 		x.addComponent(xc);
 
 		x.addComponent(new VelocityComponent(0,0));
@@ -163,7 +163,7 @@ public class GameEngine implements GameEngineInterface {
 				ImagePropertiesComponent xpc = new ImagePropertiesComponent();
 				xpc.setHeight(50);
 				xpc.setWidth(50);
-				p.addComponent(xc);
+				p.addComponent(xpc);
 
 
 				p.addComponent(new LabelComponent("Blok"));
@@ -173,16 +173,16 @@ public class GameEngine implements GameEngineInterface {
 			y.addComponent(new LocationComponent(500,200));
 			y.addComponent(new SpriteComponent(("stone.gif")));
 			ImagePropertiesComponent yc = new ImagePropertiesComponent();
-			yc.setHeight(50);
-			yc.setWidth(50);
+			yc.setHeight(100);
+			yc.setWidth(100);
 			y.addComponent(yc);
 			Entity p = new AbstractMysteryBlock(21,y); 
 			p.addComponent(new LocationComponent(400,200));
 			p.addComponent(new SpriteComponent(("sand.jpg")));
 			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
-			xpc.setHeight(50);
-			xpc.setWidth(50);
-			p.addComponent(xc);
+			xpc.setHeight(100);
+			xpc.setWidth(100);
+			p.addComponent(xpc);
 			p.addComponent(new LabelComponent("Blok"));
 			e.add(p);
 
