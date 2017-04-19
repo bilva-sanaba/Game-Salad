@@ -34,7 +34,6 @@ public class DrawingCanvas {
 	
 		BorderPane root = new BorderPane();
 		HBox test = new HBox();
-		
 		ColorPicker t = new ColorPicker(Color.BLACK);
 		test.getChildren().add(t);
 		root.setTop(test);
