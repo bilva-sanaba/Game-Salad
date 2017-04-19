@@ -102,20 +102,18 @@ public class GridView extends GUIComponent {
 					Entity placedEntity = userSelectedEntity.clone();
 					placedEntity.setID(j);
 					j++;
+					placedEntity.addComponent(new LocationComponent(row, col));
 					myData.placeEntity(placedEntity);
-					myData.setEntityLocation(placedEntity.getID(), row, col);
 					drawEntity(placedEntity);
 				}
 			}
 		});
 		myGrid.add(rect, row, col);
 	}
-	
-	private void drawEntity(Entity entity) {
-		LocationComponent entityLocation = (LocationComponent) entity
-				.getComponent(ComponentType.Location);
-		SpriteComponent entitySprite = (SpriteComponent) entity
-				.getComponent(ComponentType.Sprite);
+
+	public void drawEntity(Entity entity) {
+		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
+		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
 		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
 		// Modify this part to make children span multiple rows/columns

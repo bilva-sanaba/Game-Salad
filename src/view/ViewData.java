@@ -4,10 +4,12 @@ import entity.Entity;
 import entity.LevelEntity;
 import entity.SplashEntity;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Observable;
 import components.*;
 import components.movementcomponents.LocationComponent;
+import data_interfaces.Communicator;
 
 /**
  * Casting takes place to be able to edit the component because we are using enums to choose the specific component
@@ -21,6 +23,7 @@ public class ViewData extends Observable {
 	
 	private static final int STARTINGROWS = 50;
 	private static final int STARTINGCOLS = 50;
+	private static final String PRESETFILE = "PresetEntities";
 	
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, Entity> placedEntityMap;
@@ -48,48 +51,47 @@ public class ViewData extends Observable {
 		return userSelectedEntity;
 	}
 
-	public void setEntityLocation(int entityID, int row, int col) {
-		LocationComponent locComp = new LocationComponent(row, col);
-		Entity newE = placedEntityMap.get(entityID);
-		newE.addComponent(locComp);
-	}
-
 	public void defineEntity(Entity entity) {
 		definedEntityMap.put(entity.getID(), entity);
+		setChanged();
+		notifyObservers(entity);
 	}
 
 	public void placeEntity(Entity entity) {
 		placedEntityMap.put(entity.getID(), entity);
+		setChanged();
+		notifyObservers(entity);
 	}
 
-	public void undefineEntity(Entity entity) {
+	//TODO: implement CTRL + Z and stuff
+	/*	public void undefineEntity(Entity entity) {
 		definedEntityMap.remove(entity.getID());
 	}
 
 	public void unplaceEntity(Entity entity) {
 		definedEntityMap.remove(entity.getID());
-	}
+	} */
 
 	public HashMap<Integer, Entity> getDefinedEntityMap() {
 		return definedEntityMap;
 	}
-	
+
 	public HashMap<Integer, Entity> getPlacedEntityMap() {
 		return placedEntityMap;
 	}
-	
+
 	public LevelEntity getLevelEntity () {
 		return myLevelEntity;
 	}
-	
+
 	public void setLevelEntity(LevelEntity l) {
 		myLevelEntity = l;
 	}
-	
+
 	public SplashEntity getSplashEntity() {
 		return mySplashEntity;
 	}
-	
+
 	public void setSplashEntity(SplashEntity s) {
 		mySplashEntity = s;
 	}
@@ -101,14 +103,21 @@ public class ViewData extends Observable {
 	public String getGameName() {
 		return gameName;
 	}
-	
-	public void clearData(){
+
+	public void refresh(){
 		definedEntityMap.clear();
 		placedEntityMap.clear();
-	}
-	
-	public void refresh(){
 		setChanged();
 		notifyObservers("refresh");
+	}
+
+	public void addPresetEntities(){
+		Communicator c = new Communicator(PRESETFILE);
+		Collection <Entity> col = c.getData();
+		for (Entity e: col) {
+			if (!e.getClass().toString().equals("class entity.LevelEntity") && !e.getClass().toString().equals("class entity.SplashEntity")) {
+				defineEntity(e);
+			}
+		}
 	}
 }
