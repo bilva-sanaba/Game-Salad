@@ -4,7 +4,7 @@ import components.IComponent;
 
 /**
  * @author Justin
- *
+ * 
  */
 public class GameInstructionsComponent implements IComponent {
 	private String myGameInstructions;

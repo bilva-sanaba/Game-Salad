@@ -11,6 +11,7 @@ import components.entityComponents.TypeComponent;
 import components.IComponent;
 import entity.Entity;
 import entity.IEntity;
+
 public class SideCollisionComponent implements IComponent {
 	private CollisionComponentType sideCollision;
 	private Map<TypeComponent, ArrayList<IAction>> typeActionMap;
@@ -43,7 +44,7 @@ public class SideCollisionComponent implements IComponent {
 	
 	
 	
-	public List<IEntity> executeOnCollide(IEntity e) {
+	public List<IEntity> executeOnCollide(IEntity e,IEntity e2) {
 		//maybe should refactor
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
@@ -58,8 +59,8 @@ public class SideCollisionComponent implements IComponent {
 		}
 		if (typeActionMap.containsKey(entityType)) {
 			for (IAction action : typeActionMap.get(entityType)) {
-				action.executeAction(e);
-				List<IEntity> actionCreatedEntities = action.executeAction(e);
+				action.executeAction(e,e2);
+				List<IEntity> actionCreatedEntities = action.executeAction(e,e2);
 				newEntities.addAll(actionCreatedEntities);
 			}
 		}

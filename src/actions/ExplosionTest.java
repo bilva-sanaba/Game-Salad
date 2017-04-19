@@ -12,7 +12,7 @@ public class ExplosionTest {
 	public void testImageLoads() {
 		Explosion ex = new Explosion();
 		Entity e = new Entity(0);
-		ex.executeAction(e);
+		ex.executeAction(e,e);
 	}
 
 }

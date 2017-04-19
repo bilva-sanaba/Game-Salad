@@ -14,11 +14,8 @@ public class Explosion implements IAction {
 	public static final String EXPLOSION_IMAGE = "Feuer46.GIF";
 
 	@Override
-	public List<IEntity> executeAction(IEntity e) {
-		SpriteComponent sc = (SpriteComponent) e.getComponent(ComponentType.Sprite);
-		sc.setClassPath(EXPLOSION_IMAGE);
-		e.changed(e);
-		//THEY SHOULD MAKE IT SO THAT IMAGEVIEWS ONLY GET IMAGE FROM PATH AGAIN IF PATH HAS CHANGED!!!
+	public List<IEntity> executeAction(IEntity e, IEntity e2) {
+		ImagePropertiesComponent ic = (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties);
 		return new ArrayList<IEntity>();
 	}
 
