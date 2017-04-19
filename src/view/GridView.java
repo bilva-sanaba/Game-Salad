@@ -36,6 +36,7 @@ import javafx.scene.paint.Paint;
  * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent {
+	private static final int CELL_SIZE = 8;
 	private ScrollPane myScroll;
 	private GridPane myGrid;
     private ViewData myData;
@@ -68,31 +69,25 @@ public class GridView extends GUIComponent {
 		myScroll = new ScrollPane(myGrid);
 		bp.setCenter(myScroll);
 	}
-
-	private void addVert() {
-		for (int i = 0; i < myCol; i++) {
-			Rectangle rect = new Rectangle(40, 40);
-			rect.getStyleClass().add("view-grid-cell");
-			myGrid.add(rect, i, myRow);
-			addMouseListenerPane(i, myRow);
-		}
-		myRow++;
-		myData.getLevelEntity().addRow();
-	}
-		
+	
 	private void addHo() {
 		for (int i = 0; i < myRow; i++) {
-			Rectangle rect = new Rectangle(40, 40);
-			rect.getStyleClass().add("view-grid-cell");			
-			myGrid.add(rect, myCol, i);
 			addMouseListenerPane(myCol, i);
 		}
 		myCol++;
 		myData.getLevelEntity().addCol();
 	}
 	
+	private void addVert() {
+		for (int i = 0; i < myCol; i++) {
+			addMouseListenerPane(i, myRow);
+		}
+		myRow++;
+		myData.getLevelEntity().addRow();
+	}
+	
 	private void addMouseListenerPane(int row, int col) {
-		Rectangle rect = new Rectangle(40, 40);
+		Rectangle rect = new Rectangle(CELL_SIZE, CELL_SIZE);
 		rect.getStyleClass().add("view-grid-cell");
 		rect.setFill(Color.GREY);
 		rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -120,6 +115,7 @@ public class GridView extends GUIComponent {
 		SpriteComponent entitySprite = (SpriteComponent) entity
 				.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
+		// Modify this part to make children span multiple rows/columns
 		spriteImage.setFitHeight(40);
 		spriteImage.setFitWidth(40);
 		placedImages.add(spriteImage);

@@ -19,8 +19,8 @@ import components.movementcomponents.LocationComponent;
  */
 public class ViewData extends Observable {
 	
-	private static final int STARTINGROWS = 10;
-	private static final int STARTINGCOLS = 10;
+	private static final int STARTINGROWS = 50;
+	private static final int STARTINGCOLS = 50;
 	
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, Entity> placedEntityMap;
@@ -50,12 +50,8 @@ public class ViewData extends Observable {
 
 	public void setEntityLocation(int entityID, int row, int col) {
 		LocationComponent locComp = new LocationComponent(row, col);
-
 		Entity newE = placedEntityMap.get(entityID);
 		newE.addComponent(locComp);
-		/*	LocationComponent locComp = (LocationComponent) definedEntityList.get(entityID).getComponent(ComponentType.Location);
-		locComp.setX(row);
-		locComp.setY(col); */
 	}
 
 	public void defineEntity(Entity entity) {

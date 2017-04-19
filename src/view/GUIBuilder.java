@@ -32,7 +32,7 @@ public class GUIBuilder {
 	 */
 	public GUIBuilder(UtilityFactory utilF) {
 		myData = new ViewData();
-		grid = new GridView(utilF, myData, 10, 10);
+		grid = new GridView(utilF, myData, 50, 50);
 		tab = new TabView(utilF, myData);
 		toolbar = new ToolBarView(utilF, myData);
 		viewController = new ViewController(myData, grid, tab);
