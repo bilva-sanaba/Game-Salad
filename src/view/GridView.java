@@ -11,7 +11,9 @@ import components.entityComponents.SpriteComponent;
 import components.movementcomponents.LocationComponent;
 import entity.Entity;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -115,11 +117,20 @@ public class GridView extends GUIComponent {
 		SpriteComponent entitySprite = (SpriteComponent) entity
 				.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
+		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
 		// Modify this part to make children span multiple rows/columns
-		spriteImage.setFitHeight(40);
-		spriteImage.setFitWidth(40);
+		double height = imageProperties.getHeight();
+		double width = imageProperties.getWidth();
+		spriteImage.setFitHeight(height);
+		spriteImage.setFitWidth(width);
 		placedImages.add(spriteImage);
 		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
+		int colSpan = (int) height / CELL_SIZE + 1;
+		int rowSpan = (int) width / CELL_SIZE + 1;
+		GridPane.setColumnSpan(spriteImage, colSpan);
+		GridPane.setRowSpan(spriteImage, rowSpan);
+		GridPane.setHalignment(spriteImage, HPos.LEFT);
+		GridPane.setValignment(spriteImage, VPos.TOP);
 	}
 	
 	public void clearEntitiesOnGrid() {
