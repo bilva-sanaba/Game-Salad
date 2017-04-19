@@ -115,6 +115,7 @@ public class WorldAnimator{
     	System.out.println(imageMap.size());
     	myEngine.handleUpdates(keysPressed);
         fillMapAndDisplay();
+        System.out.println(imageMap.size());
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
