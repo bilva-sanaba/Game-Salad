@@ -15,9 +15,12 @@ import javafx.scene.input.KeyCode;
 
 public class NewMovementEngine extends AbstractEngine{
 	
+	private PlayerMovementEngine myPlayerMovementEngine;
+	
 	
 	public NewMovementEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
+		myPlayerMovementEngine = new PlayerMovementEngine(myEntityManager);
 	}
 
 	@Override

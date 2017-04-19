@@ -5,19 +5,16 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import components.AccelerationComponent;
-import components.ComponentType;
-import components.VelocityComponent;
+import components.entityComponents.ComponentType;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import javafx.scene.input.KeyCode;
 
-public class PlayerMovementEngine extends AbstractEngine{
+public class PlayerMovementEngine extends NewMovementEngine{
 
 	public PlayerMovementEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -27,33 +24,25 @@ public class PlayerMovementEngine extends AbstractEngine{
 	}
 
 	@Override
-	public Collection<IEntity> update(Collection<KeyCode> keysPressed) {
-		Collection<IEntity> changed = new ArrayList<IEntity>();
-		Map<IEntity, IRestrictedEntity> entityMap = getEManager().getEntityMap();
-		for (IEntity e: entityMap.keySet()) {
-			if (hasComponent(e,ComponentType.KeyInput)) {
-				updateAllValues(e, entityMap, changed);
+	public void update(Collection<KeyCode> keys) {
+		if(keys.contains(arg0))
+	}
+	
+	
+	private void updateAllValues(IEntity e) {
+		if (hasComponent(e, ComponentType.Velocity)) {
+			updateLocation(e);
+			if (hasComponent(e, ComponentType.Acceleration)) {
+				updateMovement(e, ComponentType.Velocity, ComponentType.Acceleration);
+				//resetAcceleration(e);
 			}
 			
+			
+//			placeInMap(entityMap, e);
+//			//TODO: fix cast issue
+//			changed.add((Entity) e);
 		}
-		return changed;
-		return null;
 	}
 
-	
-	/* 
-	 * if(hasComponent(e, ComponentType.KeyInput) && keys.isEmpty()){
-					if(hasComponent(e, ComponentType.Velocity)){
-						VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-						if(vc.getX() != 0){
-							AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-							ac.setX(-1);
-						}
-						else{
-							vc.setX(0);
-						}
-					}
-				}
-	 */
 
 }
