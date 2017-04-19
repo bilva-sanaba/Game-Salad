@@ -25,7 +25,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.MoveTo;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -77,7 +79,9 @@ public class WorldAnimator{
     public WorldAnimator(UIViewInterface view){
     	myView = view;
     }
-
+    public Group getGroup(){
+    	return root;
+    }
     public void start (GameData myData, IGameScreenEntity screen){
         root = new Group();
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
@@ -112,7 +116,6 @@ public class WorldAnimator{
 
     private void step(double elapsedTime){
     	//myView.step(keysPressed);
-    	System.out.println(imageMap.size());
     	myEngine.handleUpdates(keysPressed);
         fillMapAndDisplay();
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
@@ -166,6 +169,7 @@ public class WorldAnimator{
     public void removeEntity(Integer entity){
     	System.out.println("CHAHCHAHCHA" + entity);
     	imageMap.get(entity).setImage(null);
+
         root.getChildren().remove(imageMap.get(entity));
          //myGameScreen.removeEntity(imageMap.get(entity));
         imageMap.remove(entity);
@@ -174,20 +178,12 @@ public class WorldAnimator{
 
 	private void createEntity(Integer entity, Map<Integer, ImageView> entities){
 	        if (!imageMap.containsKey(entity) && entities.get(entity)!=null){
-	        	System.out.println("BALLS");
 	            ImageView imageView = new ImageView();
 	            ImageView old = entities.get(entity);
-	            System.out.println(old.getTranslateX() + "   " + old.getTranslateY());
 	            imageView = updateImage(imageView, old);
-	            System.out.println(imageView);
 	            imageMap.put(entity, imageView);
-	            System.out.println(imageMap.get(entity));
-	            System.out.println(imageView.getTranslateX() + "   " + imageView.getTranslateY());
 	            
 	            root.getChildren().add(imageView);
-	
-	            System.out.println(entity);
-
 //	            myGameScreen.addEntity(imageView);
 
 	            //root.getChildren().add(imageMap.get(entity));
