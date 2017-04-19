@@ -68,3 +68,7 @@
 .scroll-bar > .thumb:pressed {
     -fx-background-color: #0E6655;
 }
+
+.slider {
+    -fx-background-color: #76d7c4;
+}
