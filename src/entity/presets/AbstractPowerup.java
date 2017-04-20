@@ -2,7 +2,7 @@ package entity.presets;
 
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockSide;
-import actions.ChangeImage;
+import actions.DoubleSize;
 import actions.PowerupUsage;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
@@ -23,14 +23,16 @@ public class AbstractPowerup extends Entity {
 		this.addComponent(new CollidableComponent(true));
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 		scc.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
-		scc.addActionForLabel(new LabelComponent("grrraah"), new ChangeImage("sand.jpg"));
+		scc.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(false));
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
 		scq.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
-		scq.addActionForLabel(new LabelComponent("grrraah"), new ChangeImage("sand.jpg"));
+		scq.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(false));
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
 		scr.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
+		scr.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
 		scb.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
+		scb.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);
