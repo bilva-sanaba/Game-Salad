@@ -47,6 +47,7 @@ import entity.IEntityManager;
 import entity.SplashEntity;
 import entity.presets.AbstractBlock;
 import entity.presets.AbstractMysteryBlock;
+import entity.presets.AbstractPowerup;
 import gamedata.GameData;
 
 /**
@@ -110,8 +111,8 @@ public class GameEngine implements GameEngineInterface {
 
 
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
-		xc.setHeight(100);
-		xc.setWidth(100);
+		xc.setHeight(50);
+		xc.setWidth(50);
 		x.addComponent(xc);
 
 		x.addComponent(new VelocityComponent(0,0));
@@ -169,19 +170,19 @@ public class GameEngine implements GameEngineInterface {
 				p.addComponent(new LabelComponent("Blok"));
 				e.add(p);
 			}
-			Entity y = new Entity(22);
+			Entity y = new AbstractPowerup(22);
 			y.addComponent(new LocationComponent(500,200));
 			y.addComponent(new SpriteComponent(("stone.gif")));
 			ImagePropertiesComponent yc = new ImagePropertiesComponent();
-			yc.setHeight(100);
-			yc.setWidth(100);
+			yc.setHeight(50);
+			yc.setWidth(50);
 			y.addComponent(yc);
 			Entity p = new AbstractMysteryBlock(21,y); 
 			p.addComponent(new LocationComponent(400,200));
 			p.addComponent(new SpriteComponent(("sand.jpg")));
 			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
-			xpc.setHeight(100);
-			xpc.setWidth(100);
+			xpc.setHeight(50);
+			xpc.setWidth(50);
 			p.addComponent(xpc);
 			p.addComponent(new LabelComponent("Blok"));
 			e.add(p);
