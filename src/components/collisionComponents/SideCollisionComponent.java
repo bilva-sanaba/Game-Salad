@@ -10,6 +10,7 @@ import components.entityComponents.LabelComponent;
 import components.entityComponents.TypeComponent;
 import components.IComponent;
 import entity.IEntity;
+import entity.IEntityManager;
 
 public class SideCollisionComponent implements IComponent {
 	private CollisionComponentType sideCollision;
@@ -43,7 +44,7 @@ public class SideCollisionComponent implements IComponent {
 	
 	
 	
-	public List<IEntity> executeOnCollide(IEntity e,IEntity e2) {
+	public List<IEntity> executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM) {
 		//maybe should refactor
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
@@ -51,7 +52,7 @@ public class SideCollisionComponent implements IComponent {
 		if (labelActionMap.containsKey(entityLabel.getLabel())) {
 			for (IAction action : labelActionMap.get(entityLabel.getLabel())) {
 				System.out.println(action.getClass().getSimpleName());
-				List<IEntity> actionCreatedEntities = action.executeAction(e, e2);
+				List<IEntity> actionCreatedEntities = action.executeAction(e, e2,myEM);
 				newEntities.addAll(actionCreatedEntities);
 			}
 			return newEntities;

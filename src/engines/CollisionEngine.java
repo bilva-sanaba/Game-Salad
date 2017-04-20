@@ -110,7 +110,7 @@ public class CollisionEngine extends AbstractEngine {
 			}
 			
 			for (ISubEngine engine : subEngines) {
-				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide));
+				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide, entManager));
 			}
 			
 		}
@@ -128,6 +128,7 @@ public class CollisionEngine extends AbstractEngine {
 		}
 		checkCollisionsOccurred();
 		for (IEntity e : newEntitiesCreated){
+			entManager.getEntities().add(e);
 			entManager.changed(e);
 		}
 	}

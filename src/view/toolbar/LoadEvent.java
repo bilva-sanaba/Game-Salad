@@ -3,8 +3,8 @@ package view.toolbar;
 import java.io.File;
 import java.util.*;
 
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
-import components.movementcomponents.LocationComponent;
 import data_interfaces.*;
 import entity.*;
 
@@ -38,6 +38,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			String firstSplit = splitS[splitS.length - 1];
 			String name = firstSplit.substring(0, firstSplit.length()
 					- getSuffix().length());
+			System.out.println("BLOOMFELD FELD FELD FIELD FIELD" + name);
 			myData.setGameName(name);
 			c = new Communicator(name);
 			Collection <Entity> col = c.getData();

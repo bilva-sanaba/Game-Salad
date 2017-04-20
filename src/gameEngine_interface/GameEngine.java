@@ -12,6 +12,7 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
 import actions.BounceOffBlockSide;
 import actions.IAction;
+import components.LocationComponent;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
 import components.collisionComponents.SideCollisionComponent;
@@ -25,7 +26,6 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
 import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
@@ -47,6 +47,7 @@ import entity.IEntityManager;
 import entity.SplashEntity;
 import entity.presets.AbstractBlock;
 import entity.presets.AbstractMysteryBlock;
+import entity.presets.AbstractPowerup;
 import gamedata.GameData;
 
 /**
@@ -100,30 +101,19 @@ public class GameEngine implements GameEngineInterface {
 	}
 
 	//TODO: Delete once testing is over
-	
+
 	public GameData dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(700,100));
-		x.addComponent(new SpriteComponent(("dirt.jpg")));
-
-
-
+		x.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
 		xc.setHeight(50);
 		xc.setWidth(50);
 		x.addComponent(xc);
-
 		x.addComponent(new VelocityComponent(0,0));
-		x.addComponent(new AccelerationComponent(0,0));
+		x.addComponent(new AccelerationComponent(0,0.1));
 		x.addComponent(new CollidableComponent(true));
-		//		x.addComponent(new CollisionComponentsHandler());
-		//		SideCollisionComponent sc = new SideCollisionComponent(CollisionComponentType.Top);
-		//		sc.addActionForLabel(new LabelComponent("Blok"), new BlockTopRegularCollision());
-		//		SideCollisionComponent sct = new SideCollisionComponent(CollisionComponentType.Bottom);
-		//		sct.addActionForLabel(new LabelComponent("Blok"), new BlockBottomRegularCollision());
-		//		((CollisionComponentsHandler) x.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(sc);
-		//		((CollisionComponentsHandler) x.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(sct);
 		x.addComponent(new LabelComponent("grrraah"));
 		x.addComponent(new KeyInputComponent());
 		x.addComponent(new TypeComponent(EntityType.Player));
@@ -136,55 +126,37 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
 
-		//		for (int i=0;i<20;i++){
-		//			Entity x = new Entity(i);
-		//			x.addComponent(new LocationComponent(i*50,450));
-		//			x.addComponent(new SpriteComponent(("dirt.jpg")));
-		//
-		//			ImagePropertiesComponent xc = new ImagePropertiesComponent();
-		//			xc.setHeight(50);
-		//			xc.setWidth(50);
-		//			x.addComponent(xc);
-		//
-		//			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision());
-		//			x.addComponent(scc);
-		//
-		//			x.addComponent(new LabelComponent("Block"));
-		//			e.add(x);
-		//		}
-		//		e.add(g);e.add(t);
-
-		for (int i=1;i<20;i++){
-			if (i!=2 && i!=4){
-				Entity p = new AbstractBlock(i);
-				p.addComponent(new LocationComponent(i*100,i*50));
-				p.addComponent(new SpriteComponent(("dirt.jpg")));
-
-				ImagePropertiesComponent xpc = new ImagePropertiesComponent();
-				xpc.setHeight(50);
-				xpc.setWidth(50);
-				p.addComponent(xc);
-				
-				e.add(p);
-			}
-			Entity y = new Entity(22);
-			y.addComponent(new LocationComponent(500,200));
-			y.addComponent(new SpriteComponent(("stone.gif")));
-			ImagePropertiesComponent yc = new ImagePropertiesComponent();
-			yc.setHeight(50);
-			yc.setWidth(50);
-			y.addComponent(yc);
-			Entity p = new AbstractMysteryBlock(21,y); 
-			p.addComponent(new LocationComponent(400,200));
-			p.addComponent(new SpriteComponent(("sand.jpg")));
+		for (int i=1;i<100;i++){
+			Entity p = new AbstractBlock(i);
+			p.addComponent(new LocationComponent(i*50,200));
+			p.addComponent(new SpriteComponent(("dirt.jpg")));
 			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
 			xpc.setHeight(50);
 			xpc.setWidth(50);
-			p.addComponent(xc);
+			p.addComponent(xpc);
 			p.addComponent(new LabelComponent("Blok"));
 			e.add(p);
-
 		}
+		
+		Entity y = new AbstractPowerup(101);
+		y.addComponent(new LocationComponent(1000,150));
+		y.addComponent(new SpriteComponent(("platform_tile_057.png")));
+		ImagePropertiesComponent yc = new ImagePropertiesComponent();
+		yc.setHeight(50);
+		yc.setWidth(50);
+		y.addComponent(yc);
+		y.addComponent(new VelocityComponent(0,0));
+		y.addComponent(new LabelComponent("Blok"));
+		Entity p = new AbstractMysteryBlock(102,y); 
+		p.addComponent(new LocationComponent(900,100));
+		p.addComponent(new SpriteComponent(("sand.jpg")));
+		ImagePropertiesComponent xpc = new ImagePropertiesComponent();
+		xpc.setHeight(50);
+		xpc.setWidth(50);
+		p.addComponent(xpc);
+		p.addComponent(new LabelComponent("Blok"));
+		e.add(p);
+
 
 
 		myEntityManager = new EntityManager(e);
