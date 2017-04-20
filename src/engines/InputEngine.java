@@ -55,27 +55,46 @@ public class InputEngine extends AbstractEngine{
 	private void handleInput(IEntity e, Collection<KeyCode> keys){
 		
 		if (e.getComponent(ComponentType.KeyInput)!=null){
-		KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
-		
-		for (KeyCode key : keys){
-			if (ic.getMap().containsKey(key)){
-				if (ic.getMap().get(key)!="JUMP" && ic.getMap().get(key)!="RIGHT" && ic.getMap().get(key)!="LEFT" && ic.getMap().get(key)!="REMOVE" ){
-					try {
-						VelocityComponent vc = (VelocityComponent) e.getComponent(new VelocityComponent(0,0));
-						AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-						engine.put("vc", vc);
-						engine.put("ac", ac);
-						engine.eval(ic.getMap().get(key));
-					} catch (ScriptException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+			KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
+			
+			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 
+			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+			
+			//Handles Decelerating
+			if(vc.getX()!= 0 && keys.isEmpty()){
+				if(vc.getX() > 0.5){
+					ac.setX(-0.2);
+				}
+				else if (vc.getX() < -0.5){
+					ac.setX(0.2);
+				}
+				else if (Math.abs(vc.getX()) < 0.5){
+					ac.setX(0);
+					vc.setX(0);
+				}
+				return;
+			}
+			
+			//HandlesKeyInput
+			for (KeyCode key : keys){
+				if (ic.getMap().containsKey(key)){
+					if (ic.getMap().get(key)!="JUMP" && ic.getMap().get(key)!="RIGHT" && ic.getMap().get(key)!="LEFT" && ic.getMap().get(key)!="REMOVE" ){
+						try {
+							vc = (VelocityComponent) e.getComponent(new VelocityComponent(0,0));
+							ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+							engine.put("vc", vc);
+							engine.put("ac", ac);
+							engine.eval(ic.getMap().get(key));
+						} catch (ScriptException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}else{
+						ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
+						((IRestrictedEntity) e).changed(e);
 					}
-				}else{
-					ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
-					((IRestrictedEntity) e).changed(e);
 				}
 			}
-		}
 		}	
 	}
 }

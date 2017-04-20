@@ -15,12 +15,10 @@ import javafx.scene.input.KeyCode;
 
 public class NewMovementEngine extends AbstractEngine{
 	
-	private PlayerMovementEngine myPlayerMovementEngine;
 	
 	
 	public NewMovementEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
-		myPlayerMovementEngine = new PlayerMovementEngine(myEntityManager);
 	}
 
 	@Override
@@ -53,7 +51,7 @@ public class NewMovementEngine extends AbstractEngine{
 		}
 	}
 	
-	private void updateLocation(IEntity e) {
+	protected void updateLocation(IEntity e) {
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		lc.setXY(lc.getX() + vc.getX(), lc.getY() + vc.getY());
@@ -92,6 +90,7 @@ public class NewMovementEngine extends AbstractEngine{
 	private void resetAcceleration(IEntity e){
 		((AccelerationComponent) e.getComponent(ComponentType.Acceleration)).setY(0);
 	}
+	
 	private void updateMovement(IEntity e, ComponentType c1, ComponentType c2) {
 		XYComponent xy1 = (XYComponent) e.getComponent(c1);
 		XYComponent xy2 = (XYComponent) e.getComponent(c2);
@@ -99,7 +98,7 @@ public class NewMovementEngine extends AbstractEngine{
 		xy1.setXY(xy1.getX() + xy2.getX(), xy1.getY() + xy2.getY());
 	}
 	
-	private boolean hasComponent(IEntity e, ComponentType c) {
+	protected boolean hasComponent(IEntity e, ComponentType c) {
 		return (e.getComponent(c)!=null);
 	}
 	

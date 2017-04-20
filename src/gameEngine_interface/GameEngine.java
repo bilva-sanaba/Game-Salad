@@ -104,7 +104,7 @@ public class GameEngine implements GameEngineInterface {
 	public GameData dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
-		x.addComponent(new LocationComponent(700,100));
+		x.addComponent(new LocationComponent(700,10));
 		x.addComponent(new SpriteComponent(("dirt.jpg")));
 
 
@@ -155,9 +155,8 @@ public class GameEngine implements GameEngineInterface {
 		//		e.add(g);e.add(t);
 
 		for (int i=1;i<20;i++){
-			if (i!=2 && i!=4){
 				Entity p = new AbstractBlock(i);
-				p.addComponent(new LocationComponent(i*100,i*50));
+				p.addComponent(new LocationComponent(i*50,50));
 				p.addComponent(new SpriteComponent(("dirt.jpg")));
 
 				ImagePropertiesComponent xpc = new ImagePropertiesComponent();
@@ -186,7 +185,6 @@ public class GameEngine implements GameEngineInterface {
 			p.addComponent(new LabelComponent("Blok"));
 			e.add(p);
 
-		}
 
 
 		myEntityManager = new EntityManager(e);

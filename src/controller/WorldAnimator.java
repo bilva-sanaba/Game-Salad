@@ -121,6 +121,7 @@ public class WorldAnimator{
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
+        System.out.println(keysReleased);
     }
 
     
