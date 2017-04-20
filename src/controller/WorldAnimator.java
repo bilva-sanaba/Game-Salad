@@ -156,11 +156,12 @@ public class WorldAnimator{
     	Map<Integer, ImageView> entities = myObservers.getEntityMap();
         //HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
         for(Integer entity : entities.keySet()){
-
+        	if (entities.get(entity)!=null){
 		  //SequentialTransition trans = new SequentialTransition();
 		  //removeEntity(entity,entities);
 		  updateEntity(entity,entities);
 		  createEntity(entity,entities);
+        	}
 		}
 
     }
@@ -168,11 +169,13 @@ public class WorldAnimator{
 
     public void removeEntity(Integer entity){
     	System.out.println("CHAHCHAHCHA" + entity);
+    	if (imageMap.containsKey(entity)){
     	imageMap.get(entity).setImage(null);
 
         root.getChildren().remove(imageMap.get(entity));
          //myGameScreen.removeEntity(imageMap.get(entity));
         imageMap.remove(entity);
+    	}
     }
 
 

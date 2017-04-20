@@ -40,13 +40,11 @@ public class ObserverManager {
     }
 	
 	private void updateImageView(IRestrictedEntity e) {
-		
 		if(myEntities.get(e.getID())==null){
 			System.out.println("CHEHEHEHEHEHHEHEH");
 			myWorld.removeEntity(e.getID());
 		}
 		else{
-			System.out.println(e.getRestrictedIPComponent());
          myEntities.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
          myEntities.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
          updateImage(e);
@@ -77,6 +75,7 @@ public class ObserverManager {
 	}
 	
 	public void updateMap(IRestrictedEntity arg) {
+		arg.addObserver(myEntityObserver);
         myEntities.put(arg.getID(), new ImageView(makeImage(arg)));
         updateImageView(arg);
 	}
@@ -88,7 +87,8 @@ public class ObserverManager {
 		} 
 		else {
 			System.out.println(observable.getID() + "XXXXXXXX");
-			myEntities.put(observable.getID(), null);	
+			myEntities.put(observable.getID(), null);
+			myWorld.removeEntity(observable.getID());
 		}
 	}
 	

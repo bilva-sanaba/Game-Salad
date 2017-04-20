@@ -177,6 +177,8 @@ public class GameEngine implements GameEngineInterface {
 			yc.setHeight(50);
 			yc.setWidth(50);
 			y.addComponent(yc);
+			y.addComponent(new VelocityComponent(0,0));
+			y.addComponent(new LabelComponent("Blok"));
 			Entity p = new AbstractMysteryBlock(21,y); 
 			p.addComponent(new LocationComponent(400,200));
 			p.addComponent(new SpriteComponent(("sand.jpg")));
