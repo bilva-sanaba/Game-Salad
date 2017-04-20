@@ -110,7 +110,7 @@ public class CollisionEngine extends AbstractEngine {
 			}
 			
 			for (ISubEngine engine : subEngines) {
-				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide));
+				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide, entManager));
 			}
 			
 		}
@@ -121,12 +121,14 @@ public class CollisionEngine extends AbstractEngine {
 		return null;
 	}
 	public void update(Collection<KeyCode> keys) {
+		
 		newEntitiesCreated = new ArrayList<IEntity>();
 		if (numSubEnginesAdded<=0) {
 			addEngine(new GeneralPostCollisionHandler());
 		}
-		//checkCollisionsOccurred();
+		checkCollisionsOccurred();
 		for (IEntity e : newEntitiesCreated){
+			entManager.getEntities().add(e);
 			entManager.changed(e);
 		}
 	}

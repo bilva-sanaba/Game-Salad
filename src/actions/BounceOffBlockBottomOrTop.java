@@ -7,6 +7,7 @@ import components.entityComponents.ComponentType;
 import components.movementcomponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
+import entity.IEntityManager;
 
 public class BounceOffBlockBottomOrTop implements IAction{
 
@@ -15,7 +16,7 @@ public class BounceOffBlockBottomOrTop implements IAction{
 	}
 
 	@Override
-	public List<IEntity> executeAction(IEntity e,IEntity e2) {
+	public List<IEntity> executeAction(IEntity e,IEntity e2, IEntityManager myEM) {
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		vc.setY(0);
 		//Does anything need to be done about acceleration?

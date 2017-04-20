@@ -15,11 +15,12 @@ import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
+import entity.IEntityManager;
 
 public class BlockTopRegularCollision implements IAction {
 	
 	@Override
-	public List<IEntity> executeAction(IEntity e, IEntity e1) {
+	public List<IEntity> executeAction(IEntity e, IEntity e1, IEntityManager myEM) {
 		LabelComponent lc = (LabelComponent) e.getComponent(ComponentType.Label);
 		if (lc == null) {
 		}

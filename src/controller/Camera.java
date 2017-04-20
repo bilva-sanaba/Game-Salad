@@ -28,10 +28,10 @@ public class Camera {
 
 	public void updateCamera(){
 		if(( (myFrame.getWidth() - root.getTranslateX()) - (followerLoc.getX() ) <= RIGHT_BOUND_FROM_EDGE) && myFrame.getWidth()-root.getTranslateX() < myLevelLength){
-			root.setTranslateX(root.getTranslateX() - 2 );
+			root.setTranslateX(root.getTranslateX() - 4 );
 		}
 		else if( followerLoc.getX() + root.getTranslateX() < LEFT_BOUND_FROM_EDGE && root.getTranslateX() < 0){
-			root.setTranslateX(root.getTranslateX() + 2);
+			root.setTranslateX(root.getTranslateX() + 4);
 		}
 		else{
 			root.setTranslateX(root.getTranslateX());
