@@ -9,7 +9,6 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.TypeComponent;
 import components.IComponent;
-import entity.Entity;
 import entity.IEntity;
 
 public class SideCollisionComponent implements IComponent {
