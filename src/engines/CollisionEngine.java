@@ -125,7 +125,7 @@ public class CollisionEngine extends AbstractEngine {
 		if (numSubEnginesAdded<=0) {
 			addEngine(new GeneralPostCollisionHandler());
 		}
-		checkCollisionsOccurred();
+		//checkCollisionsOccurred();
 		for (IEntity e : newEntitiesCreated){
 			entManager.changed(e);
 		}
