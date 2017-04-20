@@ -7,14 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import actions.BlockBottomRegularCollision;
-import actions.BlockTopRegularCollision;
-import actions.BounceOffBlockBottomOrTop;
-import actions.BounceOffBlockSide;
-import actions.IAction;
-import components.collisionComponents.CollisionComponentType;
-import components.collisionComponents.CollisionComponentsHandler;
-import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
