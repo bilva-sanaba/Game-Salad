@@ -7,6 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+import actions.BlockBottomRegularCollision;
+import actions.BlockTopRegularCollision;
+import actions.BounceOffBlockBottomOrTop;
+import actions.BounceOffBlockSide;
+import actions.IAction;
+import components.LocationComponent;
+import components.collisionComponents.CollisionComponentType;
+import components.collisionComponents.CollisionComponentsHandler;
+import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
@@ -17,7 +27,6 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
 import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;

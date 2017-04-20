@@ -61,7 +61,6 @@ public class EntityConfigurationWindow implements IWindow {
 		myEntity = myData.getUserSelectedEntity();
 		myData.setUserSelectedEntity(myEntity);
 		componentList = entityType;
-		myCompEdits = new ArrayList<ComponentEditor>();
 		myList = blocksList;
 		myStage.setScene(buildScene());
 	}

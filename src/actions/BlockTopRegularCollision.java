@@ -2,6 +2,7 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import components.LocationComponent;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
 import components.collisionComponents.SideCollisionComponent;
@@ -11,7 +12,6 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SpriteComponent;
 import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
