@@ -8,6 +8,10 @@ public class TypeComponent implements IComponent {
 	public TypeComponent(EntityType type) {
 		typeOfEntity = type;
 	}
+	
+	public String getTypeString() {
+		return typeOfEntity.name();
+	}
 
 	@Override
 	public ComponentType getComponentType() {
@@ -24,4 +28,6 @@ public class TypeComponent implements IComponent {
 		return new TypeComponent(getType());
 	}
 
+	
+	
 }
