@@ -44,7 +44,7 @@ public class ImageChooser {
 		}
 	    String[] directories = imagepath.split(delimiter);
 	    String imageName = directories[directories.length - 1];
-		return imagepath;
+		return imageName;
 	}
 
 	private FileChooser makeChooser() {

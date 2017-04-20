@@ -5,10 +5,10 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.IKeyExpression;
 import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.IEntity;
 import javafx.scene.input.KeyCode;

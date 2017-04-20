@@ -1,5 +1,7 @@
 package view.toolbar;
 
+import java.io.File;
+
 import view.ImageChooser;
 import view.ViewData;
 
@@ -16,7 +18,7 @@ public class BackgroundEvent implements ToolBarButtonEvent {
 		ImageChooser ic = new ImageChooser();
 		String filePath = ic.chooseFile();
 		
-		myData.getLevelEntity().setBackgroundFilePath(filePath);
+		myData.getLevelEntity().setBackgroundFilePath(System.getProperty("user.dir") + File.separator + "images"+ File.separator + filePath);
 		myData.refresh();
 	}
 
