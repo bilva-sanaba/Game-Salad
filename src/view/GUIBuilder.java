@@ -14,7 +14,7 @@ import view.toolbar.ToolBarView;
  */
 public class GUIBuilder {
 	public static final String RESOURCE_PACKAGE = "resources/";
-	public static final String STYLESHEET = "GridView.css";
+	public static final String STYLESHEET = "AuthoringGUI.css";
 
 	private static final double SCREEN_HEIGHT = 650;
 	private static final double SCREEN_WIDTH = 1000;
@@ -37,6 +37,7 @@ public class GUIBuilder {
 		tab = new TabView(utilF, myData);
 		toolbar = new ToolBarView(utilF, myData);
 		viewController = new ViewController(myData, grid, tab);
+		myData.addPresetEntities();
 
 		myComp.add(grid);
 		myComp.add(tab);
@@ -54,6 +55,7 @@ public class GUIBuilder {
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
 		myPane.setCenter(grid.buildComponent());
+		myPane.setId("root");
 		return myPane;
 	}
 

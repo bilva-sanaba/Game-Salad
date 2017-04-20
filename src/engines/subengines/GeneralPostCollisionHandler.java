@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import components.collisionComponents.CollisionComponentsHandler;
+import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
@@ -31,8 +32,9 @@ public class GeneralPostCollisionHandler implements ISubEngine{
 //			System.out.println(handlerE1.getCollisionComponent(side));
 //			System.out.println(handlerE1.getCollisionComponent(side).executeOnCollide(e0));
 			if (handlerE1.getCollisionComponent(side) != null) {
-				createdEntities.addAll(handlerE1.getCollisionComponent(side).executeOnCollide(e0));
-			}
+					createdEntities.addAll(handlerE1.getCollisionComponent(side).executeOnCollide(e0, e1));
+				}
+			
 		}
 		
 		return createdEntities;

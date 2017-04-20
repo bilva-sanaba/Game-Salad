@@ -31,7 +31,6 @@ public class SideCollisionComponent implements IComponent {
 		ArrayList<IAction> actions = labelActionMap.get(label.getLabel());
 		actions.add(action);
 		labelActionMap.put(label.getLabel(), actions);
-		System.out.println(label.getLabel() + " " + action.getClass().getSimpleName());
 	}
 	
 	public void addActionForType(TypeComponent type, IAction action) {
@@ -45,16 +44,14 @@ public class SideCollisionComponent implements IComponent {
 	
 	
 	
-	public List<IEntity> executeOnCollide(IEntity e) {
+	public List<IEntity> executeOnCollide(IEntity e,IEntity e2) {
 		//maybe should refactor
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
-		System.out.println(entityLabel.getLabel() + " is label");
-
 		if (labelActionMap.containsKey(entityLabel.getLabel())) {
-			System.out.println("label was found");
 			for (IAction action : labelActionMap.get(entityLabel.getLabel())) {
+				System.out.println(action.getClass().getSimpleName());
 				List<IEntity> actionCreatedEntities = action.executeAction(e);
 				newEntities.addAll(actionCreatedEntities);
 			}
@@ -62,8 +59,8 @@ public class SideCollisionComponent implements IComponent {
 		}
 		if (typeActionMap.containsKey(entityType)) {
 			for (IAction action : typeActionMap.get(entityType)) {
-				action.executeAction(e);
-				List<IEntity> actionCreatedEntities = action.executeAction(e);
+				action.executeAction(e,e2);
+				List<IEntity> actionCreatedEntities = action.executeAction(e,e2);
 				newEntities.addAll(actionCreatedEntities);
 			}
 		}
