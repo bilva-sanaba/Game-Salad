@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import components.IComponent;
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
-import components.movementcomponents.LocationComponent;
 
 public class CollisionDetectionTest {
 	

@@ -4,8 +4,8 @@ import java.io.File;
 import java.util.*;
 import java.util.function.Consumer;
 
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
-import components.movementcomponents.LocationComponent;
 import data_interfaces.*;
 import entity.*;
 
