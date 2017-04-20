@@ -11,13 +11,14 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class Toolbar implements IDrawingToolbar {
 	private ToolBar myToolbar;
 	private DrawingTool myDrawer;
 
-	private ColorPicker myColorPicker = new ColorPicker();
+	private ColorPicker myColorPicker = new ColorPicker(Color.BLACK);
 	private TextField penSizeButton = new TextField();
 	private IDrawingToolChooser myChooser;
 

@@ -25,6 +25,7 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 		Rectangle r0 = createRectangle(loc0, img0);
 		Rectangle r1 = createRectangle(loc1, img1);
 		if (checkRectangleCollide(r0, r1)) {
+
 			return whichSide(r0, r1);
 		}
 		return ITwoObjectCollide.NONE;
