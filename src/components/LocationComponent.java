@@ -1,6 +1,5 @@
-package components.movementcomponents;
+package components;
 
-import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.XYComponent;
 

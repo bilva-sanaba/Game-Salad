@@ -3,8 +3,8 @@ package engines;
 import java.util.Collection;
 import java.util.List;
 
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
