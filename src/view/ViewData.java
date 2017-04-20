@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Observable;
 import components.*;
-import components.movementcomponents.LocationComponent;
 import data_interfaces.Communicator;
 
 /**

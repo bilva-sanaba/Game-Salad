@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import components.entityComponents.ComponentType;
 import components.IComponent;
+import components.LocationComponent;
 import components.entityComponents.ImagePropertiesComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import javafx.scene.shape.Rectangle;
 public class ObjectCollisionAlgorithm implements ITwoObjectCollide {

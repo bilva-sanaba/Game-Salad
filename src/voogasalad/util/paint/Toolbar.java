@@ -1,8 +1,5 @@
 package voogasalad.util.paint;
 
-import java.util.ResourceBundle;
-
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ColorPicker;
@@ -12,10 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class Toolbar implements IDrawingToolbar {
 	private ToolBar myToolbar;
@@ -24,7 +20,6 @@ public class Toolbar implements IDrawingToolbar {
 	private ColorPicker myColorPicker = new ColorPicker();
 	private TextField penSizeButton = new TextField();
 	private IDrawingToolChooser myChooser;
-    private static final String SPLIT_REGEX = ", ";
 
 
 	public Toolbar(IDrawingToolChooser t){
@@ -41,7 +36,12 @@ public class Toolbar implements IDrawingToolbar {
 	}
 	
 	private void addColorPicker(){
-		myColorPicker.setOnAction(e -> myDrawer.setColor(myColorPicker.getValue()));
+		myColorPicker.setValue(Color.BLACK);
+		myColorPicker.setOnAction(e -> changeColor());
+	}
+	
+	private void changeColor(){
+		myChooser.setColor(myColorPicker.getValue());
 	}
 	
 	private void addPenSizeButton(){
@@ -82,15 +82,10 @@ public class Toolbar implements IDrawingToolbar {
 			public void changed(ObservableValue<? extends Toggle> arg0, Toggle oldTog, Toggle newTog) {
 				if (newTog.equals(myPen)){
 					myChooser.setDrawingTool(DrawingToolType.Pen);
-					System.out.println("pen");
 				} else if (newTog.equals(myCircle)){
 					myChooser.setDrawingTool(DrawingToolType.Cirlce);
-					System.out.println("circle");
-
 				} else{
 					myChooser.setDrawingTool(DrawingToolType.Rectangle);
-					System.out.println("rect");
-
 				}
 			}
 		});
