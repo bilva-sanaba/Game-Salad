@@ -165,6 +165,7 @@ public class GameEngine implements GameEngineInterface {
 				xpc.setWidth(50);
 				p.addComponent(xc);
 				
+				e.add(p);
 			}
 			Entity y = new Entity(22);
 			y.addComponent(new LocationComponent(500,200));

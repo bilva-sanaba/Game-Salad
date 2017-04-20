@@ -14,13 +14,13 @@ import entity.IEntity;
 
 public class SideCollisionComponent implements IComponent {
 	private CollisionComponentType sideCollision;
-	private Map<TypeComponent, ArrayList<IAction>> typeActionMap;
+	private Map<String, ArrayList<IAction>> typeActionMap;
 	private Map<String, ArrayList<IAction>> labelActionMap;
 	
 	public SideCollisionComponent(CollisionComponentType sideOfCollision) {
 		sideCollision = sideOfCollision;
 		
-		typeActionMap = new HashMap<TypeComponent, ArrayList<IAction>>();
+		typeActionMap = new HashMap<String, ArrayList<IAction>>();
 		labelActionMap = new HashMap<String, ArrayList<IAction>>();
 	}
 	
@@ -34,12 +34,12 @@ public class SideCollisionComponent implements IComponent {
 	}
 	
 	public void addActionForType(TypeComponent type, IAction action) {
-		if(!typeActionMap.containsKey(type)) {
-			typeActionMap.put(type, new ArrayList<IAction>());
+		if(!typeActionMap.containsKey(type.getTypeString())) {
+			typeActionMap.put(type.getTypeString(), new ArrayList<IAction>());
 		}
-		ArrayList<IAction> actions = typeActionMap.get(type);
+		ArrayList<IAction> actions = typeActionMap.get(type.getTypeString());
 		actions.add(action);
-		typeActionMap.put(type, actions);
+		typeActionMap.put(type.getTypeString(), actions);
 	}
 	
 	
@@ -57,8 +57,8 @@ public class SideCollisionComponent implements IComponent {
 			}
 			return newEntities;
 		}
-		if (typeActionMap.containsKey(entityType)) {
-			for (IAction action : typeActionMap.get(entityType)) {
+		if (typeActionMap.containsKey(entityType.getTypeString())) {
+			for (IAction action : typeActionMap.get(entityType.getTypeString())) {
 				action.executeAction(e,e2);
 				List<IEntity> actionCreatedEntities = action.executeAction(e,e2);
 				newEntities.addAll(actionCreatedEntities);
