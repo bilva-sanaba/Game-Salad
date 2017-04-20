@@ -52,7 +52,7 @@ public class SideCollisionComponent implements IComponent {
 		if (labelActionMap.containsKey(entityLabel.getLabel())) {
 			for (IAction action : labelActionMap.get(entityLabel.getLabel())) {
 				System.out.println(action.getClass().getSimpleName());
-				List<IEntity> actionCreatedEntities = action.executeAction(e);
+				List<IEntity> actionCreatedEntities = action.executeAction(e, e2);
 				newEntities.addAll(actionCreatedEntities);
 			}
 			return newEntities;
