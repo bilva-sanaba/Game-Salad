@@ -173,7 +173,7 @@ public class GameEngine implements GameEngineInterface {
 			y.addComponent(new LocationComponent(500,200));
 			y.addComponent(new SpriteComponent(("stone.gif")));
 			ImagePropertiesComponent yc = new ImagePropertiesComponent();
-			yc.setHeight(50);
+			yc.setHeight(500);
 			yc.setWidth(50);
 			y.addComponent(yc);
 			Entity p = new AbstractMysteryBlock(21,y); 
