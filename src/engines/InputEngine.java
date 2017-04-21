@@ -38,9 +38,9 @@ public class InputEngine extends AbstractEngine{
 	private boolean x = true;
 	public InputEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
-		engine = new ScriptEngineManager().getEngineByName("groovy");
-		
+		engine = new ScriptEngineManager().getEngineByName("groovy");		
 	}
+	
 
 	@Override
 	protected List<ComponentType> neededComponents() {

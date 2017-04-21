@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
@@ -19,6 +20,7 @@ import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
+import components.entityComponents.GoalComponent;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
@@ -33,6 +35,7 @@ import data_interfaces.XMLParser;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
 import engines.InputEngine;
+import engines.LevelEngine;
 import engines.MovementEngine;
 import engines.NewMovementEngine;
 import entity.Entity;
@@ -46,6 +49,7 @@ import engines.AbstractEngine;
 import entity.IEntityManager;
 import entity.SplashEntity;
 import entity.presets.AbstractBlock;
+import entity.presets.AbstractGoal;
 import entity.presets.AbstractMysteryBlock;
 import entity.presets.AbstractPowerup;
 import gamedata.GameData;
@@ -73,7 +77,7 @@ public class GameEngine implements GameEngineInterface {
 	public GameData loadData(Communicator c){
 		myEntityManager = new EntityManager(c.getData());
 		GPEM = new GPEntityManager(c.getData());
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager));
+		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
 		GameData dg = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc);
 		return dg;
@@ -117,6 +121,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new LabelComponent("grrraah"));
 		x.addComponent(new KeyInputComponent());
 		x.addComponent(new TypeComponent(EntityType.Player));
+		x.addComponent(new GoalComponent());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, "RIGHT");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");
@@ -181,6 +186,7 @@ public class GameEngine implements GameEngineInterface {
 		y.addComponent(yc);
 		y.addComponent(new VelocityComponent(0,0));
 		y.addComponent(new LabelComponent("Blok"));
+		
 		Entity p = new AbstractMysteryBlock(102,y); 
 		p.addComponent(new LocationComponent(900,100));
 		p.addComponent(new SpriteComponent(("sand.jpg")));
@@ -190,13 +196,23 @@ public class GameEngine implements GameEngineInterface {
 		p.addComponent(xpc);
 		p.addComponent(new LabelComponent("Blok"));
 		e.add(p);
+		
+		Entity goal = new AbstractGoal(102);
+		goal.addComponent(new LocationComponent(800, 20));
+		goal.addComponent(new SpriteComponent(("sand.jpg")));
+		ImagePropertiesComponent goalc = new ImagePropertiesComponent();
+		goalc.setHeight(50);
+		goalc.setWidth(50);
+		goal.addComponent(new LabelComponent("Goal"));
+		goal.addComponent(goalc);
+		e.add(goal);
 
 
 
 		myEntityManager = new EntityManager(e);
 
 		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new LevelEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
 	}
 
