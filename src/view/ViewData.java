@@ -63,13 +63,15 @@ public class ViewData extends Observable {
 	}
 
 	//TODO: implement CTRL + Z and stuff
-	/*	public void undefineEntity(Entity entity) {
+	public void undefineEntity(Entity entity) {
 		definedEntityMap.remove(entity.getID());
 	}
 
 	public void unplaceEntity(Entity entity) {
-		definedEntityMap.remove(entity.getID());
-	} */
+		placedEntityMap.remove(entity.getID());
+	//	setChanged();
+	//	notifyObservers();
+	}
 
 	public HashMap<Integer, Entity> getDefinedEntityMap() {
 		return definedEntityMap;

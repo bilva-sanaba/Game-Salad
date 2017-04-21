@@ -12,19 +12,19 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockSide;
 import alerts.GroovyAlert;
 import components.IComponent;
-import components.LocationComponent;
-import components.collisionComponents.CollisionComponentType;
-import components.collisionComponents.CollisionComponentsHandler;
-import components.collisionComponents.SideCollisionComponent;
+import components.entityComponents.AccelerationComponent;
 import components.entityComponents.CollidableComponent;
+import components.entityComponents.CollisionComponentType;
+import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
+import components.entityComponents.ConcreteKeyExpressions;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
-import components.keyExpressions.ConcreteKeyExpressions;
-import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -35,6 +35,7 @@ import javafx.scene.input.KeyCode;
 public class InputEngine extends AbstractEngine{
 	private ScriptEngine engine; 
 	private boolean x = true;
+	private Collection<IEntity> newEntities = new ArrayList<IEntity>();
 	public InputEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 		engine = new ScriptEngineManager().getEngineByName("groovy");	
@@ -49,8 +50,13 @@ public class InputEngine extends AbstractEngine{
 
 	@Override
 	public void update(Collection<KeyCode> keys) {
+		newEntities.clear();
 		for (IEntity e : getEManager().getEntities()){
 			handleInput(e,keys);
+		}
+		for (IEntity e : newEntities){
+			getEManager().getEntities().add(e);
+			getEManager().changed(e);
 		}
 	}
 	private void handleInput(IEntity e, Collection<KeyCode> keys){
@@ -72,7 +78,7 @@ public class InputEngine extends AbstractEngine{
 //					}
 //				}else{
 //					ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
-					ic.getActionMap().get(key).executeAction(e, null, getEManager());
+					newEntities.addAll(ic.getActionMap().get(key).executeAction(e, null, getEManager()));
 					((IRestrictedEntity) e).changed(e);
 				}
 			if (ic.getGroovyMap().containsKey(key)){

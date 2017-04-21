@@ -4,10 +4,11 @@ package engines;
 import java.util.*;
 
 import components.*;
+import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.VelocityComponent;
 import components.entityComponents.XYComponent;
-import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.VelocityComponent;
 import entity.*;
 import entity.restricted.*;
 import javafx.scene.input.KeyCode;

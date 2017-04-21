@@ -29,6 +29,13 @@ public class ObjectCreationComponent implements IComponent{
 			return null;
 		}
 	}
+	public boolean checkIfCreation(){
+		if (creating==false){
+			return false;
+		}else{
+			return (storedEntity!=null);
+		}
+	}
 	@Override
 	public ComponentType getComponentType() {
 		// TODO Auto-generated method stub
