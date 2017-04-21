@@ -38,6 +38,10 @@ public class ObserverManager {
 		return updatedEntitySet;
 	}
 	
+	public void clearSet(){
+		updatedEntitySet.clear();
+	}
+	
 	private void createMap(Collection<IRestrictedEntity> manager) {
         for (IRestrictedEntity e: manager){
         	e.addObserver(myEntityObserver);
@@ -60,7 +64,6 @@ public class ObserverManager {
          myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()-475);
          myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()-175);
          
-         updatedEntitySet.add(e.getID());
          //UNCOMMENT FOR NORMAL
 //         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
 //         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()*50-175);
@@ -71,6 +74,7 @@ public class ObserverManager {
 	private void updateImage(IRestrictedEntity e) {
 		if (!(e.getRestrictedImagePath().equals(""))) {
 			myEntities.get(e.getID()).setImage(makeImage(e));
+			updatedEntitySet.add(e.getID());
 			
 		} else {
 			myEntities.put(e.getID(), null);
