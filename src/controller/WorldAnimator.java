@@ -10,8 +10,8 @@ import java.util.Set;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
-import components.LocationComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;

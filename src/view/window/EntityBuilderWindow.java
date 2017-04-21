@@ -29,6 +29,7 @@ public class EntityBuilderWindow extends Window{
 	private final Image defaultImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
 	private ImageView myImage;
 	private String myImagePath = "";
+	private String myImageName = "";
 	private Entity myEntity;
 	private ImageChooser imageChooser = new ImageChooser();
 	private UtilityFactory util;
@@ -36,6 +37,7 @@ public class EntityBuilderWindow extends Window{
 	private Stage myStage = new Stage();
 	private int i = 0;
 	private String[] entityList = {"Error"};
+	private static final String FILE_PATH = "file:" + File.separator + System.getProperty("user.dir") + File.separator + "images"+ File.separator;
 
 	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn) {
 		myData = dataIn;
@@ -65,9 +67,9 @@ public class EntityBuilderWindow extends Window{
 
 	private void addImageButton(Pane root){
 		Node imageButton = util.buildButton("ChooseImageLabel", e -> {
-			myImagePath = imageChooser.chooseFile();
-			System.out.println(myImagePath);
-			Image image = new Image(System.getProperty("user.dir") + File.separator + "images"+ File.separator + myImagePath);
+			myImageName = imageChooser.chooseFile();
+			myImagePath = FILE_PATH  + myImageName;
+			Image image = new Image(myImagePath);
 			myImage.setImage(image);
 			myImage.setFitWidth(200);
 			myImage.setFitHeight(200);
