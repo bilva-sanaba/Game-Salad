@@ -38,6 +38,7 @@ import javafx.scene.paint.Paint;
  */
 public class GridView extends GUIComponent {
 	private ContextMenu rightClick;
+	private ContextMenu rightClickEntity;
 	private static final int CELL_SIZE = 8;
 	private ScrollPane myScroll;
 	private GridPane myGrid;
@@ -46,7 +47,8 @@ public class GridView extends GUIComponent {
 	private int j = 1000;
 	private int myRow;
 	private int myCol;
-	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
+	private HashMap<Entity, ImageView> placedImages2 = new HashMap<Entity, ImageView>();
+	//private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
 	private BorderPane bp;
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
 		rightClick = buildContextMenu();
@@ -94,6 +96,9 @@ public class GridView extends GUIComponent {
 		rect.setFill(Color.GREY);
 		rect.setOnMousePressed(e -> {
 			System.out.println(String.format("Click at row %d col %d", row,col));
+			if(rightClickEntity != null){
+				rightClickEntity.hide();
+			}
 			rightClick.hide();
 			if(e.isSecondaryButtonDown()) {
 				rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
@@ -106,7 +111,7 @@ public class GridView extends GUIComponent {
 					j++;
 					placedEntity.addComponent(new LocationComponent(row, col));
 					myData.placeEntity(placedEntity);
-					drawEntity(placedEntity);
+					//drawEntity(placedEntity);
 				}
 			}
 		});
@@ -123,7 +128,19 @@ public class GridView extends GUIComponent {
 		double width = imageProperties.getWidth();
 		spriteImage.setFitHeight(height);
 		spriteImage.setFitWidth(width);
-		placedImages.add(spriteImage);
+		spriteImage.setOnMousePressed(e ->{
+			selectEntity(entity);
+			if(rightClickEntity != null){
+				rightClickEntity.hide();
+			}
+			rightClick.hide();
+			if(e.isSecondaryButtonDown()) {
+				rightClickEntity = buildEntityContextMenu(entity);
+				rightClickEntity.show(myGrid, e.getScreenX(), e.getScreenY());
+			}
+		});
+		//placedImages.add(spriteImage);
+		placedImages2.put(entity, spriteImage);
 		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
 		int colSpan = (int) height / CELL_SIZE + 1;
 		int rowSpan = (int) width / CELL_SIZE + 1;
@@ -134,10 +151,15 @@ public class GridView extends GUIComponent {
 	}
 
 	public void clearEntitiesOnGrid() {
-		for(ImageView i: placedImages) {
+		/*for(ImageView i: placedImages) {
 			myGrid.getChildren().remove(i);
 		}
-		placedImages.clear();
+		placedImages.clear();*/
+		for(Entity e: placedImages2.keySet()){
+			System.out.println("removing" + e);
+			myGrid.getChildren().remove(placedImages2.get(e));
+		}
+		placedImages2.clear();
 	}
 
 	public void placeEntitiesFromFile() {
@@ -167,6 +189,24 @@ public class GridView extends GUIComponent {
 
 	private ContextMenu buildContextMenu(){
 		ContextMenu contextMenu = new ContextMenu();
+		MenuItem paste = new MenuItem("Paste");
+		MenuItem redo = new MenuItem("Redo");
+		MenuItem undo = new MenuItem("Undo");
+		contextMenu.getItems().addAll(paste, redo, undo);
+		paste.setOnAction(e -> {
+			rightClick.hide();
+		});
+		redo.setOnAction(e -> {
+			rightClick.hide();
+		});
+		undo.setOnAction(e -> {
+			rightClick.hide();
+		});
+		return contextMenu;
+	}
+
+	private ContextMenu buildEntityContextMenu(Entity entity){
+		ContextMenu contextMenu = new ContextMenu();
 		MenuItem edit = new MenuItem("Edit");
 		MenuItem cut = new MenuItem("Cut");
 		MenuItem copy = new MenuItem("Copy");
@@ -178,6 +218,10 @@ public class GridView extends GUIComponent {
 			rightClick.hide();
 		});
 		cut.setOnAction(e -> {
+			myData.unplaceEntity(myData.getUserSelectedEntity());
+			myGrid.getChildren().remove(placedImages2.get(myData.getUserSelectedEntity()));
+			placedImages2.remove(myData.getUserSelectedEntity());
+			myData.setUserSelectedEntity(null);
 			rightClick.hide();
 		});
 		copy.setOnAction(e -> {
@@ -193,6 +237,16 @@ public class GridView extends GUIComponent {
 			rightClick.hide();
 		});
 		return contextMenu;
+	}
+	
+	public void selectEntity(Entity entity){
+		if(placedImages2.containsKey(myData.getUserSelectedEntity())){
+			ImageView temp = placedImages2.get(myData.getUserSelectedEntity());
+			temp.setStyle("");
+		}
+		myData.setUserSelectedEntity(entity);
+		ImageView i = placedImages2.get(entity);
+		i.setStyle("-fx-effect: innershadow(gaussian, #039ed3, 3, 1.0, 0, 0);");
 	}
 
 	@Override
