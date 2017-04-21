@@ -29,7 +29,7 @@ import view.editor.ComponentEditor;
  * @author Jonathan
  * @author Jack
  */
-public class EntityConfigurationWindow implements IWindow {
+public class EntityConfigurationWindow extends Window {
 	private UtilityFactory myUtilF;
 	private ViewData myData;
 	private String myEntityType;
@@ -50,7 +50,6 @@ public class EntityConfigurationWindow implements IWindow {
 		myData.setUserSelectedEntity(myEntity);
 		componentList = entityType;
 		myCompEdits = new HashMap<String, ComponentEditor>();
-		//myList = blocksList;
 		myStage.setScene(buildScene());
 	}
 
@@ -107,7 +106,6 @@ public class EntityConfigurationWindow implements IWindow {
 		for (ComponentEditor comp : myCompEdits.values()) {
 				myEntity.addComponent(comp.getComponent());
 		}
-		//myList.add(myEntity);
 		myData.defineEntity(myEntity);
 		myData.setUserSelectedEntity(myEntity);
 		myStage.close();

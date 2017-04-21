@@ -10,12 +10,16 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
 import components.movementcomponents.LocationComponent;
 import entity.Entity;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,12 +39,12 @@ import javafx.scene.paint.Paint;
  * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent{ 
-//implements Observer {
+	//implements Observer {
 	private ScrollPane myScroll;
 	private double Initial_X = 500.0;
 	private double Initial_Y = 500.0;
 	private Canvas myGrid = new Canvas(Initial_X,Initial_Y);
-    private GraphicsContext gc = myGrid.getGraphicsContext2D();
+	private GraphicsContext gc = myGrid.getGraphicsContext2D();
 	private ViewData myData;
 	private UtilityFactory util;
 	private int i = 1000;
@@ -49,14 +53,15 @@ public class GridView extends GUIComponent{
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
 	private ArrayList<Rectangle> placedGrids = new ArrayList<Rectangle>();
 	private BorderPane bp;
+	private ContextMenu rightClick;
 
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
+		rightClick = buildContextMenu();
 		util = utilIn;
 		myRow = rows;
 		myCol = cols;
 		myData = data;
 		myGrid.setCursor(Cursor.CROSSHAIR);
-//		myData.addObserver(this);
 		bp = new BorderPane();
 		Button butt = util.buildButton("addHo", e-> addHo());
 		util.buildButton("addHo", e->addHo());
@@ -65,21 +70,27 @@ public class GridView extends GUIComponent{
 		HBox box = new HBox(butt,butt2);
 		bp.setTop(box);
 		myScroll = new ScrollPane(myGrid);
-	//	myScroll.getStyleClass().add("myGrid");
+		//	myScroll.getStyleClass().add("myGrid");
 		bp.setCenter(myScroll);
-		myGrid.setOnMouseClicked(e -> {
-			int row = (int) (Math.round(e.getX()/10));
-			int col = (int) (Math.round(e.getY()/10));
-			System.out.println(Math.round(e.getX()/10)*10 + "   " + Math.round(e.getY()/10)*10);
-			System.out.println(Math.round(e.getX()/10) + "   " + Math.round(e.getY()/10));
-			Entity userSelectedEntity = myData.getUserSelectedEntity();
-			if (userSelectedEntity != null) {
-				Entity placedEntity = userSelectedEntity.clone();
-				placedEntity.setID(i);
-				i++;
-				placedEntity.addComponent(new LocationComponent(row*10, col*10));
-				myData.placeEntity(placedEntity);
-				drawEntity(placedEntity);
+		myGrid.setOnMousePressed(e ->{
+			rightClick.hide();
+			if(e.isSecondaryButtonDown()) {
+				rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
+			}
+			else{
+				int row = (int) (Math.round(e.getX()/10));
+				int col = (int) (Math.round(e.getY()/10));
+				System.out.println(Math.round(e.getX()/10)*10 + "   " + Math.round(e.getY()/10)*10);
+				System.out.println(Math.round(e.getX()/10) + "   " + Math.round(e.getY()/10));
+				Entity userSelectedEntity = myData.getUserSelectedEntity();
+				if (userSelectedEntity != null) {
+					Entity placedEntity = userSelectedEntity.clone();
+					placedEntity.setID(i);
+					i++;
+					placedEntity.addComponent(new LocationComponent(row*10, col*10));
+					myData.placeEntity(placedEntity);
+					drawEntity(placedEntity);
+				}
 			}
 		});
 	}
@@ -88,7 +99,7 @@ public class GridView extends GUIComponent{
 		myGrid.setHeight(Initial_Y+=10);
 		myData.getLevelEntity().addCol();
 	}
-		
+
 	private void addHo() {
 		myGrid.setWidth(Initial_X+=10);
 		myData.getLevelEntity().addRow();
@@ -116,12 +127,12 @@ public class GridView extends GUIComponent{
 		placedImages.add(spriteImage);
 		gc.drawImage(spriteImage.imageProperty().get(), entityLocation.getX(), entityLocation.getY(), w, h);
 	}
-	
+
 	public void clearEntitiesOnGrid(){
 		gc.clearRect(0, 0, Initial_X, Initial_Y);
 		placedImages.clear();
 	}
-	
+
 	public void placeEntitiesFromFile(){
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
@@ -131,12 +142,12 @@ public class GridView extends GUIComponent{
 			drawEntity(tempEntity);
 		}
 	}
-	
+
 	public void setUpLevel() {
 		System.out.println("NEW METHOD HAPPENS");
 		int totalRow = myData.getLevelEntity().getRows();
 		int totalCol = myData.getLevelEntity().getCols();
-		
+
 		while (myCol != totalCol) {
 			System.out.println("HORIZONTAL IS DONE");
 			addHo();
@@ -146,18 +157,48 @@ public class GridView extends GUIComponent{
 			addVert();
 		}
 	}
+	
+	private ContextMenu buildContextMenu(){
+		ContextMenu contextMenu = new ContextMenu();
+		MenuItem edit = new MenuItem("Edit");
+		MenuItem cut = new MenuItem("Cut");
+		MenuItem copy = new MenuItem("Copy");
+		MenuItem paste = new MenuItem("Paste");
+		MenuItem redo = new MenuItem("Redo");
+		MenuItem undo = new MenuItem("Undo");
+		contextMenu.getItems().addAll(edit, cut, copy, paste, redo, undo);
+		edit.setOnAction(e -> {
+			rightClick.hide();
+		});
+		cut.setOnAction(e -> {
+		    rightClick.hide();
+		});
+		copy.setOnAction(e -> {
+			rightClick.hide();
+		});
+		paste.setOnAction(e -> {
+			rightClick.hide();
+		});
+		redo.setOnAction(e -> {
+			rightClick.hide();
+		});
+		undo.setOnAction(e -> {
+			rightClick.hide();
+		});
+		return contextMenu;
+	}
 
 	@Override
 	public Region buildComponent() {
 		return bp;
 	}
-	
+
 	public void updateBackground() {
 		String filePath = myData.getLevelEntity().getBackgroundFilePath();
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
 
-/*	@Override
+	/*	@Override
 	public void update(Observable arg0, Object arg1) {
 		updateBackground();
 		setUpLevel();
