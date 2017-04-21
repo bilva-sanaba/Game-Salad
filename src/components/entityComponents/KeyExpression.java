@@ -1,6 +1,5 @@
-package components.keyExpressions;
+package components.entityComponents;
 
-import components.entityComponents.IKeyExpression;
 import entity.IEntity;
 
 public class KeyExpression implements IKeyExpression{

@@ -25,14 +25,13 @@ import view.UtilityFactory;
 public class KeyInputEditor extends ComponentEditor {
 	private static final String ComponentName = "KeyInput";
 	private String[] myKeyString = {"false"}; // Initialize array
-	private ArrayList<Node> nodeList = new ArrayList<Node>();
 	private Map<KeyCode,String> inputMap = new HashMap<KeyCode,String>();
 
 		private HBox myBox;
 		
 		public KeyInputEditor(UtilityFactory utilf) {
 			myBox = new HBox();
-			final ToggleGroup group = utilf.buildRadioButtonGroup("SelectCharacterType", nodeList);
+			final ToggleGroup group = utilf.buildRadioButtonGroup("SelectCharacterType", myBox);
 			group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 				public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 					myKeyString = (String[]) new_toggle.getUserData();
@@ -43,7 +42,6 @@ public class KeyInputEditor extends ComponentEditor {
 					}
 				}
 			});			
-			myBox.getChildren().addAll(nodeList);
 			setInputNode(myBox);
 		}
 		

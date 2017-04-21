@@ -1,6 +1,7 @@
 package controller;
 
-import components.LocationComponent;
+
+import components.entityComponents.LocationComponent;
 import entity.Entity;
 import javafx.scene.Group;
 import javafx.scene.Parent;

@@ -5,13 +5,13 @@ import actions.BounceOffBlockSide;
 import actions.BounceOffBottom;
 import actions.BounceOffLeft;
 import actions.BounceOffTop;
-import components.collisionComponents.CollisionComponentType;
-import components.collisionComponents.CollisionComponentsHandler;
-import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.CollidableComponent;
+import components.entityComponents.CollisionComponentType;
+import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 

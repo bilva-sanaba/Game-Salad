@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import components.entityComponents.ComponentType;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;

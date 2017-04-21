@@ -3,11 +3,11 @@ package engines.subengines;
 import java.util.ArrayList;
 import java.util.List;
 
-import components.collisionComponents.CollisionComponentsHandler;
-import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.CollidableComponent;
+import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 import entity.IEntity;

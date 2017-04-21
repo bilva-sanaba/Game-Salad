@@ -2,7 +2,7 @@ package engines.subengines;
 import java.util.List;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
-import components.collisionComponents.SideCollisionComponent;
+import components.entityComponents.SideCollisionComponent;
 import engines.CollisionPair;
 import entity.Entity;
 import entity.IEntity;

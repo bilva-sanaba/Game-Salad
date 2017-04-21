@@ -18,8 +18,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
+import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
-import components.LocationComponent;
+
 
 import entity.IEntity;
 import entity.IEntityManager;

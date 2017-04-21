@@ -1,4 +1,4 @@
-package components.collisionComponents;
+package components.entityComponents;
 
 public enum CollisionComponentType {
 	Top(),

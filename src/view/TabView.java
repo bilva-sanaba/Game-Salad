@@ -31,7 +31,6 @@ public class TabView extends GUIComponent {
 	public TabView(UtilityFactory utilIn, ViewData data) {
 		myData = data;
 		util = utilIn;
-		entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
 		blocksView.setId("blocksview");
 		blocksView.setItems(blocksList);
 		blocksView.setCellFactory(e -> new ListCell<Entity>() {
@@ -64,6 +63,7 @@ public class TabView extends GUIComponent {
 			}
 		});
 		b = util.buildButton("AddEntityButton", e -> {
+			entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
 			entityBuilder.showEntityBuilder();
 		});
 		u = util.buildButton("UploadEntities", e -> {

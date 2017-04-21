@@ -19,7 +19,7 @@ public class MonsterEditor  extends ComponentEditor {
 		
 		public MonsterEditor(UtilityFactory utilf) {
 			myBox = new HBox();
-			final ToggleGroup group = utilf.buildRadioButtonGroup("SelectMonsterMovementType", nodeList);
+			final ToggleGroup group = utilf.buildRadioButtonGroup("SelectMonsterMovementType", myBox);
 			group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 				public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 					myMMPString = (String[]) new_toggle.getUserData();

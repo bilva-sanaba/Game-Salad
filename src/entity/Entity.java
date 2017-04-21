@@ -6,12 +6,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 import components.IComponent;
-import components.LocationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
-
+import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import entity.restricted.IRestrictedEntity;

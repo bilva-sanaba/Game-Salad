@@ -5,8 +5,7 @@ import java.util.List;
 
 import class_annotations.BottomAction;
 import components.entityComponents.ComponentType;
-import components.movementcomponents.VelocityComponent;
-import entity.EntityManager;
+import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 

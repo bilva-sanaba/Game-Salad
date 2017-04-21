@@ -4,13 +4,19 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockSide;
 import actions.DoubleSize;
 import actions.PowerupUsage;
+<<<<<<< HEAD
 import actions.Teleport;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
 import components.collisionComponents.SideCollisionComponent;
+=======
+>>>>>>> master
 import components.entityComponents.CollidableComponent;
+import components.entityComponents.CollisionComponentType;
+import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.SideCollisionComponent;
 import entity.Entity;
 
 public class AbstractPowerup extends Entity {

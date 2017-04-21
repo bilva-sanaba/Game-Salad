@@ -1,13 +1,10 @@
-package components.collisionComponents;
+package components.entityComponents;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import actions.IAction;
-import components.entityComponents.ComponentType;
-import components.entityComponents.LabelComponent;
-import components.entityComponents.TypeComponent;
 import components.IComponent;
 import entity.IEntity;
 import entity.IEntityManager;
