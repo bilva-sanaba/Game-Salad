@@ -1,6 +1,5 @@
 package view;
 
-import java.util.HashMap;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
@@ -14,10 +13,7 @@ import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import view.window.EntityBuilderWindow;
@@ -33,11 +29,6 @@ public class TabView extends GUIComponent {
 	private EntityBuilderWindow entityBuilder;
 
 	public TabView(UtilityFactory utilIn, ViewData data) {
-		/*
-		 * Entity entity = new Entity(7); SpriteComponent entitySprite =
-		 * (SpriteComponent) entity.getComponent(ComponentType.Sprite);
-		 * ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		 */
 		myData = data;
 		util = utilIn;
 		entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
@@ -70,7 +61,6 @@ public class TabView extends GUIComponent {
 			@Override
 			public void changed(ObservableValue<? extends Entity> observable, Entity oldVal, Entity newVal) {
 				myData.setUserSelectedEntity(newVal);
-				System.out.println("asd");
 			}
 		});
 		b = util.buildButton("AddEntityButton", e -> {
