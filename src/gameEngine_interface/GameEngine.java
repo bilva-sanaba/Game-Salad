@@ -136,6 +136,7 @@ public class GameEngine implements GameEngineInterface {
 			xpc.setWidth(50);
 			p.addComponent(xpc);
 			p.addComponent(new LabelComponent("Blok"));
+			p.addComponent(new TypeComponent(EntityType.Block));
 			e.add(p);
 		}
 		
@@ -148,6 +149,8 @@ public class GameEngine implements GameEngineInterface {
 		y.addComponent(yc);
 		y.addComponent(new VelocityComponent(0,0));
 		y.addComponent(new LabelComponent("Blok"));
+		y.addComponent(new TypeComponent(EntityType.Block));
+
 		Entity p = new AbstractMysteryBlock(102,y); 
 		p.addComponent(new LocationComponent(900,100));
 		p.addComponent(new SpriteComponent(("sand.jpg")));
@@ -156,6 +159,8 @@ public class GameEngine implements GameEngineInterface {
 		xpc.setWidth(50);
 		p.addComponent(xpc);
 		p.addComponent(new LabelComponent("Blok"));
+		p.addComponent(new TypeComponent(EntityType.Block));
+
 		e.add(p);
 		Entity portal2 = createPortal();
 		
@@ -178,6 +183,8 @@ public class GameEngine implements GameEngineInterface {
 		CollisionComponentsHandler cch = new CollisionComponentsHandler();
 		cch.addCollisionComponent(scc);
 		portal2.addComponent(cch);
+		portal2.addComponent(new TypeComponent(EntityType.Block));
+
 		ImagePropertiesComponent ipc = new ImagePropertiesComponent();
 		ipc.setHeight(50);
 		ipc.setWidth(50);
@@ -195,6 +202,8 @@ public class GameEngine implements GameEngineInterface {
 		CollisionComponentsHandler cch = new CollisionComponentsHandler();
 		cch.addCollisionComponent(scc);
 		portal2.addComponent(cch);
+		portal2.addComponent(new TypeComponent(EntityType.Block));
+
 		ImagePropertiesComponent ipc = new ImagePropertiesComponent();
 		ipc.setHeight(50);
 		ipc.setWidth(50);

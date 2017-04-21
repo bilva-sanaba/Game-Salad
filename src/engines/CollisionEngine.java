@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import components.entityComponents.ComponentType;
+import components.entityComponents.EntityType;
 import components.IComponent;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.TypeComponent;
 import engines.subengines.GeneralPostCollisionHandler;
 import engines.subengines.ISubEngine;
 import engines.subengines.stopMovementAfterHit;
@@ -61,15 +63,20 @@ public class CollisionEngine extends AbstractEngine {
 	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
 		int playerId = 0;	
 		int counter0 = -1;
+		Map<Integer, IComponent> entityTypes = entManager.getCertainComponents(ComponentType.Type);
 		for (Integer component0index : locationComponents.keySet()) {
 			counter0++;
 			int counter1 = -1;
 			for (Integer component1index : locationComponents.keySet()) {
 				counter1++;
 				if (counter1 != counter0) {
-					if (component0index == playerId){
-					checkIndividualCollision(locationComponents.get(component0index), locationComponents.get(component1index), imageComponents.get(component0index), imageComponents.get(component1index), component0index, component1index);
+					TypeComponent e0Type = (TypeComponent) entityTypes.get(component0index);
+					TypeComponent e1Type = (TypeComponent) entityTypes.get(component1index);
+					if (e0Type !=null && e1Type != null && !(e0Type.getType().equals(EntityType.Block) && e1Type.getType().equals(EntityType.Block))) {
+						checkIndividualCollision(locationComponents.get(component0index), locationComponents.get(component1index), imageComponents.get(component0index), imageComponents.get(component1index), component0index, component1index);
+
 					}
+					
 				}
 			}
 			
