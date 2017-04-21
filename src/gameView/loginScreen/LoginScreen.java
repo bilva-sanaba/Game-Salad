@@ -1,12 +1,9 @@
 package gameView.loginScreen;
 
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -21,9 +18,9 @@ import javafx.scene.layout.VBox;
 import gameView.AbstractViewer;
 import gameView.ICommandView;
 import gameView.UIView;
+import gameView.commands.FacebookCommand;
 import gameView.commands.RegisterCommand;
 import gameView.commands.SignInCommand;
-import gameView.tools.FrontEndException;
 import gameView.tools.ResourceRetriever;
 
 public class LoginScreen extends AbstractViewer {
@@ -73,18 +70,11 @@ public class LoginScreen extends AbstractViewer {
 		TextField username = makeInput("User Name", "username"); 
 		TextField password = makeInput("Password", "password");
 		//Button signIn = makeButton(new SignInCommand((ICommandView) getView())); 
-		Button signIn = new Button("test");
-		signIn.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				try {
-					new FaceBookLogin().login();
-				} catch (IOException e) {
-					throw new FrontEndException("FB FAILURE");
-				}
-			}
-		});
+		Button signIn = makeButton(new RegisterCommand((ICommandView) getView()));
+		Button facebook = makeButton(new FacebookCommand((ICommandView) getView()));
+		System.out.println(facebook.getId());
 		setMargin(signIn, 20, 0, 0, 0);
-		setBox(myRight, "right", lab, username, password, signIn);
+		setBox(myRight, "right", lab, username, password, signIn, facebook);
 	}
 	
 	private void setMargin(Node node, int top, int left, int bottom, int right) {
@@ -96,7 +86,7 @@ public class LoginScreen extends AbstractViewer {
 		box.getChildren().addAll(Arrays.asList(args));  
 		box.setPrefWidth(UIView.DEFAULT_SIZE.width/2);
 		box.setPrefWidth(UIView.DEFAULT_SIZE.height);
-		
+		 
 	}
 	
 	private TextField makeInput(String description, String id) {

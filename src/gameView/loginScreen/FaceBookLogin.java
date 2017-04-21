@@ -1,5 +1,6 @@
 package gameView.loginScreen;
 
+import gameView.tools.FrontEndException;
 import gameView.tools.UserData;
 
 import java.io.File;
@@ -20,6 +21,7 @@ import com.restfb.scope.ScopeBuilder;
 import com.restfb.types.User;
 
 public class FaceBookLogin {
+	private final String CHROME_DRIVER = "data/chromedriver";
 	private final String APP_ID = "1995068140770452";
 	private final String APP_SECRET = "de3819d4811660b10cb879c1f9a891f6";
 	private final String RESPONSE_URL = "https://users.cs.duke.edu/~rcd/";//"https://www.google.com";
@@ -35,12 +37,10 @@ public class FaceBookLogin {
 	public FaceBookLogin() {
 	}
 	
-	public UserData login() throws IOException {
+	public UserData login() throws FrontEndException {
 		UserData userData;
-		File driverFile = new File("data/chromedriver");
-		driverFile.setExecutable(true);
-		System.setProperty("webdriver.chrome.driver", driverFile.toString());
-		WebDriver driver = new ChromeDriver();
+	
+		WebDriver driver = initializeDriver();
 		driver.get(LOGIN_URL);
 		
 		while (true) {
@@ -48,11 +48,8 @@ public class FaceBookLogin {
 				ACCESS_TOKEN = regexMatch("access[_]token=(\\w)+", driver.getCurrentUrl()).split("=")[1];
 				FacebookClient client = new DefaultFacebookClient(ACCESS_TOKEN, Version.LATEST);
 				User user = client.fetchObject("me", User.class);
-				System.out.println(user);
 				JsonObject profilePicture = client.fetchObject("me/picture", JsonObject.class, Parameter.with("redirect", "false"));
-				System.out.println(profilePicture);
-				System.out.println(profilePicture.get("data").asObject().get("url"));
-				userData = new UserData(user.getFirstName(), user.getLastName(), 
+				userData = new UserData(user.getName(), 
 						new Image((String) profilePicture.get("data").asObject().get("url").asString()));
 				driver.close();
 				break;
@@ -68,5 +65,13 @@ public class FaceBookLogin {
 		Matcher match = pattern.matcher(original);
 		match.find();
 		return match.group();
+	}
+	
+	private WebDriver initializeDriver() {
+		File driverFile = new File(CHROME_DRIVER);
+		driverFile.setExecutable(true);
+		System.setProperty("webdriver.chrome.driver", driverFile.toString());
+		WebDriver driver = new ChromeDriver();
+		return driver;
 	}
 }

@@ -8,10 +8,10 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		LoginScreen l = new LoginScreen(null);
-		arg0.setScene(l.getScene());
-		arg0.show();
-		//new Controller(arg0);
+//		LoginScreen l = new LoginScreen(null);
+//		arg0.setScene(l.getScene());
+//		arg0.show();
+		new Controller(arg0);
 		//TODO: Uncomment the line below and comment the line above to enter test mode for worldanimation and gameengine
 		//new RunnerTest(arg0);  
 		  

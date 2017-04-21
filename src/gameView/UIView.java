@@ -14,6 +14,7 @@ import gameView.gameScreen.SpecificGameSplashView;
 import com.sun.jmx.snmp.Timestamp;
 
 import gameView.splashScreen.SplashView;
+import gameView.tools.UserData;
 import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
 import controller.WorldAnimator;
@@ -37,7 +38,8 @@ public class UIView implements UIViewInterface {
 	private SplashView mySplash;
 	private GameScreen myGameScene;
 	private GameData myData; 
-	private WorldAnimator myAnimation; 
+	private WorldAnimator myAnimation;
+	private UserData myUser;
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
@@ -119,5 +121,12 @@ public class UIView implements UIViewInterface {
 	public void step(Set<KeyCode> keysPressed) {
 		myController.step(keysPressed);
 	}
+	
+	public void addUser(UserData user) {
+		myUser = user;
+	}
 
+	public UserData getUser() {
+		return myUser;
+	}
 }

@@ -61,6 +61,7 @@ public class SplashView extends AbstractViewer {
 		myCommands.stream().forEach(c -> {  
 			box.getChildren().add(makeButton(c));
 		});
+		
 		myPane.setBottom(box);
 	}
 	

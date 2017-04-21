@@ -4,23 +4,23 @@ import javafx.scene.image.Image;
 
 public class UserData {
 
-	private String myFirstName;
-	private String myLastName;
+	private String myName;
+	//private String myLastName;
 	private Image myImage;
 	
-	public UserData(String firstName, String lastName, Image image) {
-		myFirstName = firstName;
-		myLastName = lastName;
+	public UserData(String name, Image image) {
+		myName = name;
+		//myLastName = lastName;
 		myImage = image;
 	}
 	
-	public String getFirstName(){
-		return myFirstName;
+	public String getName(){
+		return myName;
 	}
 	
-	public String getLastName() {
-		return myLastName;
-	}
+//	public String getLastName() {
+//		return myLastName;
+//	}
 	
 	public Image getProfilePicture() {
 		return myImage;

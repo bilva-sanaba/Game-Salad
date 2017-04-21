@@ -4,6 +4,7 @@ import gameView.commands.AbstractCommand;
 import gameView.tools.ButtonFactory;
 import gameView.tools.CommandFactory;
 import gameView.tools.DisplayManager;
+import gameView.tools.UserData;
 
 import java.util.Collection;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ public abstract class AbstractViewer implements ICommandView {
 
 	private UIView myView;
 	private ButtonFactory myButtonFactory;
+
 	
 	public AbstractViewer(UIView view) {
 		myView = view;
@@ -62,6 +64,10 @@ public abstract class AbstractViewer implements ICommandView {
 	public void makeGame() {
 		System.out.println("ABSTRACT");
 		getView().authorGame();
+	}
+	
+	public void addUser(UserData user) {
+		getView().addUser(user);
 	}
 
 	//DOES NOTHING FOR SPLASHSCREEN
