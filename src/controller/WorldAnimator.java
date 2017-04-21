@@ -98,7 +98,7 @@ public class WorldAnimator{
         //Change Length
         myCamera = new Camera(LENGTH*5 ,myScene, lc);
 
-        fillMapAndDisplay();
+        fillMapAndDisplay(myObservers.getEntityMap().keySet());
 
         /*for (Integer id : imageMap.keySet()) {
             root.getChildren().add(imageMap.get(id));
@@ -118,10 +118,12 @@ public class WorldAnimator{
     private void step(double elapsedTime){
     	//myView.step(keysPressed);
     	myEngine.handleUpdates(keysPressed);
-        fillMapAndDisplay();
+        fillMapAndDisplay(myObservers.getUpdatedSet());
+        System.out.println(imageMap.size());
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
+        myObservers.clearSet();
     }
 
     
@@ -151,18 +153,19 @@ public class WorldAnimator{
         s.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
     }
 
-    private void fillMapAndDisplay(){
+    private void fillMapAndDisplay(Set<Integer> entities){
     	
     	//MYOBSERVERS RETURNS COLLECTION OF IMAGEVIEW THAT ARE CORRECTLY UPDATED
-    	Map<Integer, ImageView> entities = myObservers.getEntityMap();
         //HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
-        for(Integer entity : entities.keySet()){
+    	Map<Integer, ImageView> map = myObservers.getEntityMap();
+        for(Integer entity : entities){
         //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
-        	if (entities.get(entity)!=null){
+        	System.out.println(entity + "HEYYYEEYYEYEYEYEYEYEYYEYDUBLIN");
+        	if (map.get(entity)!=null){
 		  //SequentialTransition trans = new SequentialTransition();
 		  //removeEntity(entity,entities);
-		  updateEntity(entity,entities);
-		  createEntity(entity,entities);
+		  updateEntity(entity,map);
+		  createEntity(entity,map);
         	}
 		}
 
@@ -173,9 +176,9 @@ public class WorldAnimator{
     	System.out.println("CHAHCHAHCHA" + entity);
     	if (imageMap.containsKey(entity)){
     	imageMap.get(entity).setImage(null);
-
-        root.getChildren().remove(imageMap.get(entity));
-         //myGameScreen.removeEntity(imageMap.get(entity));
+    	
+        //root.getChildren().remove(imageMap.get(entity));
+        //myGameScreen.removeEntity(imageMap.get(entity));
         imageMap.remove(entity);
     	}
     }
@@ -188,6 +191,7 @@ public class WorldAnimator{
 	            imageView = updateImage(imageView, old);
 	            imageMap.put(entity, imageView);
 	            
+	            System.out.println(imageView.getFitHeight() + "    " + imageView.getFitWidth());
 	            root.getChildren().add(imageView);
 //	            myGameScreen.addEntity(imageView);
 
@@ -216,6 +220,10 @@ public class WorldAnimator{
 
         currentImage.setTranslateY(re.getTranslateY()); 
         currentImage.setFitHeight(re.getFitHeight());
+        currentImage.setFitWidth(re.getFitWidth());
+        
+        currentImage.setFitHeight(re.getFitHeight());
+        
         currentImage.setFitWidth(re.getFitWidth());
         
         return currentImage;
