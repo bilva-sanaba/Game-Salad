@@ -12,12 +12,13 @@ public abstract class AbstractCommand implements ICommand {
 		super();
 		myView = m;
 	}
-
-	protected ICommandView getView() {
+ 
+	protected ICommandView getView() { 
 		return myView;
-	}
+	} 
 
 	public abstract void execute(Stage s);
 
 	public abstract String getName();
 }
+  

@@ -36,7 +36,7 @@ public class ButtonFactory extends UtilityFactory {
 		try {
 			button = buildButton(command.getName(), "", myFile, null);
 		} catch (Exception e) {  
-			button = new Button("No Label Found");
+			button = new Button("No Label Found"); 
 		}
 		button.setId(command.getName().toLowerCase());
 		button.setOnAction(new EventHandler<ActionEvent>() {
