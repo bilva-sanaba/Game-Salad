@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import actions.IAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;

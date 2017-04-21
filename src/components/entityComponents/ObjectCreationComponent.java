@@ -17,6 +17,9 @@ public class ObjectCreationComponent implements IComponent{
 	public IEntity getStoredEntity(){
 		return storedEntity;
 	}
+	public IEntity checkCreationEffect(){
+		return storedEntity;
+	}
 	public IEntity getCreationEffect(){
 		if (creating){
 			creating = !creating;

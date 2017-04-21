@@ -15,6 +15,8 @@ public class PowerupCreation implements IAction {
 		IEntity powerup = ((ObjectCreationComponent) e2.getComponent(ComponentType.ObjectCreation)).getCreationEffect();
 		if (powerup!=null){
 			entities.add(powerup);
+			myEM.getEntities().add(powerup);
+			myEM.changed(powerup);
 		}
 		return entities;
 	}

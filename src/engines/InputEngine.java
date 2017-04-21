@@ -10,6 +10,7 @@ import javax.script.ScriptException;
 
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockSide;
+import alerts.GroovyAlert;
 import components.IComponent;
 import components.LocationComponent;
 import components.collisionComponents.CollisionComponentType;
@@ -36,7 +37,7 @@ public class InputEngine extends AbstractEngine{
 	private boolean x = true;
 	public InputEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
-		engine = new ScriptEngineManager().getEngineByName("groovy");		
+		engine = new ScriptEngineManager().getEngineByName("groovy");	
 	}
 	
 
@@ -53,29 +54,40 @@ public class InputEngine extends AbstractEngine{
 		}
 	}
 	private void handleInput(IEntity e, Collection<KeyCode> keys){
-		
 		if (e.getComponent(ComponentType.KeyInput)!=null){
 		KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 		
 		for (KeyCode key : keys){
-			if (ic.getMap().containsKey(key)){
-				if (ic.getMap().get(key)!="JUMP" && ic.getMap().get(key)!="RIGHT" && ic.getMap().get(key)!="LEFT" && ic.getMap().get(key)!="REMOVE" ){
-					try {
-						VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-						AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-						engine.put("vc", vc);
-						engine.put("ac", ac);
-						engine.eval(ic.getMap().get(key));
-					} catch (ScriptException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}else{
-					ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
+			if (ic.getActionMap().containsKey(key)){
+//				if (ic.getMap().get(key)!="JUMP" && ic.getMap().get(key)!="RIGHT" && ic.getMap().get(key)!="LEFT" && ic.getMap().get(key)!="REMOVE" ){
+//					try {
+//						VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+//						AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+//						engine.put("vc", vc);
+//						engine.put("ac", ac);
+//						engine.eval(ic.getMap().get(key));
+//					} catch (ScriptException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//				}else{
+//					ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
+					ic.getActionMap().get(key).executeAction(e, null, getEManager());
 					((IRestrictedEntity) e).changed(e);
 				}
+			if (ic.getGroovyMap().containsKey(key)){
+				try {
+					VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+					AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+					engine.put("vc", vc);
+					engine.put("ac", ac);
+					engine.eval(ic.getGroovyMap().get(key));
+				} catch (ScriptException e1) {
+					GroovyAlert alert = new GroovyAlert("Invalid Author Key Action", "This program crashed due to an incorrect expression written by the author");
+				}
 			}
-		}
+			}
+//		}
 		}	
 	}
 }

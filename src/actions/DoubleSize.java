@@ -6,6 +6,7 @@ import java.util.List;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
+import components.movementcomponents.VelocityComponent;
 import components.LocationComponent;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -23,6 +24,7 @@ public class DoubleSize implements IAction {
 		ImagePropertiesComponent y = (ImagePropertiesComponent) player.getComponent(ComponentType.ImageProperties);
 		if (c){
 		LocationComponent t = (LocationComponent) player.getComponent(ComponentType.Location);
+		VelocityComponent v = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		t.setY(t.getY()-y.getHeight());
 		}
 		y.setHeight(y.getHeight()*2);

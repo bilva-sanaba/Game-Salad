@@ -13,6 +13,8 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
 import actions.BounceOffBlockSide;
 import actions.IAction;
+import actions.PowerupCreation;
+import actions.ShootAction;
 import components.LocationComponent;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
@@ -23,9 +25,13 @@ import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.ObjectCreationComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
+import components.keyExpressions.JumpAction;
+import components.keyExpressions.LeftAction;
+import components.keyExpressions.RightAction;
 import components.movementcomponents.AccelerationComponent;
 import components.movementcomponents.VelocityComponent;
 import javafx.scene.input.KeyCode;
@@ -118,13 +124,24 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new LabelComponent("grrraah"));
 		x.addComponent(new KeyInputComponent());
 		x.addComponent(new TypeComponent(EntityType.Player));
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, "RIGHT");
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");
+		Entity y2 = new AbstractPowerup(201);
+		y2.addComponent(new LocationComponent(800,150));
+		y2.addComponent(new SpriteComponent(("platform_tile_057.png")));
+		ImagePropertiesComponent yc2 = new ImagePropertiesComponent();
+		yc2.setHeight(50);
+		yc2.setWidth(50);
+		y2.addComponent(yc2);
+		y2.addComponent(new VelocityComponent(5,0));
+		y2.addComponent(new LabelComponent("Blok"));
+		x.addComponent(new ObjectCreationComponent(y2));
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
-
-
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
+//
+//
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
 
 		for (int i=1;i<100;i++){
