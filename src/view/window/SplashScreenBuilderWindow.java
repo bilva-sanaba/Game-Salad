@@ -1,5 +1,7 @@
 package view.window;
 
+import java.io.File;
+
 import entity.SplashEntity;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -44,7 +46,7 @@ public class SplashScreenBuilderWindow extends Window{
 		chooseImageButton.setOnAction(e -> {
 			ImageChooser ic = new ImageChooser();
 			splashScreenImagePath = ic.chooseFile();
-			myFilePathDisplay.setText(splashScreenImagePath);
+			myFilePathDisplay.setText(System.getProperty("user.dir") + File.separator + "images"+ File.separator + splashScreenImagePath);
 		});
 		Button okayButton = new Button("OkayButtonLabel");
 		okayButton.setOnAction(e -> {

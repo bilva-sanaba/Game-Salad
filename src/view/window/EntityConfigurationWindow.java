@@ -60,7 +60,6 @@ public class EntityConfigurationWindow extends Window {
 		myEntity = myData.getUserSelectedEntity();
 		myData.setUserSelectedEntity(myEntity);
 		componentList = entityType;
-		myCompEdits = new ArrayList<ComponentEditor>();
 		myList = blocksList;
 		myStage.setScene(buildScene());
 	}

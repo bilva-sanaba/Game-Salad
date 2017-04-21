@@ -1,5 +1,7 @@
 package voogasalad.util.paint;
 
+import javafx.scene.paint.Color;
+
 public class DrawingToolChooser implements DrawingGet, IDrawingToolChooser {
 	
 	private DrawRectangle dr;
@@ -18,21 +20,31 @@ public class DrawingToolChooser implements DrawingGet, IDrawingToolChooser {
 
 	@Override
 	public void setDrawingTool(DrawingToolType dtt) {
+		setColors(currentTool.getColor());
 		if (dtt.equals(DrawingToolType.Rectangle)) {
-			dr.setColor(currentTool.getColor());
 			currentTool = dr;
 		} else if (dtt.equals(DrawingToolType.Cirlce)) {
-			dc.setColor(currentTool.getColor());
 			currentTool = dc;
 		} else {
-			p.setColor(currentTool.getColor());
 			currentTool = p;
 		}
+	}
+	
+	private void setColors(Color c){
+		System.out.println(c);
+		dr.setColor(c);
+		dc.setColor(c);
+		p.setColor(c);
 	}
 
 	@Override
 	public DrawingTool getDrawingTool() {
 		return currentTool;
+	}
+
+	@Override
+	public void setColor(Color value) {
+		setColors(value);
 	}
 
 }

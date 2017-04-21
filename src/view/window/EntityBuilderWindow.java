@@ -66,8 +66,8 @@ public class EntityBuilderWindow extends Window{
 	private void addImageButton(Pane root){
 		Node imageButton = util.buildButton("ChooseImageLabel", e -> {
 			myImagePath = imageChooser.chooseFile();
-			System.out.println();
-			Image image = new Image(myImagePath);
+			System.out.println(myImagePath);
+			Image image = new Image(System.getProperty("user.dir") + File.separator + "images"+ File.separator + myImagePath);
 			myImage.setImage(image);
 			myImage.setFitWidth(200);
 			myImage.setFitHeight(200);
