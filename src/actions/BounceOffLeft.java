@@ -18,7 +18,9 @@ public class BounceOffLeft implements IAction {
 	public static final double BOUNCE_FACTOR = 0.5;
 
 	@Override
-	public List<IEntity> executeAction(IEntity e,IEntity e2,IEntityManager myEM) {
+
+	public List<IEntity> executeAction(IEntity e,IEntity e2, IEntityManager myEM) {
+
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		

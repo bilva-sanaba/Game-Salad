@@ -13,7 +13,15 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
 import actions.BounceOffBlockSide;
 import actions.IAction;
+<<<<<<< HEAD
+import actions.Teleport;
+import components.LocationComponent;
+import components.collisionComponents.CollisionComponentType;
+import components.collisionComponents.CollisionComponentsHandler;
+import components.collisionComponents.SideCollisionComponent;
+=======
 import components.entityComponents.AccelerationComponent;
+>>>>>>> master
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
@@ -156,6 +164,7 @@ public class GameEngine implements GameEngineInterface {
 			xpc.setWidth(50);
 			p.addComponent(xpc);
 			p.addComponent(new LabelComponent("Blok"));
+			p.addComponent(new TypeComponent(EntityType.Block));
 			e.add(p);
 		}
 		
@@ -168,6 +177,8 @@ public class GameEngine implements GameEngineInterface {
 		y.addComponent(yc);
 		y.addComponent(new VelocityComponent(0,0));
 		y.addComponent(new LabelComponent("Blok"));
+		y.addComponent(new TypeComponent(EntityType.Block));
+
 		Entity p = new AbstractMysteryBlock(102,y); 
 		p.addComponent(new LocationComponent(900,100));
 		p.addComponent(new SpriteComponent(("sand.jpg")));
@@ -176,15 +187,57 @@ public class GameEngine implements GameEngineInterface {
 		xpc.setWidth(50);
 		p.addComponent(xpc);
 		p.addComponent(new LabelComponent("Blok"));
+		p.addComponent(new TypeComponent(EntityType.Block));
+
 		e.add(p);
-
-
+		Entity portal2 = createPortal();
+		
+		e.add(portal2);
+		e.add(createPortal2());
 
 		myEntityManager = new EntityManager(e);
 
 		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
+	}
+	
+	private Entity createPortal() {
+		Entity portal2 = new Entity(110);
+		portal2.addComponent(new LocationComponent(250, 125));
+		portal2.addComponent(new SpriteComponent("portal.png"));
+		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Left);
+		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(1700, 100));
+		CollisionComponentsHandler cch = new CollisionComponentsHandler();
+		cch.addCollisionComponent(scc);
+		portal2.addComponent(cch);
+		portal2.addComponent(new TypeComponent(EntityType.Block));
+
+		ImagePropertiesComponent ipc = new ImagePropertiesComponent();
+		ipc.setHeight(50);
+		ipc.setWidth(50);
+		portal2.addComponent(ipc);
+		portal2.addComponent(new CollidableComponent(true));
+		return portal2;
+	}
+	
+	private Entity createPortal2() {
+		Entity portal2 = new Entity(112);
+		portal2.addComponent(new LocationComponent(1500, 125));
+		portal2.addComponent(new SpriteComponent("portal.png"));
+		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Right);
+		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 100));
+		CollisionComponentsHandler cch = new CollisionComponentsHandler();
+		cch.addCollisionComponent(scc);
+		portal2.addComponent(cch);
+		portal2.addComponent(new TypeComponent(EntityType.Block));
+
+		ImagePropertiesComponent ipc = new ImagePropertiesComponent();
+		ipc.setHeight(50);
+		ipc.setWidth(50);
+		portal2.addComponent(ipc);
+		portal2.addComponent(new CollidableComponent(true));
+		return portal2;
 	}
 
 	public IEntity getMainCharacter(){

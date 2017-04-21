@@ -1,6 +1,7 @@
 package entity.presets;
 
 import actions.BlockTopRegularCollision;
+import actions.BounceOffTop;
 import actions.PowerupCreation;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
@@ -26,6 +27,7 @@ public class AbstractMysteryBlock extends AbstractBlock{
 		ObjectCreationComponent occ = new ObjectCreationComponent(e);
 		this.addComponent(occ);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Top").addActionForLabel(new LabelComponent("grrraah"), new PowerupCreation());
+		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Top").addActionForLabel(new LabelComponent("grrraah"), new BounceOffTop());
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Bottom").addActionForLabel(new LabelComponent("grrraah"), new PowerupCreation());
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Right").addActionForLabel(new LabelComponent("grrraah"), new PowerupCreation());
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Left").addActionForLabel(new LabelComponent("grrraah"), new PowerupCreation());
