@@ -11,7 +11,6 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.movementcomponents.VelocityComponent;
 import javafx.scene.shape.Rectangle;
 public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
-	
 	public ObjectCollisionAlgorithm() {
 		
 	}
