@@ -3,6 +3,10 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import components.LocationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
@@ -29,6 +33,24 @@ public class DoubleSize implements IAction {
 		y.setHeight(y.getHeight()*2);
 		y.setWidth(y.getWidth()*2);
 		player.changed(player);
+		try{
+		    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("Obi-Wan - Hello there..wav"));
+		    Clip clip = AudioSystem.getClip();
+		    clip.open(audioInputStream);
+		    clip.start();
+		    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("badboujee.wav"));
+		    Clip clip2 = AudioSystem.getClip();
+		    if (!clip.isActive()) {
+		    	clip2.open(audioInputStream2);
+			    clip2.start();
+		    }
+		    
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	    
 		
 		return new ArrayList<IEntity>();
 	}
