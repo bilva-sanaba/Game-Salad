@@ -4,6 +4,8 @@ package gameView.loginScreen;
 import java.util.Arrays;
 import java.util.Collections;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -18,6 +20,7 @@ import javafx.scene.layout.VBox;
 import gameView.AbstractViewer;
 import gameView.ICommandView;
 import gameView.UIView;
+import gameView.commands.AbstractCommand;
 import gameView.commands.FacebookCommand;
 import gameView.commands.RegisterCommand;
 import gameView.commands.SignInCommand;
@@ -59,7 +62,13 @@ public class LoginScreen extends AbstractViewer {
 		TextField username = makeInput("User Name", "username");
 		TextField password = makeInput("Password", "passworrd"); 
 		TextField confirmPass = makeInput("Re-enter Password", "passwordcheck");
-		Button register = makeButton(new RegisterCommand((ICommandView) getView()));
+		RegisterCommand command = new RegisterCommand((ICommandView) getView());
+		Button register = makeButton(command);
+		register.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				command.execute(getView().getStage(), username.getText(), password.getText(), confirmPass.getText());
+			}
+		});
 		setMargin(register, 20, 0, 0, 0);
 		setBox(myLeft, "left", lab, username, password, confirmPass, register);
 	}
@@ -70,7 +79,13 @@ public class LoginScreen extends AbstractViewer {
 		TextField username = makeInput("User Name", "username"); 
 		TextField password = makeInput("Password", "password");
 		//Button signIn = makeButton(new SignInCommand((ICommandView) getView())); 
-		Button signIn = makeButton(new RegisterCommand((ICommandView) getView()));
+		SignInCommand command = new SignInCommand((ICommandView) getView());
+		Button signIn = makeButton(command);
+		signIn.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				command.execute(getView().getStage(), username.getText(), password.getText());
+			}
+		});
 		Button facebook = makeButton(new FacebookCommand((ICommandView) getView()));
 		System.out.println(facebook.getId());
 		setMargin(signIn, 20, 0, 0, 0);

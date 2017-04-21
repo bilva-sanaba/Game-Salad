@@ -7,13 +7,14 @@ public class SignInCommand extends AbstractCommand {
 
 	public SignInCommand(ICommandView m) {
 		super(m);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void execute(Stage s) {
-		// TODO Auto-generated method stub
-		
+	}
+	
+	public void execute(Stage s, String username, String password) {
+		//go in and check password in database
 	}
 
 	@Override
