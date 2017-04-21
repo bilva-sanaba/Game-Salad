@@ -2,6 +2,7 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import components.LocationComponent;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
 import components.collisionComponents.SideCollisionComponent;
@@ -11,16 +12,15 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SpriteComponent;
 import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
+import entity.IEntityManager;
 
 public class BlockTopRegularCollision implements IAction {
 	
 	@Override
-	public List<IEntity> executeAction(IEntity e, IEntity e1) {
-		//E is what is colliding (player), e1 is sustaining collision (block)
+	public List<IEntity> executeAction(IEntity e, IEntity e1, IEntityManager myEM) {
 		LabelComponent lc = (LabelComponent) e.getComponent(ComponentType.Label);
 		if (lc == null) {
 		}

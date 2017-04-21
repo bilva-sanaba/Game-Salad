@@ -5,10 +5,10 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.IKeyExpression;
 import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.IEntity;
 import javafx.scene.input.KeyCode;
@@ -18,10 +18,10 @@ public enum ConcreteKeyExpressions {
 //		ScriptEngine engine = new ScriptEngineManager().getEngineByName("groovy");
 		VelocityComponent vc = (VelocityComponent) a.getComponent(new VelocityComponent(0,0));
 		AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
-		//if (vc.getY()==0){
+		if (vc.getY()==0){
 			vc.setY(-5);
 			ac.setY(.1);
-		//}
+		}
 //		try {
 //			engine.put("vc", vc);
 //			engine.put("ac", ac);
@@ -33,6 +33,7 @@ public enum ConcreteKeyExpressions {
 	RIGHT ((a) -> {
 		AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
 		ac.setX(0.4);
+
 		/*AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
 		TerminalVelComponent tvc = (TerminalVelComponent) a.getComponent(ComponentType.TerminalVelComponent);
 		VelocityComponent vc = (VelocityComponent) a.getComponent(ComponentType.Velocity);

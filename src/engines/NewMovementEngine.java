@@ -7,7 +7,6 @@ import components.*;
 import components.entityComponents.ComponentType;
 import components.entityComponents.XYComponent;
 import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.*;
 import entity.restricted.*;

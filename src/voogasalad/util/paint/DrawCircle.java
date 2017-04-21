@@ -3,7 +3,6 @@ package voogasalad.util.paint;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class DrawCircle extends DrawingTool {

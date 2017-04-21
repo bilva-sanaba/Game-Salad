@@ -16,7 +16,7 @@ public class DrawingCanvas implements ICanvas {
 	private GraphicsContext gc;
 
 	public DrawingCanvas(DrawingGet pen, BorderPane root) {
-		c = new Canvas(1000, 1000);
+		c = new Canvas(600, 600);
 		myPen = pen.getDrawingTool();
 		gc = c.getGraphicsContext2D();
 		gc.setFill(Color.WHITE);
