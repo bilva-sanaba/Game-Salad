@@ -16,6 +16,7 @@ import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import javafx.scene.input.KeyCode;
+import voogasalad.util.paint.ImageRefiner;
 /**
  * This engine handles all collisions
  * When update is called it should use all needed CollisionSubEngines
@@ -31,8 +32,7 @@ public class CollisionEngine extends AbstractEngine {
 	private List<IEntity> newEntitiesCreated;
 	private ITwoObjectCollide collisionMethod = new ObjectCollisionAlgorithm();
 	private int numSubEnginesAdded;
-
-	public CollisionEngine(IEntityManager myEntityManager) {
+		public CollisionEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 		subEngines = new ArrayList<ISubEngine>();
 		entManager = myEntityManager;
@@ -110,7 +110,7 @@ public class CollisionEngine extends AbstractEngine {
 			}
 			
 			for (ISubEngine engine : subEngines) {
-				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide));
+				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide, entManager));
 			}
 			
 		}
@@ -121,12 +121,14 @@ public class CollisionEngine extends AbstractEngine {
 		return null;
 	}
 	public void update(Collection<KeyCode> keys) {
+		
 		newEntitiesCreated = new ArrayList<IEntity>();
 		if (numSubEnginesAdded<=0) {
 			addEngine(new GeneralPostCollisionHandler());
 		}
 		checkCollisionsOccurred();
 		for (IEntity e : newEntitiesCreated){
+			entManager.getEntities().add(e);
 			entManager.changed(e);
 		}
 	}

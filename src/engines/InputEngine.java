@@ -11,6 +11,7 @@ import javax.script.ScriptException;
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockSide;
 import components.IComponent;
+import components.LocationComponent;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
 import components.collisionComponents.SideCollisionComponent;
@@ -22,7 +23,6 @@ import components.entityComponents.LabelComponent;
 import components.entityComponents.SpriteComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
 import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
@@ -36,9 +36,9 @@ public class InputEngine extends AbstractEngine{
 	private boolean x = true;
 	public InputEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
-		engine = new ScriptEngineManager().getEngineByName("groovy");
-		
+		engine = new ScriptEngineManager().getEngineByName("groovy");		
 	}
+	
 
 	@Override
 	protected List<ComponentType> neededComponents() {
@@ -61,7 +61,7 @@ public class InputEngine extends AbstractEngine{
 			if (ic.getMap().containsKey(key)){
 				if (ic.getMap().get(key)!="JUMP" && ic.getMap().get(key)!="RIGHT" && ic.getMap().get(key)!="LEFT" && ic.getMap().get(key)!="REMOVE" ){
 					try {
-						VelocityComponent vc = (VelocityComponent) e.getComponent(new VelocityComponent(0,0));
+						VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 						AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 						engine.put("vc", vc);
 						engine.put("ac", ac);

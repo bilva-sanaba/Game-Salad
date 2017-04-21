@@ -87,6 +87,7 @@ public class Menu implements IMenu {
 		}
 
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
-		gc.drawImage(img, 0, 0, myCanvas.getWidth(), myCanvas.getHeight());
+		int newHeight = (int) ((img.getHeight() * myCanvas.getWidth()) / img.getWidth());
+		gc.drawImage(img, 0, 0, myCanvas.getWidth(), newHeight);
 	}
 }
