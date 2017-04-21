@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
-import components.movementcomponents.LocationComponent;
 import entity.Entity;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;

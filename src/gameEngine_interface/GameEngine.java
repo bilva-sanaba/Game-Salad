@@ -10,19 +10,22 @@ import java.util.Map;
 import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
+import actions.BounceOffBlockSide;
 import actions.IAction;
+import components.LocationComponent;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
 import components.collisionComponents.SideCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SpriteComponent;
+import components.entityComponents.TypeComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
 import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
@@ -42,6 +45,9 @@ import gamedata.GameData;
 import engines.AbstractEngine;
 import entity.IEntityManager;
 import entity.SplashEntity;
+import entity.presets.AbstractBlock;
+import entity.presets.AbstractMysteryBlock;
+import entity.presets.AbstractPowerup;
 import gamedata.GameData;
 
 /**
@@ -95,92 +101,68 @@ public class GameEngine implements GameEngineInterface {
 	}
 
 	//TODO: Delete once testing is over
-	
-	public GameData dummyLoad(){
-//		Entity t = new Entity(40);
-//		t.addComponent(new LocationComponent(0,200));
-//		t.addComponent(new VelocityComponent(0,0));
-//		t.addComponent(new SpriteComponent(("platform_tile_053.png")));
-//		t.addComponent(new AccelerationComponent(0,0));
-//		t.addComponent(new LabelComponent("notb"));
-//		t.addComponent(new KeyInputComponent());
-//
-//		ImagePropertiesComponent ic = new ImagePropertiesComponent();
-//		ic.setHeight(100);
-//		ic.setWidth(100);
-//		t.addComponent(ic);
-//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
-//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, "RIGHT");
-//		((KeyInputComponent) t.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");
-//		Entity g = new Entity(75);
-//		g.addComponent(new LocationComponent(200,200));
-//		g.addComponent(new SpriteComponent(("dirt.jpg")));
-//		g.addComponent(new LabelComponent("Block"));
-//		ImagePropertiesComponent lc = new ImagePropertiesComponent();
-//		lc.setHeight(100);
-//		lc.setWidth(100);
-//		g.addComponent(lc);
-//		g.addComponent(new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision()));
-//		g.addComponent(new SideCollisionComponent(CollisionComponentType.Bottom, new BlockTopRegularCollision()));
-//		g.addComponent(new SideCollisionComponent(CollisionComponentType.Left, new BlockTopRegularCollision()));
-//		g.addComponent(new SideCollisionComponent(CollisionComponentType.Right, new BlockTopRegularCollision()));
 
+	public GameData dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(700,100));
-		x.addComponent(new SpriteComponent(("dirt.jpg")));
-
+		x.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
 		xc.setHeight(50);
 		xc.setWidth(50);
 		x.addComponent(xc);
-
 		x.addComponent(new VelocityComponent(0,0));
-		x.addComponent(new AccelerationComponent(0,0));
+		x.addComponent(new AccelerationComponent(0,0.1));
 		x.addComponent(new CollidableComponent(true));
-//		x.addComponent(new CollisionComponentsHandler());
-//		SideCollisionComponent sc = new SideCollisionComponent(CollisionComponentType.Top);
-//		sc.addActionForLabel(new LabelComponent("Blok"), new BlockTopRegularCollision());
-//		SideCollisionComponent sct = new SideCollisionComponent(CollisionComponentType.Bottom);
-//		sct.addActionForLabel(new LabelComponent("Blok"), new BlockBottomRegularCollision());
-//		((CollisionComponentsHandler) x.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(sc);
-//		((CollisionComponentsHandler) x.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(sct);
 		x.addComponent(new LabelComponent("grrraah"));
 		x.addComponent(new KeyInputComponent());
+		x.addComponent(new TypeComponent(EntityType.Player));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, "RIGHT");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
+
+
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
-		for (int i=1;i<20;i++){
-			Entity p = new Entity(i);
-			p.addComponent(new LocationComponent(i*100,i*50));
-			p.addComponent(new SpriteComponent(("dirt.jpg")));
 
+		for (int i=1;i<100;i++){
+			Entity p = new AbstractBlock(i);
+			p.addComponent(new LocationComponent(i*50,200));
+			p.addComponent(new SpriteComponent(("dirt.jpg")));
 			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
 			xpc.setHeight(50);
 			xpc.setWidth(50);
-			p.addComponent(xc);
-			p.addComponent(new CollidableComponent(true));
-		
-			//p.addComponent(scc);
-			p.addComponent(new CollisionComponentsHandler());
-			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
-			scc.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockBottomOrTop());
-			SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
-			scq.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockBottomOrTop());
-			
-			((CollisionComponentsHandler) p.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
-			((CollisionComponentsHandler) p.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
-			
+			p.addComponent(xpc);
 			p.addComponent(new LabelComponent("Blok"));
 			e.add(p);
 		}
 		
+		Entity y = new AbstractPowerup(101);
+		y.addComponent(new LocationComponent(1000,150));
+		y.addComponent(new SpriteComponent(("platform_tile_057.png")));
+		ImagePropertiesComponent yc = new ImagePropertiesComponent();
+		yc.setHeight(50);
+		yc.setWidth(50);
+		y.addComponent(yc);
+		y.addComponent(new VelocityComponent(0,0));
+		y.addComponent(new LabelComponent("Blok"));
+		Entity p = new AbstractMysteryBlock(102,y); 
+		p.addComponent(new LocationComponent(900,100));
+		p.addComponent(new SpriteComponent(("sand.jpg")));
+		ImagePropertiesComponent xpc = new ImagePropertiesComponent();
+		xpc.setHeight(50);
+		xpc.setWidth(50);
+		p.addComponent(xpc);
+		p.addComponent(new LabelComponent("Blok"));
+		e.add(p);
+
+
+
 		myEntityManager = new EntityManager(e);
-		
-//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new InputEngine(myEntityManager), new CollisionEngine(myEntityManager));
+
+		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
 	}
 

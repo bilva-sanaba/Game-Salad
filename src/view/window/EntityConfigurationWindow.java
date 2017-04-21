@@ -61,7 +61,10 @@ public class EntityConfigurationWindow implements IWindow {
 		myEntity = myData.getUserSelectedEntity();
 		myData.setUserSelectedEntity(myEntity);
 		componentList = entityType;
+<<<<<<< HEAD
 		myCompEdits = new HashMap<String, ComponentEditor>();
+=======
+>>>>>>> 525bfac62b013e874db8ae9981919799dcc3d009
 		myList = blocksList;
 		myStage.setScene(buildScene());
 	}
