@@ -1,6 +1,6 @@
 .root {
 	-fx-base: rgb(80, 80, 80);
-	-fx-background: rgb(80, 80, 80); 
+	-fx-background: rgb(80, 80, 80);
 	-fx-control-inner-background: rgb(80, 80, 80);
 }
 
@@ -17,10 +17,22 @@
 	-fx-text-fill: white;
 }
 
+.view-grid {
+	-fx-padding: 10;
+	-fx-grid-lines-visible: false;
+}
+
+.view-grid-cell {
+	-fx-stroke: black;
+	-fx-stroke-opacity: 1;
+	-fx-fill: transparent;
+}
+
 .list-cell {
 	-fx-text-fill: black;
 	-fx-font-weight: bold;
 }
+
 .list-cell:even {
     -fx-background-color: #76d7c4;
 }

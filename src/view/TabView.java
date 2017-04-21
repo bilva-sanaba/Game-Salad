@@ -52,12 +52,12 @@ public class TabView extends GUIComponent {
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
-					if(item.getComponent(ComponentType.ImageProperties) != null){
-						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item.getComponent(ComponentType.ImageProperties);
+					if (item.getComponent(ComponentType.ImageProperties) != null) {
+						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item
+								.getComponent(ComponentType.ImageProperties);
 						spriteImage.setFitHeight(imageProp.getHeight());
 						spriteImage.setFitWidth(imageProp.getWidth());
-					}
-					else{
+					} else {
 						spriteImage.setFitHeight(40);
 						spriteImage.setFitWidth(40);
 					}
@@ -76,29 +76,18 @@ public class TabView extends GUIComponent {
 		b = util.buildButton("AddEntityButton", e -> {
 			entityBuilder.showEntityBuilder();
 		});
-		u = util.buildButton("UploadEnities", e ->{
+		u = util.buildButton("UploadEntities", e -> {
 			System.out.println("upload f***");
 		});
-		
 		util.setPresets(blocksList);
 	}
 
-	public void clearEntitiesOnTab(){
+	public void clearEntitiesOnTab() {
 		blocksList.clear();
 	}
-	
-	public void addEntity(Entity e){
-		blocksList.add(e);
-	}
 
-	public void placeEntitiesFromFile(){
-		Entity tempEntity;
-		HashMap<Integer, Entity> myMap = myData.getDefinedEntityMap();
-		for(Integer i: myMap.keySet()){
-			System.out.println("loop");
-			tempEntity = myMap.get(i);
-			blocksList.add(tempEntity);
-		}
+	public void addEntity(Entity e) {
+		blocksList.add(e);
 	}
 
 	@Override

@@ -19,11 +19,11 @@ import data_interfaces.Communicator;
  * @author Jack
  */
 public class ViewData extends Observable {
-
-	private static final int STARTINGROWS = 10;
-	private static final int STARTINGCOLS = 10;
+	
+	private static final int STARTINGROWS = 50;
+	private static final int STARTINGCOLS = 50;
 	private static final String PRESETFILE = "PresetEntities";
-
+	
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, Entity> placedEntityMap;
 	private LevelEntity myLevelEntity;
