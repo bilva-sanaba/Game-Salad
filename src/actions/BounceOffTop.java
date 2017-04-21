@@ -26,7 +26,6 @@ public class BounceOffTop implements IAction {
 			
 		} else {
 			if (vc.getY()>0) {
-				System.out.println(vc.getY());
 				vc.setY(vc.getY()*VELOCITY_REVERSE*BOUNCE_FACTOR);
 			} 
 		}
