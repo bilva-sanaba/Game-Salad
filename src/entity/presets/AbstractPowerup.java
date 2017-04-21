@@ -4,6 +4,7 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockSide;
 import actions.DoubleSize;
 import actions.PowerupUsage;
+import actions.Teleport;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
 import components.collisionComponents.SideCollisionComponent;
@@ -24,6 +25,7 @@ public class AbstractPowerup extends Entity {
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 		scc.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
 		scc.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(false));
+
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
 		scq.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
 		scq.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(false));

@@ -55,6 +55,9 @@ public class CollisionEngine extends AbstractEngine {
 		Map<Integer, IComponent> imageComponents = entManager.getCertainComponents(ComponentType.ImageProperties);
 		doubleForLoopCollisionChecking(locationComponents, imageComponents);
 	}
+	
+	
+	
 	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
 		int playerId = 0;	
 		int counter0 = -1;

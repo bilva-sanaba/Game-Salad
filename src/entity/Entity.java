@@ -8,10 +8,12 @@ import java.util.Observer;
 import components.IComponent;
 import components.LocationComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
 
 import components.entityComponents.SpriteComponent;
+import components.entityComponents.TypeComponent;
 import entity.restricted.IRestrictedEntity;
 import gameView.Coordinate;
 import javafx.beans.InvalidationListener;
@@ -27,6 +29,7 @@ import javafx.geometry.Dimension2D;
 public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	private int identifier;
 	Collection<IComponent> myComponents;
+	
 
 	public Entity(int id) {
 		identifier = id;
@@ -44,6 +47,15 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	@Override
 	public int getID() {
 		return identifier;
+	}
+	
+	public EntityType getType() {
+		TypeComponent type = (TypeComponent) this.getComponent(ComponentType.Type);
+		
+		if (type != null) {
+			return type.getType();
+		}
+		return EntityType.None;
 	}
 	
 	@Override

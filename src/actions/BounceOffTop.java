@@ -14,7 +14,7 @@ import entity.IEntityManager;
 
 public class BounceOffTop implements IAction {
 	public static final double VELOCITY_REVERSE = -1;
-	public static final double BOUNCE_FACTOR = 0.1;
+	public static final double BOUNCE_FACTOR = 0.66;
 
 	
 
@@ -22,7 +22,7 @@ public class BounceOffTop implements IAction {
 	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		
-		if (vc.getY()>0 && vc.getY()<0.2) {
+		if (vc.getY()>0 && vc.getY()<0.25) {
 			vc.setY(0);
 			
 		} else {

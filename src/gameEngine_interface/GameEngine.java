@@ -12,6 +12,7 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
 import actions.BounceOffBlockSide;
 import actions.IAction;
+import actions.Teleport;
 import components.LocationComponent;
 import components.collisionComponents.CollisionComponentType;
 import components.collisionComponents.CollisionComponentsHandler;
@@ -156,14 +157,50 @@ public class GameEngine implements GameEngineInterface {
 		p.addComponent(xpc);
 		p.addComponent(new LabelComponent("Blok"));
 		e.add(p);
-
-
+		Entity portal2 = createPortal();
+		
+		e.add(portal2);
+		e.add(createPortal2());
 
 		myEntityManager = new EntityManager(e);
 
 		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
+	}
+	
+	private Entity createPortal() {
+		Entity portal2 = new Entity(110);
+		portal2.addComponent(new LocationComponent(250, 125));
+		portal2.addComponent(new SpriteComponent("portal.png"));
+		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Left);
+		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(1700, 100));
+		CollisionComponentsHandler cch = new CollisionComponentsHandler();
+		cch.addCollisionComponent(scc);
+		portal2.addComponent(cch);
+		ImagePropertiesComponent ipc = new ImagePropertiesComponent();
+		ipc.setHeight(50);
+		ipc.setWidth(50);
+		portal2.addComponent(ipc);
+		portal2.addComponent(new CollidableComponent(true));
+		return portal2;
+	}
+	
+	private Entity createPortal2() {
+		Entity portal2 = new Entity(112);
+		portal2.addComponent(new LocationComponent(1500, 125));
+		portal2.addComponent(new SpriteComponent("portal.png"));
+		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Right);
+		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 100));
+		CollisionComponentsHandler cch = new CollisionComponentsHandler();
+		cch.addCollisionComponent(scc);
+		portal2.addComponent(cch);
+		ImagePropertiesComponent ipc = new ImagePropertiesComponent();
+		ipc.setHeight(50);
+		ipc.setWidth(50);
+		portal2.addComponent(ipc);
+		portal2.addComponent(new CollidableComponent(true));
+		return portal2;
 	}
 
 	public IEntity getMainCharacter(){
