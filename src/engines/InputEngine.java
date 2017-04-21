@@ -36,9 +36,9 @@ public class InputEngine extends AbstractEngine{
 	private boolean x = true;
 	public InputEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
-		engine = new ScriptEngineManager().getEngineByName("groovy");
-		
+		engine = new ScriptEngineManager().getEngineByName("groovy");		
 	}
+	
 
 	@Override
 	protected List<ComponentType> neededComponents() {
@@ -61,7 +61,7 @@ public class InputEngine extends AbstractEngine{
 			if (ic.getMap().containsKey(key)){
 				if (ic.getMap().get(key)!="JUMP" && ic.getMap().get(key)!="RIGHT" && ic.getMap().get(key)!="LEFT" && ic.getMap().get(key)!="REMOVE" ){
 					try {
-						VelocityComponent vc = (VelocityComponent) e.getComponent(new VelocityComponent(0,0));
+						VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 						AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 						engine.put("vc", vc);
 						engine.put("ac", ac);
