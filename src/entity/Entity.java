@@ -40,6 +40,13 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 		}
 		return temp;
 	}
+	public Entity newCopy(){
+		Entity temp = new Entity(identifier*10);
+		for (IComponent a : myComponents){
+			temp.addComponent(a.newCopy());
+		}
+		return temp;
+	}
 
 	@Override
 	public int getID() {

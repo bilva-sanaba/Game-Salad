@@ -12,7 +12,7 @@ public class PowerupCreation implements IAction {
 	@Override
 	public List<IEntity> executeAction(IEntity e, IEntity e2, IEntityManager myEM) {
 		List<IEntity> entities = new ArrayList<IEntity>();
-		IEntity powerup = ((ObjectCreationComponent) e2.getComponent(ComponentType.ObjectCreation)).getCreationEffect();
+		IEntity powerup = ((ObjectCreationComponent) e2.getComponent(ComponentType.ObjectCreation)).checkCreationEffect();
 		if (powerup!=null){
 			entities.add(powerup);
 			myEM.getEntities().add(powerup);
