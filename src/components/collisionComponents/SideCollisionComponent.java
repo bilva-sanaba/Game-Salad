@@ -9,18 +9,18 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.TypeComponent;
 import components.IComponent;
-import entity.Entity;
 import entity.IEntity;
+import entity.IEntityManager;
 
 public class SideCollisionComponent implements IComponent {
 	private CollisionComponentType sideCollision;
-	private Map<TypeComponent, ArrayList<IAction>> typeActionMap;
+	private Map<String, ArrayList<IAction>> typeActionMap;
 	private Map<String, ArrayList<IAction>> labelActionMap;
 	
 	public SideCollisionComponent(CollisionComponentType sideOfCollision) {
 		sideCollision = sideOfCollision;
 		
-		typeActionMap = new HashMap<TypeComponent, ArrayList<IAction>>();
+		typeActionMap = new HashMap<String, ArrayList<IAction>>();
 		labelActionMap = new HashMap<String, ArrayList<IAction>>();
 	}
 	
@@ -31,39 +31,36 @@ public class SideCollisionComponent implements IComponent {
 		ArrayList<IAction> actions = labelActionMap.get(label.getLabel());
 		actions.add(action);
 		labelActionMap.put(label.getLabel(), actions);
-		System.out.println(label.getLabel() + " " + action.getClass().getSimpleName());
 	}
 	
 	public void addActionForType(TypeComponent type, IAction action) {
-		if(!typeActionMap.containsKey(type)) {
-			typeActionMap.put(type, new ArrayList<IAction>());
+		if(!typeActionMap.containsKey(type.getTypeString())) {
+			typeActionMap.put(type.getTypeString(), new ArrayList<IAction>());
 		}
-		ArrayList<IAction> actions = typeActionMap.get(type);
+		ArrayList<IAction> actions = typeActionMap.get(type.getTypeString());
 		actions.add(action);
-		typeActionMap.put(type, actions);
+		typeActionMap.put(type.getTypeString(), actions);
 	}
 	
 	
 	
-	public List<IEntity> executeOnCollide(IEntity e) {
+	public List<IEntity> executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM) {
 		//maybe should refactor
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
-		System.out.println(entityLabel.getLabel() + " is label");
-
 		if (labelActionMap.containsKey(entityLabel.getLabel())) {
-			System.out.println("label was found");
 			for (IAction action : labelActionMap.get(entityLabel.getLabel())) {
-				List<IEntity> actionCreatedEntities = action.executeAction(e);
+				System.out.println(action.getClass().getSimpleName());
+				List<IEntity> actionCreatedEntities = action.executeAction(e, e2,myEM);
 				newEntities.addAll(actionCreatedEntities);
 			}
 			return newEntities;
 		}
-		if (typeActionMap.containsKey(entityType)) {
-			for (IAction action : typeActionMap.get(entityType)) {
-				action.executeAction(e);
-				List<IEntity> actionCreatedEntities = action.executeAction(e);
+		if (typeActionMap.containsKey(entityType.getTypeString())) {
+			for (IAction action : typeActionMap.get(entityType.getTypeString())) {
+				action.executeAction(e,e2,myEM);
+				List<IEntity> actionCreatedEntities = action.executeAction(e,e2,myEM);
 				newEntities.addAll(actionCreatedEntities);
 			}
 		}

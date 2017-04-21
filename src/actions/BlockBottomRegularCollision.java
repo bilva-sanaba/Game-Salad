@@ -8,11 +8,12 @@ import components.entityComponents.LabelComponent;
 import components.movementcomponents.AccelerationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.IEntity;
+import entity.IEntityManager;
 
 public class BlockBottomRegularCollision implements IAction {
 	
 	@Override
-	public List<IEntity> executeAction(IEntity e) {
+	public List<IEntity> executeAction(IEntity e, IEntity e2, IEntityManager myEM) {
 		LabelComponent lc = (LabelComponent) e.getComponent(ComponentType.Label);
 		if (lc == null) {
 			System.out.println("wtaaaaaaaa");

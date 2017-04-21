@@ -6,12 +6,11 @@ import java.util.List;
 import java.util.Map;
 import components.entityComponents.ComponentType;
 import components.IComponent;
+import components.LocationComponent;
 import components.entityComponents.ImagePropertiesComponent;
-import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import javafx.scene.shape.Rectangle;
 public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
-	
 	public ObjectCollisionAlgorithm() {
 		
 	}
@@ -25,6 +24,7 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 		Rectangle r0 = createRectangle(loc0, img0);
 		Rectangle r1 = createRectangle(loc1, img1);
 		if (checkRectangleCollide(r0, r1)) {
+
 			return whichSide(r0, r1);
 		}
 		return ITwoObjectCollide.NONE;
@@ -41,7 +41,7 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 		float hx = h*dx;
 		if (wy > hx) {
 			if (wy > -hx) {
-				return ITwoObjectCollide.TOP;
+				return ITwoObjectCollide.BOTTOM;
 			} else {
 				return ITwoObjectCollide.LEFT;
 			}
@@ -49,7 +49,7 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 		if (wy >-hx) {
 			return ITwoObjectCollide.RIGHT;
 		}
-		return ITwoObjectCollide.BOTTOM;
+		return ITwoObjectCollide.TOP;
 		
 	}
 	

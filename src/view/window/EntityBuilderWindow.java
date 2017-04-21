@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
 import view.ViewData;
@@ -34,6 +35,7 @@ public class EntityBuilderWindow implements IWindow{
 	private ImageChooser imageChooser = new ImageChooser();
 	private UtilityFactory util;
 	private ViewData myData;
+	private Stage myStage = new Stage();
 	private int i = 0;
 	private String[] entityList = {"Error"};
 
@@ -42,8 +44,6 @@ public class EntityBuilderWindow implements IWindow{
 		blocksList = blocksListIn;
 		util = utilIn;
 		nodeList.add(myImage);
-		GridPane.setConstraints(myImage, 0, 0);
-		GridPane.setColumnSpan(myImage, 3);
 	}
 
 	public void showEntityBuilder() {
@@ -53,8 +53,10 @@ public class EntityBuilderWindow implements IWindow{
 
 	private Scene buildScene() {
 		buildNodes();
-		GridPane pane = buildPane();
-		return new Scene(pane, 350, 400);
+		Pane pane = buildPane();
+		Scene myScene = new Scene(pane, 350, 400);
+		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
+		return myScene;
 	}
 
 	public ImageView getImage() {
@@ -69,31 +71,26 @@ public class EntityBuilderWindow implements IWindow{
 		Node imageButton = util.buildButton("ChooseImageLabel", e -> {
 			myImagePath = imageChooser.chooseFile();
 			System.out.println();
-			Image image = new Image(myImagePath);
+			Image image = new Image(System.getProperty("user.dir") + File.separator + "images"+ File.separator + myImagePath);
 			myImage.setImage(image);
 			myImage.setFitWidth(200);
 			myImage.setFitHeight(200);
 		});
-		GridPane.setColumnSpan(imageButton, 2);
 		nodeList.add(imageButton);
-		GridPane.setConstraints(imageButton, 0, 1);
 
 		Node okayButton = util.buildButton("OkayLabel", e -> {
 			Entity tempEntity = new Entity(i);
 			i++;
 			tempEntity.addComponent(new SpriteComponent(myImagePath));
-			myData.defineEntity(tempEntity);
-			myData.setUserSelectedEntity(tempEntity);
+			//myData.defineEntity(tempEntity);
+			//myData.setUserSelectedEntity(tempEntity);
 			myStage.close();
-			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, blocksList);
+			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, tempEntity);
 			ecw.show();
 		});
-		nodeList.add(okayButton);
-		GridPane.setConstraints(okayButton, 0, 4);
 
 		Node entityType = new Label("Kind of Entity");
 		nodeList.add(entityType);
-		GridPane.setConstraints(entityType, 0, 2);
 
 		final ToggleGroup group = util.buildRadioButtonGroup("SelectEntityType", nodeList);
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
@@ -104,10 +101,12 @@ public class EntityBuilderWindow implements IWindow{
 				}
 			}
 		});
+		
+		nodeList.add(okayButton);
 	}
 
-	private GridPane buildPane() {
-		GridPane pane = new GridPane();
+	private Pane buildPane() {
+		VBox pane = new VBox();
 		pane.getChildren().addAll(nodeList);
 		return pane;
 	}

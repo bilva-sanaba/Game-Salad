@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
-import components.movementcomponents.LocationComponent;
 import entity.Entity;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -77,13 +77,12 @@ public class GridView extends GUIComponent{
 				Entity placedEntity = userSelectedEntity.clone();
 				placedEntity.setID(i);
 				i++;
+				placedEntity.addComponent(new LocationComponent(row*10, col*10));
 				myData.placeEntity(placedEntity);
-				myData.setEntityLocation(placedEntity.getID(), row*10 , col*10);
 				drawEntity(placedEntity);
 			}
 		});
 	}
-
 
 	private void addVert() {
 		myGrid.setHeight(Initial_Y+=10);
@@ -95,7 +94,7 @@ public class GridView extends GUIComponent{
 		myData.getLevelEntity().addRow();
 	}
 
-	private void drawEntity(Entity entity) {
+	public void drawEntity(Entity entity) {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());

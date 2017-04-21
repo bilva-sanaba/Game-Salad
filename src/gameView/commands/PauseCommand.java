@@ -28,7 +28,7 @@ public class PauseCommand extends AbstractCommand {
 //		 Stage newStage = createStage();
 //		 newStage.showAndWait();
 //		 adj = null;
-//		 //s.getScene().getRoot().getEffect(adj);
+//		 s.getScene().getRoot().getEffect(adj);
 	}
 
 	@Override

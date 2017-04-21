@@ -10,8 +10,8 @@ import java.util.Set;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
-import components.movementcomponents.LocationComponent;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
@@ -25,7 +25,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.MoveTo;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -45,7 +47,7 @@ import gamedata.GameData;
  */
 public class WorldAnimator{
     // private Stage myStage;
-    public static final int FRAMES_PER_SECOND = 45;
+    public static final int FRAMES_PER_SECOND = 30;
     public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
     public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
     public static final int KEY_INPUT_SPEED = 3;
@@ -77,7 +79,9 @@ public class WorldAnimator{
     public WorldAnimator(UIViewInterface view){
     	myView = view;
     }
-
+    public Group getGroup(){
+    	return root;
+    }
     public void start (GameData myData, IGameScreenEntity screen){
         root = new Group();
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
@@ -91,13 +95,14 @@ public class WorldAnimator{
         //myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
         myScene = new Scene(root,LENGTH,WIDTH);
         LocationComponent lc = myData.mainLocation();
-        myCamera = new Camera(LENGTH ,myScene, lc);
+        //Change Length
+        myCamera = new Camera(LENGTH*5 ,myScene, lc);
 
         fillMapAndDisplay();
 
-        for (Integer id : imageMap.keySet()) {
+        /*for (Integer id : imageMap.keySet()) {
             root.getChildren().add(imageMap.get(id));
-        }        
+        }*/        
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                 e-> step(SECOND_DELAY));
         this.animation = new Timeline();
@@ -152,11 +157,13 @@ public class WorldAnimator{
     	Map<Integer, ImageView> entities = myObservers.getEntityMap();
         //HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
         for(Integer entity : entities.keySet()){
-
+        //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
+        	if (entities.get(entity)!=null){
 		  //SequentialTransition trans = new SequentialTransition();
 		  //removeEntity(entity,entities);
 		  updateEntity(entity,entities);
 		  createEntity(entity,entities);
+        	}
 		}
 
     }
@@ -164,10 +171,13 @@ public class WorldAnimator{
 
     public void removeEntity(Integer entity){
     	System.out.println("CHAHCHAHCHA" + entity);
+    	if (imageMap.containsKey(entity)){
     	imageMap.get(entity).setImage(null);
+
         root.getChildren().remove(imageMap.get(entity));
          //myGameScreen.removeEntity(imageMap.get(entity));
         imageMap.remove(entity);
+    	}
     }
 
 
@@ -175,15 +185,18 @@ public class WorldAnimator{
 	        if (!imageMap.containsKey(entity) && entities.get(entity)!=null){
 	            ImageView imageView = new ImageView();
 	            ImageView old = entities.get(entity);
-	            updateImage(imageView, old);
+	            imageView = updateImage(imageView, old);
 	            imageMap.put(entity, imageView);
-
+	            
+	            root.getChildren().add(imageView);
 //	            myGameScreen.addEntity(imageView);
 
 	            //root.getChildren().add(imageMap.get(entity));
 	        }
 	  }
-    private void updateEntity(Integer entity, Map<Integer, ImageView> entities){
+
+
+	private void updateEntity(Integer entity, Map<Integer, ImageView> entities){
         if (imageMap.containsKey(entity)) {
         	ImageView currentImage = imageMap.get(entity);
     		ImageView updatedImage = entities.get(entity);
@@ -194,18 +207,24 @@ public class WorldAnimator{
         }
 
     }
-    private void updateImage(ImageView currentImage, ImageView re){
-        currentImage.setImage(re.getImage());
+    private ImageView updateImage(ImageView currentImage, ImageView re){
+         currentImage.setImage(re.getImage());
+    	
         
         //UNCOMMENT TO TEST RUNNER
         currentImage.setTranslateX(re.getTranslateX());
 
         currentImage.setTranslateY(re.getTranslateY()); 
+        currentImage.setFitHeight(re.getFitHeight());
+        currentImage.setFitWidth(re.getFitWidth());
         
+        return currentImage;
         //COMMENT OUT TO TEST RUNNER
 
         //currentImage.setTranslateX(re.getLocation().getX()*50-475);
 		//currentImage.setTranslateY(re.getLocation().getY()*50-175);
+        //currentImage.setFitHeight(re.getFitHeight());
+        //currentImage.setFitWidth(re.getFitWidth());
     }
 
 
