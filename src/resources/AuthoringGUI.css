@@ -4,6 +4,12 @@
 	-fx-control-inner-background: rgb(80, 80, 80);
 }
 
+.text {
+	-fx-font-family: arial;
+	-fx-font-size: 16;
+	-fx-text-fill: white;
+
+}
 .label {
 	-fx-font-family: arial;
 	-fx-font-size: 24;
@@ -22,6 +28,11 @@
 	-fx-fill: transparent;
 }
 
+.list-cell {
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+}
+
 .list-cell:even {
     -fx-background-color: #76d7c4;
 }
@@ -32,7 +43,6 @@
 
 .list-cell:filled:hover {
     -fx-background-color: #117A65;
-    -fx-text-fill: white;
 }
 
 .button {
@@ -76,4 +86,5 @@
 
 .slider {
     -fx-background-color: #76d7c4;
+    -fx-text-fill: white;
 }

@@ -1,10 +1,8 @@
 package view;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
-
 import components.LocationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
@@ -18,6 +16,8 @@ import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,25 +31,25 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-
 /**
  * @author Jonathan Rub
  * @author Justin Yang
  * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent {
+	private ContextMenu rightClick;
 	private static final int CELL_SIZE = 8;
 	private ScrollPane myScroll;
 	private GridPane myGrid;
-    private ViewData myData;
+	private ViewData myData;
 	private UtilityFactory util;
 	private int j = 1000;
 	private int myRow;
 	private int myCol;
 	private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
 	private BorderPane bp;
-
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
+		rightClick = buildContextMenu();
 		util = utilIn;
 		myRow = rows;
 		myCol = cols;
@@ -71,7 +71,7 @@ public class GridView extends GUIComponent {
 		myScroll = new ScrollPane(myGrid);
 		bp.setCenter(myScroll);
 	}
-	
+
 	private void addHo() {
 		for (int i = 0; i < myRow; i++) {
 			addMouseListenerPane(myCol, i);
@@ -79,7 +79,7 @@ public class GridView extends GUIComponent {
 		myCol++;
 		myData.getLevelEntity().addCol();
 	}
-	
+
 	private void addVert() {
 		for (int i = 0; i < myCol; i++) {
 			addMouseListenerPane(i, myRow);
@@ -87,16 +87,18 @@ public class GridView extends GUIComponent {
 		myRow++;
 		myData.getLevelEntity().addRow();
 	}
-	
+
 	private void addMouseListenerPane(int row, int col) {
 		Rectangle rect = new Rectangle(CELL_SIZE, CELL_SIZE);
 		rect.getStyleClass().add("view-grid-cell");
 		rect.setFill(Color.GREY);
-		rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				System.out.println(String.format("Click at row %d col %d", row,
-						col));
+		rect.setOnMousePressed(e -> {
+			System.out.println(String.format("Click at row %d col %d", row,col));
+			rightClick.hide();
+			if(e.isSecondaryButtonDown()) {
+				rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
+			}
+			else{
 				Entity userSelectedEntity = myData.getUserSelectedEntity();
 				if (userSelectedEntity != null) {
 					Entity placedEntity = userSelectedEntity.clone();
@@ -130,14 +132,14 @@ public class GridView extends GUIComponent {
 		GridPane.setHalignment(spriteImage, HPos.LEFT);
 		GridPane.setValignment(spriteImage, VPos.TOP);
 	}
-	
+
 	public void clearEntitiesOnGrid() {
 		for(ImageView i: placedImages) {
 			myGrid.getChildren().remove(i);
 		}
 		placedImages.clear();
 	}
-	
+
 	public void placeEntitiesFromFile() {
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
@@ -146,7 +148,7 @@ public class GridView extends GUIComponent {
 			drawEntity(tempEntity);
 		}
 	}
-	
+
 	public void setUpLevel() {
 		int totalRow = myData.getLevelEntity().getRows();
 		int totalCol = myData.getLevelEntity().getCols();
@@ -157,14 +159,46 @@ public class GridView extends GUIComponent {
 			addVert();
 		}
 	}	
-	
+
 	public void updateBackground() {
 		String filePath = myData.getLevelEntity().getBackgroundFilePath();
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
-	
+
+	private ContextMenu buildContextMenu(){
+		ContextMenu contextMenu = new ContextMenu();
+		MenuItem edit = new MenuItem("Edit");
+		MenuItem cut = new MenuItem("Cut");
+		MenuItem copy = new MenuItem("Copy");
+		MenuItem paste = new MenuItem("Paste");
+		MenuItem redo = new MenuItem("Redo");
+		MenuItem undo = new MenuItem("Undo");
+		contextMenu.getItems().addAll(edit, cut, copy, paste, redo, undo);
+		edit.setOnAction(e -> {
+			rightClick.hide();
+		});
+		cut.setOnAction(e -> {
+			rightClick.hide();
+		});
+		copy.setOnAction(e -> {
+			rightClick.hide();
+		});
+		paste.setOnAction(e -> {
+			rightClick.hide();
+		});
+		redo.setOnAction(e -> {
+			rightClick.hide();
+		});
+		undo.setOnAction(e -> {
+			rightClick.hide();
+		});
+		return contextMenu;
+	}
+
 	@Override
 	public Region buildComponent() {
 		return bp;
 	}
 }
+
+

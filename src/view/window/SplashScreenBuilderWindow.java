@@ -2,10 +2,8 @@ package view.window;
 
 import java.io.File;
 
-import entity.Entity;
 import entity.SplashEntity;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -21,7 +19,7 @@ import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
 
-public class SplashScreenBuilderWindow implements IWindow{	
+public class SplashScreenBuilderWindow extends Window{	
 	private UtilityFactory utilF;
 	private Text myFilePathDisplay;
 	private String splashScreenImagePath;
@@ -30,10 +28,11 @@ public class SplashScreenBuilderWindow implements IWindow{
 	private TextField gameTitleInput;
 	private TextField instructionsInput;
 	private Stage myStage = new Stage();
-	private VBox myRoot = new VBox();
+	private VBox myRoot;
 	
 	public SplashScreenBuilderWindow() {
 		myFilePathDisplay = new Text("");
+		myRoot = new VBox();
 	}
 	
 //	This shit needs to be refactored
