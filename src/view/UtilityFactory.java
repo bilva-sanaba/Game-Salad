@@ -129,7 +129,7 @@ public class UtilityFactory {
 		return i;
 	}
 
-	public ToggleGroup buildRadioButtonGroup(String string, List<Node> nodeList) {
+	public ToggleGroup buildRadioButtonGroup(String string, Pane root) {
 		ToggleGroup group = new ToggleGroup();
 		VBox vbox = new VBox();
 		String[] radioButton = myResources.getString(string).split(SPLIT_REGEX);
@@ -138,7 +138,7 @@ public class UtilityFactory {
 			boolean marked = radioButton[i+buttonNum].trim().equals("true"); // sees if button should be initally marked
 			buildRadioButton(radioButton[i], marked, group, vbox);
 		}
-		nodeList.add(vbox);
+		root.getChildren().add(vbox);
 		return group;
 	}
 	

@@ -19,11 +19,11 @@ import data_interfaces.Communicator;
  * @author Jack
  */
 public class ViewData extends Observable {
-
-	private static final int STARTINGROWS = 10;
-	private static final int STARTINGCOLS = 10;
+	
+	private static final int STARTINGROWS = 50;
+	private static final int STARTINGCOLS = 50;
 	private static final String PRESETFILE = "PresetEntities";
-
+	
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, Entity> placedEntityMap;
 	private LevelEntity myLevelEntity;
@@ -63,13 +63,15 @@ public class ViewData extends Observable {
 	}
 
 	//TODO: implement CTRL + Z and stuff
-	/*	public void undefineEntity(Entity entity) {
+	public void undefineEntity(Entity entity) {
 		definedEntityMap.remove(entity.getID());
 	}
 
 	public void unplaceEntity(Entity entity) {
-		definedEntityMap.remove(entity.getID());
-	} */
+		placedEntityMap.remove(entity.getID());
+	//	setChanged();
+	//	notifyObservers();
+	}
 
 	public HashMap<Integer, Entity> getDefinedEntityMap() {
 		return definedEntityMap;

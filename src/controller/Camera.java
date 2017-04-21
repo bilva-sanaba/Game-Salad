@@ -33,10 +33,12 @@ public class Camera extends Entity {
 
 	public void updateCamera() {
 		if(( (myFrame.getWidth() - root.getTranslateX()) - (followerLoc.getX() ) <= RIGHT_BOUND_FROM_EDGE) && myFrame.getWidth()-root.getTranslateX() < myLevelLength){
-			root.setTranslateX(-followerLoc.getX() + myFrame.getWidth()/2);
+
+			root.setTranslateX(-followerLoc.getX()+myFrame.getWidth()/2);
 		}
 		else if( followerLoc.getX() + root.getTranslateX() < LEFT_BOUND_FROM_EDGE && root.getTranslateX() < 0){
-			root.setTranslateX(-followerLoc.getX() + myFrame.getWidth()/2);
+			root.setTranslateX(-followerLoc.getX()+myFrame.getWidth()/2);
+
 		}
 		else{
 			root.setTranslateX(root.getTranslateX());

@@ -1,5 +1,11 @@
 package actions;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,12 +13,20 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-import components.LocationComponent;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
+import components.LocationComponent;
+
 import entity.IEntity;
 import entity.IEntityManager;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 public class DoubleSize implements IAction {
 	private boolean c;
@@ -34,6 +48,7 @@ public class DoubleSize implements IAction {
 		y.setWidth(y.getWidth()*2);
 		player.changed(player);
 		try{
+
 		    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("Obi-Wan - Hello there..wav"));
 		    Clip clip = AudioSystem.getClip();
 		    clip.open(audioInputStream);
@@ -45,13 +60,14 @@ public class DoubleSize implements IAction {
 			    clip2.start();
 		    }
 		    
+
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
 	    
-		
+
 		return new ArrayList<IEntity>();
 	}
 

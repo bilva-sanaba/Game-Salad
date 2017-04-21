@@ -28,8 +28,9 @@ public class GeneralPostCollisionHandler implements ISubEngine{
 		CollidableComponent collE1 = (CollidableComponent) e1.getComponent(ComponentType.Collidable);
 		if (collE0 != null && collE1 != null && collE0.getCollide()==true && collE1.getCollide()==true) {
 			CollisionComponentsHandler handlerE1 = (CollisionComponentsHandler) e1.getComponent(ComponentType.CollisionHandler);
+
 			if (handlerE1 != null && handlerE1.getCollisionComponent(side) != null) {
-				System.out.println(side);
+				
 					createdEntities.addAll(handlerE1.getCollisionComponent(side).executeOnCollide(e0, e1,myEM));
 				}
 			

@@ -51,7 +51,6 @@ public class SideCollisionComponent implements IComponent {
 		List<IEntity> newEntities = new ArrayList<IEntity>();
 		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getLabel())) {
 			for (IAction action : labelActionMap.get(entityLabel.getLabel())) {
-				System.out.println(action.getClass().getSimpleName());
 				List<IEntity> actionCreatedEntities = action.executeAction(e, e2,myEM);
 				newEntities.addAll(actionCreatedEntities);
 			}
@@ -59,7 +58,9 @@ public class SideCollisionComponent implements IComponent {
 		}
 		if (entityType!= null && typeActionMap.containsKey(entityType.getTypeString())) {
 			for (IAction action : typeActionMap.get(entityType.getTypeString())) {
+
 				List<IEntity> actionCreatedEntities = action.executeAction(e,e2, myEM);
+
 				newEntities.addAll(actionCreatedEntities);
 			}
 		}

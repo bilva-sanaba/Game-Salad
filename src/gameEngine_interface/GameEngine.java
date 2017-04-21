@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
@@ -127,10 +128,30 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
 
+		//		for (int i=0;i<20;i++){
+		//			Entity x = new Entity(i);
+		//			x.addComponent(new LocationComponent(i*50,450));
+		//			x.addComponent(new SpriteComponent(("dirt.jpg")));
+		//
+		//			ImagePropertiesComponent xc = new ImagePropertiesComponent();
+		//			xc.setHeight(50);
+		//			xc.setWidth(50);
+		//			x.addComponent(xc);
+		//
+		//			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision());
+		//			x.addComponent(scc);
+		//
+		//			x.addComponent(new LabelComponent("Block"));
+		//			e.add(x);
+		//		}
+		//		e.add(g);e.add(t);
+
+
 		for (int i=1;i<100;i++){
 			Entity p = new AbstractBlock(i);
 			p.addComponent(new LocationComponent(i*50,200));
 			p.addComponent(new SpriteComponent(("dirt.jpg")));
+
 			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
 			xpc.setHeight(50);
 			xpc.setWidth(50);

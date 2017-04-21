@@ -19,7 +19,9 @@ public class BounceOffTop implements IAction {
 	
 
 	@Override
+
 	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
+
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		
 		if (vc.getY()>0 && vc.getY()<0.25) {
@@ -27,7 +29,6 @@ public class BounceOffTop implements IAction {
 			
 		} else {
 			if (vc.getY()>0) {
-				System.out.println(vc.getY());
 				vc.setY(vc.getY()*VELOCITY_REVERSE*BOUNCE_FACTOR);
 			} 
 		}

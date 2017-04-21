@@ -1,6 +1,5 @@
 package view;
 
-import java.util.HashMap;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
@@ -14,10 +13,7 @@ import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import view.window.EntityBuilderWindow;
@@ -33,11 +29,6 @@ public class TabView extends GUIComponent {
 	private EntityBuilderWindow entityBuilder;
 
 	public TabView(UtilityFactory utilIn, ViewData data) {
-		/*
-		 * Entity entity = new Entity(7); SpriteComponent entitySprite =
-		 * (SpriteComponent) entity.getComponent(ComponentType.Sprite);
-		 * ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		 */
 		myData = data;
 		util = utilIn;
 		entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
@@ -52,12 +43,12 @@ public class TabView extends GUIComponent {
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
-					if(item.getComponent(ComponentType.ImageProperties) != null){
-						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item.getComponent(ComponentType.ImageProperties);
+					if (item.getComponent(ComponentType.ImageProperties) != null) {
+						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item
+								.getComponent(ComponentType.ImageProperties);
 						spriteImage.setFitHeight(imageProp.getHeight());
 						spriteImage.setFitWidth(imageProp.getWidth());
-					}
-					else{
+					} else {
 						spriteImage.setFitHeight(40);
 						spriteImage.setFitWidth(40);
 					}
@@ -70,35 +61,23 @@ public class TabView extends GUIComponent {
 			@Override
 			public void changed(ObservableValue<? extends Entity> observable, Entity oldVal, Entity newVal) {
 				myData.setUserSelectedEntity(newVal);
-				System.out.println("asd");
 			}
 		});
 		b = util.buildButton("AddEntityButton", e -> {
 			entityBuilder.showEntityBuilder();
 		});
-		u = util.buildButton("UploadEnities", e ->{
+		u = util.buildButton("UploadEntities", e -> {
 			System.out.println("upload f***");
 		});
-		
 		util.setPresets(blocksList);
 	}
 
-	public void clearEntitiesOnTab(){
+	public void clearEntitiesOnTab() {
 		blocksList.clear();
 	}
-	
-	public void addEntity(Entity e){
-		blocksList.add(e);
-	}
 
-	public void placeEntitiesFromFile(){
-		Entity tempEntity;
-		HashMap<Integer, Entity> myMap = myData.getDefinedEntityMap();
-		for(Integer i: myMap.keySet()){
-			System.out.println("loop");
-			tempEntity = myMap.get(i);
-			blocksList.add(tempEntity);
-		}
+	public void addEntity(Entity e) {
+		blocksList.add(e);
 	}
 
 	@Override
