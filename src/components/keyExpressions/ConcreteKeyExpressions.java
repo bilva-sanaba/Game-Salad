@@ -19,8 +19,8 @@ public enum ConcreteKeyExpressions {
 		VelocityComponent vc = (VelocityComponent) a.getComponent(new VelocityComponent(0,0));
 		AccelerationComponent ac = (AccelerationComponent) a.getComponent(ComponentType.Acceleration);
 		//if (vc.getY()==0){
-			vc.setY(-3);
-			ac.setY(.05);
+			vc.setY(-5);
+			ac.setY(.1);
 		//}
 //		try {
 //			engine.put("vc", vc);

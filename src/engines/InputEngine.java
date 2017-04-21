@@ -22,6 +22,7 @@ import components.entityComponents.LabelComponent;
 import components.entityComponents.SpriteComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
 import components.movementcomponents.AccelerationComponent;
+import components.movementcomponents.FrictionComponent;
 import components.movementcomponents.LocationComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.Entity;
@@ -46,6 +47,7 @@ public class InputEngine extends AbstractEngine{
 		return null;
 	}
 
+
 	@Override
 	public void update(Collection<KeyCode> keys) {
 		for (IEntity e : getEManager().getEntities()){
@@ -59,6 +61,7 @@ public class InputEngine extends AbstractEngine{
 			
 			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 
 			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+			FrictionComponent fc = (FrictionComponent) e.getComponent(ComponentType.Friction);
 			
 			//Handles Decelerating
 			if(vc.getX()!= 0 && keys.isEmpty()){

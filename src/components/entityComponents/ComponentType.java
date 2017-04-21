@@ -26,5 +26,6 @@ public enum ComponentType {
 	CollisionHandler(),
 	ObjectCreation(),
 	Goal(),
-	MonsterMovementStep();
+	MonsterMovementStep(),
+	Friction();
 }

@@ -20,6 +20,7 @@ public class BlockTopRegularCollision implements IAction {
 	
 	@Override
 	public List<IEntity> executeAction(IEntity e, IEntity e1) {
+		//E is what is colliding (player), e1 is sustaining collision (block)
 		LabelComponent lc = (LabelComponent) e.getComponent(ComponentType.Label);
 		if (lc == null) {
 		}
