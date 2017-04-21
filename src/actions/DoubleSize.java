@@ -3,15 +3,16 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import components.LocationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
-import components.movementcomponents.LocationComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 
 public class DoubleSize implements IAction {
 	private boolean c;
+	
 	public DoubleSize(boolean correction){
 		c = correction;
 	}
