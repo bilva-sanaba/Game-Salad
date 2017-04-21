@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 import components.entityComponents.ComponentType;
 import components.IComponent;
-import components.LocationComponent;
 import components.entityComponents.ImagePropertiesComponent;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.VelocityComponent;
 import javafx.scene.shape.Rectangle;
 public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 	public ObjectCollisionAlgorithm() {

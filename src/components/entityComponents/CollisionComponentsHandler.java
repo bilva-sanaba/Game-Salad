@@ -1,10 +1,9 @@
-package components.collisionComponents;
+package components.entityComponents;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import components.IComponent;
-import components.entityComponents.ComponentType;
 
 public class CollisionComponentsHandler implements IComponent {
 	private Map<String, SideCollisionComponent> sideCollisionMap;

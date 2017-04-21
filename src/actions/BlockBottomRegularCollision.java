@@ -3,10 +3,10 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
-import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 

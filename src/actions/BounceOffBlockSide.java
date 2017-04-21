@@ -1,12 +1,11 @@
 package actions;
 
-import components.movementcomponents.AccelerationComponent;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 

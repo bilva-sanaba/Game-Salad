@@ -5,7 +5,7 @@ import java.util.List;
 
 import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 
