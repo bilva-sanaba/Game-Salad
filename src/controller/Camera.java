@@ -10,7 +10,7 @@ import javafx.scene.Scene;
  * @author Belal Taher
  */
 
-public class Camera {
+public class Camera extends Entity {
 	
 	public static final int RIGHT_BOUND_FROM_EDGE = 500; //lower is closer to right edge
 	public static final int LEFT_BOUND_FROM_EDGE = 20; //lower is closer to left edge
@@ -23,8 +23,8 @@ public class Camera {
 	
 	
 	
-	public Camera (int length, Scene myScene, LocationComponent component) {
-		
+	public Camera (int length, Scene myScene, LocationComponent component, int id) {
+		super(id);
 		myLevelLength = length;
 		myFrame = myScene;
 		root = myFrame.getRoot();

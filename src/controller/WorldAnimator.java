@@ -96,7 +96,7 @@ public class WorldAnimator{
         myScene = new Scene(root,LENGTH,WIDTH);
         LocationComponent lc = myData.mainLocation();
         //Change Length
-        myCamera = new Camera(LENGTH*5 ,myScene, lc);
+        myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
 
         fillMapAndDisplay();
 
