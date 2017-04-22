@@ -130,7 +130,7 @@ public class GameEngine implements GameEngineInterface {
 		yc2.setHeight(50);
 		yc2.setWidth(50);
 		y2.addComponent(yc2);
-		y2.addComponent(new VelocityComponent(5,0));
+		y2.addComponent(new VelocityComponent(2,0));
 		y2.addComponent(new LabelComponent("Blok"));
 		x.addComponent(new ObjectCreationComponent(y2));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
