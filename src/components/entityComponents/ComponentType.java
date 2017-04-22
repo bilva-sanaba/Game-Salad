@@ -27,5 +27,6 @@ public enum ComponentType {
 	ObjectCreation(),
 	Goal(),
 	MonsterMovementStep(),
-	Friction();
+	Friction(),
+	TerminalVelocity;
 }

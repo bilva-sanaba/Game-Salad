@@ -28,6 +28,7 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import components.keyExpressions.ConcreteKeyExpressions;
 import components.movementcomponents.AccelerationComponent;
+import components.movementcomponents.TerminalVelocityComponent;
 import components.movementcomponents.VelocityComponent;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
@@ -122,6 +123,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new KeyInputComponent());
 		x.addComponent(new TypeComponent(EntityType.Player));
 		x.addComponent(new GoalComponent());
+		x.addComponent(new TerminalVelocityComponent(5,5));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, "JUMP");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, "RIGHT");
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, "LEFT");

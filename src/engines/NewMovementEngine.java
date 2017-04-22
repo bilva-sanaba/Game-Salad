@@ -7,6 +7,7 @@ import components.*;
 import components.entityComponents.ComponentType;
 import components.entityComponents.XYComponent;
 import components.movementcomponents.AccelerationComponent;
+import components.movementcomponents.TerminalVelocityComponent;
 import components.movementcomponents.VelocityComponent;
 import entity.*;
 import entity.restricted.*;
@@ -65,7 +66,18 @@ public class NewMovementEngine extends AbstractEngine{
 	private void updateVelocity(IEntity e) {
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-		vc.setX(vc.getX()+ac.getX());
+		TerminalVelocityComponent tvc = (TerminalVelocityComponent) e.getComponent(ComponentType.TerminalVelocity);
+		
+		if(Math.abs(vc.getX()) < Math.abs(tvc.getX())){
+			vc.setX(vc.getX()+ac.getX());
+		}
+		else if (vc.getX() < 0){
+			vc.setX(-tvc.getX());
+		}
+		else if (vc.getX() > 0){
+			vc.setX(tvc.getX());
+		}
+		
 		vc.setY(vc.getY()+ac.getY());
 ////		TerminalVelComponent tvc = (TerminalVelComponent) e.getComponent(ComponentType.TerminalVelComponent);
 //		if(Math.abs(vc.getX()) < tvc.getX()){
