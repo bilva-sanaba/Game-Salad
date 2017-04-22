@@ -16,6 +16,7 @@ import actions.IAction;
 import actions.ShootAction;
 import actions.Teleport;
 import components.entityComponents.AccelerationComponent;
+import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
@@ -114,6 +115,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new LocationComponent(700,100));
 		x.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
+		x.addComponent(new CheckCollisionComponent(true));
 		xc.setHeight(50);
 		xc.setWidth(50);
 		x.addComponent(xc);
