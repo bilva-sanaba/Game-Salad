@@ -3,8 +3,9 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
-import components.LocationComponent;
+
 import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 

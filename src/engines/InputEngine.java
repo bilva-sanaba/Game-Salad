@@ -10,6 +10,7 @@ import javax.script.ScriptException;
 
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockSide;
+import alerts.GroovyAlert;
 import components.IComponent;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.CollidableComponent;
@@ -34,9 +35,10 @@ import javafx.scene.input.KeyCode;
 public class InputEngine extends AbstractEngine{
 	private ScriptEngine engine; 
 	private boolean x = true;
+	private Collection<IEntity> newEntities = new ArrayList<IEntity>();
 	public InputEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
-		engine = new ScriptEngineManager().getEngineByName("groovy");		
+		engine = new ScriptEngineManager().getEngineByName("groovy");	
 	}
 	
 
@@ -48,43 +50,50 @@ public class InputEngine extends AbstractEngine{
 
 	@Override
 	public void update(Collection<KeyCode> keys) {
+		newEntities.clear();
 		for (IEntity e : getEManager().getEntities()){
 			handleInput(e,keys);
 		}
+		for (IEntity e : newEntities){
+			getEManager().getEntities().add(e);
+			getEManager().changed(e);
+		}
 	}
 	private void handleInput(IEntity e, Collection<KeyCode> keys){
-		
 		if (e.getComponent(ComponentType.KeyInput)!=null){
 		KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 		
 		for (KeyCode key : keys){
-			if (ic.getMap().containsKey(key)){
-				if (ic.getMap().get(key)!="JUMP" && ic.getMap().get(key)!="RIGHT" && ic.getMap().get(key)!="LEFT" && ic.getMap().get(key)!="REMOVE" ){
-					try {
-						VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-						AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-						engine.put("vc", vc);
-						engine.put("ac", ac);
-						engine.eval(ic.getMap().get(key));
-					} catch (ScriptException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}else{
-					ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
+			if (ic.getActionMap().containsKey(key)){
+//				if (ic.getMap().get(key)!="JUMP" && ic.getMap().get(key)!="RIGHT" && ic.getMap().get(key)!="LEFT" && ic.getMap().get(key)!="REMOVE" ){
+//					try {
+//						VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+//						AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+//						engine.put("vc", vc);
+//						engine.put("ac", ac);
+//						engine.eval(ic.getMap().get(key));
+//					} catch (ScriptException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//				}else{
+//					ConcreteKeyExpressions.valueOf(ic.getMap().get(key)).getKeyExpression().operation(e);
+					newEntities.addAll(ic.getActionMap().get(key).executeAction(e, null, getEManager()));
 					((IRestrictedEntity) e).changed(e);
 				}
-				Entity x = new Entity(1000);
-				x.addComponent(new LocationComponent(800,700));
-				x.addComponent(new SpriteComponent(("sand.jpg")));
-
-				ImagePropertiesComponent xc = new ImagePropertiesComponent();
-				xc.setHeight(50);
-				xc.setWidth(50);
-				x.addComponent(xc);
-			getEManager().changed(x);
+			if (ic.getGroovyMap().containsKey(key)){
+				try {
+					VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+					AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+					engine.put("vc", vc);
+					engine.put("ac", ac);
+					engine.eval(ic.getGroovyMap().get(key));
+				} catch (ScriptException e1) {
+					GroovyAlert alert = new GroovyAlert("Invalid Author Key Action", "This program crashed due to an incorrect expression written by the author");
+				}
 			}
-		}
+			}
+//		}
 		}	
 	}
 }
