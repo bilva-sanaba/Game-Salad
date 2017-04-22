@@ -13,7 +13,7 @@ public class LoginCommand extends AbstractCommand{
 	@Override
 	public void execute(Stage s) {
 		Stage newStage = new Stage();
-		LoginScreen login = new LoginScreen(null);
+		LoginScreen login = new LoginScreen(getView().getView());
 		newStage.setScene(login.getScene());
 		newStage.showAndWait();
 		

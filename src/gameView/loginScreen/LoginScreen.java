@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import gameView.AbstractViewer;
 import gameView.ICommandView;
 import gameView.UIView;
@@ -34,6 +35,7 @@ public class LoginScreen extends AbstractViewer {
 	private VBox myLeft;
 	private VBox myRight;
 	private Scene myScene;
+	private Stage myStage;
 	
 	public LoginScreen(UIView view) { 
 		super(view);
@@ -41,11 +43,18 @@ public class LoginScreen extends AbstractViewer {
 		myRight = new VBox(10); 
 		makeScene();
 	}
+	
+	public LoginScreen(UIView view, Stage s) {
+			this(view);
+			myStage = s;
+	
+	}
  
 	@Override 
 	public Scene getScene() {    
 		return myScene;
 	}
+	
 	
 	private void makeScene() {
 		makeLeft();
@@ -62,11 +71,11 @@ public class LoginScreen extends AbstractViewer {
 		TextField username = makeInput("User Name", "username");
 		TextField password = makeInput("Password", "passworrd"); 
 		TextField confirmPass = makeInput("Re-enter Password", "passwordcheck");
-		RegisterCommand command = new RegisterCommand((ICommandView) getView());
+		RegisterCommand command = new RegisterCommand(this);
 		Button register = makeButton(command);
 		register.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				command.execute(getView().getStage(), username.getText(), password.getText(), confirmPass.getText());
+				command.execute(myStage, username.getText(), password.getText(), confirmPass.getText());
 			}
 		});
 		setMargin(register, 20, 0, 0, 0);
@@ -79,14 +88,15 @@ public class LoginScreen extends AbstractViewer {
 		TextField username = makeInput("User Name", "username"); 
 		TextField password = makeInput("Password", "password");
 		//Button signIn = makeButton(new SignInCommand((ICommandView) getView())); 
-		SignInCommand command = new SignInCommand((ICommandView) getView());
-		Button signIn = makeButton(command);
+		SignInCommand signCommand = new SignInCommand(this);
+		Button signIn = makeButton(signCommand);
 		signIn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				command.execute(getView().getStage(), username.getText(), password.getText());
+				signCommand.execute(myStage, username.getText(), password.getText());
 			}
 		});
-		Button facebook = makeButton(new FacebookCommand((ICommandView) getView()));
+		AbstractCommand facebookCommand = new FacebookCommand(this);
+		Button facebook = makeButton(facebookCommand);
 		System.out.println(facebook.getId());
 		setMargin(signIn, 20, 0, 0, 0);
 		setBox(myRight, "right", lab, username, password, signIn, facebook);

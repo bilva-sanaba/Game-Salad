@@ -1,4 +1,4 @@
-package gameView.commands;
+	package gameView.commands;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

@@ -27,7 +27,7 @@ public abstract class AbstractViewer implements ICommandView {
 	public abstract Scene getScene();
 	
 	
-	protected UIView getView() {
+	public UIView getView() {
 		return myView;
 	}
 	

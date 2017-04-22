@@ -19,6 +19,9 @@ public class RegisterCommand extends AbstractCommand {
 		if (!password.equals(passwordCheck)) {
 			throw new FrontEndException(String.format("PASSWORDS DO NOT MATCH: %s %s", password, passwordCheck));
 		}
+		System.out.println(username);
+		System.out.println(password);
+		System.out.println(passwordCheck);
 		//UserData user = new UserData(username, )
 		//GET DATA FROM DATABASE
 	}

@@ -16,6 +16,7 @@ public class FacebookCommand extends AbstractCommand{
 	public void execute(Stage s) {
 		FaceBookLogin facebook = new FaceBookLogin();
 		UserData user = facebook.login();
+		System.out.println(getView());
 		getView().addUser(user);
 	}
 
