@@ -14,6 +14,7 @@ import components.entityComponents.EntityType;
 import components.IComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.TypeComponent;
+import controller.Camera;
 import engines.subengines.GeneralPostCollisionHandler;
 import engines.subengines.ISubEngine;
 import engines.subengines.stopMovementAfterHit;
@@ -59,18 +60,24 @@ public class CollisionEngine extends AbstractEngine {
 	private void checkCollisionsOccurred() {
 		List<IEntity> entities2 = (List<IEntity>) entManager.getEntities();
 		IEntity[] entities = new IEntity[entities2.size()];
+		Camera cam = null;
 		for (int i=0;i<entities.length;i++) {
 			entities[i] = entities2.get(i);
+			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
+			if (type!=null && type.getType().equals(EntityType.Camera)) {
+				cam = (Camera) entities[i];
+			}
+				
 		}
 		for (int i=0;i<entities.length;i++) {
 			IEntity entityOne = entities[i];
 			CheckCollisionComponent check = (CheckCollisionComponent) entityOne.getComponent(ComponentType.CheckCollision);
 			CollidableComponent collidable = (CollidableComponent) entityOne.getComponent(ComponentType.Collidable);
-			if (check!= null && check.getCheckCollision() && collidable != null && collidable.getCollide()) {
+			if (check!= null && check.getCheckCollision() && collidable != null && collidable.getCollide() /*&& cam.withinCameraBounds(entityOne)*/) {
 				for (int j=i+1;j<entities.length;j++) {
 					IEntity entityTwo = entities[j];
 					CollidableComponent collidableE2 = (CollidableComponent) entityTwo.getComponent(ComponentType.Collidable);
-					if (collidableE2.getCollide() && entityOne!=entityTwo) {
+					if (collidableE2.getCollide() && entityOne!=entityTwo /*&& cam.withinCameraBounds(entityTwo)*/) {
 						checkIndividualCollision(entityOne, entityTwo);
 					}
 				}
