@@ -18,6 +18,8 @@ public class GUIBuilder {
 
 	private static final double SCREEN_HEIGHT = 650;
 	private static final double SCREEN_WIDTH = 1000;
+	private static final int INITIAL_GRID_ROWS = 50;
+	private static final int INITIAL_GRID_COLS = 50;
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 	private GridView grid;
@@ -25,7 +27,6 @@ public class GUIBuilder {
 	private GUIComponent toolbar;
 	private ViewData myData;
 	private ViewController viewController;
-	
 	private Pane myBP;
 
 	/**
@@ -33,10 +34,12 @@ public class GUIBuilder {
 	 */
 	public GUIBuilder(UtilityFactory utilF) {
 		myData = new ViewData();
-		grid = new GridView(utilF, myData, 10, 10);
+		// Fix rows and columns to be set from the static int in GUIBuilder only
+		grid = new GridView(utilF, myData, 50, 50);
 		tab = new TabView(utilF, myData);
 		toolbar = new ToolBarView(utilF, myData);
 		viewController = new ViewController(myData, grid, tab);
+		myData.addObserver(viewController);
 		myData.addPresetEntities();
 
 		myComp.add(grid);

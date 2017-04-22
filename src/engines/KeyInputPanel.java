@@ -3,10 +3,9 @@ package engines;
 import java.util.HashMap;
 import java.util.Map;
 
-import components.keyExpressions.ConcreteKeyExpressions;
-import components.keyExpressions.KeyExpression;
+import components.entityComponents.ConcreteKeyExpressions;
 import components.entityComponents.IKeyExpression;
-
+import components.entityComponents.KeyExpression;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;

@@ -43,6 +43,7 @@ public class ImageChooser {
 			alert.showAndWait();
 		}
 	    String[] directories = imagepath.split(delimiter);
+	    System.out.println(imagepath);
 	    String imageName = directories[directories.length - 1];
 		return imageName;
 	}
@@ -50,7 +51,7 @@ public class ImageChooser {
 	private FileChooser makeChooser() {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Select Image");
-		chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+		chooser.setInitialDirectory(new File(System.getProperty("user.dir") + File.separator + "images"));
 		chooser.getExtensionFilters().addAll(
 				new ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg",
 						"*.gif"));

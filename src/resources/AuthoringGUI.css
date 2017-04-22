@@ -1,9 +1,15 @@
 .root {
 	-fx-base: rgb(80, 80, 80);
-	-fx-background: rgb(80, 80, 80); 
+	-fx-background: rgb(80, 80, 80);
 	-fx-control-inner-background: rgb(80, 80, 80);
 }
 
+.text {
+	-fx-font-family: arial;
+	-fx-font-size: 16;
+	-fx-text-fill: white;
+
+}
 .label {
 	-fx-font-family: arial;
 	-fx-font-size: 24;
@@ -11,10 +17,20 @@
 	-fx-text-fill: white;
 }
 
-.canvas {
-    -fx-background-color: antiquewhite, white ;
-    -fx-background-insets: 0, 20 ;
-    -fx-padding: 20 ;
+.view-grid {
+	-fx-padding: 10;
+	-fx-grid-lines-visible: false;
+}
+
+.view-grid-cell {
+	-fx-stroke: black;
+	-fx-stroke-opacity: 1;
+	-fx-fill: transparent;
+}
+
+.list-cell {
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
 }
 
 .list-cell:even {
@@ -27,7 +43,6 @@
 
 .list-cell:filled:hover {
     -fx-background-color: #117A65;
-    -fx-text-fill: white;
 }
 
 .button {
@@ -71,4 +86,5 @@
 
 .slider {
     -fx-background-color: #76d7c4;
+    -fx-text-fill: white;
 }

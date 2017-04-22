@@ -4,12 +4,13 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockSide;
 import actions.DoubleSize;
 import actions.PowerupUsage;
-import components.collisionComponents.CollisionComponentType;
-import components.collisionComponents.CollisionComponentsHandler;
-import components.collisionComponents.SideCollisionComponent;
+
 import components.entityComponents.CollidableComponent;
+import components.entityComponents.CollisionComponentType;
+import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.SideCollisionComponent;
 import entity.Entity;
 
 public class AbstractPowerup extends Entity {
@@ -23,10 +24,12 @@ public class AbstractPowerup extends Entity {
 		this.addComponent(new CollidableComponent(true));
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 		scc.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
-		scc.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(false));
+
+		scc.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
+
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
 		scq.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
-		scq.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(false));
+		scq.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
 		scr.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
 		scr.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));

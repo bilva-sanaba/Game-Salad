@@ -15,7 +15,6 @@ public class ViewController implements Observer {
 		myData = dataIn;
 		myGrid = gridIn;
 		myTab = tabIn;
-		myData.addObserver(this);
 	}
 	
 	@Override
@@ -27,10 +26,10 @@ public class ViewController implements Observer {
 			myGrid.setUpLevel();
 			myGrid.clearEntitiesOnGrid();
 		}
-		else if(!(((Entity) arg).getComponent(ComponentType.Location) == null)){
+		else if (!(((Entity) arg).getComponent(ComponentType.Location) == null)){
 			myGrid.drawEntity((Entity) arg);
 		}
-		else{
+		else {
 			myTab.addEntity((Entity) arg);
 		}
 	}
