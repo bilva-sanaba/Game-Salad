@@ -96,6 +96,7 @@ public class WorldAnimator{
         myScene = new Scene(root,LENGTH,WIDTH);
         LocationComponent lc = myData.mainLocation();
         //Change Length
+        System.out.println("this triggers");
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
 
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
@@ -110,6 +111,11 @@ public class WorldAnimator{
         animation.getKeyFrames().add(frame);
         //animation.play();
     }
+    
+    
+    //for testing
+    
+    
     public Scene getScene() {
         return myScene;
     }

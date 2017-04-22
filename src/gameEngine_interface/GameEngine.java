@@ -34,6 +34,7 @@ import components.entityComponents.VelocityComponent;
 import components.keyExpressions.JumpAction;
 import components.keyExpressions.LeftAction;
 import components.keyExpressions.RightAction;
+import controller.Camera;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
 import data_interfaces.XMLParser;
@@ -74,7 +75,9 @@ public class GameEngine implements GameEngineInterface {
 	private double points=0;
 	private double lives=0;
 	private double level=0; 
-
+	private Camera cam;
+	
+	
 	public GameEngine(){
 	}
 	public GameData loadData(Communicator c){
@@ -92,6 +95,8 @@ public class GameEngine implements GameEngineInterface {
 	public SplashEntity getSplashEntity(){
 		return GPEM.getSplash();
 	}
+	
+	
 
 
 	/**
@@ -110,6 +115,7 @@ public class GameEngine implements GameEngineInterface {
 	//TODO: Delete once testing is over
 
 	public GameData dummyLoad(){
+		System.out.println("-------------------------------------- line 118 of GameEngine");
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(700,100));
@@ -204,12 +210,19 @@ public class GameEngine implements GameEngineInterface {
 		
 		e.add(portal2);
 		e.add(createPortal2());
+		
+		
 
 		myEntityManager = new EntityManager(e);
 
 		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
+	}
+	
+	//for testing
+	public void addCamera(Camera c) {
+		myEntityManager.changed(c);
 	}
 	
 	private Entity createPortal() {
