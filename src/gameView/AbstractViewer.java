@@ -1,13 +1,13 @@
 package gameView;
 
 import gameView.commands.AbstractCommand;
+import gameView.loginScreen.LoginScreen;
 import gameView.tools.ButtonFactory;
 import gameView.tools.CommandFactory;
 import gameView.tools.DisplayManager;
 import gameView.tools.UserData;
 
 import java.util.Collection;
-import java.util.ResourceBundle;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,13 +21,13 @@ public abstract class AbstractViewer implements ICommandView {
 	
 	public AbstractViewer(UIView view) {
 		myView = view;
-		myButtonFactory = new ButtonFactory(view, view.DEFAULT_BUTTONS);
+		myButtonFactory = new ButtonFactory(view, UIView.DEFAULT_BUTTONS);
 	}
 	
 	public abstract Scene getScene();
 	
 	
-	public UIView getView() {
+	protected UIView getView() {
 		return myView;
 	}
 	
@@ -47,27 +47,27 @@ public abstract class AbstractViewer implements ICommandView {
 	}
 	
 	public void loadGame(String filepath) {
-		System.out.println("ABSTRACT");
 		myView.loadGame(filepath);
 	}
 
 	public void restart() {
-		System.out.println("ABSTRACT");
 		myView.restart();
 	}
 	
 	public void saveGame() {
-		System.out.println("ABSTRACT");
 		getView().saveGame();
 	}
 	
 	public void makeGame() {
-		System.out.println("ABSTRACT");
 		getView().authorGame();
 	}
 	
 	public void addUser(UserData user) {
 		getView().addUser(user);
+	}
+	
+	public void loginScreen() {
+		getView().newStage(new LoginScreen(getView()));
 	}
 
 	//DOES NOTHING FOR SPLASHSCREEN

@@ -6,6 +6,15 @@
 	box-shadow: inset 0 0 1em white;
 }
 
+#facebook {
+	-fx-background-color: #6495ed;
+	-fx-text-fill: white;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-font-size: 20;
+	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
+}
+
 .text-field {
 	-fx-max-width: 400;
 	-fx-min-height: 40;

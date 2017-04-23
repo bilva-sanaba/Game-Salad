@@ -81,6 +81,7 @@ public interface UIViewInterface {
 	public void addData(GameData data);
 	
 	public void step(Set<KeyCode> keysPressed);
+
 	
 
 }

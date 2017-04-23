@@ -27,7 +27,6 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private Scene myScene;
 	private BorderPane myBP;
 	private GameData myData;
-	private ImageManager myManager;
 	private HBox myTopBox;
 	private VBox myLeftBox;
 	private VBox myRightBox;

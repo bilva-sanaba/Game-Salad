@@ -10,6 +10,7 @@ import entity.restricted.IRestrictedEntityManager;
 import gameView.gameScreen.GameScreen;
 //import gameView.gameScreen.SpecificGameSplashView;
 import gameView.gameScreen.SpecificGameSplashView;
+import gameView.loginScreen.LoginScreen;
 
 import com.sun.jmx.snmp.Timestamp;
 
@@ -128,5 +129,12 @@ public class UIView implements UIViewInterface {
 
 	public UserData getUser() {
 		return myUser;
+	}
+	
+	public void newStage(AbstractViewer view) {
+		Stage newStage = new Stage();
+		//LoginScreen login = new LoginScreen(getView().getView(), newStage);
+		newStage.setScene(view.getScene());//login.getScene());
+		newStage.showAndWait();
 	}
 }

@@ -2,7 +2,6 @@ package gameView.commands;
 
 import javafx.stage.Stage;
 import gameView.ICommandView;
-import gameView.UIView;
 import gameView.loginScreen.FaceBookLogin;
 import gameView.tools.UserData;
 
@@ -16,7 +15,6 @@ public class FacebookCommand extends AbstractCommand{
 	public void execute(Stage s) {
 		FaceBookLogin facebook = new FaceBookLogin();
 		UserData user = facebook.login();
-		System.out.println(getView());
 		getView().addUser(user);
 	}
 

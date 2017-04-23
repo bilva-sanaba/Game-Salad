@@ -2,24 +2,19 @@ package gameView.loginScreen;
 
 
 import java.util.Arrays;
-import java.util.Collections;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import gameView.AbstractViewer;
-import gameView.ICommandView;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
 import gameView.commands.FacebookCommand;
@@ -47,13 +42,13 @@ public class LoginScreen extends AbstractViewer {
 	public LoginScreen(UIView view, Stage s) {
 			this(view);
 			myStage = s;
-	
 	}
  
 	@Override 
 	public Scene getScene() {    
 		return myScene;
 	}
+	
 	
 	
 	private void makeScene() {
@@ -74,7 +69,7 @@ public class LoginScreen extends AbstractViewer {
 		RegisterCommand command = new RegisterCommand(this);
 		Button register = makeButton(command);
 		register.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
+			public void handle(ActionEvent event) { 
 				command.execute(myStage, username.getText(), password.getText(), confirmPass.getText());
 			}
 		});
@@ -93,11 +88,10 @@ public class LoginScreen extends AbstractViewer {
 		signIn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				signCommand.execute(myStage, username.getText(), password.getText());
-			}
+			}  
 		});
 		AbstractCommand facebookCommand = new FacebookCommand(this);
 		Button facebook = makeButton(facebookCommand);
-		System.out.println(facebook.getId());
 		setMargin(signIn, 20, 0, 0, 0);
 		setBox(myRight, "right", lab, username, password, signIn, facebook);
 	}
@@ -105,6 +99,7 @@ public class LoginScreen extends AbstractViewer {
 	private void setMargin(Node node, int top, int left, int bottom, int right) {
 		VBox.setMargin(node, new Insets(top, left, bottom, right));
 	}
+	
 	private void setBox(VBox box, String id, Node... args) { 
 		box.setAlignment(Pos.CENTER);
 		box.setId(id);

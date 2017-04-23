@@ -16,6 +16,6 @@ public interface ICommandView {
 	public void pauseGame();
 	public String getInstructions();
 	public void addUser(UserData user);
-	public UIView getView();
+	public void loginScreen();
 	
 }
