@@ -10,6 +10,7 @@ import components.entityComponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
 public class MovementEngine extends AbstractEngine {
@@ -31,7 +32,7 @@ public class MovementEngine extends AbstractEngine {
 	}
 
 	@Override
-	public void update(Collection<KeyCode> keys) {
+	public void update(Collection<KeyCode> keys, IRestrictedGameData gd) {
 		for(int currentEntity = 0; currentEntity < myComponents.get(LOCATION_LIST).size(); currentEntity++){
 			LocationComponent myLocation = (LocationComponent) myComponents.get(LOCATION_LIST).get(currentEntity);
 			VelocityComponent myVelocity = (VelocityComponent) myComponents.get(VELOCITY_LIST).get(currentEntity);

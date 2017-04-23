@@ -12,6 +12,7 @@ import components.entityComponents.TypeComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.IRestrictedGameData;
 
 public class GeneralPostCollisionHandler implements ISubEngine{
 
@@ -22,7 +23,7 @@ public class GeneralPostCollisionHandler implements ISubEngine{
 	
 
 	@Override
-	public List<IEntity> handleCollision(IEntity e0, IEntity e1, String side, IEntityManager myEM) {
+	public List<IEntity> handleCollision(IEntity e0, IEntity e1, String side, IEntityManager myEM, IRestrictedGameData gd) {
 		List<IEntity> createdEntities = new ArrayList<IEntity>();
 		CollidableComponent collE0 = (CollidableComponent) e0.getComponent(ComponentType.Collidable);
 		CollidableComponent collE1 = (CollidableComponent) e1.getComponent(ComponentType.Collidable);
@@ -31,7 +32,7 @@ public class GeneralPostCollisionHandler implements ISubEngine{
 
 			if (handlerE1 != null && handlerE1.getCollisionComponent(side) != null) {
 				
-					createdEntities.addAll(handlerE1.getCollisionComponent(side).executeOnCollide(e0, e1,myEM));
+					createdEntities.addAll(handlerE1.getCollisionComponent(side).executeOnCollide(e0, e1,myEM,gd));
 				}
 			
 		}

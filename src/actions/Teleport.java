@@ -8,6 +8,9 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameData;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 public class Teleport implements IAction {
 	private double teleportXLocation;
@@ -19,10 +22,11 @@ public class Teleport implements IAction {
 	}
 
 	@Override
-	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		((LocationComponent) player.getComponent(ComponentType.Location)).setXY(teleportXLocation, teleportYLocation);
 		player.changed(player);
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 	}
 
 	

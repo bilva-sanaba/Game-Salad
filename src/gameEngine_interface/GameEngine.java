@@ -48,6 +48,7 @@ import entity.IEntity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
+import gamedata.IRestrictedGameData;
 import engines.AbstractEngine;
 import entity.IEntityManager;
 import entity.SplashEntity;
@@ -72,20 +73,20 @@ public class GameEngine implements GameEngineInterface {
 	private GPEntityManager GPEM;
 	private double points=0;
 	private double lives=0;
-	private double level=0; 
+	private double level=0;
+	private String music = "";
 
 	public GameEngine(){
 	}
-	public GameData loadData(Communicator c){
+	public IRestrictedGameData loadData(Communicator c){
 		myEntityManager = new EntityManager(c.getData());
 		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
-		GameData dg = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc);
+		IRestrictedGameData dg = (IRestrictedGameData) new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,music);
 		return dg;
 	}
 	public Collection<IEntity> save(){
-
 		return myEntityManager.copy();
 	}
 	public SplashEntity getSplashEntity(){
@@ -98,11 +99,11 @@ public class GameEngine implements GameEngineInterface {
 	 */
 	@Override
 
-	public void handleUpdates(Collection<KeyCode> keysPressed) {
+	public void handleUpdates(Collection<KeyCode> keysPressed, IRestrictedGameData gd) {
 		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
 		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
-			s.update(keysPressed);
+			s.update(keysPressed,gd);
 		}
 	}
 
@@ -207,7 +208,7 @@ public class GameEngine implements GameEngineInterface {
 
 		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
-		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
+		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
 	}
 	
 	private Entity createPortal() {

@@ -23,6 +23,7 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.IRestrictedGameData;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import sun.audio.AudioPlayer;
@@ -35,7 +36,7 @@ public class DoubleSize implements IAction {
 		c = correction;
 	}
 	@Override
-	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		SpriteComponent x = (SpriteComponent) player.getComponent(ComponentType.Sprite);
 		
 //		x.setClassPath(imagePath);
@@ -75,7 +76,7 @@ public class DoubleSize implements IAction {
 		}
 	    
 
-		return new ArrayList<IEntity>();
+		return currentGameData;
 	}
 
 }

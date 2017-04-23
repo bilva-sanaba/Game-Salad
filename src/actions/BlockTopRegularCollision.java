@@ -16,11 +16,13 @@ import components.entityComponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 public class BlockTopRegularCollision implements IAction {
 	
 	@Override
-	public List<IEntity> executeAction(IEntity e, IEntity e1, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity e, IEntity e1, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		LabelComponent lc = (LabelComponent) e.getComponent(ComponentType.Label);
 		if (lc == null) {
 		}
@@ -34,7 +36,8 @@ public class BlockTopRegularCollision implements IAction {
 //				ac.setY(0);
 			}
 		}
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 
 	}
 }

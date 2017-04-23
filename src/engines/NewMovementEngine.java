@@ -11,6 +11,7 @@ import components.entityComponents.VelocityComponent;
 import components.entityComponents.XYComponent;
 import entity.*;
 import entity.restricted.*;
+import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
 public class NewMovementEngine extends AbstractEngine{
@@ -25,7 +26,7 @@ public class NewMovementEngine extends AbstractEngine{
 		return null;
 	}
 
-	public void update(Collection<KeyCode> keys) {
+	public void update(Collection<KeyCode> keys, IRestrictedGameData gameData) {
 		Collection<IEntity> changed = new ArrayList<IEntity>();
 		for (IEntity e: getEManager().getEntities()) {
 			if (hasComponent(e,ComponentType.Location)) {

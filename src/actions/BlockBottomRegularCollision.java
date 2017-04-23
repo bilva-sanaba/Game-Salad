@@ -9,11 +9,12 @@ import components.entityComponents.LabelComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.IRestrictedGameData;
 
 public class BlockBottomRegularCollision implements IAction {
 	
 	@Override
-	public List<IEntity> executeAction(IEntity e, IEntity e2, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity e, IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		LabelComponent lc = (LabelComponent) e.getComponent(ComponentType.Label);
 		if (lc == null) {
 		}
@@ -25,7 +26,7 @@ public class BlockBottomRegularCollision implements IAction {
 				ac.setY(0);
 			}
 		}
-		return new ArrayList<IEntity>();
+		return currentGameData;
 
 	}
 }

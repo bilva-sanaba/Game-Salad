@@ -8,6 +8,7 @@ import data_interfaces.*;
 import gameView.UIView;
 import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
+import gamedata.IRestrictedGameData;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
@@ -33,6 +34,7 @@ public class Controller implements ControllerInterface {
 	private Stage myStage;
 	private String filePath;
 	private GUIBuilder myGUIBuilder;
+	private IRestrictedGameData gd;
 
 	public Controller(Stage s) {
 		myStage = s;
@@ -49,10 +51,10 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public GameData loadNewGame(String gameName) { //IRestrictedEntityManager
+	public IRestrictedGameData loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
-		GameData gameData = myGameEngine.loadData(c); 
-		
+		IRestrictedGameData gameData = myGameEngine.loadData(c); 
+		gd=gameData;
 		return gameData;
 	}
 
@@ -81,7 +83,7 @@ public class Controller implements ControllerInterface {
 		return myGameEngine;
 	}
 	
-	public void step(Set<KeyCode> keysPressed ){
-        myGameEngine.handleUpdates(keysPressed);
+	public void step(Set<KeyCode> keysPressed,IRestrictedGameData gd ){
+        myGameEngine.handleUpdates(keysPressed,gd);
     }
 }

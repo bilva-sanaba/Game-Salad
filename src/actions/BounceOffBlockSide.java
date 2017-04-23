@@ -8,6 +8,8 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 public class BounceOffBlockSide implements IAction {
 
@@ -16,12 +18,13 @@ public class BounceOffBlockSide implements IAction {
 	}
 
 	@Override
-	public List<IEntity> executeAction(IEntity e,IEntity e2, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity e,IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		ac.setX(-1*ac.getX()); //UNSURE IF ACCELERATION SHOULD JUST REVERSED
 		ac.setY(1*ac.getY());
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 
 	}
 

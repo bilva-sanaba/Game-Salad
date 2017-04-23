@@ -17,6 +17,7 @@ import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
+import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 import voogasalad.util.paint.ImageRefiner;
 /**
@@ -52,15 +53,15 @@ public class CollisionEngine extends AbstractEngine {
 	 * This method goes through all entities, takes their locations, and figures out if any are bumping into each other. If any are,
 	 * it sends components of those objects to subEngines which can handle effects (such moving the entity or changing the entities image, etc.)
 	 */
-	private void checkCollisionsOccurred() {
+	private void checkCollisionsOccurred(IRestrictedGameData gd) {
 		Map<Integer, IComponent> locationComponents = entManager.getCertainComponents(ComponentType.Location);
 		Map<Integer, IComponent> imageComponents = entManager.getCertainComponents(ComponentType.ImageProperties);
-		doubleForLoopCollisionChecking(locationComponents, imageComponents);
+		doubleForLoopCollisionChecking(locationComponents, imageComponents,gd);
 	}
 	
 	
 	
-	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
+	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents, IRestrictedGameData gd) {
 		int playerId = 0;	
 		int counter0 = -1;
 		Map<Integer, IComponent> entityTypes = entManager.getCertainComponents(ComponentType.Type);
@@ -73,7 +74,7 @@ public class CollisionEngine extends AbstractEngine {
 					TypeComponent e0Type = (TypeComponent) entityTypes.get(component0index);
 					TypeComponent e1Type = (TypeComponent) entityTypes.get(component1index);
 					if (e0Type !=null && e1Type != null && !(e0Type.getType().equals(EntityType.Block) && e1Type.getType().equals(EntityType.Block))) {
-						checkIndividualCollision(locationComponents.get(component0index), locationComponents.get(component1index), imageComponents.get(component0index), imageComponents.get(component1index), component0index, component1index);
+						checkIndividualCollision(locationComponents.get(component0index), locationComponents.get(component1index), imageComponents.get(component0index), imageComponents.get(component1index), component0index, component1index, gd);
 
 					}
 					
@@ -85,7 +86,7 @@ public class CollisionEngine extends AbstractEngine {
 	}
 	
 	
-	private void checkIndividualCollision(IComponent location0, IComponent location1, IComponent imageProp0, IComponent imageProp1, int index0, int index1) {
+	private void checkIndividualCollision(IComponent location0, IComponent location1, IComponent imageProp0, IComponent imageProp1, int index0, int index1,IRestrictedGameData gd) {
 		List<ComponentType> necessaryCollisionCheckingComponents = collisionMethod.needsComponents();
 		HashMap<ComponentType, IComponent> obj0Map = new HashMap<ComponentType, IComponent>();
 		HashMap<ComponentType, IComponent> obj1Map = new HashMap<ComponentType, IComponent>();
@@ -97,9 +98,9 @@ public class CollisionEngine extends AbstractEngine {
 		}
 		
 		String collisionSide = collisionMethod.collides(obj0Map, obj1Map);
-		sendCollisionToSubEngines(index0, index1, collisionSide);
+		sendCollisionToSubEngines(index0, index1, collisionSide,gd);
 	}
-	private void sendCollisionToSubEngines(int index0, int index1, String collisionSide) {
+	private void sendCollisionToSubEngines(int index0, int index1, String collisionSide, IRestrictedGameData gd) {
 		boolean collisionOccurs = false;
 		if (!collisionSide.equals(ITwoObjectCollide.NONE)) {
 			collisionOccurs = true;
@@ -120,7 +121,8 @@ public class CollisionEngine extends AbstractEngine {
 			}
 			
 			for (ISubEngine engine : subEngines) {
-				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide, entManager));
+				
+				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide, entManager,gd));
 			}
 			
 		}
@@ -130,13 +132,12 @@ public class CollisionEngine extends AbstractEngine {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public void update(Collection<KeyCode> keys) {
-		
+	public void update(Collection<KeyCode> keys,IRestrictedGameData gd) {
 		newEntitiesCreated = new ArrayList<IEntity>();
 		if (numSubEnginesAdded<=0) {
 			addEngine(new GeneralPostCollisionHandler());
 		}
-		checkCollisionsOccurred();
+		checkCollisionsOccurred(gd);
 		for (IEntity e : newEntitiesCreated){
 			entManager.getEntities().add(e);
 			entManager.changed(e);
