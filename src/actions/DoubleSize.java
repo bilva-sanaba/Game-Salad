@@ -50,6 +50,23 @@ public class DoubleSize implements IAction {
 		player.changed(player);
 		try{
 
+		   
+		    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("badboujee.wav"));
+		    Clip clip2 = AudioSystem.getClip();
+		    
+		    	clip2.open(audioInputStream2);
+			    clip2.start();
+		    
+		    
+
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	    
+		try{
+
 //		    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("Obi-Wan - Hello there..wav"));
 //		    Clip clip = AudioSystem.getClip();
 //		    clip.open(audioInputStream);
