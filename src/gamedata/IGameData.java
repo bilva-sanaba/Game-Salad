@@ -5,18 +5,7 @@ import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 
-public interface IGameData {
-	public DoubleProperty getPoints();
-	
-	public DoubleProperty getLives();
-
-	public IRestrictedEntityManager getRestrictedEntityManager();
-
-	public DoubleProperty getLevel();
-
-	public LocationComponent getMainLocation();
-
-	public StringProperty getMusic();
+public interface IGameData extends IRestrictedGameData{
 
 	public void setPoints(double d);
 
