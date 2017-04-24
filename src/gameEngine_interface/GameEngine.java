@@ -13,15 +13,12 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
 import actions.BounceOffBlockSide;
 import actions.IAction;
-<<<<<<< HEAD
 import actions.Teleport;
-import components.LocationComponent;
-import components.collisionComponents.CollisionComponentType;
-import components.collisionComponents.CollisionComponentsHandler;
-import components.collisionComponents.SideCollisionComponent;
-=======
+import components.entityComponents.LocationComponent;
+import components.entityComponents.CollisionComponentType;
+import components.entityComponents.CollisionComponentsHandler;
+import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.AccelerationComponent;
->>>>>>> master
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
