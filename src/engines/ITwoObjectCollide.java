@@ -5,6 +5,7 @@ import java.util.Map;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
+import entity.IEntity;
 
 
 /**
@@ -32,13 +33,8 @@ public interface ITwoObjectCollide {
 	 * @param obj1 Map of components for second object
 	 * @return String specifying which side of object1 that object0 collides with. Use the public static finals for this returned string. 
 	 */
-	public String collides(Map<ComponentType, IComponent> obj0, Map<ComponentType, IComponent> obj1);
+	public String collides(IEntity entityOne, IEntity entityTwo);
 	
 	
-	/**
-	 * This returns the components the collisionCheckingMethod needs to do its job.
-	 * @return List<ComponentType> the components the method needs.
-	 */
-	public List<ComponentType> needsComponents();
-	
+
 }

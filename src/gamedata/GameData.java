@@ -1,7 +1,7 @@
 package gamedata;
 
 
-import components.LocationComponent;
+import components.entityComponents.LocationComponent;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;

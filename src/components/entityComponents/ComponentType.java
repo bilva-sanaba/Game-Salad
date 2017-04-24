@@ -24,5 +24,6 @@ public enum ComponentType {
 	Type(), 
 	Collidable(),
 	CollisionHandler(),
-	ObjectCreation();
+	ObjectCreation(),
+	CheckCollision();
 }

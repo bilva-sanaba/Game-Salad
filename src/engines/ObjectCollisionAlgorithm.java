@@ -6,22 +6,24 @@ import java.util.List;
 import java.util.Map;
 import components.entityComponents.ComponentType;
 import components.IComponent;
-import components.LocationComponent;
 import components.entityComponents.ImagePropertiesComponent;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.VelocityComponent;
+import entity.IEntity;
 import javafx.scene.shape.Rectangle;
+
 public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 	
 	public ObjectCollisionAlgorithm() {
 		
 	}
 	
-	public String collides(Map<ComponentType, IComponent> obj0, Map<ComponentType, IComponent> obj1) {
+	public String collides(IEntity entityOne, IEntity entityTwo) {
 		
-		ImagePropertiesComponent img0 = (ImagePropertiesComponent) obj0.get(ComponentType.ImageProperties);
-		ImagePropertiesComponent img1 = (ImagePropertiesComponent) obj1.get(ComponentType.ImageProperties);
-		LocationComponent loc0 = (LocationComponent) obj0.get(ComponentType.Location);
-		LocationComponent loc1 = (LocationComponent) obj1.get(ComponentType.Location);
+		ImagePropertiesComponent img0 = (ImagePropertiesComponent) entityOne.getComponent(ComponentType.ImageProperties);
+		ImagePropertiesComponent img1 = (ImagePropertiesComponent) entityTwo.getComponent(ComponentType.ImageProperties);
+		LocationComponent loc0 = (LocationComponent) entityOne.getComponent(ComponentType.Location);
+		LocationComponent loc1 = (LocationComponent) entityTwo.getComponent(ComponentType.Location);
 		Rectangle r0 = createRectangle(loc0, img0);
 		Rectangle r1 = createRectangle(loc1, img1);
 		if (checkRectangleCollide(r0, r1)) {
@@ -55,24 +57,26 @@ public class ObjectCollisionAlgorithm implements ITwoObjectCollide {
 	}
 	
 	private Rectangle createRectangle(LocationComponent loc0, ImagePropertiesComponent img0) {
-		Rectangle r = new Rectangle();
-		r.setX(loc0.getX());
-		r.setY(loc0.getY());
-		r.setWidth(img0.getWidth());
-		r.setHeight(img0.getHeight());
+		Rectangle r = null;
+
+		if (loc0!=null && img0 != null) {
+			r = new Rectangle();
+			r.setX(loc0.getX());
+			r.setY(loc0.getY());
+			r.setWidth(img0.getWidth());
+			r.setHeight(img0.getHeight());
+		}
+		
 		return r;
 	}
 	
 	
 	private boolean checkRectangleCollide(Rectangle r0, Rectangle r1) {
-		return r0.getBoundsInLocal().intersects(r1.getBoundsInLocal());
+		if (r0 != null && r1 != null) {
+			return r0.getBoundsInLocal().intersects(r1.getBoundsInLocal());
+		}
+		return false;
 	}
 	
-	@Override
-	public List<ComponentType> needsComponents() {
-		List<ComponentType> neededComp = new ArrayList<ComponentType>();
-		neededComp.add(ComponentType.ImageProperties);
-		neededComp.add(ComponentType.Location);
-		return neededComp;
-	}
+	
 }
