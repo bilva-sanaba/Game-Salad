@@ -51,7 +51,8 @@ public class FaceBookLogin {
 				User user = client.fetchObject("me", User.class);
 				JsonObject profilePicture = client.fetchObject("me/picture", JsonObject.class, Parameter.with("redirect", "false"));
 				userData = new UserData(user.getName(), null, 
-						new ImageView(new Image((String) profilePicture.get("data").asObject().get("url").asString())));
+						(String) profilePicture.get("data").asObject().get("url").asString());
+						//new ImageView(new Image((String) profilePicture.get("data").asObject().get("url").asString())));
 				driver.close();
 				break;
 			}

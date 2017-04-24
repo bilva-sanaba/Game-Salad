@@ -15,6 +15,7 @@ public class SignInCommand extends AbstractCommand {
 	
 	public void execute(Stage s, String username, String password) {
 		//go in and check password in database
+		
 		System.out.println(username);
 		System.out.println(password);
 	}
