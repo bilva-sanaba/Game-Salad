@@ -71,6 +71,7 @@ public class Menu implements IMenu {
 
 	private void loadEvent() {
 		Image img;
+		double newheight, newwidth;
 		
 		Stage newStage = new Stage();
 		FileChooser fc = new FileChooser();
@@ -79,7 +80,6 @@ public class Menu implements IMenu {
 		fc.getExtensionFilters().setAll(
 				new ExtensionFilter("Image Files", "*.jpg", "*.png", "*.gif", "*.jpeg"));
 		File dataFile = fc.showOpenDialog(newStage);
-		System.out.println(System.getProperty("user.dir") + File.separator + PREFIX + dataFile.getName());
 		try {
 			img = new Image(dataFile.toURI().toURL().toString());
 		} catch (MalformedURLException e) {
@@ -87,7 +87,18 @@ public class Menu implements IMenu {
 		}
 
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
-		int newHeight = (int) ((img.getHeight() * myCanvas.getWidth()) / img.getWidth());
-		gc.drawImage(img, 0, 0, myCanvas.getWidth(), newHeight);
+		if (img.getHeight() > img.getWidth()) {
+			newheight = img.getHeight();
+			newwidth = scaleProportional(newheight, myCanvas.getWidth(), myCanvas.getHeight());
+		}
+		else {
+			newwidth = img.getWidth();
+			newheight = scaleProportional(newwidth, myCanvas.getHeight(), myCanvas.getWidth());
+		}
+		gc.drawImage(img, 0, 0, newwidth, newheight);
+	}
+	
+	private double scaleProportional(double imagehw, double mult, double div) {
+		return (imagehw * mult) / div;
 	}
 }
