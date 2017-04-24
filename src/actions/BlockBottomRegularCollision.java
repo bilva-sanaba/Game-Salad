@@ -9,6 +9,7 @@ import components.entityComponents.LabelComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
 public class BlockBottomRegularCollision implements IAction {
@@ -26,7 +27,9 @@ public class BlockBottomRegularCollision implements IAction {
 				ac.setY(0);
 			}
 		}
-		return currentGameData;
+		GameDataFactory gdf = new GameDataFactory();
+
+		return gdf.blankEntityData(currentGameData);
 
 	}
 }

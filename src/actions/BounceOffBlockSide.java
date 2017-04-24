@@ -5,6 +5,7 @@ import java.util.List;
 
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -21,6 +22,7 @@ public class BounceOffBlockSide implements IAction {
 	public IRestrictedGameData executeAction(IEntity e,IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		ac.setX(-1*ac.getX()); //UNSURE IF ACCELERATION SHOULD JUST REVERSED
 		ac.setY(1*ac.getY());
 		GameDataFactory gdf = new GameDataFactory();

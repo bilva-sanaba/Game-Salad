@@ -14,7 +14,6 @@ public class PowerupUsage implements IAction{
 
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		System.out.println("remove this powerup");
 		SpriteComponent npcsc = (SpriteComponent) npc.getComponent(new SpriteComponent());
 		myEM.getEntities().remove(npc);
 		((SpriteComponent) npc.getComponent(new SpriteComponent())).setClassPath("");

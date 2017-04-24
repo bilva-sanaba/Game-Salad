@@ -23,6 +23,7 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -74,9 +75,9 @@ public class DoubleSize implements IAction {
 		{
 			ex.printStackTrace();
 		}
-	    
+	    GameDataFactory gdf = new GameDataFactory();
 
-		return currentGameData;
+		return gdf.blankEntityData(currentGameData);
 	}
 
 }

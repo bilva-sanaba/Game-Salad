@@ -13,9 +13,13 @@ import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
 import actions.BounceOffBlockSide;
 import actions.IAction;
+import actions.ImageChangeAction;
+import actions.Reload;
+import actions.RemoveAction;
 import actions.ShootAction;
 import actions.Teleport;
 import components.entityComponents.AccelerationComponent;
+import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
@@ -28,6 +32,7 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.ObjectCreationComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
+import components.entityComponents.TimeComponent;
 import components.entityComponents.TypeComponent;
 import components.entityComponents.VelocityComponent;
 import components.keyExpressions.JumpAction;
@@ -41,6 +46,7 @@ import engines.CollisionEngine;
 import engines.InputEngine;
 import engines.MovementEngine;
 import engines.NewMovementEngine;
+import engines.TimeEngine;
 import entity.Entity;
 import entity.EntityManager;
 import entity.GPEntityManager;
@@ -112,9 +118,10 @@ public class GameEngine implements GameEngineInterface {
 	public GameData dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
-		x.addComponent(new LocationComponent(700,100));
+		x.addComponent(new LocationComponent(100,150));
 		x.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
+		x.addComponent(new CheckCollisionComponent(true));
 		xc.setHeight(50);
 		xc.setWidth(50);
 		x.addComponent(xc);
@@ -131,9 +138,14 @@ public class GameEngine implements GameEngineInterface {
 		yc2.setHeight(50);
 		yc2.setWidth(50);
 		y2.addComponent(yc2);
-		y2.addComponent(new VelocityComponent(2,0));
+		y2.addComponent(new VelocityComponent(3,0));
 		y2.addComponent(new LabelComponent("Blok"));
+		y2.addComponent(new TimeComponent(new RemoveAction(), 3000));
 		x.addComponent(new ObjectCreationComponent(y2));
+		TimeComponent time = new TimeComponent(new Reload(), 1000);
+//		List<String> mlist = Arrays.asList("sand.jpg","platform_tile_057.png" );
+//		time.addAction(new ImageChangeAction(mlist), 500);
+		x.addComponent(time);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
@@ -189,8 +201,8 @@ public class GameEngine implements GameEngineInterface {
 		y.addComponent(new TypeComponent(EntityType.Block));
 
 		Entity p = new AbstractMysteryBlock(102,y); 
-		p.addComponent(new LocationComponent(900,100));
-		p.addComponent(new SpriteComponent(("sand.jpg")));
+		p.addComponent(new LocationComponent(900,50));
+		p.addComponent(new SpriteComponent(("platform_tile_023.png")));
 		ImagePropertiesComponent xpc = new ImagePropertiesComponent();
 		xpc.setHeight(50);
 		xpc.setWidth(50);
@@ -207,16 +219,16 @@ public class GameEngine implements GameEngineInterface {
 		myEntityManager = new EntityManager(e);
 
 		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
 	}
 	
 	private Entity createPortal() {
 		Entity portal2 = new Entity(110);
-		portal2.addComponent(new LocationComponent(250, 125));
-		portal2.addComponent(new SpriteComponent("portal.png"));
-		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Left);
-		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(1700, 100));
+		portal2.addComponent(new LocationComponent(450, 125));
+		portal2.addComponent(new SpriteComponent("platform_tile_063.png"));
+		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
+		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 100));
 		CollisionComponentsHandler cch = new CollisionComponentsHandler();
 		cch.addCollisionComponent(scc);
 		portal2.addComponent(cch);

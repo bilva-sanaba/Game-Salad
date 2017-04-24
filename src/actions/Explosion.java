@@ -9,6 +9,7 @@ import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
 public class Explosion implements IAction {
@@ -18,7 +19,9 @@ public class Explosion implements IAction {
 	@Override
 	public IRestrictedGameData executeAction(IEntity e, IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		ImagePropertiesComponent ic = (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties);
-		return currentGameData;
+		GameDataFactory gdf = new GameDataFactory();
+
+		return gdf.blankEntityData(currentGameData);
 	}
 
 }
