@@ -15,6 +15,16 @@
 	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
 }
 
+#imagebutton {
+	-fx-background-color: #f5f5f5;
+	-fx-wrap-text: true;
+	-fx-text-fill: white;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-font-size: 5;
+	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
+}
+
 .text-field {
 	-fx-max-width: 400;
 	-fx-min-height: 40;

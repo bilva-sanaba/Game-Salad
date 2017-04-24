@@ -1,14 +1,15 @@
 package gameView.tools;
 
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UserData {
 
 	private String myName;
+	private String myPassword;
 	//private String myLastName;
-	private Image myImage;
+	private ImageView myImage;
 	
-	public UserData(String name, Image image) {
+	public UserData(String name, String password, ImageView image) {
 		myName = name;
 		//myLastName = lastName;
 		myImage = image;
@@ -22,7 +23,7 @@ public class UserData {
 //		return myLastName;
 //	}
 	
-	public Image getProfilePicture() {
+	public ImageView getProfilePicture() {
 		return myImage;
 	}
 }

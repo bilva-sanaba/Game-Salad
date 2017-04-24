@@ -5,23 +5,19 @@ import java.awt.Dimension;
 import java.util.Set;
 
 import data_interfaces.XMLException;
-import entity.SplashEntity;
-import entity.restricted.IRestrictedEntityManager;
 import gameView.gameScreen.GameScreen;
 //import gameView.gameScreen.SpecificGameSplashView;
-import gameView.gameScreen.SpecificGameSplashView;
-import gameView.loginScreen.LoginScreen;
 
 import com.sun.jmx.snmp.Timestamp;
 
 import gameView.splashScreen.SplashView;
 import gameView.tools.UserData;
+import gameView.tools.UserDatabase;
 import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -41,10 +37,12 @@ public class UIView implements UIViewInterface {
 	private GameData myData; 
 	private WorldAnimator myAnimation;
 	private UserData myUser;
+	private UserDatabase myDatabase;
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
 		s.setTitle(STAGE_TITLE);
+		myDatabase = new UserDatabase();
 		myController = controller;
 		myAnimation = new WorldAnimator(this);
 		mySplash = new SplashView(this);
@@ -124,6 +122,7 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void addUser(UserData user) {
+		myDatabase.addUser(user);
 		myUser = user;
 	}
 

@@ -1,6 +1,7 @@
 package gameView.loginScreen;
 
 
+import java.io.File;
 import java.util.Arrays;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,8 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import gameView.AbstractViewer;
 import gameView.UIView;
@@ -49,8 +54,6 @@ public class LoginScreen extends AbstractViewer {
 		return myScene;
 	}
 	
-	
-	
 	private void makeScene() {
 		makeLeft();
 		makeRight();
@@ -63,6 +66,7 @@ public class LoginScreen extends AbstractViewer {
 	private void makeLeft() {
 		Label lab = makeLabel("Register", "register");
 		setMargin(lab, 0, 0, 20, 0);
+		Button imageButton = makeImageBox();
 		TextField username = makeInput("User Name", "username");
 		TextField password = makeInput("Password", "passworrd"); 
 		TextField confirmPass = makeInput("Re-enter Password", "passwordcheck");
@@ -70,11 +74,11 @@ public class LoginScreen extends AbstractViewer {
 		Button register = makeButton(command);
 		register.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) { 
-				command.execute(myStage, username.getText(), password.getText(), confirmPass.getText());
+				command.execute(myStage, username.getText(), password.getText(), confirmPass.getText(), (ImageView) imageButton.getGraphic());
 			}
 		});
 		setMargin(register, 20, 0, 0, 0);
-		setBox(myLeft, "left", lab, username, password, confirmPass, register);
+		setBox(myLeft, "left", lab, imageButton, username, password, confirmPass, register);
 	}
 	
 	private void makeRight() {
@@ -115,4 +119,33 @@ public class LoginScreen extends AbstractViewer {
 		return text;
 	}
 	
+	private Button makeImageBox() {
+		Button imageButton = new Button("Choose an Image");
+		imageButton.setWrapText(true);
+		imageButton.setId("imagebutton");
+		setMargin(imageButton, 0, 0, 20, 0);
+		imageButton.setPrefSize(150, 150);
+		imageButton.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				File userImage = getUserImage();
+				if (userImage != null) {
+					imageButton.setText("");  
+					ImageView toAdd = new ImageView(new Image(userImage.toURI().toString()));
+					toAdd.setFitWidth(imageButton.getPrefWidth());
+					toAdd.setFitHeight(imageButton.getPrefHeight());
+					imageButton.setGraphic(toAdd);
+				}
+			}
+		});
+		return imageButton;
+	}
+	
+	private File getUserImage() {
+		 FileChooser fileChooser = new FileChooser();
+		 fileChooser.setTitle("Choose User Image");
+		 fileChooser.getExtensionFilters().addAll(
+		         new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+		 File selectedFile = fileChooser.showOpenDialog(myStage);
+		 return selectedFile;
+	}
 }

@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -49,8 +50,8 @@ public class FaceBookLogin {
 				FacebookClient client = new DefaultFacebookClient(ACCESS_TOKEN, Version.LATEST);
 				User user = client.fetchObject("me", User.class);
 				JsonObject profilePicture = client.fetchObject("me/picture", JsonObject.class, Parameter.with("redirect", "false"));
-				userData = new UserData(user.getName(), 
-						new Image((String) profilePicture.get("data").asObject().get("url").asString()));
+				userData = new UserData(user.getName(), null, 
+						new ImageView(new Image((String) profilePicture.get("data").asObject().get("url").asString())));
 				driver.close();
 				break;
 			}
