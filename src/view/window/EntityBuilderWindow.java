@@ -24,13 +24,12 @@ import view.ImageChooser;
 import view.UtilityFactory;
 import view.ViewData;
 
-public class EntityBuilderWindow implements IWindow{
+public class EntityBuilderWindow extends Window{
 
-	private ObservableList<Entity> blocksList;
-	private ArrayList<Node> nodeList = new ArrayList<Node>();
-	private Image myImageImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
-	private ImageView myImage = new ImageView(myImageImage);
+	private final Image defaultImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
+	private ImageView myImage;
 	private String myImagePath = "";
+	private String myImageName = "";
 	private Entity myEntity;
 	private ImageChooser imageChooser = new ImageChooser();
 	private UtilityFactory util;
@@ -38,21 +37,20 @@ public class EntityBuilderWindow implements IWindow{
 	private Stage myStage = new Stage();
 	private int i = 0;
 	private String[] entityList = {"Error"};
+	private static final String FILE_PATH = "file:" + File.separator + System.getProperty("user.dir") + File.separator + "images"+ File.separator;
 
 	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn) {
 		myData = dataIn;
-		blocksList = blocksListIn;
 		util = utilIn;
-		nodeList.add(myImage);
 	}
 
 	public void showEntityBuilder() {
+		myImage = new ImageView(defaultImage);
 		myStage.setScene(buildScene());
 		myStage.show();
 	}
 
 	private Scene buildScene() {
-		buildNodes();
 		Pane pane = buildPane();
 		Scene myScene = new Scene(pane, 350, 400);
 		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
@@ -67,32 +65,22 @@ public class EntityBuilderWindow implements IWindow{
 		return myEntity;
 	}
 
-	private void buildNodes() {
+	private void addImageButton(Pane root){
 		Node imageButton = util.buildButton("ChooseImageLabel", e -> {
-			myImagePath = imageChooser.chooseFile();
-			System.out.println();
-			Image image = new Image(System.getProperty("user.dir") + File.separator + "images"+ File.separator + myImagePath);
+			myImageName = imageChooser.chooseFile();
+			myImagePath = FILE_PATH  + myImageName;
+			Image image = new Image(myImagePath);
 			myImage.setImage(image);
 			myImage.setFitWidth(200);
 			myImage.setFitHeight(200);
 		});
-		nodeList.add(imageButton);
+		root.getChildren().add(imageButton);
+	}
+	private void addRadioButtons(Pane root){
+		Node entityType = new Label("Kind of Entity:");
+		root.getChildren().add(entityType);
 
-		Node okayButton = util.buildButton("OkayLabel", e -> {
-			Entity tempEntity = new Entity(i);
-			i++;
-			tempEntity.addComponent(new SpriteComponent(myImagePath));
-			//myData.defineEntity(tempEntity);
-			//myData.setUserSelectedEntity(tempEntity);
-			myStage.close();
-			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, tempEntity);
-			ecw.show();
-		});
-
-		Node entityType = new Label("Kind of Entity");
-		nodeList.add(entityType);
-
-		final ToggleGroup group = util.buildRadioButtonGroup("SelectEntityType", nodeList);
+		final ToggleGroup group = util.buildRadioButtonGroup("SelectEntityType", root);
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 				entityList = (String[]) new_toggle.getUserData();
@@ -101,13 +89,26 @@ public class EntityBuilderWindow implements IWindow{
 				}
 			}
 		});
-		
-		nodeList.add(okayButton);
+	}
+	
+	private void addOkayButton(Pane root){
+		Node okayButton = util.buildButton("OkayLabel", e -> {
+			Entity tempEntity = new Entity(i);
+			i++;
+			tempEntity.addComponent(new SpriteComponent(myImagePath));
+			myStage.close();
+			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, tempEntity);
+			ecw.show();
+		});
+		root.getChildren().add(okayButton);
 	}
 
 	private Pane buildPane() {
 		VBox pane = new VBox();
-		pane.getChildren().addAll(nodeList);
+		pane.getChildren().add(myImage);
+		addImageButton(pane);
+		addRadioButtons(pane);
+		addOkayButton(pane);
 		return pane;
 	}
 

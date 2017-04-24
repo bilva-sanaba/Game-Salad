@@ -5,8 +5,9 @@ import java.util.List;
 
 import class_annotations.BottomAction;
 import components.entityComponents.ComponentType;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.VelocityComponent;
 import entity.IEntity;
+import entity.IEntityManager;
 
 @BottomAction()
 
@@ -16,7 +17,7 @@ public class BounceOffBottom implements IAction {
 	
 
 	@Override
-	public List<IEntity> executeAction(IEntity player, IEntity npc) {
+	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		if (vc.getY()<0) {
 			vc.setY(vc.getY()*VELOCITY_REVERSE*BOUNCE_FACTOR);

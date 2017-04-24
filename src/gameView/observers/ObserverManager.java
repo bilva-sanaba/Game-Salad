@@ -2,7 +2,9 @@ package gameView.observers;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,10 +19,12 @@ public class ObserverManager {
 	private WorldAnimator myWorld;
 	private EntityManagerObserver myManagerObserver;
 	private EntityObserver myEntityObserver;
+	private Set<Integer> updatedEntitySet;
 	
 	
 	public ObserverManager(WorldAnimator world, IRestrictedEntityManager entity) {
 		myEntities = new HashMap<Integer, ImageView>();
+		updatedEntitySet = new HashSet<Integer>();
 		myWorld = world;
 		setObservers(entity );
 		createMap(entity.getRestrictedEntities());
@@ -28,6 +32,14 @@ public class ObserverManager {
 	
 	public Map<Integer, ImageView> getEntityMap() {
 		return myEntities;
+	}
+	
+	public Set<Integer> getUpdatedSet(){
+		return updatedEntitySet;
+	}
+	
+	public void clearSet(){
+		updatedEntitySet.clear();
 	}
 	
 	private void createMap(Collection<IRestrictedEntity> manager) {
@@ -41,7 +53,6 @@ public class ObserverManager {
 	
 	private void updateImageView(IRestrictedEntity e) {
 		if(myEntities.get(e.getID())==null){
-			System.out.println("CHEHEHEHEHEHHEHEH");
 			myWorld.removeEntity(e.getID());
 		}
 		else{
@@ -62,6 +73,8 @@ public class ObserverManager {
 	private void updateImage(IRestrictedEntity e) {
 		if (!(e.getRestrictedImagePath().equals(""))) {
 			myEntities.get(e.getID()).setImage(makeImage(e));
+			updatedEntitySet.add(e.getID());
+			
 		} else {
 			myEntities.put(e.getID(), null);
 		}

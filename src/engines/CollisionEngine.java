@@ -3,11 +3,18 @@ package engines;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import components.entityComponents.CheckCollisionComponent;
+import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.EntityType;
 import components.IComponent;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.TypeComponent;
+import controller.Camera;
 import engines.subengines.GeneralPostCollisionHandler;
 import engines.subengines.ISubEngine;
 import engines.subengines.stopMovementAfterHit;
@@ -16,6 +23,7 @@ import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import javafx.scene.input.KeyCode;
+import voogasalad.util.paint.ImageRefiner;
 /**
  * This engine handles all collisions
  * When update is called it should use all needed CollisionSubEngines
@@ -31,8 +39,7 @@ public class CollisionEngine extends AbstractEngine {
 	private List<IEntity> newEntitiesCreated;
 	private ITwoObjectCollide collisionMethod = new ObjectCollisionAlgorithm();
 	private int numSubEnginesAdded;
-
-	public CollisionEngine(IEntityManager myEntityManager) {
+		public CollisionEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 		subEngines = new ArrayList<ISubEngine>();
 		entManager = myEntityManager;
@@ -51,45 +58,44 @@ public class CollisionEngine extends AbstractEngine {
 	 * it sends components of those objects to subEngines which can handle effects (such moving the entity or changing the entities image, etc.)
 	 */
 	private void checkCollisionsOccurred() {
-		Map<Integer, IComponent> locationComponents = entManager.getCertainComponents(ComponentType.Location);
-		Map<Integer, IComponent> imageComponents = entManager.getCertainComponents(ComponentType.ImageProperties);
-		doubleForLoopCollisionChecking(locationComponents, imageComponents);
-	}
-	private void doubleForLoopCollisionChecking(Map<Integer, IComponent> locationComponents, Map<Integer, IComponent> imageComponents) {
-		int playerId = 0;	
-		int counter0 = -1;
-		for (Integer component0index : locationComponents.keySet()) {
-			counter0++;
-			int counter1 = -1;
-			for (Integer component1index : locationComponents.keySet()) {
-				counter1++;
-				if (counter1 != counter0) {
-					if (component0index == playerId){
-					checkIndividualCollision(locationComponents.get(component0index), locationComponents.get(component1index), imageComponents.get(component0index), imageComponents.get(component1index), component0index, component1index);
+		List<IEntity> entities2 = (List<IEntity>) entManager.getEntities();
+		IEntity[] entities = new IEntity[entities2.size()];
+		Camera cam = null;
+		for (int i=0;i<entities.length;i++) {
+			entities[i] = entities2.get(i);
+			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
+			if (type!=null && type.getType().equals(EntityType.Camera)) {
+				cam = (Camera) entities[i];
+			}
+				
+		}
+		for (int i=0;i<entities.length;i++) {
+			IEntity entityOne = entities[i];
+			CheckCollisionComponent check = (CheckCollisionComponent) entityOne.getComponent(ComponentType.CheckCollision);
+			CollidableComponent collidable = (CollidableComponent) entityOne.getComponent(ComponentType.Collidable);
+			if (check!= null && check.getCheckCollision() && collidable != null && collidable.getCollide() /*&& cam.withinCameraBounds(entityOne)*/) {
+				for (int j=i+1;j<entities.length;j++) {
+					IEntity entityTwo = entities[j];
+					CollidableComponent collidableE2 = (CollidableComponent) entityTwo.getComponent(ComponentType.Collidable);
+					if (collidableE2.getCollide() && entityOne!=entityTwo /*&& cam.withinCameraBounds(entityTwo)*/) {
+						checkIndividualCollision(entityOne, entityTwo);
 					}
 				}
 			}
-			
 		}
-		
 	}
 	
 	
-	private void checkIndividualCollision(IComponent location0, IComponent location1, IComponent imageProp0, IComponent imageProp1, int index0, int index1) {
-		List<ComponentType> necessaryCollisionCheckingComponents = collisionMethod.needsComponents();
-		HashMap<ComponentType, IComponent> obj0Map = new HashMap<ComponentType, IComponent>();
-		HashMap<ComponentType, IComponent> obj1Map = new HashMap<ComponentType, IComponent>();
-		for (ComponentType ct : necessaryCollisionCheckingComponents) {
-			Map<Integer, IComponent> allEntityMap = entManager.getCertainComponents(ct);
-			
-			obj0Map.put(ct, allEntityMap.get(index0));
-			obj1Map.put(ct, allEntityMap.get(index1));
-		}
+	
+	
+	private void checkIndividualCollision(IEntity entityOne, IEntity entityTwo) {
 		
-		String collisionSide = collisionMethod.collides(obj0Map, obj1Map);
-		sendCollisionToSubEngines(index0, index1, collisionSide);
+		String collisionSide = collisionMethod.collides(entityOne, entityTwo);
+		sendCollisionToSubEngines(entityOne, entityTwo, collisionSide);
+		
 	}
-	private void sendCollisionToSubEngines(int index0, int index1, String collisionSide) {
+	
+	private void sendCollisionToSubEngines(IEntity entityOne, IEntity entityTwo, String collisionSide) {
 		boolean collisionOccurs = false;
 		if (!collisionSide.equals(ITwoObjectCollide.NONE)) {
 			collisionOccurs = true;
@@ -97,20 +103,8 @@ public class CollisionEngine extends AbstractEngine {
 		
 		if (collisionOccurs) {
 			
-			Entity o0 = null;
-			Entity o1 = null;
-			for (IEntity x : entManager.getEntities()) {
-				
-				if (x.getID() == index0) {
-					o0 = (Entity) x;
-				}
-				if (x.getID() == index1) {
-					o1 = (Entity) x;
-				}
-			}
-			
 			for (ISubEngine engine : subEngines) {
-				newEntitiesCreated.addAll(engine.handleCollision(o0, o1, collisionSide, entManager));
+				newEntitiesCreated.addAll(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager));
 			}
 			
 		}
@@ -118,7 +112,7 @@ public class CollisionEngine extends AbstractEngine {
 	@Override
 	public List<ComponentType> neededComponents() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<ComponentType>();
 	}
 	public void update(Collection<KeyCode> keys) {
 		
