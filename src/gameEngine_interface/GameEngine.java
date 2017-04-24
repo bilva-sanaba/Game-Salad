@@ -208,7 +208,7 @@ public class GameEngine implements GameEngineInterface {
 //
 //
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
-		e.add(x);
+		 e.add(x);
 
 		//		for (int i=0;i<20;i++){
 		//			Entity x = new Entity(i);
