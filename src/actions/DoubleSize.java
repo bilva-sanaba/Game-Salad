@@ -20,8 +20,7 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
-
-
+import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import javafx.scene.media.Media;
@@ -43,6 +42,7 @@ public class DoubleSize implements IAction {
 		ImagePropertiesComponent y = (ImagePropertiesComponent) player.getComponent(ComponentType.ImageProperties);
 		if (c){
 		LocationComponent t = (LocationComponent) player.getComponent(ComponentType.Location);
+		VelocityComponent v = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		t.setY(t.getY()-y.getHeight());
 		}
 		y.setHeight(y.getHeight()*2);
@@ -50,18 +50,24 @@ public class DoubleSize implements IAction {
 		player.changed(player);
 		try{
 
-		    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("Obi-Wan - Hello there..wav"));
-		    Clip clip = AudioSystem.getClip();
-		    clip.open(audioInputStream);
-		    clip.start();
-		    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("badboujee.wav"));
-		    Clip clip2 = AudioSystem.getClip();
-		    if (!clip.isActive()) {
-		    	clip2.open(audioInputStream2);
-			    clip2.start();
-		    }
-		    
-
+//		    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("Obi-Wan - Hello there..wav"));
+//		    Clip clip = AudioSystem.getClip();
+//		    clip.open(audioInputStream);
+//		    clip.start();
+//		    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("badboujee.wav"));
+//		    Clip clip2 = AudioSystem.getClip();
+//		    if (!clip.isActive()) {
+//		    	clip2.open(audioInputStream2);
+//			    clip2.start();
+//		    }
+		
+			/**
+			 * Simpler audio version for testing speed @Hamsa
+			 */
+//			AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("badboujee.wav"));
+//		    Clip clip2 = AudioSystem.getClip();
+//		    	clip2.open(audioInputStream2);
+//			    clip2.start();	    
 		}
 		catch(Exception ex)
 		{

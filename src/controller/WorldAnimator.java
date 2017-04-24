@@ -110,16 +110,14 @@ public class WorldAnimator{
         animation.getKeyFrames().add(frame);
         //animation.play();
     }
-    
     public Scene getScene() {
         return myScene;
     }
-
     private void step(double elapsedTime){
     	//myView.step(keysPressed);
     	myEngine.handleUpdates(keysPressed);
         fillMapAndDisplay(myObservers.getUpdatedSet());
-        System.out.println(imageMap.size());
+       
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
@@ -160,7 +158,7 @@ public class WorldAnimator{
     	Map<Integer, ImageView> map = myObservers.getEntityMap();
         for(Integer entity : entities){
         //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
-        	System.out.println(entity + "HEYYYEEYYEYEYEYEYEYEYYEYDUBLIN");
+
         	if (map.get(entity)!=null){
 		  //SequentialTransition trans = new SequentialTransition();
 		  //removeEntity(entity,entities);

@@ -25,7 +25,6 @@ public class stopMovementAfterHit implements ISubEngine {
 		}
 		
 		if (lc1.getLabel().equals("Block")) {
-			System.out.println("should be printing");
 			SideCollisionComponent scc = (SideCollisionComponent) e1.getComponent(ComponentType.CollisionSide);
 			scc.executeOnCollide(e0,e1);
 			alreadyHit = true;
