@@ -27,12 +27,10 @@ public class NewMovementEngine extends AbstractEngine{
 	}
 
 	public void update(Collection<KeyCode> keys) {
-		Collection<IEntity> changed = new ArrayList<IEntity>();
 		for (IEntity e: getEManager().getEntities()) {
 			if (hasComponent(e,ComponentType.Location)) {
 				updateAllValues(e);
-			}
-			
+			}	
 		}
 	}
 
@@ -40,10 +38,8 @@ public class NewMovementEngine extends AbstractEngine{
 		if (hasComponent(e, ComponentType.Velocity)) {
 			updateLocation(e);
 			if (hasComponent(e, ComponentType.Acceleration)) {
-				updateMovement(e, ComponentType.Velocity, ComponentType.Acceleration);
-				//resetAcceleration(e);
+				updateMovement(e);
 			}
-			
 			
 //			placeInMap(entityMap, e);
 //			//TODO: fix cast issue
@@ -56,57 +52,46 @@ public class NewMovementEngine extends AbstractEngine{
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		lc.setXY(lc.getX() + vc.getX(), lc.getY() + vc.getY());
 		((IRestrictedEntity) e).changed(e);
-		
-//		if (lc.getY()>200){
-//			vc.setY(0);
-//			ac.setY(0);
-//		}
 	}
 	
-	private void updateVelocity(IEntity e) {
+	private void updateMovement(IEntity e) {
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-		TerminalVelocityComponent tvc = (TerminalVelocityComponent) e.getComponent(ComponentType.TerminalVelocity);
+			
+		vc.setX(vc.getX() + ac.getX());
+		vc.setY(vc.getY() + ac.getY());
 		
-		if(Math.abs(vc.getX()) < Math.abs(tvc.getX())){
-			vc.setX(vc.getX()+ac.getX());
+		//Handles terminal velocity
+		if(e.getComponent(ComponentType.TerminalVelocity) != null){
+			TerminalVelocityComponent tvc = (TerminalVelocityComponent) e.getComponent(ComponentType.TerminalVelocity);
+			
+			checkTerminalVelocityInX(vc, tvc);
+			checkTerminalVelocityInY(vc, tvc);
 		}
-		else if (vc.getX() < 0){
-			vc.setX(-tvc.getX());
-		}
-		else if (vc.getX() > 0){
-			vc.setX(tvc.getX());
-		}
-		
-		vc.setY(vc.getY()+ac.getY());
-////		TerminalVelComponent tvc = (TerminalVelComponent) e.getComponent(ComponentType.TerminalVelComponent);
-//		if(Math.abs(vc.getX()) < tvc.getX()){
-//			vc.setXY(vc.getX() + ac.getX(), vc.getY() + ac.getY());
-//		}
-//		else{
-//			if(ac.getX() > 0){
-//				if(vc.getX() < 0){
-//					vc.setX(-tvc.getX());
-//				}
-//				if(vc.getX() > 0){
-//					vc.setX(tvc.getX());
-//				}
-//			}
-//			else if(vc.getX() != 0){
-//				vc.setX(vc.getX() + ac.getX());
-//				System.out.println("Velocity:" + vc.getX());
-//			}
-//		}
-	}
-	private void resetAcceleration(IEntity e){
-		((AccelerationComponent) e.getComponent(ComponentType.Acceleration)).setY(0);
 	}
 	
-	private void updateMovement(IEntity e, ComponentType c1, ComponentType c2) {
-		XYComponent xy1 = (XYComponent) e.getComponent(c1);
-		XYComponent xy2 = (XYComponent) e.getComponent(c2);
-		
-		xy1.setXY(xy1.getX() + xy2.getX(), xy1.getY() + xy2.getY());
+	private void checkTerminalVelocityInX(VelocityComponent vc, TerminalVelocityComponent tvc){
+		if(vc.getX() > tvc.getX()){
+			
+			if(vc.getX() > 0){
+				vc.setX(tvc.getX());
+			}
+			else{
+				vc.setX(-tvc.getX());
+			}
+		}
+	}
+	
+	private void checkTerminalVelocityInY(VelocityComponent vc, TerminalVelocityComponent tvc){
+		if(vc.getY() > tvc.getY()){
+			
+			if(vc.getY() > 0){
+				vc.setY(tvc.getY());
+			}
+			else{
+				vc.setY(-tvc.getY());
+			}
+		}
 	}
 	
 	protected boolean hasComponent(IEntity e, ComponentType c) {
