@@ -58,6 +58,7 @@ public class InputEngine extends AbstractEngine{
 	private void handleInput(IEntity e, Collection<KeyCode> keys){
 		
 		if (e.getComponent(ComponentType.KeyInput)!=null){
+			
 			KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 			
 			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 

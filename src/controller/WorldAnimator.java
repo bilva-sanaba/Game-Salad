@@ -96,7 +96,7 @@ public class WorldAnimator{
         myScene = new Scene(root,LENGTH,WIDTH);
         LocationComponent lc = myData.mainLocation();
         //Change Length
-        myCamera = new Camera(LENGTH*5 ,myScene, lc);
+       // myCamera = new Camera(LENGTH*5 ,myScene, lc);
 
         fillMapAndDisplay();
 
@@ -121,8 +121,7 @@ public class WorldAnimator{
         fillMapAndDisplay();
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
-        myCamera.updateCamera();
-        System.out.println(keysReleased);
+        //myCamera.updateCamera();
     }
 
     

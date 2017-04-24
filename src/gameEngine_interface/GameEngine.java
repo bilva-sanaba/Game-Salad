@@ -39,6 +39,7 @@ import engines.InputEngine;
 import engines.LevelEngine;
 import engines.MovementEngine;
 import engines.NewMovementEngine;
+import entity.CameraEntity;
 import entity.Entity;
 import entity.EntityManager;
 import entity.GPEntityManager;
@@ -109,6 +110,18 @@ public class GameEngine implements GameEngineInterface {
 
 	public GameData dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
+		
+		/*Entity c = new CameraEntity(10);
+		c.addComponent(new LocationComponent(50, 20));
+		c.addComponent(new SpriteComponent(("dirt.jpg")));
+		ImagePropertiesComponent cc = new ImagePropertiesComponent();
+		cc.setHeight(50);
+		cc.setWidth(50);
+		c.addComponent(cc);
+		c.addComponent(new CollidableComponent(true));*/
+		
+		
+		//PLAYER
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(700,100));
 		x.addComponent(new SpriteComponent(("platform_tile_053.png")));
@@ -179,6 +192,7 @@ public class GameEngine implements GameEngineInterface {
 			e.add(p);
 		}
 		
+		//POWERUP
 		Entity y = new AbstractPowerup(101);
 		y.addComponent(new LocationComponent(1000,150));
 		y.addComponent(new SpriteComponent(("platform_tile_057.png")));
@@ -189,6 +203,7 @@ public class GameEngine implements GameEngineInterface {
 		y.addComponent(new VelocityComponent(0,0));
 		y.addComponent(new LabelComponent("Blok"));
 		
+		//BLOCK
 		Entity p = new AbstractMysteryBlock(102,y); 
 		p.addComponent(new LocationComponent(900,100));
 		p.addComponent(new SpriteComponent(("sand.jpg")));
@@ -199,6 +214,7 @@ public class GameEngine implements GameEngineInterface {
 		p.addComponent(new LabelComponent("Blok"));
 		e.add(p);
 		
+		//GOAL
 		Entity goal = new AbstractGoal(102);
 		goal.addComponent(new LocationComponent(800, 20));
 		goal.addComponent(new SpriteComponent(("sand.jpg")));
