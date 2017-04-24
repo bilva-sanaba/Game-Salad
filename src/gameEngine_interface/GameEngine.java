@@ -12,6 +12,7 @@ import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
 import actions.BounceOffBlockSide;
+import actions.DoubleJump;
 import actions.IAction;
 import actions.ImageChangeAction;
 import actions.Reload;
@@ -59,6 +60,7 @@ import engines.AbstractEngine;
 import entity.IEntityManager;
 import entity.SplashEntity;
 import entity.presets.AbstractBlock;
+import entity.presets.AbstractBreakableBox;
 import entity.presets.AbstractMysteryBlock;
 import entity.presets.AbstractPowerup;
 import gamedata.GameData;
@@ -112,9 +114,60 @@ public class GameEngine implements GameEngineInterface {
 			s.update(keysPressed,gd);
 		}
 	}
-
-	//TODO: Delete once testing is over
-
+	
+	//TODO: Dumb flappybird
+//	public GameData dummyLoad(){
+//		Collection<Entity> e = new ArrayList<Entity>();
+//		Entity x = new Entity(0);
+//		x.addComponent(new LocationComponent(100,150));
+//		x.addComponent(new SpriteComponent(("flappybird_yellow.png")));
+//		ImagePropertiesComponent xc = new ImagePropertiesComponent();
+//		x.addComponent(new CheckCollisionComponent(true));
+//		xc.setHeight(50);
+//		xc.setWidth(50);
+//		x.addComponent(xc);
+//		x.addComponent(new VelocityComponent(3,0));
+//		x.addComponent(new AccelerationComponent(0,0.1));
+//		x.addComponent(new CollidableComponent(true));
+//		x.addComponent(new LabelComponent("grrraah"));
+//		x.addComponent(new KeyInputComponent());
+//		x.addComponent(new TypeComponent(EntityType.Player));
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new DoubleJump());
+//		e.add(x);
+//		for (int i=1;i<10;i++){
+//			Entity p = new AbstractBlock(i);
+//			p.addComponent(new LocationComponent(i*200,200));
+//			p.addComponent(new SpriteComponent(("pipe_up.png")));
+//
+//			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
+//			double d = Math.random();
+//			xpc.setHeight(100*d);
+//			xpc.setWidth(50);
+//			p.addComponent(xpc);
+//			p.addComponent(new LabelComponent("Blok"));
+//			p.addComponent(new TypeComponent(EntityType.Block));
+//			Entity q = new AbstractBlock(i*100);
+//			q.addComponent(new LocationComponent(i*200,00));
+//			q.addComponent(new SpriteComponent(("pipe_down.png")));
+//
+//			ImagePropertiesComponent xpq = new ImagePropertiesComponent();
+//			xpq.setHeight(100*(1-d));
+//			xpq.setWidth(50);
+//			q.addComponent(xpq);
+//			q.addComponent(new LabelComponent("Blok"));
+//			q.addComponent(new TypeComponent(EntityType.Block));
+//			
+//			
+//			e.add(p);
+//			e.add(q);
+//		}
+//		myEntityManager = new EntityManager(e);
+//
+//		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
+//		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager));
+//		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+//	}
+	
 	public GameData dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
@@ -141,6 +194,7 @@ public class GameEngine implements GameEngineInterface {
 		y2.addComponent(new VelocityComponent(3,0));
 		y2.addComponent(new LabelComponent("Blok"));
 		y2.addComponent(new TimeComponent(new RemoveAction(), 3000));
+		y2.addComponent(new TypeComponent(EntityType.Projectile));
 		x.addComponent(new ObjectCreationComponent(y2));
 		TimeComponent time = new TimeComponent(new Reload(), 1000);
 //		List<String> mlist = Arrays.asList("sand.jpg","platform_tile_057.png" );
@@ -188,7 +242,17 @@ public class GameEngine implements GameEngineInterface {
 			p.addComponent(new TypeComponent(EntityType.Block));
 			e.add(p);
 		}
-		
+		Entity pr = new AbstractBreakableBox(2356);
+		pr.addComponent(new LocationComponent(700,150));
+		pr.addComponent(new SpriteComponent(("platform_tile_035.png")));
+
+		ImagePropertiesComponent xpcr = new ImagePropertiesComponent();
+		xpcr.setHeight(50);
+		xpcr.setWidth(50);
+		pr.addComponent(xpcr);
+		pr.addComponent(new LabelComponent("Blok"));
+		pr.addComponent(new TypeComponent(EntityType.Block));
+		e.add(pr);
 		Entity y = new AbstractPowerup(101);
 		y.addComponent(new LocationComponent(1000,150));
 		y.addComponent(new SpriteComponent(("platform_tile_057.png")));

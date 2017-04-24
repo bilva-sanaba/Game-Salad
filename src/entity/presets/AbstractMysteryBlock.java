@@ -21,16 +21,10 @@ public class AbstractMysteryBlock extends AbstractBlock{
 		addMysteryComponent(e);
 	}
 	private void addMysteryComponent(IEntity e){
-//		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
-//		scq.addActionForType(new TypeComponent(EntityType.Player), new PowerupCreation());
-//		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		ObjectCreationComponent occ = new ObjectCreationComponent(e);
 		this.addComponent(occ);
-//		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Top").addActionForLabel(new LabelComponent("grrraah"), new PowerupCreation());
-//		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Top").addActionForLabel(new LabelComponent("grrraah"), new BounceOffTop());
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Bottom").addActionForLabel(new LabelComponent("grrraah"), new PowerupCreation());
-//		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Right").addActionForLabel(new LabelComponent("grrraah"), new PowerupCreation());
-//		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).getCollisionComponent("Left").addActionForLabel(new LabelComponent("grrraah"), new PowerupCreation());
+
 
 	}
 
