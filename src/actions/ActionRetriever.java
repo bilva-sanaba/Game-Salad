@@ -17,6 +17,8 @@ import components.entityComponents.CollisionComponentType;
 public class ActionRetriever {
 	
 	public static final String PACKAGE_NAME_WITH_ACTIONS = "actions";
+	public static final String ACTIONS_PREFIX = "actions.";
+	public static final String FILE_SUFFIX = ".class";
 
 	public static final CollisionComponentType[] annotationTypes = {CollisionComponentType.Top, CollisionComponentType.Left, CollisionComponentType.Bottom,
 			CollisionComponentType.Right};
@@ -58,7 +60,7 @@ public class ActionRetriever {
 		for (File classFile : actionPackage.listFiles()) {
 			Class actionClass = null;
 			try {
-				actionClass = Class.forName("actions." + classFile.getName().split(".class")[0]);
+				actionClass = Class.forName(ACTIONS_PREFIX + classFile.getName().split(FILE_SUFFIX)[0]);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				System.out.println("Error needs to be handled on line 68 of ActionRetriever.java");
