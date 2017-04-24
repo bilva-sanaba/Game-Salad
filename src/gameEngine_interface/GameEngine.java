@@ -169,7 +169,7 @@ public class GameEngine implements GameEngineInterface {
 		//		}
 		//		e.add(g);e.add(t);
 
-
+		
 		for (int i=1;i<35;i++){
 			Entity p = new AbstractBlock(i);
 			p.addComponent(new LocationComponent(i*50,200));

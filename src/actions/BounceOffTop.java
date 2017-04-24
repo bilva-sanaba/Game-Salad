@@ -12,7 +12,6 @@ import entity.IEntity;
 import entity.IEntityManager;
 
 @TopAction()
-
 public class BounceOffTop implements IAction {
 	public static final double VELOCITY_REVERSE = -1;
 	public static final double BOUNCE_FACTOR = 0.66;
