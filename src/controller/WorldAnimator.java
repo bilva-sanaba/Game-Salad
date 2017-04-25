@@ -97,6 +97,7 @@ public class WorldAnimator{
         LocationComponent lc = myData.mainLocation();
         //Change Length
         System.out.println("this triggers");
+        
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
 
         fillMapAndDisplay(myObservers.getEntityMap().keySet());

@@ -26,8 +26,6 @@ public class Camera extends Entity {
 	private LocationComponent followerLoc;
 	
 	
-	
-	
 	public Camera (int length, Scene myScene, LocationComponent component, int id) {
 		super(id);
 		myLevelLength = length;
@@ -41,18 +39,21 @@ public class Camera extends Entity {
 	}
 
 	public void updateCamera() {
-		if(( (myFrame.getWidth() - root.getTranslateX()) - (followerLoc.getX() ) <= RIGHT_BOUND_FROM_EDGE) && myFrame.getWidth()-root.getTranslateX() < myLevelLength){
+			System.out.println(root.getTranslateX() + " " + followerLoc.getX());
+			double playerLocRelativeToCam = root.getTranslateX() + followerLoc.getX();
+			System.out.println(playerLocRelativeToCam);
+			if(playerLocRelativeToCam <= LEFT_BOUND_FROM_EDGE && followerLoc.getX()>0){
 
-			root.setTranslateX(-followerLoc.getX()+myFrame.getWidth()/2);
-		}
-		else if( followerLoc.getX() + root.getTranslateX() < LEFT_BOUND_FROM_EDGE && root.getTranslateX() < 0){
-			root.setTranslateX(-followerLoc.getX()+myFrame.getWidth()/2);
+				root.setTranslateX(root.getTranslateX()+5);
+			}
+			else if (playerLocRelativeToCam >= RIGHT_BOUND_FROM_EDGE) {
+				root.setTranslateX(root.getTranslateX()-5);
 
+			}
+			else{
+				root.setTranslateX(root.getTranslateX());
+			}
 		}
-		else{
-			root.setTranslateX(root.getTranslateX());
-		}
-	}
 	
 	
 	public boolean withinCameraBounds(IEntity e) {
