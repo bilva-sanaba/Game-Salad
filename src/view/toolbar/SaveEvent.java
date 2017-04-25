@@ -4,6 +4,7 @@ import java.util.*;
 import data_interfaces.*;
 
 import entity.Entity;
+import entity.IEntity;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
@@ -20,7 +21,7 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	public void event() {
 		XMLWriter xw = new XMLWriter();
 		String fileName;
-		List <Entity> l = new ArrayList<Entity>();
+		List <IEntity> l = new ArrayList<IEntity>();
 		l.add(myData.getSplashEntity());
 		l.add(myData.getLevelEntity());
 		updateList(l, myData.getDefinedEntityMap());
@@ -40,7 +41,7 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		}
 	}
 	
-	private void updateList (List <Entity> l, Map <Integer,Entity> m) {
+	private void updateList (List <IEntity> l, Map <Integer,Entity> m) {
 		for (Integer key : m.keySet()) {
 			l.add(m.get(key));
 		}
