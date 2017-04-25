@@ -35,7 +35,10 @@ import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 import gameView.Coordinate;
+import gameView.UIView;
 import gameView.gameScreen.IGameScreenEntity;
+import gameView.gameScreen.SpecificGameSplashView;
+import gameView.observers.ImageConfig;
 import gameView.observers.ObserverManager;
 import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
@@ -61,6 +64,7 @@ public class WorldAnimator{
     private Scene myScene;
     private Timeline animation;
     private Group root;
+    private SequentialTransition st;
 
 //    private GameBuilder myGameBuilder;
 
@@ -72,7 +76,7 @@ public class WorldAnimator{
     //FOR TESTING WITH RUNNER - CAN DELETE FOR NORMAL
     private GameEngine myEngine;
     
-    private Map<Integer, ImageView> imageMap= new HashMap<Integer, ImageView>();
+    private Map<Integer, ImageConfig> imageMap= new HashMap<Integer, ImageConfig>();
 
     private boolean pause = false;
 
@@ -94,6 +98,7 @@ public class WorldAnimator{
 
         //myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
         myScene = new Scene(root,LENGTH,WIDTH);
+        st = new SequentialTransition();
         LocationComponent lc = myData.mainLocation();
         //Change Length
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
@@ -114,12 +119,10 @@ public class WorldAnimator{
         return myScene;
     }
     private void step(double elapsedTime){
-    	//myView.step(keysPressed);
     	myEngine.handleUpdates(keysPressed);
         fillMapAndDisplay(myObservers.getUpdatedSet());
        
-        /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
-        updateScrolling(locationComponent, velocityComponent);*/
+
         myCamera.updateCamera();
         myObservers.clearSet();
     }
@@ -152,13 +155,11 @@ public class WorldAnimator{
     }
 
     private void fillMapAndDisplay(Set<Integer> entities){
-    	
-    	//MYOBSERVERS RETURNS COLLECTION OF IMAGEVIEW THAT ARE CORRECTLY UPDATED
-        //HashMap<Integer, ImageView> map = new HashMap<Integer, ImageView>();
-    	Map<Integer, ImageView> map = myObservers.getEntityMap();
+
+    	Map<Integer, ImageConfig> map = myObservers.getEntityMap();
         for(Integer entity : entities){
         //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
-
+        	System.out.println(entity);
         	if (map.get(entity)!=null){
 		  //SequentialTransition trans = new SequentialTransition();
 		  //removeEntity(entity,entities);
@@ -173,56 +174,52 @@ public class WorldAnimator{
     public void removeEntity(Integer entity){
     	System.out.println("CHAHCHAHCHA" + entity);
     	if (imageMap.containsKey(entity)){
-    	imageMap.get(entity).setImage(null);
+    		st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
+    		st.play();
+    		imageMap.get(entity).getImageView().setImage(null);
     	
-        //root.getChildren().remove(imageMap.get(entity));
-        //myGameScreen.removeEntity(imageMap.get(entity));
-        imageMap.remove(entity);
+    		imageMap.remove(entity);
     	}
     }
 
 
-	private void createEntity(Integer entity, Map<Integer, ImageView> entities){
-	        if (!imageMap.containsKey(entity) && entities.get(entity)!=null){
+	private void createEntity(Integer entity, Map<Integer, ImageConfig> map){
+	        if (!imageMap.containsKey(entity) && map.get(entity)!=null){
 	            ImageView imageView = new ImageView();
-	            ImageView old = entities.get(entity);
-	            imageView = updateImage(imageView, old);
-	            imageMap.put(entity, imageView);
+	            //ImageView old = map.get(entity).getImageView();
+	            imageView = updateImage(imageView, "", map.get(entity).getImageView(), map.get(entity).getPath());
+	            imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 	            
-	            System.out.println(imageView.getFitHeight() + "    " + imageView.getFitWidth());
+	            //System.out.println(imageConfig.getImageView().getFitHeight() + "    " + imageConfig.getImageView().getFitWidth());
 	            root.getChildren().add(imageView);
-//	            myGameScreen.addEntity(imageView);
-
-	            //root.getChildren().add(imageMap.get(entity));
+	            st.getChildren().add(makeAppear(imageView));
+	            st.play();
 	        }
 	  }
 
 
-	private void updateEntity(Integer entity, Map<Integer, ImageView> entities){
+	private void updateEntity(Integer entity, Map<Integer, ImageConfig> map){
         if (imageMap.containsKey(entity)) {
-        	ImageView currentImage = imageMap.get(entity);
-    		ImageView updatedImage = entities.get(entity);
-    		updateImage(currentImage, updatedImage);
-//    		PathTransition pt = moveToLocation(currentImage, entity.getLocation());
-//    		trans.getChildren().add(pt);
-//    		root.getChildren().add(imageMap.get(entity.getID()));
+        	ImageConfig currentImage = imageMap.get(entity);
+    		ImageConfig updatedImage = map.get(entity);
+    		updateImage(currentImage.getImageView(), currentImage.getPath(), updatedImage.getImageView(), updatedImage.getPath());
         }
 
     }
-    private ImageView updateImage(ImageView currentImage, ImageView re){
-         currentImage.setImage(re.getImage());
+    private ImageView updateImage(ImageView currentImage, String currentPath, ImageView re, String rePath){
     	
-        
-        //UNCOMMENT TO TEST RUNNER
+    	if(!rePath.equals(currentPath)){
+    		currentImage.setImage(re.getImage());
+    	}
+    	
+        System.out.println("xPos:" +re.getTranslateX());
+        System.out.println("xPosCurrent: " + currentImage.getTranslateX());
         currentImage.setTranslateX(re.getTranslateX());
-
+        //System.out.println("xPosCurrent: " + currentImage.getImageView().getTranslateX());
         currentImage.setTranslateY(re.getTranslateY()); 
         currentImage.setFitHeight(re.getFitHeight());
         currentImage.setFitWidth(re.getFitWidth());
         
-        currentImage.setFitHeight(re.getFitHeight());
-        
-        currentImage.setFitWidth(re.getFitWidth());
         
         return currentImage;
         //COMMENT OUT TO TEST RUNNER

@@ -2,6 +2,7 @@ package gamedata;
 
 
 import components.entityComponents.LocationComponent;
+import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -13,7 +14,7 @@ public class GameData {
 	private DoubleProperty level = new SimpleDoubleProperty(); 
 	private LocationComponent mainPlayerLocation;
 	
-	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc){
+	public GameData( double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc){
 		points.setValue(p);
 		System.out.println(points.getValue());
 		lives.setValue(l);

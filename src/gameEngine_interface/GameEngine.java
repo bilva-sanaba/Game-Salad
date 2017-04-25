@@ -127,12 +127,12 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new TypeComponent(EntityType.Player));
 		Entity y2 = new AbstractBlock(201);
 		y2.addComponent(new LocationComponent(800,150));
-		y2.addComponent(new SpriteComponent(("platform_tile_057.png")));
+		y2.addComponent(new SpriteComponent(("Feuer46.GIF")));
 		ImagePropertiesComponent yc2 = new ImagePropertiesComponent();
 		yc2.setHeight(50);
 		yc2.setWidth(50);
 		y2.addComponent(yc2);
-		y2.addComponent(new VelocityComponent(5,0));
+		y2.addComponent(new VelocityComponent(1,0));
 		y2.addComponent(new LabelComponent("Blok"));
 		x.addComponent(new ObjectCreationComponent(y2));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
@@ -140,10 +140,24 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
+
+		Entity z = new Entity(666);
+		z.addComponent(new LocationComponent(1000, 100));
+		z.addComponent(new SpriteComponent("platform_tile_053.png"));
+		ImagePropertiesComponent zc = new ImagePropertiesComponent();
+		z.addComponent(new CheckCollisionComponent(true));
+		zc.setHeight(50);
+		zc.setWidth(50);
+		z.addComponent(xc);
+		z.addComponent(new CollidableComponent(true));
+		z.addComponent(new LabelComponent("villainguy"));
+		z.addComponent(new TypeComponent(EntityType.Monster));
+		
 //
 //
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
+		e.add(z);
 
 		//		for (int i=0;i<20;i++){
 		//			Entity x = new Entity(i);
@@ -209,7 +223,7 @@ public class GameEngine implements GameEngineInterface {
 
 		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager));
-		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
+		return new GameData(0,3, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
 	}
 	
 	private Entity createPortal() {
