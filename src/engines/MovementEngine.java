@@ -5,13 +5,18 @@ import java.util.*;
 
 
 import components.*;
+import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.XYComponent;
-import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.TerminalVelocityComponent;
-import components.movementcomponents.VelocityComponent;
 import entity.*;
 import entity.restricted.*;
+import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.TerminalVelocityComponent;
+import components.entityComponents.VelocityComponent;
+import entity.Entity;
+import entity.IEntity;
+import entity.IEntityManager;
 import javafx.scene.input.KeyCode;
 
 

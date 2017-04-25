@@ -1,14 +1,18 @@
 package entity.presets;
 
 import actions.BlockTopRegularCollision;
-import actions.BounceOffBlockSide;
-import components.collisionComponents.CollisionComponentType;
-import components.collisionComponents.CollisionComponentsHandler;
-import components.collisionComponents.SideCollisionComponent;
+
+import actions.BounceOffBottom;
+import actions.BounceOffLeft;
+import actions.BounceOffRight;
+import actions.BounceOffTop;
 import components.entityComponents.CollidableComponent;
+import components.entityComponents.CollisionComponentType;
+import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 
@@ -30,15 +34,14 @@ public class AbstractBlock extends Entity {
 //		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
 //		scb.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
-		
 		scc.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
-		
+		scc.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
 		scq.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
-		scr.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockSide());
+		scr.addActionForLabel(new LabelComponent("grrraah"), new BounceOffLeft());
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
-		scb.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockSide());
+		scb.addActionForLabel(new LabelComponent("grrraah"), new BounceOffRight());
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);

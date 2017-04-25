@@ -8,8 +8,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import actions.IAction;
 import components.IComponent;
 import components.entityComponents.KeyInputComponent;
+import components.keyExpressions.JumpAction;
 import entity.*;
 import javafx.scene.input.KeyCode;
 import voogasalad.util.reflection.*;
@@ -182,17 +184,17 @@ public class EntityHandler implements Handler {
 
 		return ret;
 	}
-
+//Kopen I need help
 	private IComponent createIComponent(Element e) {
 		NodeList nl = e.getChildNodes();
 		Object[] paramArray;
 		List paramList = new ArrayList();
 		
 		if (e.getNodeName().equals("components.entityComponents.KeyInputComponent")) {
-			Map <KeyCode, String> m = new HashMap<KeyCode, String>();
+			Map <KeyCode, IAction> m = new HashMap<KeyCode, IAction>();
 			boolean firstUse = true;
 			String s1 = "";
-			String s2 = "";
+			IAction s2;
 			for (int i = 0; i < nl.getLength(); i++) {
 				if (nl.item(i).getNodeType() == Node.ELEMENT_NODE) {
 					Element param = (Element) nl.item(i);
@@ -203,7 +205,7 @@ public class EntityHandler implements Handler {
 					}
 					else {
 						firstUse = true;
-						s2 = param.getTextContent();
+						s2 = new JumpAction();
 						m.put(KeyCode.getKeyCode(s1), s2);
 					}
 				}
