@@ -1,0 +1,12 @@
+<users>
+	<user>
+		<username>henry</username>
+		<password>bob</password>
+		<image></image>
+	</user>
+	<user>
+		<username>jake</username>
+		<password>poop</password>
+		<image></image>
+	</user>
+</users>
