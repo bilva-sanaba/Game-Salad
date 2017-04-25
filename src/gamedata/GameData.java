@@ -2,6 +2,7 @@ package gamedata;
 
 
 import components.entityComponents.LocationComponent;
+import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -15,7 +16,9 @@ public class GameData implements IGameData,IRestrictedGameData{
 	private IRestrictedEntityManager restrictedEntityManager; 
 	private DoubleProperty level = new SimpleDoubleProperty(); 
 	private LocationComponent mainPlayerLocation;
+
 	private StringProperty music = new SimpleStringProperty();
+	
 	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, String m){
 		points.setValue(p);
 		lives.setValue(l);

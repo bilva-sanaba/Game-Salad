@@ -1,8 +1,9 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
-public class CollidableComponent implements IComponent {
+public class CollidableComponent extends AComponent implements IComponent {
 	private boolean collide;
 
 	public CollidableComponent(boolean c) {

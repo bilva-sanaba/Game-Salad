@@ -1,12 +1,13 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
 /**
  * @author Justin
  * 
  */
-public class GameInstructionsComponent implements IComponent {
+public class GameInstructionsComponent extends AComponent implements IComponent {
 	private String myGameInstructions;
 	
 	public GameInstructionsComponent(String instructions) {

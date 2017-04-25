@@ -13,6 +13,11 @@ public class CopyCommand implements RightClickEvent{
 
 	@Override
 	public void execute() {
+		myData.copyEntity();
+	}
+
+	@Override
+	public void undo() {
 		// TODO Auto-generated method stub
 		
 	}

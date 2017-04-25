@@ -19,7 +19,7 @@ public abstract class UIDisplayComponent implements IDisplayComponent {
 	
 	public UIDisplayComponent(String name) {
 		myDisplayName = name;
-		gameConfig = new GameConfig(1, 2);
+		gameConfig = new GameConfig(1, 3);
 		setID();
 	}
 	

@@ -1,8 +1,9 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
-public class LivesComponent implements IComponent {
+public class LivesComponent extends AComponent implements IComponent {
 	
 	private int lives;
 	

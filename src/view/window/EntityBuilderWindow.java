@@ -28,7 +28,6 @@ public class EntityBuilderWindow extends Window{
 
 	private final Image defaultImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
 	private ImageView myImage;
-	private String myImagePath = "";
 	private String myImageName = "";
 	private Entity myEntity;
 	private ImageChooser imageChooser = new ImageChooser();
@@ -68,14 +67,15 @@ public class EntityBuilderWindow extends Window{
 	private void addImageButton(Pane root){
 		Node imageButton = util.buildButton("ChooseImageLabel", e -> {
 			myImageName = imageChooser.chooseFile();
-			myImagePath = FILE_PATH  + myImageName;
-			Image image = new Image(myImagePath);
+			System.out.println(myImageName + " line 71 " + this.getClass());
+			Image image = new Image(FILE_PATH  + myImageName);
 			myImage.setImage(image);
 			myImage.setFitWidth(200);
 			myImage.setFitHeight(200);
 		});
 		root.getChildren().add(imageButton);
 	}
+	
 	private void addRadioButtons(Pane root){
 		Node entityType = new Label("Kind of Entity:");
 		root.getChildren().add(entityType);
@@ -95,10 +95,11 @@ public class EntityBuilderWindow extends Window{
 		Node okayButton = util.buildButton("OkayLabel", e -> {
 			Entity tempEntity = new Entity(i);
 			i++;
-			tempEntity.addComponent(new SpriteComponent(myImagePath));
+			System.out.println(myImageName + " line 98 " + this.getClass());
+			tempEntity.addComponent(new SpriteComponent(myImageName));
 			myStage.close();
 			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, tempEntity);
-			ecw.show();
+			ecw.openWindow();
 		});
 		root.getChildren().add(okayButton);
 	}

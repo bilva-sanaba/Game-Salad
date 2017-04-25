@@ -13,6 +13,11 @@ private ViewData myData;
 	
 	@Override
 	public void execute() {
+		myData.redo();
+	}
+
+	@Override
+	public void undo() {
 		// TODO Auto-generated method stub
 		
 	}

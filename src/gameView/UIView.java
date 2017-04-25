@@ -67,7 +67,7 @@ public class UIView implements UIViewInterface {
 
 	@Override
 	public void runGame() {
-		setStage(myGameScene.getScene());//mySplash
+		setStage(myGameScene.getScene());//myGameScene
 		
 	}
 	

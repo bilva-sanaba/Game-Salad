@@ -12,6 +12,11 @@ private ViewData myData;
 	
 	@Override
 	public void execute() {
+		myData.undoLastEvent();
+	}
+
+	@Override
+	public void undo() {
 		// TODO Auto-generated method stub
 		
 	}
