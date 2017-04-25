@@ -34,6 +34,7 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.ObjectCreationComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
+import components.entityComponents.StepComponent;
 import components.entityComponents.TerminalVelocityComponent;
 import components.entityComponents.TimeComponent;
 import components.entityComponents.TypeComponent;
@@ -45,6 +46,7 @@ import controller.Camera;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
 import data_interfaces.XMLParser;
+import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
 import engines.InputEngine;
@@ -281,20 +283,23 @@ public class GameEngine implements GameEngineInterface {
 		e.add(p);
 		
 		//GOAL
-		Entity goal = new AbstractGoal(106);
+		Entity goal = new Entity(106);
 		goal.addComponent(new LocationComponent(800, 20));
 		goal.addComponent(new SpriteComponent(("sand.jpg")));
 		ImagePropertiesComponent goalc = new ImagePropertiesComponent();
 		goalc.setHeight(50);
+		goal.addComponent(new StepComponent(50));
+		goal.addComponent(new VelocityComponent(-1,0));
 		goalc.setWidth(50);
 		goal.addComponent(new LabelComponent("Goal"));
 		goal.addComponent(goalc);
+		goal.addComponent(new CollidableComponent(false));
 		e.add(goal);
 
 
 		p.addComponent(new TypeComponent(EntityType.Block));
 
-
+		
 		e.add(p);
 		Entity portal2 = createPortal();
 		
@@ -306,7 +311,7 @@ public class GameEngine implements GameEngineInterface {
 		myEntityManager = new EntityManager(e);
 
 		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager));
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 		return myGameData;
 	}
 	

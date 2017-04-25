@@ -1,7 +1,9 @@
 package entity.presets;
 
 import actions.BlockTopRegularCollision;
+import actions.ChangeMusicAction;
 import actions.DoubleSize;
+import actions.MusicPlayAction;
 import actions.PowerupUsage;
 
 import components.entityComponents.CollidableComponent;
@@ -25,16 +27,19 @@ public class AbstractPowerup extends Entity {
 		scc.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
 
 		scc.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
-
+		scc.addActionForLabel(new LabelComponent("grrraah"), new MusicPlayAction("badboujee.wav"));
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
 		scq.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
 		scq.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
+		scq.addActionForLabel(new LabelComponent("grrraah"), new MusicPlayAction("badboujee.wav"));
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
 		scr.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
 		scr.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
+		scr.addActionForLabel(new LabelComponent("grrraah"), new MusicPlayAction("badboujee.wav"));
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
 		scb.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
 		scb.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
+		scb.addActionForLabel(new LabelComponent("grrraah"), new MusicPlayAction("badboujee.wav"));
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);
