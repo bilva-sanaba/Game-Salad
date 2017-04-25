@@ -16,6 +16,10 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
@@ -30,6 +34,11 @@ import javafx.scene.media.MediaPlayer;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
+
+@TopAction()
+@LeftAction()
+@BottomAction()
+@RightAction()
 public class DoubleSize implements IAction {
 	private boolean c;
 	
@@ -50,6 +59,23 @@ public class DoubleSize implements IAction {
 		y.setHeight(y.getHeight()*2);
 		y.setWidth(y.getWidth()*2);
 		player.changed(player);
+		try{
+
+		   
+		    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("badboujee.wav"));
+		    Clip clip2 = AudioSystem.getClip();
+		    
+		    	clip2.open(audioInputStream2);
+			    clip2.start();
+		    
+		    
+
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	    
 		try{
 
 //		    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("Obi-Wan - Hello there..wav"));

@@ -7,6 +7,7 @@ public enum EntityType {
 	Monster(),
 	Projectile(),
 	Item(), 
+	Goal(),
 	None(),
 	Camera();
 	

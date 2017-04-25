@@ -67,10 +67,10 @@ public class ViewData extends Observable {
 		definedEntityMap.remove(entity.getID());
 	}
 
-	public void unplaceEntity(Entity entity) {
-		placedEntityMap.remove(entity.getID());
-	//	setChanged();
-	//	notifyObservers();
+	public void unplaceEntity() {
+		placedEntityMap.remove(userSelectedEntity.getID());
+		setChanged();
+		notifyObservers("unplace");
 	}
 
 	public HashMap<Integer, Entity> getDefinedEntityMap() {

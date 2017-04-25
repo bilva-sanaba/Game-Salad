@@ -3,7 +3,10 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import entity.IEntity;
@@ -12,6 +15,10 @@ import gamedata.GameData;
 import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
+@TopAction()
+@LeftAction()
+@BottomAction()
+@RightAction()
 public class Teleport implements IAction {
 	private double teleportXLocation;
 	private double teleportYLocation;

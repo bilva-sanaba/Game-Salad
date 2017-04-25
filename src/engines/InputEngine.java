@@ -9,7 +9,6 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import actions.BlockTopRegularCollision;
-import actions.BounceOffBlockSide;
 import alerts.GroovyAlert;
 import components.IComponent;
 import components.entityComponents.AccelerationComponent;
@@ -49,6 +48,7 @@ public class InputEngine extends AbstractEngine{
 		return null;
 	}
 
+
 	@Override
 	public void update(Collection<KeyCode> keys, IRestrictedGameData gameData) {
 		newEntities.clear();
@@ -63,7 +63,31 @@ public class InputEngine extends AbstractEngine{
 	}
 	private void handleInput(IEntity e, Collection<KeyCode> keys, IRestrictedGameData gameData){
 		if (e.getComponent(ComponentType.KeyInput)!=null){
-		KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
+			
+			KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
+			
+			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 
+			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+			
+			//TODO: FIND A WAY TO INCORPORATE FRICTION
+			//FrictionComponent fc = (FrictionComponent) e.getComponent(ComponentType.Friction);
+			
+			//Handles Decelerating
+			if(vc.getX()!= 0 && keys.isEmpty()){
+				if(vc.getX() > 0.5){
+					ac.setX(-0.2);
+				}
+				else if (vc.getX() < -0.5){
+					ac.setX(0.2);
+				}
+				else if (Math.abs(vc.getX()) < 0.3){
+					ac.setX(0);
+					vc.setX(0);
+				}
+				return;
+			}
+			
+		ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 		
 		for (KeyCode key : keys){
 			if (ic.getActionMap().containsKey(key)){
@@ -72,8 +96,8 @@ public class InputEngine extends AbstractEngine{
 				}
 			if (ic.getGroovyMap().containsKey(key)){
 				try {
-					VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-					AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+					vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+					ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 					engine.put("vc", vc);
 					engine.put("ac", ac);
 					engine.eval(ic.getGroovyMap().get(key));

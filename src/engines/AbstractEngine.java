@@ -47,5 +47,9 @@ public abstract class AbstractEngine {
 	protected IEntityManager getEManager () {
 		return myEManager;
 	}
+	
+	protected boolean hasComponent(IEntity e, ComponentType c) {
+		return (e.getComponent(c)!=null);
+	}
 
 }

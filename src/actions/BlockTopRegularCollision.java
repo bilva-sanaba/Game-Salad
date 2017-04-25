@@ -2,6 +2,7 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import class_annotations.TopAction;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
@@ -19,6 +20,8 @@ import entity.IEntityManager;
 import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
+
+@TopAction()
 public class BlockTopRegularCollision implements IAction {
 	
 	@Override
