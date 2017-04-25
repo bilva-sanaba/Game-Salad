@@ -26,18 +26,11 @@ public class LevelEngine extends AbstractEngine{
 			if(hasComponent(e, ComponentType.Goal)){
 				GoalComponent gc = (GoalComponent) e.getComponent(ComponentType.Goal);
 				if(gc.checkIfSatisfied() == true){
-				//	System.out.println("hi this works");
+					//System.out.println("hi this works");
 				}
 			}
 			
 		}
 		
 	}
-	
-	protected boolean hasComponent(IEntity e, ComponentType c) {
-		return (e.getComponent(c)!=null);
-	}
-	
-	
-
 }

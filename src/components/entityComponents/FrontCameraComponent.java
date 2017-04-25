@@ -21,5 +21,9 @@ public class FrontCameraComponent implements IComponent{
 	public void setScrolling(boolean shouldScroll){
 		scrolling = shouldScroll;
 	}
+	
+	public boolean getScrolling(){
+		return scrolling;
+	}
 
 }

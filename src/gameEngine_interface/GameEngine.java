@@ -38,8 +38,6 @@ import engines.CollisionEngine;
 import engines.InputEngine;
 import engines.LevelEngine;
 import engines.MovementEngine;
-import engines.NewMovementEngine;
-import entity.CameraEntity;
 import entity.Entity;
 import entity.EntityManager;
 import entity.GPEntityManager;
@@ -79,7 +77,7 @@ public class GameEngine implements GameEngineInterface {
 	public GameData loadData(Communicator c){
 		myEntityManager = new EntityManager(c.getData());
 		GPEM = new GPEntityManager(c.getData());
-		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
+		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
 		GameData dg = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc);
 		return dg;
@@ -111,19 +109,33 @@ public class GameEngine implements GameEngineInterface {
 	public GameData dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		
-		/*Entity c = new CameraEntity(10);
-		c.addComponent(new LocationComponent(50, 20));
-		c.addComponent(new SpriteComponent(("dirt.jpg")));
-		ImagePropertiesComponent cc = new ImagePropertiesComponent();
-		cc.setHeight(50);
-		cc.setWidth(50);
-		c.addComponent(cc);
-		c.addComponent(new CollidableComponent(true));*/
+		//FRONT CAMERA
+		Entity fc = new Entity(500);
+		fc.addComponent(new LocationComponent(50, 20));
+		fc.addComponent(new SpriteComponent(("dirt.jpg")));
+		ImagePropertiesComponent fcc = new ImagePropertiesComponent();
+		fcc.setHeight(50);
+		fcc.setWidth(50);
+		fc.addComponent(fcc);
+		fc.addComponent(new CollidableComponent(true));
+		e.add(fc);
+		
+		//BACK CAMERA
+		Entity bc = new Entity(501);
+		bc.addComponent(new LocationComponent(600, 20));
+		bc.addComponent(new SpriteComponent(("dirt.jpg")));
+		ImagePropertiesComponent bcc = new ImagePropertiesComponent();
+		bcc.setHeight(50);
+		bcc.setWidth(50);
+		bc.addComponent(bcc);
+		bc.addComponent(new CollidableComponent(true));
+		e.add(bc);
+		
 		
 		
 		//PLAYER
 		Entity x = new Entity(0);
-		x.addComponent(new LocationComponent(700,100));
+		x.addComponent(new LocationComponent(400,50));
 		x.addComponent(new SpriteComponent(("platform_tile_053.png")));
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
 		xc.setHeight(50);
@@ -193,7 +205,8 @@ public class GameEngine implements GameEngineInterface {
 		}
 		
 		//POWERUP
-		Entity y = new AbstractPowerup(101);
+		
+		Entity y = new AbstractPowerup(105);
 		y.addComponent(new LocationComponent(1000,150));
 		y.addComponent(new SpriteComponent(("platform_tile_057.png")));
 		ImagePropertiesComponent yc = new ImagePropertiesComponent();
@@ -215,7 +228,7 @@ public class GameEngine implements GameEngineInterface {
 		e.add(p);
 		
 		//GOAL
-		Entity goal = new AbstractGoal(102);
+		Entity goal = new AbstractGoal(106);
 		goal.addComponent(new LocationComponent(800, 20));
 		goal.addComponent(new SpriteComponent(("sand.jpg")));
 		ImagePropertiesComponent goalc = new ImagePropertiesComponent();
@@ -230,7 +243,7 @@ public class GameEngine implements GameEngineInterface {
 		myEntityManager = new EntityManager(e);
 
 		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new LevelEngine(myEntityManager));
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new LevelEngine(myEntityManager));
 		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location) );
 	}
 

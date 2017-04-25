@@ -28,5 +28,7 @@ public enum ComponentType {
 	Goal(),
 	MonsterMovementStep(),
 	Friction(),
-	TerminalVelocity;
+	TerminalVelocity(),
+	FrontCamera(),
+	BackCamera();
 }

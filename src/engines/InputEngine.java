@@ -63,7 +63,9 @@ public class InputEngine extends AbstractEngine{
 			
 			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 
 			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-			FrictionComponent fc = (FrictionComponent) e.getComponent(ComponentType.Friction);
+			
+			//TODO: FIND A WAY TO INCORPORATE FRICTION
+			//FrictionComponent fc = (FrictionComponent) e.getComponent(ComponentType.Friction);
 			
 			//Handles Decelerating
 			if(vc.getX()!= 0 && keys.isEmpty()){
@@ -73,7 +75,7 @@ public class InputEngine extends AbstractEngine{
 				else if (vc.getX() < -0.5){
 					ac.setX(0.2);
 				}
-				else if (Math.abs(vc.getX()) < 0.5){
+				else if (Math.abs(vc.getX()) < 0.3){
 					ac.setX(0);
 					vc.setX(0);
 				}
