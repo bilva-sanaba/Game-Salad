@@ -1,9 +1,8 @@
 package entity;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Observable;
-import java.util.Observer;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
@@ -14,8 +13,6 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import entity.restricted.IRestrictedEntity;
-import gameView.Coordinate;
-import javafx.beans.InvalidationListener;
 import javafx.geometry.Dimension2D;
 
 /**
@@ -32,7 +29,7 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 
 	public Entity(int id) {
 		identifier = id;
-		myComponents = new ArrayList<IComponent>();
+		myComponents = new HashSet<IComponent>();
 	}
 
 	public Entity clone() {

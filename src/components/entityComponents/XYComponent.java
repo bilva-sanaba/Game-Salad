@@ -1,6 +1,8 @@
 package components.entityComponents;
 
-public abstract class XYComponent {
+import components.AComponent;
+
+public abstract class XYComponent extends AComponent {
 	private double x;
 	private double y;
 

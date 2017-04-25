@@ -1,5 +1,6 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
 /**
@@ -9,7 +10,7 @@ import components.IComponent;
  * @author Bilva
  *
  */
-public class LabelComponent implements IComponent {
+public class LabelComponent extends AComponent implements IComponent {
 
 	private String label;
 

@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import actions.IAction;
+import components.AComponent;
 import components.IComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 
-public class SideCollisionComponent implements IComponent {
+public class SideCollisionComponent extends AComponent implements IComponent {
 	private CollisionComponentType sideCollision;
 	private Map<String, ArrayList<IAction>> typeActionMap;
 	private Map<String, ArrayList<IAction>> labelActionMap;

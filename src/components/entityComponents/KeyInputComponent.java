@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import actions.IAction;
+import components.AComponent;
 import components.IComponent;
 import javafx.scene.input.KeyCode;
 
-public class KeyInputComponent implements IComponent {
+public class KeyInputComponent extends AComponent implements IComponent {
 	private Map<KeyCode,IAction> inputMap = new HashMap<KeyCode,IAction>();
 	private Map<KeyCode,String>  groovyMap = new HashMap<KeyCode,String>();
 	public KeyInputComponent(Map<KeyCode,IAction> keyMap){

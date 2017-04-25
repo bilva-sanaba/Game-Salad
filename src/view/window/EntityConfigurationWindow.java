@@ -2,6 +2,7 @@ package view.window;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
@@ -10,10 +11,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.ComponentFactory;
@@ -37,27 +36,16 @@ public class EntityConfigurationWindow extends Window {
 	private VBox root;
 	private Stage myStage = new Stage();
 	private Entity myEntity;
-	private HashMap<String, ComponentEditor> myCompEdits;
+	private HashMap<String, ComponentEditor> myCompEdits = new HashMap<String, ComponentEditor>();
 
 	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, Entity entityIn) {
 		initalizeVars(utilF, entityData, entityType, entityIn);
 	}
 
 	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, Entity e) {
-		String[] tmpArray = getComponentArray(e);
-		initalizeVars(utilF, entityData, tmpArray, e);
-	}
-	
-	private String[] getComponentArray(Entity e){
-		ArrayList<String> tempCompList = new ArrayList<String>();
-		int numComp = 0;
-		for(IComponent c: e.getComponents()){
-			if(c != null){
-				numComp++;
-				tempCompList.add(c.getComponentType().toString());
-			}
-		}
-		return tempCompList.toArray(new String[numComp]);
+		String[] empty = {};
+		initalizeVars(utilF, entityData, empty, e);
+		openWindow();
 	}
 	
 	private void initalizeVars(UtilityFactory utilF, ViewData entityData, String[] entityType, Entity entityIn){
@@ -67,7 +55,6 @@ public class EntityConfigurationWindow extends Window {
 		myEntity = entityIn;
 		myData.setUserSelectedEntity(myEntity);
 		componentList = entityType;
-		myCompEdits = new HashMap<String, ComponentEditor>();
 		myStage.setScene(buildScene());
 	}
 
@@ -81,9 +68,7 @@ public class EntityConfigurationWindow extends Window {
 
 	private void buildComponentEditor() {
 		for (String comp : componentList) {
-			ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
-			myCompEdits.put(comp, editor);
-			root.getChildren().add(editor.getInputNode());
+			makeComponent(comp);
 		}
 		ObservableList<ComponentType> ObsCopms = FXCollections.observableArrayList(ComponentType.values());
 		ListView<ComponentType> components = new ListView<ComponentType>(ObsCopms);
@@ -92,21 +77,37 @@ public class EntityConfigurationWindow extends Window {
 			@Override
 			public void changed(ObservableValue<? extends ComponentType> observable, ComponentType oldVal,
 					ComponentType newVal) {
-				try {
-					ComponentEditor editor = myCompF.getComponentEditor(newVal.toString(), myUtilF);
-					myCompEdits.put(newVal.toString(), editor);
-					root.getChildren().add(editor.getInputNode());
-				} catch (Exception e) {
-					System.out.println("Can not edit this component");
-				}
+				makeComponent(newVal.toString());
 			}
 		});
 		root.getChildren().add(myUtilF.buildButton("MakeEntity", e -> enterButton()));
 	}
+	
+	private void makeComponent(String comp) {
+		try {
+			ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
+			System.out.println(comp + " line 102 "  + this.getClass());
+			myCompEdits.put(comp, editor);
+			root.getChildren().add(editor.getInputNode());
+		} catch (Exception e) {
+			System.out.println("Can not edit this component");
+		}
+	}
 
 	private void enterButton() {
+		System.out.println(myCompEdits);
 		for (ComponentEditor comp : myCompEdits.values()) {
 				myEntity.addComponent(comp.getComponent());
+		}
+		Iterator<IComponent> intr = myEntity.getComponents().iterator();
+		while(intr.hasNext()){
+			IComponent iComp = intr.next();
+			System.out.println(iComp.getComponentType().toString().hashCode() + " line 104 " + this.getClass() + "  " + iComp.getComponentType().toString());
+			try{
+			System.out.println(iComp.hashCode() + " line 105 " + this.getClass());
+			}catch(Exception e){
+				
+			}
 		}
 		myData.defineEntity(myEntity);
 		myData.setUserSelectedEntity(myEntity);
