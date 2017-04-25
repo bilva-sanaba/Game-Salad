@@ -1,9 +1,10 @@
 package entity.presets;
 
 import actions.BlockTopRegularCollision;
-import actions.BounceOffBlockSide;
+
 import actions.BounceOffBottom;
 import actions.BounceOffLeft;
+import actions.BounceOffRight;
 import actions.BounceOffTop;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
@@ -31,7 +32,7 @@ public class AbstractBlock extends Entity {
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
 		scr.addActionForLabel(new LabelComponent("grrraah"), new BounceOffLeft());
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
-		scb.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBlockSide());
+		scb.addActionForLabel(new LabelComponent("grrraah"), new BounceOffRight());
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);

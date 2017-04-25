@@ -3,7 +3,6 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
-import class_annotations.LeftAction;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
@@ -12,10 +11,8 @@ import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 
+public class BounceOffRight implements IAction {
 
-@LeftAction()
-public class BounceOffLeft implements IAction {
-	
 	public static final double VELOCITY_REVERSE = -1;
 	public static final double BOUNCE_FACTOR = 0.5;
 
@@ -26,12 +23,11 @@ public class BounceOffLeft implements IAction {
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		LocationComponent lcE0 = (LocationComponent) e.getComponent(ComponentType.Location);
-		ImagePropertiesComponent ipE0 = (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties);
 		LocationComponent lcE1 = (LocationComponent) e2.getComponent(ComponentType.Location);
-		lcE0.setX(lcE1.getX()-ipE0.getWidth());
+		ImagePropertiesComponent ipE0 = (ImagePropertiesComponent) e2.getComponent(ComponentType.ImageProperties);
+		lcE0.setX(lcE1.getX()+ipE0.getWidth());
 		
-		
-		if(vc.getX() > 0) {
+		if(vc.getX() < 0) {
 			vc.setX(vc.getX()*VELOCITY_REVERSE*BOUNCE_FACTOR);
 		}
 		
