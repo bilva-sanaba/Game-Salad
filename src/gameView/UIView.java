@@ -6,7 +6,9 @@ import java.util.Set;
 
 import data_interfaces.XMLException;
 import gameView.gameScreen.GameScreen;
+
 import com.sun.jmx.snmp.Timestamp;
+
 import gameView.splashScreen.SplashView;
 import gameView.userManagement.IUserManager;
 import gameView.userManagement.UserManager;
@@ -14,9 +16,11 @@ import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 public class UIView implements UIViewInterface {
@@ -37,6 +41,7 @@ public class UIView implements UIViewInterface {
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
+		setStageClose();
 		s.setTitle(STAGE_TITLE);
 		myUserManager = new UserManager();
 		myController = controller;
@@ -116,5 +121,13 @@ public class UIView implements UIViewInterface {
 	public void newStage(AbstractViewer view, Stage s) {
 		s.setScene(view.getScene());//login.getScene());
 		s.showAndWait();
+	}
+	
+	private void setStageClose() {
+		myStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	          public void handle(WindowEvent we) {
+	              myUserManager.saveAllUsers();
+	          }
+	      });    
 	}
 }

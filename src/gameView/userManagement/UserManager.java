@@ -42,6 +42,11 @@ public class UserManager implements IUserManager {
 		
 	}
 	
+	@Override
+	public void saveAllUsers() {
+		myDatabase.saveUsers();
+	}
+	
 	private boolean nullCheck(UserData data, String message) {
 		if (data == null) {
 			throw new FrontEndException(message);

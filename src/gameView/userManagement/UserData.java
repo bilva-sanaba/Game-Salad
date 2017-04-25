@@ -12,20 +12,20 @@ public class UserData {
 	public static final List<String> DATA_FIELDS = Arrays.asList("username", "password", "image");
 	
 	
-	private String myName;
-	private String myPassword;
+	private String username;
+	private String password;
 	//private String myLastName;
-	private ImageView myImage;
+	private String image;
 	
-	public UserData(String name, String password, String image) {
-		myName = name;
-		myPassword = password;
+	public UserData(String name, String passwordString, String imageString) {
+		username = name;
+		password = passwordString;
 		//myLastName = lastName;
-		myImage = makeImage(image);
+		image = imageString;
 	}
 	
 	public String getName(){
-		return myName;
+		return username;
 	}
 	
 //	public String getLastName() {
@@ -33,10 +33,10 @@ public class UserData {
 //	}
 	
 	public String getPassword() {
-		return myPassword;
+		return password;
 	}
 	public ImageView getProfilePicture() {
-		return myImage;
+		return makeImage(image);
 	}
 	
 	private ImageView makeImage(String s) {

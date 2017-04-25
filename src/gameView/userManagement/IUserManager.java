@@ -10,4 +10,6 @@ public interface IUserManager {
 	public boolean selectUser(UserData data);
 	
 	public boolean facebookUser(UserData data);
+	
+	public void saveAllUsers();
 }

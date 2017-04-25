@@ -1,11 +1,17 @@
 package gameView.userManagement;
 
 import gameView.tools.FrontEndException;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+
+import javax.xml.bind.annotation.XmlElement;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
 import data_interfaces.XMLParser;
 
 public class UserDatabase {
@@ -17,6 +23,7 @@ public class UserDatabase {
 	
 	public UserDatabase() {
 		createUsers(new XMLParser().getData(DATA_FILE));
+		System.out.println(myUsers.values());
 	}
 	
 	
@@ -26,7 +33,6 @@ public class UserDatabase {
 			return null;
 		} else {
 			myUsers.put(username, user);
-			System.out.println(myUsers);
 			return user;
 		}
 	}
@@ -35,13 +41,13 @@ public class UserDatabase {
 		if (!myUsers.containsKey(user.getName()) || (!myUsers.get(user.getName()).getPassword().equals(user.getPassword()))){
 			return null;
 		}
-		System.out.println(myUsers);
 		return myUsers.get(user.getName());
 		
 	}
 	
 	public void saveUsers() {
-		new UserDataWriter().saveUsers(DATA_FILE, myUsers.values());
+		Collection<UserData> collection = myUsers.values();
+		new UserDataWriter().saveUsers(DATA_FILE, myUsers);
 	}
 	
 	private void createUsers(Element data) {
