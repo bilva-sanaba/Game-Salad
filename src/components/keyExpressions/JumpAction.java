@@ -10,21 +10,25 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import entity.restricted.IRestrictedEntity;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 @KeyAction()
 
 public class JumpAction implements IAction {
 
 	@Override
-	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
 		if (vc.getY()==0){
 			vc.setY(-5);
 			ac.setY(.1);
 		}
-		List<IEntity> entities = new ArrayList<IEntity>();
-		return entities;
+		
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 	}
 
 }

@@ -66,6 +66,8 @@ public class WorldAnimator{
     private Group root;
     private SequentialTransition st;
 
+    private GameData myData;
+
 //    private GameBuilder myGameBuilder;
 
     private Camera myCamera;
@@ -87,6 +89,7 @@ public class WorldAnimator{
     	return root;
     }
     public void start (GameData myData, IGameScreenEntity screen){
+    	this.myData=myData;
         root = new Group();
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
         myObservers = new ObserverManager(this, restrictedEntityManager);
@@ -99,8 +102,9 @@ public class WorldAnimator{
         //myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
         myScene = new Scene(root,LENGTH,WIDTH);
         st = new SequentialTransition();
-        LocationComponent lc = myData.mainLocation();
+        LocationComponent lc = myData.getMainLocation();
         //Change Length
+        System.out.println("this triggers");
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
 
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
@@ -115,11 +119,18 @@ public class WorldAnimator{
         animation.getKeyFrames().add(frame);
         //animation.play();
     }
+    
+    
+    //for testing
+    
+    
     public Scene getScene() {
         return myScene;
     }
     private void step(double elapsedTime){
-    	myEngine.handleUpdates(keysPressed);
+    	//myView.step(keysPressed);
+    	myEngine.handleUpdates(keysPressed,myData);
+
         fillMapAndDisplay(myObservers.getUpdatedSet());
        
 
@@ -190,7 +201,6 @@ public class WorldAnimator{
 	            imageView = updateImage(imageView, "", map.get(entity).getImageView(), map.get(entity).getPath());
 	            imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 	            
-	            //System.out.println(imageConfig.getImageView().getFitHeight() + "    " + imageConfig.getImageView().getFitWidth());
 	            root.getChildren().add(imageView);
 	            st.getChildren().add(makeAppear(imageView));
 	            st.play();
@@ -219,8 +229,7 @@ public class WorldAnimator{
         currentImage.setTranslateY(re.getTranslateY()); 
         currentImage.setFitHeight(re.getFitHeight());
         currentImage.setFitWidth(re.getFitWidth());
-        
-        
+
         return currentImage;
         //COMMENT OUT TO TEST RUNNER
 

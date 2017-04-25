@@ -6,9 +6,13 @@ import java.util.List;
 import class_annotations.LeftAction;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
+import components.entityComponents.LocationComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 
 @LeftAction()
@@ -19,16 +23,22 @@ public class BounceOffLeft implements IAction {
 
 	@Override
 
-	public List<IEntity> executeAction(IEntity e,IEntity e2, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity e,IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
 
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+		LocationComponent lcE0 = (LocationComponent) e.getComponent(ComponentType.Location);
+		ImagePropertiesComponent ipE0 = (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties);
+		LocationComponent lcE1 = (LocationComponent) e2.getComponent(ComponentType.Location);
+		lcE0.setX(lcE1.getX()-ipE0.getWidth());
+		
 		
 		if(vc.getX() > 0) {
 			vc.setX(vc.getX()*VELOCITY_REVERSE*BOUNCE_FACTOR);
 		}
 		
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 
 	}
 }

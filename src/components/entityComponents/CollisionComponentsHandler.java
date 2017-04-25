@@ -7,7 +7,11 @@ import components.IComponent;
 
 public class CollisionComponentsHandler implements IComponent {
 	private Map<String, SideCollisionComponent> sideCollisionMap;
-
+	
+	public CollisionComponentsHandler(Map <String, SideCollisionComponent> map){
+		sideCollisionMap = map;
+		
+	}
 	public CollisionComponentsHandler() {
 		sideCollisionMap = new HashMap<String, SideCollisionComponent>();
 	}
@@ -40,6 +44,6 @@ public class CollisionComponentsHandler implements IComponent {
 	@Override
 	public IComponent newCopy() {
 		// TODO Auto-generated method stub
-		return null;
+		return new CollisionComponentsHandler(sideCollisionMap);
 	}
 }
