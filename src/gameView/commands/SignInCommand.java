@@ -11,12 +11,13 @@ public class SignInCommand extends AbstractCommand {
 	}
 
 	@Override
-	public void execute(Stage s) {
+	public boolean execute(Stage s) {
+		return true;
 	}
 	
-	public void execute(Stage s, String username, String password) {
+	public boolean execute(Stage s, String username, String password) {
 		UserData existingUser = new UserData(username, password, null);
-		getView().selectUser(existingUser, false);
+		return getView().getUserManager().selectUser(existingUser);
 	}
 
 	@Override

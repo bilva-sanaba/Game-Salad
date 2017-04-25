@@ -1,14 +1,11 @@
 package gameView.userManagement;
 
 import gameView.tools.FrontEndException;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
 import data_interfaces.XMLParser;
 
 public class UserDatabase {
@@ -23,22 +20,24 @@ public class UserDatabase {
 	}
 	
 	
-	public UserData selectUser(UserData user, boolean newUser) {
+	public UserData addNewUser(UserData user) {
 		String username = user.getName();
-		if (!newUser) {
-			if ((!myUsers.containsKey(username) || user.getPassword().equals(myUsers.get(username).getPassword()))) {
-				throw new FrontEndException("Wrong Username and Password Combination");
-			} else {
-				return myUsers.get(username);
-			}
+		if (myUsers.containsKey(username)) {
+			return null;
 		} else {
-			if (myUsers.containsKey(username)) {
-				throw new FrontEndException("User already registered");
-			} else {
-				myUsers.put(username, user);
-				return user;
-			}
+			myUsers.put(username, user);
+			System.out.println(myUsers);
+			return user;
 		}
+	}
+	
+	public UserData getUser(UserData user) {
+		if (!myUsers.containsKey(user.getName()) || (!myUsers.get(user.getName()).getPassword().equals(user.getPassword()))){
+			return null;
+		}
+		System.out.println(myUsers);
+		return myUsers.get(user.getName());
+		
 	}
 	
 	public void saveUsers() {

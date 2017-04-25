@@ -40,6 +40,9 @@ public class UserData {
 	}
 	
 	private ImageView makeImage(String s) {
+		if (s == null) {
+			return null;
+		}
 		ImageView toAdd = new ImageView(new Image(new File(s).toURI().toString()));
 		return toAdd;
 	}

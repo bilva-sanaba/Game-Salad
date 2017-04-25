@@ -10,8 +10,9 @@ public class LoginCommand extends AbstractCommand{
 	}
 
 	@Override
-	public void execute(Stage s) {
-		getView().loginScreen();	
+	public boolean execute(Stage s) {
+		getView().loginScreen();
+		return true;
 	}
 
 	@Override

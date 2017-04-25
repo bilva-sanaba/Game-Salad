@@ -5,6 +5,7 @@ import gameView.loginScreen.LoginScreen;
 import gameView.tools.ButtonFactory;
 import gameView.tools.CommandFactory;
 import gameView.tools.DisplayManager;
+import gameView.userManagement.IUserManager;
 import gameView.userManagement.UserData;
 
 import java.util.Collection;
@@ -12,6 +13,7 @@ import java.util.Collection;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public abstract class AbstractViewer implements ICommandView {
 
@@ -62,12 +64,13 @@ public abstract class AbstractViewer implements ICommandView {
 		getView().authorGame();
 	}
 	
-	public void selectUser(UserData user, boolean newUser) {
-		getView().selectUser(user, newUser);
+	public void loginScreen() {
+		Stage s = new Stage();
+		getView().newStage(new LoginScreen(getView(), s), s);
 	}
 	
-	public void loginScreen() {
-		getView().newStage(new LoginScreen(getView()));
+	public IUserManager getUserManager() {
+		return getView().getUserManager();
 	}
 
 	//DOES NOTHING FOR SPLASHSCREEN

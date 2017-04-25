@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
-import actions.BounceOffBlockBottomOrTop;
-import actions.BounceOffBlockSide;
 import actions.IAction;
 import actions.ShootAction;
 import actions.Teleport;

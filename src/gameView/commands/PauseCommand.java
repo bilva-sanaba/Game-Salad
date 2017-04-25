@@ -19,7 +19,7 @@ public class PauseCommand extends AbstractCommand {
 	}
 
 	@Override
-	public void execute(Stage s) {
+	public boolean execute(Stage s) {
 		((ICommandView) getView()).pauseGame();
 //		 ColorAdjust adj = new ColorAdjust(0, -0.9, -0.5, 0);
 //		 GaussianBlur blur = new GaussianBlur(55); // 55 is just to show edge effect more clearly.
@@ -29,6 +29,7 @@ public class PauseCommand extends AbstractCommand {
 //		 newStage.showAndWait();
 //		 adj = null;
 //		 s.getScene().getRoot().getEffect(adj);
+		return true;
 	}
 
 	@Override

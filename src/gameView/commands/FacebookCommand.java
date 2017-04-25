@@ -12,10 +12,11 @@ public class FacebookCommand extends AbstractCommand{
 	}
 
 	@Override
-	public void execute(Stage s) {
+	public boolean execute(Stage s) {
 		FaceBookLogin facebook = new FaceBookLogin();
 		UserData user = facebook.login();
-		getView().addUser(user);
+		return getView().getUserManager().facebookUser(user);
+		
 	}
 
 	@Override

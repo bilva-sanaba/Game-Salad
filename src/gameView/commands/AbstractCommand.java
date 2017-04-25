@@ -17,7 +17,7 @@ public abstract class AbstractCommand implements ICommand {
 		return myView;
 	} 
 
-	public abstract void execute(Stage s);
+	public abstract boolean execute(Stage s);
 
 	public abstract String getName();
 }

@@ -74,7 +74,9 @@ public class LoginScreen extends AbstractViewer {
 		Button register = makeButton(command);
 		register.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) { 
-				command.execute(myStage, username.getText(), password.getText(), confirmPass.getText(), (ImageView) imageButton.getGraphic());
+				String fromPictureButton = ((imageButton.getGraphic() == null) ? null : ((ImageView) imageButton.getGraphic()).getImage().toString());
+				checkForLoginCompletion(command.execute(myStage, username.getText(), password.getText(), 
+						confirmPass.getText(), fromPictureButton));
 			}
 		});
 		setMargin(register, 20, 0, 0, 0);
@@ -91,11 +93,16 @@ public class LoginScreen extends AbstractViewer {
 		Button signIn = makeButton(signCommand);
 		signIn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				signCommand.execute(myStage, username.getText(), password.getText());
+				checkForLoginCompletion(signCommand.execute(myStage, username.getText(), password.getText()));
 			}  
 		});
 		AbstractCommand facebookCommand = new FacebookCommand(this);
 		Button facebook = makeButton(facebookCommand);
+		facebook.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				checkForLoginCompletion(facebookCommand.execute(myStage));
+			}  
+		});
 		setMargin(signIn, 20, 0, 0, 0);
 		setBox(myRight, "right", lab, username, password, signIn, facebook);
 	}
@@ -147,5 +154,11 @@ public class LoginScreen extends AbstractViewer {
 		         new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
 		 File selectedFile = fileChooser.showOpenDialog(myStage);
 		 return selectedFile;
+	}
+	
+	private void checkForLoginCompletion(boolean bool) {
+		if (bool) {
+			myStage.close();
+		}
 	}
 }

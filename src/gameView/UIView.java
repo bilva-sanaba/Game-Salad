@@ -6,15 +6,10 @@ import java.util.Set;
 
 import data_interfaces.XMLException;
 import gameView.gameScreen.GameScreen;
-//import gameView.gameScreen.SpecificGameSplashView;
-
-
-
 import com.sun.jmx.snmp.Timestamp;
-
 import gameView.splashScreen.SplashView;
-import gameView.userManagement.UserData;
-import gameView.userManagement.UserDatabase;
+import gameView.userManagement.IUserManager;
+import gameView.userManagement.UserManager;
 import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
 import controller.WorldAnimator;
@@ -38,18 +33,16 @@ public class UIView implements UIViewInterface {
 	private GameScreen myGameScene;
 	private GameData myData; 
 	private WorldAnimator myAnimation;
-	private UserData myUser;
-	private UserDatabase myDatabase;
+	private IUserManager myUserManager;
 	
 	public UIView(Stage s, ControllerInterface controller) {
 		myStage = s;
 		s.setTitle(STAGE_TITLE);
-		myDatabase = new UserDatabase();
+		myUserManager = new UserManager();
 		myController = controller;
 		myAnimation = new WorldAnimator(this);
 		mySplash = new SplashView(this);
 		myGameScene = new GameScreen(this, myAnimation);
-		//runGame();//getSplashScreen();
 		getSplashScreen();
 		//TODO UNCOMMENT TO USE
 		//getSplashScreen();
@@ -61,13 +54,6 @@ public class UIView implements UIViewInterface {
 		setStage(mySplash.getScene());
 	}
 	
-	@Override
-	public void addUIImage(String picturePath, double x, double y,
-			double width, double height) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void runGame() {
 		setStage(myGameScene.getScene());//mySplash
@@ -123,18 +109,12 @@ public class UIView implements UIViewInterface {
 		myController.step(keysPressed);
 	}
 	
-	public void selectUser(UserData user, boolean newUser) {
-		myUser = myDatabase.selectUser(user, newUser);
-	}
-
-	public UserData getUser() {
-		return myUser;
+	public IUserManager getUserManager() {
+		return myUserManager;
 	}
 	
-	public void newStage(AbstractViewer view) {
-		Stage newStage = new Stage();
-		//LoginScreen login = new LoginScreen(getView().getView(), newStage);
-		newStage.setScene(view.getScene());//login.getScene());
-		newStage.showAndWait();
+	public void newStage(AbstractViewer view, Stage s) {
+		s.setScene(view.getScene());//login.getScene());
+		s.showAndWait();
 	}
 }
