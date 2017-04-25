@@ -101,7 +101,7 @@ public class WorldAnimator{
 
         //myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
         myScene = new Scene(root,LENGTH,WIDTH);
-        st = new SequentialTransition();
+        //st = new SequentialTransition();
         LocationComponent lc = myData.getMainLocation();
         //Change Length
         System.out.println("this triggers");
@@ -185,8 +185,8 @@ public class WorldAnimator{
     public void removeEntity(Integer entity){
     	System.out.println("CHAHCHAHCHA" + entity);
     	if (imageMap.containsKey(entity)){
-    		st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
-    		st.play();
+    		//st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
+    		//st.play();
     		imageMap.get(entity).getImageView().setImage(null);
     	
     		imageMap.remove(entity);
@@ -202,8 +202,8 @@ public class WorldAnimator{
 	            imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 	            
 	            root.getChildren().add(imageView);
-	            st.getChildren().add(makeAppear(imageView));
-	            st.play();
+	            //st.getChildren().add(makeAppear(imageView));
+	            //st.play();
 	        }
 	  }
 
@@ -222,11 +222,12 @@ public class WorldAnimator{
     		currentImage.setImage(re.getImage());
     	}
     	
-        System.out.println("xPos:" +re.getTranslateX());
-        System.out.println("xPosCurrent: " + currentImage.getTranslateX());
+        //System.out.println("xPos:" +re.getTranslateX());
+        //System.out.println("xPosCurrent: " + currentImage.getTranslateX());
         currentImage.setTranslateX(re.getTranslateX());
-        //System.out.println("xPosCurrent: " + currentImage.getImageView().getTranslateX());
+        System.out.println("yPosCurrent: " + currentImage.getTranslateY());
         currentImage.setTranslateY(re.getTranslateY()); 
+        System.out.println("yPosNew: " + currentImage.getTranslateY());
         currentImage.setFitHeight(re.getFitHeight());
         currentImage.setFitWidth(re.getFitWidth());
 
