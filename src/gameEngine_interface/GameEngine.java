@@ -67,6 +67,7 @@ import entity.IEntityManager;
 import entity.SplashEntity;
 import entity.presets.AbstractBlock;
 import entity.presets.AbstractBreakableBox;
+import entity.presets.AbstractEnemy;
 import entity.presets.AbstractGoal;
 import entity.presets.AbstractMysteryBlock;
 import entity.presets.AbstractPowerup;
@@ -212,10 +213,11 @@ public class GameEngine implements GameEngineInterface {
 		yc2.setWidth(50);
 		y2.addComponent(yc2);
 		y2.addComponent(new VelocityComponent(3,0));
-		y2.addComponent(new LabelComponent("Blok"));
-		y2.addComponent(new CollidableComponent(false));
+		y2.addComponent(new LabelComponent("grrraa"));
+		y2.addComponent(new CollidableComponent(true));
 		y2.addComponent(new TimeComponent(new RemoveAction(), 3000));
 		y2.addComponent(new TypeComponent(EntityType.Projectile));
+		y2.addComponent(new CheckCollisionComponent(true));
 		x.addComponent(new ObjectCreationComponent(y2));
 		TimeComponent time = new TimeComponent(new Reload(), 1000);
 		x.addComponent(time);
@@ -283,8 +285,14 @@ public class GameEngine implements GameEngineInterface {
 		e.add(p);
 		
 		//GOAL
-		Entity goal = new Entity(106);
+		for (int i= 0; i<2; i++){
+		Entity goal = new AbstractEnemy(106+i);
+		if (i==0){
 		goal.addComponent(new LocationComponent(800, 20));
+		
+		}else{
+			goal.addComponent(new LocationComponent(1200,150));
+		}
 		goal.addComponent(new SpriteComponent(("sand.jpg")));
 		ImagePropertiesComponent goalc = new ImagePropertiesComponent();
 		goalc.setHeight(50);
@@ -293,8 +301,9 @@ public class GameEngine implements GameEngineInterface {
 		goalc.setWidth(50);
 		goal.addComponent(new LabelComponent("Goal"));
 		goal.addComponent(goalc);
-		goal.addComponent(new CollidableComponent(false));
 		e.add(goal);
+		goal.addComponent(new CheckCollisionComponent(true));
+		}
 
 
 		p.addComponent(new TypeComponent(EntityType.Block));
