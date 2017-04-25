@@ -88,17 +88,17 @@ public class Menu implements IMenu {
 
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
 		if (img.getHeight() > img.getWidth()) {
-			newheight = img.getHeight();
-			newwidth = scaleProportional(newheight, myCanvas.getWidth(), myCanvas.getHeight());
+			newheight = myCanvas.getHeight();
+			newwidth = scaleProportional(img.getHeight(), img.getWidth(), myCanvas.getWidth());
 		}
 		else {
-			newwidth = img.getWidth();
-			newheight = scaleProportional(newwidth, myCanvas.getHeight(), myCanvas.getWidth());
+			newwidth = myCanvas.getWidth();
+			newheight = scaleProportional(img.getWidth(), img.getHeight(), myCanvas.getHeight());
 		}
 		gc.drawImage(img, 0, 0, newwidth, newheight);
 	}
 	
-	private double scaleProportional(double imagehw, double mult, double div) {
-		return (imagehw * mult) / div;
-	}
+	private double scaleProportional(double bigger, double smaller, double canVal) {
+		return (smaller / bigger) * canVal;
+ 	}
 }
