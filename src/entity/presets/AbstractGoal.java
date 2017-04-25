@@ -1,11 +1,7 @@
 package entity.presets;
 
 import actions.BlockTopRegularCollision;
-
-import actions.BounceOffBottom;
-import actions.BounceOffLeft;
-import actions.BounceOffRight;
-import actions.BounceOffTop;
+import actions.GoalAction;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
@@ -16,12 +12,13 @@ import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 
-public class AbstractBlock extends Entity {
+public class AbstractGoal extends Entity{
 
-	public AbstractBlock(int id) {
+	public AbstractGoal(int id) {
 		super(id);
 		addCollisionComponents();
 	}
+	
 	private void addCollisionComponents(){
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
@@ -33,15 +30,19 @@ public class AbstractBlock extends Entity {
 //		scr.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
 //		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
 //		scb.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
-		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
-		scc.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
-		scc.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
+		
+		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);	
+		scc.addActionForType(new TypeComponent(EntityType.Player), new GoalAction());
+		
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
-		scq.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
+		scq.addActionForType(new TypeComponent(EntityType.Player), new GoalAction());
+		
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
-		scr.addActionForLabel(new LabelComponent("grrraah"), new BounceOffLeft());
+		scr.addActionForType(new TypeComponent(EntityType.Player), new GoalAction());
+		
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
-		scb.addActionForLabel(new LabelComponent("grrraah"), new BounceOffRight());
+		scb.addActionForType(new TypeComponent(EntityType.Player), new GoalAction());
+		
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);

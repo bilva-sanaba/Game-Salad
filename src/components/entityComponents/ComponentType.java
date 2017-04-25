@@ -25,5 +25,11 @@ public enum ComponentType {
 	Collidable(),
 	CollisionHandler(),
 	ObjectCreation(),
+	Goal(),
+	MonsterMovementStep(),
+	Friction(),
+	TerminalVelocity(),
+	FrontCamera(),
+	BackCamera(),
 	CheckCollision();
 }
