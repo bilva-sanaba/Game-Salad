@@ -32,17 +32,35 @@ import view.editor.ComponentEditor;
 public class EntityConfigurationWindow extends Window {
 	private UtilityFactory myUtilF;
 	private ViewData myData;
-	private String myEntityType;
 	private String[] componentList;
 	private ComponentFactory myCompF;
 	private VBox root;
 	private Stage myStage = new Stage();
 	private Entity myEntity;
 	private HashMap<String, ComponentEditor> myCompEdits;
-	private ObservableList<Entity> myList;
 
-	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType,
-			Entity entityIn) {
+	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, Entity entityIn) {
+		initalizeVars(utilF, entityData, entityType, entityIn);
+	}
+
+	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, Entity e) {
+		String[] tmpArray = getComponentArray(e);
+		initalizeVars(utilF, entityData, tmpArray, e);
+	}
+	
+	private String[] getComponentArray(Entity e){
+		ArrayList<String> tempCompList = new ArrayList<String>();
+		int numComp = 0;
+		for(IComponent c: e.getComponents()){
+			if(c != null){
+				numComp++;
+				tempCompList.add(c.getComponentType().toString());
+			}
+		}
+		return tempCompList.toArray(new String[numComp]);
+	}
+	
+	private void initalizeVars(UtilityFactory utilF, ViewData entityData, String[] entityType, Entity entityIn){
 		myCompF = new ComponentFactory();
 		myUtilF = utilF;
 		myData = entityData;
@@ -51,22 +69,6 @@ public class EntityConfigurationWindow extends Window {
 		componentList = entityType;
 		myCompEdits = new HashMap<String, ComponentEditor>();
 		myStage.setScene(buildScene());
-	}
-
-	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, ObservableList<Entity> blocksList, Entity e) {
-		myCompF = new ComponentFactory();
-		myUtilF = utilF;
-		myData = entityData;
-		myEntity = myData.getUserSelectedEntity();
-		myData.setUserSelectedEntity(myEntity);
-		componentList = entityType;
-		myCompEdits = new HashMap<String, ComponentEditor>();
-		myList = blocksList;
-		myStage.setScene(buildScene());
-	}
-
-	public void show() {
-		myStage.show();
 	}
 
 	private Scene buildScene() {

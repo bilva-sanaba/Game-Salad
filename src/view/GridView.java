@@ -30,6 +30,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
+import view.window.EntityConfigurationWindow;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 /**
@@ -216,7 +217,7 @@ public class GridView extends GUIComponent {
 		MenuItem undo = new MenuItem("Undo");
 		contextMenu.getItems().addAll(edit, cut, copy, paste, redo, undo);
 		edit.setOnAction(e -> {
-			rightClick.hide();
+			new EntityConfigurationWindow(util, myData, entity);
 		});
 		cut.setOnAction(e -> {
 			myData.unplaceEntity(myData.getUserSelectedEntity());
