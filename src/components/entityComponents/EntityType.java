@@ -5,6 +5,9 @@ public enum EntityType {
 	Player(),
 	Block(),
 	Monster(),
-	Item();
+	Item(),
+	Goal(),
+	None(),
+	Camera();
 	
 }

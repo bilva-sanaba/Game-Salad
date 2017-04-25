@@ -53,7 +53,6 @@ public class ObserverManager {
 	
 	private void updateImageView(IRestrictedEntity e) {
 		if(myEntities.get(e.getID())==null){
-			System.out.println("CHEHEHEHEHEHHEHEH");
 			myWorld.removeEntity(e.getID());
 		}
 		else{

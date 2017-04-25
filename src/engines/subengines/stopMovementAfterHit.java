@@ -2,7 +2,7 @@ package engines.subengines;
 import java.util.List;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
-import components.collisionComponents.SideCollisionComponent;
+import components.entityComponents.SideCollisionComponent;
 import engines.CollisionPair;
 import entity.Entity;
 import entity.IEntity;
@@ -25,7 +25,6 @@ public class stopMovementAfterHit implements ISubEngine {
 		}
 		
 		if (lc1.getLabel().equals("Block")) {
-			System.out.println("should be printing");
 			SideCollisionComponent scc = (SideCollisionComponent) e1.getComponent(ComponentType.CollisionSide);
 			scc.executeOnCollide(e0,e1);
 			alreadyHit = true;

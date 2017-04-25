@@ -10,8 +10,8 @@ import java.util.Set;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
-import components.LocationComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
@@ -96,7 +96,8 @@ public class WorldAnimator{
         myScene = new Scene(root,LENGTH,WIDTH);
         LocationComponent lc = myData.mainLocation();
         //Change Length
-        myCamera = new Camera(LENGTH*5 ,myScene, lc);
+        System.out.println("this triggers");
+        myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
 
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
 
@@ -111,15 +112,18 @@ public class WorldAnimator{
         //animation.play();
     }
     
+    
+    //for testing
+    
+    
     public Scene getScene() {
         return myScene;
     }
-
     private void step(double elapsedTime){
     	//myView.step(keysPressed);
     	myEngine.handleUpdates(keysPressed);
         fillMapAndDisplay(myObservers.getUpdatedSet());
-        System.out.println(imageMap.size());
+       
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
         updateScrolling(locationComponent, velocityComponent);*/
         myCamera.updateCamera();
@@ -160,7 +164,7 @@ public class WorldAnimator{
     	Map<Integer, ImageView> map = myObservers.getEntityMap();
         for(Integer entity : entities){
         //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
-        	System.out.println(entity + "HEYYYEEYYEYEYEYEYEYEYYEYDUBLIN");
+
         	if (map.get(entity)!=null){
 		  //SequentialTransition trans = new SequentialTransition();
 		  //removeEntity(entity,entities);

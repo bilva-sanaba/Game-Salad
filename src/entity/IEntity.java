@@ -50,5 +50,5 @@ public interface IEntity {
 	
 	public IEntity clone();
 	public void changed(Object o);
-
+	public IEntity newCopy();
 }

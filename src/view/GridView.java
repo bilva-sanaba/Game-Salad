@@ -3,9 +3,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
-import components.LocationComponent;
+
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
+import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.event.EventHandler;

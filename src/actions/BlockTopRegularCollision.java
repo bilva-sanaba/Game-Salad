@@ -2,21 +2,24 @@ package actions;
 import java.util.ArrayList;
 import java.util.List;
 
-import components.LocationComponent;
-import components.collisionComponents.CollisionComponentType;
-import components.collisionComponents.CollisionComponentsHandler;
-import components.collisionComponents.SideCollisionComponent;
+import class_annotations.TopAction;
+import components.entityComponents.AccelerationComponent;
 import components.entityComponents.CollidableComponent;
+import components.entityComponents.CollisionComponentType;
+import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.LocationComponent;
+import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
-import components.movementcomponents.AccelerationComponent;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 
+
+@TopAction()
 public class BlockTopRegularCollision implements IAction {
 	
 	@Override
