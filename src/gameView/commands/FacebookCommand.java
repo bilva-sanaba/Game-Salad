@@ -3,7 +3,7 @@ package gameView.commands;
 import javafx.stage.Stage;
 import gameView.ICommandView;
 import gameView.loginScreen.FaceBookLogin;
-import gameView.tools.UserData;
+import gameView.userManagement.UserData;
 
 public class FacebookCommand extends AbstractCommand{
 	

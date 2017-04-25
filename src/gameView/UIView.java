@@ -8,11 +8,13 @@ import data_interfaces.XMLException;
 import gameView.gameScreen.GameScreen;
 //import gameView.gameScreen.SpecificGameSplashView;
 
+
+
 import com.sun.jmx.snmp.Timestamp;
 
 import gameView.splashScreen.SplashView;
-import gameView.tools.UserData;
-import gameView.tools.UserDatabase;
+import gameView.userManagement.UserData;
+import gameView.userManagement.UserDatabase;
 import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
 import controller.WorldAnimator;
@@ -121,9 +123,8 @@ public class UIView implements UIViewInterface {
 		myController.step(keysPressed);
 	}
 	
-	public void addUser(UserData user) {
-		myDatabase.addUser(user);
-		myUser = user;
+	public void selectUser(UserData user, boolean newUser) {
+		myUser = myDatabase.selectUser(user, newUser);
 	}
 
 	public UserData getUser() {

@@ -1,7 +1,7 @@
 package gameView.loginScreen;
 
 import gameView.tools.FrontEndException;
-import gameView.tools.UserData;
+import gameView.userManagement.UserData;
 
 import java.io.File;
 import java.io.IOException;

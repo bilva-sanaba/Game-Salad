@@ -1,4 +1,4 @@
-package gameView.tools;
+package gameView.userManagement;
 
 import java.io.BufferedWriter;
 import java.io.File;

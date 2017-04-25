@@ -1,4 +1,4 @@
-package gameView.tools;
+package gameView.userManagement;
 
 public enum UserDataEnum {
 

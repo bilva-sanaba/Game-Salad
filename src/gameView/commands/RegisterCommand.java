@@ -4,7 +4,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import gameView.ICommandView;
 import gameView.tools.FrontEndException;
-import gameView.tools.UserData;
+import gameView.userManagement.UserData;
 
 public class RegisterCommand extends AbstractCommand {
 	
@@ -21,11 +21,7 @@ public class RegisterCommand extends AbstractCommand {
 			throw new FrontEndException(String.format("PASSWORDS DO NOT MATCH: %s %s", password, passwordCheck));
 		}
 		UserData user = new UserData(username, password, userImage.getImage().toString());
-		System.out.println(username);
-		System.out.println(password);
-		System.out.println(passwordCheck);
-		//UserData user = new UserData(username, )
-		//GET DATA FROM DATABASE
+		getView().selectUser(user, true);
 	}
 
 	@Override

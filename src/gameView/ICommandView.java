@@ -2,7 +2,7 @@ package gameView;
 
 import javafx.scene.Scene;
 import gameView.tools.DisplayManager;
-import gameView.tools.UserData;
+import gameView.userManagement.UserData;
 
 public interface ICommandView {
 
@@ -15,7 +15,7 @@ public interface ICommandView {
 	public DisplayManager getComponents();
 	public void pauseGame();
 	public String getInstructions();
-	public void addUser(UserData user);
+	public void selectUser(UserData user, boolean newUser);
 	public void loginScreen();
 	
 }

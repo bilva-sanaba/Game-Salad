@@ -2,6 +2,7 @@ package gameView.commands;
 
 import javafx.stage.Stage;
 import gameView.ICommandView;
+import gameView.userManagement.UserData;
 
 public class SignInCommand extends AbstractCommand {
 
@@ -14,10 +15,8 @@ public class SignInCommand extends AbstractCommand {
 	}
 	
 	public void execute(Stage s, String username, String password) {
-		//go in and check password in database
-		
-		System.out.println(username);
-		System.out.println(password);
+		UserData existingUser = new UserData(username, password, null);
+		getView().selectUser(existingUser, false);
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import gameView.loginScreen.LoginScreen;
 import gameView.tools.ButtonFactory;
 import gameView.tools.CommandFactory;
 import gameView.tools.DisplayManager;
-import gameView.tools.UserData;
+import gameView.userManagement.UserData;
 
 import java.util.Collection;
 
@@ -62,8 +62,8 @@ public abstract class AbstractViewer implements ICommandView {
 		getView().authorGame();
 	}
 	
-	public void addUser(UserData user) {
-		getView().addUser(user);
+	public void selectUser(UserData user, boolean newUser) {
+		getView().selectUser(user, newUser);
 	}
 	
 	public void loginScreen() {
