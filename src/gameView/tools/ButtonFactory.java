@@ -9,17 +9,18 @@ import gameView.commands.AbstractCommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import view.UtilityFactory;
 
 public class ButtonFactory extends UtilityFactory {
 
-	private UIView myView;
+	private Stage myStage;
 	private ResourceBundle myResources;
 	private String myFile;
 
-	public ButtonFactory(UIView view, String file) {
+	public ButtonFactory(String file, Stage s) {
 		super(file);
-		myView = view;
+		myStage = s;
 		myFile = file;
 		if (myFile != null) {
 			myResources = ResourceBundle.getBundle(UIView.DEFAULT_LOCATION + file);
@@ -41,7 +42,7 @@ public class ButtonFactory extends UtilityFactory {
 		button.setId(command.getName().toLowerCase());
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				command.execute(myView.getStage());
+				command.execute(myStage);
 			}
 		});
 		return button;

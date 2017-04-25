@@ -1,5 +1,7 @@
 package gameView.userManagement;
 
+import gameView.tools.ImageViewContainer;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
@@ -35,15 +37,15 @@ public class UserData {
 	public String getPassword() {
 		return password;
 	}
-	public ImageView getProfilePicture() {
+	public ImageViewContainer getProfilePicture() {
 		return makeImage(image);
 	}
 	
-	private ImageView makeImage(String s) {
+	private ImageViewContainer makeImage(String s) {
 		if (s == null) {
 			return null;
 		}
-		ImageView toAdd = new ImageView(new Image(new File(s).toURI().toString()));
+		ImageViewContainer toAdd = new ImageViewContainer(new Image(image), image);
 		return toAdd;
 	}
 }

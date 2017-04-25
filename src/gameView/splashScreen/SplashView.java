@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import gameView.AbstractViewer;
 import gameView.ICommandView;
@@ -30,8 +31,8 @@ public class SplashView extends AbstractViewer {
 	private Collection<AbstractCommand> myCommands;
 	
 	
-	public SplashView(UIView view) {
-		super(view);
+	public SplashView(UIView view, Stage s) {
+		super(view, s);
 		myCommands = getCommands(myName);
 		myPane = new BorderPane();
 		myScene = new Scene(myPane, UIView.DEFAULT_SIZE.width,

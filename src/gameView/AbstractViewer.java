@@ -19,11 +19,13 @@ public abstract class AbstractViewer implements ICommandView {
 
 	private UIView myView;
 	private ButtonFactory myButtonFactory;
+	private Stage myStage;
 
 	
-	public AbstractViewer(UIView view) {
+	public AbstractViewer(UIView view, Stage s) {
+		myStage = s;
 		myView = view;
-		myButtonFactory = new ButtonFactory(view, UIView.DEFAULT_BUTTONS);
+		myButtonFactory = new ButtonFactory(UIView.DEFAULT_BUTTONS, getStage());
 	}
 	
 	public abstract Scene getScene();
@@ -31,6 +33,10 @@ public abstract class AbstractViewer implements ICommandView {
 	
 	protected UIView getView() {
 		return myView;
+	}
+	
+	protected Stage getStage() {
+		return myStage;
 	}
 	
 	protected Collection<AbstractCommand> getCommands(String name) {
@@ -76,7 +82,7 @@ public abstract class AbstractViewer implements ICommandView {
 	//DOES NOTHING FOR SPLASHSCREEN
 	public void runGame() {
 		System.out.println("ABSTRACT");
-		getView().runGame();
+		//getView().runGame();
 	}
 	public DisplayManager getComponents() {
 		System.out.println("ABSTRACT");

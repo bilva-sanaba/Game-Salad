@@ -46,8 +46,8 @@ public class UIView implements UIViewInterface {
 		myUserManager = new UserManager();
 		myController = controller;
 		myAnimation = new WorldAnimator(this);
-		mySplash = new SplashView(this);
-		myGameScene = new GameScreen(this, myAnimation);
+		mySplash = new SplashView(this, s);
+		myGameScene = new GameScreen(this, s, myAnimation);
 		getSplashScreen();
 		//TODO UNCOMMENT TO USE
 		//getSplashScreen();

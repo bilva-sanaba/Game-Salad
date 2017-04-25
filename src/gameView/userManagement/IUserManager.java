@@ -12,4 +12,6 @@ public interface IUserManager {
 	public boolean facebookUser(UserData data);
 	
 	public void saveAllUsers();
+	
+	public void signOut();
 }

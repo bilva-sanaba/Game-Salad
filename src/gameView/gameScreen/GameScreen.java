@@ -20,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class GameScreen extends AbstractViewer implements IGameScreenDisplays, IGameScreenEntity {
 
@@ -35,8 +36,8 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private DisplayManager myDisplays;
 	private Collection<AbstractCommand> myCommands;
 
-	public GameScreen(UIView view, WorldAnimator animation) {
-		super(view);
+	public GameScreen(UIView view, Stage s, WorldAnimator animation) {
+		super(view, s);
 		myCommands = getCommands(myName);
 		myAnimation = animation;
 		initializeBoxes();

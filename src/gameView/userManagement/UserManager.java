@@ -47,6 +47,11 @@ public class UserManager implements IUserManager {
 		myDatabase.saveUsers();
 	}
 	
+	@Override
+	public void signOut() {
+		myCurrentUser = null;
+	}
+	
 	private boolean nullCheck(UserData data, String message) {
 		if (data == null) {
 			throw new FrontEndException(message);
