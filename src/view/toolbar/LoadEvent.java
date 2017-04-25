@@ -42,6 +42,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			myData.setGameName(name);
 			c = new Communicator(name);
 			Collection <Entity> col = c.getData();
+//			System.out.println(col + " line 45 " + this.getClass());
 			myData.refresh();
 			for (Entity e: col) {
 				System.out.println(e.getClass().toString());
