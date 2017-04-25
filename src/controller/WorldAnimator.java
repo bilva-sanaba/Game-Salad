@@ -61,7 +61,7 @@ public class WorldAnimator{
     private Scene myScene;
     private Timeline animation;
     private Group root;
-
+    private GameData myData;
 //    private GameBuilder myGameBuilder;
 
     private Camera myCamera;
@@ -83,6 +83,7 @@ public class WorldAnimator{
     	return root;
     }
     public void start (GameData myData, IGameScreenEntity screen){
+    	this.myData=myData;
         root = new Group();
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
         myObservers = new ObserverManager(this, restrictedEntityManager);
@@ -94,7 +95,7 @@ public class WorldAnimator{
 
         //myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
         myScene = new Scene(root,LENGTH,WIDTH);
-        LocationComponent lc = myData.mainLocation();
+        LocationComponent lc = myData.getMainLocation();
         //Change Length
         System.out.println("this triggers");
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
@@ -121,7 +122,7 @@ public class WorldAnimator{
     }
     private void step(double elapsedTime){
     	//myView.step(keysPressed);
-    	myEngine.handleUpdates(keysPressed);
+    	myEngine.handleUpdates(keysPressed,myData);
         fillMapAndDisplay(myObservers.getUpdatedSet());
        
         /*VelocityComponent velocityComponent = (VelocityComponent) myGameEngine.getMainCharacter().getComponent(ComponentType.Velocity);
@@ -195,7 +196,7 @@ public class WorldAnimator{
 	            imageView = updateImage(imageView, old);
 	            imageMap.put(entity, imageView);
 	            
-	            System.out.println(imageView.getFitHeight() + "    " + imageView.getFitWidth());
+	
 	            root.getChildren().add(imageView);
 //	            myGameScreen.addEntity(imageView);
 
@@ -224,10 +225,6 @@ public class WorldAnimator{
 
         currentImage.setTranslateY(re.getTranslateY()); 
         currentImage.setFitHeight(re.getFitHeight());
-        currentImage.setFitWidth(re.getFitWidth());
-        
-        currentImage.setFitHeight(re.getFitHeight());
-        
         currentImage.setFitWidth(re.getFitWidth());
         
         return currentImage;

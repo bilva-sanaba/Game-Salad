@@ -25,11 +25,12 @@ public enum ComponentType {
 	Collidable(),
 	CollisionHandler(),
 	ObjectCreation(),
+	CheckCollision(),
+	Time(),
 	Goal(),
 	MonsterMovementStep(),
 	Friction(),
 	TerminalVelocity(),
 	FrontCamera(),
-	BackCamera(),
-	CheckCollision();
+	BackCamera();
 }
