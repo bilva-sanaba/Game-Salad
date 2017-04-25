@@ -5,7 +5,7 @@ import java.util.List;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.StepComponent;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
