@@ -199,12 +199,13 @@ public class GameEngine implements GameEngineInterface {
 
 		Entity y2 = new Entity(201);
 		y2.addComponent(new LocationComponent(800,150));
-		y2.addComponent(new SpriteComponent(("platform_tile_057.png")));
+		y2.addComponent(new SpriteComponent(("Feuer46.GIF")));
 		ImagePropertiesComponent yc2 = new ImagePropertiesComponent();
 		yc2.setHeight(50);
 		yc2.setWidth(50);
 		y2.addComponent(yc2);
 		y2.addComponent(new VelocityComponent(3,0));
+
 		y2.addComponent(new LabelComponent("Blok"));
 		y2.addComponent(new CollidableComponent(false));
 		y2.addComponent(new TimeComponent(new RemoveAction(), 3000));
@@ -217,7 +218,45 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
+
+		Entity z = new Entity(666);
+		z.addComponent(new LocationComponent(1000, 100));
+		z.addComponent(new SpriteComponent("platform_tile_053.png"));
+		ImagePropertiesComponent zc = new ImagePropertiesComponent();
+		z.addComponent(new CheckCollisionComponent(true));
+		zc.setHeight(50);
+		zc.setWidth(50);
+		z.addComponent(xc);
+		z.addComponent(new CollidableComponent(true));
+		z.addComponent(new LabelComponent("villainguy"));
+		z.addComponent(new TypeComponent(EntityType.Monster));
+		
+//
+//
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
+		e.add(x);
+		e.add(z);
+
+		//		for (int i=0;i<20;i++){
+		//			Entity x = new Entity(i);
+		//			x.addComponent(new LocationComponent(i*50,450));
+		//			x.addComponent(new SpriteComponent(("dirt.jpg")));
+		//
+		//			ImagePropertiesComponent xc = new ImagePropertiesComponent();
+		//			xc.setHeight(50);
+		//			xc.setWidth(50);
+		//			x.addComponent(xc);
+		//
+		//			SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top, new BlockTopRegularCollision());
+		//			x.addComponent(scc);
+		//
+		//			x.addComponent(new LabelComponent("Block"));
+		//			e.add(x);
+		//		}
+		//		e.add(g);e.add(t);
+
 		 e.add(x);
+
 
 		
 		for (int i=1;i<35;i++){
@@ -299,6 +338,7 @@ public class GameEngine implements GameEngineInterface {
 		
 
 		myEntityManager = new EntityManager(e);
+
 
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager));

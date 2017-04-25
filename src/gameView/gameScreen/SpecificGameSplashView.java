@@ -76,7 +76,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 		myBP.setCenter(lab);
 	}
 	private void addBackground(){
-		myBackground = mySplashEntity.getSpriteImagePath();
+		myBackground = mySplashEntity.getRestrictedImagePath();
 		myBP.setBackground(makeBackground(myBackground));
 	}
 	
