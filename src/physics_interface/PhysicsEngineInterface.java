@@ -1,7 +1,7 @@
 package physics_interface;
 
-import gameView.Coordinate;
 import gameView.UIImageProperty;
+import gameView.tools.Coordinate;
 
 /**
  * Engine for the physics of the game. This will be used for certain

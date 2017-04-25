@@ -2,11 +2,7 @@
 	-fx-background-color: #a9a9a9;
 }
 
-#left {
-	box-shadow: inset 0 0 1em white;
-}
-
-#facebook {
+#facebookpost {
 	-fx-background-color: #6495ed;
 	-fx-text-fill: white;
 	-fx-font-family: "Arial Narrow";

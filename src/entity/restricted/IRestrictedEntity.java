@@ -7,7 +7,7 @@ import components.entityComponents.ImagePropertiesComponent;
 import java.util.Observer;
 
 import javafx.geometry.Dimension2D;
-import gameView.Coordinate;
+import gameView.tools.Coordinate;
 import javafx.geometry.Dimension2D;
 /**
  * Interface for objects which the front end will receive

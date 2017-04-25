@@ -1,4 +1,4 @@
-package gameView;
+package gameView.tools;
 
 import components.entityComponents.LocationComponent;
 import components.entityComponents.XYComponent;

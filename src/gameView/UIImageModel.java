@@ -1,5 +1,6 @@
 package gameView;
 
+import gameView.tools.Coordinate;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

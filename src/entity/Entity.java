@@ -14,7 +14,7 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import entity.restricted.IRestrictedEntity;
-import gameView.Coordinate;
+import gameView.tools.Coordinate;
 import javafx.beans.InvalidationListener;
 import javafx.geometry.Dimension2D;
 

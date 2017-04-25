@@ -6,7 +6,6 @@ import controller.WorldAnimator;
 import gameEngine_interface.GameEngine;
 import gameEngine_interface.RunnerTest;
 import gameView.AbstractViewer;
-import gameView.ImageManager;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
 import gameView.displayComponents.UIDisplayComponent;

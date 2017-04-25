@@ -63,7 +63,7 @@ public class ProfileScreen extends AbstractViewer {
 		ImageButton image = new ImageButton(myStage, myData.getCurrentUser().getProfilePicture().getPath());
 		Label name = new Label(myData.getCurrentUser().getName());
 		HBox options = makeOptionBox();
-		VBox toReturn = new VBox(20, image, name, options);
+		VBox toReturn = new VBox(20, image, name, options);  
 		toReturn.setAlignment(Pos.CENTER);
 		return toReturn;
 	}
@@ -71,6 +71,7 @@ public class ProfileScreen extends AbstractViewer {
 	private HBox makeOptionBox() {
 		Button signOut = makeButton(new SignOutCommand(this)); 
 		Button facebookPost = makeButton(new FacebookPostCommand(this));
+		System.out.println(facebookPost.getId());
 		HBox optionsBox = new HBox(20, signOut, facebookPost);
 		optionsBox.setAlignment(Pos.CENTER);
 		return optionsBox;
