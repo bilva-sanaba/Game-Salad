@@ -3,9 +3,10 @@ package components.entityComponents;
 import java.util.HashMap;
 import java.util.Map;
 
+import components.AComponent;
 import components.IComponent;
 
-public class CollisionComponentsHandler implements IComponent {
+public class CollisionComponentsHandler extends AComponent implements IComponent {
 	private Map<String, SideCollisionComponent> sideCollisionMap;
 	
 	public CollisionComponentsHandler(Map <String, SideCollisionComponent> map){

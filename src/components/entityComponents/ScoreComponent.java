@@ -1,8 +1,9 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
-public class ScoreComponent implements IComponent {
+public class ScoreComponent extends AComponent implements IComponent {
 
 	private int score;
 	

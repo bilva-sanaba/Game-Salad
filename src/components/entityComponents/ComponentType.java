@@ -32,5 +32,5 @@ public enum ComponentType {
 	Friction(),
 	TerminalVelocity(),
 	FrontCamera(),
-	BackCamera();
+	BackCamera(), TerminalVelComponent, FrictionComponent;
 }

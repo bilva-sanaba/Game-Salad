@@ -38,6 +38,7 @@ public class ViewData extends Observable {
 	private Entity copiedEntity;
 	private String gameName;
 	private Boolean saved = true;
+	private Entity userGridSelectedEntity;
 	//TODO: implement the saved boolean to track whether the current state is saved
 
 	public ViewData() {
@@ -74,6 +75,14 @@ public class ViewData extends Observable {
 
 	public Entity getUserSelectedEntity() {
 		return userSelectedEntity;
+	}
+	
+	public void setUserGridSelectedEntity(Entity entity) {
+		userGridSelectedEntity = entity;
+	}
+
+	public Entity getUserGridSelectedEntity() {
+		return userGridSelectedEntity;
 	}
 
 	public void defineEntity(Entity entity) {
