@@ -41,10 +41,7 @@ import javafx.scene.paint.Paint;
  * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent {
-	//private ContextMenu rightClick;
-	//private ContextMenu rightClickEntity;
 	private RightClickMenu rightClick;
-	
 	
 	private static final int CELL_SIZE = 8;
 	private ScrollPane myScroll;
@@ -107,7 +104,6 @@ public class GridView extends GUIComponent {
 			}
 			if(e.isSecondaryButtonDown()) {
 				rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
-				//rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
 			}
 			else{
 				Entity userSelectedEntity = myData.getUserSelectedEntity();
@@ -184,66 +180,6 @@ public class GridView extends GUIComponent {
 		String filePath = myData.getLevelEntity().getBackgroundFilePath();
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
-
-	
-/*	private ContextMenu buildContextMenu(){
-		
-		ContextMenu contextMenu = new ContextMenu();
-		MenuItem paste = new MenuItem("Paste");
-		paste.setAccelerator(new KeyCodeCombination(KeyCode.V, KeyCombination.SHORTCUT_DOWN));
-		MenuItem redo = new MenuItem("Redo");
-		MenuItem undo = new MenuItem("Undo");
-		undo.setAccelerator(new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN));
-		contextMenu.getItems().addAll(paste, redo, undo);
-		paste.setOnAction(e -> {
-			rightClick.hide();
-		});
-		redo.setOnAction(e -> {
-			rightClick.hide();
-		});
-		undo.setOnAction(e -> {
-			rightClick.hide();
-		});
-		return contextMenu;
-	}
-
-	private ContextMenu buildEntityContextMenu(Entity entity){
-		ContextMenu contextMenu = new ContextMenu();
-		MenuItem edit = new MenuItem("Edit");
-		MenuItem cut = new MenuItem("Cut");
-		cut.setAccelerator(new KeyCodeCombination(KeyCode.DELETE, KeyCombination.SHORTCUT_DOWN));
-		MenuItem copy = new MenuItem("Copy");
-		copy.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.SHORTCUT_DOWN));
-		MenuItem paste = new MenuItem("Paste");
-		paste.setAccelerator(new KeyCodeCombination(KeyCode.V, KeyCombination.SHORTCUT_DOWN));
-		MenuItem redo = new MenuItem("Redo");
-		MenuItem undo = new MenuItem("Undo");
-		undo.setAccelerator(new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN));
-		contextMenu.getItems().addAll(edit, cut, copy, paste, redo, undo);
-		edit.setOnAction(e -> {
-			rightClick.hide();
-		});
-		cut.setOnAction(e -> {
-			myData.unplaceEntity(myData.getUserSelectedEntity());
-			myGrid.getChildren().remove(placedImages.get(myData.getUserSelectedEntity()));
-			placedImages.remove(myData.getUserSelectedEntity());
-			myData.setUserSelectedEntity(null);
-			rightClick.hide();
-		});
-		copy.setOnAction(e -> {
-			rightClick.hide();
-		});
-		paste.setOnAction(e -> {
-			rightClick.hide();
-		});
-		redo.setOnAction(e -> {
-			rightClick.hide();
-		});
-		undo.setOnAction(e -> {
-			rightClick.hide();
-		});
-		return contextMenu;
-	} */
 	
 	public void removeEntity(){
 		myGrid.getChildren().remove(placedImages.get(myData.getUserSelectedEntity()));
