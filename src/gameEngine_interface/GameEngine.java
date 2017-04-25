@@ -288,7 +288,7 @@ public class GameEngine implements GameEngineInterface {
 		for (int i= 0; i<2; i++){
 		Entity goal = new AbstractEnemy(106+i);
 		if (i==0){
-		goal.addComponent(new LocationComponent(800, 20));
+			goal.addComponent(new LocationComponent(800, 20));
 		
 		}else{
 			goal.addComponent(new LocationComponent(1200,150));
@@ -298,6 +298,7 @@ public class GameEngine implements GameEngineInterface {
 		goalc.setHeight(50);
 		goal.addComponent(new StepComponent(50));
 		goal.addComponent(new VelocityComponent(-1,0));
+		goal.addComponent(new LabelComponent("wecamefromnothingtosomething"));
 		goalc.setWidth(50);
 		goal.addComponent(new LabelComponent("Goal"));
 		goal.addComponent(goalc);

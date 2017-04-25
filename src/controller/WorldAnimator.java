@@ -222,8 +222,9 @@ public class WorldAnimator{
         
         //UNCOMMENT TO TEST RUNNER
         currentImage.setTranslateX(re.getTranslateX());
-
+        System.out.println("currentYPos: " + currentImage.getTranslateY());
         currentImage.setTranslateY(re.getTranslateY()); 
+        System.out.println("newYPos: " + currentImage.getTranslateY());
         currentImage.setFitHeight(re.getFitHeight());
         currentImage.setFitWidth(re.getFitWidth());
         

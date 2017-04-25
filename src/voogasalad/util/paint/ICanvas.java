@@ -2,7 +2,6 @@ package voogasalad.util.paint;
 
 import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
 public interface ICanvas {
