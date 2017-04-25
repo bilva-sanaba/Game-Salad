@@ -70,7 +70,9 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 
 	@Override
 	public void addComponent(IComponent component) {
-		myComponentMap.remove(component);
+		if (myComponentMap.containsKey(component)){
+				myComponentMap.remove(component);
+		}
 		myComponentMap.put(component, component.getComponentType());
 	}
 
