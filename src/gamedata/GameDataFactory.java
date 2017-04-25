@@ -26,10 +26,10 @@ public class GameDataFactory {
 		gameData.setMainLocation(updatedData.getMainLocation());
 		gameData.setLevel(updatedData.getLevel().doubleValue());
 		gameData.setMusic(updatedData.getMusic().toString());
-		List<Entity> newEntities = new ArrayList<Entity>();
-		for (IRestrictedEntity re : updatedData.getRestrictedEntityManager().getRestrictedEntities()){
-			newEntities.add(re.clone());
-		}
-		gameData.setRestrictedEntityManager((IRestrictedEntityManager) new EntityManager(newEntities));
+//		List<Entity> newEntities = new ArrayList<Entity>();
+//		for (IRestrictedEntity re : updatedData.getRestrictedEntityManager().getRestrictedEntities()){
+//			newEntities.add(re.clone());
+//		}
+//		gameData.setRestrictedEntityManager((IRestrictedEntityManager) new EntityManager(newEntities));
 	}
 }

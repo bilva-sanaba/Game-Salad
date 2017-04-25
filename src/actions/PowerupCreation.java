@@ -10,20 +10,15 @@ import entity.Entity;
 import entity.EntityManager;
 import entity.IEntity;
 import entity.IEntityManager;
-import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
-import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
-public class PowerupCreation implements IAction {
+public class PowerupCreation   extends AbstractAction implements IAction {
 	@Override
 	public IRestrictedGameData executeAction(IEntity e, IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		
-		List<IEntity> entities = new ArrayList<IEntity>();
 		ObjectCreationComponent occ = ((ObjectCreationComponent) e2.getComponent(ComponentType.ObjectCreation));
-		GameDataFactory gdf = new GameDataFactory();
-		GameData returnData = gdf.blankEntityData(currentGameData);
+		GameData returnData = getGameDataFactory().blankEntityData(currentGameData);
 		if (occ.checkIfCreation()){
 			IEntity powerup = occ.getCreationEffect();
 			if (powerup!=null){

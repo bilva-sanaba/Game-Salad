@@ -58,6 +58,7 @@ import entity.IEntity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
+import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 import engines.AbstractEngine;
 import entity.IEntityManager;
@@ -82,6 +83,7 @@ public class GameEngine implements GameEngineInterface {
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	private Entity mainCharacter;
+	private GameData myGameData;
 	private GPEntityManager GPEM;
 	private double points=0;
 	private double lives=0;
@@ -97,7 +99,8 @@ public class GameEngine implements GameEngineInterface {
 		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
-		IRestrictedGameData dg = (IRestrictedGameData) new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,music);
+		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,music);
+		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
 		return dg;
 	}
 	public Collection<IEntity> save(){
@@ -119,7 +122,9 @@ public class GameEngine implements GameEngineInterface {
 		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
 		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
-			s.update(keysPressed,gd);
+			IRestrictedGameData rgd = s.update(keysPressed,(IRestrictedGameData) myGameData);
+			GameDataFactory gdf = new GameDataFactory();
+			gdf.updateGameData(myGameData,rgd);
 		}
 	}
 	
@@ -300,9 +305,9 @@ public class GameEngine implements GameEngineInterface {
 
 		myEntityManager = new EntityManager(e);
 
-
+		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager));
-		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+		return myGameData;
 	}
 	
 	//for testing
