@@ -7,11 +7,13 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.GoalComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 public class GoalAction implements IAction{
 
 	@Override
-	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		
 		for(IEntity e: myEM.getEntities()){
 			if(e.getComponent(ComponentType.Goal) != null){
@@ -19,7 +21,9 @@ public class GoalAction implements IAction{
 				gc.satisfyGoal();
 			}
 		}
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
+
+		return gdf.blankEntityData(currentGameData);
 	}
 
 }

@@ -1,15 +1,12 @@
 package engines;
-
-
 import java.util.*;
-
-
 import components.*;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.XYComponent;
 import entity.*;
 import entity.restricted.*;
+import gamedata.IRestrictedGameData;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.TerminalVelocityComponent;
@@ -18,27 +15,22 @@ import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 import javafx.scene.input.KeyCode;
-
-
 public class MovementEngine extends AbstractEngine{
 	
 	public MovementEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 	}
-
 	@Override
 	protected List<ComponentType> neededComponents() {	
 		return null;
 	}
-
-	public void update(Collection<KeyCode> keys) {
+	public void update(Collection<KeyCode> keys, IRestrictedGameData currentGameData) {
 		for (IEntity e: getEManager().getEntities()) {
 			if (hasComponent(e,ComponentType.Location)) {
 				updateAllValues(e);
 			}	
 		}
 	}
-
 	private void updateAllValues(IEntity e) {
 		if (hasComponent(e, ComponentType.Velocity)) {
 			updateLocation(e);

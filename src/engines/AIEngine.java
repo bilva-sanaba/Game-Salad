@@ -5,9 +5,10 @@ import java.util.List;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.StepComponent;
-import components.movementcomponents.VelocityComponent;
+import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
 public class AIEngine extends AbstractEngine{
@@ -23,7 +24,7 @@ public class AIEngine extends AbstractEngine{
 	}
 
 	@Override
-	public void update(Collection<KeyCode> keysPressed) {
+	public void update(Collection<KeyCode> keysPressed, IRestrictedGameData currentGameData) {
 		for(IEntity e: getEManager().getEntities()){
 			if(hasComponent(e, ComponentType.Step)){
 				StepComponent sc = (StepComponent) e.getComponent(ComponentType.Step);
