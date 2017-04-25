@@ -117,7 +117,7 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void step(Set<KeyCode> keysPressed) {
-		myController.step(keysPressed);
+		myController.step(keysPressed, myData);
 	}
 
 }

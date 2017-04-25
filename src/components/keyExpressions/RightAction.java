@@ -10,14 +10,19 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import entity.restricted.IRestrictedEntity;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 @KeyAction()
 public class RightAction implements IAction{
 
 	@Override
-	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		LocationComponent lc = (LocationComponent) player.getComponent(ComponentType.Location);
 		lc.setX(lc.getX()+5);
-		return new ArrayList<IEntity>();
+		((IRestrictedEntity) player).changed(player);
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 	}
 
 }

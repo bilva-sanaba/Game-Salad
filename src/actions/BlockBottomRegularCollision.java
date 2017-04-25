@@ -10,15 +10,18 @@ import components.entityComponents.LabelComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 @BottomAction()
 public class BlockBottomRegularCollision implements IAction {
 	
 	@Override
-	public List<IEntity> executeAction(IEntity e, IEntity e2, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity e, IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		VelocityComponent velo = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		velo.setY(-1*velo.getY());
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
 
+		return gdf.blankEntityData(currentGameData);
 	}
 }
