@@ -8,6 +8,8 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 @BottomAction()
 
@@ -17,11 +19,12 @@ public class BounceOffBottom implements IAction {
 	
 
 	@Override
-	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		if (vc.getY()<0) {
 			vc.setY(vc.getY()*VELOCITY_REVERSE*BOUNCE_FACTOR);
 		}
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 	}
 }

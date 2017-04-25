@@ -9,6 +9,7 @@ import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 import gameView.UIImageModel;
 import gamedata.GameData;
+import gamedata.IRestrictedGameData;
 
 /**
  * This class defines the behavior of the controller. The controller runs most
@@ -56,7 +57,7 @@ public interface ControllerInterface {
 	 *            - string of the file path to the new data file
 	 * @return 
 	 */
-	public GameData loadNewGame(String filePath);
+	public IRestrictedGameData loadNewGame(String filePath);
 
 	/**
 	 * Resets the current game using the original XML file 
@@ -72,6 +73,7 @@ public interface ControllerInterface {
 	
 	public GameEngine getEngine();
 	
-	public void step(Set<KeyCode> keysPressed);
+
+	void step(Set<KeyCode> keysPressed, IRestrictedGameData gd);
 
 }

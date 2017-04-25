@@ -2,7 +2,7 @@ package components;
 
 import components.entityComponents.ComponentType;
 
-public class TerminalVelComponent implements IComponent{
+public class TerminalVelComponent extends AComponent implements IComponent{
 	
 	double terminalX;
 	double terminalY;

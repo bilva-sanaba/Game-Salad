@@ -1,16 +1,21 @@
 package components.entityComponents;
 
 
+import java.io.File;
+
+import components.AComponent;
 import components.IComponent;
 import javafx.scene.image.Image;
 
-public class SpriteComponent implements IComponent {
+public class SpriteComponent extends AComponent implements IComponent {
+	private static final String FILE_PATH = "file:" + File.separator + System.getProperty("user.dir") + File.separator + "images"+ File.separator;
+
 	private String classPath;
 	
 	public SpriteComponent(String path){
 		classPath= path;
 	}
-
+	
 	public SpriteComponent() {
 	}
 
@@ -27,7 +32,7 @@ public class SpriteComponent implements IComponent {
 		return classPath;
 	}
 	public Image getSprite(){
-		return new Image(classPath);
+		return new Image(FILE_PATH + classPath);
 	}
 	public IComponent newCopy() {
 		return new SpriteComponent(getClassPath());

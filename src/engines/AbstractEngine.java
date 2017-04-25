@@ -10,7 +10,7 @@ import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
-
+import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
 public abstract class AbstractEngine {
@@ -39,13 +39,17 @@ public abstract class AbstractEngine {
 	 * 
 	 * @return
 	 */
-	public abstract void update(Collection<KeyCode> keysPressed);
+	public abstract void update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData);
 	
 	/**
 	 * Returns the entity manager
 	 */
 	protected IEntityManager getEManager () {
 		return myEManager;
+	}
+	
+	protected boolean hasComponent(IEntity e, ComponentType c) {
+		return (e.getComponent(c)!=null);
 	}
 
 }

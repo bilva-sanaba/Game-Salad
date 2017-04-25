@@ -8,6 +8,8 @@ import components.entityComponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 public class BounceOffBlockBottomOrTop implements IAction{
 
@@ -16,11 +18,12 @@ public class BounceOffBlockBottomOrTop implements IAction{
 	}
 
 	@Override
-	public List<IEntity> executeAction(IEntity e,IEntity e2, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity e,IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		vc.setY(0);
 		//Does anything need to be done about acceleration?
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 
 	}
 

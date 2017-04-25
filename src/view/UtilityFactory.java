@@ -43,6 +43,8 @@ public class UtilityFactory {
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources" + File.separator;
     public static final String SPLIT_REGEX = ", ";
 	private ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
+	private ResourceBundle menuResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "menu");
+
 	//private ResourceBundle entityPresets = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "entities");
 	private ResourceBundle myResources;
 	
@@ -122,6 +124,30 @@ public class UtilityFactory {
 			toolButtons.add(buildButton(names[i], events[i], data));
 		}
 		return toolButtons;
+	}
+	
+	public List<MenuItem> makeRightClickMenu(ViewData data) {
+		List<MenuItem> menuItems = new ArrayList<MenuItem>();
+		String[] names = menuResources.getString("MenuItemNames").split(SPLIT_REGEX);
+		String[] events = menuResources.getString("MenuEventNames").split(SPLIT_REGEX);
+		for(int i = 0; i < names.length; i++){
+			menuItems.add(buildMenuItem(names[i], events[i], data));
+		}
+		return menuItems;
+	}
+	
+	private MenuItem buildMenuItem(String property, String eventname, ViewData data){
+		MenuItem menuItem = new MenuItem();
+        menuItem.setText(property);
+        EventFactory evfac = new EventFactory();
+        menuItem.setOnAction(e -> {
+			try {
+				evfac.getRightClickEvent(eventname, data).execute();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
+		return menuItem;
 	}
 	
 	public Integer convertToInt(Double d){

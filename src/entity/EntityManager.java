@@ -29,6 +29,9 @@ public class EntityManager extends Observable implements IEntityManager, IRestri
 			}
 		}
 	}
+	public EntityManager(){
+		myEntities = new ArrayList<IEntity>();
+	}
 
 	@Override
 	public Map<Integer, IComponent> getCertainComponents(
