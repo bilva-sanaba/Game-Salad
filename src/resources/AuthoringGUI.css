@@ -33,6 +33,10 @@
 	-fx-font-weight: bold;
 }
 
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #0b5345
+}
+
 .list-cell:even {
     -fx-background-color: #76d7c4;
 }

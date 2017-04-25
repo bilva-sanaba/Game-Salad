@@ -37,6 +37,9 @@ public class ObjectCreationComponent extends AComponent implements IComponent{
 			return (storedEntity!=null);
 		}
 	}
+	public void setCreating(boolean bool){
+		creating=bool;
+	}
 	@Override
 	public ComponentType getComponentType() {
 		// TODO Auto-generated method stub
@@ -44,7 +47,8 @@ public class ObjectCreationComponent extends AComponent implements IComponent{
 	}
 	@Override
 	public IComponent newCopy() {
-		// TODO Auto-generated method stub
-		return null;
+		ObjectCreationComponent occ= new ObjectCreationComponent(storedEntity.newCopy());
+		occ.setCreating(creating);
+		return occ;
 	}
 }

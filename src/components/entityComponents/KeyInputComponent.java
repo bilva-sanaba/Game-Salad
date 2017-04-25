@@ -11,6 +11,10 @@ import javafx.scene.input.KeyCode;
 public class KeyInputComponent extends AComponent implements IComponent {
 	private Map<KeyCode,IAction> inputMap = new HashMap<KeyCode,IAction>();
 	private Map<KeyCode,String>  groovyMap = new HashMap<KeyCode,String>();
+	public KeyInputComponent(Map<KeyCode,IAction> keyMap, Map<KeyCode,String> stringMap){
+		inputMap=keyMap;
+		groovyMap = stringMap;
+	}
 	public KeyInputComponent(Map<KeyCode,IAction> keyMap){
 		inputMap=keyMap;
 	}
@@ -55,7 +59,7 @@ public class KeyInputComponent extends AComponent implements IComponent {
 
 	@Override
 	public IComponent newCopy() {
-		return new KeyInputComponent(inputMap);
+		return new KeyInputComponent(inputMap,groovyMap);
 	}
 
 }

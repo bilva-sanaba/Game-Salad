@@ -11,6 +11,8 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 
 @LeftAction()
@@ -21,7 +23,7 @@ public class BounceOffLeft implements IAction {
 
 	@Override
 
-	public List<IEntity> executeAction(IEntity e,IEntity e2, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity e,IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
 
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
@@ -35,7 +37,8 @@ public class BounceOffLeft implements IAction {
 			vc.setX(vc.getX()*VELOCITY_REVERSE*BOUNCE_FACTOR);
 		}
 		
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 
 	}
 }

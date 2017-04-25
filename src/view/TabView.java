@@ -73,6 +73,10 @@ public class TabView extends GUIComponent {
 		util.setPresets(blocksList);
 	}
 
+	public void clearSelected(){
+		blocksView.getSelectionModel().clearSelection();
+	}
+	
 	public void clearEntitiesOnTab() {
 		blocksList.clear();
 	}

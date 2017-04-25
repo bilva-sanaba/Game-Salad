@@ -10,6 +10,8 @@ import components.entityComponents.VelocityComponent;
 
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 @TopAction()
 public class BounceOffTop implements IAction {
@@ -20,7 +22,7 @@ public class BounceOffTop implements IAction {
 
 	@Override
 
-	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
+	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
 
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		
@@ -34,7 +36,8 @@ public class BounceOffTop implements IAction {
 		}
 		
 		
-		return new ArrayList<IEntity>();
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 	}
 
 }

@@ -9,12 +9,10 @@ public class StepComponent extends AComponent implements IComponent {
 
 	public StepComponent(int s) {
 		steps = s;
+		stepsLeft = s;
 	}
 	
-	public StepComponent(int s, int sl) {
-		steps = s;
-		stepsLeft = sl;
-	}
+
 	
 	public StepComponent(){
 		super();
@@ -35,6 +33,10 @@ public class StepComponent extends AComponent implements IComponent {
 
 	public void setStep(int s) {
 		steps = s;
+	}
+	
+	public void takeStep(){
+		steps--;
 	}
 
 	public IComponent newCopy() {
