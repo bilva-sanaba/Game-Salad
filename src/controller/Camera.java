@@ -39,21 +39,22 @@ public class Camera extends Entity {
 	}
 
 	public void updateCamera() {
-			System.out.println(root.getTranslateX() + " " + followerLoc.getX());
-			double playerLocRelativeToCam = root.getTranslateX() + followerLoc.getX();
-			System.out.println(playerLocRelativeToCam);
-			if(playerLocRelativeToCam <= LEFT_BOUND_FROM_EDGE && followerLoc.getX()>0){
-
-				root.setTranslateX(root.getTranslateX()+5);
-			}
-			else if (playerLocRelativeToCam >= RIGHT_BOUND_FROM_EDGE) {
-				root.setTranslateX(root.getTranslateX()-5);
-
-			}
-			else{
-				root.setTranslateX(root.getTranslateX());
-			}
+		double playerLocRelativeToCam = root.getTranslateX() + followerLoc.getX();
+		
+		if(playerLocRelativeToCam <= LEFT_BOUND_FROM_EDGE && followerLoc.getX()>0){
+			root.setTranslateX(root.getTranslateX()+5);
 		}
+		else if (playerLocRelativeToCam >= RIGHT_BOUND_FROM_EDGE) {
+			root.setTranslateX(root.getTranslateX()-5);
+		}
+		else{
+			root.setTranslateX(root.getTranslateX());
+		}	
+		
+		if(root.getTranslateX() >= 0){
+			root.setTranslateX(0);
+		}
+	}
 	
 	
 	public boolean withinCameraBounds(IEntity e) {

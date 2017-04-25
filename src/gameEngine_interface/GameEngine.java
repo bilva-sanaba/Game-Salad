@@ -195,7 +195,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new TypeComponent(EntityType.Player));
 
 		x.addComponent(new GoalComponent());
-		x.addComponent(new TerminalVelocityComponent(5,5));
+		x.addComponent(new TerminalVelocityComponent(10,10));
 
 		Entity y2 = new Entity(201);
 		y2.addComponent(new LocationComponent(800,150));

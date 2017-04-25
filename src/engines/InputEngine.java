@@ -66,6 +66,7 @@ public class InputEngine extends AbstractEngine{
 			
 			KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 			
+			LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 
 			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 			
@@ -81,6 +82,11 @@ public class InputEngine extends AbstractEngine{
 					ac.setX(0.2);
 				}
 				else if (Math.abs(vc.getX()) < 0.3){
+					ac.setX(0);
+					vc.setX(0);
+				}
+				
+				if(lc.getX() < 55){
 					ac.setX(0);
 					vc.setX(0);
 				}

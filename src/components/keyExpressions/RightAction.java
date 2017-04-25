@@ -5,7 +5,7 @@ import java.util.List;
 
 import actions.IAction;
 import class_annotations.KeyAction;
-
+import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import entity.IEntity;
@@ -18,8 +18,8 @@ public class RightAction implements IAction{
 
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		LocationComponent lc = (LocationComponent) player.getComponent(ComponentType.Location);
-		lc.setX(lc.getX()+5);
+		AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
+		ac.setX(0.5);
 		((IRestrictedEntity) player).changed(player);
 		GameDataFactory gdf = new GameDataFactory();
 		return gdf.blankEntityData(currentGameData);
