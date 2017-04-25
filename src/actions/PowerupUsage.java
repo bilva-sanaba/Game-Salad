@@ -7,19 +7,20 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.SpriteComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameDataFactory;
+import gamedata.IRestrictedGameData;
 
 public class PowerupUsage implements IAction{
 
 	@Override
-	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
-		System.out.println("remove this powerup");
+	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		SpriteComponent npcsc = (SpriteComponent) npc.getComponent(new SpriteComponent());
 		myEM.getEntities().remove(npc);
 		((SpriteComponent) npc.getComponent(new SpriteComponent())).setClassPath("");
 		npc.changed(null);
 		
-		List<IEntity> entities = new ArrayList<IEntity>();
-		return entities;
+		GameDataFactory gdf = new GameDataFactory();
+		return gdf.blankEntityData(currentGameData);
 	}
 
 }

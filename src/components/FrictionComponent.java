@@ -2,7 +2,7 @@ package components;
 
 import components.entityComponents.ComponentType;
 
-public class FrictionComponent implements IComponent{
+public class FrictionComponent extends AComponent implements IComponent{
 	
 	private double friction;
 	
