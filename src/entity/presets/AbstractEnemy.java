@@ -10,6 +10,7 @@ import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
+import entity.Entity;
 
 public class AbstractEnemy extends Entity{
 	
@@ -43,5 +44,4 @@ public class AbstractEnemy extends Entity{
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scr);
 	}
 
-}
 }
