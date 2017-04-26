@@ -1,8 +1,14 @@
 package gamedata;
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import components.entityComponents.LocationComponent;
+import entity.EntityManager;
 import entity.SplashEntity;
+import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -65,5 +71,69 @@ public class GameData implements IGameData,IRestrictedGameData{
 	}
 	public void setMusic(String s){
 		music.setValue(s);
+	}
+
+	@Override
+	public GameData mergeWith(IRestrictedGameData merger) {
+		IRestrictedEntityManager mergedEntityManager = this.mergeEntityManagers(merger);
+		if (mergedEntityManager != null) {
+			this.setRestrictedEntityManager(mergedEntityManager);
+		}
+		this.points = merger.getPoints();
+		this.lives = merger.getLives();
+		this.mainPlayerLocation = merger.getMainLocation();
+		this.music = merger.getMusic();
+		this.level = merger.getLives();
+		return this;
+	}
+	
+	
+	
+	/**
+	 * Returns null if could not merge successfully.
+	 * @param merger
+	 * @return
+	 */
+	private IRestrictedEntityManager mergeEntityManagers(IRestrictedGameData merger) {
+		Collection<IRestrictedEntity> selfNewEntities = this.getRestrictedEntityManager().getRestrictedEntities();
+		Collection<IRestrictedEntity> mergerNewEntities = merger.getRestrictedEntityManager().getRestrictedEntities();
+		for(IRestrictedEntity newEntity : mergerNewEntities) {
+			if (!selfNewEntities.contains(newEntity)) {
+				selfNewEntities.add(newEntity);
+			}
+		}
+		IRestrictedEntityManager newEntityManager = createNewEntityManager(this.getRestrictedEntityManager(), selfNewEntities);
+		return newEntityManager;
+	}
+	
+	/**
+	 * WARNING: RETURNS NULL IF IT COULD NOT CREATE SUCCESSFULLY.
+	 * @param model
+	 * @param newEntities
+	 * @return
+	 */
+	private IRestrictedEntityManager createNewEntityManager(IRestrictedEntityManager model, Collection<IRestrictedEntity> newEntities) {
+		try {
+			Class<?> modelClass = Class.forName(model.getClass().getName());
+			IRestrictedEntityManager newEntityManager = (IRestrictedEntityManager) modelClass.getConstructor(Collection.class).newInstance(newEntities);
+			return newEntityManager;
+		} catch(ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			System.out.println("Need to handle exception line 93 of GameData.java");
+		}
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		EntityManager em = new EntityManager();
+		try {
+			Class<?> clazz = Class.forName(em.getClass().getName());
+			IRestrictedEntityManager irem = (IRestrictedEntityManager) clazz.getConstructor(Collection.class).newInstance(em.getRestrictedEntities());
+			System.out.println(irem.getRestrictedEntities().size());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
 	}
 }

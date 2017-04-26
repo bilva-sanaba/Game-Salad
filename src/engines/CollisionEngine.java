@@ -37,7 +37,7 @@ public class CollisionEngine extends AbstractEngine {
 	
 	private List<ISubEngine> subEngines;
 	private IEntityManager entManager;
-	private List<IEntity> newEntitiesCreated;
+	private IRestrictedGameData currentGameData;
 	private ITwoObjectCollide collisionMethod = new ObjectCollisionAlgorithm();
 	private int numSubEnginesAdded;
 		public CollisionEngine(IEntityManager myEntityManager) {
@@ -107,7 +107,7 @@ public class CollisionEngine extends AbstractEngine {
 			
 			for (ISubEngine engine : subEngines) {
 
-				newEntitiesCreated.addAll(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd));
+				currentGameData = currentGameData.mergeWith(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd));
 			}
 			
 		}
@@ -118,15 +118,12 @@ public class CollisionEngine extends AbstractEngine {
 		return new ArrayList<ComponentType>();
 	}
 	public void update(Collection<KeyCode> keys,IRestrictedGameData gd) {
-		newEntitiesCreated = new ArrayList<IEntity>();
+		currentGameData = gd;
 		if (numSubEnginesAdded<=0) {
 			addEngine(new GeneralPostCollisionHandler());
 		}
-		checkCollisionsOccurred(gd);
-		for (IEntity e : newEntitiesCreated){
-			entManager.getEntities().add(e);
-			entManager.changed(e);
-		}
+		checkCollisionsOccurred(currentGameData);
+		
 	}
 	
 }

@@ -17,4 +17,6 @@ public interface IRestrictedGameData {
 	public LocationComponent getMainLocation();
 
 	public StringProperty getMusic();
+	
+	public GameData mergeWith(IRestrictedGameData merger);
 }

@@ -23,23 +23,22 @@ public class GeneralPostCollisionHandler implements ISubEngine{
 	
 
 	@Override
-	public List<IEntity> handleCollision(IEntity e0, IEntity e1, String side, IEntityManager myEM, IRestrictedGameData gd) {
-		List<IEntity> createdEntities = new ArrayList<IEntity>();
-
+	public IRestrictedGameData handleCollision(IEntity e0, IEntity e1, String side, IEntityManager myEM, IRestrictedGameData gd) {
+		
 		CollisionComponentsHandler handlerE1 = (CollisionComponentsHandler) e1.getComponent(ComponentType.CollisionHandler);
 		CollisionComponentsHandler handlerE0 = (CollisionComponentsHandler) e0.getComponent(ComponentType.CollisionHandler);
 		if (handlerE1 != null && handlerE1.getCollisionComponent(side) != null) {
-				createdEntities.addAll(handlerE1.getCollisionComponent(side).executeOnCollide(e0, e1,myEM,gd));
+				gd = gd.mergeWith(handlerE1.getCollisionComponent(side).executeOnCollide(e0, e1,myEM,gd));
 		}
 		if (handlerE0 != null && handlerE0.getCollisionComponent(side) != null) {
-			createdEntities.addAll(handlerE0.getCollisionComponent(side).executeOnCollide(e1, e0, myEM,gd));
+			gd = gd.mergeWith(handlerE0.getCollisionComponent(side).executeOnCollide(e1, e0, myEM,gd));
 	}
 		
 			
 			
 		
 		
-		return createdEntities;
+		return gd;
 
 	}
 
