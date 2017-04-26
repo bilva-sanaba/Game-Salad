@@ -2,15 +2,21 @@ package actions;
 
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 
-public class RemoveAction extends AbstractAction  implements IAction {
-
+public class ChangeMusicAction extends AbstractAction implements IAction {
+	private String newSong;
+	public ChangeMusicAction(String song){
+		newSong= song;
+	}
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
+		GameData gd = getGameDataFactory().blankEntityData(currentGameData);
+		gd.setMusic(newSong);
 		// TODO Auto-generated method stub
-		return new PowerupUsage().executeAction(npc,player,myEM,currentGameData);
+		return gd;
 	}
 
 }

@@ -228,6 +228,10 @@ public class WorldAnimator{
         System.out.println("yPosCurrent: " + currentImage.getTranslateY());
         currentImage.setTranslateY(re.getTranslateY()); 
         System.out.println("yPosNew: " + currentImage.getTranslateY());
+
+        System.out.println("currentYPos: " + currentImage.getTranslateY());
+        currentImage.setTranslateY(re.getTranslateY()); 
+        System.out.println("newYPos: " + currentImage.getTranslateY());
         currentImage.setFitHeight(re.getFitHeight());
         currentImage.setFitWidth(re.getFitWidth());
 

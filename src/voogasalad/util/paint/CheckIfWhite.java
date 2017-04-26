@@ -11,10 +11,7 @@ public class CheckIfWhite implements IPixelComparison{
 		int g = (pixel >> 8) & 0xFF;
 		int b = pixel & 0xFF;
 
-		if (r >= tolerance_threshold && g >= tolerance_threshold && b >= tolerance_threshold) {
-			return true;
-		}
-		return false;
+		return (r >= tolerance_threshold && g >= tolerance_threshold && b >= tolerance_threshold);
 	}
 
 }

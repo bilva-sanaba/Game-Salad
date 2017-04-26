@@ -4,18 +4,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 
-public class GroovyAlert {
+public class GroovyAlert extends VoogaError {
 	private Alert alert;
-public GroovyAlert(String title,String content){
-	alert=new Alert(AlertType.ERROR);
-	alert.setTitle(title);
-	alert.setContentText(content);
+public GroovyAlert(String content, String text){
+	super(content,text);
+	alert.setTitle("Custom Groovy Expression Error");
 	
-}
-/**
- * displays alert
- */
-public void showAlert(){
-	alert.showAndWait();
 }
 }

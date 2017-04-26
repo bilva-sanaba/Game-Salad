@@ -1,28 +1,16 @@
 package actions;
-import java.util.ArrayList;
-import java.util.List;
 
 import class_annotations.TopAction;
-import components.entityComponents.AccelerationComponent;
-import components.entityComponents.CollidableComponent;
-import components.entityComponents.CollisionComponentType;
-import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
-import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
-import components.entityComponents.LocationComponent;
-import components.entityComponents.SideCollisionComponent;
-import components.entityComponents.SpriteComponent;
 import components.entityComponents.VelocityComponent;
-import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
-import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
 
 @TopAction()
-public class BlockTopRegularCollision implements IAction {
+public class BlockTopRegularCollision extends AbstractAction implements IAction {
 	
 	@Override
 	public IRestrictedGameData executeAction(IEntity e, IEntity e1, IEntityManager myEM, IRestrictedGameData currentGameData) {
@@ -31,16 +19,13 @@ public class BlockTopRegularCollision implements IAction {
 		}
 		if (!lc.getLabel().equals("Block")) {
 			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-			
-			
+//			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 			if (vc.getY() > 0) {
 				vc.setY(0);
 //				ac.setY(0);
 			}
 		}
-		GameDataFactory gdf = new GameDataFactory();
-		return gdf.blankEntityData(currentGameData);
+		return getGameDataFactory().blankEntityData(currentGameData);
 
 	}
 }
