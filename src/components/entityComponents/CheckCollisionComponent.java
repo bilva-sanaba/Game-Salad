@@ -1,8 +1,9 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
-public class CheckCollisionComponent implements IComponent {
+public class CheckCollisionComponent extends AComponent implements IComponent {
 	private boolean checkCollision;
 	
 	public CheckCollisionComponent (boolean checkCollisionsInEngine) {

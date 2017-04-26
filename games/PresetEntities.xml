@@ -6,7 +6,7 @@
     <myComponents class="list"/>
     <displayName>The game</displayName>
     <instructions>Don&apos;t lose</instructions>
-    <backgroundFilePath>images/background1.png</backgroundFilePath>
+    <backgroundFilePath>background1.png</backgroundFilePath>
   </entity.SplashEntity>
   <entity.LevelEntity>
     <changed>false</changed>
@@ -23,7 +23,7 @@
     <identifier>0</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/dirt.jpg</classPath>
+        <classPath>dirt.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>50.0</imageHeight>
@@ -40,7 +40,7 @@
     <identifier>1</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/sand.jpg</classPath>
+        <classPath>sand.jpg</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>50.0</imageHeight>
@@ -57,7 +57,7 @@
     <identifier>2</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/stone.gif</classPath>
+        <classPath>stone.gif</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>50.0</imageHeight>

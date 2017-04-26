@@ -41,6 +41,7 @@ public class TabView extends GUIComponent {
 					this.setGraphic(null);
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
+					System.out.println(entitySprite.getClassPath() + " line 44 " + this.getClass());
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
 					if (item.getComponent(ComponentType.ImageProperties) != null) {
 						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item

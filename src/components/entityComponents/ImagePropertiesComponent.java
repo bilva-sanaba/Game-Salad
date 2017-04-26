@@ -1,8 +1,9 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
-public class ImagePropertiesComponent implements IComponent {
+public class ImagePropertiesComponent extends AComponent implements IComponent {
 	private double imageHeight;
 	private double imageWidth;
 	

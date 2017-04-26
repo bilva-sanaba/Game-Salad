@@ -17,19 +17,19 @@ public class ViewController implements Observer {
 		myTab = tabIn;
 	}
 	
-	//TODO: implement these methods
-	/*public void updateSelectedEntity(Entity entity){
-		if(myData.getUserSelectedEntity().isPlaced()){
+	//TODO: implement this method
+	public void updateSelectedEntity(Entity entity){
+		if(!myData.getUserSelectedEntity().getComponent(ComponentType.Location).equals(null)){
 			myGrid.unselectEntity(myData.getUserSelectedEntity());
 		}
 		else{
 			myTab.clearSelected();
 		}
-		if(entity.isPlaced()){
+		if(!entity.getComponent(ComponentType.Location).equals(null)){
 			myGrid.selectEntity(entity);
 		}
 		myData.setUserSelectedEntity(entity);
-	}*/
+	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
@@ -38,6 +38,8 @@ public class ViewController implements Observer {
 			
 			myGrid.updateBackground();
 			myGrid.setUpLevel();
+		}
+		else if(arg.equals("reset")){
 			myGrid.clearEntitiesOnGrid();
 		}
 		else if(arg.equals("unplace")){

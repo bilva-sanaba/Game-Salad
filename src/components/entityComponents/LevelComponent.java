@@ -1,12 +1,13 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
 import components.entityComponents.ComponentType;
 
 import components.entityComponents.ComponentType;
 
-public class LevelComponent implements IComponent {
+public class LevelComponent extends AComponent implements IComponent {
 
 	private int level;
 	

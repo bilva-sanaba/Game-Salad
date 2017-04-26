@@ -1,8 +1,9 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
-public class DurationComponent implements IComponent {
+public class DurationComponent extends AComponent implements IComponent {
 	private double duration;
 
 	public DurationComponent(double d) {

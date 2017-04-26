@@ -1,10 +1,11 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 import entity.Entity;
 import entity.IEntity;
 
-public class ObjectCreationComponent implements IComponent{
+public class ObjectCreationComponent extends AComponent implements IComponent{
 	private IEntity storedEntity;
 	private boolean creating;
 	public ObjectCreationComponent(IEntity e){
