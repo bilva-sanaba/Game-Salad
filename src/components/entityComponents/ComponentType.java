@@ -32,5 +32,14 @@ public enum ComponentType {
 	Friction(),
 	TerminalVelocity(),
 	FrontCamera(),
-	BackCamera(), TerminalVelComponent, FrictionComponent;
+	BackCamera(),
+	TerminalVelComponent(),
+	FrictionComponent(),
+	InfiniteOrientation(),
+	InfiniteRepeat(),
+	InfiniteMonsterRandomness(),
+	InfinitePowerUpRandomness(),
+	InfiniteSpacing(),
+	InfiniteBlockPattern()
+	;
 }
