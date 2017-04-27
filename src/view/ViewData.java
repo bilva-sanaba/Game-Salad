@@ -12,6 +12,8 @@ import java.util.Queue;
 import java.util.Stack;
 
 import components.*;
+import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
 import data_interfaces.Communicator;
 
 /**
@@ -109,10 +111,12 @@ public class ViewData extends Observable {
 	}
 
 	public void copyEntity(){
-		copiedEntity = userSelectedEntity.clone();
+		copiedEntity = userGridSelectedEntity.clone();
 	}
 	
-	public void pasteEntity(){
+	public void pasteEntity(double x, double y){
+		LocationComponent temp = (LocationComponent) copiedEntity.getComponent(ComponentType.Location);
+		temp.setXY(x, y);
 		placeEntity(copiedEntity);
 	}
 	

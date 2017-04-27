@@ -13,7 +13,7 @@ private ViewData myData;
 	
 	@Override
 	public void execute() {
-		myData.pasteEntity();
+		myData.pasteEntity(50, 50);
 	}
 
 	@Override
