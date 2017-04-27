@@ -1,8 +1,9 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
-public class SplashComponent implements IComponent {
+public class SplashComponent extends AComponent implements IComponent {
 
 	private String title;
 	private String rgb;

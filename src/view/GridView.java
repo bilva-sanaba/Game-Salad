@@ -1,12 +1,12 @@
-package view;
+import java.util.HashMap;
+import java.util.Iterator;
 
-import entity.Entity;
+import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
-
-import java.util.HashMap;
+import entity.Entity;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
@@ -14,12 +14,17 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import view.commands.RightClickMenu;
+import view.window.EntityConfigurationWindow;
 
 /**
  * @author Jonathan Rub
@@ -27,32 +32,29 @@ import javafx.scene.paint.Color;
  * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent {
-	private ContextMenu rightClick;
-	private ContextMenu rightClickEntity;
-	private static final int CELL_SIZE = 8;
+	private RightClickMenu rightClick;
 	private ScrollPane myScroll;
-	private GridPane myGrid;
+	private Pane myGrid;
 	private ViewData myData;
 	private UtilityFactory util;
 	private int j = 1000;
 	private int myRow;
 	private int myCol;
-	private HashMap<Entity, ImageView> placedImages2 = new HashMap<Entity, ImageView>();
-	//private ArrayList<ImageView> placedImages = new ArrayList<ImageView>();
+	double orgSceneX, orgSceneY;
+	double orgTranslateX, orgTranslateY;
+	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
 	private BorderPane bp;
+
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
-		rightClick = buildContextMenu();
 		util = utilIn;
 		myRow = rows;
 		myCol = cols;
 		myData = data;
-		myGrid = new GridPane();
+		rightClick = new RightClickMenu(util, myData);
+		myGrid = new Pane();
+		myGrid.setPrefSize(500, 500);
+		myGrid.setOnMousePressed(e -> mousePress(e));
 		myGrid.getStyleClass().add("view-grid");
-		for (int row = 0; row < rows; row++) {
-			for (int col = 0; col < cols; col++) {
-				addMouseListenerPane(row, col);
-			}
-		}
 		bp = new BorderPane();
 		Button butt = util.buildButton("addHo", e -> addHo());
 		util.buildButton("addHo", e -> addHo());
@@ -64,97 +66,114 @@ public class GridView extends GUIComponent {
 		bp.setCenter(myScroll);
 	}
 
-	private void addHo() {
-		for (int i = 0; i < myRow; i++) {
-			addMouseListenerPane(myCol, i);
+	private void mousePress(MouseEvent e) {
+		if (!e.isControlDown()) {
+			placeImageAtLoc(e.getX(), e.getY());
 		}
+	}
+
+	private void addHo() {
+		myGrid.setPrefWidth(myGrid.getWidth() + 20);
 		myCol++;
 		myData.getLevelEntity().addCol();
 	}
 
 	private void addVert() {
-		for (int i = 0; i < myCol; i++) {
-			addMouseListenerPane(i, myRow);
-		}
+		myGrid.setPrefHeight(myGrid.getHeight() + 20);
 		myRow++;
 		myData.getLevelEntity().addRow();
 	}
 
-	private void addMouseListenerPane(int row, int col) {
-		Rectangle rect = new Rectangle(CELL_SIZE, CELL_SIZE);
-		rect.getStyleClass().add("view-grid-cell");
-		rect.setFill(Color.GREY);
-		rect.setOnMousePressed(e -> {
-			System.out.println(String.format("Click at row %d col %d", row,col));
-			if(rightClickEntity != null){
-				rightClickEntity.hide();
-			}
-			rightClick.hide();
-			if(e.isSecondaryButtonDown()) {
-				rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
-			}
-			else{
-				Entity userSelectedEntity = myData.getUserSelectedEntity();
-				if (userSelectedEntity != null) {
-					Entity placedEntity = userSelectedEntity.clone();
-					placedEntity.setID(j);
-					j++;
-					placedEntity.addComponent(new LocationComponent(row, col));
-					myData.placeEntity(placedEntity);
-					//drawEntity(placedEntity);
-				}
-			}
-		});
-		myGrid.add(rect, row, col);
+	private void placeImageAtLoc(double row, double col) {
+		Entity userSelectedEntity = myData.getUserSelectedEntity();
+		if (userSelectedEntity != null && userSelectedEntity.getComponent(ComponentType.Location) == null) {
+			Entity placedEntity = userSelectedEntity.clone();
+			placedEntity.setID(j);
+			j++;
+			placedEntity.addComponent(new LocationComponent(row, col));
+			System.out.println("placed at " + row + col);
+			myData.placeEntity(placedEntity);
+		}
 	}
 
 	public void drawEntity(Entity entity) {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
+		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity
+				.getComponent(ComponentType.ImageProperties);
+		// Modify this part to make children span multiple rows/columns
 		double height = imageProperties.getHeight();
 		double width = imageProperties.getWidth();
 		spriteImage.setFitHeight(height);
 		spriteImage.setFitWidth(width);
-		spriteImage.setOnMousePressed(e ->{
-			selectEntity(entity);
-			if(rightClickEntity != null){
-				rightClickEntity.hide();
+		spriteImage.setX(entityLocation.getX());
+		spriteImage.setY(entityLocation.getY());
+		spriteImage.setOnMousePressed(e -> {
+			if (e.isControlDown()) {
+				selectEntity(entity);
+				orgSceneX = e.getSceneX();
+				orgSceneY = e.getSceneY();
+
+				ImageView c = (ImageView) (e.getSource());
+
+				orgTranslateX = c.getTranslateX();
+				orgTranslateY = c.getTranslateY();
 			}
-			rightClick.hide();
-			if(e.isSecondaryButtonDown()) {
-				rightClickEntity = buildEntityContextMenu(entity);
-				rightClickEntity.show(myGrid, e.getScreenX(), e.getScreenY());
+			if (rightClick != null) {
+				rightClick.hide();
+			}
+			if (e.isSecondaryButtonDown()) {
+				rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
+			}
+
+		});
+		spriteImage.setOnMouseDragged(e -> {
+			if (e.isControlDown()) {
+				double offsetX = e.getSceneX() - orgSceneX;
+				double offsetY = e.getSceneY() - orgSceneY;
+
+				ImageView c = (ImageView) (e.getSource());
+
+				c.setTranslateX(c.getTranslateX() + offsetX);
+				c.setTranslateY(c.getTranslateY() + offsetY);
+
+				orgSceneX = e.getSceneX();
+				orgSceneY = e.getSceneY();
 			}
 		});
-		//placedImages.add(spriteImage);
-		placedImages2.put(entity, spriteImage);
-		myGrid.add(spriteImage, util.convertToInt(entityLocation.getX()), util.convertToInt(entityLocation.getY()));
-		int colSpan = (int) height / CELL_SIZE + 1;
-		int rowSpan = (int) width / CELL_SIZE + 1;
-		GridPane.setColumnSpan(spriteImage, colSpan);
-		GridPane.setRowSpan(spriteImage, rowSpan);
-		GridPane.setHalignment(spriteImage, HPos.LEFT);
-		GridPane.setValignment(spriteImage, VPos.TOP);
+		spriteImage.setOnMouseReleased(e -> {
+			if (e.isControlDown()) {
+				unselectEntity(entity);
+				System.out.println("droped at " + e.getSceneX() + " " + e.getSceneY());
+				entity.addComponent(new LocationComponent(e.getSceneX(), e.getSceneY()));
+				Iterator<IComponent> iter = entity.getComponents().iterator();
+				while (iter.hasNext()) {
+					System.out.println(iter.next().getComponentType().toString());
+				}
+			}
+		});
+		placedImages.put(entity, spriteImage);
+		myGrid.getChildren().add(spriteImage);
+	}
+
+	private void removeEntity(Entity entity) {
+		myGrid.getChildren().remove(placedImages.get(entity));
+		placedImages.remove(entity);
 	}
 
 	public void clearEntitiesOnGrid() {
-		/*for(ImageView i: placedImages) {
-			myGrid.getChildren().remove(i);
-		}
-		placedImages.clear();*/
-		for(Entity e: placedImages2.keySet()){
+		for (Entity e : placedImages.keySet()) {
 			System.out.println("removing" + e);
-			myGrid.getChildren().remove(placedImages2.get(e));
+			myGrid.getChildren().remove(placedImages.get(e));
 		}
-		placedImages2.clear();
+		placedImages.clear();
 	}
 
 	public void placeEntitiesFromFile() {
 		Entity tempEntity;
 		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
-		for(Integer i: myMap.keySet()) {
+		for (Integer i : myMap.keySet()) {
 			tempEntity = myMap.get(i);
 			drawEntity(tempEntity);
 		}
@@ -169,72 +188,28 @@ public class GridView extends GUIComponent {
 		while (myRow != totalRow) {
 			addVert();
 		}
-	}	
+	}
 
 	public void updateBackground() {
 		String filePath = myData.getLevelEntity().getBackgroundFilePath();
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
 
-	private ContextMenu buildContextMenu(){
-		ContextMenu contextMenu = new ContextMenu();
-		MenuItem paste = new MenuItem("Paste");
-		MenuItem redo = new MenuItem("Redo");
-		MenuItem undo = new MenuItem("Undo");
-		contextMenu.getItems().addAll(paste, redo, undo);
-		paste.setOnAction(e -> {
-			rightClick.hide();
-		});
-		redo.setOnAction(e -> {
-			rightClick.hide();
-		});
-		undo.setOnAction(e -> {
-			rightClick.hide();
-		});
-		return contextMenu;
+	public void removeEntity() {
+		removeEntity(myData.getUserGridSelectedEntity());
 	}
 
-	private ContextMenu buildEntityContextMenu(Entity entity){
-		ContextMenu contextMenu = new ContextMenu();
-		MenuItem edit = new MenuItem("Edit");
-		MenuItem cut = new MenuItem("Cut");
-		MenuItem copy = new MenuItem("Copy");
-		MenuItem paste = new MenuItem("Paste");
-		MenuItem redo = new MenuItem("Redo");
-		MenuItem undo = new MenuItem("Undo");
-		contextMenu.getItems().addAll(edit, cut, copy, paste, redo, undo);
-		edit.setOnAction(e -> {
-			rightClick.hide();
-		});
-		cut.setOnAction(e -> {
-			myData.unplaceEntity(myData.getUserSelectedEntity());
-			myGrid.getChildren().remove(placedImages2.get(myData.getUserSelectedEntity()));
-			placedImages2.remove(myData.getUserSelectedEntity());
-			myData.setUserSelectedEntity(null);
-			rightClick.hide();
-		});
-		copy.setOnAction(e -> {
-			rightClick.hide();
-		});
-		paste.setOnAction(e -> {
-			rightClick.hide();
-		});
-		redo.setOnAction(e -> {
-			rightClick.hide();
-		});
-		undo.setOnAction(e -> {
-			rightClick.hide();
-		});
-		return contextMenu;
+	public void unselectEntity(Entity entity) {
+		ImageView temp = placedImages.get(myData.getUserGridSelectedEntity());
+		temp.setStyle("");
 	}
-	
-	public void selectEntity(Entity entity){
-		if(placedImages2.containsKey(myData.getUserSelectedEntity())){
-			ImageView temp = placedImages2.get(myData.getUserSelectedEntity());
-			temp.setStyle("");
+
+	public void selectEntity(Entity entity) {
+		if (placedImages.containsKey(myData.getUserGridSelectedEntity())) {
+			unselectEntity(entity);
 		}
-		myData.setUserSelectedEntity(entity);
-		ImageView i = placedImages2.get(entity);
+		myData.setUserGridSelectedEntity(entity);
+		ImageView i = placedImages.get(entity);
 		i.setStyle("-fx-effect: innershadow(gaussian, #039ed3, 3, 1.0, 0, 0);");
 	}
 
@@ -243,5 +218,3 @@ public class GridView extends GUIComponent {
 		return bp;
 	}
 }
-
-

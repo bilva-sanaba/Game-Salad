@@ -3,9 +3,12 @@ package gameEngine_interface;
 
 import entity.Entity;
 import entity.IEntity;
+import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
 import java.util.Collection;
+
+import data_interfaces.Communicator;
 
 /**
  * A game engine is created in the gameplayer which uses this game engine to
@@ -22,9 +25,12 @@ public interface GameEngineInterface {
 	 * @return
 	 */
 
-	public void handleUpdates(
-			Collection<KeyCode> keysPressed);
+
 	
 	public Collection<IEntity> save();
+	
+	public IRestrictedGameData loadData(Communicator c);
+
+	void handleUpdates(Collection<KeyCode> keysPressed, IRestrictedGameData gd);
 
 }

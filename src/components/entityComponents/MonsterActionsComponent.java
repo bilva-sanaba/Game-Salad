@@ -3,10 +3,11 @@ package components.entityComponents;
 import java.util.HashMap;
 import java.util.Map;
 
+import components.AComponent;
 import components.IComponent;
 import javafx.scene.input.KeyCode;
 
-public class MonsterActionsComponent implements IComponent {
+public class MonsterActionsComponent extends AComponent implements IComponent {
 	private MonsterMovementPattern myMMP;
 	
 	public MonsterActionsComponent(MonsterMovementPattern mmp){

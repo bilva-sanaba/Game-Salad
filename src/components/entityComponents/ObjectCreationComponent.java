@@ -1,10 +1,11 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 import entity.Entity;
 import entity.IEntity;
 
-public class ObjectCreationComponent implements IComponent{
+public class ObjectCreationComponent extends AComponent implements IComponent{
 	private IEntity storedEntity;
 	private boolean creating;
 	public ObjectCreationComponent(IEntity e){
@@ -36,6 +37,9 @@ public class ObjectCreationComponent implements IComponent{
 			return (storedEntity!=null);
 		}
 	}
+	public void setCreating(boolean bool){
+		creating=bool;
+	}
 	@Override
 	public ComponentType getComponentType() {
 		// TODO Auto-generated method stub
@@ -43,7 +47,8 @@ public class ObjectCreationComponent implements IComponent{
 	}
 	@Override
 	public IComponent newCopy() {
-		// TODO Auto-generated method stub
-		return null;
+		ObjectCreationComponent occ= new ObjectCreationComponent(storedEntity.newCopy());
+		occ.setCreating(creating);
+		return occ;
 	}
 }
