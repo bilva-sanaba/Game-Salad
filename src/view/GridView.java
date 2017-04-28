@@ -49,8 +49,8 @@ public class GridView extends GUIComponent {
 	private BorderPane myBorderPane;
 	private TabPane myLevelTabs;
 	
-	// TODO: figure out if you need to put gridview instances in each tab, or how to have one viewdata for everything
-	// but have different placedEntityMaps for each tab. Refactor gridview and make it nonshitty
+	// TODO: change placedentitymap to a map from levelnumber to placedentitymap
+	// Refactor gridview and make it nonshitty
 
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
 		util = utilIn;

@@ -16,7 +16,7 @@ private Entity myEntity;
 	@Override
 	public void execute() {
 		myEntity = myData.getUserSelectedEntity();
-		myData.unplaceEntity();
+		myData.unplaceSelectedEntity();
 		myData.setUserSelectedEntity(null);
 		myData.addEvent(this);
 	}

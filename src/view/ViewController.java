@@ -32,23 +32,23 @@ public class ViewController implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		if(arg.equals("refresh")) {
+		if (arg.equals("refresh")) {
 			myGrid.updateBackground();
 			myGrid.setUpLevel();
 		}
-		else if(arg.equals("reset")) {
+		else if (arg.equals("reset")) {
 			myGrid.clearEntitiesOnGrid();
 		}
-		else if(arg.equals("unplace")) {
+		else if (arg.equals("unplace")) {
 			myGrid.removeEntity();
 		}
 		else if (!(((Entity) arg).getComponent(ComponentType.Location) == null)) {
 			myGrid.drawEntity((Entity) arg);
 		}
-		else{
+		else {
 			myTab.addEntity((Entity) arg);
 		}
-		if(myData.getUserSelectedEntity() == null) {
+		if (myData.getUserSelectedEntity() == null) {
 			myTab.clearSelected();
 		}
 	}

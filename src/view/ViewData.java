@@ -28,7 +28,7 @@ public class ViewData extends Observable {
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
 	private HashMap<Integer, Entity> definedEntityMap;
-	private HashMap<Integer, Entity> placedEntityMap;
+	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
 	private LevelEntity myLevelEntity;
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
@@ -42,7 +42,8 @@ public class ViewData extends Observable {
 		undoStack = new Stack<RightClickEvent>();
 		redoStack = new Stack<RightClickEvent>();
 		definedEntityMap = new HashMap<Integer, Entity>();
-		placedEntityMap = new HashMap<Integer, Entity>();
+		placedEntityMaps = new HashMap<Integer, HashMap<Integer, Entity>>();
+		placedEntityMaps.put(1, new HashMap<Integer, Entity>());
 		myLevelEntity = new LevelEntity(-1, initialRows, initialCols, "images/background1.png");
 		mySplashEntity = new SplashEntity(-2, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
@@ -88,8 +89,12 @@ public class ViewData extends Observable {
 		notifyObservers(entity);
 	}
 
-	public void placeEntity(Entity entity) {
-		placedEntityMap.put(entity.getID(), entity);
+	// fix dependencies
+	public void placeEntity(int levelNumber, Entity entity) {
+		if (!placedEntityMaps.containsKey(levelNumber)) {
+			placedEntityMaps.put(levelNumber, new HashMap<Integer, Entity>());
+		}
+		placedEntityMaps.get(levelNumber).put(entity.getID(), entity);
 		setChanged();
 		notifyObservers(entity);
 	}
@@ -99,7 +104,7 @@ public class ViewData extends Observable {
 		definedEntityMap.remove(entity.getID());
 	}
 
-	public void unplaceEntity() {
+	public void unplaceSelectedEntity() {
 		placedEntityMap.remove(userSelectedEntity.getID());
 		setChanged();
 		notifyObservers("unplace");
