@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-<<<<<<< HEAD
+
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -15,8 +15,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-=======
->>>>>>> 7e9c6011c870ff95b46b6c618155b92fbf963d05
 import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
@@ -105,12 +103,8 @@ public class GameEngine implements GameEngineInterface {
 	private double lives=0;
 	private double level=0;
 	private String music = "";
-<<<<<<< HEAD
 	private String currentMusic = "Obi-Wan - Hello there..wav";
 	private Clip clip2;
-
-=======
->>>>>>> 7e9c6011c870ff95b46b6c618155b92fbf963d05
 	private Camera cam;
 	public GameEngine(){
 //		try{
@@ -376,12 +370,9 @@ public class GameEngine implements GameEngineInterface {
 		e.add(portal2);
 		e.add(createPortal2());
 		myEntityManager = new EntityManager(e);
-<<<<<<< HEAD
 
-		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),currentMusic );
-=======
 		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
->>>>>>> 7e9c6011c870ff95b46b6c618155b92fbf963d05
+
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 		return myGameData;
 	}
