@@ -21,9 +21,9 @@ public class SideCollisionComponent extends AComponent implements IComponent {
 		typeActionMap = type;
 		labelActionMap=label;
 	}
+	
 	public SideCollisionComponent(CollisionComponentType sideOfCollision) {
 		sideCollision = sideOfCollision;
-		
 		typeActionMap = new HashMap<String, ArrayList<IAction>>();
 		labelActionMap = new HashMap<String, ArrayList<IAction>>();
 	}
@@ -45,8 +45,6 @@ public class SideCollisionComponent extends AComponent implements IComponent {
 		actions.add(action);
 		typeActionMap.put(type.getTypeString(), actions);
 	}
-	
-	
 	
 	public List<IEntity> executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM, IRestrictedGameData dg) {
 		//maybe should refactor
@@ -87,6 +85,10 @@ public class SideCollisionComponent extends AComponent implements IComponent {
 	public IComponent newCopy() {
 		// TODO Auto-generated method stub
 		return new SideCollisionComponent(sideCollision, typeActionMap,labelActionMap);
+	}
+	
+	public int hashCode(){
+		return getComponentType().toString().hashCode() + sideCollision.toString().hashCode();
 	}
 	
 }

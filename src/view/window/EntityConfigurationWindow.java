@@ -93,6 +93,7 @@ public class EntityConfigurationWindow extends Window {
 	}
 
 	private void enterButton() {
+		new EntityActionWindow(myUtilF, myData, myEntity);
 		System.out.println(myCompEdits);
 		for (ComponentEditor comp : myCompEdits.values()) {
 				myEntity.addComponent(comp.getComponent());

@@ -17,6 +17,8 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import entity.restricted.IRestrictedEntity;
 import javafx.geometry.Dimension2D;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 
 /**
  * Class which will represent each GameObject Contains an identifier int and a
@@ -90,6 +92,10 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 		return null;
 	}
 	
+	public boolean containsComponent(ComponentType type){
+		return myComponentMap.values().contains(type);
+	}
+	
 	public IComponent getComponent(IComponent ic){
 		IComponent it = ic; 
 		for (IComponent myComponent : myComponentMap.keySet()) {
@@ -127,6 +133,21 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 		ImagePropertiesComponent ip = (ImagePropertiesComponent) getComponent(ComponentType.ImageProperties);
 		Dimension2D location = new Dimension2D(ip.getWidth(), ip.getHeight());
 		return location;
+	}
+	
+	public ImageView getImageView(){
+		SpriteComponent entitySprite = (SpriteComponent) this.getComponent(ComponentType.Sprite);
+		ImageView spriteImage = new ImageView(entitySprite.getSprite());
+		if (this.getComponent(ComponentType.ImageProperties) != null) {
+			ImagePropertiesComponent imageProp = (ImagePropertiesComponent) this.getComponent(ComponentType.ImageProperties);
+			spriteImage.setFitHeight(imageProp.getHeight());
+			spriteImage.setFitWidth(imageProp.getWidth());
+		} else {
+			spriteImage.setFitHeight(40);
+			spriteImage.setFitWidth(40);
+		}
+		return spriteImage;
+		
 	}
 
 	@Override
