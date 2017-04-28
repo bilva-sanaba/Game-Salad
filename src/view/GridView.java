@@ -2,6 +2,7 @@ package view;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
@@ -12,6 +13,7 @@ import entity.Entity;
 import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -44,6 +46,7 @@ public class GridView extends GUIComponent {
 	private int j = 1000;
 	private int myRow;
 	private int myCol;
+	private int myLevelNumber;
 	double orgSceneX, orgSceneY;
 	double orgTranslateX, orgTranslateY;
 	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
@@ -53,8 +56,9 @@ public class GridView extends GUIComponent {
 	// TODO: change placedentitymap to a map from levelnumber to placedentitymap
 	// Refactor gridview and make it nonshitty
 
-	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
+	public GridView(UtilityFactory utilIn, int levelNumber, ViewData data, int rows, int cols) {
 		util = utilIn;
+		myLevelNumber = levelNumber;
 		myRow = rows;
 		myCol = cols;
 		myData = data;
@@ -80,11 +84,14 @@ public class GridView extends GUIComponent {
 		}
 		if (e.isSecondaryButtonDown()) {
 			rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
-			System.out.println(e.getScreenX() + "and" + e.getScreenY() + "are the coordinates to be pasted");
 		}
 		else if (!e.isControlDown()) {
 			placeImageAtLoc(e.getX(), e.getY());
 		}
+	}
+	
+	public void setLevelNumber(int levelNumber) {
+		myLevelNumber = levelNumber;
 	}
 
 	private void addHo() {
@@ -106,8 +113,13 @@ public class GridView extends GUIComponent {
 			placedEntity.setID(j);
 			j++;
 			placedEntity.addComponent(new LocationComponent(row, col));
-			System.out.println("placed at " + row + col);
-			myData.placeEntity(placedEntity);
+			myData.placeEntity(myLevelNumber, placedEntity);
+		}
+	}
+	
+	public void drawPlacedEntities() {
+		for (Integer levelNumber : myData.getPlacedEntityMap().keySet()) {
+			
 		}
 	}
 
@@ -185,11 +197,11 @@ public class GridView extends GUIComponent {
 		placedImages.clear();
 	}
 
-	public void placeEntitiesFromFile() {
+	public void placeEntitiesFromFile(int levelNumber) {
 		Entity tempEntity;
-		HashMap<Integer, Entity> myMap = myData.getPlacedEntityMap();
-		for (Integer i : myMap.keySet()) {
-			tempEntity = myMap.get(i);
+		Map<Integer, HashMap<Integer, Entity>> myMap = myData.getPlacedEntityMap();
+		for (Integer i : myMap.get(myLevelNumber).keySet()) {
+			tempEntity = myMap.get(myLevelNumber).get(i);
 			drawEntity(tempEntity);
 		}
 	}
@@ -217,6 +229,10 @@ public class GridView extends GUIComponent {
 	public void unselectEntity(Entity entity) {
 		ImageView temp = placedImages.get(myData.getUserGridSelectedEntity());
 		temp.setStyle("");
+	}
+	
+	public Node getContent() {
+		return myScroll;
 	}
 
 	public void selectEntity(Entity entity) {

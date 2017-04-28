@@ -7,6 +7,7 @@ import view.commands.RightClickEvent;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Queue;
 import java.util.Stack;
@@ -53,7 +54,7 @@ public class ViewData extends Observable {
 		gameName = "";
 	}
 	
-	public void addEvent(RightClickEvent e){
+	public void addEvent(RightClickEvent e) {
 		undoStack.add(e);
 	}
 	
@@ -107,8 +108,9 @@ public class ViewData extends Observable {
 		definedEntityMap.remove(entity.getID());
 	}
 
-	public void unplaceEntity(Entity e) {
-		placedEntityMap.remove(e);
+	// fix dependencies
+	public void unplaceEntity(int levelNumber, Entity entity) {
+		placedEntityMaps.get(levelNumber).remove(entity);
 		setChanged();
 		notifyObservers("unplace");
 	}
@@ -117,24 +119,26 @@ public class ViewData extends Observable {
 		copiedEntity = userGridSelectedEntity;
 	}
 	
-	public Entity pasteEntity(double x, double y){
+	// fix dependencies
+	public Entity pasteEntity(int levelNumber, double x, double y) {
 		Entity tempEntity = copiedEntity.clone();
 		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
 		tempLocation.setXY(x, y);
-		placeEntity(tempEntity);
+		placeEntity(levelNumber, tempEntity);
 		userGridSelectedEntity = tempEntity;
 		return tempEntity;
 	}
 	
-	public HashMap<Integer, Entity> getDefinedEntityMap() {
+	public Map<Integer, Entity> getDefinedEntityMap() {
 		return definedEntityMap;
 	}
 
-	public HashMap<Integer, Entity> getPlacedEntityMap() {
-		return placedEntityMap;
+	// fix dependencies
+	public Map<Integer, HashMap<Integer, Entity>> getPlacedEntityMap() {
+		return placedEntityMaps;
 	}
 
-	public LevelEntity getLevelEntity () {
+	public LevelEntity getLevelEntity() {
 		return myLevelEntity;
 	}
 
@@ -163,8 +167,9 @@ public class ViewData extends Observable {
 		notifyObservers("refresh");
 	}
 	
-	public void removePlacedEntities() {
-		placedEntityMap.clear();
+	// fix dependencies
+	public void removePlacedEntities(int levelNumber) {
+		placedEntityMaps.get(levelNumber).clear();
 		setChanged();
 		notifyObservers("reset");
 	}

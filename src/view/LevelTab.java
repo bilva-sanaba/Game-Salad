@@ -1,20 +1,17 @@
 package view;
 
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 
 public class LevelTab extends Tab {
-	private ScrollPane myGrid;
-	private int myLevelNumber;
+	private GridView myGrid;
 	
-	public LevelTab(ScrollPane grid, int counter) {
+	public LevelTab(GridView grid, int counter) {
 		myGrid = grid;
-		this.setContent(myGrid);
+		this.setContent(grid.getContent());
 		this.setLevelNumber(counter);
 	}
 	
 	public void setLevelNumber(int levelNumber) {
-		myLevelNumber = levelNumber;
-		this.setText(String.format("Level %d", myLevelNumber));
+		this.setText(String.format("Level %d", levelNumber));
 	}
 }
