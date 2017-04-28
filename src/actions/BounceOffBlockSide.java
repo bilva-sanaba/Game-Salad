@@ -13,10 +13,10 @@ public class BounceOffBlockSide extends AbstractAction  implements IAction {
 	}
 
 	@Override
-	public IRestrictedGameData executeAction(IEntity e,IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-//		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-//		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
+	public IRestrictedGameData executeAction(IEntity other,IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
+		AccelerationComponent ac = (AccelerationComponent) other.getComponent(ComponentType.Acceleration);
+//		VelocityComponent vc = (VelocityComponent) other.getComponent(ComponentType.Velocity);
+//		LocationComponent lc = (LocationComponent) other.getComponent(ComponentType.Location);
 		ac.setX(-1*ac.getX()); //UNSURE IF ACCELERATION SHOULD JUST REVERSED
 		ac.setY(1*ac.getY());
 		return getGameDataFactory().blankEntityData(currentGameData);

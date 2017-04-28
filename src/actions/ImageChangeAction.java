@@ -16,7 +16,7 @@ public class ImageChangeAction  extends AbstractAction  implements IAction{
 		counter=0;
 	}
 	@Override
-	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		if (counter%10==0){
 			SpriteComponent sc = (SpriteComponent) player.getComponent(ComponentType.Sprite);
