@@ -10,18 +10,27 @@ public class ViewController implements Observer {
 	private ViewData myData;
 	private GridView myGrid;
 	private TabView myTab;
-	
+
 	public ViewController(ViewData dataIn, GridView gridIn, TabView tabIn){
 		myData = dataIn;
 		myGrid = gridIn;
 		myTab = tabIn;
 	}
+
+	
+/*	@Override
+	public void update(Observable o, Object arg){
+		myGrid.clearEntitiesOnGrid();
+		myGrid.drawAllEntities();
+	} */
 	
 	@Override
 	public void update(Observable o, Object arg) {
+		if(myData.getUserGridSelectedEntity() != null){
+			myGrid.unselectEntity(myData.getUserGridSelectedEntity());
+		}
 		if(arg.equals("refresh")){
 			myTab.clearEntitiesOnTab();
-			
 			myGrid.updateBackground();
 			myGrid.setUpLevel();
 		}
@@ -40,5 +49,5 @@ public class ViewController implements Observer {
 		if(myData.getUserSelectedEntity() == null){
 			myTab.clearSelected();
 		}
-	}
+	}  
 }

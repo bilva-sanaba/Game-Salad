@@ -25,11 +25,11 @@ import data_interfaces.Communicator;
  * @author Jack
  */
 public class ViewData extends Observable {
-	
+
 	private static final int STARTINGROWS = 50;
 	private static final int STARTINGCOLS = 50;
 	private static final String PRESETFILE = "PresetEntities";
-	
+
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
 	private HashMap<Integer, Entity> definedEntityMap;
@@ -41,7 +41,7 @@ public class ViewData extends Observable {
 	private Entity copiedEntity;
 	private String gameName;
 	private Boolean saved = true;
-	
+
 	//TODO: implement the saved boolean to track whether the current state is saved
 
 	public ViewData() {
@@ -54,22 +54,25 @@ public class ViewData extends Observable {
 		userSelectedEntity = null;
 		gameName = "";
 	}
-	
+
 	public void addEvent(RightClickEvent e){
 		undoStack.add(e);
 	}
-	
+
 	public void undoLastEvent(){
-		//if(undoStack == null)
-		RightClickEvent e = undoStack.pop();
-		e.undo();
-		redoStack.add(e);
+		if(undoStack.peek() != null){
+			RightClickEvent e = undoStack.pop();
+			e.undo();
+			redoStack.add(e);
+		}
 	}
-	
+
 	public void redo(){
-		RightClickEvent e = redoStack.pop();
-		e.execute();
-		undoStack.add(e);
+		if(redoStack.peek() != null){
+			RightClickEvent e = redoStack.pop();
+			e.execute();
+			undoStack.add(e);
+		}
 	}
 
 	public void setUserSelectedEntity(Entity entity) {
@@ -79,7 +82,7 @@ public class ViewData extends Observable {
 	public Entity getUserSelectedEntity() {
 		return userSelectedEntity;
 	}
-	
+
 	public void setUserGridSelectedEntity(Entity entity) {
 		userGridSelectedEntity = entity;
 	}
@@ -107,7 +110,7 @@ public class ViewData extends Observable {
 
 	public void unplaceEntity(Entity e) {
 		placedEntityMap.remove(e);
-		
+		userGridSelectedEntity = e;
 		//placedEntityMap.remove(userGridSelectedEntity.getID());
 		setChanged();
 		notifyObservers("unplace");
@@ -116,7 +119,7 @@ public class ViewData extends Observable {
 	public void copyEntity(){
 		copiedEntity = userGridSelectedEntity;
 	}
-	
+
 	public Entity pasteEntity(double x, double y){
 		Entity tempEntity = copiedEntity.clone();
 		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
@@ -125,7 +128,7 @@ public class ViewData extends Observable {
 		userGridSelectedEntity = tempEntity;
 		return tempEntity;
 	}
-	
+
 	public HashMap<Integer, Entity> getDefinedEntityMap() {
 		return definedEntityMap;
 	}
@@ -164,7 +167,7 @@ public class ViewData extends Observable {
 		setChanged();
 		notifyObservers("refresh");
 	}
-	
+
 	public void removePlacedEntities(){
 		placedEntityMap.clear();
 		setChanged();
