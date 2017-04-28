@@ -27,6 +27,7 @@ import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.GoalComponent;
+import components.entityComponents.HealthComponent;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
@@ -34,6 +35,7 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.ObjectCreationComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
+import components.entityComponents.StrengthComponent;
 import components.entityComponents.TerminalVelocityComponent;
 import components.entityComponents.TimeComponent;
 import components.entityComponents.TypeComponent;
@@ -64,6 +66,7 @@ import entity.IEntityManager;
 import entity.SplashEntity;
 import entity.presets.AbstractBlock;
 import entity.presets.AbstractBreakableBox;
+import entity.presets.AbstractEnemy;
 import entity.presets.AbstractGoal;
 import entity.presets.AbstractMysteryBlock;
 import entity.presets.AbstractPowerup;
@@ -179,6 +182,7 @@ public class GameEngine implements GameEngineInterface {
 	public GameData dummyLoad(){
 		System.out.println("-------------------------------------- line 118 of GameEngine");
 		Collection<Entity> e = new ArrayList<Entity>();
+		
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(100,150));
 		x.addComponent(new SpriteComponent(("platform_tile_053.png")));
@@ -193,9 +197,10 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new LabelComponent("grrraah"));
 		x.addComponent(new KeyInputComponent());
 		x.addComponent(new TypeComponent(EntityType.Player));
+		x.addComponent(new HealthComponent(100));
 
 		x.addComponent(new GoalComponent());
-		x.addComponent(new TerminalVelocityComponent(10,10));
+		x.addComponent(new TerminalVelocityComponent(5,5));
 
 		Entity y2 = new Entity(201);
 		y2.addComponent(new LocationComponent(800,150));
@@ -276,7 +281,7 @@ public class GameEngine implements GameEngineInterface {
 		e.add(p);
 		
 		//GOAL
-		Entity goal = new AbstractGoal(106);
+		/*Entity goal = new AbstractGoal(106);
 		goal.addComponent(new LocationComponent(800, 20));
 		goal.addComponent(new SpriteComponent(("sand.jpg")));
 		ImagePropertiesComponent goalc = new ImagePropertiesComponent();
@@ -284,7 +289,21 @@ public class GameEngine implements GameEngineInterface {
 		goalc.setWidth(50);
 		goal.addComponent(new LabelComponent("Goal"));
 		goal.addComponent(goalc);
-		e.add(goal);
+		e.add(goal);*/
+		
+		//ENEMY
+		Entity enemy = new AbstractEnemy(120);
+		enemy.addComponent(new LocationComponent(300, 149));
+		enemy.addComponent(new SpriteComponent(("dirt.jpg")));
+		ImagePropertiesComponent enemypc = new ImagePropertiesComponent();
+		enemypc.setHeight(50);
+		enemypc.setWidth(50);
+		enemy.addComponent(enemypc);
+		enemy.addComponent(new LabelComponent("enemy"));
+		enemy.addComponent(new CollidableComponent(true));
+		enemy.addComponent(new CheckCollisionComponent(true));
+		enemy.addComponent(new StrengthComponent(5.0));
+		e.add(enemy);
 
 
 		p.addComponent(new TypeComponent(EntityType.Block));

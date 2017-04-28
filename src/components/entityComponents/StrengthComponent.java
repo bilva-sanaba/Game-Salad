@@ -3,6 +3,7 @@ package components.entityComponents;
 import components.IComponent;
 
 public class StrengthComponent implements IComponent {
+	
 	private double strength;
 
 	public StrengthComponent(double s) {
