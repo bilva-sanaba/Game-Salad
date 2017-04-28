@@ -5,6 +5,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class PaintWindow implements Paint {
+	
+	public static final String RESOURCE_PACKAGE = "resources/";
+	public static final String STYLESHEET = "PaintWindowView.css";
+	
 	private DrawingToolChooser myDrawer;
 	private IDrawingToolbar myToolbar;
 	private IMenu myMenu;
@@ -23,6 +27,7 @@ public class PaintWindow implements Paint {
 	private Scene setDrawingScene() {
 		root = new BorderPane();
 		myScene = new Scene(root);
+		myScene.getStylesheets().add(RESOURCE_PACKAGE + STYLESHEET);
 		buildDrawingArea();
 		return myScene;
 	}

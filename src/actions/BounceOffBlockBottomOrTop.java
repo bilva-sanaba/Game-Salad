@@ -13,8 +13,8 @@ public class BounceOffBlockBottomOrTop extends AbstractAction implements IAction
 	}
 
 	@Override
-	public IRestrictedGameData executeAction(IEntity e,IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+	public IRestrictedGameData executeAction(IEntity other,IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
+		VelocityComponent vc = (VelocityComponent) other.getComponent(ComponentType.Velocity);
 		vc.setY(0);
 		//Does anything need to be done about acceleration?
 		

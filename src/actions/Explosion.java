@@ -17,8 +17,8 @@ public class Explosion  extends AbstractAction  implements IAction {
 	public static final String EXPLOSION_IMAGE = "Feuer46.GIF";
 
 	@Override
-	public IRestrictedGameData executeAction(IEntity e, IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
-//		ImagePropertiesComponent ic = (ImagePropertiesComponent) e.getComponent(ComponentType.ImageProperties);
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
+//		ImagePropertiesComponent ic = (ImagePropertiesComponent) other.getComponent(ComponentType.ImageProperties);
 
 
 		return getGameDataFactory().blankEntityData(currentGameData);

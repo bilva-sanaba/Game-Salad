@@ -24,9 +24,9 @@ public class Teleport extends AbstractAction  implements IAction {
 	}
 
 	@Override
-	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		((LocationComponent) player.getComponent(ComponentType.Location)).setXY(teleportXLocation, teleportYLocation);
-		player.changed(player);
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
+		((LocationComponent) other.getComponent(ComponentType.Location)).setXY(teleportXLocation, teleportYLocation);
+		other.changed(other);
 		return getGameDataFactory().blankEntityData(currentGameData);
 	}
 

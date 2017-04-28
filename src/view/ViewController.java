@@ -17,19 +17,6 @@ public class ViewController implements Observer {
 		myTab = tabIn;
 	}
 	
-	public void updateSelectedEntity(Entity entity) {
-		if(!myData.getUserSelectedEntity().getComponent(ComponentType.Location).equals(null)) {
-			myGrid.unselectEntity(myData.getUserSelectedEntity());
-		}
-		else{
-			myTab.clearSelected();
-		}
-		if(!entity.getComponent(ComponentType.Location).equals(null)) {
-			myGrid.selectEntity(entity);
-		}
-		myData.setUserSelectedEntity(entity);
-	}
-	
 	@Override
 	public void update(Observable o, Object arg) {
 		if (arg.equals("refresh")) {
