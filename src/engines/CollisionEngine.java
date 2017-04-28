@@ -130,7 +130,7 @@ public class CollisionEngine extends AbstractEngine {
 //			entManager.getEntities().add(e);
 //			entManager.changed(e);
 		}
-		return gd;
+		return rgd;
 	}
 	
 }

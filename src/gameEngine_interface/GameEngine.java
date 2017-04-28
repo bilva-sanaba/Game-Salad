@@ -109,16 +109,16 @@ public class GameEngine implements GameEngineInterface {
 	private Camera cam;
 
 	public GameEngine(){
-		try{
-	    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(currentMusic));
-	    clip2 = AudioSystem.getClip();
-	    clip2.open(audioInputStream2);
-	    clip2.start();
-	}
-	catch(Exception ex)
-	{
-		new VoogaError("File Not Found", "Music Could Not Be Played");
-	}
+//		try{
+//	    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(currentMusic));
+//	    clip2 = AudioSystem.getClip();
+//	    clip2.open(audioInputStream2);
+//	    clip2.start();
+//	}
+//	catch(Exception ex)
+//	{
+//		new VoogaError("File Not Found", "Music Could Not Be Played");
+//	}
 	}
 	
 	public IRestrictedGameData loadData(Communicator c){
@@ -153,22 +153,21 @@ public class GameEngine implements GameEngineInterface {
 			rgd.setLevel(99);
 			GameDataFactory gdf = new GameDataFactory();
 			gdf.updateGameData(myGameData,rgd);
-			if (currentMusic!=myGameData.getMusic()){
-				clip2.stop();
-				AudioInputStream audioInputStream2;
-				try {
-					System.out.println(myGameData.getMusic()+"test");
-					audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(myGameData.getMusic()));
-					clip2 = AudioSystem.getClip();
-					clip2.open(audioInputStream2);
-					clip2.start();
-					currentMusic = myGameData.getMusic();
-				} catch (UnsupportedAudioFileException | IOException  | LineUnavailableException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
-			}
+//			if (currentMusic!=myGameData.getMusic()){
+//				clip2.stop();
+//				AudioInputStream audioInputStream2;
+//				try {
+//					audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(myGameData.getMusic()));
+//					clip2 = AudioSystem.getClip();
+//					clip2.open(audioInputStream2);
+//					clip2.start();
+//					currentMusic = myGameData.getMusic();
+//				} catch (UnsupportedAudioFileException | IOException  | LineUnavailableException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			
+//			}
 			
 		}
 		

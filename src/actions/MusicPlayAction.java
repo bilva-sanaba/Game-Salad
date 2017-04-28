@@ -18,18 +18,18 @@ public class MusicPlayAction extends AbstractAction implements IAction {
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
-//		try{
-//		    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(playedSong));
-//		    Clip clip2 = AudioSystem.getClip();
-//		    clip2.open(audioInputStream2);
-//		    clip2.start();
-//		}
-//		catch(Exception ex)
-//		{
-//			new VoogaError("File Not Found", "Music Could Not Be Played");
-//		}
+		try{
+		    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(playedSong));
+		    Clip clip2 = AudioSystem.getClip();
+		    clip2.open(audioInputStream2);
+		    clip2.start();
+		}
+		catch(Exception ex)
+		{
+			new VoogaError("File Not Found", "Music Could Not Be Played");
+		}
 		GameData r =getGameDataFactory().blankEntityData(currentGameData);
-		r.setMusic(playedSong);
+//		r.setMusic(playedSong);
 		return r;
 	}
 
