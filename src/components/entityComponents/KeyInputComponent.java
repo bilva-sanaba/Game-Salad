@@ -1,6 +1,8 @@
 package components.entityComponents;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import actions.IAction;
@@ -9,13 +11,13 @@ import components.IComponent;
 import javafx.scene.input.KeyCode;
 
 public class KeyInputComponent extends AComponent implements IComponent {
-	private Map<KeyCode,IAction> inputMap = new HashMap<KeyCode,IAction>();
+	private Map<KeyCode, ArrayList<IAction>> inputMap = new HashMap<KeyCode,ArrayList<IAction>>();
 	private Map<KeyCode,String>  groovyMap = new HashMap<KeyCode,String>();
-	public KeyInputComponent(Map<KeyCode,IAction> keyMap, Map<KeyCode,String> stringMap){
+	public KeyInputComponent(Map<KeyCode,ArrayList<IAction>> keyMap, Map<KeyCode,String> stringMap){
 		inputMap=keyMap;
 		groovyMap = stringMap;
 	}
-	public KeyInputComponent(Map<KeyCode,IAction> keyMap){
+	public KeyInputComponent(Map<KeyCode,ArrayList<IAction>> keyMap){
 		inputMap=keyMap;
 	}
 	
@@ -23,7 +25,7 @@ public class KeyInputComponent extends AComponent implements IComponent {
 	}
 	
 	
-	public Map<KeyCode,IAction> getActionMap(){
+	public Map<KeyCode,ArrayList<IAction>> getActionMap(){
 		return inputMap;
 	}
 	public Map<KeyCode,String> getGroovyMap(){
@@ -37,7 +39,13 @@ public class KeyInputComponent extends AComponent implements IComponent {
 //		groovyMap= map;
 //	}
 	public void addToMap(KeyCode kc, IAction ke){
-		inputMap.put(kc, ke);
+		if (inputMap.containsKey(kc)){
+		inputMap.get(kc).add(ke);
+		}else{
+			ArrayList<IAction> list = new ArrayList<IAction>();
+			list.add(ke);
+			inputMap.put(kc, list);
+		}
 	}
 	public void addToMap(KeyCode kc, String s){
 		groovyMap.put(kc, s);

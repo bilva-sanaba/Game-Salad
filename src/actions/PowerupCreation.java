@@ -21,7 +21,6 @@ public class PowerupCreation   extends AbstractAction implements IAction {
 		ObjectCreationComponent occ = ((ObjectCreationComponent) self.getComponent(ComponentType.ObjectCreation));
 		LocationComponent lc = ((LocationComponent) self.getComponent(ComponentType.Location));
 		GameData returnData = getGameDataFactory().blankEntityData(currentGameData);
-		
 		if (occ.checkIfCreation()){
 			IEntity powerup = occ.getCreationEffect();
 			if (powerup!=null){
