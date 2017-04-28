@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
@@ -45,7 +46,8 @@ public class GridView extends GUIComponent {
 	double orgSceneX, orgSceneY;
 	double orgTranslateX, orgTranslateY;
 	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
-	private BorderPane bp;
+	private BorderPane myBorderPane;
+	private TabPane myLevelTabs;
 
 	public GridView(UtilityFactory utilIn, ViewData data, int rows, int cols) {
 		util = utilIn;
@@ -57,15 +59,15 @@ public class GridView extends GUIComponent {
 		myGrid.setPrefSize(500, 500);
 		myGrid.setOnMousePressed(e -> mousePress(e));
 		myGrid.getStyleClass().add("view-grid");
-		bp = new BorderPane();
+		myBorderPane = new BorderPane();
 		Button butt = util.buildButton("addHo", e -> addHo());
 		util.buildButton("addHo", e -> addHo());
 		Button butt2 = util.buildButton("addVert", e -> addVert());
 		util.buildButton("addVert", e -> addVert());
 		HBox box = new HBox(butt, butt2);
-		bp.setTop(box);
+		myBorderPane.setTop(box);
 		myScroll = new ScrollPane(myGrid);
-		bp.setCenter(myScroll);
+		myBorderPane.setCenter(myScroll);
 	}
 
 	private void mousePress(MouseEvent e) {
@@ -217,6 +219,6 @@ public class GridView extends GUIComponent {
 
 	@Override
 	public Region buildComponent() {
-		return bp;
+		return myBorderPane;
 	}
 }
