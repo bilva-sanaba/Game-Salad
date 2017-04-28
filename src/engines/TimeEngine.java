@@ -29,6 +29,7 @@ public class TimeEngine extends AbstractEngine {
 	@Override
 	public void update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
 		Iterator<IEntity> iter = getEManager().getEntities().iterator();
+		
 		for (IEntity e : getEManager().getEntities()){
 			TimeComponent tc = (TimeComponent) e.getComponent(ComponentType.Time);
 			if (tc!=null){

@@ -25,6 +25,7 @@ import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
+import components.entityComponents.DamagedComponent;
 import components.entityComponents.EntityType;
 import components.entityComponents.GoalComponent;
 import components.entityComponents.HealthComponent;
@@ -198,6 +199,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new KeyInputComponent());
 		x.addComponent(new TypeComponent(EntityType.Player));
 		x.addComponent(new HealthComponent(100));
+		x.addComponent(new DamagedComponent());
 
 		x.addComponent(new GoalComponent());
 		x.addComponent(new TerminalVelocityComponent(5,5));

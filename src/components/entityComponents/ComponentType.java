@@ -31,6 +31,5 @@ public enum ComponentType {
 	MonsterMovementStep(),
 	Friction(),
 	TerminalVelocity(),
-	FrontCamera(),
-	BackCamera();
+	Damaged();
 }
