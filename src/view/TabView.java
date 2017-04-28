@@ -83,6 +83,12 @@ public class TabView extends GUIComponent {
 	public void addEntity(Entity e) {
 		blocksList.add(e);
 	}
+	
+	public void addDefinedEntities() {
+		for (Integer entityID : myData.getDefinedEntityMap().keySet()) {
+			addEntity(myData.getDefinedEntityMap().get(entityID));
+		}
+	}
 
 	@Override
 	public Region buildComponent() {
