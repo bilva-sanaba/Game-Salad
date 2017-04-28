@@ -10,6 +10,6 @@ public interface IAction {
 	 * @param currentGameData TODO
 	 * @param e
 	 */
-	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData);
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData);
 	
 }

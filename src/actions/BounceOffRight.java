@@ -16,13 +16,13 @@ public class BounceOffRight extends AbstractAction  implements IAction {
 
 	@Override
 
-	public IRestrictedGameData executeAction(IEntity e,IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
+	public IRestrictedGameData executeAction(IEntity other,IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
 
-		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-		LocationComponent lcE0 = (LocationComponent) e.getComponent(ComponentType.Location);
-		LocationComponent lcE1 = (LocationComponent) e2.getComponent(ComponentType.Location);
-		ImagePropertiesComponent ipE0 = (ImagePropertiesComponent) e2.getComponent(ComponentType.ImageProperties);
+		AccelerationComponent ac = (AccelerationComponent) other.getComponent(ComponentType.Acceleration);
+		VelocityComponent vc = (VelocityComponent) other.getComponent(ComponentType.Velocity);
+		LocationComponent lcE0 = (LocationComponent) other.getComponent(ComponentType.Location);
+		LocationComponent lcE1 = (LocationComponent) self.getComponent(ComponentType.Location);
+		ImagePropertiesComponent ipE0 = (ImagePropertiesComponent) self.getComponent(ComponentType.ImageProperties);
 		lcE0.setX(lcE1.getX()+ipE0.getWidth());
 		
 		if(vc.getX() < 0) {

@@ -7,7 +7,7 @@ public class RedoCommand implements RightClickEvent {
 
 private ViewData myData;
 	
-	public RedoCommand(ViewData data){
+	public RedoCommand(ViewData data, double x, double y){
 		myData = data;
 	}
 	
