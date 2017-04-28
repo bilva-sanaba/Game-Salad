@@ -1,11 +1,20 @@
 package gameEngine_interface;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import actions.BlockBottomRegularCollision;
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBlockBottomOrTop;
@@ -13,10 +22,12 @@ import actions.BounceOffBlockSide;
 import actions.DoubleJump;
 import actions.IAction;
 import actions.ImageChangeAction;
+import actions.PointsAction;
 import actions.Reload;
 import actions.RemoveAction;
 import actions.ShootAction;
 import actions.Teleport;
+import alerts.VoogaError;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
@@ -41,6 +52,8 @@ import components.keyExpressions.JumpAction;
 import components.keyExpressions.LeftAction;
 import components.keyExpressions.RightAction;
 import controller.Camera;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
 import data_interfaces.XMLParser;
@@ -90,15 +103,28 @@ public class GameEngine implements GameEngineInterface {
 	private double lives=0;
 	private double level=0;
 	private String music = "";
+	private String currentMusic = "Obi-Wan - Hello there..wav";
+	private Clip clip2;
 	private Camera cam;
 	public GameEngine(){
+//		try{
+//	    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(currentMusic));
+//	    clip2 = AudioSystem.getClip();
+//	    clip2.open(audioInputStream2);
+//	    clip2.start();
+//	}
+//	catch(Exception ex)
+//	{
+//		new VoogaError("File Not Found", "Music Could Not Be Played");
+//	}
 	}
+	
 	public IRestrictedGameData loadData(Communicator c){
 		myEntityManager = new EntityManager(c.getData());
 		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
-		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,music);
+		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,currentMusic);
 		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
 		return dg;
 	}
@@ -120,7 +146,24 @@ public class GameEngine implements GameEngineInterface {
 			rgd.setLevel(99);
 			GameDataFactory gdf = new GameDataFactory();
 			gdf.updateGameData(myGameData,rgd);
+//			if (currentMusic!=myGameData.getMusic()){
+//				clip2.stop();
+//				AudioInputStream audioInputStream2;
+//				try {
+//					audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(myGameData.getMusic()));
+//					clip2 = AudioSystem.getClip();
+//					clip2.open(audioInputStream2);
+//					clip2.start();
+//					currentMusic = myGameData.getMusic();
+//				} catch (UnsupportedAudioFileException | IOException  | LineUnavailableException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			
+//			}
+			
 		}
+		
 	}
 	//TODO: Dumb flappybird
 	//	public GameData dummyLoad(){
@@ -228,6 +271,7 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
@@ -326,7 +370,9 @@ public class GameEngine implements GameEngineInterface {
 		e.add(portal2);
 		e.add(createPortal2());
 		myEntityManager = new EntityManager(e);
+
 		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 		return myGameData;
 	}
