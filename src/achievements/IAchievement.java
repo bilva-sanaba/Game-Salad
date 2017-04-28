@@ -5,5 +5,7 @@ import javafx.scene.shape.Ellipse;
 
 public interface IAchievement {
 
-	public Group execute();
+	public Group getGroup();
+	
+	public void updateAchievementLoc(double d);
 }

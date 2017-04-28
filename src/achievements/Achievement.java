@@ -15,20 +15,24 @@ public class Achievement implements IAchievement {
 	private final int xCORRECTION = 50;
 	private final int yCORRECTION = 350;
 	
-	private String message;
+	//private String message;
 	private Group group;
 	
 	public Achievement(String message){
-		this.message = message;
-		group = new Group();
+		group = createEllipse(message);
 	}
 	
-	public Group execute() {
-		return createEllipse();
+	
+	public Group getGroup(){
+		return group;
 	}
 	
-	private Group createEllipse(){
-		Group group = new Group();
+	public void updateAchievementLoc(double d){
+		group.setLayoutX(d);
+	}
+	
+	private Group createEllipse(String message){
+		Group g = new Group();
 		
 		Label t = new Label(ACHIEVEMENTUNLOCKED+message);
 		Ellipse ellipse = new Ellipse();
@@ -47,8 +51,9 @@ public class Achievement implements IAchievement {
 		t.layoutXProperty().bind(xLoc.subtract(t.widthProperty().divide(2)));
 		t.layoutYProperty().bind(yLoc.subtract(t.heightProperty().divide(2)));
 		
-		group.getChildren().addAll(ellipse, t);
-		return group;
+		g.getChildren().addAll(ellipse, t);
+		
+		return g;
 		
 	}
 	

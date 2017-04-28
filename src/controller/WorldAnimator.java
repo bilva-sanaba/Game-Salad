@@ -70,7 +70,7 @@ public class WorldAnimator{
 
 
     private Camera myCamera;
-    private Group myAchievement;
+    private Achievement myAchievement;
     private UIViewInterface myView;
     private	ObserverManager myObservers;
 
@@ -105,9 +105,8 @@ public class WorldAnimator{
         //Change Length
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
         
-        Achievement a = new Achievement("YOOOO");
-        myAchievement = a.execute();
-        root.getChildren().add(myAchievement);
+        myAchievement = new Achievement("YOOOO");
+        root.getChildren().add(myAchievement.getGroup());
         
 
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
@@ -132,7 +131,7 @@ public class WorldAnimator{
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
        
-        myAchievement.setLayoutX(myCamera.getX());
+        myAchievement.updateAchievementLoc(-1*myCamera.getX());
         myCamera.updateCamera();
         myObservers.clearSet();
     }
