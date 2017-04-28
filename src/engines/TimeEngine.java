@@ -32,7 +32,8 @@ public class TimeEngine extends AbstractEngine {
 			TimeComponent tc = (TimeComponent) e.getComponent(ComponentType.Time);
 			if (tc!=null){
 				Map<IAction,Integer> lastTime = tc.getLastTime(); 
-				Map<IAction,Integer> constantTime = tc.getConstantTime(); 
+				Map<IAction,Integer> constantTime = tc.getConstantTime();
+				Map<IAction,Integer> singleTime =tc.getSingleTime();
 				for (IAction action : constantTime.keySet()){
 					if (!lastTime.containsKey(action)){
 						lastTime.put(action,(int) System.currentTimeMillis());
@@ -40,6 +41,15 @@ public class TimeEngine extends AbstractEngine {
 					if ((int) System.currentTimeMillis()-lastTime.get(action)> constantTime.get(action) ){
 						action.executeAction(e, null, getEManager(), gameData);
 						lastTime.put(action, (int) System.currentTimeMillis());
+					}
+				}
+				for (IAction action : singleTime.keySet()){
+					if (!lastTime.containsKey(action)){
+						lastTime.put(action,(int) System.currentTimeMillis());
+					}
+					if ((int) System.currentTimeMillis()-lastTime.get(action)> singleTime.get(action) ){
+						action.executeAction(e, null, getEManager(), gameData);
+						singleTime.remove(action);
 					}
 				}
 			}

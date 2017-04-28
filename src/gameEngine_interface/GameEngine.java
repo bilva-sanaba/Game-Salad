@@ -105,6 +105,7 @@ public class GameEngine implements GameEngineInterface {
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
 		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,music);
 		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
+		points++;
 		return dg;
 	}
 	public Collection<IEntity> save(){
