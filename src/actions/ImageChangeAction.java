@@ -19,9 +19,9 @@ public class ImageChangeAction  extends AbstractAction  implements IAction{
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		if (counter%10==0){
-			SpriteComponent sc = (SpriteComponent) player.getComponent(ComponentType.Sprite);
+			SpriteComponent sc = (SpriteComponent) other.getComponent(ComponentType.Sprite);
 			sc.setClassPath(possibleImages.get((counter/10)%possibleImages.size()));		
-			player.changed(player);
+			other.changed(other);
 		}
 		counter++;
 		return getGameDataFactory().blankEntityData(currentGameData);
