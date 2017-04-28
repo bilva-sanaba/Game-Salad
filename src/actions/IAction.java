@@ -1,8 +1,5 @@
 package actions;
 
-import java.util.List;
-
-import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;

@@ -104,7 +104,6 @@ public class WorldAnimator{
         st = new SequentialTransition();
         LocationComponent lc = myData.getMainLocation();
         //Change Length
-        System.out.println("this triggers");
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
 
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
@@ -166,16 +165,15 @@ public class WorldAnimator{
     }
 
     private void fillMapAndDisplay(Set<Integer> entities){
-
+    	
     	Map<Integer, ImageConfig> map = myObservers.getEntityMap();
         for(Integer entity : entities){
         //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
-        	System.out.println(entity);
         	if (map.get(entity)!=null){
 		  //SequentialTransition trans = new SequentialTransition();
 		  //removeEntity(entity,entities);
-		  updateEntity(entity,map);
-		  createEntity(entity,map);
+        		updateEntity(entity,map);
+        		createEntity(entity,map);
         	}
 		}
 
@@ -188,8 +186,8 @@ public class WorldAnimator{
     		st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
     		st.play();
     		imageMap.get(entity).getImageView().setImage(null);
-    	
-    		imageMap.remove(entity);
+    		root.getChildren().remove(imageMap.get(entity));
+    		imageMap.remove(entity);    		
     	}
     }
 
@@ -198,7 +196,7 @@ public class WorldAnimator{
 	        if (!imageMap.containsKey(entity) && map.get(entity)!=null){
 	            ImageView imageView = new ImageView();
 	            //ImageView old = map.get(entity).getImageView();
-	            imageView = updateImage(imageView, "", map.get(entity).getImageView(), map.get(entity).getPath());
+	            imageView = updateImage(entity, imageView, "", map.get(entity).getImageView(), map.get(entity).getPath());
 	            imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 	            
 	            root.getChildren().add(imageView);
@@ -211,24 +209,24 @@ public class WorldAnimator{
 	private void updateEntity(Integer entity, Map<Integer, ImageConfig> map){
         if (imageMap.containsKey(entity)) {
         	ImageConfig currentImage = imageMap.get(entity);
+        	
     		ImageConfig updatedImage = map.get(entity);
-    		updateImage(currentImage.getImageView(), currentImage.getPath(), updatedImage.getImageView(), updatedImage.getPath());
+    		updateImage(entity, currentImage.getImageView(), currentImage.getPath(), updatedImage.getImageView(), updatedImage.getPath());
         }
 
     }
-    private ImageView updateImage(ImageView currentImage, String currentPath, ImageView re, String rePath){
+    private ImageView updateImage(int entity, ImageView currentImage, String currentPath, ImageView re, String rePath){
     	
     	if(!rePath.equals(currentPath)){
     		currentImage.setImage(re.getImage());
+    		ImageConfig updated  = new ImageConfig(currentImage,rePath);
+    		imageMap.put(entity,updated);
     	}
-    	
-        System.out.println("xPos:" +re.getTranslateX());
-        System.out.println("xPosCurrent: " + currentImage.getTranslateX());
         currentImage.setTranslateX(re.getTranslateX());
-        //System.out.println("xPosCurrent: " + currentImage.getImageView().getTranslateX());
         currentImage.setTranslateY(re.getTranslateY()); 
         currentImage.setFitHeight(re.getFitHeight());
         currentImage.setFitWidth(re.getFitWidth());
+        
 
         return currentImage;
         //COMMENT OUT TO TEST RUNNER
