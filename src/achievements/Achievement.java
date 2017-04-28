@@ -1,9 +1,7 @@
 package achievements;
 
-import components.entityComponents.LocationComponent;
 import javafx.beans.binding.DoubleBinding;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -14,14 +12,15 @@ public class Achievement implements IAchievement {
 	private final int PADDING = 20;
 	private final int WIDTH = 2;
 	private final int HEIGHT = 4;
-	private double xCorrection = 50;
-	private final double yCORRECTION = 350;
-	private LocationComponent myLocation;
-	private Scene myFrame;
+	private final int xCORRECTION = 50;
+	private final int yCORRECTION = 350;
+	
 	private String message;
+	private Group group;
 	
 	public Achievement(String message){
 		this.message = message;
+		group = new Group();
 	}
 	
 	public Group execute() {
@@ -36,7 +35,7 @@ public class Achievement implements IAchievement {
 		
 		DoubleBinding halfWidth = t.widthProperty().divide(WIDTH).add(PADDING);
 		DoubleBinding halfHeight = t.heightProperty().divide(HEIGHT).add(PADDING);
-		DoubleBinding xLoc = halfWidth.add(xCorrection);
+		DoubleBinding xLoc = halfWidth.subtract(xCORRECTION);
 		DoubleBinding yLoc = halfHeight.add(yCORRECTION);
 		
 		ellipse.radiusXProperty().bind(halfWidth);

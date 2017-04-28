@@ -132,7 +132,7 @@ public class WorldAnimator{
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
        
-        //myAchievement.setLayoutX(myCamera.getX()+100);
+        myAchievement.setLayoutX(myCamera.getX());
         myCamera.updateCamera();
         myObservers.clearSet();
     }
