@@ -9,6 +9,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import actions.BlockTopRegularCollision;
+import actions.IAction;
 import alerts.GroovyAlert;
 import components.IComponent;
 import components.entityComponents.AccelerationComponent;
@@ -92,8 +93,10 @@ public class InputEngine extends AbstractEngine{
 		
 		for (KeyCode key : keys){
 			if (ic.getActionMap().containsKey(key)){
-					newEntities.addAll(ic.getActionMap().get(key).executeAction(e, null, getEManager(), gameData).getRestrictedEntityManager().getRestrictedEntities());
+				for (IAction action : ic.getActionMap().get(key)){
+					newEntities.addAll(action.executeAction(e, null, getEManager(), gameData).getRestrictedEntityManager().getRestrictedEntities());
 					((IRestrictedEntity) e).changed(e);
+				}
 				}
 			if (ic.getGroovyMap().containsKey(key)){
 				try {
