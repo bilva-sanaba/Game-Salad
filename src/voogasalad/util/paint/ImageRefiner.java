@@ -14,7 +14,7 @@ import javafx.scene.shape.Shape;
  * The first method was adapted from stack.overflow.com
  * 
  */
-public class ImageRefiner {
+public class ImageRefiner implements IImageRefiner {
 
 	public ImageRefiner(){};
 	/**

@@ -50,7 +50,7 @@ public class InputEngine extends AbstractEngine{
 
 
 	@Override
-	public void update(Collection<KeyCode> keys, IRestrictedGameData gameData) {
+	public IRestrictedGameData update(Collection<KeyCode> keys, IRestrictedGameData gameData) {
 		newEntities.clear();
 		for (IEntity e : getEManager().getEntities()){
 			handleInput(e,keys, gameData);
@@ -60,6 +60,7 @@ public class InputEngine extends AbstractEngine{
 			getEManager().getEntities().add(myE);
 			getEManager().changed(myE);
 		}
+		return gameData;
 	}
 	private void handleInput(IEntity e, Collection<KeyCode> keys, IRestrictedGameData gameData){
 		if (e.getComponent(ComponentType.KeyInput)!=null){
