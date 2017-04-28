@@ -17,9 +17,9 @@ public class BounceOffTop extends AbstractAction  implements IAction {
 
 	@Override
 
-	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
 
-		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
+		VelocityComponent vc = (VelocityComponent) other.getComponent(ComponentType.Velocity);
 		
 		if (vc.getY()>0 && vc.getY()<0.25) {
 			vc.setY(0);
