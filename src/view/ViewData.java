@@ -37,10 +37,11 @@ public class ViewData extends Observable {
 	private LevelEntity myLevelEntity;
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
+	private Entity userGridSelectedEntity;
 	private Entity copiedEntity;
 	private String gameName;
 	private Boolean saved = true;
-	private Entity userGridSelectedEntity;
+	
 	//TODO: implement the saved boolean to track whether the current state is saved
 
 	public ViewData() {
@@ -105,19 +106,20 @@ public class ViewData extends Observable {
 	}
 
 	public void unplaceEntity() {
-		placedEntityMap.remove(userSelectedEntity.getID());
+		placedEntityMap.remove(userGridSelectedEntity.getID());
 		setChanged();
 		notifyObservers("unplace");
 	}
 
 	public void copyEntity(){
-		copiedEntity = userGridSelectedEntity.clone();
+		copiedEntity = userGridSelectedEntity;
 	}
 	
 	public void pasteEntity(double x, double y){
-		LocationComponent temp = (LocationComponent) copiedEntity.getComponent(ComponentType.Location);
-		temp.setXY(x, y);
-		placeEntity(copiedEntity);
+		Entity tempEntity = copiedEntity.clone();
+		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
+		tempLocation.setXY(x, y);
+		placeEntity(tempEntity);
 	}
 	
 	public HashMap<Integer, Entity> getDefinedEntityMap() {

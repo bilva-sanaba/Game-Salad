@@ -7,7 +7,7 @@ public class CopyCommand implements RightClickEvent{
 	
 	private ViewData myData;
 	
-	public CopyCommand(ViewData data){
+	public CopyCommand(ViewData data, double x, double y){
 		myData = data;
 	}
 

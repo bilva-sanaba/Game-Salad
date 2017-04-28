@@ -13,23 +13,36 @@ import view.UtilityFactory;
 import view.ViewData;
 
 public class RightClickMenu{
-	private ContextMenu contextMenu;
+	private boolean isShowing;
+	private ViewData myData;
+	private UtilityFactory utilF;
+	private ContextMenu currentMenu;
 	
-	public RightClickMenu(UtilityFactory utilF, ViewData myData){
-		contextMenu = new ContextMenu();
-		fillMenu(utilF.makeRightClickMenu(myData));
+	public RightClickMenu(UtilityFactory utilIn, ViewData dataIn, double x, double y){
+		utilF = utilIn;
+		myData = dataIn;
+		isShowing = false;
 	}
 	
-	private void fillMenu(List<MenuItem> menuItems) {
-		menuItems.stream().forEach(contextMenu.getItems()::add);
+	private void fillMenu(List<MenuItem> menuItems, ContextMenu menu) {
+		menuItems.stream().forEach(menu.getItems()::add);
 	}
 	
 	public void show(Pane pane, double x, double y){
-		contextMenu.show(pane, x, y);
+		ContextMenu newMenu = new ContextMenu();
+		fillMenu(utilF.makeRightClickMenu(myData, x, y), newMenu);
+		currentMenu = newMenu;
+		currentMenu.show(pane, x, y);
+		isShowing = true;
 	}
 	
 	public void hide(){
-		contextMenu.hide();
+		currentMenu.hide();
+		isShowing = false;
+	}
+	
+	public boolean isShowing(){
+		return isShowing;
 	}
 
 }

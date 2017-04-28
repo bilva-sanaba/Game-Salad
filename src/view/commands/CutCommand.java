@@ -9,7 +9,7 @@ public class CutCommand implements RightClickEvent{
 private ViewData myData;
 private Entity myEntity;
 	
-	public CutCommand(ViewData data){
+	public CutCommand(ViewData data, double x, double y){
 		myData = data;
 	}
 	
