@@ -105,8 +105,10 @@ public class ViewData extends Observable {
 		definedEntityMap.remove(entity.getID());
 	}
 
-	public void unplaceEntity() {
-		placedEntityMap.remove(userGridSelectedEntity.getID());
+	public void unplaceEntity(Entity e) {
+		placedEntityMap.remove(e);
+		
+		//placedEntityMap.remove(userGridSelectedEntity.getID());
 		setChanged();
 		notifyObservers("unplace");
 	}
@@ -115,11 +117,13 @@ public class ViewData extends Observable {
 		copiedEntity = userGridSelectedEntity;
 	}
 	
-	public void pasteEntity(double x, double y){
+	public Entity pasteEntity(double x, double y){
 		Entity tempEntity = copiedEntity.clone();
 		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
 		tempLocation.setXY(x, y);
 		placeEntity(tempEntity);
+		userGridSelectedEntity = tempEntity;
+		return tempEntity;
 	}
 	
 	public HashMap<Integer, Entity> getDefinedEntityMap() {

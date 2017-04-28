@@ -28,9 +28,9 @@ public class RightClickMenu{
 		menuItems.stream().forEach(menu.getItems()::add);
 	}
 	
-	public void show(Pane pane, double x, double y){
+	public void show(Pane pane, double x, double y, double placex, double placey){
 		ContextMenu newMenu = new ContextMenu();
-		fillMenu(utilF.makeRightClickMenu(myData, x, y), newMenu);
+		fillMenu(utilF.makeRightClickMenu(myData, placex, placey), newMenu);
 		currentMenu = newMenu;
 		currentMenu.show(pane, x, y);
 		isShowing = true;

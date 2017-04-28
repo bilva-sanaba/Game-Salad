@@ -74,7 +74,7 @@ public class GridView extends GUIComponent {
 			rightClick.hide();
 		}
 		if (e.isSecondaryButtonDown()) {
-			rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
+			rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			System.out.println(e.getScreenX() + "and" + e.getScreenY() + "are the coordinates to be pasted");
 		}
 		else if (!e.isControlDown()) {
@@ -135,7 +135,7 @@ public class GridView extends GUIComponent {
 			}
 			if (e.isSecondaryButtonDown()) {
 				selectEntity(entity);
-				rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
+				rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			}
 		});
 		spriteImage.setOnMouseDragged(e -> {

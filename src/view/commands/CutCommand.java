@@ -15,8 +15,8 @@ private Entity myEntity;
 	
 	@Override
 	public void execute() {
-		myEntity = myData.getUserSelectedEntity();
-		myData.unplaceEntity();
+		myEntity = myData.getUserGridSelectedEntity();
+		myData.unplaceEntity(myEntity);
 		myData.setUserSelectedEntity(null);
 		myData.addEvent(this);
 	}
