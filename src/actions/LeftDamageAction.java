@@ -29,8 +29,7 @@ public class LeftDamageAction implements IAction{
 		vc.setY(-1);
 		
 		hc.setHealth(hc.getHealth() - sc.getStrength());
-		System.out.println(hc.getHealth());
-			
+		
 		GameDataFactory gdf = new GameDataFactory();
 			
 		return gdf.blankEntityData(currentGameData);

@@ -1,7 +1,9 @@
 package actions;
 
 import components.entityComponents.ComponentType;
+import components.entityComponents.HealthComponent;
 import components.entityComponents.LocationComponent;
+import components.entityComponents.StrengthComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -16,11 +18,15 @@ public class RightDamageAction implements IAction{
 		
 		LocationComponent lc = (LocationComponent) player.getComponent(ComponentType.Location);
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
+		HealthComponent hc = (HealthComponent) player.getComponent(ComponentType.Health);
+		StrengthComponent sc = (StrengthComponent) npc.getComponent(ComponentType.Strength);
 			
 		lc.setX(lc.getX()+0.01);
 			
 		vc.setX(5);
 		vc.setY(-1);
+		
+		hc.setHealth(hc.getHealth() - sc.getStrength());
 			
 		GameDataFactory gdf = new GameDataFactory();
 		
