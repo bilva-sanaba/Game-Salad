@@ -33,6 +33,7 @@ public class GeneralPostCollisionHandler implements ISubEngine{
 		}
 		if (handlerE0 != null && handlerE0.getCollisionComponent(side) != null) {
 			createdEntities.addAll(handlerE0.getCollisionComponent(side).executeOnCollide(e1, e0, myEM,gd));
+			
 	}
 		
 			

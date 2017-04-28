@@ -25,7 +25,6 @@ public class AbstractPowerup extends Entity {
 		this.addComponent(new CollidableComponent(true));
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 		scc.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
-
 		scc.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
 		scc.addActionForLabel(new LabelComponent("grrraah"), new MusicPlayAction("badboujee.wav"));
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);

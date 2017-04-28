@@ -82,9 +82,7 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	}
 
 	public IComponent getComponent(ComponentType ct) {
-		System.out.println(myComponentMap + " line 83 " + this.getClass());
 		for (IComponent myComponent : myComponentMap.keySet()) {
-			System.out.println(myComponent);
 			if (myComponent.getComponentType() == ct) {
 				return myComponent;
 			}
