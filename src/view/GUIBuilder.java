@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import view.toolbar.ToolBarView;
 
 /**
  * @author Jonathan Rub
@@ -24,7 +23,7 @@ public class GUIBuilder {
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 	private GridView grid;
 	private TabView tab;
-	private GUIComponent toolbar;
+	private ToolBarView toolbar;
 	private ViewData myData;
 	private ViewController viewController;
 	private Pane myBP;
@@ -33,9 +32,8 @@ public class GUIBuilder {
 	 * Initializes the main Scene and Stage.
 	 */
 	public GUIBuilder(UtilityFactory utilF) {
-		myData = new ViewData();
-		// Fix rows and columns to be set from the static int in GUIBuilder only
-		grid = new GridView(utilF, myData, 50, 50);
+		myData = new ViewData(INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
+		grid = new GridView(utilF, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
 		tab = new TabView(utilF, myData);
 		toolbar = new ToolBarView(utilF, myData);
 		viewController = new ViewController(myData, grid, tab);
@@ -46,7 +44,6 @@ public class GUIBuilder {
 		myComp.add(tab);
 		myComp.add(toolbar);
 		
-		//ADDED BY HENRY TO FIX THE STAGE POPUP ERROR IN CONTROLLER
 		myBP = buildPane();
 	}
 

@@ -23,9 +23,6 @@ import data_interfaces.Communicator;
  * @author Jack
  */
 public class ViewData extends Observable {
-	
-	private static final int STARTINGROWS = 50;
-	private static final int STARTINGCOLS = 50;
 	private static final String PRESETFILE = "PresetEntities";
 	
 	private Stack<RightClickEvent> undoStack;
@@ -41,12 +38,12 @@ public class ViewData extends Observable {
 	private Entity userGridSelectedEntity;
 	//TODO: implement the saved boolean to track whether the current state is saved
 
-	public ViewData() {
+	public ViewData(int initialRows, int initialCols) {
 		undoStack = new Stack<RightClickEvent>();
 		redoStack = new Stack<RightClickEvent>();
 		definedEntityMap = new HashMap<Integer, Entity>();
 		placedEntityMap = new HashMap<Integer, Entity>();
-		myLevelEntity = new LevelEntity(-1, STARTINGROWS, STARTINGCOLS, "images/background1.png");
+		myLevelEntity = new LevelEntity(-1, initialRows, initialCols, "images/background1.png");
 		mySplashEntity = new SplashEntity(-2, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
 		gameName = "";
@@ -148,20 +145,18 @@ public class ViewData extends Observable {
 		return gameName;
 	}
 
-	public void refresh(){
-		definedEntityMap.clear();
-		removePlacedEntities();
+	public void refresh() {
 		setChanged();
 		notifyObservers("refresh");
 	}
 	
-	public void removePlacedEntities(){
+	public void removePlacedEntities() {
 		placedEntityMap.clear();
 		setChanged();
 		notifyObservers("reset");
 	}
 
-	public void addPresetEntities(){
+	public void addPresetEntities() {
 		Communicator c = new Communicator(PRESETFILE);
 		Collection <Entity> col = c.getData();
 		for (Entity e: col) {
