@@ -5,10 +5,9 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
-import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
-public class DoubleJump implements IAction {
+public class DoubleJump  extends AbstractAction implements IAction {
 
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
@@ -17,9 +16,7 @@ public class DoubleJump implements IAction {
 		AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
 		vc.setY(-5);
 		ac.setY(.2);
-		
-		GameDataFactory gdf = new GameDataFactory();
-		return gdf.blankEntityData(currentGameData);
+		return getGameDataFactory().blankEntityData(currentGameData);
 	}
 	
 

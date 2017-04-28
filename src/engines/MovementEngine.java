@@ -24,12 +24,13 @@ public class MovementEngine extends AbstractEngine{
 	protected List<ComponentType> neededComponents() {	
 		return null;
 	}
-	public void update(Collection<KeyCode> keys, IRestrictedGameData currentGameData) {
+	public IRestrictedGameData update(Collection<KeyCode> keys, IRestrictedGameData currentGameData) {
 		for (IEntity e: getEManager().getEntities()) {
 			if (hasComponent(e,ComponentType.Location)) {
 				updateAllValues(e);
 			}	
 		}
+		return currentGameData;
 	}
 	private void updateAllValues(IEntity e) {
 		if (hasComponent(e, ComponentType.Velocity)) {

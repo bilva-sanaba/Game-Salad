@@ -1,11 +1,12 @@
 package entity.presets;
 
 import actions.BlockTopRegularCollision;
-import actions.ChangeMusicAction;
-import actions.DoubleSize;
-import actions.MusicPlayAction;
+import actions.BounceOffBottom;
+import actions.BounceOffLeft;
+import actions.BounceOffRight;
+import actions.BounceOffTop;
 import actions.PowerupUsage;
-
+import actions.RemoveAction;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
@@ -14,31 +15,26 @@ import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
 import entity.Entity;
 
-public class AbstractPowerup extends Entity {
+public class AbstractEnemy extends Entity {
 
-	public AbstractPowerup(int id) {
+	public AbstractEnemy(int id) {
 		super(id);
-		addPowerupUsage();
-	}
-	private void addPowerupUsage(){
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 		scc.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
-		scc.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
-		scc.addActionForLabel(new LabelComponent("grrraah"), new MusicPlayAction("badboujee.wav"));
+		scc.addActionForLabel(new LabelComponent("grrraah"), new BounceOffTop());
+		scc.addActionForLabel(new LabelComponent("grrraa"), new RemoveAction());
+		scc.addActionForLabel(new LabelComponent("grrraa"), new PowerupUsage());
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
-		scq.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
-		scq.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
-		scq.addActionForLabel(new LabelComponent("grrraah"), new MusicPlayAction("badboujee.wav"));
+		scq.addActionForLabel(new LabelComponent("grrraa"), new RemoveAction());
+		scq.addActionForLabel(new LabelComponent("grrraa"), new PowerupUsage());
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
-		scr.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
-		scr.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
-		scr.addActionForLabel(new LabelComponent("grrraah"), new MusicPlayAction("badboujee.wav"));
+		scr.addActionForLabel(new LabelComponent("grrraa"), new RemoveAction());
+		scr.addActionForLabel(new LabelComponent("grrraa"), new PowerupUsage());
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
-		scb.addActionForLabel(new LabelComponent("grrraah"), new PowerupUsage());
-		scb.addActionForLabel(new LabelComponent("grrraah"), new DoubleSize(true));
-		scb.addActionForLabel(new LabelComponent("grrraah"), new MusicPlayAction("badboujee.wav"));
+		scr.addActionForLabel(new LabelComponent("grrraa"), new RemoveAction());
+		scr.addActionForLabel(new LabelComponent("grrraa"), new PowerupUsage());
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);
