@@ -6,7 +6,7 @@ public class UndoCommand implements RightClickEvent {
 
 private ViewData myData;
 	
-	public UndoCommand(ViewData data){
+	public UndoCommand(ViewData data, double x, double y){
 		myData = data;
 	}
 	

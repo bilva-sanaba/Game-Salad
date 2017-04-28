@@ -12,6 +12,8 @@ import java.util.Queue;
 import java.util.Stack;
 
 import components.*;
+import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
 import data_interfaces.Communicator;
 
 /**
@@ -35,10 +37,11 @@ public class ViewData extends Observable {
 	private LevelEntity myLevelEntity;
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
+	private Entity userGridSelectedEntity;
 	private Entity copiedEntity;
 	private String gameName;
 	private Boolean saved = true;
-	private Entity userGridSelectedEntity;
+	
 	//TODO: implement the saved boolean to track whether the current state is saved
 
 	public ViewData() {
@@ -102,18 +105,25 @@ public class ViewData extends Observable {
 		definedEntityMap.remove(entity.getID());
 	}
 
-	public void unplaceEntity() {
-		placedEntityMap.remove(userSelectedEntity.getID());
+	public void unplaceEntity(Entity e) {
+		placedEntityMap.remove(e);
+		
+		//placedEntityMap.remove(userGridSelectedEntity.getID());
 		setChanged();
 		notifyObservers("unplace");
 	}
 
 	public void copyEntity(){
-		copiedEntity = userSelectedEntity.clone();
+		copiedEntity = userGridSelectedEntity;
 	}
 	
-	public void pasteEntity(){
-		placeEntity(copiedEntity);
+	public Entity pasteEntity(double x, double y){
+		Entity tempEntity = copiedEntity.clone();
+		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
+		tempLocation.setXY(x, y);
+		placeEntity(tempEntity);
+		userGridSelectedEntity = tempEntity;
+		return tempEntity;
 	}
 	
 	public HashMap<Integer, Entity> getDefinedEntityMap() {

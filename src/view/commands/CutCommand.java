@@ -9,14 +9,14 @@ public class CutCommand implements RightClickEvent{
 private ViewData myData;
 private Entity myEntity;
 	
-	public CutCommand(ViewData data){
+	public CutCommand(ViewData data, double x, double y){
 		myData = data;
 	}
 	
 	@Override
 	public void execute() {
-		myEntity = myData.getUserSelectedEntity();
-		myData.unplaceEntity();
+		myEntity = myData.getUserGridSelectedEntity();
+		myData.unplaceEntity(myEntity);
 		myData.setUserSelectedEntity(null);
 		myData.addEvent(this);
 	}
