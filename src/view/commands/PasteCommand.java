@@ -27,5 +27,4 @@ private Entity pastedEntity;
 	public void undo() {
 		myData.unplaceEntity(pastedEntity);
 	}
-
 }
