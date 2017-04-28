@@ -40,6 +40,7 @@ public enum ComponentType {
 	InfiniteMonsterRandomness(),
 	InfinitePowerUpRandomness(),
 	InfiniteSpacing(),
-	InfiniteBlockPattern()
+	InfiniteBlockPattern(),
+	InfiniteBlockAction()
 	;
 }

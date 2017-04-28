@@ -1,9 +1,7 @@
 package view.window;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-
 import components.IComponent;
 import components.entityComponents.ComponentType;
 import entity.Entity;

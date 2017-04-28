@@ -29,6 +29,7 @@ public class InfiniteOrientationComponent extends AComponent implements ICompone
 	public void setOrientation(Orientation o){
 		myO = o;
 	}
+	
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.InfiniteOrientation;
