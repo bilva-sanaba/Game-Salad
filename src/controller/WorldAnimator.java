@@ -196,6 +196,7 @@ public class WorldAnimator{
 	            imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 	            
 	            root.getChildren().add(imageView);
+	            //makeAppear(imageView).play();
 	            //st.getChildren().add(makeAppear(imageView));
 	            //st.play();
 	        }
@@ -248,6 +249,7 @@ public class WorldAnimator{
     private FadeTransition createFade(double newOpacity, ImageView imageView){
         FadeTransition ft = new FadeTransition(Duration.millis(KEY_INPUT_SPEED), imageView);
         ft.setToValue(newOpacity);
+        ft.setCycleCount(4);
         return ft;
     }
     
