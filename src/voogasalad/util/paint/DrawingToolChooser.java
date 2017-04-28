@@ -14,7 +14,6 @@ public class DrawingToolChooser implements DrawingGet, IDrawingToolChooser {
 		dr = new DrawRectangle();
 		dc = new DrawCircle();
 		p = new Pen();
-		
 		currentTool = p;
 	}
 
@@ -31,7 +30,6 @@ public class DrawingToolChooser implements DrawingGet, IDrawingToolChooser {
 	}
 	
 	private void setColors(Color c){
-		System.out.println(c);
 		dr.setColor(c);
 		dc.setColor(c);
 		p.setColor(c);

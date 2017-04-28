@@ -117,7 +117,7 @@ public class CollisionEngine extends AbstractEngine {
 		// TODO Auto-generated method stub
 		return new ArrayList<ComponentType>();
 	}
-	public void update(Collection<KeyCode> keys,IRestrictedGameData gd) {
+	public IRestrictedGameData update(Collection<KeyCode> keys,IRestrictedGameData gd) {
 		newEntitiesCreated = new ArrayList<IEntity>();
 		if (numSubEnginesAdded<=0) {
 			addEngine(new GeneralPostCollisionHandler());
@@ -127,6 +127,7 @@ public class CollisionEngine extends AbstractEngine {
 			entManager.getEntities().add(e);
 			entManager.changed(e);
 		}
+		return gd;
 	}
 	
 }

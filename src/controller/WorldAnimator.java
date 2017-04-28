@@ -104,7 +104,6 @@ public class WorldAnimator{
         st = new SequentialTransition();
         LocationComponent lc = myData.getMainLocation();
         //Change Length
-        System.out.println("this triggers");
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
 
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
@@ -170,7 +169,6 @@ public class WorldAnimator{
     	Map<Integer, ImageConfig> map = myObservers.getEntityMap();
         for(Integer entity : entities){
         //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
-        	System.out.println(entity);
         	if (map.get(entity)!=null){
 		  //SequentialTransition trans = new SequentialTransition();
 		  //removeEntity(entity,entities);
@@ -221,11 +219,7 @@ public class WorldAnimator{
     	if(!rePath.equals(currentPath)){
     		currentImage.setImage(re.getImage());
     	}
-    	
-        System.out.println("xPos:" +re.getTranslateX());
-        System.out.println("xPosCurrent: " + currentImage.getTranslateX());
         currentImage.setTranslateX(re.getTranslateX());
-        //System.out.println("xPosCurrent: " + currentImage.getImageView().getTranslateX());
         currentImage.setTranslateY(re.getTranslateY()); 
         currentImage.setFitHeight(re.getFitHeight());
         currentImage.setFitWidth(re.getFitWidth());

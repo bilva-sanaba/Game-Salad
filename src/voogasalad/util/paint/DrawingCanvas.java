@@ -1,6 +1,5 @@
 package voogasalad.util.paint;
 
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

@@ -34,6 +34,7 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.ObjectCreationComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
+import components.entityComponents.StepComponent;
 import components.entityComponents.TerminalVelocityComponent;
 import components.entityComponents.TimeComponent;
 import components.entityComponents.TypeComponent;
@@ -45,6 +46,7 @@ import controller.Camera;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
 import data_interfaces.XMLParser;
+import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
 import engines.InputEngine;
@@ -58,12 +60,14 @@ import entity.IEntity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
+import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 import engines.AbstractEngine;
 import entity.IEntityManager;
 import entity.SplashEntity;
 import entity.presets.AbstractBlock;
 import entity.presets.AbstractBreakableBox;
+import entity.presets.AbstractEnemy;
 import entity.presets.AbstractGoal;
 import entity.presets.AbstractMysteryBlock;
 import entity.presets.AbstractPowerup;
@@ -82,6 +86,7 @@ public class GameEngine implements GameEngineInterface {
 	private XMLParser myParser = new XMLParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	private Entity mainCharacter;
+	private GameData myGameData;
 	private GPEntityManager GPEM;
 	private double points=0;
 	private double lives=0;
@@ -89,7 +94,7 @@ public class GameEngine implements GameEngineInterface {
 	private String music = "";
 
 	private Camera cam;
-	
+
 	public GameEngine(){
 	}
 	public IRestrictedGameData loadData(Communicator c){
@@ -97,7 +102,8 @@ public class GameEngine implements GameEngineInterface {
 		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
-		IRestrictedGameData dg = (IRestrictedGameData) new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,music);
+		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,music);
+		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
 		return dg;
 	}
 	public Collection<IEntity> save(){
@@ -106,8 +112,8 @@ public class GameEngine implements GameEngineInterface {
 	public SplashEntity getSplashEntity(){
 		return GPEM.getSplash();
 	}
-	
-	
+
+
 
 
 	/**
@@ -119,63 +125,65 @@ public class GameEngine implements GameEngineInterface {
 		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
 		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
-			s.update(keysPressed,gd);
+			IRestrictedGameData rgd = s.update(keysPressed,(IRestrictedGameData) myGameData);
+			GameDataFactory gdf = new GameDataFactory();
+			gdf.updateGameData(myGameData,rgd);
 		}
 	}
-	
+
 	//TODO: Dumb flappybird
-//	public GameData dummyLoad(){
-//		Collection<Entity> e = new ArrayList<Entity>();
-//		Entity x = new Entity(0);
-//		x.addComponent(new LocationComponent(100,150));
-//		x.addComponent(new SpriteComponent(("flappybird_yellow.png")));
-//		ImagePropertiesComponent xc = new ImagePropertiesComponent();
-//		x.addComponent(new CheckCollisionComponent(true));
-//		xc.setHeight(50);
-//		xc.setWidth(50);
-//		x.addComponent(xc);
-//		x.addComponent(new VelocityComponent(3,0));
-//		x.addComponent(new AccelerationComponent(0,0.1));
-//		x.addComponent(new CollidableComponent(true));
-//		x.addComponent(new LabelComponent("grrraah"));
-//		x.addComponent(new KeyInputComponent());
-//		x.addComponent(new TypeComponent(EntityType.Player));
-//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new DoubleJump());
-//		e.add(x);
-//		for (int i=1;i<10;i++){
-//			Entity p = new AbstractBlock(i);
-//			p.addComponent(new LocationComponent(i*200,200));
-//			p.addComponent(new SpriteComponent(("pipe_up.png")));
-//
-//			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
-//			double d = Math.random();
-//			xpc.setHeight(100*d);
-//			xpc.setWidth(50);
-//			p.addComponent(xpc);
-//			p.addComponent(new LabelComponent("Blok"));
-//			p.addComponent(new TypeComponent(EntityType.Block));
-//			Entity q = new AbstractBlock(i*100);
-//			q.addComponent(new LocationComponent(i*200,00));
-//			q.addComponent(new SpriteComponent(("pipe_down.png")));
-//
-//			ImagePropertiesComponent xpq = new ImagePropertiesComponent();
-//			xpq.setHeight(100*(1-d));
-//			xpq.setWidth(50);
-//			q.addComponent(xpq);
-//			q.addComponent(new LabelComponent("Blok"));
-//			q.addComponent(new TypeComponent(EntityType.Block));
-//			
-//			
-//			e.add(p);
-//			e.add(q);
-//		}
-//		myEntityManager = new EntityManager(e);
-//
-//		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
-//		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager));
-//		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
-//	}
-	
+	//	public GameData dummyLoad(){
+	//		Collection<Entity> e = new ArrayList<Entity>();
+	//		Entity x = new Entity(0);
+	//		x.addComponent(new LocationComponent(100,150));
+	//		x.addComponent(new SpriteComponent(("flappybird_yellow.png")));
+	//		ImagePropertiesComponent xc = new ImagePropertiesComponent();
+	//		x.addComponent(new CheckCollisionComponent(true));
+	//		xc.setHeight(50);
+	//		xc.setWidth(50);
+	//		x.addComponent(xc);
+	//		x.addComponent(new VelocityComponent(3,0));
+	//		x.addComponent(new AccelerationComponent(0,0.1));
+	//		x.addComponent(new CollidableComponent(true));
+	//		x.addComponent(new LabelComponent("grrraah"));
+	//		x.addComponent(new KeyInputComponent());
+	//		x.addComponent(new TypeComponent(EntityType.Player));
+	//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new DoubleJump());
+	//		e.add(x);
+	//		for (int i=1;i<10;i++){
+	//			Entity p = new AbstractBlock(i);
+	//			p.addComponent(new LocationComponent(i*200,200));
+	//			p.addComponent(new SpriteComponent(("pipe_up.png")));
+	//
+	//			ImagePropertiesComponent xpc = new ImagePropertiesComponent();
+	//			double d = Math.random();
+	//			xpc.setHeight(100*d);
+	//			xpc.setWidth(50);
+	//			p.addComponent(xpc);
+	//			p.addComponent(new LabelComponent("Blok"));
+	//			p.addComponent(new TypeComponent(EntityType.Block));
+	//			Entity q = new AbstractBlock(i*100);
+	//			q.addComponent(new LocationComponent(i*200,00));
+	//			q.addComponent(new SpriteComponent(("pipe_down.png")));
+	//
+	//			ImagePropertiesComponent xpq = new ImagePropertiesComponent();
+	//			xpq.setHeight(100*(1-d));
+	//			xpq.setWidth(50);
+	//			q.addComponent(xpq);
+	//			q.addComponent(new LabelComponent("Blok"));
+	//			q.addComponent(new TypeComponent(EntityType.Block));
+	//			
+	//			
+	//			e.add(p);
+	//			e.add(q);
+	//		}
+	//		myEntityManager = new EntityManager(e);
+	//
+	//		//		myEngines = Arrays.asList(new NewMovementEngine(myEntityManager),new CollisionEngine(myEntityManager),new InputEngine(myEntityManager));
+	//		myEngines = Arrays.asList(new InputEngine(myEntityManager), new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager));
+	//		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+	//	}
+
 	public GameData dummyLoad(){
 		System.out.println("-------------------------------------- line 118 of GameEngine");
 		Collection<Entity> e = new ArrayList<Entity>();
@@ -188,7 +196,7 @@ public class GameEngine implements GameEngineInterface {
 		xc.setWidth(50);
 		x.addComponent(xc);
 		x.addComponent(new VelocityComponent(0,0));
-		x.addComponent(new AccelerationComponent(0,0.1));
+		x.addComponent(new AccelerationComponent(0,0));
 		x.addComponent(new CollidableComponent(true));
 		x.addComponent(new LabelComponent("grrraah"));
 		x.addComponent(new KeyInputComponent());
@@ -205,11 +213,11 @@ public class GameEngine implements GameEngineInterface {
 		yc2.setWidth(50);
 		y2.addComponent(yc2);
 		y2.addComponent(new VelocityComponent(3,0));
-
-		y2.addComponent(new LabelComponent("Blok"));
-		y2.addComponent(new CollidableComponent(false));
+		y2.addComponent(new LabelComponent("grrraa"));
+		y2.addComponent(new CollidableComponent(true));
 		y2.addComponent(new TimeComponent(new RemoveAction(), 3000));
 		y2.addComponent(new TypeComponent(EntityType.Projectile));
+		y2.addComponent(new CheckCollisionComponent(true));
 		x.addComponent(new ObjectCreationComponent(y2));
 		TimeComponent time = new TimeComponent(new Reload(), 1000);
 		x.addComponent(time);
@@ -219,23 +227,10 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
 
-		Entity z = new Entity(666);
-		z.addComponent(new LocationComponent(1000, 100));
-		z.addComponent(new SpriteComponent("platform_tile_053.png"));
-		ImagePropertiesComponent zc = new ImagePropertiesComponent();
-		z.addComponent(new CheckCollisionComponent(true));
-		zc.setHeight(50);
-		zc.setWidth(50);
-		z.addComponent(xc);
-		z.addComponent(new CollidableComponent(true));
-		z.addComponent(new LabelComponent("villainguy"));
-		z.addComponent(new TypeComponent(EntityType.Monster));
-		
-//
-//
-//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
+		//
+		//
+		//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
-		e.add(z);
 
 		//		for (int i=0;i<20;i++){
 		//			Entity x = new Entity(i);
@@ -255,15 +250,15 @@ public class GameEngine implements GameEngineInterface {
 		//		}
 		//		e.add(g);e.add(t);
 
-		 e.add(x);
+		e.add(x);
 
 
-		
+
 		for (int i=1;i<35;i++){
 
 			Entity p = new AbstractBlock(i);
 			if (i!=12){
-			p.addComponent(new LocationComponent(i*50,200));
+				p.addComponent(new LocationComponent(i*50,200));
 			}else{
 				p.addComponent(new LocationComponent(i*50,50));
 			}
@@ -299,7 +294,7 @@ public class GameEngine implements GameEngineInterface {
 		y.addComponent(new VelocityComponent(0,0));
 		y.addComponent(new LabelComponent("Blok"));
 
-		
+
 		//BLOCK
 
 		y.addComponent(new TypeComponent(EntityType.Block));
@@ -313,17 +308,28 @@ public class GameEngine implements GameEngineInterface {
 		p.addComponent(xpc);
 		p.addComponent(new LabelComponent("Blok"));
 		e.add(p);
-		
+
 		//GOAL
-		Entity goal = new AbstractGoal(106);
-		goal.addComponent(new LocationComponent(800, 20));
-		goal.addComponent(new SpriteComponent(("sand.jpg")));
-		ImagePropertiesComponent goalc = new ImagePropertiesComponent();
-		goalc.setHeight(50);
-		goalc.setWidth(50);
-		goal.addComponent(new LabelComponent("Goal"));
-		goal.addComponent(goalc);
-		e.add(goal);
+		for (int i= 0; i<2; i++){
+			Entity enemy = new AbstractEnemy(106+i);
+			if (i==0){
+				enemy.addComponent(new LocationComponent(800, 20));
+
+			}else{
+				enemy.addComponent(new LocationComponent(1200,150));
+			}
+			enemy.addComponent(new SpriteComponent(("sand.jpg")));
+			ImagePropertiesComponent goalc = new ImagePropertiesComponent();
+			goalc.setHeight(50);
+			enemy.addComponent(new StepComponent(50));
+			enemy.addComponent(new VelocityComponent(-1,0));
+			enemy.addComponent(new LabelComponent("wecamefromnothingtosomething"));
+			goalc.setWidth(50);
+			enemy.addComponent(new LabelComponent("Goal"));
+			enemy.addComponent(goalc);
+			e.add(enemy);
+			enemy.addComponent(new CheckCollisionComponent(true));
+		}
 
 
 		p.addComponent(new TypeComponent(EntityType.Block));
@@ -331,25 +337,24 @@ public class GameEngine implements GameEngineInterface {
 
 		e.add(p);
 		Entity portal2 = createPortal();
-		
+
 		e.add(portal2);
 		e.add(createPortal2());
-		
-		
+
+
 
 		myEntityManager = new EntityManager(e);
 
-
-
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager));
-		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
+		return myGameData;
 	}
-	
+
 	//for testing
 	public void addCamera(Camera c) {
 		myEntityManager.changed(c);
 	}
-	
+
 	private Entity createPortal() {
 		Entity portal2 = new Entity(110);
 		portal2.addComponent(new LocationComponent(450, 125));
@@ -368,7 +373,7 @@ public class GameEngine implements GameEngineInterface {
 		portal2.addComponent(new CollidableComponent(true));
 		return portal2;
 	}
-	
+
 	private Entity createPortal2() {
 		Entity portal2 = new Entity(112);
 		portal2.addComponent(new LocationComponent(1500, 125));
