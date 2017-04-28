@@ -17,11 +17,10 @@ import gamedata.IRestrictedGameData;
 
 public class PowerupCreation   extends AbstractAction implements IAction {
 	@Override
-	public IRestrictedGameData executeAction(IEntity e, IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		ObjectCreationComponent occ = ((ObjectCreationComponent) e2.getComponent(ComponentType.ObjectCreation));
-		LocationComponent lc = ((LocationComponent) e2.getComponent(ComponentType.Location));
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
+		ObjectCreationComponent occ = ((ObjectCreationComponent) self.getComponent(ComponentType.ObjectCreation));
+		LocationComponent lc = ((LocationComponent) self.getComponent(ComponentType.Location));
 		GameData returnData = getGameDataFactory().blankEntityData(currentGameData);
-		
 		if (occ.checkIfCreation()){
 			IEntity powerup = occ.getCreationEffect();
 			if (powerup!=null){

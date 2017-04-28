@@ -15,15 +15,13 @@ public class MusicPlayAction extends AbstractAction implements IAction {
 		playedSong = mySong;
 	}
 	@Override
-	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		try{
 		    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(playedSong));
 		    Clip clip2 = AudioSystem.getClip();
 		    clip2.open(audioInputStream2);
 		    clip2.start();
-		    
-
 		}
 		catch(Exception ex)
 		{

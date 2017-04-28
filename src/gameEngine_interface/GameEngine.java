@@ -59,6 +59,7 @@ import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
 import gamedata.GameDataFactory;
+import gamedata.IGameData;
 import gamedata.IRestrictedGameData;
 import engines.AbstractEngine;
 import entity.IEntityManager;
@@ -115,7 +116,8 @@ public class GameEngine implements GameEngineInterface {
 		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
 		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
-			IRestrictedGameData rgd = s.update(keysPressed,(IRestrictedGameData) myGameData);
+			IGameData rgd = (IGameData) s.update(keysPressed,(IRestrictedGameData) myGameData);
+			rgd.setLevel(99);
 			GameDataFactory gdf = new GameDataFactory();
 			gdf.updateGameData(myGameData,rgd);
 		}
@@ -173,11 +175,10 @@ public class GameEngine implements GameEngineInterface {
 	//		return new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
 	//	}
 	public GameData dummyLoad(){
-		System.out.println("-------------------------------------- line 118 of GameEngine");
 		Collection<Entity> e = new ArrayList<Entity>();
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(100,150));
-		x.addComponent(new SpriteComponent(("platform_tile_053.png")));
+		x.addComponent(new SpriteComponent(("mario_step2.gif")));
 		ImagePropertiesComponent xc = new ImagePropertiesComponent();
 		x.addComponent(new CheckCollisionComponent(true));
 		xc.setHeight(50);
@@ -189,6 +190,21 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new LabelComponent("grrraah"));
 		x.addComponent(new KeyInputComponent());
 		x.addComponent(new TypeComponent(EntityType.Player));
+
+		List<String> collection = new ArrayList<String>();
+		collection.add("mario_step1.gif");
+		collection.add("mario_step2.gif");
+		collection.add("mario_step3.gif");
+		ImageChangeAction ica = new ImageChangeAction(collection);
+		List<String> collection2 = new ArrayList<String>();
+		collection2.add("mario_leftstep1.gif");
+		collection2.add("mario_leftstep2.gif");
+		collection2.add("mario_leftstep3.gif");
+		ImageChangeAction ica2 = new ImageChangeAction(collection2);
+		List<String> collection3 = new ArrayList<String>();
+		collection3.add("mario_jump.gif");
+		ImageChangeAction ica3 = new ImageChangeAction(collection3);
+
 		x.addComponent(new GoalComponent());
 		x.addComponent(new TerminalVelocityComponent(5,5));
 		Entity y2 = new Entity(201);
@@ -209,8 +225,11 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(time);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
 		//
 		//

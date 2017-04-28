@@ -164,7 +164,7 @@ public class WorldAnimator{
     }
 
     private void fillMapAndDisplay(Set<Integer> entities){
-
+    	
     	Map<Integer, ImageConfig> map = myObservers.getEntityMap();
         for(Integer entity : entities){
         //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
@@ -183,8 +183,8 @@ public class WorldAnimator{
     		//st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
     		//st.play();
     		imageMap.get(entity).getImageView().setImage(null);
-    	
-    		imageMap.remove(entity);
+    		root.getChildren().remove(imageMap.get(entity));
+    		imageMap.remove(entity);    		
     	}
     }
 
@@ -192,7 +192,7 @@ public class WorldAnimator{
 	private void createEntity(Integer entity, Map<Integer, ImageConfig> map){
 	        if (!imageMap.containsKey(entity) && map.get(entity)!=null){
 	            ImageView imageView = new ImageView();
-	            imageView = updateImage(imageView, "", map.get(entity).getImageView(), map.get(entity).getPath());
+	            imageView = updateImage(entity, imageView, "", map.get(entity).getImageView(), map.get(entity).getPath());
 	            imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 	            
 	            root.getChildren().add(imageView);
@@ -205,21 +205,25 @@ public class WorldAnimator{
 	private void updateEntity(Integer entity, Map<Integer, ImageConfig> map){
         if (imageMap.containsKey(entity)) {
         	ImageConfig currentImage = imageMap.get(entity);
+        	
     		ImageConfig updatedImage = map.get(entity);
-    		updateImage(currentImage.getImageView(), currentImage.getPath(), updatedImage.getImageView(), updatedImage.getPath());
+    		updateImage(entity, currentImage.getImageView(), currentImage.getPath(), updatedImage.getImageView(), updatedImage.getPath());
         }
 
     }
-    private ImageView updateImage(ImageView currentImage, String currentPath, ImageView re, String rePath){
+    private ImageView updateImage(int entity, ImageView currentImage, String currentPath, ImageView re, String rePath){
     	
     	if(!rePath.equals(currentPath)){
     		currentImage.setImage(re.getImage());
+    		ImageConfig updated  = new ImageConfig(currentImage,rePath);
+    		imageMap.put(entity,updated);
     	}
     	
         currentImage.setTranslateX(re.getTranslateX());
         currentImage.setTranslateY(re.getTranslateY()); 
         currentImage.setFitHeight(re.getFitHeight());
         currentImage.setFitWidth(re.getFitWidth());
+        
 
         return currentImage;
         //COMMENT OUT TO TEST RUNNER
