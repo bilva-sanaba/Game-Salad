@@ -17,6 +17,13 @@ public class ViewController implements Observer {
 		myGrids = grids;
 		myTab = tabIn;
 	}
+
+	
+/*	@Override
+	public void update(Observable o, Object arg){
+		myGrid.clearEntitiesOnGrid();
+		myGrid.drawAllEntities();
+	} */
 	
 	@Override
 	public void update(Observable o, Object arg) {
@@ -50,4 +57,5 @@ public class ViewController implements Observer {
 		myData.addPresetEntities();
 		myTab.addDefinedEntities();
 	}
+
 }

@@ -184,11 +184,6 @@ public class GridView extends GUIComponent {
 		myGrid.getChildren().add(spriteImage);
 	}
 
-	private void removeEntity(Entity entity) {
-		myGrid.getChildren().remove(placedImages.get(entity));
-		placedImages.remove(entity);
-	}
-
 	public void clearEntitiesOnGrid() {
 		for (Entity e : placedImages.keySet()) {
 			System.out.println("removing" + e);
@@ -220,6 +215,11 @@ public class GridView extends GUIComponent {
 	public void updateBackground() {
 		String filePath = myData.getLevelEntity().getBackgroundFilePath();
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
+	}
+
+	private void removeEntity(Entity entity) {
+		myGrid.getChildren().remove(placedImages.get(entity));
+		placedImages.remove(entity);
 	}
 
 	public void removeEntity() {

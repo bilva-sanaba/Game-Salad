@@ -27,7 +27,7 @@ import data_interfaces.Communicator;
  */
 public class ViewData extends Observable {
 	private static final String PRESETFILE = "PresetEntities";
-	
+
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
 	private HashMap<Integer, Entity> definedEntityMap;
@@ -39,7 +39,7 @@ public class ViewData extends Observable {
 	private Entity copiedEntity;
 	private String gameName;
 	private Boolean saved = true;
-	
+
 	//TODO: implement the saved boolean to track whether the current state is saved
 
 	public ViewData(int initialRows, int initialCols) {
@@ -57,18 +57,21 @@ public class ViewData extends Observable {
 	public void addEvent(RightClickEvent e) {
 		undoStack.add(e);
 	}
-	
+
 	public void undoLastEvent(){
-		//if(undoStack == null)
-		RightClickEvent e = undoStack.pop();
-		e.undo();
-		redoStack.add(e);
+		if(undoStack.peek() != null){
+			RightClickEvent e = undoStack.pop();
+			e.undo();
+			redoStack.add(e);
+		}
 	}
-	
+
 	public void redo(){
-		RightClickEvent e = redoStack.pop();
-		e.execute();
-		undoStack.add(e);
+		if(redoStack.peek() != null){
+			RightClickEvent e = redoStack.pop();
+			e.execute();
+			undoStack.add(e);
+		}
 	}
 
 	public void setUserSelectedEntity(Entity entity) {
@@ -78,7 +81,7 @@ public class ViewData extends Observable {
 	public Entity getUserSelectedEntity() {
 		return userSelectedEntity;
 	}
-	
+
 	public void setUserGridSelectedEntity(Entity entity) {
 		userGridSelectedEntity = entity;
 	}
@@ -111,6 +114,7 @@ public class ViewData extends Observable {
 	// fix dependencies
 	public void unplaceEntity(int levelNumber, Entity entity) {
 		placedEntityMaps.get(levelNumber).remove(entity);
+		userGridSelectedEntity = entity;
 		setChanged();
 		notifyObservers("unplace");
 	}
