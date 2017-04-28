@@ -106,7 +106,7 @@ public class CollisionEngine extends AbstractEngine {
 		if (collisionOccurs) {
 			
 			for (ISubEngine engine : subEngines) {
-
+				
 				newEntitiesCreated.addAll(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd));
 			}
 			

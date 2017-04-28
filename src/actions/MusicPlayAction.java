@@ -22,8 +22,6 @@ public class MusicPlayAction extends AbstractAction implements IAction {
 		    Clip clip2 = AudioSystem.getClip();
 		    clip2.open(audioInputStream2);
 		    clip2.start();
-		    
-
 		}
 		catch(Exception ex)
 		{
