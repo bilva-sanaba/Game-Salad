@@ -26,44 +26,65 @@ public class GameData implements IGameData,IRestrictedGameData{
 		level.setValue(lvl);
 		mainPlayerLocation = lc;
 		music.setValue(m);
-		
 	}
 	
-	public DoubleProperty getPoints(){
+	public DoubleProperty getPointsProperty(){
 		return points;
 	}
-	public DoubleProperty getLives(){
+	public DoubleProperty getLivesProperty(){
 		return lives;
 	}
 	public IRestrictedEntityManager getRestrictedEntityManager(){
 		return restrictedEntityManager;
 	}
-	public DoubleProperty getLevel(){
+	public DoubleProperty getLevelProperty(){
 		return level; 
 	}
 	public LocationComponent getMainLocation(){
 		return mainPlayerLocation;
 	}
-	public StringProperty getMusic(){
+	public StringProperty getMusicProperty(){
 		return music;
+	}
+	
+	
+	
+	
+	public double getPoints(){
+		return points.doubleValue();
+	}
+	public double getLives(){
+		return lives.doubleValue();
+	}
+	
+	public double getLevel(){
+		return level.doubleValue(); 
+	}
+
+	public String getMusic(){
+		return music.get();
 	}
 	
 	public void setPoints(double d){
 		points.setValue(d);
+//		points.notify();
 	}
 	public void setLives(double d){
 		lives.setValue(d);
+//		lives.notify();
 	}
 	public void setRestrictedEntityManager(IRestrictedEntityManager rem){
 		restrictedEntityManager = rem;
 	}
 	public void setLevel(double d){
 		level.setValue(d);
+//		level.notify();
 	}
 	public void setMainLocation(LocationComponent lc){
 		mainPlayerLocation = lc;
 	}
 	public void setMusic(String s){
 		music.setValue(s);
+//		music.notify();
 	}
 }
