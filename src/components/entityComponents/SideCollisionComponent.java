@@ -4,15 +4,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import actions.IAction;
+import components.AComponent;
 import components.IComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import entity.restricted.IRestrictedEntity;
+import gamedata.IRestrictedGameData;
 
-public class SideCollisionComponent implements IComponent {
+public class SideCollisionComponent extends AComponent implements IComponent {
 	private CollisionComponentType sideCollision;
 	private Map<String, ArrayList<IAction>> typeActionMap;
 	private Map<String, ArrayList<IAction>> labelActionMap;
 	
+	public SideCollisionComponent(CollisionComponentType sc, Map<String, ArrayList<IAction>> type, Map<String, ArrayList<IAction>> label){
+		sideCollision=sc;
+		typeActionMap = type;
+		labelActionMap=label;
+	}
 	public SideCollisionComponent(CollisionComponentType sideOfCollision) {
 		sideCollision = sideOfCollision;
 		
@@ -40,27 +48,30 @@ public class SideCollisionComponent implements IComponent {
 	
 	
 	
-	public List<IEntity> executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM) {
+	public IRestrictedGameData executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM, IRestrictedGameData dg) {
 		//maybe should refactor
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
 		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getLabel())) {
 			for (IAction action : labelActionMap.get(entityLabel.getLabel())) {
-				List<IEntity> actionCreatedEntities = action.executeAction(e, e2,myEM);
-				newEntities.addAll(actionCreatedEntities);
+				dg = action.executeAction(e, e2,myEM, dg);
+//				for (IRestrictedEntity re : dg.getRestrictedEntityManager().getRestrictedEntities()){
+//					newEntities.add(re.clone());
+//				}
+				
 			}
-			return newEntities;
 		}
 		if (entityType!= null && typeActionMap.containsKey(entityType.getTypeString())) {
 			for (IAction action : typeActionMap.get(entityType.getTypeString())) {
 
-				List<IEntity> actionCreatedEntities = action.executeAction(e,e2, myEM);
-
-				newEntities.addAll(actionCreatedEntities);
+				dg= action.executeAction(e, e2,myEM, dg);
+//				for (IRestrictedEntity re : dg.getRestrictedEntityManager().getRestrictedEntities()){
+//					newEntities.add(re.clone());
+//				}
 			}
 		}
-		return newEntities;
+		return dg;
 	}
 	
 	public CollisionComponentType whichSide() {
@@ -74,7 +85,7 @@ public class SideCollisionComponent implements IComponent {
 	@Override
 	public IComponent newCopy() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SideCollisionComponent(sideCollision, typeActionMap,labelActionMap);
 	}
 	
 }

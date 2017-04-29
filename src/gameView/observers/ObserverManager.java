@@ -15,7 +15,7 @@ import entity.restricted.IRestrictedEntityManager;
 public class ObserverManager {
 	
 	
-	private Map<Integer, ImageView> myEntities;
+	private Map<Integer, ImageConfig> myEntities;
 	private WorldAnimator myWorld;
 	private EntityManagerObserver myManagerObserver;
 	private EntityObserver myEntityObserver;
@@ -23,14 +23,14 @@ public class ObserverManager {
 	
 	
 	public ObserverManager(WorldAnimator world, IRestrictedEntityManager entity) {
-		myEntities = new HashMap<Integer, ImageView>();
+		myEntities = new HashMap<Integer, ImageConfig>();
 		updatedEntitySet = new HashSet<Integer>();
 		myWorld = world;
 		setObservers(entity );
 		createMap(entity.getRestrictedEntities());
 	}
 	
-	public Map<Integer, ImageView> getEntityMap() {
+	public Map<Integer, ImageConfig> getEntityMap() {
 		return myEntities;
 	}
 	
@@ -46,7 +46,9 @@ public class ObserverManager {
         for (IRestrictedEntity e: manager){
         	e.addObserver(myEntityObserver);
             String[] test = e.getRestrictedImagePath().split("[\\\\/]");
-            myEntities.put(e.getID(), new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]))));
+            ImageView iView = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1])));
+            ImageConfig iConfig = new ImageConfig(iView, test[test.length-1]);
+            myEntities.put(e.getID(), iConfig);
             updateImageView(e);
         }
     }
@@ -56,12 +58,12 @@ public class ObserverManager {
 			myWorld.removeEntity(e.getID());
 		}
 		else{
-         myEntities.get(e.getID()).setFitHeight(e.getRestrictedIPComponent().getHeight());
-         myEntities.get(e.getID()).setFitWidth(e.getRestrictedIPComponent().getWidth());
+         myEntities.get(e.getID()).getImageView().setFitHeight(e.getRestrictedIPComponent().getHeight());
+         myEntities.get(e.getID()).getImageView().setFitWidth(e.getRestrictedIPComponent().getWidth());
          updateImage(e);
          //UNCOMMENT FOR TEST RUNNER
-         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()-475);
-         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()-175);
+         myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()-475);
+         myEntities.get(e.getID()).getImageView().setTranslateY(e.getRestrictedLocation().getHeight()-175);
          
          //UNCOMMENT FOR NORMAL
 //         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
@@ -72,7 +74,8 @@ public class ObserverManager {
 	
 	private void updateImage(IRestrictedEntity e) {
 		if (!(e.getRestrictedImagePath().equals(""))) {
-			myEntities.get(e.getID()).setImage(makeImage(e));
+			myEntities.get(e.getID()).getImageView().setImage(makeImage(e));
+			myEntities.get(e.getID()).setPath(e.getRestrictedImagePath());
 			updatedEntitySet.add(e.getID());
 			
 		} else {
@@ -82,14 +85,21 @@ public class ObserverManager {
 	}
 	
 	private Image makeImage(IRestrictedEntity e) {
-		String[] test = e.getRestrictedImagePath().split("[\\\\/]");
+		String[] test = getTest(e);
         Image newImage = new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1]));
         return newImage;
 	}
 	
+	private String[] getTest(IRestrictedEntity e){
+		String[] test = e.getRestrictedImagePath().split("[\\\\/]");
+		return test;
+	}
+	
 	public void updateMap(IRestrictedEntity arg) {
 		arg.addObserver(myEntityObserver);
-        myEntities.put(arg.getID(), new ImageView(makeImage(arg)));
+		String[] test = getTest(arg);
+		ImageConfig iConfig = new ImageConfig(new ImageView(makeImage(arg)), test[test.length-1]);
+        myEntities.put(arg.getID(), iConfig);
         updateImageView(arg);
 	}
 	

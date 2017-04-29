@@ -1,8 +1,5 @@
 package actions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import class_annotations.BottomAction;
 import class_annotations.LeftAction;
 import class_annotations.RightAction;
@@ -11,12 +8,13 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.IRestrictedGameData;
 
 @TopAction()
 @LeftAction()
 @BottomAction()
 @RightAction()
-public class Teleport implements IAction {
+public class Teleport extends AbstractAction  implements IAction {
 	private double teleportXLocation;
 	private double teleportYLocation;
 	
@@ -26,10 +24,10 @@ public class Teleport implements IAction {
 	}
 
 	@Override
-	public List<IEntity> executeAction(IEntity player, IEntity npc, IEntityManager myEM) {
-		((LocationComponent) player.getComponent(ComponentType.Location)).setXY(teleportXLocation, teleportYLocation);
-		player.changed(player);
-		return new ArrayList<IEntity>();
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
+		((LocationComponent) other.getComponent(ComponentType.Location)).setXY(teleportXLocation, teleportYLocation);
+		other.changed(other);
+		return getGameDataFactory().blankEntityData(currentGameData);
 	}
 
 	

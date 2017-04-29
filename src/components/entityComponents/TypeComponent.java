@@ -1,8 +1,9 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
-public class TypeComponent implements IComponent {
+public class TypeComponent extends AComponent implements IComponent {
 	private EntityType typeOfEntity;
 
 	public TypeComponent(EntityType type) {

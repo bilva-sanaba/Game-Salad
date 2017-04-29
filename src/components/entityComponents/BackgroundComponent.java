@@ -1,8 +1,9 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
-public class BackgroundComponent implements IComponent {
+public class BackgroundComponent extends AComponent implements IComponent {
 
 	private String filePath;
 	

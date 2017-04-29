@@ -3,6 +3,7 @@ package entity.restricted;
 import java.util.Observer;
 
 import components.entityComponents.ImagePropertiesComponent;
+import entity.Entity;
 
 import java.util.Observer;
 
@@ -39,5 +40,6 @@ public interface IRestrictedEntity {
 	
 	public void addObserver(Observer obs);
 	public void changed(Object object);
+	public Entity clone();
 
 }

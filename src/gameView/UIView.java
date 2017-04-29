@@ -60,7 +60,7 @@ public class UIView implements UIViewInterface {
 	
 	@Override
 	public void runGame() {
-		setStage(myGameScene.getScene());//mySplash
+		setStage(myGameScene.getScene());//myGameScene
 		
 	}
 	
@@ -110,7 +110,7 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void step(Set<KeyCode> keysPressed) {
-		myController.step(keysPressed);
+		myController.step(keysPressed, myData);
 	}
 	
 	public IUserManager getUserManager() {

@@ -22,6 +22,7 @@ import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
+import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 import voogasalad.util.paint.ImageRefiner;
 /**
@@ -56,8 +57,10 @@ public class CollisionEngine extends AbstractEngine {
 	/**
 	 * This method goes through all entities, takes their locations, and figures out if any are bumping into each other. If any are,
 	 * it sends components of those objects to subEngines which can handle effects (such moving the entity or changing the entities image, etc.)
+	 * @return 
 	 */
-	private void checkCollisionsOccurred() {
+
+	private IRestrictedGameData checkCollisionsOccurred(IRestrictedGameData gd) {
 		List<IEntity> entities2 = (List<IEntity>) entManager.getEntities();
 		IEntity[] entities = new IEntity[entities2.size()];
 		Camera cam = null;
@@ -78,24 +81,25 @@ public class CollisionEngine extends AbstractEngine {
 					IEntity entityTwo = entities[j];
 					CollidableComponent collidableE2 = (CollidableComponent) entityTwo.getComponent(ComponentType.Collidable);
 					if (collidableE2.getCollide() && entityOne!=entityTwo /*&& cam.withinCameraBounds(entityTwo)*/) {
-						checkIndividualCollision(entityOne, entityTwo);
+						checkIndividualCollision(entityOne, entityTwo, gd);
 					}
 				}
 			}
 		}
+		return gd;
 	}
 	
 	
 	
 	
-	private void checkIndividualCollision(IEntity entityOne, IEntity entityTwo) {
+	private void checkIndividualCollision(IEntity entityOne, IEntity entityTwo, IRestrictedGameData gd) {
 		
 		String collisionSide = collisionMethod.collides(entityOne, entityTwo);
-		sendCollisionToSubEngines(entityOne, entityTwo, collisionSide);
+		sendCollisionToSubEngines(entityOne, entityTwo, collisionSide, gd);
 		
 	}
 	
-	private void sendCollisionToSubEngines(IEntity entityOne, IEntity entityTwo, String collisionSide) {
+	private void sendCollisionToSubEngines(IEntity entityOne, IEntity entityTwo, String collisionSide, IRestrictedGameData gd) {
 		boolean collisionOccurs = false;
 		if (!collisionSide.equals(ITwoObjectCollide.NONE)) {
 			collisionOccurs = true;
@@ -104,7 +108,8 @@ public class CollisionEngine extends AbstractEngine {
 		if (collisionOccurs) {
 			
 			for (ISubEngine engine : subEngines) {
-				newEntitiesCreated.addAll(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager));
+				gd = engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd);
+//				newEntitiesCreated.addAll(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd));
 			}
 			
 		}
@@ -114,17 +119,18 @@ public class CollisionEngine extends AbstractEngine {
 		// TODO Auto-generated method stub
 		return new ArrayList<ComponentType>();
 	}
-	public void update(Collection<KeyCode> keys) {
-		
+	public IRestrictedGameData update(Collection<KeyCode> keys,IRestrictedGameData gd) {
+		IRestrictedGameData rgd = gd;
 		newEntitiesCreated = new ArrayList<IEntity>();
 		if (numSubEnginesAdded<=0) {
 			addEngine(new GeneralPostCollisionHandler());
 		}
-		checkCollisionsOccurred();
-		for (IEntity e : newEntitiesCreated){
-			entManager.getEntities().add(e);
-			entManager.changed(e);
+		rgd=checkCollisionsOccurred(rgd);
+		for (IRestrictedEntity e :rgd.getRestrictedEntityManager().getRestrictedEntities()){
+//			entManager.getEntities().add(e);
+//			entManager.changed(e);
 		}
+		return rgd;
 	}
 	
 }

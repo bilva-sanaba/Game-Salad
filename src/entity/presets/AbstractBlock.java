@@ -25,6 +25,14 @@ public class AbstractBlock extends Entity {
 	private void addCollisionComponents(){
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
+//		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
+//		scc.addActionForType(new TypeComponent(EntityType.Player), new BlockTopRegularCollision());
+//		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
+//		scq.addActionForType(new TypeComponent(EntityType.Player), new BlockTopRegularCollision());
+//		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
+//		scr.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
+//		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
+//		scb.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 		scc.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);

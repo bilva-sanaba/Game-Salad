@@ -3,11 +3,17 @@ package view;
 import entity.Entity;
 import entity.LevelEntity;
 import entity.SplashEntity;
+import view.commands.RightClickEvent;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Observable;
+import java.util.Queue;
+import java.util.Stack;
+
 import components.*;
+import components.entityComponents.ComponentType;
+import components.entityComponents.LocationComponent;
 import data_interfaces.Communicator;
 
 /**
@@ -19,21 +25,28 @@ import data_interfaces.Communicator;
  * @author Jack
  */
 public class ViewData extends Observable {
-	
+
 	private static final int STARTINGROWS = 50;
 	private static final int STARTINGCOLS = 50;
 	private static final String PRESETFILE = "PresetEntities";
-	
+
+	private Stack<RightClickEvent> undoStack;
+	private Stack<RightClickEvent> redoStack;
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, Entity> placedEntityMap;
 	private LevelEntity myLevelEntity;
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
+	private Entity userGridSelectedEntity;
+	private Entity copiedEntity;
 	private String gameName;
 	private Boolean saved = true;
+
 	//TODO: implement the saved boolean to track whether the current state is saved
 
 	public ViewData() {
+		undoStack = new Stack<RightClickEvent>();
+		redoStack = new Stack<RightClickEvent>();
 		definedEntityMap = new HashMap<Integer, Entity>();
 		placedEntityMap = new HashMap<Integer, Entity>();
 		myLevelEntity = new LevelEntity(-1, STARTINGROWS, STARTINGCOLS, "images/background1.png");
@@ -42,12 +55,40 @@ public class ViewData extends Observable {
 		gameName = "";
 	}
 
+	public void addEvent(RightClickEvent e){
+		undoStack.add(e);
+	}
+
+	public void undoLastEvent(){
+		if(undoStack.peek() != null){
+			RightClickEvent e = undoStack.pop();
+			e.undo();
+			redoStack.add(e);
+		}
+	}
+
+	public void redo(){
+		if(redoStack.peek() != null){
+			RightClickEvent e = redoStack.pop();
+			e.execute();
+			undoStack.add(e);
+		}
+	}
+
 	public void setUserSelectedEntity(Entity entity) {
 		userSelectedEntity = entity;
 	}
 
 	public Entity getUserSelectedEntity() {
 		return userSelectedEntity;
+	}
+
+	public void setUserGridSelectedEntity(Entity entity) {
+		userGridSelectedEntity = entity;
+	}
+
+	public Entity getUserGridSelectedEntity() {
+		return userGridSelectedEntity;
 	}
 
 	public void defineEntity(Entity entity) {
@@ -67,10 +108,25 @@ public class ViewData extends Observable {
 		definedEntityMap.remove(entity.getID());
 	}
 
-	public void unplaceEntity(Entity entity) {
-		placedEntityMap.remove(entity.getID());
-	//	setChanged();
-	//	notifyObservers();
+	public void unplaceEntity(Entity e) {
+		placedEntityMap.remove(e);
+		userGridSelectedEntity = e;
+		//placedEntityMap.remove(userGridSelectedEntity.getID());
+		setChanged();
+		notifyObservers("unplace");
+	}
+
+	public void copyEntity(){
+		copiedEntity = userGridSelectedEntity;
+	}
+
+	public Entity pasteEntity(double x, double y){
+		Entity tempEntity = copiedEntity.clone();
+		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
+		tempLocation.setXY(x, y);
+		placeEntity(tempEntity);
+		userGridSelectedEntity = tempEntity;
+		return tempEntity;
 	}
 
 	public HashMap<Integer, Entity> getDefinedEntityMap() {
@@ -107,9 +163,15 @@ public class ViewData extends Observable {
 
 	public void refresh(){
 		definedEntityMap.clear();
-		placedEntityMap.clear();
+		removePlacedEntities();
 		setChanged();
 		notifyObservers("refresh");
+	}
+
+	public void removePlacedEntities(){
+		placedEntityMap.clear();
+		setChanged();
+		notifyObservers("reset");
 	}
 
 	public void addPresetEntities(){
