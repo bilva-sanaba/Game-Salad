@@ -1,6 +1,7 @@
 package gamedata;
 
 
+import achievements.Achievement;
 import components.entityComponents.LocationComponent;
 import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
@@ -17,15 +18,18 @@ public class GameData implements IGameData,IRestrictedGameData{
 	private IRestrictedEntityManager restrictedEntityManager; 
 	private DoubleProperty level = new SimpleDoubleProperty(); 
 	private LocationComponent mainPlayerLocation;
+	
+	private StringProperty myAchievement = new SimpleStringProperty();
 
 	private StringProperty music = new SimpleStringProperty();
 	
-	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, String m){
+	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, String ac, String m){
 		points.setValue(p);
 		lives.setValue(l);
 		restrictedEntityManager = rem;
 		level.setValue(lvl);
 		mainPlayerLocation = lc;
+		myAchievement.setValue(ac);
 		music.setValue(m);
 	}
 	
@@ -48,7 +52,9 @@ public class GameData implements IGameData,IRestrictedGameData{
 		return music;
 	}
 	
-	
+	public StringProperty getAchievementProperty(){
+		return myAchievement;
+	}
 	
 	
 	public ReadOnlyDoubleProperty getPoints(){
@@ -64,6 +70,10 @@ public class GameData implements IGameData,IRestrictedGameData{
 
 	public String getMusic(){
 		return music.get();
+	}
+	
+	public String getAchievement(){
+		return myAchievement.get();
 	}
 	
 	public void setPoints(double d){
@@ -95,8 +105,12 @@ public class GameData implements IGameData,IRestrictedGameData{
 		music.setValue(s);
 //		music.notify();
 	}
+
 	
 	private boolean checkEquality(double a, double b) {
 		return (a == b);
+	}
+	public void setAchievement(String ac){
+		myAchievement.setValue(ac);
 	}
 }

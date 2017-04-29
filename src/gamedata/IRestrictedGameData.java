@@ -18,4 +18,6 @@ public interface IRestrictedGameData {
 	public LocationComponent getMainLocation();
 
 	public String getMusic();
+
+	public String getAchievement();
 }

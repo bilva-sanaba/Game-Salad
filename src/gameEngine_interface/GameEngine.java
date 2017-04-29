@@ -60,7 +60,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
-import data_interfaces.XMLParser;
+import data_interfaces.EngineCommunication;
+import data_interfaces.XMLDefinedParser;
 import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
@@ -97,9 +98,9 @@ import gamedata.GameData;
  *
  */
 public class GameEngine implements GameEngineInterface {
-	private EntityManager myEntityManager;// = new EntityManager(new ArrayList<Entity>()); 
+	private IEntityManager myEntityManager;// = new EntityManager(new ArrayList<Entity>()); 
 	private List<AbstractEngine> myEngines;// = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager));
-	private XMLParser myParser = new XMLParser();
+	private XMLDefinedParser myParser = new XMLDefinedParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	private Entity mainCharacter;
 	private GameData myGameData;
@@ -143,17 +144,17 @@ public class GameEngine implements GameEngineInterface {
 //	}
 	}
 	
-	public IRestrictedGameData loadData(Communicator c){
-		Collection<IEntity> castedEnts = new ArrayList<IEntity>();
-		for (Entity e : c.getData()) {
-			castedEnts.add(e);
-		}
-		myEntityManagers =c.futureGetData();
-		myEntityManager = new EntityManager(castedEnts);
-		GPEM = new GPEntityManager(c.getData());
+	public IRestrictedGameData loadData(EngineCommunication c){
+//		Collection<IEntity> castedEnts = new ArrayList<IEntity>();
+//		for (Entity e : c.getData()) {
+//			castedEnts.add(e);
+//		}
+		myEntityManagers =c.getIEntityManagers();
+		myEntityManager = myEntityManagers.get(0);
+//		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
-		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,currentMusic);
+		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,currentMusic,"");
 		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
 		return dg;
 	}
@@ -178,10 +179,6 @@ public class GameEngine implements GameEngineInterface {
 		for (AbstractEngine s : myEngines){
 			IGameData rgd = (IGameData) s.update(keysPressed,(IRestrictedGameData) myGameData);
 			GameDataFactory gdf = new GameDataFactory();
-//			if (myGameData.getLevel()!=rgd.getLevel()){
-//				EntityLoader el = new EntityLoader(myEntityManager);
-//				el.loadNew(myEntityManagers.get(rgd.getLevel().intValue()));
-//			}
 			gdf.updateGameData(myGameData,rgd);		
 		}
 		
@@ -497,8 +494,7 @@ public class GameEngine implements GameEngineInterface {
 //		myEntityManagers= new ArrayList<IEntityManager>();
 //		myEntityManagers.add(myEntityManager);
 //		myEntityManagers.add(new EntityManager(e8));
-		myGameData= new GameData(0,1, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
-
+		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), "", "" );
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 		return myGameData;

@@ -26,7 +26,7 @@ public class PaintWindow implements Paint {
 
 	private Scene setDrawingScene() {
 		root = new BorderPane();
-		myScene = new Scene(root);
+		myScene = new Scene(root, 800, 800);
 		myScene.getStylesheets().add(RESOURCE_PACKAGE + STYLESHEET);
 		buildDrawingArea();
 		return myScene;

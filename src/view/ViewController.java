@@ -37,7 +37,7 @@ public class ViewController implements Observer {
 		level.getGrid().drawPlacedEntities();
 		
 		myTab.clearEntitiesOnTab();
-		myTab.addPresetEntities();
+		//myTab.addPresetEntities();
 		myTab.addDefinedEntities();
 	}
 
