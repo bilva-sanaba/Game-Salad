@@ -41,7 +41,7 @@ public class GUIBuilder {
 		myData = new ViewData(INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
 		GridView grid1 = new GridView(utilF, currentLevel, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
 		tab = new TabView(utilF, myData);
-		tab.addPresetEntities();
+		
 		toolbar = new ToolBarView(utilF, myData);
 		
 		levelTabs = new LevelTabView(grid1, myData);
@@ -54,6 +54,7 @@ public class GUIBuilder {
 		myComp.add(toolbar);
 		
 		myBP = buildPane();
+		tab.addPresetEntities();
 	}
 
 	public Pane buildPane() {

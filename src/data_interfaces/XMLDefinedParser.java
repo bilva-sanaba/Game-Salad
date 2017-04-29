@@ -1,6 +1,7 @@
 package data_interfaces;
 
 import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 import voogasalad.util.reflection.*;
 import entity.*;
@@ -16,15 +17,16 @@ import org.xml.sax.SAXException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import alerts.VoogaError;
 import components.IComponent;
 
 import java.io.*;
 
-public class XMLDefinedParser implements Parser {
+public class XMLDefinedParser extends GameSavingDataTool implements Parser {
 
 	private List<Entity> loadFile(String fileName) {
 		XStream xs = new XStream(new DomDriver());
-		return (List<Entity>) xs.fromXML(new File(fileName));
+		return (ArrayList) xs.fromXML(getFileToString(fileName));
 	}
 
 	/**

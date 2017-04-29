@@ -35,7 +35,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import view.window.EntityBuilderWindow;
 
 public class TabView extends GUIComponent {
-	private static final String PRESETFILE = "PresetEntities";
+	private static final String PRESETFILE = "try1";
 	private static final String SUFFIX = ".xml";
 
 	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
@@ -61,7 +61,7 @@ public class TabView extends GUIComponent {
 					this.setGraphic(null);
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
-					System.out.println(entitySprite.getClassPath() + " line 44 " + this.getClass());
+					System.out.println(entitySprite.getSprite() + " line 44 " + this.getClass());
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
 					if (item.getComponent(ComponentType.ImageProperties) != null) {
 						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item
@@ -111,7 +111,8 @@ public class TabView extends GUIComponent {
 	}
 	
 	public void addPresetEntities() {
-		//loadPreset(PRESETFILE);
+		System.out.println("this is called");
+		loadPreset(PRESETFILE);
 	}
 
 	@Override
@@ -170,6 +171,7 @@ public class TabView extends GUIComponent {
 		List <Entity> l = xdp.getData(fileName);
 		
 		for (Entity e: l) {
+			System.out.println("This is defined");
 			myData.defineEntity(e);
 		}
 	}

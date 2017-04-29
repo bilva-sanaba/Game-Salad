@@ -11,11 +11,11 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import entity.Entity;
 
-public class XMLPlacedParser implements Parser {
+public class XMLPlacedParser extends GameSavingDataTool implements Parser {
 
-	private List<Map<Integer,Entity>> loadFile(String fileName) {
+	private List<Map> loadFile(String fileName) {
 		XStream xs = new XStream(new DomDriver());
-		return (List<Map<Integer,Entity>>) xs.fromXML(new File(fileName));
+		return (List<Map>) xs.fromXML(getFileToString(fileName));
 	}
 
 	@Override

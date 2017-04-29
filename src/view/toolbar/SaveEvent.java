@@ -24,9 +24,7 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		List <Map> l = new ArrayList<Map>();
 		
 		//how do i get this list???? BLOOOMFELD!!!!!
-		for (Integer i: myData.getPlacedEntityMap().keySet()) {
-			l.add(myData.getPlacedEntityMap().get(i));
-		}
+		l.add(myData.getPlacedEntityMap());
 		l.add(myData.getLevelEntity());
 		
 		

@@ -32,7 +32,7 @@ public class SpriteComponent extends AComponent implements IComponent {
 		return classPath;
 	}
 	public Image getSprite(){
-		return new Image(FILE_PATH + classPath);
+		return new Image(getClass().getClassLoader().getResourceAsStream(classPath));
 	}
 	public IComponent newCopy() {
 		return new SpriteComponent(getClassPath());
