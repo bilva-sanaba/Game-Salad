@@ -172,7 +172,7 @@ public class GridView extends GUIComponent {
 		spriteImage.setOnMouseReleased(e -> {
 			if (e.isControlDown()) {
 				unselectEntity(entity);
-				System.out.println("droped at " + e.getSceneX() + " " + e.getSceneY());
+				System.out.println("dropped at " + e.getSceneX() + " " + e.getSceneY());
 				entity.addComponent(new LocationComponent(e.getSceneX(), e.getSceneY()));
 				Iterator<IComponent> iter = entity.getComponents().iterator();
 				while (iter.hasNext()) {

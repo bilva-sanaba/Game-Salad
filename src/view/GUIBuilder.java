@@ -22,7 +22,7 @@ public class GUIBuilder {
 	private static final int INITIAL_GRID_COLS = 50;
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
-	private HashMap<Integer, GridView> myGrids;
+	private LevelTabView levelTabs;
 	private TabView tab;
 	private ToolBarView toolbar;
 	private ViewData myData;
@@ -34,15 +34,17 @@ public class GUIBuilder {
 	 */
 	public GUIBuilder(UtilityFactory utilF) {
 		myData = new ViewData(INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
-		myGrids = new HashMap<Integer, GridView>();
-		myGrids.put(1, new GridView(utilF, 1, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS));
+		GridView grid1 = new GridView(utilF, 1, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
 		tab = new TabView(utilF, myData);
 		tab.addPresetEntities();
 		toolbar = new ToolBarView(utilF, myData);
-		viewController = new ViewController(myData, myGrids, tab);
+		
+		levelTabs = new LevelTabView(grid1);
+		
+		viewController = new ViewController(myData, levelTabs, tab);
 		myData.addObserver(viewController);
 
-		myComp.add(myGrids.get(1));
+		myComp.add(levelTabs);
 		myComp.add(tab);
 		myComp.add(toolbar);
 		
@@ -56,7 +58,7 @@ public class GUIBuilder {
 
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
-		myPane.setCenter(myGrids.get(1).buildComponent());
+		myPane.setCenter(levelTabs.buildComponent());
 		myPane.setId("root");
 		return myPane;
 	}

@@ -31,26 +31,47 @@ public class ViewData extends Observable {
 	private Stack<RightClickEvent> redoStack;
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
+	private HashMap<Integer, Entity> levelEntityMap;
 	private LevelEntity myLevelEntity;
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
 	private Entity userGridSelectedEntity;
 	private Entity copiedEntity;
 	private String gameName;
+	private int currentLevel;
 	private Boolean saved = true;
+//TODO: implement the saved boolean to track whether the current state is saved
+	private int initialRows;
+	private int initialCols;
 
-	//TODO: implement the saved boolean to track whether the current state is saved
-
-	public ViewData(int initialRows, int initialCols) {
+	public ViewData(int initialRowsIn, int initialColsIn) {
+		currentLevel = 1;
+		initialRows = initialRowsIn;
+		initialCols = initialColsIn;
 		undoStack = new Stack<RightClickEvent>();
 		redoStack = new Stack<RightClickEvent>();
 		definedEntityMap = new HashMap<Integer, Entity>();
 		placedEntityMaps = new HashMap<Integer, HashMap<Integer, Entity>>();
-		placedEntityMaps.put(1, new HashMap<Integer, Entity>());
-		myLevelEntity = new LevelEntity(-1, initialRows, initialCols, "images/background1.png");
+		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
+		levelEntityMap = new HashMap<Integer, Entity>();
+		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
 		mySplashEntity = new SplashEntity(-2, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
 		gameName = "";
+	}
+	
+	public int getCurrentLevel(){
+		return currentLevel;
+	}
+	
+	public void setCurrentLevel(int i){
+		currentLevel = i;
+	}
+	
+	public void addLevel(){
+		currentLevel++;
+		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
+		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
 	}
 	
 	public void addEvent(RightClickEvent e) {
@@ -92,7 +113,7 @@ public class ViewData extends Observable {
 	public void defineEntity(Entity entity) {
 		definedEntityMap.put(entity.getID(), entity);
 		setChanged();
-		notifyObservers(entity);
+		notifyObservers();
 	}
 	
 	public void defineEntityNoUpdate(Entity entity) {
@@ -106,10 +127,9 @@ public class ViewData extends Observable {
 		}
 		placedEntityMaps.get(levelNumber).put(entity.getID(), entity);
 		setChanged();
-		notifyObservers(entity);
+		notifyObservers();
 	}
 
-	//TODO: implement CTRL + Z and stuff
 	public void undefineEntity(Entity entity) {
 		definedEntityMap.remove(entity.getID());
 	}
@@ -119,7 +139,7 @@ public class ViewData extends Observable {
 		placedEntityMaps.get(levelNumber).remove(entity);
 		userGridSelectedEntity = entity;
 		setChanged();
-		notifyObservers("unplace");
+		notifyObservers();
 	}
 
 	public void copyEntity(){
@@ -146,7 +166,7 @@ public class ViewData extends Observable {
 	}
 
 	public LevelEntity getLevelEntity() {
-		return myLevelEntity;
+		return (LevelEntity) levelEntityMap.get(currentLevel);
 	}
 
 	public void setLevelEntity(LevelEntity l) {
@@ -171,14 +191,14 @@ public class ViewData extends Observable {
 
 	public void refresh() {
 		setChanged();
-		notifyObservers("refresh");
+		notifyObservers();
 	}
 	
 	// fix dependencies
 	public void removePlacedEntities(int levelNumber) {
 		placedEntityMaps.get(levelNumber).clear();
 		setChanged();
-		notifyObservers("reset");
+		notifyObservers();
 	}
 
 	
