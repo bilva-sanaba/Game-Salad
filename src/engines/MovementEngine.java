@@ -24,12 +24,13 @@ public class MovementEngine extends AbstractEngine{
 	protected List<ComponentType> neededComponents() {	
 		return null;
 	}
-	public void update(Collection<KeyCode> keys, IRestrictedGameData currentGameData) {
+	public IRestrictedGameData update(Collection<KeyCode> keys, IRestrictedGameData currentGameData) {
 		for (IEntity e: getEManager().getEntities()) {
 			if (hasComponent(e,ComponentType.Location)) {
 				updateAllValues(e);
 			}	
 		}
+		return currentGameData;
 	}
 	private void updateAllValues(IEntity e) {
 		if (hasComponent(e, ComponentType.Velocity)) {
@@ -56,7 +57,7 @@ public class MovementEngine extends AbstractEngine{
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 			
-		vc.setX(vc.getX() + ac.getX());
+		vc.setX(vc.getX() + ac.getX());		
 		vc.setY(vc.getY() + ac.getY());
 		
 		//Handles terminal velocity
@@ -73,11 +74,11 @@ public class MovementEngine extends AbstractEngine{
 			
 			if(vc.getX() > 0){
 				vc.setX(tvc.getX());
-				System.out.println("TerminalVelocity in X is hit!");
+				//System.out.println("TerminalVelocity in X is hit!");
 			}
 			else{
 				vc.setX(-tvc.getX());
-				System.out.println("TerminalVelocity in X is hit!");
+			//	System.out.println("TerminalVelocity in X is hit!");
 			}
 		}
 	}

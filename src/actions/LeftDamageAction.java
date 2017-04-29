@@ -29,7 +29,7 @@ public class LeftDamageAction implements IAction{
 			
 		lc.setX(lc.getX()-0.01);
 			
-		vc.setX(-5);
+		vc.setX(-10);
 		vc.setY(-1);
 				
 		hc.setHealth(hc.getHealth() - sc.getStrength());

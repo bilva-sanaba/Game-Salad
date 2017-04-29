@@ -11,14 +11,12 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.GoalComponent;
 import entity.IEntity;
 import entity.IEntityManager;
-import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
-
 @LeftAction()
 @RightAction()
 @TopAction()
 @BottomAction()
-public class GoalAction implements IAction{
+public class GoalAction  extends AbstractAction  implements IAction{
 
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
@@ -29,9 +27,7 @@ public class GoalAction implements IAction{
 				gc.satisfyGoal();
 			}
 		}
-		GameDataFactory gdf = new GameDataFactory();
-
-		return gdf.blankEntityData(currentGameData);
+		return getGameDataFactory().blankEntityData(currentGameData);
 	}
 
 }

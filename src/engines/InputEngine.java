@@ -9,6 +9,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import actions.BlockTopRegularCollision;
+import actions.IAction;
 import alerts.GroovyAlert;
 import components.IComponent;
 import components.entityComponents.AccelerationComponent;
@@ -50,7 +51,7 @@ public class InputEngine extends AbstractEngine{
 
 
 	@Override
-	public void update(Collection<KeyCode> keys, IRestrictedGameData gameData) {
+	public IRestrictedGameData update(Collection<KeyCode> keys, IRestrictedGameData gameData) {
 		newEntities.clear();
 		for (IEntity e : getEManager().getEntities()){
 			handleInput(e,keys, gameData);
@@ -60,6 +61,7 @@ public class InputEngine extends AbstractEngine{
 			getEManager().getEntities().add(myE);
 			getEManager().changed(myE);
 		}
+		return gameData;
 	}
 	private void handleInput(IEntity e, Collection<KeyCode> keys, IRestrictedGameData gameData){
 		if (e.getComponent(ComponentType.KeyInput)!=null){
@@ -97,8 +99,10 @@ public class InputEngine extends AbstractEngine{
 		
 		for (KeyCode key : keys){
 			if (ic.getActionMap().containsKey(key)){
-					newEntities.addAll(ic.getActionMap().get(key).executeAction(e, null, getEManager(), gameData).getRestrictedEntityManager().getRestrictedEntities());
+				for (IAction action : ic.getActionMap().get(key)){
+					newEntities.addAll(action.executeAction(e, null, getEManager(), gameData).getRestrictedEntityManager().getRestrictedEntities());
 					((IRestrictedEntity) e).changed(e);
+				}
 				}
 			if (ic.getGroovyMap().containsKey(key)){
 				try {

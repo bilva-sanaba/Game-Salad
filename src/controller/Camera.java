@@ -5,8 +5,10 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.TypeComponent;
+import components.entityComponents.VelocityComponent;
 import entity.Entity;
 import entity.IEntity;
+import entity.restricted.IRestrictedEntity;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,15 +25,15 @@ public class Camera extends Entity {
 	private int myLevelLength;
 	private Scene myFrame;
 	private Parent root;
-	private LocationComponent followerLoc;
+	private Entity myMainCharacter;
 	
 	
-	public Camera (int length, Scene myScene, LocationComponent component, int id) {
+	public Camera (int length, Scene myScene, Entity mainCharacter, int id) {
 		super(id);
 		myLevelLength = length;
 		myFrame = myScene;
 		root = myFrame.getRoot();
-		followerLoc = component;
+		myMainCharacter = mainCharacter;
 		if (getComponent(ComponentType.Type) == null) {
 			addComponent(new TypeComponent(EntityType.Camera));
 		}
@@ -39,21 +41,20 @@ public class Camera extends Entity {
 	}
 
 	public void updateCamera() {
-		double playerLocRelativeToCam = root.getTranslateX() + followerLoc.getX();
 		
-		if(playerLocRelativeToCam <= LEFT_BOUND_FROM_EDGE && followerLoc.getX()>0){
-			root.setTranslateX(root.getTranslateX()+5);
+		LocationComponent followerLoc = (LocationComponent) myMainCharacter.getComponent(ComponentType.Location);
+		
+		root.setTranslateX(-followerLoc.getX() + myFrame.getWidth() / 2);
+		
+		/*if(playerLocRelativeToCam <= LEFT_BOUND_FROM_EDGE && followerLoc.getX()>0){
+			root.setTranslateX(root.getTranslateX() - followerVel.getX() + 4);
+			//System.out.println(followerVel.getX());
 		}
 		else if (playerLocRelativeToCam >= RIGHT_BOUND_FROM_EDGE) {
-			root.setTranslateX(root.getTranslateX()-5);
-		}
-		else{
-			root.setTranslateX(root.getTranslateX());
-		}	
-		
-		if(root.getTranslateX() >= 0){
-			root.setTranslateX(0);
-		}
+			root.setTranslateX(root.getTranslateX() - followerVel.getX() - 4);
+			//System.out.println(followerVel.getX());
+		}*/
+
 	}
 	
 	

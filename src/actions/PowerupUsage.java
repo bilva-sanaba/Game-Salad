@@ -1,26 +1,19 @@
 package actions;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import components.entityComponents.ComponentType;
 import components.entityComponents.SpriteComponent;
 import entity.IEntity;
 import entity.IEntityManager;
-import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
-public class PowerupUsage implements IAction{
+public class PowerupUsage  extends AbstractAction implements IAction{
 
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		SpriteComponent npcsc = (SpriteComponent) npc.getComponent(new SpriteComponent());
+		//		SpriteComponent npcsc = (SpriteComponent) npc.getComponent(new SpriteComponent());
 		myEM.getEntities().remove(npc);
 		((SpriteComponent) npc.getComponent(new SpriteComponent())).setClassPath("");
 		npc.changed(null);
-		
-		GameDataFactory gdf = new GameDataFactory();
-		return gdf.blankEntityData(currentGameData);
+		return getGameDataFactory().blankEntityData(currentGameData);
 	}
 
 }

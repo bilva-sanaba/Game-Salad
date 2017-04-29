@@ -19,11 +19,13 @@ import gamedata.IRestrictedGameData;
 public class LeftAction implements IAction {
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
+		
 		LocationComponent lc = (LocationComponent) player.getComponent(ComponentType.Location);
 		AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		
-		ac.setX(-0.5);
+		//lc.setX(lc.getX() -2);
+		vc.setX(-4);
 		if(lc.getX() < 55){
 			stopPlayer(vc, ac);
 		}

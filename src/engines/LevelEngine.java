@@ -22,7 +22,7 @@ public class LevelEngine extends AbstractEngine{
 	}
 
 	@Override
-	public void update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
+	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData currentGameData) {
 		for(IEntity e: getEManager().getEntities()){
 			if(hasComponent(e, ComponentType.Goal)){
 				GoalComponent gc = (GoalComponent) e.getComponent(ComponentType.Goal);
@@ -32,5 +32,7 @@ public class LevelEngine extends AbstractEngine{
 			}
 			
 		}
+
+		return currentGameData;
 	}
 }

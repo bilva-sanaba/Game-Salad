@@ -1,5 +1,6 @@
 package components.entityComponents;
 
+import components.AComponent;
 import components.IComponent;
 
 /**
@@ -7,7 +8,7 @@ import components.IComponent;
  * @author Jack
  *
  */
-public class HealthComponent implements IComponent {
+public class HealthComponent extends AComponent implements IComponent {
 	
 	private double health;
 
