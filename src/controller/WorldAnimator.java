@@ -12,6 +12,7 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 import achievements.Achievement;
 import achievements.AchievementFactory;
+import achievements.AchievementTimer;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import javafx.animation.FadeTransition;
@@ -69,8 +70,11 @@ public class WorldAnimator{
 
     private GameData myData;
 
+    private AchievementTimer myTimer;
 
     private Camera myCamera;
+    
+    private int counter=0;
     
     private AchievementFactory myAchievementFactory;
     private Achievement myAchievement;
@@ -107,6 +111,7 @@ public class WorldAnimator{
         LocationComponent lc = myData.getMainLocation();
         //Change Length
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
+        myTimer = new AchievementTimer();
         
         myAchievementFactory = new AchievementFactory();
         myAchievement = myAchievementFactory.genAchievement("FirstKill");
@@ -131,10 +136,14 @@ public class WorldAnimator{
     }
     private void step(double elapsedTime){
     	//myView.step(keysPressed);
+    	counter++;
     	myEngine.handleUpdates(keysPressed,myData);
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
-       
+        if(counter%45==0){
+        	root.getChildren().remove(myAchievement.getGroup());
+        	System.out.println("YACK YACK YACK YACK YACK");
+        }
         myAchievement.updateAchievementLoc(-1*myCamera.getX());
         myCamera.updateCamera();
         myObservers.clearSet();
