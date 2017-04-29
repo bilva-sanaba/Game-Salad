@@ -1,5 +1,6 @@
 package view;
 
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -8,12 +9,12 @@ import entity.Entity;
 
 public class ViewController implements Observer {
 	private ViewData myData;
-	private GridView myGrid;
+	private LevelTabView levelTabs;
 	private TabView myTab;
-
-	public ViewController(ViewData dataIn, GridView gridIn, TabView tabIn){
+	
+	public ViewController(ViewData dataIn, LevelTabView levelIn, TabView tabIn) {
 		myData = dataIn;
-		myGrid = gridIn;
+		levelTabs = levelIn;
 		myTab = tabIn;
 	}
 
@@ -26,28 +27,18 @@ public class ViewController implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		if(myData.getUserGridSelectedEntity() != null){
-			myGrid.unselectEntity(myData.getUserGridSelectedEntity());
-		}
-		if(arg.equals("refresh")){
-			myTab.clearEntitiesOnTab();
-			myGrid.updateBackground();
-			myGrid.setUpLevel();
-		}
-		else if(arg.equals("reset")){
-			myGrid.clearEntitiesOnGrid();
-		}
-		else if(arg.equals("unplace")){
-			myGrid.removeEntity();
-		}
-		else if (!(((Entity) arg).getComponent(ComponentType.Location) == null)){
-			myGrid.drawEntity((Entity) arg);
-		}
-		else{
-			myTab.addEntity((Entity) arg);
-		}
-		if(myData.getUserSelectedEntity() == null){
+		
+		if (myData.getUserSelectedEntity() == null) {
 			myTab.clearSelected();
 		}
-	}  
+		
+		LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
+		level.getGrid().clearEntitiesOnGrid();
+		level.getGrid().drawPlacedEntities();
+		
+		myTab.clearEntitiesOnTab();
+		myTab.addPresetEntities();
+		myTab.addDefinedEntities();
+	}
+
 }
