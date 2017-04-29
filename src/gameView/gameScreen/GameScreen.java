@@ -61,7 +61,12 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		//UNCOMMENT FOR RUNNERS TEST
 		RunnerTest s = new RunnerTest(getView().getStage(), getView());
 		myAnimation = s.getAnimator();
-		myAnimation.start(s.getEngine().dummyLoad(), this);
+		try {
+			myAnimation.start(s.getEngine().dummyLoad(), this);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();  //FIX THIS ITEM
+		}
 		myAnimation.setKeys(myScene);
 		myAnimation.giveEngine(s.getEngine());
 //		Scene test = myAnimation.getScene();

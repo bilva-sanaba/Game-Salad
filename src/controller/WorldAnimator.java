@@ -11,6 +11,7 @@ import java.util.Set;
 import com.sun.org.apache.regexp.internal.recompile;
 
 import achievements.Achievement;
+import achievements.AchievementFactory;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import javafx.animation.FadeTransition;
@@ -70,6 +71,8 @@ public class WorldAnimator{
 
 
     private Camera myCamera;
+    
+    private AchievementFactory myAchievementFactory;
     private Achievement myAchievement;
     private UIViewInterface myView;
     private	ObserverManager myObservers;
@@ -86,14 +89,14 @@ public class WorldAnimator{
     public Group getGroup(){
     	return root;
     }
-    public void start (GameData myData, IGameScreenEntity screen){
+    public void start (GameData myData, IGameScreenEntity screen) throws ClassNotFoundException{ //achievementFactory
     	this.myData=myData;
         root = new Group();
         
        
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
         myObservers = new ObserverManager(this, restrictedEntityManager);
-
+        
 
 
 //BELALS SHIT
@@ -105,7 +108,8 @@ public class WorldAnimator{
         //Change Length
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
         
-        myAchievement = new Achievement("YOOOO");
+        myAchievementFactory = new AchievementFactory();
+        myAchievement = myAchievementFactory.genAchievement("FirstKill");
         root.getChildren().add(myAchievement.getGroup());
         
 
