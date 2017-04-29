@@ -57,9 +57,10 @@ public class CollisionEngine extends AbstractEngine {
 	/**
 	 * This method goes through all entities, takes their locations, and figures out if any are bumping into each other. If any are,
 	 * it sends components of those objects to subEngines which can handle effects (such moving the entity or changing the entities image, etc.)
+	 * @return 
 	 */
 
-	private void checkCollisionsOccurred(IRestrictedGameData gd) {
+	private IRestrictedGameData checkCollisionsOccurred(IRestrictedGameData gd) {
 		List<IEntity> entities2 = (List<IEntity>) entManager.getEntities();
 		IEntity[] entities = new IEntity[entities2.size()];
 		Camera cam = null;
@@ -85,6 +86,7 @@ public class CollisionEngine extends AbstractEngine {
 				}
 			}
 		}
+		return gd;
 	}
 	
 	
@@ -106,8 +108,8 @@ public class CollisionEngine extends AbstractEngine {
 		if (collisionOccurs) {
 			
 			for (ISubEngine engine : subEngines) {
-				
-				newEntitiesCreated.addAll(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd));
+				gd = engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd);
+//				newEntitiesCreated.addAll(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd));
 			}
 			
 		}
@@ -118,16 +120,17 @@ public class CollisionEngine extends AbstractEngine {
 		return new ArrayList<ComponentType>();
 	}
 	public IRestrictedGameData update(Collection<KeyCode> keys,IRestrictedGameData gd) {
+		IRestrictedGameData rgd = gd;
 		newEntitiesCreated = new ArrayList<IEntity>();
 		if (numSubEnginesAdded<=0) {
 			addEngine(new GeneralPostCollisionHandler());
 		}
-		checkCollisionsOccurred(gd);
-		for (IEntity e : newEntitiesCreated){
-			entManager.getEntities().add(e);
-			entManager.changed(e);
+		rgd=checkCollisionsOccurred(rgd);
+		for (IRestrictedEntity e :rgd.getRestrictedEntityManager().getRestrictedEntities()){
+//			entManager.getEntities().add(e);
+//			entManager.changed(e);
 		}
-		return gd;
+		return rgd;
 	}
 	
 }

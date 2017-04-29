@@ -1,9 +1,11 @@
 package view;
 
+import java.util.Collection;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
+import data_interfaces.Communicator;
 import entity.Entity;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;
@@ -19,6 +21,8 @@ import javafx.scene.layout.VBox;
 import view.window.EntityBuilderWindow;
 
 public class TabView extends GUIComponent {
+	private static final String PRESETFILE = "PresetEntities";
+
 	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
 	private ListView<Entity> blocksView = new ListView<Entity>();
 	private VBox myBox = new VBox();
@@ -83,6 +87,22 @@ public class TabView extends GUIComponent {
 
 	public void addEntity(Entity e) {
 		blocksList.add(e);
+	}
+	
+	public void addDefinedEntities() {
+		for (int entityID : myData.getDefinedEntityMap().keySet()) {
+			addEntity(myData.getDefinedEntityMap().get(entityID));
+		}
+	}
+	
+	public void addPresetEntities() {
+		Communicator c = new Communicator(PRESETFILE);
+		Collection <Entity> col = c.getData();
+		for (Entity e: col) {
+			if (!e.getClass().toString().equals("class entity.LevelEntity") && !e.getClass().toString().equals("class entity.SplashEntity")) {
+				myData.defineEntityNoUpdate(e);
+			}
+		}
 	}
 
 	@Override

@@ -1,13 +1,10 @@
-package view.toolbar;
+package view;
 
 import java.util.List;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.Region;
-import view.GUIComponent;
-import view.UtilityFactory;
-import view.ViewData;
 
 public class ToolBarView extends GUIComponent {
 	private ToolBar myBar;
