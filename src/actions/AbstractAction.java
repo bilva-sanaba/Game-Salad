@@ -10,4 +10,13 @@ public abstract class AbstractAction {
 	protected GameDataFactory getGameDataFactory(){
 		return gdf;
 	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getName();
+	}
+	
+	
+	
+	
 }
