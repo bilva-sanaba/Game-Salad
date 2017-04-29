@@ -69,6 +69,7 @@ public class Menu implements IMenu {
 
 	private void loadEvent() {
 		Image img;
+		double newheight, newwidth;
 		
 		Stage newStage = new Stage();
 		FileChooser fc = new FileChooser();
@@ -84,7 +85,18 @@ public class Menu implements IMenu {
 		}
 
 		GraphicsContext gc = myCanvas.getGraphicsContext2D();
-		int newHeight = (int) ((img.getHeight() * myCanvas.getWidth()) / img.getWidth());
-		gc.drawImage(img, 0, 0, myCanvas.getWidth(), newHeight);
+		if (img.getHeight() > img.getWidth()) {
+			newheight = myCanvas.getHeight();
+			newwidth = scaleProportional(img.getHeight(), img.getWidth(), myCanvas.getWidth());
+		}
+		else {
+			newwidth = myCanvas.getWidth();
+			newheight = scaleProportional(img.getWidth(), img.getHeight(), myCanvas.getHeight());
+		}
+		gc.drawImage(img, 0, 0, newwidth, newheight);
 	}
+	
+	private double scaleProportional(double bigger, double smaller, double canVal) {
+		return (smaller / bigger) * canVal;
+ 	}
 }

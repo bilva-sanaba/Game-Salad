@@ -16,7 +16,7 @@ public class Communicator extends GameSavingDataTool implements EncapsulatedComm
 	}
 
 	public Collection<Entity> getData() {
-		XMLParser xp = new XMLParser();
+		XMLDefinedParser xp = new XMLDefinedParser();
 		EntityHandler eh = new EntityHandler();
 		return eh.getCollection(xp.getData(fileName));
 	}

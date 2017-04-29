@@ -2,6 +2,7 @@ package view.toolbar;
 
 import java.io.File;
 import java.util.*;
+import java.util.function.Consumer;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
@@ -16,9 +17,12 @@ import view.ViewData;
 
 public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent {
 	private ViewData myData;
+	Map<Class<? extends Entity>, Consumer<Entity>> whattodo;
 	
 	public LoadEvent(ViewData data){
 		myData = data;
+		whattodo.put(SplashEntity.class, e -> myData.setSplashEntity((SplashEntity) e));
+		whattodo.put(LevelEntity.class, e -> myData.setLevelEntity((LevelEntity) e));
 	}
 
 	@Override
@@ -46,12 +50,18 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			myData.refresh();
 			for (Entity e: col) {
 				System.out.println(e.getClass().toString());
+				Class<? extends Entity> eClass = e.getClass();
+				Consumer<Entity> cc = whattodo.get(eClass);
+				if (cc == null) throw new RuntimeException();
+				cc.accept(e);;
+				
+				
 				if (e.getClass().toString().equals("class entity.LevelEntity")) {
 					System.out.println("Level entity is set");
 					myData.setLevelEntity((LevelEntity) e);
 				}
-				else if (e.getClass().toString().equals("class entity.SplashEntity")) {
-					myData.setSplashEntity((SplashEntity)e);
+				else if (e instanceof SplashEntity) {
+					myData.setEntity((SplashEntity) e);
 				}
 				else if (isPlaced(e)) {
 					System.out.println("isplaced");
