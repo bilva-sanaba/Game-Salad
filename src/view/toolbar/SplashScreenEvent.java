@@ -17,6 +17,7 @@ public class SplashScreenEvent implements ToolBarButtonEvent {
 	public void event() {
 		SplashScreenBuilderWindow ssbw = new SplashScreenBuilderWindow();
 		SplashEntity s = ssbw.createEntity();
+		System.out.println("wiener");
 		System.out.println(s.getGameTitle()+"<- THIS IS THIS THING");
 
 		

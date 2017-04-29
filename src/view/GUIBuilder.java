@@ -1,11 +1,11 @@
 package view;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import view.toolbar.ToolBarView;
 
 /**
  * @author Jonathan Rub
@@ -22,9 +22,9 @@ public class GUIBuilder {
 	private static final int INITIAL_GRID_COLS = 50;
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
-	private GridView grid;
+	private HashMap<Integer, GridView> myGrids;
 	private TabView tab;
-	private GUIComponent toolbar;
+	private ToolBarView toolbar;
 	private ViewData myData;
 	private ViewController viewController;
 	private Pane myBP;
@@ -33,20 +33,19 @@ public class GUIBuilder {
 	 * Initializes the main Scene and Stage.
 	 */
 	public GUIBuilder(UtilityFactory utilF) {
-		myData = new ViewData();
-		// Fix rows and columns to be set from the static int in GUIBuilder only
-		grid = new GridView(utilF, myData, 50, 50);
+		myData = new ViewData(INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
+		myGrids = new HashMap<Integer, GridView>();
+		myGrids.put(1, new GridView(utilF, 1, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS));
 		tab = new TabView(utilF, myData);
+		tab.addPresetEntities();
 		toolbar = new ToolBarView(utilF, myData);
-		viewController = new ViewController(myData, grid, tab);
+		viewController = new ViewController(myData, myGrids, tab);
 		myData.addObserver(viewController);
-		myData.addPresetEntities();
 
-		myComp.add(grid);
+		myComp.add(myGrids.get(1));
 		myComp.add(tab);
 		myComp.add(toolbar);
 		
-		//ADDED BY HENRY TO FIX THE STAGE POPUP ERROR IN CONTROLLER
 		myBP = buildPane();
 	}
 
@@ -57,7 +56,7 @@ public class GUIBuilder {
 
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
-		myPane.setCenter(grid.buildComponent());
+		myPane.setCenter(myGrids.get(1).buildComponent());
 		myPane.setId("root");
 		return myPane;
 	}
