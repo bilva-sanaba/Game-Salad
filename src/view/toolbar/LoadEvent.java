@@ -48,20 +48,23 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			//			System.out.println(col + " line 45 " + this.getClass());
 			List <Map> toPlace = xpp.getData(name);
 			
+			setPlacedEntities(toPlace.get(0));
+			setLevelEntities(toPlace.get(1));
+			setSplashEntity(toPlace.get(2));
 			//idk what method to use here
 		}
 		
 	}
 	
-	private boolean isPlaced(Entity e) {
-		try {
-			return (!e.getComponent(ComponentType.Location).equals(null));
-		}
-		catch (NullPointerException npe) {
-			return false;
-		}
+	private void setPlacedEntities(Map m) {
+		
 	}
 	
+	private void setLevelEntities(Map m) {
+		
+	}
 	
-	
+	private void setSplashEntity(Map m) {
+		myData.setSplashEntity((SplashEntity) m.get(getSplashConstant())); 
+	}
 }
