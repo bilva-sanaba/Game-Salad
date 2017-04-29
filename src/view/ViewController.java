@@ -54,7 +54,6 @@ public class ViewController implements Observer {
 		}
 		
 		myTab.clearEntitiesOnTab();
-		myData.addPresetEntities();
 		myTab.addDefinedEntities();
 	}
 

@@ -37,10 +37,10 @@ public class GUIBuilder {
 		myGrids = new HashMap<Integer, GridView>();
 		myGrids.put(1, new GridView(utilF, 1, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS));
 		tab = new TabView(utilF, myData);
+		tab.addPresetEntities();
 		toolbar = new ToolBarView(utilF, myData);
 		viewController = new ViewController(myData, myGrids, tab);
 		myData.addObserver(viewController);
-		myData.addPresetEntities();
 
 		myComp.add(myGrids.get(1));
 		myComp.add(tab);

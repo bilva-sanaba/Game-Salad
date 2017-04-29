@@ -118,8 +118,8 @@ public class GridView extends GUIComponent {
 	}
 	
 	public void drawPlacedEntities() {
-		for (Integer levelNumber : myData.getPlacedEntityMap().keySet()) {
-			
+		for (int entityID : myData.getPlacedEntityMap().get(myLevelNumber).keySet()) {
+			drawEntity(myData.getPlacedEntityMap().get(myLevelNumber).get(entityID));
 		}
 	}
 
@@ -195,7 +195,7 @@ public class GridView extends GUIComponent {
 	public void placeEntitiesFromFile(int levelNumber) {
 		Entity tempEntity;
 		Map<Integer, HashMap<Integer, Entity>> myMap = myData.getPlacedEntityMap();
-		for (Integer i : myMap.get(myLevelNumber).keySet()) {
+		for (int i : myMap.get(myLevelNumber).keySet()) {
 			tempEntity = myMap.get(myLevelNumber).get(i);
 			drawEntity(tempEntity);
 		}

@@ -26,7 +26,6 @@ import data_interfaces.Communicator;
  * @author Jack
  */
 public class ViewData extends Observable {
-	private static final String PRESETFILE = "PresetEntities";
 
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
@@ -59,7 +58,7 @@ public class ViewData extends Observable {
 	}
 
 	public void undoLastEvent(){
-		if(undoStack.peek() != null){
+		if(undoStack.peek() != null) {
 			RightClickEvent e = undoStack.pop();
 			e.undo();
 			redoStack.add(e);
@@ -67,7 +66,7 @@ public class ViewData extends Observable {
 	}
 
 	public void redo(){
-		if(redoStack.peek() != null){
+		if(redoStack.peek() != null) {
 			RightClickEvent e = redoStack.pop();
 			e.execute();
 			undoStack.add(e);
@@ -94,6 +93,10 @@ public class ViewData extends Observable {
 		definedEntityMap.put(entity.getID(), entity);
 		setChanged();
 		notifyObservers(entity);
+	}
+	
+	public void defineEntityNoUpdate(Entity entity) {
+		definedEntityMap.put(entity.getID(), entity);
 	}
 
 	// fix dependencies
@@ -178,13 +181,5 @@ public class ViewData extends Observable {
 		notifyObservers("reset");
 	}
 
-	public void addPresetEntities() {
-		Communicator c = new Communicator(PRESETFILE);
-		Collection <Entity> col = c.getData();
-		for (Entity e: col) {
-			if (!e.getClass().toString().equals("class entity.LevelEntity") && !e.getClass().toString().equals("class entity.SplashEntity")) {
-				defineEntity(e);
-			}
-		}
-	}
+	
 }
