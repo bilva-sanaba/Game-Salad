@@ -20,13 +20,12 @@ import components.IComponent;
 
 import java.io.*;
 
-import entity.IEntityManager;
-
 public class XMLParser implements Parser {
 
 	private Element loadFile(String fileName) {
-		//XStream xs = new XStream(new DomDriver());
-		//Collection<IEntity> stuff = (Collection<IEntity>) xs.fromXML(new File(fileName));
+		XStream xs = new XStream(new DomDriver());
+		List<List <IEntity>> fXML = (List<List<IEntity>>) xs.fromXML(new File(fileName));
+		System.out.println(fXML);
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
