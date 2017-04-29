@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.UtilityFactory;
@@ -30,10 +31,11 @@ public class NetworkWindow implements Window {
 	
 	private VBox makeJoinRoomGUI() {
 		VBox container = new VBox();
+		
 		Label title = new Label("Join Room:");
+		
 		HBox ipBox = new HBox();
 		HBox portBox = new HBox();
-		
 		Label ipLabel = new Label("IP Address: ");
 		Label portLabel = new Label("Port No: ");
 		TextField ipInput = new TextField();
@@ -58,9 +60,22 @@ public class NetworkWindow implements Window {
 	
 	private VBox makeNewRoomGUI() {
 		VBox container = new VBox();
+		
+		HBox buttonBox = new HBox();
 		Button newRoomButton = makeNewRoomButton();
+		Button closeRoomButton = makeCloseRoomButton();
+		buttonBox.getChildren().addAll(newRoomButton, closeRoomButton);
 		
+		HBox ipBox = new HBox();
+		HBox portBox = new HBox();
+		Label yourIP = new Label("Your IP is: ");
+		Label yourPort = new Label("Your port is: ");
+		Text ipDisplay = new Text("");
+		Text portDisplay = new Text("");
+		ipBox.getChildren().addAll(yourIP, ipDisplay);
+		portBox.getChildren().addAll(yourPort, portDisplay);
 		
+		container.getChildren().addAll(buttonBox, ipBox, portBox);
 		
 		return container;
 	}
@@ -73,7 +88,7 @@ public class NetworkWindow implements Window {
 		return newRoomButton;
 	}
 	
-	private Button closeRoomButton() {
+	private Button makeCloseRoomButton() {
 		Button closeRoomButton = myUtilF.buildButton("Close Room", e -> {
 			
 		});
