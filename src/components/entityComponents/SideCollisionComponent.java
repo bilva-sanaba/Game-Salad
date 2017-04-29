@@ -48,31 +48,30 @@ public class SideCollisionComponent extends AComponent implements IComponent {
 	
 	
 	
-	public List<IEntity> executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM, IRestrictedGameData dg) {
+	public IRestrictedGameData executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM, IRestrictedGameData dg) {
 		//maybe should refactor
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
 		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getLabel())) {
 			for (IAction action : labelActionMap.get(entityLabel.getLabel())) {
-				IRestrictedGameData actionCreatedEntities = action.executeAction(e, e2,myEM, dg);
-				for (IRestrictedEntity re : actionCreatedEntities.getRestrictedEntityManager().getRestrictedEntities()){
-					newEntities.add(re.clone());
-				}
+				dg = action.executeAction(e, e2,myEM, dg);
+//				for (IRestrictedEntity re : dg.getRestrictedEntityManager().getRestrictedEntities()){
+//					newEntities.add(re.clone());
+//				}
 				
 			}
-			return newEntities;
 		}
 		if (entityType!= null && typeActionMap.containsKey(entityType.getTypeString())) {
 			for (IAction action : typeActionMap.get(entityType.getTypeString())) {
 
-				IRestrictedGameData actionCreatedEntities = action.executeAction(e, e2,myEM, dg);
-				for (IRestrictedEntity re : actionCreatedEntities.getRestrictedEntityManager().getRestrictedEntities()){
-					newEntities.add(re.clone());
-				}
+				dg= action.executeAction(e, e2,myEM, dg);
+//				for (IRestrictedEntity re : dg.getRestrictedEntityManager().getRestrictedEntities()){
+//					newEntities.add(re.clone());
+//				}
 			}
 		}
-		return newEntities;
+		return dg;
 	}
 	
 	public CollisionComponentType whichSide() {

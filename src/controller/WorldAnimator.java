@@ -10,6 +10,7 @@ import java.util.Set;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
+import achievements.Achievement;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import javafx.animation.FadeTransition;
@@ -49,7 +50,6 @@ import gamedata.GameData;
  *
  */
 public class WorldAnimator{
-    // private Stage myStage;
     public static final int FRAMES_PER_SECOND = 30;
     public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
     public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
@@ -68,14 +68,12 @@ public class WorldAnimator{
 
     private GameData myData;
 
-//    private GameBuilder myGameBuilder;
 
     private Camera myCamera;
+    private Achievement myAchievement;
     private UIViewInterface myView;
     private	ObserverManager myObservers;
-    //private IGameScreenEntity myGameScreen;
-    
-    //FOR TESTING WITH RUNNER - CAN DELETE FOR NORMAL
+
     private GameEngine myEngine;
     
     private Map<Integer, ImageConfig> imageMap= new HashMap<Integer, ImageConfig>();
@@ -91,33 +89,33 @@ public class WorldAnimator{
     public void start (GameData myData, IGameScreenEntity screen){
     	this.myData=myData;
         root = new Group();
+        
+       
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
         myObservers = new ObserverManager(this, restrictedEntityManager);
-//        myGameBuilder = new GameBuilder();
-//        myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
+
 
 
 //BELALS SHIT
 
         //myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
         myScene = new Scene(root,LENGTH,WIDTH);
-        st = new SequentialTransition();
+        //st = new SequentialTransition();
         LocationComponent lc = myData.getMainLocation();
         //Change Length
-        System.out.println("this triggers");
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
+        
+        myAchievement = new Achievement("YOOOO");
+        root.getChildren().add(myAchievement.getGroup());
+        
 
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
 
-        /*for (Integer id : imageMap.keySet()) {
-            root.getChildren().add(imageMap.get(id));
-        }*/        
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                 e-> step(SECOND_DELAY));
         this.animation = new Timeline();
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.getKeyFrames().add(frame);
-        //animation.play();
     }
     
     
@@ -133,7 +131,7 @@ public class WorldAnimator{
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
        
-
+        myAchievement.updateAchievementLoc(-1*myCamera.getX());
         myCamera.updateCamera();
         myObservers.clearSet();
     }
@@ -166,16 +164,13 @@ public class WorldAnimator{
     }
 
     private void fillMapAndDisplay(Set<Integer> entities){
-
+    	
     	Map<Integer, ImageConfig> map = myObservers.getEntityMap();
         for(Integer entity : entities){
         //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
-        	System.out.println(entity);
         	if (map.get(entity)!=null){
-		  //SequentialTransition trans = new SequentialTransition();
-		  //removeEntity(entity,entities);
-		  updateEntity(entity,map);
-		  createEntity(entity,map);
+        		updateEntity(entity,map);
+        		createEntity(entity,map);
         	}
 		}
 
@@ -185,11 +180,11 @@ public class WorldAnimator{
     public void removeEntity(Integer entity){
     	System.out.println("CHAHCHAHCHA" + entity);
     	if (imageMap.containsKey(entity)){
-    		st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
-    		st.play();
+    		//st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
+    		//st.play();
     		imageMap.get(entity).getImageView().setImage(null);
-    	
-    		imageMap.remove(entity);
+    		root.getChildren().remove(imageMap.get(entity));
+    		imageMap.remove(entity);    		
     	}
     }
 
@@ -197,13 +192,12 @@ public class WorldAnimator{
 	private void createEntity(Integer entity, Map<Integer, ImageConfig> map){
 	        if (!imageMap.containsKey(entity) && map.get(entity)!=null){
 	            ImageView imageView = new ImageView();
-	            //ImageView old = map.get(entity).getImageView();
-	            imageView = updateImage(imageView, "", map.get(entity).getImageView(), map.get(entity).getPath());
+	            imageView = updateImage(entity, imageView, "", map.get(entity).getImageView(), map.get(entity).getPath());
 	            imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 	            
 	            root.getChildren().add(imageView);
-	            st.getChildren().add(makeAppear(imageView));
-	            st.play();
+	            //st.getChildren().add(makeAppear(imageView));
+	            //st.play();
 	        }
 	  }
 
@@ -211,24 +205,25 @@ public class WorldAnimator{
 	private void updateEntity(Integer entity, Map<Integer, ImageConfig> map){
         if (imageMap.containsKey(entity)) {
         	ImageConfig currentImage = imageMap.get(entity);
+        	
     		ImageConfig updatedImage = map.get(entity);
-    		updateImage(currentImage.getImageView(), currentImage.getPath(), updatedImage.getImageView(), updatedImage.getPath());
+    		updateImage(entity, currentImage.getImageView(), currentImage.getPath(), updatedImage.getImageView(), updatedImage.getPath());
         }
 
     }
-    private ImageView updateImage(ImageView currentImage, String currentPath, ImageView re, String rePath){
+    private ImageView updateImage(int entity, ImageView currentImage, String currentPath, ImageView re, String rePath){
     	
     	if(!rePath.equals(currentPath)){
     		currentImage.setImage(re.getImage());
+    		ImageConfig updated  = new ImageConfig(currentImage,rePath);
+    		imageMap.put(entity,updated);
     	}
     	
-        System.out.println("xPos:" +re.getTranslateX());
-        System.out.println("xPosCurrent: " + currentImage.getTranslateX());
         currentImage.setTranslateX(re.getTranslateX());
-        //System.out.println("xPosCurrent: " + currentImage.getImageView().getTranslateX());
         currentImage.setTranslateY(re.getTranslateY()); 
         currentImage.setFitHeight(re.getFitHeight());
         currentImage.setFitWidth(re.getFitWidth());
+        
 
         return currentImage;
         //COMMENT OUT TO TEST RUNNER

@@ -55,7 +55,6 @@ public class Camera extends Entity {
 //		}
 	}
 	
-	
 	public boolean withinCameraBounds(IEntity e) {
 		LocationComponent loc = (LocationComponent) e.getComponent(ComponentType.Location);
 		return loc != null && loc.getX() >= getX() && loc.getX()<getX()+getWidth();

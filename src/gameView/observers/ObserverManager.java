@@ -75,6 +75,7 @@ public class ObserverManager {
 	private void updateImage(IRestrictedEntity e) {
 		if (!(e.getRestrictedImagePath().equals(""))) {
 			myEntities.get(e.getID()).getImageView().setImage(makeImage(e));
+			myEntities.get(e.getID()).setPath(e.getRestrictedImagePath());
 			updatedEntitySet.add(e.getID());
 			
 		} else {

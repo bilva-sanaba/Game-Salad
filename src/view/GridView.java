@@ -9,6 +9,7 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
+import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
@@ -52,7 +53,7 @@ public class GridView extends GUIComponent {
 		myRow = rows;
 		myCol = cols;
 		myData = data;
-		rightClick = new RightClickMenu(util, myData);
+		rightClick = new RightClickMenu(util, myData, 0, 0);
 		myGrid = new Pane();
 		myGrid.setPrefSize(500, 500);
 		myGrid.setOnMousePressed(e -> mousePress(e));
@@ -69,7 +70,13 @@ public class GridView extends GUIComponent {
 	}
 
 	private void mousePress(MouseEvent e) {
-		if (!e.isControlDown()) {
+		if(rightClick.isShowing()){
+			rightClick.hide();
+		}
+		if (e.isSecondaryButtonDown()) {
+			rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
+		}
+		else if (!e.isControlDown()) {
 			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
@@ -122,13 +129,13 @@ public class GridView extends GUIComponent {
 				orgTranslateX = c.getTranslateX();
 				orgTranslateY = c.getTranslateY();
 			}
-			if (rightClick != null) {
+			if (rightClick.isShowing()) {
 				rightClick.hide();
 			}
 			if (e.isSecondaryButtonDown()) {
-				rightClick.show(myGrid, e.getScreenX(), e.getScreenY());
+				selectEntity(entity);
+				rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			}
-
 		});
 		spriteImage.setOnMouseDragged(e -> {
 			if (e.isControlDown()) {
@@ -157,11 +164,6 @@ public class GridView extends GUIComponent {
 		});
 		placedImages.put(entity, spriteImage);
 		myGrid.getChildren().add(spriteImage);
-	}
-
-	private void removeEntity(Entity entity) {
-		myGrid.getChildren().remove(placedImages.get(entity));
-		placedImages.remove(entity);
 	}
 
 	public void clearEntitiesOnGrid() {
@@ -195,6 +197,11 @@ public class GridView extends GUIComponent {
 	public void updateBackground() {
 		String filePath = myData.getLevelEntity().getBackgroundFilePath();
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
+	}
+
+	private void removeEntity(Entity entity) {
+		myGrid.getChildren().remove(placedImages.get(entity));
+		placedImages.remove(entity);
 	}
 
 	public void removeEntity() {
