@@ -23,6 +23,11 @@ public class LevelTabView extends GUIComponent{
 		addNewTab(myGrid);
 	}
 	
+	public void clearTabs(){
+		myTabs.getTabs().clear();
+		tabsList.clear();
+	}
+	
 	public ArrayList<LevelTab> getTabsList(){
 		return tabsList;
 	}
@@ -36,6 +41,7 @@ public class LevelTabView extends GUIComponent{
 		currentLevel++;
 		tabsList.add(tab1);
 		myTabs.getTabs().add(tab1);
+		myTabs.getSelectionModel().select(tab1);
 	}
 
 	@Override
