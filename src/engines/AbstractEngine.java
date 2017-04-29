@@ -36,10 +36,11 @@ public abstract class AbstractEngine {
 	/**
 	 * Updates its lists of components
 	 * @param keysPressed 
+	 * @return TODO
 	 * 
 	 * @return
 	 */
-	public abstract void update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData);
+	public abstract IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData);
 	
 	/**
 	 * Returns the entity manager

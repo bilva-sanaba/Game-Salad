@@ -11,7 +11,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class Toolbar implements IDrawingToolbar {
@@ -61,7 +60,7 @@ public class Toolbar implements IDrawingToolbar {
 	
 	private HBox addDrawingToolChooser(){
 		ToggleGroup group = new ToggleGroup();
-		HBox hbox = new HBox();
+		HBox hbox = new HBox(15);
 		
 		RadioButton myPen = new RadioButton("Pen");
 		myPen.setSelected(true);

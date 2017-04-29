@@ -26,11 +26,11 @@ public class EventFactory {
 		return reflectedEvent;
 	}
 	
-	public RightClickEvent getRightClickEvent(String eventname, ViewData data) {	
+	public RightClickEvent getRightClickEvent(String eventname, ViewData data, double x, double y) {	
 		RightClickEvent reflectedEvent;
 		System.out.println(RIGHTCLICKPREFIX + eventname);
 		try {
-			reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, data);
+			reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, data, x, y);
 		} catch (Exception e) {
 			throw new ReflectionException(ReflectionException.EVENT_REFLECTION_ERROR);
 		}

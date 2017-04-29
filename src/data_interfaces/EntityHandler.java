@@ -190,7 +190,7 @@ public class EntityHandler implements Handler {
 		List paramList = new ArrayList();
 		
 		if (e.getNodeName().equals("components.entityComponents.KeyInputComponent")) {
-			Map <KeyCode, IAction> m = new HashMap<KeyCode, IAction>();
+			Map <KeyCode, ArrayList<IAction>> m = new HashMap<KeyCode, ArrayList<IAction>>();
 			boolean firstUse = true;
 			String s1 = "";
 			IAction s2;
@@ -205,7 +205,9 @@ public class EntityHandler implements Handler {
 					else {
 						firstUse = true;
 						s2 = new JumpAction();
-						m.put(KeyCode.getKeyCode(s1), s2);
+						ArrayList<IAction> action = new ArrayList<IAction>();
+						action.add(s2);
+						m.put(KeyCode.getKeyCode(s1), action);
 					}
 				}
 			}
