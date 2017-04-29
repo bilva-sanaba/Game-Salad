@@ -17,19 +17,19 @@ public class GameDataFactory {
 	public GameDataFactory(){
 	}
 	public GameData blankEntityData(IRestrictedGameData currentData){
-		double points = currentData.getPoints();
-		double lives = currentData.getLives();
-		double lvl = currentData.getLevel();
+		double points = currentData.getPoints().doubleValue();
+		double lives = currentData.getLives().doubleValue();
+		double lvl = currentData.getLevel().doubleValue();
 		LocationComponent lc = currentData.getMainLocation();
 		String music = currentData.getMusic().toString();
 
 		return new GameData(points,lives,(IRestrictedEntityManager) new EntityManager(), lvl, lc,music);
 	}
 	public void updateGameData(IGameData gameData, IRestrictedGameData updatedData){
-		gameData.setPoints(updatedData.getPoints());
-		gameData.setLives(updatedData.getPoints());
+		gameData.setPoints(updatedData.getPoints().doubleValue());
+		gameData.setLives(updatedData.getLives().doubleValue());
 		gameData.setMainLocation(updatedData.getMainLocation());
-		gameData.setLevel(updatedData.getLevel());
+		gameData.setLevel(updatedData.getLevel().doubleValue());
 		if (gameData.getMusic().toString()!= updatedData.getMusic().toString()){
 			gameData.setMusic(updatedData.getMusic().toString());
 		}

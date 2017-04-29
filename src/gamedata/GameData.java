@@ -5,6 +5,7 @@ import components.entityComponents.LocationComponent;
 import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -50,15 +51,15 @@ public class GameData implements IGameData,IRestrictedGameData{
 	
 	
 	
-	public double getPoints(){
-		return points.doubleValue();
+	public ReadOnlyDoubleProperty getPoints(){
+		return (ReadOnlyDoubleProperty) points;
 	}
-	public double getLives(){
-		return lives.doubleValue();
+	public ReadOnlyDoubleProperty getLives(){
+		return (ReadOnlyDoubleProperty) lives;
 	}
 	
-	public double getLevel(){
-		return level.doubleValue(); 
+	public ReadOnlyDoubleProperty getLevel(){
+		return (ReadOnlyDoubleProperty) level; 
 	}
 
 	public String getMusic(){
@@ -66,18 +67,25 @@ public class GameData implements IGameData,IRestrictedGameData{
 	}
 	
 	public void setPoints(double d){
-		points.setValue(d);
+		if (!checkEquality(d, points.doubleValue())) {
+			points.setValue(d);
+		}
+		
 //		points.notify();
 	}
 	public void setLives(double d){
-		lives.setValue(d);
+		if (!checkEquality(d, lives.doubleValue())) {
+			lives.setValue(d);
+		}
 //		lives.notify();
 	}
 	public void setRestrictedEntityManager(IRestrictedEntityManager rem){
 		restrictedEntityManager = rem;
 	}
 	public void setLevel(double d){
-		level.setValue(d);
+		if (!checkEquality(d, level.doubleValue())) {
+			level.setValue(d);
+		}
 //		level.notify();
 	}
 	public void setMainLocation(LocationComponent lc){
@@ -86,5 +94,9 @@ public class GameData implements IGameData,IRestrictedGameData{
 	public void setMusic(String s){
 		music.setValue(s);
 //		music.notify();
+	}
+	
+	private boolean checkEquality(double a, double b) {
+		return (a == b);
 	}
 }

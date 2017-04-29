@@ -49,4 +49,6 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 		createFile(fileName, ret);
 	}
 
+	
+
 }

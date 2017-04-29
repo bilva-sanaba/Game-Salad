@@ -1,4 +1,5 @@
 package gameEngine_interface;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,7 +8,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -71,6 +71,7 @@ import entity.GPEntityManager;
 import entity.IEntity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
+import gameView.userInput.IRestrictedUserInputData;
 import gamedata.GameData;
 import gamedata.GameDataFactory;
 import gamedata.IGameData;
@@ -107,15 +108,17 @@ public class GameEngine implements GameEngineInterface {
 	private String currentMusic = "Obi-Wan - Hello there..wav";
 	private Clip clip2;
 	private Camera cam;
+
 	private int numUpdates;
 	private boolean sliderPause = false;
 	private List<IEntityManager> myEntityManagers;
 	private List<IEntityManager> previousEntityManagers;
 	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
 	
-	public GameEngine(){
+	public GameEngine(IRestrictedUserInputData data){
 		
 		previousEntityManagers = new ArrayList<IEntityManager>();
+
 //		try{
 //	    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(currentMusic));
 //	    clip2 = AudioSystem.getClip();
@@ -153,7 +156,7 @@ public class GameEngine implements GameEngineInterface {
 	 * Runs each Engine in my Engine
 	 */
 	@Override
-	public void handleUpdates(Collection<KeyCode> keysPressed, IRestrictedGameData gd) {
+	public void handleUpdates(Collection<KeyCode> keysPressed) {
 		if (sliderPause==true){
 			sliderPause=false;
 			previousEntityManagers.clear();
@@ -166,7 +169,7 @@ public class GameEngine implements GameEngineInterface {
 			GameDataFactory gdf = new GameDataFactory();
 			if (myGameData.getLevel()!=rgd.getLevel()){
 				EntityLoader el = new EntityLoader(myEntityManager);
-				el.loadNew(myEntityManagers.get((int) rgd.getLevel()));
+				el.loadNew(myEntityManagers.get(rgd.getLevel().intValue()));
 			}
 			gdf.updateGameData(myGameData,rgd);		
 		}
@@ -480,6 +483,7 @@ public class GameEngine implements GameEngineInterface {
 		myEntityManagers.add(myEntityManager);
 		myEntityManagers.add(new EntityManager(e8));
 		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager),new LevelEngine(myEntityManager));
 		return myGameData;

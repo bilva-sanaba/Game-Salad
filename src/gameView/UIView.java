@@ -5,23 +5,24 @@ import java.awt.Dimension;
 import java.util.Set;
 
 import data_interfaces.XMLException;
-import entity.SplashEntity;
-import entity.restricted.IRestrictedEntityManager;
 import gameView.gameScreen.GameScreen;
-//import gameView.gameScreen.SpecificGameSplashView;
-import gameView.gameScreen.SpecificGameSplashView;
 
 import com.sun.jmx.snmp.Timestamp;
 
 import gameView.splashScreen.SplashView;
-import gameView_interfaces.UIViewInterface;
+import gameView.userInput.IUserInputData;
+import gameView.userInput.UserInputData;
+import gameView.userManagement.IUserManager;
+import gameView.userManagement.UserManager;
 import gamedata.GameData;
+import gamedata.IRestrictedGameData;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 public class UIView implements UIViewInterface {
@@ -36,17 +37,21 @@ public class UIView implements UIViewInterface {
 	private ControllerInterface myController;
 	private SplashView mySplash;
 	private GameScreen myGameScene;
-	private GameData myData; 
-	private WorldAnimator myAnimation; 
+	private IRestrictedGameData myData; 
+	private WorldAnimator myAnimation;
+	private IUserManager myUserManager;
+	private IUserInputData myUserInputData; 
 	
-	public UIView(Stage s, ControllerInterface controller) {
+	public UIView(Stage s, ControllerInterface controller, IUserInputData userInput) {
 		myStage = s;
+		setStageClose();
 		s.setTitle(STAGE_TITLE);
+		myUserInputData = userInput;
+		myUserManager = new UserManager();
 		myController = controller;
 		myAnimation = new WorldAnimator(this);
-		mySplash = new SplashView(this);
-		myGameScene = new GameScreen(this, myAnimation);
-		//runGame();//getSplashScreen();
+		mySplash = new SplashView(this, s, myUserInputData);
+		myGameScene = new GameScreen(this, myStage, myUserInputData, myAnimation);
 		getSplashScreen();
 		//TODO UNCOMMENT TO USE
 		//getSplashScreen();
@@ -59,20 +64,13 @@ public class UIView implements UIViewInterface {
 	}
 	
 	@Override
-	public void addUIImage(String picturePath, double x, double y,
-			double width, double height) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void runGame() {
 		setStage(myGameScene.getScene());//myGameScene
 		
 	}
 	
 	public void loadGame(String file) {
-		//addEntities(myController.loadNewGame(file));
+		//myData = myController.loadNewGame(file);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
 		//myGameScene.addData(myController.loadNewGame(file));
@@ -117,7 +115,23 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void step(Set<KeyCode> keysPressed) {
-		myController.step(keysPressed, myData);
+		myController.step(keysPressed);
 	}
-
+	
+	public IUserManager getUserManager() {
+		return myUserManager;
+	}
+	
+	public void newStage(AbstractViewer view, Stage s) {
+		s.setScene(view.getScene());//login.getScene());
+		s.showAndWait();
+	}
+	
+	private void setStageClose() {
+		myStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	          public void handle(WindowEvent we) {
+	              myUserManager.saveAllUsers();
+	          }
+	      });    
+	}
 }

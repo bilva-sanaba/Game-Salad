@@ -17,7 +17,7 @@ public class PointsAction extends AbstractAction implements IAction {
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		GameData gd = getGameDataFactory().blankEntityData(currentGameData);
-		gd.setPoints(gd.getPoints()+increment);
+		gd.setPoints(gd.getPoints().doubleValue()+increment);
 		return (IRestrictedGameData) gd;
 	}
 

@@ -6,13 +6,15 @@ import controller.WorldAnimator;
 import gameEngine_interface.GameEngine;
 import gameEngine_interface.RunnerTest;
 import gameView.AbstractViewer;
-import gameView.ImageManager;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
 import gameView.displayComponents.UIDisplayComponent;
 import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
+import gameView.userInput.IUserInputData;
 import gamedata.GameData;
+import gamedata.IRestrictedGameData;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -20,14 +22,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class GameScreen extends AbstractViewer implements IGameScreenDisplays, IGameScreenEntity {
 
 	private static final String myName = GameScreen.class.getSimpleName();
 	private Scene myScene;
 	private BorderPane myBP;
-	private GameData myData;
-	private ImageManager myManager;
+	private IRestrictedGameData myData;
 	private HBox myTopBox;
 	private VBox myLeftBox;
 	private VBox myRightBox;
@@ -35,17 +37,16 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private WorldAnimator myAnimation;
 	private DisplayManager myDisplays;
 	private Collection<AbstractCommand> myCommands;
+	
 
-	public GameScreen(UIView view, WorldAnimator animation) {
-		super(view);
+	public GameScreen(UIView view, Stage s, IUserInputData input, WorldAnimator animation) {
+		super(view, s, input);
 		myCommands = getCommands(myName);
 		myAnimation = animation;
 		initializeBoxes();
 		buildMainScene();
 		myBP.applyCss();
 		myBP.layout();
-		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
-				myPane.widthProperty(), myPane.heightProperty());
 	}
 
 	public Scene getScene() {
@@ -61,19 +62,31 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		//UNCOMMENT FOR RUNNERS TEST
 		RunnerTest s = new RunnerTest(getView().getStage(), getView());
 		myAnimation = s.getAnimator();
-		myAnimation.start(s.getEngine().dummyLoad(), this);
+		IRestrictedGameData data = s.getEngine().dummyLoad();
+		myAnimation.start(data, this);
 		myAnimation.setKeys(myScene);
 		myAnimation.giveEngine(s.getEngine());
+		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
+				myBP.widthProperty(), myBP.heightProperty(), data);
+		setInput(s.getUserInput());
+		//SHOULD NEVER USE THIS
+		//myBP.setCenter(myAnimation.getGroup());
 //		Scene test = myAnimation.getScene();
 //		myPane.getChildren().addAll(test.getRoot().getChildrenUnmodifiable());
-		myBP.setCenter(myAnimation.getGroup());
+		
+		//DO THIS FOR ACTUAL GAME
+		myPane.getChildren().add(myAnimation.getGroup());
+		
 
 		return myScene;
 	}
 
-	public void addData(GameData data) {
+	public void addData(IRestrictedGameData data) {
 		myData = data;
+		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
+				myPane.widthProperty(), myPane.heightProperty(), myData);
 		myAnimation.start(myData, this);
+		
 		//myManager = new ImageManager(myData);
 	}
 
@@ -121,7 +134,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
 			});
-//		myBP.setCenter(myPane);
+		myBP.setCenter(myPane);
 		//myAnimation.setKeys(myScene);
 	}
 
