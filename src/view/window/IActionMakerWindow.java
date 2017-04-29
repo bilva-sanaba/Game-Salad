@@ -1,9 +1,17 @@
 package view.window;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+
 import actions.IAction;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.ActionFactory;
 import view.GUIBuilder;
 import view.UtilityFactory;
 
@@ -11,9 +19,10 @@ public class IActionMakerWindow extends Window {
 	private UtilityFactory myUtilF;
 	private VBox root;
 	private Stage myStage = new Stage();
-	private IAction myAction;
+	private Class<?> myAction;
+	private ActionFactory actFac;
 
-	public IActionMakerWindow(UtilityFactory utilF, IAction act) {
+	public IActionMakerWindow(UtilityFactory utilF, Class<?> act) {
 		myUtilF = utilF;
 		myAction = act;
 		myStage.setScene(buildScene());
@@ -28,8 +37,15 @@ public class IActionMakerWindow extends Window {
 	}
 
 	private void buildIActionMaker() {
-		// TODO Auto-generated method stub
-
+		
+	}
+		
+	private void changeParam(TextField text, Integer i) {
+		try{
+			
+		}catch(NullPointerException x){
+			
+		}
 	}
 	
 	public String toString(){

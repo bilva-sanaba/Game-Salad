@@ -142,7 +142,10 @@ public class EntityActionWindow extends Window {
 			} catch (InstantiationException | IllegalAccessException e) {
 				System.out.println(nextAction.getName() + " line 60" + this.getClass());
 				for (int j = 0; j < nextAction.getConstructors().length; j++){
-					System.out.println("\t   " + nextAction.getConstructors()[j]);
+					System.out.println("\t" + nextAction.getConstructors()[j]);
+					for (int k = 0; k < nextAction.getConstructors()[j].getParameterCount(); k++){
+						System.out.println("\t\t" + nextAction.getConstructors()[j].getParameterTypes()[k]);
+					}
 				}
 			}
 		}
