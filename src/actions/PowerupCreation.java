@@ -30,6 +30,8 @@ public class PowerupCreation   extends AbstractAction implements IAction {
 				ImagePropertiesComponent ipc = ((ImagePropertiesComponent) powerup.getComponent(ComponentType.ImageProperties));
 				newLC.setX(lc.getX());
 				newLC.setY(lc.getY()-ipc.getHeight());
+				myEM.getEntities().add(powerup);
+				myEM.changed(powerup);
 				EntityManager em = new EntityManager(list);
 				returnData.setRestrictedEntityManager((IRestrictedEntityManager) em);
 			}
