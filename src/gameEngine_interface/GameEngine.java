@@ -181,7 +181,6 @@ public class GameEngine implements GameEngineInterface {
 			GameDataFactory gdf = new GameDataFactory();
 			gdf.updateGameData(myGameData,rgd);		
 		}
-		
 	}
 	
 	private void rewindState(Integer i){
