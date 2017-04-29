@@ -17,7 +17,7 @@ public class GameData implements IGameData,IRestrictedGameData{
 	private IRestrictedEntityManager restrictedEntityManager; 
 	private DoubleProperty level = new SimpleDoubleProperty(); 
 	private LocationComponent mainPlayerLocation;
-	private String myAchievement;
+	private StringProperty myAchievement;
 
 	private StringProperty music = new SimpleStringProperty();
 	
@@ -27,7 +27,7 @@ public class GameData implements IGameData,IRestrictedGameData{
 		restrictedEntityManager = rem;
 		level.setValue(lvl);
 		mainPlayerLocation = lc;
-		myAchievement = ac;
+		myAchievement.setValue(ac);
 		music.setValue(m);
 	}
 	
@@ -50,7 +50,9 @@ public class GameData implements IGameData,IRestrictedGameData{
 		return music;
 	}
 	
-	
+	public StringProperty getAchievementProperty(){
+		return myAchievement;
+	}
 	
 	
 	public double getPoints(){
@@ -66,6 +68,10 @@ public class GameData implements IGameData,IRestrictedGameData{
 
 	public String getMusic(){
 		return music.get();
+	}
+	
+	public String getAchievement(){
+		return myAchievement.get();
 	}
 	
 	public void setPoints(double d){

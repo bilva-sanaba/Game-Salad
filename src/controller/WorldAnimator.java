@@ -149,8 +149,8 @@ public class WorldAnimator{
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
         
-        if(counter/45>0){ //observed generate the achievement (myData.getStr)
-        	myAchievement = myAchievementFactory.genAchievement("FirstKill");
+        if(myData.getAchievement()!=null){ //observed generate the achievement (myData.getStr)
+        	myAchievement = myAchievementFactory.genAchievement(myData.getAchievement());
         	root.getChildren().add(myAchievement.getGroup());
         	achievementShowing=true;
         	counter=0;
