@@ -75,7 +75,7 @@ public class WorldAnimator{
     private Camera myCamera;
     
     private int counter=0;
-    private boolean achievementShowing = true;
+    private boolean achievementShowing = false;
     
     private AchievementFactory myAchievementFactory;
     private Achievement myAchievement;
@@ -127,7 +127,8 @@ public class WorldAnimator{
 						step(SECOND_DELAY);
 					} catch (ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
-						e1.printStackTrace(); //FIX THIS
+						VoogaAlert vA = new VoogaAlert("VoogaIssue", e1.getMessage());
+						vA.showAlert();//FIX THIS
 					}
 				});
         this.animation = new Timeline();
@@ -149,24 +150,17 @@ public class WorldAnimator{
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
         
-        if(myData.getAchievement()!=null){ //observed generate the achievement (myData.getStr)
-        	myAchievement = myAchievementFactory.genAchievement(myData.getAchievement());
-        	root.getChildren().add(myAchievement.getGroup());
-        	achievementShowing=true;
-        	counter=0;
-        }
+        addAchievement();
         
-        if(counter%90==0 && achievementShowing){
-        	root.getChildren().remove(myAchievement.getGroup());
-        	System.out.println("YACK YACK YACK YACK YACK");
-        }
+        removeAchievement();
+        
         myAchievement.updateAchievementLoc(-1*myCamera.getX());
         myCamera.updateCamera();
         myObservers.clearSet();
     }
 
-    
-    private void handleKeyReleased(KeyCode keyCode) {
+
+	private void handleKeyReleased(KeyCode keyCode) {
         keysReleased.add(keyCode);
         keysPressed.remove(keyCode);
     }
@@ -281,6 +275,23 @@ public class WorldAnimator{
         ft.setCycleCount(4);
         return ft;
     }
+    
+    private void addAchievement() throws ClassNotFoundException{
+        if(myData.getAchievement()!=null && !achievementShowing){ //observed generate the achievement (myData.getStr)
+        	myAchievement = myAchievementFactory.genAchievement(myData.getAchievement());
+        	root.getChildren().add(myAchievement.getGroup());
+        	achievementShowing=true;
+        	counter=1;
+        }
+    }
+     
+    private void removeAchievement() {
+    	  if(counter%90==0 && achievementShowing){
+          	root.getChildren().remove(myAchievement.getGroup());
+          	achievementShowing=false;
+          	System.out.println("YACK YACK YACK YACK YACK");
+          }
+	}
     
     public void start(){
         animation.play();
