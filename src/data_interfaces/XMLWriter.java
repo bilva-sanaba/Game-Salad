@@ -39,7 +39,7 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 	 * @param gameData
 	 *            the data which should be saved
 	 */
-	public void writeFile(String fileName, Map<Integer, List<IEntity>> gameData) {
+	public void writeFile(String fileName, Collection gameData) {
 		ClassLoader loader = new LocalClassLoader();
 		XStream serializer = new XStream(new DomDriver());
 		String ret;

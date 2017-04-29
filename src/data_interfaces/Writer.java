@@ -8,5 +8,5 @@ import entity.Entity;
 import entity.IEntity;
 
 public interface Writer {
-	public void writeFile(String fileName, Map<Integer, List<IEntity>> gameData);
+	public void writeFile(String fileName, Collection gameData);
 }

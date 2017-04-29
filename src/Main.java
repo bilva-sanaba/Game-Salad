@@ -13,7 +13,7 @@ public class Main extends Application {
 		//new RunnerTest(arg0);
 		
 		//new DrawingCanvas(arg0);
-		new PaintWindow();
+		//new PaintWindow();
 	}
 
 	public static void main(String[] args) {
