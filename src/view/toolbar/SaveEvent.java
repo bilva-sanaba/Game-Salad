@@ -5,6 +5,7 @@ import data_interfaces.*;
 
 import entity.Entity;
 import entity.IEntity;
+import entity.SplashEntity;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
@@ -23,9 +24,11 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		String fileName;
 		List <Map> l = new ArrayList<Map>();
 		
-		//how do i get this list???? BLOOOMFELD!!!!!
 		l.add(myData.getPlacedEntityMap());
 		l.add(myData.getLevelEntityMap());
+		Map <Integer, SplashEntity> m = new HashMap<Integer, SplashEntity>();
+		m.put(getSplashConstant(), myData.getSplashEntity());
+		l.add(m);
 		
 		
 		
