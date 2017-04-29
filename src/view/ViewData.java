@@ -66,12 +66,16 @@ public class ViewData extends Observable {
 	
 	public void setCurrentLevel(int i){
 		currentLevel = i;
+		setChanged();
+		notifyObservers();
 	}
 	
-	public void addLevel(){
-		currentLevel++;
+	public void addLevel(int level){
+		currentLevel = level;
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void addEvent(RightClickEvent e) {
@@ -195,6 +199,11 @@ public class ViewData extends Observable {
 		placedEntityMaps.get(levelNumber).clear();
 		setChanged();
 		notifyObservers();
+	}
+	
+	//TODO: Reset level tabs method
+	public void resetLevelTabs(){
+		
 	}
 
 	
