@@ -1,6 +1,8 @@
 package data_interfaces;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.w3c.dom.Element;
 
@@ -19,5 +21,10 @@ public class Communicator extends GameSavingDataTool implements EncapsulatedComm
 		XMLParser xp = new XMLParser();
 		EntityHandler eh = new EntityHandler();
 		return eh.getCollection(xp.getData(fileName));
+	}
+	public List<IEntityManager> futureGetData() {
+		List<IEntityManager> x = new ArrayList<IEntityManager>();
+		return x;
+		
 	}
 }

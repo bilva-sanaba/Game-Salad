@@ -17,8 +17,8 @@ public class GoalComponent implements IComponent {
 		return new GoalComponent();
 	}
 	
-	public void satisfyGoal(){
-		goalSatisfied = true;
+	public void satisfyGoal(boolean bool){
+		goalSatisfied = bool;
 	}
 	
 	public boolean checkIfSatisfied(){

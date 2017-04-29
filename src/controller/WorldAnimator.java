@@ -130,7 +130,8 @@ public class WorldAnimator{
     	myEngine.handleUpdates(keysPressed,myData);
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
-       
+  
+        
         myAchievement.updateAchievementLoc(-1*myCamera.getX());
         myCamera.updateCamera();
         myObservers.clearSet();
