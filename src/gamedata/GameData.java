@@ -1,6 +1,7 @@
 package gamedata;
 
 
+import achievements.Achievement;
 import components.entityComponents.LocationComponent;
 import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
@@ -16,15 +17,17 @@ public class GameData implements IGameData,IRestrictedGameData{
 	private IRestrictedEntityManager restrictedEntityManager; 
 	private DoubleProperty level = new SimpleDoubleProperty(); 
 	private LocationComponent mainPlayerLocation;
+	private String myAchievement;
 
 	private StringProperty music = new SimpleStringProperty();
 	
-	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, String m){
+	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, String ac, String m){
 		points.setValue(p);
 		lives.setValue(l);
 		restrictedEntityManager = rem;
 		level.setValue(lvl);
 		mainPlayerLocation = lc;
+		myAchievement = ac;
 		music.setValue(m);
 	}
 	

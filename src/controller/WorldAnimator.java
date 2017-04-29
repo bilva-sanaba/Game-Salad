@@ -75,6 +75,7 @@ public class WorldAnimator{
     private Camera myCamera;
     
     private int counter=0;
+    private boolean achievementShowing = true;
     
     private AchievementFactory myAchievementFactory;
     private Achievement myAchievement;
@@ -114,14 +115,21 @@ public class WorldAnimator{
         myTimer = new AchievementTimer();
         
         myAchievementFactory = new AchievementFactory();
-        myAchievement = myAchievementFactory.genAchievement("FirstKill");
-        root.getChildren().add(myAchievement.getGroup());
+        //myAchievement = myAchievementFactory.genAchievement("FirstKill");
+        //root.getChildren().add(myAchievement.getGroup());
         
 
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
 
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
-                e-> step(SECOND_DELAY));
+                e-> {
+					try {
+						step(SECOND_DELAY);
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace(); //FIX THIS
+					}
+				});
         this.animation = new Timeline();
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.getKeyFrames().add(frame);
@@ -134,13 +142,21 @@ public class WorldAnimator{
     public Scene getScene() {
         return myScene;
     }
-    private void step(double elapsedTime){
-    	//myView.step(keysPressed);
+    private void step(double elapsedTime) throws ClassNotFoundException{
     	counter++;
+    	//myView.step(keysPressed);
     	myEngine.handleUpdates(keysPressed,myData);
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
-        if(counter%45==0){
+        
+        if(counter/45>0){ //observed generate the achievement (myData.getStr)
+        	myAchievement = myAchievementFactory.genAchievement("FirstKill");
+        	root.getChildren().add(myAchievement.getGroup());
+        	achievementShowing=true;
+        	counter=0;
+        }
+        
+        if(counter%90==0 && achievementShowing){
         	root.getChildren().remove(myAchievement.getGroup());
         	System.out.println("YACK YACK YACK YACK YACK");
         }
