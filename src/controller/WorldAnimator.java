@@ -149,7 +149,9 @@ public class WorldAnimator{
         
         updateAchievement();
         
-        myAchievement.updateAchievementLoc(-1*myCamera.getX());
+        if(achievementShowing==true){
+        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
+    }
         myCamera.updateCamera();
         myObservers.clearSet();
     }
@@ -277,7 +279,7 @@ public class WorldAnimator{
     }
     
     private void addAchievement() throws ClassNotFoundException{
-        if(myData.getAchievement()!=null && !achievementShowing){ //observed generate the achievement (myData.getStr)
+        if(myData.getAchievement()!=null && !achievementShowing && myData.getAchievement()!=""){ //observed generate the achievement (myData.getStr)
         	myAchievement = myAchievementFactory.genAchievement(myData.getAchievement());
         	root.getChildren().add(myAchievement.getGroup());
         	achievementShowing=true;

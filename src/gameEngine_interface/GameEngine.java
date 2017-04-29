@@ -146,6 +146,7 @@ public class GameEngine implements GameEngineInterface {
 			rgd.setLevel(99);
 			GameDataFactory gdf = new GameDataFactory();
 			gdf.updateGameData(myGameData,rgd);
+			
 //			if (currentMusic!=myGameData.getMusic()){
 //				clip2.stop();
 //				AudioInputStream audioInputStream2;
@@ -371,7 +372,7 @@ public class GameEngine implements GameEngineInterface {
 		e.add(createPortal2());
 		myEntityManager = new EntityManager(e);
 
-		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), "FirstKill", "" );
+		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), "", "" );
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 		return myGameData;
