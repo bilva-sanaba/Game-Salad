@@ -126,6 +126,7 @@ public class GameEngine implements GameEngineInterface {
                 Number old_val, Number new_val) {
             	if (old_val.intValue()!=new_val.intValue()){
                     rewindState(new_val.intValue());
+                    
             	}
                     System.out.println(new_val.intValue());
             }
@@ -192,6 +193,7 @@ public class GameEngine implements GameEngineInterface {
 			index=0;
 		}
 		el.loadNew(previousEntityManagers.get(index));
+		
 	}
 	private void saveNewEntityManager() {
 		numUpdates++;
