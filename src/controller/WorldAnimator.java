@@ -153,7 +153,8 @@ public class WorldAnimator{
 //        
 //        if(achievementShowing==true){
 //        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
-//    }
+//        }
+        
         myCamera.updateCamera();
         myObservers.clearSet();
     }
