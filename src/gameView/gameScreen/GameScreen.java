@@ -2,6 +2,7 @@ package gameView.gameScreen;
 
 import java.util.Collection;
 
+import controller.VoogaAlert;
 import controller.WorldAnimator;
 import gameEngine_interface.GameEngine;
 import gameEngine_interface.RunnerTest;
@@ -37,7 +38,8 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private WorldAnimator myAnimation;
 	private DisplayManager myDisplays;
 	private Collection<AbstractCommand> myCommands;
-	
+	private VoogaAlert myAlert;
+	private final String VOOGAISSUE = "Vooga Issue";
 
 	public GameScreen(UIView view, Stage s, IUserInputData input, WorldAnimator animation) {
 		super(view, s, input);
@@ -62,8 +64,15 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		//UNCOMMENT FOR RUNNERS TEST
 		RunnerTest s = new RunnerTest(getView().getStage(), getView());
 		myAnimation = s.getAnimator();
-		IRestrictedGameData data = s.getEngine().dummyLoad();
-		myAnimation.start(data, this);
+		GameData data = s.getEngine().dummyLoad();
+		try {
+			myAnimation.start(data, this);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			
+			myAlert = new VoogaAlert(VOOGAISSUE, e.getMessage());
+			myAlert.showAlert();//FIX THIS ITEM
+		}
 		myAnimation.setKeys(myScene);
 		myAnimation.giveEngine(s.getEngine());
 		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
@@ -85,8 +94,14 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		myData = data;
 		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
 				myPane.widthProperty(), myPane.heightProperty(), myData);
-		myAnimation.start(myData, this);
-		
+
+		try {
+			myAnimation.start((GameData) myData, this);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			myAlert = new VoogaAlert(VOOGAISSUE, e.getMessage());
+			myAlert.showAlert();
+		}
 		//myManager = new ImageManager(myData);
 	}
 

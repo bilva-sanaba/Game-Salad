@@ -50,11 +50,16 @@ import components.keyExpressions.JumpAction;
 import components.keyExpressions.LeftAction;
 import components.keyExpressions.RightAction;
 import controller.Camera;
+import controller.WorldAnimator;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
-import data_interfaces.XMLParser;
+import data_interfaces.EngineCommunication;
+import data_interfaces.XMLDefinedParser;
 import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
@@ -91,9 +96,9 @@ import gamedata.GameData;
  *
  */
 public class GameEngine implements GameEngineInterface {
-	private EntityManager myEntityManager;// = new EntityManager(new ArrayList<Entity>()); 
+	private IEntityManager myEntityManager;// = new EntityManager(new ArrayList<Entity>()); 
 	private List<AbstractEngine> myEngines;// = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager));
-	private XMLParser myParser = new XMLParser();
+	private XMLDefinedParser myParser = new XMLDefinedParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	private Entity mainCharacter;
 	private GameData myGameData;
@@ -105,7 +110,26 @@ public class GameEngine implements GameEngineInterface {
 	private String currentMusic = "Obi-Wan - Hello there..wav";
 	private Clip clip2;
 	private Camera cam;
+
+	private int numUpdates;
+	private boolean sliderPause = false;
+	private List<IEntityManager> myEntityManagers;
+	private List<IEntityManager> previousEntityManagers;
+	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
+	
 	public GameEngine(IRestrictedUserInputData data){
+		ReadOnlyIntegerProperty p = data.getRewind();
+		p.addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                Number old_val, Number new_val) {
+            	if (old_val.intValue()!=new_val.intValue()){
+                    rewindState(new_val.intValue());
+            	}
+                    System.out.println(new_val.intValue());
+            }
+        });
+		previousEntityManagers = new ArrayList<IEntityManager>();
+
 //		try{
 //	    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(currentMusic));
 //	    clip2 = AudioSystem.getClip();
@@ -118,17 +142,22 @@ public class GameEngine implements GameEngineInterface {
 //	}
 	}
 	
-	public IRestrictedGameData loadData(Communicator c){
-		myEntityManager = new EntityManager(c.getData());
-		GPEM = new GPEntityManager(c.getData());
+	public IRestrictedGameData loadData(EngineCommunication c){
+//		Collection<IEntity> castedEnts = new ArrayList<IEntity>();
+//		for (Entity e : c.getData()) {
+//			castedEnts.add(e);
+//		}
+		myEntityManagers =c.getIEntityManagers();
+		myEntityManager = myEntityManagers.get(0);
+//		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
-		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,currentMusic);
+		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,currentMusic,"");
 		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
 		return dg;
 	}
 	public Collection<IEntity> save(){
-		return myEntityManager.copy();
+		return myEntityManager.copy().getEntities();
 	}
 	public SplashEntity getSplashEntity(){
 		return GPEM.getSplash();
@@ -138,32 +167,47 @@ public class GameEngine implements GameEngineInterface {
 	 */
 	@Override
 	public void handleUpdates(Collection<KeyCode> keysPressed) {
+		if (sliderPause==true){
+			sliderPause=false;
+			previousEntityManagers.clear();
+		}
+		saveNewEntityManager();
 		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
 		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
 			IGameData rgd = (IGameData) s.update(keysPressed,(IRestrictedGameData) myGameData);
-			//rgd.setLevel(99);
 			GameDataFactory gdf = new GameDataFactory();
-			gdf.updateGameData(myGameData,rgd);
-//			if (currentMusic!=myGameData.getMusic()){
-//				clip2.stop();
-//				AudioInputStream audioInputStream2;
-//				try {
-//					audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(myGameData.getMusic()));
-//					clip2 = AudioSystem.getClip();
-//					clip2.open(audioInputStream2);
-//					clip2.start();
-//					currentMusic = myGameData.getMusic();
-//				} catch (UnsupportedAudioFileException | IOException  | LineUnavailableException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			
-//			}
+			gdf.updateGameData(myGameData,rgd);		
+		}
+	}
+	
+	private void rewindState(Integer i){
+		sliderPause=true;
+		Integer size = previousEntityManagers.size();
+		EntityLoader el = new EntityLoader(myEntityManager);
+		Integer index=size-(11-i);
+		if (index<0){
+			index=0;
+		}
+		el.loadNew(previousEntityManagers.get(index));
+	}
+	private void saveNewEntityManager() {
+		numUpdates++;
+		if (numUpdates % SAVE_FREQUENCY*20 == 0) {
+			previousEntityManagers.add((myEntityManager.copy()));
 			
 		}
-		
+		while (previousEntityManagers.size()>10) {
+			previousEntityManagers.remove(0);
+		}
+//		if (numUpdates==200){
+//			rewindState(0);
+//			numUpdates=1;
+//		}
 	}
+	
+	
+	
 	//TODO: Dumb flappybird
 	//	public GameData dummyLoad(){
 	//		Collection<Entity> e = new ArrayList<Entity>();
@@ -218,6 +262,7 @@ public class GameEngine implements GameEngineInterface {
 	//	}
 	public GameData dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
+		Collection<Entity> e7 = new ArrayList<Entity>();
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(100,150));
 		x.addComponent(new SpriteComponent(("mario_step2.gif")));
@@ -295,7 +340,7 @@ public class GameEngine implements GameEngineInterface {
 		//			e.add(x);
 		//		}
 		//		e.add(g);e.add(t);
-		e.add(x);
+//		e.add(x);
 		for (int i=1;i<35;i++){
 			Entity p = new AbstractBlock(i);
 			if (i!=12){
@@ -312,6 +357,7 @@ public class GameEngine implements GameEngineInterface {
 			p.addComponent(new TypeComponent(EntityType.Block));
 			p.addComponent(new CollidableComponent(true));
 			e.add(p);
+			e7.add(p);
 		}
 		Entity pr = new AbstractBreakableBox(2356);
 		pr.addComponent(new LocationComponent(700,150));
@@ -343,7 +389,12 @@ public class GameEngine implements GameEngineInterface {
 		p.addComponent(xpc);
 		p.addComponent(new LabelComponent("Blok"));
 		e.add(p);
-		//GOAL
+//		Entity goal = new AbstractGoal(243);
+//		goal.addComponent(new LocationComponent(1300,150));
+//		goal.addComponent(new SpriteComponent(("transparent.png")));
+//		goal.addComponent(new ImagePropertiesComponent(50,50));
+//		goal.addComponent(new LabelComponent("Goal"));
+//		e.add(goal);
 		for (int i= 0; i<2; i++){
 			Entity enemy = new AbstractEnemy(106+i);
 			if (i==0){
@@ -368,9 +419,79 @@ public class GameEngine implements GameEngineInterface {
 		Entity portal2 = createPortal();
 		e.add(portal2);
 		e.add(createPortal2());
-		myEntityManager = new EntityManager(e);
-
-		myGameData= new GameData(0,1, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+		Collection<IEntity> e1 = new ArrayList<IEntity>();
+		for (Entity exp : e) {
+			e1.add(exp);
+		}
+//		Entity u = new Entity(0);
+//		u.addComponent(new LocationComponent(100,150));
+//		u.addComponent(new SpriteComponent(("mario_step2.gif")));
+//		ImagePropertiesComponent uc = new ImagePropertiesComponent();
+//		u.addComponent(new CheckCollisionComponent(true));
+//		uc.setHeight(50);
+//		uc.setWidth(50);
+//		u.addComponent(uc);
+//		u.addComponent(new VelocityComponent(0,0));
+//		u.addComponent(new AccelerationComponent(0,0));
+//		u.addComponent(new CollidableComponent(true));
+//		u.addComponent(new LabelComponent("grrraah"));
+//		u.addComponent(new KeyInputComponent());
+//		u.addComponent(new TypeComponent(EntityType.Player));
+//
+//		List<String> collectionu = new ArrayList<String>();
+//		collectionu.add("mario_step1.gif");
+//		collectionu.add("mario_step2.gif");
+//		collectionu.add("mario_step3.gif");
+//		ImageChangeAction icau = new ImageChangeAction(collectionu);
+//		List<String> collection2u = new ArrayList<String>();
+//		collection2u.add("mario_leftstep1.gif");
+//		collection2u.add("mario_leftstep2.gif");
+//		collection2u.add("mario_leftstep3.gif");
+//		ImageChangeAction ica2u = new ImageChangeAction(collection2u);
+//		List<String> collection3u = new ArrayList<String>();
+//		collection3.add("mario_jump.gif");
+//		ImageChangeAction ica3u = new ImageChangeAction(collection3u);
+//
+//		u.addComponent(new GoalComponent());
+//		u.addComponent(new TerminalVelocityComponent(5,5));
+//		Entity y2u = new Entity(201);
+//		y2u.addComponent(new LocationComponent(800,150));
+//		y2u.addComponent(new SpriteComponent(("Feuer46.GIF")));
+//		ImagePropertiesComponent yc2u = new ImagePropertiesComponent();
+//		yc2u.setHeight(50);
+//		yc2u.setWidth(50);
+//		y2u.addComponent(yc2u);
+//		y2u.addComponent(new VelocityComponent(3,0));
+//		y2u.addComponent(new LabelComponent("grrraa"));
+//		y2u.addComponent(new CollidableComponent(true));
+//		y2u.addComponent(new TimeComponent(new RemoveAction(), 3000));
+//		y2u.addComponent(new TypeComponent(EntityType.Projectile));
+//		y2u.addComponent(new CheckCollisionComponent(true));
+//		u.addComponent(new ObjectCreationComponent(y2));
+//		TimeComponent timeu = new TimeComponent(new Reload(), 1000);
+//		u.addComponent(timeu);
+//		((KeyInputComponent) u.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
+//		((KeyInputComponent) u.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
+//		((KeyInputComponent) u.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
+//		((KeyInputComponent) u.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
+//		((KeyInputComponent) u.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
+//		((KeyInputComponent) u.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
+//		((KeyInputComponent) u.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
+//		((KeyInputComponent) u.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
+//		((KeyInputComponent) u.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
+//		e7.add(u);
+//		//
+//		//
+//		//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
+//		Collection<IEntity> e8 = new ArrayList<IEntity>();
+//		for (Entity exp : e7) {
+//			e8.add(exp);
+//		}
+		myEntityManager = new EntityManager(e1);
+//		myEntityManagers= new ArrayList<IEntityManager>();
+//		myEntityManagers.add(myEntityManager);
+//		myEntityManagers.add(new EntityManager(e8));
+		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), "", "" );
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 		return myGameData;

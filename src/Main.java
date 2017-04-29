@@ -13,7 +13,6 @@ public class Main extends Application {
 //		arg0.show();
 		System.out.println("maybe");
 		new Controller(arg0);
-//		new ImageRefinerTest(arg0);
 		//TODO: Uncomment the line below and comment the line above to enter test mode for worldanimation and gameengine
 		//new RunnerTest(arg0);  
 		  

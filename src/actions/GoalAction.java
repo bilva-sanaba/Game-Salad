@@ -14,7 +14,7 @@ public class GoalAction  extends AbstractAction  implements IAction{
 		for(IEntity e : myEM.getEntities()){
 			if(e.getComponent(ComponentType.Goal) != null){
 				GoalComponent gc = (GoalComponent) e.getComponent(ComponentType.Goal);
-				gc.satisfyGoal();
+				gc.satisfyGoal(true);
 			}
 		}
 		return getGameDataFactory().blankEntityData(currentGameData);
