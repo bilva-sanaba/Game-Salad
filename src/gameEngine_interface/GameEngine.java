@@ -1,7 +1,5 @@
 package gameEngine_interface;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -144,7 +142,7 @@ public class GameEngine implements GameEngineInterface {
 		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
 			IGameData rgd = (IGameData) s.update(keysPressed,(IRestrictedGameData) myGameData);
-			rgd.setLevel(99);
+			//rgd.setLevel(99);
 			GameDataFactory gdf = new GameDataFactory();
 			gdf.updateGameData(myGameData,rgd);
 //			if (currentMusic!=myGameData.getMusic()){

@@ -11,7 +11,6 @@ import com.sun.jmx.snmp.Timestamp;
 
 import gameView.splashScreen.SplashView;
 import gameView.userInput.IUserInputData;
-import gameView.userInput.UserInputData;
 import gameView.userManagement.IUserManager;
 import gameView.userManagement.UserManager;
 import gamedata.GameData;
@@ -41,6 +40,7 @@ public class UIView implements UIViewInterface {
 	private WorldAnimator myAnimation;
 	private IUserManager myUserManager;
 	private IUserInputData myUserInputData; 
+	private String myCurrentGame;
 	
 	public UIView(Stage s, ControllerInterface controller, IUserInputData userInput) {
 		myStage = s;
@@ -70,10 +70,14 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void loadGame(String file) {
+		if (myCurrentGame != null) {
+			savePoints();
+		}
+		myCurrentGame = file;
 		//myData = myController.loadNewGame(file);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
-		//myGameScene.addData(myController.loadNewGame(file));
+		//myGameScene.addData(myData);
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
 		runGame();
@@ -130,8 +134,24 @@ public class UIView implements UIViewInterface {
 	private void setStageClose() {
 		myStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	          public void handle(WindowEvent we) {
+	        	  savePoints();
 	              myUserManager.saveAllUsers();
 	          }
 	      });    
+	}
+	
+	private void savePoints() {
+		System.out.println(myCurrentGame);
+		try {
+			myUserManager.getCurrentUser().addPoints(myCurrentGame, new Double(500));
+			//myUserManager.getCurrentUser().addPoints(myCurrentGame, myData.getPoints().doubleValue());
+		} catch (Exception e) {
+			System.out.println("NO USER OR GAMEDATA INTIALIZED");
+		}
+//		if (myUserManager.getCurrentUser() != null && myData.getPoints() != null) {
+//			System.out.println("TRYING TO SAVE");
+//			myUserManager.getCurrentUser().addPoints(myCurrentGame, myData.getPoints().doubleValue());
+//		}
+		
 	}
 }

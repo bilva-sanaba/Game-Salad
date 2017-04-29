@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -117,6 +118,11 @@ public class LoginScreen extends AbstractViewer {
 	private TextField makeInput(String description, String id) {
 		TextField text = new TextField(description);
 		text.setId(id);
+		text.setOnMousePressed(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent event) {
+				text.clear();
+			}
+		});
 		return text;
 	}
 	

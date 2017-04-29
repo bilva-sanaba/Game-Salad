@@ -5,17 +5,20 @@ import components.entityComponents.LocationComponent;
 import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class GameData implements IGameData,IRestrictedGameData{
 	
 	private DoubleProperty points = new SimpleDoubleProperty();
-	private DoubleProperty lives = new SimpleDoubleProperty(); 
+	private IntegerProperty lives = new SimpleIntegerProperty(); 
 	private IRestrictedEntityManager restrictedEntityManager; 
-	private DoubleProperty level = new SimpleDoubleProperty(); 
+	private IntegerProperty level = new SimpleIntegerProperty(); 
 	private LocationComponent mainPlayerLocation;
 
 	private StringProperty music = new SimpleStringProperty();
@@ -32,13 +35,13 @@ public class GameData implements IGameData,IRestrictedGameData{
 	public DoubleProperty getPointsProperty(){
 		return points;
 	}
-	public DoubleProperty getLivesProperty(){
+	public IntegerProperty getLivesProperty(){
 		return lives;
 	}
 	public IRestrictedEntityManager getRestrictedEntityManager(){
 		return restrictedEntityManager;
 	}
-	public DoubleProperty getLevelProperty(){
+	public IntegerProperty getLevelProperty(){
 		return level; 
 	}
 	public LocationComponent getMainLocation(){
@@ -54,12 +57,12 @@ public class GameData implements IGameData,IRestrictedGameData{
 	public ReadOnlyDoubleProperty getPoints(){
 		return (ReadOnlyDoubleProperty) points;
 	}
-	public ReadOnlyDoubleProperty getLives(){
-		return (ReadOnlyDoubleProperty) lives;
+	public ReadOnlyIntegerProperty getLives(){
+		return (ReadOnlyIntegerProperty) lives;
 	}
 	
-	public ReadOnlyDoubleProperty getLevel(){
-		return (ReadOnlyDoubleProperty) level; 
+	public ReadOnlyIntegerProperty getLevel(){
+		return (ReadOnlyIntegerProperty) level; 
 	}
 
 	public String getMusic(){

@@ -34,7 +34,7 @@ public class ScoreComponent extends UIDisplayComponent {
 
 	@Override
 	protected void setID() {
-		myPoints = setValue(getData().getPoints());
+		myPoints = (ReadOnlyDoubleProperty) setValue(getData().getPoints());
 		myScore = new HBox();
 		myScore.setPrefSize((UIView.DEFAULT_SIZE.width/20)*3, (UIView.DEFAULT_SIZE.width/10)*0.5);
 		setLabel();

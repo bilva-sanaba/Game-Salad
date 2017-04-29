@@ -36,14 +36,13 @@ public class PauseScreen extends AbstractViewer {
 		setSliderAction();
 		myBox = new VBox(10, mySlider, makeButton(new CloseCommand(this)));
 		myBox.setAlignment(Pos.CENTER);
-		myScene = new Scene(myBox, UIView.DEFAULT_SIZE.width/2, UIView.DEFAULT_SIZE.height/3);
+		myScene = new Scene(myBox, UIView.DEFAULT_SIZE.width/2, UIView.DEFAULT_SIZE.height/5);
 	}
 	
 	private void setSliderAction() {
 	    mySlider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                 Number old_val, Number new_val) {
-            		System.out.println(new_val.intValue());
                     getUserInput().setRewind(new_val.intValue());
             }
         });
