@@ -111,7 +111,8 @@ public class TabView extends GUIComponent {
 	}
 	
 	public void addPresetEntities() {
-		//loadPreset(PRESETFILE);
+		System.out.println("this is called");
+		loadPreset(PRESETFILE);
 	}
 
 	@Override
