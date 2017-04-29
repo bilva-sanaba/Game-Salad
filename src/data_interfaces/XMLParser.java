@@ -25,8 +25,8 @@ import entity.IEntityManager;
 public class XMLParser implements Parser {
 
 	private Element loadFile(String fileName) {
-		XStream xs = new XStream(new DomDriver());
-		Collection<IEntity> stuff = (Collection<IEntity>) xs.fromXML(new File(fileName));
+		//XStream xs = new XStream(new DomDriver());
+		//Collection<IEntity> stuff = (Collection<IEntity>) xs.fromXML(new File(fileName));
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
