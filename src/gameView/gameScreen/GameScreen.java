@@ -52,7 +52,8 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	}
 
 	public Scene getScene() {
-		
+		myPane.getChildren().add(myAnimation.getGroup());
+		myAnimation.setKeys(myScene);
 		//UNCOMMENT FOR NORMAL
 //		myPane.getChildren().addAll(myAnimation.getScene().getRoot().getChildrenUnmodifiable());
 //		System.out.println(myPane.getChildren());
@@ -62,29 +63,29 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 ////
 		
 		//UNCOMMENT FOR RUNNERS TEST
-		RunnerTest s = new RunnerTest(getView().getStage(), getView());
-		myAnimation = s.getAnimator();
-		GameData data = s.getEngine().dummyLoad();
-		try {
-			myAnimation.start(data, this);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			
-			myAlert = new VoogaAlert(VOOGAISSUE, e.getMessage());
-			myAlert.showAlert();//FIX THIS ITEM
-		}
-		myAnimation.setKeys(myScene);
-		myAnimation.giveEngine(s.getEngine());
-		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
-				myBP.widthProperty(), myBP.heightProperty(), data);
-		setInput(s.getUserInput());
+//		RunnerTest s = new RunnerTest(getView().getStage(), getView());
+//		myAnimation = s.getAnimator();
+//		GameData data = s.getEngine().dummyLoad();
+//		try {
+//			myAnimation.start(data, this);
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			
+//			myAlert = new VoogaAlert(VOOGAISSUE, e.getMessage());
+//			myAlert.showAlert();//FIX THIS ITEM
+//		}
+//		myAnimation.setKeys(myScene);
+//		myAnimation.giveEngine(s.getEngine());
+//		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
+//				myBP.widthProperty(), myBP.heightProperty(), data);
+//		setInput(s.getUserInput());
 		//SHOULD NEVER USE THIS
 		//myBP.setCenter(myAnimation.getGroup());
 //		Scene test = myAnimation.getScene();
 //		myPane.getChildren().addAll(test.getRoot().getChildrenUnmodifiable());
 		
 		//DO THIS FOR ACTUAL GAME
-		myPane.getChildren().add(myAnimation.getGroup());
+		//myPane.getChildren().add(myAnimation.getGroup());
 		
 
 		return myScene;

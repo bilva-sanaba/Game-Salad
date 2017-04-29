@@ -4,6 +4,7 @@ package gameView.displayComponents;
 import gameObject.GameConfig;
 import gameView.tools.DisplayEnum;
 import gamedata.IRestrictedGameData;
+import javafx.beans.binding.NumberExpressionBase;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -39,7 +40,7 @@ public abstract class UIDisplayComponent implements IDisplayComponent {
 		return gameConfig;
 	}
 	
-	protected ReadOnlyDoubleProperty setValue(ReadOnlyDoubleProperty value) {
+	protected NumberExpressionBase setValue(NumberExpressionBase value) {
 		value.addListener(new ChangeListener<Number>(){
 		        public void changed(ObservableValue<? extends Number> o,Number oldVal, 
 		                 Number newVal){

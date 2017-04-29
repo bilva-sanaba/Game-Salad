@@ -16,6 +16,23 @@
     </userdata>
   </entry>
   <entry>
+    <string>butt</string>
+    <userdata>
+      <username>butt</username>
+      <password>face</password>
+      <myGameScores>
+        <entry>
+          <string>12234456</string>
+          <double>700.0</double>
+        </entry>
+        <entry>
+          <string>aaaaaaaC</string>
+          <double>500.0</double>
+        </entry>
+      </myGameScores>
+    </userdata>
+  </entry>
+  <entry>
     <string>jack</string>
     <userdata>
       <username>jack</username>

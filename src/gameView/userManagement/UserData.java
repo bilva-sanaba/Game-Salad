@@ -4,6 +4,8 @@ import gameView.tools.ImageViewContainer;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javafx.scene.image.Image;
@@ -18,10 +20,12 @@ public class UserData {
 	private String password;
 	//private String myLastName;
 	private String image;
+	private HashMap<String, Double> myGameScores;
 	
 	public UserData(String name, String passwordString, String imageString) {
 		username = name;
 		password = passwordString;
+		myGameScores = new HashMap<String, Double>();
 		//myLastName = lastName;
 		image = imageString;
 	}
@@ -33,6 +37,20 @@ public class UserData {
 //	public String getLastName() {
 //		return myLastName;
 //	}
+	
+	public void addPoints(String game, Double points) {
+		if (myGameScores.get(game) == null || myGameScores.get(game) < points) {
+			myGameScores.put(game, points);
+		}
+	}
+	
+	public Iterator<String> getGames() {
+		return myGameScores.keySet().iterator();
+	}
+	
+	public Double getPointValue(String key) {
+		return new Double(myGameScores.get(key).doubleValue());
+	}
 	
 	public String getPassword() {
 		return password;

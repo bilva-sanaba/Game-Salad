@@ -4,6 +4,7 @@ import gameView.UIView;
 import gameView.tools.DisplayEnum;
 import gamedata.IRestrictedGameData;
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.ImageView;
@@ -13,7 +14,7 @@ import javafx.scene.layout.Region;
 public class LifeComponent extends UIDisplayComponent {
 
 	private HBox myLives;
-	private ReadOnlyDoubleProperty myLifeNumber;
+	private ReadOnlyIntegerProperty myLifeNumber;
 	
 	public LifeComponent(String name, IRestrictedGameData gameData) {
 		super(name, gameData);
@@ -32,7 +33,7 @@ public class LifeComponent extends UIDisplayComponent {
 	}
 	
 	protected void setID() {
-		myLifeNumber = setValue(getData().getLives());
+		myLifeNumber = (ReadOnlyIntegerProperty) setValue(getData().getLives());
 		myLives = new HBox();
 		addLifeImages();
 		myLives.setId(getName().toLowerCase());

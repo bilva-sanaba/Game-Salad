@@ -1,16 +1,20 @@
 package gameView.displayComponents;
 
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
+import gameView.UIView;
 import gameView.tools.DisplayEnum;
 import gamedata.IRestrictedGameData;
 
 public class LevelComponent extends UIDisplayComponent {
 
+	private HBox myBox;
 	private Label myLabel;
-	private ReadOnlyDoubleProperty myLevel;
+	private ReadOnlyIntegerProperty myLevel;
 	
 	public LevelComponent(String name, IRestrictedGameData gameData) {
 		super(name, gameData);
@@ -26,7 +30,7 @@ public class LevelComponent extends UIDisplayComponent {
 		if (myLevel == null) {
 			return null;
 		}
-		return myLabel;
+		return myBox;
 	}
 
 	@Override
@@ -36,9 +40,11 @@ public class LevelComponent extends UIDisplayComponent {
 
 	@Override
 	protected void setID() {
-		myLevel = setValue(getData().getLevel());
+		myLevel = (ReadOnlyIntegerProperty) setValue(getData().getLevel());
 		myLabel = new Label();
 		setLabel();
+		myBox = new HBox(myLabel);
+		System.out.println(myBox.getWidth());
 		
 	}
 	
