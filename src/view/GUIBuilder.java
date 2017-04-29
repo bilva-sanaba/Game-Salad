@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.ArrayList;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -16,7 +17,7 @@ public class GUIBuilder {
 	public static final String RESOURCE_PACKAGE = "resources/";
 	public static final String STYLESHEET = "AuthoringGUI.css";
 
-	private static final double SCREEN_HEIGHT = 650;
+	private static final double SCREEN_HEIGHT = 700;
 	private static final double SCREEN_WIDTH = 1000;
 	private static final int INITIAL_GRID_ROWS = 50;
 	private static final int INITIAL_GRID_COLS = 50;
@@ -28,18 +29,22 @@ public class GUIBuilder {
 	private ViewData myData;
 	private ViewController viewController;
 	private Pane myBP;
+	private UtilityFactory utilF;
+	private int currentLevel;
 
 	/**
 	 * Initializes the main Scene and Stage.
 	 */
-	public GUIBuilder(UtilityFactory utilF) {
+	public GUIBuilder(UtilityFactory utilIn) {
+		currentLevel = 1;
+		utilF = utilIn;
 		myData = new ViewData(INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
-		GridView grid1 = new GridView(utilF, 1, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
+		GridView grid1 = new GridView(utilF, currentLevel, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
 		tab = new TabView(utilF, myData);
 		tab.addPresetEntities();
 		toolbar = new ToolBarView(utilF, myData);
 		
-		levelTabs = new LevelTabView(grid1);
+		levelTabs = new LevelTabView(grid1, myData);
 		
 		viewController = new ViewController(myData, levelTabs, tab);
 		myData.addObserver(viewController);
@@ -59,6 +64,12 @@ public class GUIBuilder {
 		myPane.setTop(toolbar.buildComponent());
 		myPane.setRight(tab.buildComponent());
 		myPane.setCenter(levelTabs.buildComponent());
+		Button newLevel = utilF.buildButton("newLevelLabel", e-> {
+			currentLevel++;
+			levelTabs.addNewTab(new GridView(utilF, currentLevel, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS));
+			myData.addLevel(currentLevel);
+		});
+		myPane.setBottom(newLevel);
 		myPane.setId("root");
 		return myPane;
 	}
