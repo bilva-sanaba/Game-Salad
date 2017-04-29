@@ -154,7 +154,6 @@ public class GameEngine implements GameEngineInterface {
 		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
 		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,currentMusic);
-		
 		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
 		return dg;
 	}
@@ -192,7 +191,7 @@ public class GameEngine implements GameEngineInterface {
 		sliderPause=true;
 		Integer size = previousEntityManagers.size();
 		EntityLoader el = new EntityLoader(myEntityManager);
-		Integer index=size-i;
+		Integer index=size-(11-i);
 		if (index<0){
 			index=0;
 		}
@@ -201,12 +200,16 @@ public class GameEngine implements GameEngineInterface {
 	private void saveNewEntityManager() {
 		numUpdates++;
 		if (numUpdates % SAVE_FREQUENCY*20 == 0) {
-			System.out.println("checkpoint");
 			previousEntityManagers.add((myEntityManager.copy()));
+			
 		}
 		while (previousEntityManagers.size()>10) {
 			previousEntityManagers.remove(0);
 		}
+//		if (numUpdates==200){
+//			rewindState(0);
+//			numUpdates=1;
+//		}
 	}
 	
 	
