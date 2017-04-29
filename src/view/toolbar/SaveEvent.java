@@ -25,7 +25,7 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		
 		//how do i get this list???? BLOOOMFELD!!!!!
 		l.add(myData.getPlacedEntityMap());
-		l.add(myData.getLevelEntity());
+		l.add(myData.getLevelEntityMap());
 		
 		
 		

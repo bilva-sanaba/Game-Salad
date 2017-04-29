@@ -28,6 +28,7 @@ import data_interfaces.Communicator;
  */
 public class ViewData extends Observable {
 
+	private int entityIDcounter;
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
 	private HashMap<Integer, Entity> definedEntityMap;
@@ -45,6 +46,7 @@ public class ViewData extends Observable {
 	private int initialCols;
 
 	public ViewData(int initialRowsIn, int initialColsIn) {
+		entityIDcounter = 0;
 		currentLevel = 1;
 		initialRows = initialRowsIn;
 		initialCols = initialColsIn;
@@ -58,6 +60,12 @@ public class ViewData extends Observable {
 		mySplashEntity = new SplashEntity(-2, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
 		gameName = "";
+	}
+	
+	public int getEntityID(){
+		entityIDcounter++;
+		return entityIDcounter;
+		
 	}
 	
 	public int getCurrentLevel(){
@@ -169,8 +177,12 @@ public class ViewData extends Observable {
 		return placedEntityMaps;
 	}
 
-	public Map<Integer, LevelEntity> getLevelEntity() {
+	public Map<Integer, LevelEntity> getLevelEntityMap() {
 		return levelEntityMap;
+	}
+	
+	public LevelEntity getLevelEntity(){
+		return levelEntityMap.get(currentLevel);
 	}
 
 	public SplashEntity getSplashEntity() {
@@ -203,7 +215,8 @@ public class ViewData extends Observable {
 	
 	//TODO: Reset level tabs method
 	public void resetLevelTabs(){
-		
+		setChanged();
+		notifyObservers("reset");
 	}
 
 	
