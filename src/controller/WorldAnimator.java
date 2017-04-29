@@ -117,7 +117,7 @@ public class WorldAnimator{
         //myAchievement = myAchievementFactory.genAchievement("FirstKill");
         //root.getChildren().add(myAchievement.getGroup());
         
-
+        myObservers.getUpdatedSet();
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
 
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
@@ -144,20 +144,24 @@ public class WorldAnimator{
     }
     private void step(double elapsedTime) throws ClassNotFoundException{
     	counter++;
-    	//myView.step(keysPressed);
-    	myEngine.handleUpdates(keysPressed);
+    	myView.step(keysPressed);
+    	//myEngine.handleUpdates(keysPressed);
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
         
-        updateAchievement();
-        
-        if(achievementShowing==true){
-        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
-    }
+//        updateAchievement();
+//        
+//        if(achievementShowing==true){
+//        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
+//    }
         myCamera.updateCamera();
         myObservers.clearSet();
     }
-
+    
+    //TESTING PURPOSES
+    public void fillMap() {
+    	fillMapAndDisplay(myObservers.getUpdatedSet());
+    }
 
 	private void updateAchievement() throws ClassNotFoundException {
 		addAchievement();

@@ -64,7 +64,7 @@ public class ObserverManager {
          //UNCOMMENT FOR TEST RUNNER
          myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()-475);
          myEntities.get(e.getID()).getImageView().setTranslateY(e.getRestrictedLocation().getHeight()-175);
-         
+         myWorld.fillMap();
          //UNCOMMENT FOR NORMAL
          
 //         myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()*50-475);

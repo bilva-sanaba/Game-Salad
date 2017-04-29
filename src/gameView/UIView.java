@@ -6,6 +6,7 @@ import java.util.Set;
 
 import data_interfaces.XMLException;
 import gameView.gameScreen.GameScreen;
+import gameView.gameScreen.SpecificGameSplashView;
 
 import com.sun.jmx.snmp.Timestamp;
 
@@ -74,16 +75,16 @@ public class UIView implements UIViewInterface {
 			savePoints();
 		}
 		myCurrentGame = file;
-		//myData = myController.loadNewGame(file);
+		myData = myController.loadNewGame(file);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
-		//myGameScene.addData(myData);
+		myGameScene.addData(myData);
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
 		runGame();
 		
 		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
-		//setStage(new SpecificGameSplashView(this, myController.getEngine().getSplashEntity()).getScene());
+		//setStage(new SpecificGameSplashView(this, getStage(), myUserInputData, myController.getEngine().getSplashEntity()).getScene());
 		
 	}
 	
