@@ -2,9 +2,11 @@ package data_interfaces;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import org.w3c.dom.Element;
 
@@ -26,10 +28,10 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	public List<IEntityManager> getIEntityManagers() {
 		Map <Integer, Map<Integer, Entity>> m = results.get(0);
 		List <IEntityManager> ret = new ArrayList<IEntityManager>();
-		List <Entity> toBeAdded;
+		List <IEntity> toBeAdded;
 		
 		for (int i = 1; i <= m.size(); i++) {
-			toBeAdded = new ArrayList<Entity>();
+			toBeAdded = new ArrayList<IEntity>();
 			for (Integer j: m.get(i).keySet()) {
 				toBeAdded.add(m.get(i).get(j));
 			}
@@ -57,5 +59,10 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	@Override
 	public SplashEntity getSplashEntity() {
 		return (SplashEntity) results.get(2).get(getSplashConstant());
+	}
+	public List<IEntityManager> futureGetData() {
+		List<IEntityManager> x = new ArrayList<IEntityManager>();
+		return x;
+		
 	}
 }
