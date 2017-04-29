@@ -70,8 +70,6 @@ public class WorldAnimator{
 
     private GameData myData;
 
-    private AchievementTimer myTimer;
-
     private Camera myCamera;
     
     private int counter=0;
@@ -112,7 +110,6 @@ public class WorldAnimator{
         LocationComponent lc = myData.getMainLocation();
         //Change Length
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
-        myTimer = new AchievementTimer();
         
         myAchievementFactory = new AchievementFactory();
         //myAchievement = myAchievementFactory.genAchievement("FirstKill");
@@ -150,9 +147,7 @@ public class WorldAnimator{
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
         
-        addAchievement();
-        
-        removeAchievement();
+        updateAchievement();
         
         myAchievement.updateAchievementLoc(-1*myCamera.getX());
         myCamera.updateCamera();
@@ -160,6 +155,11 @@ public class WorldAnimator{
     }
 
 
+	private void updateAchievement() throws ClassNotFoundException {
+		addAchievement();
+		removeAchievement();
+		
+	}
 	private void handleKeyReleased(KeyCode keyCode) {
         keysReleased.add(keyCode);
         keysPressed.remove(keyCode);
