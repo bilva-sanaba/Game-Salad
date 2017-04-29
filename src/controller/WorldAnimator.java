@@ -26,6 +26,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.MoveTo;
@@ -91,6 +92,7 @@ public class WorldAnimator{
     public void start (GameData myData, IGameScreenEntity screen){
     	this.myData=myData;
         root = new Group();
+        
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
         myObservers = new ObserverManager(this, restrictedEntityManager);
 //        myGameBuilder = new GameBuilder();
@@ -165,7 +167,7 @@ public class WorldAnimator{
     }
 
     private void fillMapAndDisplay(Set<Integer> entities){
-    	
+    	System.out.println(root.getChildren().size());
     	Map<Integer, ImageConfig> map = myObservers.getEntityMap();
         for(Integer entity : entities){
         //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva

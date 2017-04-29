@@ -1,5 +1,6 @@
 package gameView.gameScreen;
 
+import java.net.URL;
 import java.util.Collection;
 
 import controller.WorldAnimator;
@@ -14,12 +15,16 @@ import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
 import gamedata.GameData;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 
 public class GameScreen extends AbstractViewer implements IGameScreenDisplays, IGameScreenEntity {
 
@@ -117,10 +122,19 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		myBP.setId("main");
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
 		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
+		URL u = getClass().getClassLoader().getResource("background1.png");
+		Image i = new Image(u.toString());
+		ImagePattern ip = new ImagePattern(i, 0, 0, 10000, 10000, true);
+		
+		System.out.println(ip.getX() + " " + ip.getY());
+		System.out.println(ip.getWidth() + " " + ip.getHeight());
+		myScene.setFill(Color.BLUE);
 		myCommands.stream()
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
 			});
+		
+		
 //		myBP.setCenter(myPane);
 		//myAnimation.setKeys(myScene);
 	}

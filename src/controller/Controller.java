@@ -41,6 +41,7 @@ public class Controller implements ControllerInterface {
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
 		myGameEngine = new GameEngine();
 		myGameView = new UIView(s, this);
+		
 	}
 
 	public void save(String fileName) {

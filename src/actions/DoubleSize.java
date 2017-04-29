@@ -26,8 +26,9 @@ public class DoubleSize  extends AbstractAction implements IAction {
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
 //		SpriteComponent x = (SpriteComponent) other.getComponent(ComponentType.Sprite);
 //		x.setClassPath(imagePath);
+		
 		ImagePropertiesComponent y = (ImagePropertiesComponent) other.getComponent(ComponentType.ImageProperties);
-		if (c){
+		if (c) {
 			LocationComponent t = (LocationComponent) other.getComponent(ComponentType.Location);
 //		VelocityComponent v = (VelocityComponent) other.getComponent(ComponentType.Velocity);
 			t.setY(t.getY()-y.getHeight());

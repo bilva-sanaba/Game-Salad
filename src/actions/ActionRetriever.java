@@ -73,6 +73,11 @@ public class ActionRetriever {
 	}
 	
 	
-	
+	public static void main(String[] args) {
+		ActionRetriever a = new ActionRetriever();
+		for (Class<?> c : a.getActionsWithAnnotation(CollisionComponentType.Right)) {
+			System.out.println(c.getSimpleName());
+		}
+	}
 
 }

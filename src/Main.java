@@ -6,6 +6,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
+		
 		System.out.println("maybe");
 		new Controller(arg0);
 //		new ImageRefinerTest(arg0);
