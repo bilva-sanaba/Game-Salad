@@ -2,6 +2,7 @@ package view.toolbar;
 
 import java.io.File;
 import java.util.*;
+import java.util.function.Consumer;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
@@ -16,14 +17,18 @@ import view.ViewData;
 
 public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent {
 	private ViewData myData;
+	Map<Class<? extends Entity>, Consumer<Entity>> whattodo;
 	
 	public LoadEvent(ViewData data){
 		myData = data;
+		whattodo = new HashMap<Class<? extends Entity>, Consumer<Entity>>();
+		//whattodo.put(SplashEntity.class, e -> myData.setSplashEntity((SplashEntity) e));
+		//whattodo.put(LevelEntity.class, e -> myData.setLevelEntity((LevelEntity) e));
 	}
 
 	@Override
 	public void event() {
-		Communicator c;
+		XMLPlacedParser xpp = new XMLPlacedParser();
 		Stage newStage = new Stage();
 		FileChooser fc = new FileChooser();
 		fc.setTitle("Choose the file to load: ");
@@ -40,28 +45,10 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 					- getSuffix().length());
 			System.out.println("BLOOMFELD FELD FELD FIELD FIELD" + name);
 			myData.setGameName(name);
-			c = new Communicator(name);
-			Collection <Entity> col = c.getData();
-//			System.out.println(col + " line 45 " + this.getClass());
-			myData.refresh();
-			for (Entity e: col) {
-				System.out.println(e.getClass().toString());
-				if (e.getClass().toString().equals("class entity.LevelEntity")) {
-					System.out.println("Level entity is set");
-					myData.setLevelEntity((LevelEntity) e);
-				}
-				else if (e.getClass().toString().equals("class entity.SplashEntity")) {
-					myData.setSplashEntity((SplashEntity)e);
-				}
-				else if (isPlaced(e)) {
-					System.out.println("isplaced");
-					myData.placeEntity(e);
-				}
-				else {
-					System.out.println("defines an entity");
-					myData.defineEntity(e);
-				}
-			}
+			//			System.out.println(col + " line 45 " + this.getClass());
+			List <Map> toPlace = xpp.getData(name);
+			
+			//idk what method to use here
 		}
 		
 	}

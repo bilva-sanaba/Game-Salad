@@ -56,7 +56,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
-import data_interfaces.XMLParser;
+import data_interfaces.XMLDefinedParser;
 import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
@@ -94,7 +94,7 @@ import gamedata.GameData;
 public class GameEngine implements GameEngineInterface {
 	private EntityManager myEntityManager;// = new EntityManager(new ArrayList<Entity>()); 
 	private List<AbstractEngine> myEngines;// = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager));
-	private XMLParser myParser = new XMLParser();
+	private XMLDefinedParser myParser = new XMLDefinedParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	private Entity mainCharacter;
 	private GameData myGameData;
@@ -146,6 +146,7 @@ public class GameEngine implements GameEngineInterface {
 			rgd.setLevel(99);
 			GameDataFactory gdf = new GameDataFactory();
 			gdf.updateGameData(myGameData,rgd);
+			
 //			if (currentMusic!=myGameData.getMusic()){
 //				clip2.stop();
 //				AudioInputStream audioInputStream2;
@@ -371,7 +372,7 @@ public class GameEngine implements GameEngineInterface {
 		e.add(createPortal2());
 		myEntityManager = new EntityManager(e);
 
-		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), "", "" );
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 		return myGameData;
