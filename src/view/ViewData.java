@@ -184,6 +184,10 @@ public class ViewData extends Observable {
 	public LevelEntity getLevelEntity(){
 		return levelEntityMap.get(currentLevel);
 	}
+	
+	public void setLevelEntity(int level, LevelEntity e){
+		levelEntityMap.put(level, e);
+	}
 
 	public SplashEntity getSplashEntity() {
 		return mySplashEntity;
