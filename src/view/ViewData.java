@@ -32,7 +32,6 @@ public class ViewData extends Observable {
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
 	private HashMap<Integer, Entity> levelEntityMap;
-	private LevelEntity myLevelEntity;
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
 	private Entity userGridSelectedEntity;

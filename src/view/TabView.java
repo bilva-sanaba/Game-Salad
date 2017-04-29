@@ -112,5 +112,9 @@ public class TabView extends GUIComponent {
 		myBox.getChildren().add(u);
 		return myBox;
 	}
+	
+	public void selectEntity(Entity e){
+		blocksView.getSelectionModel().select(e);
+	}
 
 }

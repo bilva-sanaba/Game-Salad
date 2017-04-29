@@ -36,6 +36,7 @@ public class LevelTabView extends GUIComponent{
 		currentLevel++;
 		tabsList.add(tab1);
 		myTabs.getTabs().add(tab1);
+		myTabs.getSelectionModel().select(tab1);
 	}
 
 	@Override
