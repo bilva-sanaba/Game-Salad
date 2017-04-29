@@ -24,6 +24,7 @@ import data_interfaces.Communicator;
  * @author Jonathan
  * @author Justin
  * @author Jack
+ * @author Josh
  */
 public class ViewData extends Observable {
 
@@ -31,8 +32,7 @@ public class ViewData extends Observable {
 	private Stack<RightClickEvent> redoStack;
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
-	private HashMap<Integer, Entity> levelEntityMap;
-	private LevelEntity myLevelEntity;
+	private HashMap<Integer, LevelEntity> levelEntityMap;
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
 	private Entity userGridSelectedEntity;
@@ -53,7 +53,7 @@ public class ViewData extends Observable {
 		definedEntityMap = new HashMap<Integer, Entity>();
 		placedEntityMaps = new HashMap<Integer, HashMap<Integer, Entity>>();
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
-		levelEntityMap = new HashMap<Integer, Entity>();
+		levelEntityMap = new HashMap<Integer, LevelEntity>();
 		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
 		mySplashEntity = new SplashEntity(-2, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
@@ -169,12 +169,8 @@ public class ViewData extends Observable {
 		return placedEntityMaps;
 	}
 
-	public LevelEntity getLevelEntity() {
-		return (LevelEntity) levelEntityMap.get(currentLevel);
-	}
-
-	public void setLevelEntity(LevelEntity l) {
-		myLevelEntity = l;
+	public Map<Integer, LevelEntity> getLevelEntity() {
+		return levelEntityMap;
 	}
 
 	public SplashEntity getSplashEntity() {

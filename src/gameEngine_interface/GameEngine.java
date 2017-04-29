@@ -56,7 +56,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
-import data_interfaces.XMLParser;
+import data_interfaces.XMLDefinedParser;
 import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
@@ -94,7 +94,7 @@ import gamedata.GameData;
 public class GameEngine implements GameEngineInterface {
 	private EntityManager myEntityManager;// = new EntityManager(new ArrayList<Entity>()); 
 	private List<AbstractEngine> myEngines;// = Arrays.asList(new NewMovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager));
-	private XMLParser myParser = new XMLParser();
+	private XMLDefinedParser myParser = new XMLDefinedParser();
 	private Map<IEntity, IRestrictedEntity> entityToRestricted;
 	private Entity mainCharacter;
 	private GameData myGameData;

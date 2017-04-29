@@ -16,8 +16,7 @@ import entity.*;
 import javafx.scene.input.KeyCode;
 import voogasalad.util.reflection.*;
 
-public class EntityHandler implements Handler {
-
+public class EntityHandler implements Handler {	
 	private static final String IDSTRING = "identifier";
 	private static final String COMPONENTSTRING = "myComponents";
 	private static final String ROWSTRING = "rows";

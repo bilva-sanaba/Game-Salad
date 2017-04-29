@@ -1,0 +1,16 @@
+<list>
+  <entity.SplashEntity>
+    <identifier>1</identifier>
+    <myComponents class="list"/>
+    <displayName>ryansieg</displayName>
+    <instructions>johnson</instructions>
+    <backgroundFilePath>file:/Users/joshuakopen/Documents/workspace/compsci308/voogasalad_raindrop/images/background3.png</backgroundFilePath>
+  </entity.SplashEntity>
+  <entity.LevelEntity>
+    <identifier>-1</identifier>
+    <myComponents class="list"/>
+    <rows>10</rows>
+    <cols>10</cols>
+    <backgroundFilePath>images/background1.png</backgroundFilePath>
+  </entity.LevelEntity>
+</list>

@@ -1,12 +1,22 @@
 package view;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
 import data_interfaces.Communicator;
+import data_interfaces.XMLDefinedParser;
+import data_interfaces.XMLWriter;
 import entity.Entity;
+import entity.LevelEntity;
+import entity.SplashEntity;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -15,19 +25,25 @@ import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 import view.window.EntityBuilderWindow;
 
 public class TabView extends GUIComponent {
 	private static final String PRESETFILE = "PresetEntities";
+	private static final String SUFFIX = ".xml";
 
 	private ObservableList<Entity> blocksList = FXCollections.observableArrayList();
 	private ListView<Entity> blocksView = new ListView<Entity>();
 	private VBox myBox = new VBox();
 	private Button b;
-	private Button u;
+	private Button savePresetButton;
+	private Button loadPresetButton;
 	private UtilityFactory util;
 	private ViewData myData;
 	private EntityBuilderWindow entityBuilder;
@@ -71,9 +87,8 @@ public class TabView extends GUIComponent {
 			entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
 			entityBuilder.showEntityBuilder();
 		});
-		u = util.buildButton("UploadEntities", e -> {
-			System.out.println("upload f***");
-		});
+		savePresetButton = util.buildButton("Save Preset", e -> savePreset());
+		loadPresetButton = util.buildButton("Load Preset", e -> userLoadPreset());
 		util.setPresets(blocksList);
 	}
 
@@ -96,21 +111,67 @@ public class TabView extends GUIComponent {
 	}
 	
 	public void addPresetEntities() {
-		Communicator c = new Communicator(PRESETFILE);
-		Collection <Entity> col = c.getData();
-		for (Entity e: col) {
-			if (!e.getClass().toString().equals("class entity.LevelEntity") && !e.getClass().toString().equals("class entity.SplashEntity")) {
-				myData.defineEntityNoUpdate(e);
-			}
-		}
+		//loadPreset(PRESETFILE);
 	}
 
 	@Override
 	public Region buildComponent() {
 		myBox.getChildren().add(blocksView);
 		myBox.getChildren().add(b);
-		myBox.getChildren().add(u);
+		myBox.getChildren().add(savePresetButton);
+		myBox.getChildren().add(loadPresetButton);
 		return myBox;
+	}
+	
+	private void savePreset() {
+		TextInputDialog tid = new TextInputDialog(myData.getGameName());
+		XMLWriter xw = new XMLWriter();
+		tid.setTitle("Saving File");
+		tid.setHeaderText("Please choose a name for your preset entities: ");
+		Optional<String> result = tid.showAndWait();
+		try {
+			myData.setGameName(result.get());
+			String fileName = result.get();
+			
+			Map<Integer, Entity> dem = myData.getDefinedEntityMap();
+			
+			List <Entity> l = new ArrayList<Entity>();
+			
+			for (Integer ie: dem.keySet()) {
+				l.add(dem.get(ie));
+			}
+			xw.writeFile(fileName, l);
+		} catch (NoSuchElementException e) {
+			return;
+		}
+	}
+	
+	private void userLoadPreset() {
+		Stage newStage = new Stage();
+		FileChooser fc = new FileChooser();
+		fc.setTitle("Choose the file to load: ");
+		fc.setInitialDirectory(new File(System.getProperty("user.dir")));
+		fc.getExtensionFilters().setAll(
+				new ExtensionFilter("Text Files", "*" + SUFFIX));
+
+		File dataFile = fc.showOpenDialog(newStage);
+		if (dataFile != null) {
+			String dataPath = dataFile.getAbsolutePath();
+			String[] splitS = dataPath.split("[\\\\/]");
+			String firstSplit = splitS[splitS.length - 1];
+			String name = firstSplit.substring(0, firstSplit.length()
+					- SUFFIX.length());
+			loadPreset(name);
+		}
+	}
+	
+	private void loadPreset(String fileName) {
+		XMLDefinedParser xdp = new XMLDefinedParser();
+		List <Entity> l = xdp.getData(fileName);
+		
+		for (Entity e: l) {
+			myData.defineEntity(e);
+		}
 	}
 
 }
