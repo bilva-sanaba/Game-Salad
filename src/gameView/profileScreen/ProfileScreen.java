@@ -1,4 +1,4 @@
-package gameView.profileScreen;
+	package gameView.profileScreen;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -15,6 +15,7 @@ import gameView.commands.FacebookPostCommand;
 import gameView.commands.SignOutCommand;
 import gameView.tools.ImageButton;
 import gameView.tools.ResourceRetriever;
+import gameView.userInput.IUserInputData;
 import gameView.userManagement.IUserManager;
 
 public class ProfileScreen extends AbstractViewer {
@@ -26,8 +27,8 @@ public class ProfileScreen extends AbstractViewer {
 	private IUserManager myData;
 	private VBox myBox;
 	
-	public ProfileScreen(UIView view, Stage s, IUserManager data) {
-		super(view, s);
+	public ProfileScreen(UIView view, Stage s, IUserInputData input, IUserManager data) {
+		super(view, s, input);
 		myData = data;
 		myStage = s;
 		setStageReaction();

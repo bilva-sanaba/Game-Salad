@@ -10,9 +10,12 @@ import gameView.gameScreen.GameScreen;
 import com.sun.jmx.snmp.Timestamp;
 
 import gameView.splashScreen.SplashView;
+import gameView.userInput.IUserInputData;
+import gameView.userInput.UserInputData;
 import gameView.userManagement.IUserManager;
 import gameView.userManagement.UserManager;
 import gamedata.GameData;
+import gamedata.IRestrictedGameData;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.event.EventHandler;
@@ -34,19 +37,21 @@ public class UIView implements UIViewInterface {
 	private ControllerInterface myController;
 	private SplashView mySplash;
 	private GameScreen myGameScene;
-	private GameData myData; 
+	private IRestrictedGameData myData; 
 	private WorldAnimator myAnimation;
 	private IUserManager myUserManager;
+	private IUserInputData myUserInputData; 
 	
-	public UIView(Stage s, ControllerInterface controller) {
+	public UIView(Stage s, ControllerInterface controller, IUserInputData userInput) {
 		myStage = s;
 		setStageClose();
 		s.setTitle(STAGE_TITLE);
+		myUserInputData = userInput;
 		myUserManager = new UserManager();
 		myController = controller;
 		myAnimation = new WorldAnimator(this);
-		mySplash = new SplashView(this, s);
-		myGameScene = new GameScreen(this, s, myAnimation);
+		mySplash = new SplashView(this, s, myUserInputData);
+		myGameScene = new GameScreen(this, myStage, myUserInputData, myAnimation);
 		getSplashScreen();
 		//TODO UNCOMMENT TO USE
 		//getSplashScreen();
@@ -65,7 +70,7 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void loadGame(String file) {
-		//addEntities(myController.loadNewGame(file));
+		//myData = myController.loadNewGame(file);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
 		//myGameScene.addData(myController.loadNewGame(file));
@@ -110,7 +115,7 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void step(Set<KeyCode> keysPressed) {
-		myController.step(keysPressed, myData);
+		myController.step(keysPressed);
 	}
 	
 	public IUserManager getUserManager() {

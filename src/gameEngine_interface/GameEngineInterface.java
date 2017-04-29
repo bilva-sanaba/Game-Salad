@@ -31,6 +31,6 @@ public interface GameEngineInterface {
 	
 	public IRestrictedGameData loadData(Communicator c);
 
-	void handleUpdates(Collection<KeyCode> keysPressed, IRestrictedGameData gd);
+	void handleUpdates(Collection<KeyCode> keysPressed);
 
 }

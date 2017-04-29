@@ -19,6 +19,7 @@ import gameView.ICommandView;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
 import gameView.tools.ResourceRetriever;
+import gameView.userInput.IUserInputData;
 
 public class SplashView extends AbstractViewer {
 
@@ -31,8 +32,8 @@ public class SplashView extends AbstractViewer {
 	private Collection<AbstractCommand> myCommands;
 	
 	
-	public SplashView(UIView view, Stage s) {
-		super(view, s);
+	public SplashView(UIView view, Stage s, IUserInputData input) {
+		super(view, s, input);
 		myCommands = getCommands(myName);
 		myPane = new BorderPane();
 		myScene = new Scene(myPane, UIView.DEFAULT_SIZE.width,

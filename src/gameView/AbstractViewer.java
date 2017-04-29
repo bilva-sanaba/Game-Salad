@@ -5,6 +5,7 @@ import gameView.loginScreen.LoginScreen;
 import gameView.tools.ButtonFactory;
 import gameView.tools.CommandFactory;
 import gameView.tools.DisplayManager;
+import gameView.userInput.IUserInputData;
 import gameView.userManagement.IUserManager;
 import gameView.userManagement.UserData;
 
@@ -20,16 +21,26 @@ public abstract class AbstractViewer implements ICommandView {
 	private UIView myView;
 	private ButtonFactory myButtonFactory;
 	private Stage myStage;
+	private IUserInputData myUserInput;
 
 	
-	public AbstractViewer(UIView view, Stage s) {
+	public AbstractViewer(UIView view, Stage s, IUserInputData userInput) {
 		myStage = s;
 		myView = view;
+		myUserInput = userInput;
 		myButtonFactory = new ButtonFactory(UIView.DEFAULT_BUTTONS, getStage());
 	}
 	
 	public abstract Scene getScene();
 	
+	public IUserInputData getUserInput() {
+		return myUserInput;
+	}
+	
+	//FOR TESTING
+	public void setInput(IUserInputData data) {
+		myUserInput = data;
+	}
 	
 	protected UIView getView() {
 		return myView;
@@ -72,7 +83,7 @@ public abstract class AbstractViewer implements ICommandView {
 	
 	public void loginScreen() {
 		Stage s = new Stage();
-		getView().newStage(new LoginScreen(getView(), s), s);
+		getView().newStage(new LoginScreen(getView(), s, getUserInput()), s);
 	}
 	
 	public IUserManager getUserManager() {

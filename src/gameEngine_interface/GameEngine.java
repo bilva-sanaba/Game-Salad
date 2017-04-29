@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -71,6 +70,7 @@ import entity.GPEntityManager;
 import entity.IEntity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
+import gameView.userInput.IRestrictedUserInputData;
 import gamedata.GameData;
 import gamedata.GameDataFactory;
 import gamedata.IGameData;
@@ -107,7 +107,7 @@ public class GameEngine implements GameEngineInterface {
 	private String currentMusic = "Obi-Wan - Hello there..wav";
 	private Clip clip2;
 	private Camera cam;
-	public GameEngine(){
+	public GameEngine(IRestrictedUserInputData data){
 //		try{
 //	    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(currentMusic));
 //	    clip2 = AudioSystem.getClip();
@@ -139,7 +139,7 @@ public class GameEngine implements GameEngineInterface {
 	 * Runs each Engine in my Engine
 	 */
 	@Override
-	public void handleUpdates(Collection<KeyCode> keysPressed, IRestrictedGameData gd) {
+	public void handleUpdates(Collection<KeyCode> keysPressed) {
 		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
 		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
@@ -372,7 +372,7 @@ public class GameEngine implements GameEngineInterface {
 		e.add(createPortal2());
 		myEntityManager = new EntityManager(e);
 
-		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
+		myGameData= new GameData(0,1, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 		return myGameData;

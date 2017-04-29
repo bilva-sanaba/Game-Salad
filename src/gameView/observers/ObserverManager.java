@@ -66,8 +66,9 @@ public class ObserverManager {
          myEntities.get(e.getID()).getImageView().setTranslateY(e.getRestrictedLocation().getHeight()-175);
          
          //UNCOMMENT FOR NORMAL
-//         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
-//         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()*50-175);
+         
+//         myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
+//         myEntities.get(e.getID()).getImageView().setTranslateY(e.getRestrictedLocation().getHeight()*50-175);
 		}
  		
 	}

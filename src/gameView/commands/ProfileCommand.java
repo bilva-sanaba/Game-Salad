@@ -14,7 +14,7 @@ public class ProfileCommand extends AbstractCommand {
 	public boolean execute(Stage s) {
 		getView().pauseGame();
 		Stage newStage = new Stage();
-		ProfileScreen profile = new ProfileScreen(null, newStage, getView().getUserManager());
+		ProfileScreen profile = new ProfileScreen(null, newStage, getView().getUserInput(), getView().getUserManager());
 		newStage.setScene(profile.getScene());
 		newStage.showAndWait();
 		getView().runGame();

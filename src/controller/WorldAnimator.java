@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import com.sun.org.apache.regexp.internal.recompile;
 
 import achievements.Achievement;
@@ -42,6 +43,7 @@ import gameView.observers.ImageConfig;
 import gameView.observers.ObserverManager;
 import gameView.tools.Coordinate;
 import gamedata.GameData;
+import gamedata.IRestrictedGameData;
 
 /**
  *
@@ -65,7 +67,7 @@ public class WorldAnimator{
     private Group root;
     private SequentialTransition st;
 
-    private GameData myData;
+    private IRestrictedGameData myData;
 
 
     private Camera myCamera;
@@ -85,7 +87,7 @@ public class WorldAnimator{
     public Group getGroup(){
     	return root;
     }
-    public void start (GameData myData, IGameScreenEntity screen){
+    public void start (IRestrictedGameData myData, IGameScreenEntity screen){
     	this.myData=myData;
         root = new Group();
         
@@ -126,7 +128,7 @@ public class WorldAnimator{
     }
     private void step(double elapsedTime){
     	//myView.step(keysPressed);
-    	myEngine.handleUpdates(keysPressed,myData);
+    	myEngine.handleUpdates(keysPressed);
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
        

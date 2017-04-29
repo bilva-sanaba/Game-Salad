@@ -3,16 +3,17 @@ package gamedata;
 import components.entityComponents.LocationComponent;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.StringProperty;
 
 public interface IRestrictedGameData {
-	public double getPoints();
+	public ReadOnlyDoubleProperty getPoints();
 	
-	public double getLives();
+	public ReadOnlyDoubleProperty getLives();
 
 	public IRestrictedEntityManager getRestrictedEntityManager();
 
-	public double getLevel();
+	public ReadOnlyDoubleProperty getLevel();
 
 	public LocationComponent getMainLocation();
 

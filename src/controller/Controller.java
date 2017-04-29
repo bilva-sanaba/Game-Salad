@@ -7,6 +7,9 @@ import java.util.Set;
 import data_interfaces.*;
 import gameView.UIView;
 import gameView.UIViewInterface;
+import gameView.userInput.IRestrictedUserInputData;
+import gameView.userInput.IUserInputData;
+import gameView.userInput.UserInputData;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 import javafx.scene.image.ImageView;
@@ -39,8 +42,9 @@ public class Controller implements ControllerInterface {
 	public Controller(Stage s) {
 		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
-		myGameEngine = new GameEngine();
-		myGameView = new UIView(s, this);
+		UserInputData userInput = new UserInputData();
+		myGameEngine = new GameEngine((IRestrictedUserInputData) userInput);
+		myGameView = new UIView(s, this, (IUserInputData) userInput);
 	}
 
 	public void save(String fileName) {
@@ -83,7 +87,7 @@ public class Controller implements ControllerInterface {
 		return myGameEngine;
 	}
 	
-	public void step(Set<KeyCode> keysPressed,IRestrictedGameData gd ){
-        myGameEngine.handleUpdates(keysPressed,gd);
+	public void step(Set<KeyCode> keysPressed){
+        myGameEngine.handleUpdates(keysPressed);
     }
 }

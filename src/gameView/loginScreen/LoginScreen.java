@@ -2,6 +2,7 @@ package gameView.loginScreen;
 
 
 import java.util.Arrays;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -23,6 +24,7 @@ import gameView.commands.SignInCommand;
 import gameView.tools.ImageButton;
 import gameView.tools.ImageViewContainer;
 import gameView.tools.ResourceRetriever;
+import gameView.userInput.IUserInputData;
 
 public class LoginScreen extends AbstractViewer {
 	
@@ -33,8 +35,8 @@ public class LoginScreen extends AbstractViewer {
 	private VBox myRight;
 	private Scene myScene;
 	
-	public LoginScreen(UIView view, Stage s) { 
-		super(view, s);
+	public LoginScreen(UIView view, Stage s, IUserInputData input) { 
+		super(view, s, input);
 		myLeft = new VBox(10);
 		myRight = new VBox(10); 
 		makeScene();
