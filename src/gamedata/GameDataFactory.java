@@ -21,9 +21,10 @@ public class GameDataFactory {
 		double lives = currentData.getLives();
 		double lvl = currentData.getLevel();
 		LocationComponent lc = currentData.getMainLocation();
+		String ac = currentData.getAchievement().toString();
 		String music = currentData.getMusic().toString();
-
-		return new GameData(points,lives,(IRestrictedEntityManager) new EntityManager(), lvl, lc,music);
+		
+		return new GameData(points,lives,(IRestrictedEntityManager) new EntityManager(), lvl, lc, ac, music);
 	}
 	public void updateGameData(IGameData gameData, IRestrictedGameData updatedData){
 		gameData.setPoints(updatedData.getPoints());

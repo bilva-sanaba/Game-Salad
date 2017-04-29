@@ -4,6 +4,7 @@ import java.util.*;
 import data_interfaces.*;
 
 import entity.Entity;
+import entity.IEntity;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
@@ -20,12 +21,16 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	public void event() {
 		XMLWriter xw = new XMLWriter();
 		String fileName;
-		List <Entity> l = new ArrayList<Entity>();
-		l.add(myData.getSplashEntity());
+		List <Map> l = new ArrayList<Map>();
+		
+		//how do i get this list???? BLOOOMFELD!!!!!
+		for (Integer i: myData.getPlacedEntityMap().keySet()) {
+			l.add(myData.getPlacedEntityMap().get(i));
+		}
 		l.add(myData.getLevelEntity());
-		updateList(l, myData.getDefinedEntityMap());
-		updateList(l, myData.getPlacedEntityMap());
-		//updateList(l, myData.getConfigurationEntityMap());
+		
+		
+		
 		TextInputDialog tid = new TextInputDialog(myData.getGameName());
 		tid.setTitle("Saving File");
 		tid.setHeaderText("Please choose a name for your game: ");
@@ -37,12 +42,6 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			xw.writeFile(fileName, l);
 		} catch (NoSuchElementException e) {
 			return;
-		}
-	}
-	
-	private void updateList (List <Entity> l, Map <Integer,Entity> m) {
-		for (Integer key : m.keySet()) {
-			l.add(m.get(key));
 		}
 	}
 }
