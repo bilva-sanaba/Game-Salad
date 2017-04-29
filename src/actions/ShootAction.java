@@ -28,8 +28,8 @@ public class ShootAction  extends AbstractAction implements IAction {
 			lcnpc.setX(lcplayer.getX()+60);
 			lcnpc.setY(lcplayer.getY());
 			occ.setEntity(newE.newCopy());
-			Collection<Entity> list = new ArrayList<Entity>();
-			list.add((Entity) newE);
+			Collection<IEntity> list = new ArrayList<IEntity>();
+			list.add( newE);
 			EntityManager em = new EntityManager(list);
 			myEM.getEntities().add(newE);
 			myEM.changed(newE);

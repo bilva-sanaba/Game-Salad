@@ -30,7 +30,7 @@ public class MonsterMovementStepsComponent implements IComponent {
 	@Override
 	public IComponent newCopy() {
 		// TODO Auto-generated method stub
-		return null;
+		return new MonsterMovementStepsComponent(steps);
 	}
 
 }

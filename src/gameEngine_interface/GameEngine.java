@@ -52,6 +52,7 @@ import components.keyExpressions.JumpAction;
 import components.keyExpressions.LeftAction;
 import components.keyExpressions.RightAction;
 import controller.Camera;
+import controller.WorldAnimator;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.input.KeyCode;
@@ -106,7 +107,13 @@ public class GameEngine implements GameEngineInterface {
 	private String currentMusic = "Obi-Wan - Hello there..wav";
 	private Clip clip2;
 	private Camera cam;
+	private int numUpdates;
+	private List<IEntityManager> previousEntityManagers;
+	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
+	
 	public GameEngine(){
+		
+		previousEntityManagers = new ArrayList<IEntityManager>();
 //		try{
 //	    AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(currentMusic));
 //	    clip2 = AudioSystem.getClip();
@@ -120,7 +127,11 @@ public class GameEngine implements GameEngineInterface {
 	}
 	
 	public IRestrictedGameData loadData(Communicator c){
-		myEntityManager = new EntityManager(c.getData());
+		Collection<IEntity> castedEnts = new ArrayList<IEntity>();
+		for (Entity e : c.getData()) {
+			castedEnts.add(e);
+		}
+		myEntityManager = new EntityManager(castedEnts);
 		GPEM = new GPEntityManager(c.getData());
 		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
@@ -129,7 +140,7 @@ public class GameEngine implements GameEngineInterface {
 		return dg;
 	}
 	public Collection<IEntity> save(){
-		return myEntityManager.copy();
+		return myEntityManager.copy().getEntities();
 	}
 	public SplashEntity getSplashEntity(){
 		return GPEM.getSplash();
@@ -139,6 +150,7 @@ public class GameEngine implements GameEngineInterface {
 	 */
 	@Override
 	public void handleUpdates(Collection<KeyCode> keysPressed, IRestrictedGameData gd) {
+		saveNewEntityManager();
 		Collection <IEntity> changedEntity = new ArrayList<IEntity>();
 		Map <Integer, IEntity> changedEntityMap = new HashMap<Integer,IEntity>();
 		for (AbstractEngine s : myEngines){
@@ -165,6 +177,20 @@ public class GameEngine implements GameEngineInterface {
 		}
 		
 	}
+	
+	private void saveNewEntityManager() {
+		numUpdates++;
+		if (numUpdates % SAVE_FREQUENCY == 0) {
+			previousEntityManagers.add((myEntityManager.copy()));
+			
+		}
+		while (previousEntityManagers.size()>10) {
+			previousEntityManagers.remove(0);
+		}
+	}
+	
+	
+	
 	//TODO: Dumb flappybird
 	//	public GameData dummyLoad(){
 	//		Collection<Entity> e = new ArrayList<Entity>();
@@ -369,7 +395,11 @@ public class GameEngine implements GameEngineInterface {
 		Entity portal2 = createPortal();
 		e.add(portal2);
 		e.add(createPortal2());
-		myEntityManager = new EntityManager(e);
+		Collection<IEntity> e1 = new ArrayList<IEntity>();
+		for (Entity exp : e) {
+			e1.add(exp);
+		}
+		myEntityManager = new EntityManager(e1);
 
 		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location),"" );
 
