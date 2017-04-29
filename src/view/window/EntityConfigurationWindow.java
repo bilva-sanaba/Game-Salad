@@ -28,7 +28,7 @@ import view.editor.ComponentEditor;
  * @author Jonathan
  * @author Jack
  */
-public class EntityConfigurationWindow extends Window {
+public class EntityConfigurationWindow implements Window {
 	private UtilityFactory myUtilF;
 	private ViewData myData;
 	private String[] componentList;

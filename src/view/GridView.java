@@ -10,27 +10,16 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
-import javafx.event.EventType;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import view.commands.RightClickMenu;
-import view.window.EntityConfigurationWindow;
 
 /**
  * @author Jonathan Rub
@@ -51,7 +40,6 @@ public class GridView extends GUIComponent {
 	double orgTranslateX, orgTranslateY;
 	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
 	private BorderPane myBorderPane;
-	private TabPane myLevelTabs;
 	
 	// TODO: change placedentitymap to a map from levelnumber to placedentitymap
 	// Refactor gridview and make it nonshitty
@@ -97,13 +85,13 @@ public class GridView extends GUIComponent {
 	private void addHo() {
 		myGrid.setPrefWidth(myGrid.getWidth() + 20);
 		myCol++;
-		myData.getLevelEntity().addCol();
+		myData.getLevelEntity().get(myLevelNumber).addCol();
 	}
 
 	private void addVert() {
 		myGrid.setPrefHeight(myGrid.getHeight() + 20);
 		myRow++;
-		myData.getLevelEntity().addRow();
+		myData.getLevelEntity().get(myLevelNumber).addRow();
 	}
 
 	private void placeImageAtLoc(double row, double col) {
@@ -202,8 +190,8 @@ public class GridView extends GUIComponent {
 	}
 
 	public void setUpLevel() {
-		int totalRow = myData.getLevelEntity().getRows();
-		int totalCol = myData.getLevelEntity().getCols();
+		int totalRow = myData.getLevelEntity().get(myLevelNumber).getRows();
+		int totalCol = myData.getLevelEntity().get(myLevelNumber).getCols();
 		while (myCol != totalCol) {
 			addHo();
 		}
@@ -213,7 +201,7 @@ public class GridView extends GUIComponent {
 	}
 
 	public void updateBackground() {
-		String filePath = myData.getLevelEntity().getBackgroundFilePath();
+		String filePath = myData.getLevelEntity().get(myLevelNumber).getBackgroundFilePath();
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
 

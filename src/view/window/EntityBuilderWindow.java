@@ -24,7 +24,7 @@ import view.ImageChooser;
 import view.UtilityFactory;
 import view.ViewData;
 
-public class EntityBuilderWindow extends Window{
+public class EntityBuilderWindow implements Window {
 
 	private final Image defaultImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
 	private ImageView myImage;
@@ -76,7 +76,7 @@ public class EntityBuilderWindow extends Window{
 		root.getChildren().add(imageButton);
 	}
 	
-	private void addRadioButtons(Pane root){
+	private void addRadioButtons(Pane root) {
 		Node entityType = new Label("Kind of Entity:");
 		root.getChildren().add(entityType);
 
@@ -91,7 +91,7 @@ public class EntityBuilderWindow extends Window{
 		});
 	}
 	
-	private void addOkayButton(Pane root){
+	private void addOkayButton(Pane root) {
 		Node okayButton = util.buildButton("OkayLabel", e -> {
 			Entity tempEntity = new Entity(i);
 			i++;

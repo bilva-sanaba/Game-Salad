@@ -19,7 +19,7 @@ import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
 
-public class SplashScreenBuilderWindow extends Window{	
+public class SplashScreenBuilderWindow implements Window{	
 	private UtilityFactory utilF;
 	private Text myFilePathDisplay;
 	private String splashScreenImagePath;
