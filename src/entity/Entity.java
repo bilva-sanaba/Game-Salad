@@ -103,7 +103,6 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 				return myComponent;
 			}
 		}
-		
 		return null;
 	}
 	

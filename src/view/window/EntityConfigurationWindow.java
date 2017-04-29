@@ -78,7 +78,9 @@ public class EntityConfigurationWindow extends Window {
 				makeComponent(newVal.toString());
 			}
 		});
-		root.getChildren().add(myUtilF.buildButton("MakeEntity", e -> enterButton()));
+		root.getChildren().add(myUtilF.buildHBox(
+				myUtilF.buildButton("AddActions", e -> addActions()),
+				myUtilF.buildButton("BackToEntity", e -> enterButton())));
 	}
 	
 	private void makeComponent(String comp) {
@@ -93,24 +95,16 @@ public class EntityConfigurationWindow extends Window {
 	}
 
 	private void enterButton() {
-		new EntityActionWindow(myUtilF, myData, myEntity);
-		System.out.println(myCompEdits);
 		for (ComponentEditor comp : myCompEdits.values()) {
-				myEntity.addComponent(comp.getComponent());
-		}
-		Iterator<IComponent> intr = myEntity.getComponents().iterator();
-		while(intr.hasNext()){
-			IComponent iComp = intr.next();
-			System.out.println(iComp.getComponentType().toString().hashCode() + " line 104 " + this.getClass() + "  " + iComp.getComponentType().toString());
-			try{
-			System.out.println(iComp.hashCode() + " line 105 " + this.getClass());
-			}catch(Exception e){
-				
-			}
+			myEntity.addComponent(comp.getComponent());
 		}
 		myData.defineEntity(myEntity);
 		myData.setUserSelectedEntity(myEntity);
 		myStage.close();
+	}
+	
+	private void addActions(){
+		new EntityActionWindow(myUtilF, myData, myEntity);
 	}
 
 	@Override

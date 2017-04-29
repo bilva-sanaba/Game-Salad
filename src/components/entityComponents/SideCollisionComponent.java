@@ -11,7 +11,7 @@ import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import gamedata.IRestrictedGameData;
 
-public class SideCollisionComponent extends AComponent implements IComponent {
+public class SideCollisionComponent implements IComponent {
 	private CollisionComponentType sideCollision;
 	private Map<String, ArrayList<IAction>> typeActionMap;
 	private Map<String, ArrayList<IAction>> labelActionMap;
@@ -88,7 +88,7 @@ public class SideCollisionComponent extends AComponent implements IComponent {
 	}
 	
 	public int hashCode(){
-		return getComponentType().toString().hashCode() + sideCollision.toString().hashCode();
+		return (getComponentType().toString() + sideCollision.toString()).hashCode();
 	}
 	
 }

@@ -7,18 +7,23 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
+import actions.IAction;
 import entity.Entity;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -187,6 +192,36 @@ public class UtilityFactory {
 		mySlider.valueProperty().addListener(listener);
 		return myBox;
 	}
+	
+	public TextField buildTextField(String label){
+		String[] textAreaProp = myResources.getString(label+"Area").split(SPLIT_REGEX);
+		TextField tA = new TextField(textAreaProp[0]);
+		tA.setPromptText(textAreaProp[0]);
+		return tA;
+	}
+	
+	public VBox buildVBox(Node...nodes){
+		VBox vb = new VBox();
+		vb.getChildren().addAll(nodes);
+		return vb;
+	}
+	
+	public HBox buildHBox(Node...nodes){
+		HBox hb = new HBox();
+		hb.getChildren().addAll(nodes);
+		return hb;
+	}
+	
+	public<T> ListView<T> buildListView(List<T> list){
+		ObservableList<T> obslist = FXCollections.observableArrayList(list);
+		return new ListView<T>(obslist);
+	}
+	
+	public<T> ListView<T> buildListView(T[] list){
+		ObservableList<T> obslist = FXCollections.observableArrayList(list);
+		return new ListView<T>(obslist);
+	}
+	
 	
 	public void setPresets(ObservableList<Entity> list){
 		

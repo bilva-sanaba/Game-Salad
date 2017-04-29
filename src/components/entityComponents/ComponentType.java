@@ -41,6 +41,7 @@ public enum ComponentType {
 	InfinitePowerUpRandomness(),
 	InfiniteSpacing(),
 	InfiniteBlockPattern(),
-	InfiniteBlockAction()
+	InfiniteBlockAction(),
+	Null()
 	;
 }
