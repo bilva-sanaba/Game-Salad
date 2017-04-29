@@ -1,4 +1,4 @@
-package gameView_interfaces;
+package gameView;
 
 import java.util.Set;
 

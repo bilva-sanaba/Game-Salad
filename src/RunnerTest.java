@@ -1,7 +1,7 @@
 
 
 
-import gameView_interfaces.UIViewInterface;
+import gameView.UIViewInterface;
 import controller.WorldAnimator;
 import gameEngine_interface.GameEngine;
 import javafx.stage.Stage;

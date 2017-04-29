@@ -12,7 +12,6 @@ import com.sun.jmx.snmp.Timestamp;
 import gameView.splashScreen.SplashView;
 import gameView.userManagement.IUserManager;
 import gameView.userManagement.UserManager;
-import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;

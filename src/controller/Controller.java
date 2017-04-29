@@ -6,7 +6,7 @@ import java.util.Set;
 
 import data_interfaces.*;
 import gameView.UIView;
-import gameView_interfaces.UIViewInterface;
+import gameView.UIViewInterface;
 import gamedata.GameData;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;

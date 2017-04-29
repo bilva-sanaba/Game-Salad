@@ -1,6 +1,6 @@
 package gameEngine_interface;
 
-import gameView_interfaces.UIViewInterface;
+import gameView.UIViewInterface;
 import controller.WorldAnimator;
 import javafx.stage.Stage;
 

@@ -34,10 +34,10 @@ import javafx.util.Duration;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
+import gameView.UIViewInterface;
 import gameView.gameScreen.IGameScreenEntity;
 import gameView.observers.ObserverManager;
 import gameView.tools.Coordinate;
-import gameView_interfaces.UIViewInterface;
 import gamedata.GameData;
 
 /**
