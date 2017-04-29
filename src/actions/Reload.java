@@ -8,9 +8,9 @@ import gamedata.IRestrictedGameData;
 
 public class Reload  extends AbstractAction  implements IAction {
 	@Override
-	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
-			ObjectCreationComponent occ = (ObjectCreationComponent) player.getComponent(ComponentType.ObjectCreation);
+			ObjectCreationComponent occ = (ObjectCreationComponent) other.getComponent(ComponentType.ObjectCreation);
 			if (occ!=null){
 				occ.setCreating(true);
 			}

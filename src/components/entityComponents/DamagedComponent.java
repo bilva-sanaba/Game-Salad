@@ -5,7 +5,7 @@ import components.IComponent;
 public class DamagedComponent implements IComponent{
 
 	private boolean damaged = false;
-	
+
 	
 	
 	@Override
@@ -15,8 +15,12 @@ public class DamagedComponent implements IComponent{
 
 	@Override
 	public IComponent newCopy() {
-		// TODO Auto-generated method stub
-		return null;
+		DamagedComponent myDamagedComponent = new DamagedComponent();
+		if(damaged == true){
+			myDamagedComponent.setDamaged();
+		}
+		return new DamagedComponent();
+
 	}
 	
 	public void setDamaged(){

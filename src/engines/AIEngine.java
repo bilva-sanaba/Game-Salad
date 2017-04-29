@@ -31,7 +31,6 @@ public class AIEngine extends AbstractEngine{
 				VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 				sc.takeStep();
 				if(sc.getStepLeft() <= 0){
-
 					vc.setX(-vc.getX()); //TODO: USE MONSTER MOVEMENT PATTERN TO MAKE THIS BETTER
 					sc.setStep(sc.getTotalStep());
 				}

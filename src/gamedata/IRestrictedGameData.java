@@ -6,15 +6,15 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 
 public interface IRestrictedGameData {
-	public DoubleProperty getPoints();
+	public double getPoints();
 	
-	public DoubleProperty getLives();
+	public double getLives();
 
 	public IRestrictedEntityManager getRestrictedEntityManager();
 
-	public DoubleProperty getLevel();
+	public double getLevel();
 
 	public LocationComponent getMainLocation();
 
-	public StringProperty getMusic();
+	public String getMusic();
 }

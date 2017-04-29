@@ -25,15 +25,16 @@ public class Camera extends Entity {
 	private int myLevelLength;
 	private Scene myFrame;
 	private Parent root;
-	private Entity myMainCharacter;
+	private LocationComponent myLC;
 	
 	
-	public Camera (int length, Scene myScene, Entity mainCharacter, int id) {
+	public Camera (int length, Scene myScene, LocationComponent lc , int id) {
 		super(id);
 		myLevelLength = length;
 		myFrame = myScene;
 		root = myFrame.getRoot();
-		myMainCharacter = mainCharacter;
+		myLC = lc;
+
 		if (getComponent(ComponentType.Type) == null) {
 			addComponent(new TypeComponent(EntityType.Camera));
 		}
@@ -41,10 +42,9 @@ public class Camera extends Entity {
 	}
 
 	public void updateCamera() {
+
 		
-		LocationComponent followerLoc = (LocationComponent) myMainCharacter.getComponent(ComponentType.Location);
-		
-		root.setTranslateX(-followerLoc.getX() + myFrame.getWidth() / 2);
+		root.setTranslateX(-myLC.getX() + myFrame.getWidth() / 2);
 		
 		/*if(playerLocRelativeToCam <= LEFT_BOUND_FROM_EDGE && followerLoc.getX()>0){
 			root.setTranslateX(root.getTranslateX() - followerVel.getX() + 4);
@@ -56,7 +56,6 @@ public class Camera extends Entity {
 		}*/
 
 	}
-	
 	
 	public boolean withinCameraBounds(IEntity e) {
 		LocationComponent loc = (LocationComponent) e.getComponent(ComponentType.Location);

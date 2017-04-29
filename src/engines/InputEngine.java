@@ -30,6 +30,8 @@ import entity.IEntity;
 import entity.IEntityManager;
 import entity.presets.AbstractBlock;
 import entity.restricted.IRestrictedEntity;
+import entity.restricted.IRestrictedEntityManager;
+import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
@@ -53,17 +55,19 @@ public class InputEngine extends AbstractEngine{
 	@Override
 	public IRestrictedGameData update(Collection<KeyCode> keys, IRestrictedGameData gameData) {
 		newEntities.clear();
+		IRestrictedGameData rgd = new GameDataFactory().blankEntityData(gameData);
 		for (IEntity e : getEManager().getEntities()){
-			handleInput(e,keys, gameData);
+			rgd = handleInput(e,keys, rgd);
 		}
 		for (IRestrictedEntity e : newEntities){
 			IEntity myE = e.clone();
 			getEManager().getEntities().add(myE);
 			getEManager().changed(myE);
 		}
-		return gameData;
+		return rgd;
 	}
-	private void handleInput(IEntity e, Collection<KeyCode> keys, IRestrictedGameData gameData){
+	private IRestrictedGameData handleInput(IEntity e, Collection<KeyCode> keys, IRestrictedGameData gameData){
+		IRestrictedGameData rgd = gameData;
 		if (e.getComponent(ComponentType.KeyInput)!=null){
 			
 			KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
@@ -92,7 +96,8 @@ public class InputEngine extends AbstractEngine{
 					ac.setX(0);
 					vc.setX(0);
 				}
-				return;
+				
+				return gameData;
 			}
 			
 		ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
@@ -100,7 +105,8 @@ public class InputEngine extends AbstractEngine{
 		for (KeyCode key : keys){
 			if (ic.getActionMap().containsKey(key)){
 				for (IAction action : ic.getActionMap().get(key)){
-					newEntities.addAll(action.executeAction(e, null, getEManager(), gameData).getRestrictedEntityManager().getRestrictedEntities());
+					rgd = action.executeAction(e, null, getEManager(), rgd);
+					newEntities.addAll(rgd.getRestrictedEntityManager().getRestrictedEntities());
 					((IRestrictedEntity) e).changed(e);
 				}
 				}
@@ -117,6 +123,7 @@ public class InputEngine extends AbstractEngine{
 			}
 			}
 //		}
-		}	
+		}
+		return rgd;	
 	}
 }

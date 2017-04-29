@@ -13,8 +13,11 @@ public class GoalComponent implements IComponent {
 
 	@Override
 	public IComponent newCopy() {
-		// TODO Auto-generated method stub
-		return null;
+		GoalComponent myGoalComponent = new GoalComponent();
+		if(goalSatisfied == true){
+			myGoalComponent.satisfyGoal();
+		}
+		return myGoalComponent;
 	}
 	
 	public void satisfyGoal(){

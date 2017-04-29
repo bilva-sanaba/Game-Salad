@@ -33,5 +33,6 @@ public enum ComponentType {
 	Damaged(),
 	FrontCamera(),
 	BackCamera(), 
+	Checkpoint(),
 	TerminalVelComponent();
 }

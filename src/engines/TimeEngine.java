@@ -29,6 +29,7 @@ public class TimeEngine extends AbstractEngine {
 	@Override
 
 	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
+		IRestrictedGameData rgd = gameData;
 		for (IEntity e : getEManager().getEntities()){
 			TimeComponent tc = (TimeComponent) e.getComponent(ComponentType.Time);
 			if (tc!=null){
@@ -40,7 +41,7 @@ public class TimeEngine extends AbstractEngine {
 						lastTime.put(action,(int) System.currentTimeMillis());
 					}
 					if ((int) System.currentTimeMillis()-lastTime.get(action)> constantTime.get(action) ){
-						action.executeAction(e, null, getEManager(), gameData);
+						rgd = action.executeAction(e, null, getEManager(), rgd);
 						lastTime.put(action, (int) System.currentTimeMillis());
 					}
 				}
@@ -49,13 +50,13 @@ public class TimeEngine extends AbstractEngine {
 						lastTime.put(action,(int) System.currentTimeMillis());
 					}
 					if ((int) System.currentTimeMillis()-lastTime.get(action)> singleTime.get(action) ){
-						action.executeAction(e, null, getEManager(), gameData);
+						rgd = action.executeAction(e, null, getEManager(), rgd);
 						singleTime.remove(action);
 					}
 				}
 			}
 		}
-		return gameData;
+		return rgd;
 	}
 
 }

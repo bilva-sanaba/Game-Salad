@@ -31,7 +31,7 @@ public interface IEntityManager {
 			ComponentType certainComponent);
 
 	
-	public Collection<IEntity> copy();
+	public IEntityManager copy();
 	public Collection<IEntity> getEntities();
 
 
