@@ -34,7 +34,6 @@ public class EntityBuilderWindow extends Window{
 	private UtilityFactory util;
 	private ViewData myData;
 	private Stage myStage = new Stage();
-	private int i = 0;
 	private String[] entityList = {"Error"};
 
 	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn) {
@@ -91,8 +90,7 @@ public class EntityBuilderWindow extends Window{
 	
 	private void addOkayButton(Pane root){
 		Node okayButton = util.buildButton("OkayLabel", e -> {
-			Entity tempEntity = new Entity(i);
-			i++;
+			Entity tempEntity = new Entity(myData.getEntityID());
 			System.out.println(myImageName + " line 98 " + this.getClass());
 			tempEntity.addComponent(new SpriteComponent(myImageName));
 			myStage.close();
