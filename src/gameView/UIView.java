@@ -66,9 +66,13 @@ public class UIView implements UIViewInterface {
 	}
 	
 	@Override
-	public void runGame() {
+	public void runSpecificSplash() {
 		setStage(mySpecificSplash.getScene());//myGameScene
 		
+	}
+	
+	public void runGame(){
+		setStage(myGameScene.getScene());
 	}
 	
 	public void loadGame(String file) {
@@ -76,14 +80,14 @@ public class UIView implements UIViewInterface {
 			savePoints();
 		}
 		myCurrentGame = file;
-		//myData = myController.loadNewGame(file); //FOR SPLASH
+		myData = myController.loadNewGame(file); //FOR SPLASH
 		mySpecificSplash = myController.loadSpecificSplash(file);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
-		//myGameScene.addData(myData); //FOR SPLASH
+		myGameScene.addData(myData); //FOR SPLASH
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
-		runGame();
+		runSpecificSplash();
 		
 		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
 		//setStage(new SpecificGameSplashView(this, getStage(), myUserInputData, myController.getEngine().getSplashEntity()).getScene());

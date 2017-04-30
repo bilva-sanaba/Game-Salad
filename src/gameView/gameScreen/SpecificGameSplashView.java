@@ -13,6 +13,7 @@ import gameView.userInput.IUserInputData;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -59,10 +60,13 @@ public class SpecificGameSplashView extends AbstractViewer {
 		hbox.setAlignment(Pos.CENTER);
 		BorderPane.setMargin(hbox, new Insets(10, 10, 30, 10));
 		myBP.setTop(lab);
-		myCommands.stream()
+		/*myCommands.stream()
 			.forEach(c -> {
 				hbox.getChildren().add(makeButton(c));
-		});
+		});*/
+		Button b = new Button("Play");
+		b.setOnAction(e->buttonClicked());
+		hbox.getChildren().add(b);
 		myBP.setBottom(hbox);
 		addInstructions();
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height); 
@@ -70,6 +74,11 @@ public class SpecificGameSplashView extends AbstractViewer {
 		
 	}
 	
+	private void buttonClicked() {
+		// TODO Auto-generated method stub
+		myView.runGame();
+	}
+
 	private void addInstructions() {
 		Label lab = makeLabel(getInstructions(), "instructions");
 		lab.setStyle("-fx-wrap-text: true");

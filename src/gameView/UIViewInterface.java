@@ -66,6 +66,8 @@ public interface UIViewInterface {
 	
 	public void step(Set<KeyCode> keysPressed);
 
+	void runSpecificSplash();
+
 	
 
 }
