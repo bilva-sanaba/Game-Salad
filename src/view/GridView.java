@@ -13,6 +13,7 @@ import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.event.EventType;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -20,6 +21,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
@@ -45,6 +47,7 @@ public class GridView extends GUIComponent {
 	private ViewData myData;
 	private UtilityFactory util;
 	private int j = 1000;
+	private Label mouseCords;
 	private int myRow;
 	private int myCol;
 	private int myLevelNumber;
@@ -64,18 +67,28 @@ public class GridView extends GUIComponent {
 		myData = data;
 		rightClick = new RightClickMenu(util, myData, 0, 0);
 		myGrid = new Pane();
-		myGrid.setPrefSize(500, 500);
+		myGrid.setPrefSize(720, 500);
 		myGrid.setOnMousePressed(e -> mousePress(e));
+		myGrid.setOnMouseMoved(e -> mouseMove(e));
 		myGrid.getStyleClass().add("view-grid");
 		myBorderPane = new BorderPane();
 		Button butt = util.buildButton("addHo", e -> addHo());
 		util.buildButton("addHo", e -> addHo());
 		Button butt2 = util.buildButton("addVert", e -> addVert());
 		util.buildButton("addVert", e -> addVert());
-		HBox box = new HBox(butt, butt2);
+		mouseCords = buildMouseCords();
+		HBox box = new HBox(butt, butt2, mouseCords);
+		box.setPadding(new Insets(10));
+		box.setSpacing(10);
 		myBorderPane.setTop(box);
 		myScroll = new ScrollPane(myGrid);
 		myBorderPane.setCenter(myScroll);
+	}
+	
+	private Label buildMouseCords(){
+		Label mouseCords = new Label();
+		mouseCords.setText("X:0  Y:0");
+		return mouseCords;
 	}
 
 	private void mousePress(MouseEvent e) {
@@ -89,19 +102,23 @@ public class GridView extends GUIComponent {
 			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
+	
+	private void mouseMove(MouseEvent e){
+		mouseCords.setText("X:" + e.getX() + "  Y:" + e.getY());
+	}
 
 	/*	public void setLevelNumber(int levelNumber) {
 		myLevelNumber = levelNumber;
 	}*/
 
 	private void addHo() {
-		myGrid.setPrefWidth(myGrid.getWidth() + 20);
+		myGrid.setPrefWidth(myGrid.getWidth() + 60);
 		myCol++;
 		myData.getLevelEntity().addCol();
 	}
 
 	private void addVert() {
-		myGrid.setPrefHeight(myGrid.getHeight() + 20);
+		myGrid.setPrefHeight(myGrid.getHeight() + 60);
 		myRow++;
 		myData.getLevelEntity().addRow();
 	}
@@ -241,7 +258,7 @@ public class GridView extends GUIComponent {
 	}
 
 	public Node getContent() {
-		return myScroll;
+		return myBorderPane;
 	}
 
 	public void selectEntity(Entity entity) {
