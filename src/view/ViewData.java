@@ -144,9 +144,9 @@ public class ViewData extends Observable {
 	}
 
 	// fix dependencies
-	public void unplaceEntity(int levelNumber, Entity entity) {
-		placedEntityMaps.get(levelNumber).remove(entity);
-		userGridSelectedEntity = entity;
+	public void unplaceEntity(int level, Entity entity) {
+		placedEntityMaps.get(level).remove(entity);
+		System.out.println("shouldve cut" + entity + "from level" + currentLevel);
 		setChanged();
 		notifyObservers();
 	}
@@ -156,12 +156,12 @@ public class ViewData extends Observable {
 	}
 	
 	// fix dependencies
-	public Entity pasteEntity(int levelNumber, double x, double y) {
+	public Entity pasteEntity(int level, double x, double y) {
 		Entity tempEntity = copiedEntity.clone();
 		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
 		tempLocation.setXY(x, y);
-		placeEntity(levelNumber, tempEntity);
-		userGridSelectedEntity = tempEntity;
+		placeEntity(level, tempEntity);
+		//userGridSelectedEntity = tempEntity;
 		return tempEntity;
 	}
 	

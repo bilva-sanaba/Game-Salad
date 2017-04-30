@@ -46,7 +46,7 @@ public class GridView extends GUIComponent {
 	private Pane myGrid;
 	private ViewData myData;
 	private UtilityFactory util;
-	private int j = 1000;
+	private int j = 10000;
 	private Label mouseCords;
 	private int myRow;
 	private int myCol;
@@ -85,9 +85,8 @@ public class GridView extends GUIComponent {
 		myBorderPane.setCenter(myScroll);
 	}
 	
-	public void setEntityIDcount(int in){
-		j = 1000 + in;
-		System.out.println(j + "is the number of entities");
+	public void setEntityIDcount(){
+		j += 10000;
 	}
 	
 	private Label buildMouseCords(){

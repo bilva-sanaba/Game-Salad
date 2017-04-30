@@ -8,6 +8,7 @@ public class CutCommand implements RightClickEvent{
 
 private ViewData myData;
 private Entity myEntity;
+private int savedLevel;
 	
 	public CutCommand(ViewData data, double x, double y){
 		myData = data;
@@ -16,14 +17,15 @@ private Entity myEntity;
 	@Override
 	public void execute() {
 		myEntity = myData.getUserGridSelectedEntity();
-		myData.unplaceEntity(myEntity);
+		savedLevel = myData.getCurrentLevel();
+		myData.unplaceEntity(savedLevel, myEntity);
 		myData.setUserSelectedEntity(null);
 		myData.addEvent(this);
 	}
 
 	@Override
 	public void undo() {
-		myData.placeEntity(myEntity);
+		myData.placeEntity(savedLevel, myEntity);
 	}
 
 }
