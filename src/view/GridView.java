@@ -3,6 +3,7 @@ package view;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
@@ -51,8 +52,7 @@ public class GridView extends GUIComponent {
 	double orgTranslateX, orgTranslateY;
 	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
 	private BorderPane myBorderPane;
-	private TabPane myLevelTabs;
-	
+
 	// TODO: change placedentitymap to a map from levelnumber to placedentitymap
 	// Refactor gridview and make it nonshitty
 
@@ -89,10 +89,10 @@ public class GridView extends GUIComponent {
 			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
-	
-	public void setLevelNumber(int levelNumber) {
+
+	/*	public void setLevelNumber(int levelNumber) {
 		myLevelNumber = levelNumber;
-	}
+	}*/
 
 	private void addHo() {
 		myGrid.setPrefWidth(myGrid.getWidth() + 20);
@@ -116,10 +116,13 @@ public class GridView extends GUIComponent {
 			myData.placeEntity(myLevelNumber, placedEntity);
 		}
 	}
-	
+
 	public void drawPlacedEntities() {
-		for (int entityID : myData.getPlacedEntityMap().get(myLevelNumber).keySet()) {
-			drawEntity(myData.getPlacedEntityMap().get(myLevelNumber).get(entityID));
+		Set<Integer> entitySet = myData.getPlacedEntityMap().get(myLevelNumber).keySet();
+		if(entitySet.size() != 0){
+			for (int entityID : entitySet) {
+				drawEntity(myData.getPlacedEntityMap().get(myLevelNumber).get(entityID));
+			}
 		}
 	}
 
@@ -186,7 +189,6 @@ public class GridView extends GUIComponent {
 
 	public void clearEntitiesOnGrid() {
 		for (Entity e : placedImages.keySet()) {
-			System.out.println("removing" + e);
 			myGrid.getChildren().remove(placedImages.get(e));
 		}
 		placedImages.clear();
@@ -230,7 +232,7 @@ public class GridView extends GUIComponent {
 		ImageView temp = placedImages.get(myData.getUserGridSelectedEntity());
 		temp.setStyle("");
 	}
-	
+
 	public Node getContent() {
 		return myScroll;
 	}

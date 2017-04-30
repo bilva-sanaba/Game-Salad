@@ -20,7 +20,6 @@ public class ViewController implements Observer {
 		utilF = utilIn;
 	}
 
-
 	/*	@Override
 	public void update(Observable o, Object arg){
 		myGrid.clearEntitiesOnGrid();
@@ -42,7 +41,7 @@ public class ViewController implements Observer {
 //	}	
 		if (arg == null){
 			Entity currentlySelected = myData.getUserSelectedEntity();
-			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
+			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel());
 			level.getGrid().clearEntitiesOnGrid();
 			level.getGrid().drawPlacedEntities();
 

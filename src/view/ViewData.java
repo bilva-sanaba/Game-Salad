@@ -62,6 +62,14 @@ public class ViewData extends Observable {
 		gameName = "";
 	}
 	
+	public void addLevel(int level){
+		currentLevel = level;
+		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
+		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
+	//	setChanged();
+	//	notifyObservers();
+	}
+	
 	public int getEntityID(){
 		entityIDcounter++;
 		return entityIDcounter;
@@ -74,14 +82,6 @@ public class ViewData extends Observable {
 	
 	public void setCurrentLevel(int i){
 		currentLevel = i;
-		setChanged();
-		notifyObservers();
-	}
-	
-	public void addLevel(int level){
-		currentLevel = level;
-		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
-		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
 		setChanged();
 		notifyObservers();
 	}
