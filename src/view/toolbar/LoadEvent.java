@@ -46,7 +46,6 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			System.out.println("BLOOMFELD FELD FELD FIELD FIELD" + name);
 			myData.setGameName(name);
 			List <Map> toPlace = xpp.getData(name);
-			
 			setPlacedEntities(toPlace.get(0));
 			setLevelEntities(toPlace.get(1));
 			setSplashEntity(toPlace.get(2));
@@ -75,7 +74,10 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	}
 	
 	private void setSplashEntity(Map m) {
-		Map<Integer, SplashEntity> sm = m;
-		myData.setSplashEntity((SplashEntity) sm.get(getSplashConstant())); 
+		myData.setSplashEntity((SplashData) m.get(getSplashConstant())); 
+
+		Map<Integer, SplashData> sm = m;
+		myData.setSplashEntity((SplashData) sm.get(getSplashConstant())); 
+
 	}
 }

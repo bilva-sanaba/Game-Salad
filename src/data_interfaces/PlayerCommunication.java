@@ -3,11 +3,11 @@ package data_interfaces;
 import java.util.List;
 
 import entity.LevelEntity;
-import entity.SplashEntity;
+import entity.SplashData;
 
 public interface PlayerCommunication {
 
 	public List<LevelEntity> getLevelEntities();
 	
-	public SplashEntity getSplashEntity();
+	public SplashData getSplashEntity();
 }

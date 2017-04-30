@@ -21,6 +21,7 @@ public class AbstractPowerup extends Entity {
 		addPowerupUsage();
 	}
 	private void addPowerupUsage(){
+		this.addComponent(new LabelComponent("Defult Power Up"));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);

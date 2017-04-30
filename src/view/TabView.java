@@ -17,11 +17,12 @@ import data_interfaces.XMLDefinedParser;
 import data_interfaces.XMLWriter;
 import entity.Entity;
 import entity.LevelEntity;
-import entity.SplashEntity;
+import entity.SplashData;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -55,6 +56,8 @@ public class TabView extends GUIComponent {
 	private InfiniteEnum infinite;
 
 	public TabView(UtilityFactory utilIn, ViewData data) {
+		myBox.setSpacing(10);
+		myBox.setPadding(new Insets(10));
 		myData = data;
 		util = utilIn;
 		blocksView.setId("blocksview");

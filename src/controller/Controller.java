@@ -10,6 +10,7 @@ import java.util.Set;
 import data_interfaces.*;
 import gameView.UIView;
 import gameView.UIViewInterface;
+import gameView.gameScreen.SpecificGameSplashView;
 import gameView.userInput.IRestrictedUserInputData;
 import gameView.userInput.IUserInputData;
 import gameView.userInput.UserInputData;
@@ -26,7 +27,7 @@ import controller_interfaces.ControllerInterface;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.LevelEntity;
-import entity.SplashEntity;
+import entity.SplashData;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
@@ -38,7 +39,7 @@ import gameEngine_interface.GameEngine;
 
 public class Controller implements ControllerInterface {
 
-	private UIViewInterface myGameView;
+	private UIView myGameView;
 	private GameEngine myGameEngine;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
@@ -46,13 +47,14 @@ public class Controller implements ControllerInterface {
 	private GUIBuilder myGUIBuilder;
 	private IRestrictedGameData gd;
 	private Communicator c;
+	private UserInputData uiData;
 
 	public Controller(Stage s) {
 		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
-		UserInputData userInput = new UserInputData();
-		myGameEngine = new GameEngine((IRestrictedUserInputData) userInput);
-		myGameView = new UIView(s, this, (IUserInputData) userInput);
+		uiData = new UserInputData();
+		myGameEngine = new GameEngine((IRestrictedUserInputData) uiData);
+		myGameView = new UIView(s, this, (IUserInputData) uiData);
 	}
 
 	public void save(String fileName) {
@@ -112,9 +114,11 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-//	public void runGameAnimation() {
-//		myWorldAnimator.start(myGameEngine);
-//	}
+	
+	public SplashData getSplashData(String gameName){
+		Communicator c = new Communicator(gameName);
+		return c.getSplashEntity();
+	}
 	
 	public void makeGame() {
 		Stage authorStage = new Stage();

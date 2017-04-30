@@ -28,9 +28,10 @@ public class GameSavingDataTool {
 		return SPLASHCONSTANT;
 	}
 	
-	protected String getFileToString(String fileName) {
+	protected String getFileToString(String fileName) throws Exception {
 		String line = null;
 		StringBuilder stringBuilder = new StringBuilder();
+		System.out.println("File name weissss: " + fileName);
 		try {
 			File f = new File(getPrefix() + fileName + getSuffix());
 			FileReader fr = new FileReader(f);
@@ -44,10 +45,10 @@ public class GameSavingDataTool {
 		} catch (FileNotFoundException e) {
 			// TODO add an error here
 			System.out.println("Hi i happen");
-			return null;
+			throw new Exception("FileNotFound");
 		} catch (IOException e) {
 			System.out.println("hi i happen");
-			return null;
+			throw new Exception("IO");
 		}
 		return stringBuilder.toString();
 	}

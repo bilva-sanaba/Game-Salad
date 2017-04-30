@@ -2,6 +2,7 @@ package gameView;
 
 import java.util.Set;
 
+import entity.SplashData;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
 import javafx.scene.Scene;
@@ -65,6 +66,10 @@ public interface UIViewInterface {
 	public void addData(GameData data);
 	
 	public void step(Set<KeyCode> keysPressed);
+
+	void runSpecificSplash();
+	
+	public SplashData getSplashData();
 
 	
 

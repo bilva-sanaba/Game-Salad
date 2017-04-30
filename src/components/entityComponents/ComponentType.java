@@ -29,12 +29,10 @@ public enum ComponentType {
 	Time(),
 	Goal(),
 	MonsterMovementStep(),
-	Friction(),
 	TerminalVelocity(),
+	Damaged(),
 	FrontCamera(),
 	BackCamera(),
-	TerminalVelComponent(),
-	FrictionComponent(),
 	InfiniteOrientation(),
 	InfiniteRepeat(),
 	InfiniteMonsterRandomness(),
@@ -42,6 +40,11 @@ public enum ComponentType {
 	InfiniteSpacing(),
 	InfiniteBlockPattern(),
 	InfiniteBlockAction(),
+	Controllable(),
+	Orientation(),
+	MonsterType();
+	Checkpoint(),
 	Null()
 	;
 }
+

@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import actions.IAction;
+import exceptions.InputException;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.Input;
 import view.UtilityFactory;
+import voogasalad.util.reflection.Reflection;
 
 public class IActionMakerWindow{
 	private UtilityFactory myUtilF;
@@ -22,9 +24,9 @@ public class IActionMakerWindow{
 	private int stringConstructNum = 0;
 	private int listConstructNum = 0;
 
-	public IActionMakerWindow(UtilityFactory utilF, Class<?> act) {
+	public IActionMakerWindow(UtilityFactory utilF, Class<?> absAct) {
 		myUtilF = utilF;
-		myAction = act;
+		myAction = absAct;
 		myParams = new ArrayList<String>();
 		myStage.setScene(buildScene());
 	}
@@ -59,7 +61,7 @@ public class IActionMakerWindow{
 			allString = true;
 		}
 		for(int j = 0; j < actConst[stringConstructNum].getParameterCount(); j++){
-			Input getInput = new Input(myUtilF, myAction.toString());
+			Input getInput = new Input(myUtilF, myAction.toString().replace(" ", ""));
 			myParams.add(getInput.getInput());
 		}
 		
@@ -69,14 +71,12 @@ public class IActionMakerWindow{
 		return myAction.toString();
 	}
 
-	public IAction openWindow() {
+	public IAction openWindow() throws InputException {
 		myStage.showAndWait();
 		try {
 			return (IAction) myAction.getConstructors()[listConstructNum].newInstance(myParams);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException e) {
-			
-		} catch (InputException e){
 			
 		}
 		return null;
