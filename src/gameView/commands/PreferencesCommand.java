@@ -37,7 +37,7 @@ public class PreferencesCommand extends AbstractCommand {
 	}
 
 	@Override
-	public void execute(Stage s) {
+	public boolean execute(Stage s) {
 		initialize();
 		myBox.getChildren().clear();
 		myStage.setTitle(getName());
@@ -45,6 +45,7 @@ public class PreferencesCommand extends AbstractCommand {
 		makeCloseButton();
 		myStage.setScene(myPopup.getScene());
 		myStage.show();
+		return true;
 		
 	}
 

@@ -1,5 +1,6 @@
 package gameView;
 
+import gameView.tools.Coordinate;
 import gameView_interfaces.UIImagePropertyInterface;
 
 public class UIImageProperty implements UIImagePropertyInterface {

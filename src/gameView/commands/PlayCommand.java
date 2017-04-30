@@ -10,8 +10,9 @@ public class PlayCommand extends AbstractCommand {
 	}
 
 	@Override
-	public void execute(Stage s) {
+	public boolean execute(Stage s) {
 		getView().runGame();
+		return true;
 	}
 
 	@Override

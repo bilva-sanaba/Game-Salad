@@ -15,7 +15,7 @@ public class BackCameraComponent implements IComponent{
 	@Override
 	public IComponent newCopy() {
 		// TODO Auto-generated method stub
-		return null;
+		return new BackCameraComponent();
 	}
 	
 	public void setScrolling(boolean shouldScroll){

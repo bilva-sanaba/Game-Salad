@@ -2,6 +2,7 @@ package gameView.tools;
 
 import gameView.displayComponents.UIDisplayComponent;
 import gameView.gameScreen.GameScreen;
+import gamedata.IRestrictedGameData;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,8 +23,11 @@ public class DisplayManager implements IDisplayManager {
 	private GameScreen myScreen;
 	private ReadOnlyDoubleProperty myWidthBound;
 	private ReadOnlyDoubleProperty myHeightBound;
+	private IRestrictedGameData myGameData;
 	
-	public DisplayManager(GameScreen screen, String filePath, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
+	public DisplayManager(GameScreen screen, String filePath, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, 
+			IRestrictedGameData gameData) {
+		myGameData = gameData;
 		myScreen = screen;
 		setBounds(width, height);
 		myAllDisplays = makeComponents(filePath);
@@ -62,10 +66,12 @@ public class DisplayManager implements IDisplayManager {
 		String comps = bundle.getString(BUNDLE_KEY);
 		String[] allComps = comps.split(", ");
 		for (String each: allComps) {
-			UIDisplayComponent newDisplay = (UIDisplayComponent) Reflection.createInstance(COMPONENT_LOCATION+each+"Component", each);
+			UIDisplayComponent newDisplay = (UIDisplayComponent) Reflection.createInstance(COMPONENT_LOCATION+each+"Component", each, myGameData);
 			updateX(newDisplay, myWidthBound.doubleValue());
 			updateY(newDisplay, myHeightBound.doubleValue());
-			displays.put(each, newDisplay);
+			if (newDisplay.getDisplay() != null) {
+				displays.put(each, newDisplay);
+			}
 		}
 		return displays;
 	}

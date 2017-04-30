@@ -37,14 +37,15 @@ import javafx.util.Duration;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
-import gameView.Coordinate;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.gameScreen.IGameScreenEntity;
 import gameView.gameScreen.SpecificGameSplashView;
 import gameView.observers.ImageConfig;
 import gameView.observers.ObserverManager;
-import gameView_interfaces.UIViewInterface;
+import gameView.tools.Coordinate;
 import gamedata.GameData;
+import gamedata.IRestrictedGameData;
 
 /**
  *
@@ -68,7 +69,7 @@ public class WorldAnimator{
     private Group root;
     private SequentialTransition st;
 
-    private GameData myData;
+    private IRestrictedGameData myData;
 
     private Camera myCamera;
     
@@ -92,6 +93,7 @@ public class WorldAnimator{
     public Group getGroup(){
     	return root;
     }
+
     public void start (GameData myData, IGameScreenEntity screen) throws ClassNotFoundException{ //achievementFactory
     	this.myData=myData;
         root = new Group();
@@ -115,7 +117,7 @@ public class WorldAnimator{
         //myAchievement = myAchievementFactory.genAchievement("FirstKill");
         //root.getChildren().add(myAchievement.getGroup());
         
-
+        myObservers.getUpdatedSet();
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
 
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
@@ -142,20 +144,25 @@ public class WorldAnimator{
     }
     private void step(double elapsedTime) throws ClassNotFoundException{
     	counter++;
-    	//myView.step(keysPressed);
-    	myEngine.handleUpdates(keysPressed,myData);
+    	myView.step(keysPressed);
+    	//myEngine.handleUpdates(keysPressed);
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
         
-        updateAchievement();
+//        updateAchievement();
+//        
+//        if(achievementShowing==true){
+//        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
+//        }
         
-        if(achievementShowing==true){
-        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
-    }
         myCamera.updateCamera();
         myObservers.clearSet();
     }
-
+    
+    //TESTING PURPOSES
+    public void fillMap() {
+    	fillMapAndDisplay(myObservers.getUpdatedSet());
+    }
 
 	private void updateAchievement() throws ClassNotFoundException {
 		addAchievement();

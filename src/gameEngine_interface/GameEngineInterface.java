@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import java.util.Collection;
 
 import data_interfaces.Communicator;
+import data_interfaces.EngineCommunication;
 
 /**
  * A game engine is created in the gameplayer which uses this game engine to
@@ -29,8 +30,8 @@ public interface GameEngineInterface {
 	
 	public Collection<IEntity> save();
 	
-	public IRestrictedGameData loadData(Communicator c);
+	public IRestrictedGameData loadData(EngineCommunication c);
 
-	void handleUpdates(Collection<KeyCode> keysPressed, IRestrictedGameData gd);
+	void handleUpdates(Collection<KeyCode> keysPressed);
 
 }
