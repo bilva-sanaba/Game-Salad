@@ -41,6 +41,8 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.LocationComponent;
+import components.entityComponents.MonsterType;
+import components.entityComponents.MonsterTypeComponent;
 import components.entityComponents.ObjectCreationComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
@@ -507,7 +509,8 @@ public class GameEngine implements GameEngineInterface {
 			ImagePropertiesComponent goalc = new ImagePropertiesComponent();
 			goalc.setHeight(50);
 			enemy.addComponent(new StepComponent(50));
-			enemy.addComponent(new VelocityComponent(-1,0));
+			enemy.addComponent(new VelocityComponent(0,-1));
+			enemy.addComponent(new MonsterTypeComponent(MonsterType.UpAndDown));
 			enemy.addComponent(new LabelComponent("wecamefromnothingtosomething"));
 			goalc.setWidth(50);
 			enemy.addComponent(goalc);
