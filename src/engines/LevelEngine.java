@@ -19,11 +19,6 @@ public class LevelEngine extends AbstractEngine{
 	}
 
 	@Override
-	protected List<ComponentType> neededComponents() {
-		return null;
-	}
-
-	@Override
 	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData currentGameData) {
 		GameDataFactory gdf = new GameDataFactory();
 		GameData gd = gdf.blankEntityData(currentGameData);
@@ -31,12 +26,13 @@ public class LevelEngine extends AbstractEngine{
 			if(hasComponent(e, ComponentType.Goal)){
 				GoalComponent gc = (GoalComponent) e.getComponent(ComponentType.Goal);
 				if(gc.checkIfSatisfied() == true){
-//					gd.setLevel(gd.getLevel().intValue()+1);
+					gd.setLevel(gd.getLevel()+1);
 					gc.satisfyGoal(false);
 				}
 			}
 			
 		}
+
 		return gd;
 	}
 }
