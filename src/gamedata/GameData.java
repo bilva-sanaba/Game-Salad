@@ -3,7 +3,7 @@ package gamedata;
 
 import achievements.Achievement;
 import components.entityComponents.LocationComponent;
-import entity.SplashEntity;
+import entity.SplashData;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;

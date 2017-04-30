@@ -2,7 +2,7 @@ package view;
 
 import entity.Entity;
 import entity.LevelEntity;
-import entity.SplashEntity;
+import entity.SplashData;
 import view.commands.RightClickEvent;
 
 import java.util.Collection;
@@ -34,7 +34,7 @@ public class ViewData extends Observable {
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
 	private HashMap<Integer, LevelEntity> levelEntityMap;
-	private SplashEntity mySplashEntity;
+	private SplashData mySplashEntity;
 	private Entity userSelectedEntity;
 	private Entity userGridSelectedEntity;
 	private Entity copiedEntity;
@@ -57,7 +57,7 @@ public class ViewData extends Observable {
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap = new HashMap<Integer, LevelEntity>();
 		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
-		mySplashEntity = new SplashEntity(-2, "The game", "Don't lose", "images/background1.png");
+		mySplashEntity = new SplashData(-2, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
 		gameName = "";
 	}
@@ -189,11 +189,11 @@ public class ViewData extends Observable {
 		levelEntityMap.put(level, e);
 	}
 
-	public SplashEntity getSplashEntity() {
+	public SplashData getSplashEntity() {
 		return mySplashEntity;
 	}
 
-	public void setSplashEntity(SplashEntity s) {
+	public void setSplashEntity(SplashData s) {
 		mySplashEntity = s;
 	}
 

@@ -2,7 +2,7 @@ package gameView.splashScreen;
 
 import java.util.Collection;
 
-import entity.SplashEntity;
+import entity.SplashData;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

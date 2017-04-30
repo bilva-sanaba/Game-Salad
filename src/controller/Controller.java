@@ -21,7 +21,7 @@ import data_interfaces.XMLException;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
-import entity.SplashEntity;
+import entity.SplashData;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
@@ -77,14 +77,15 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-	public SpecificGameSplashView playSpecificSplash() {
-		//Communicator c = new Communicator(filePath);
+	public SpecificGameSplashView loadSpecificSplash() {
+		Communicator c = new Communicator(filePath);
 		//SplashEntity se = c.getSplashEntity();
-		SpecificGameSplashView sView = new SpecificGameSplashView(myGameView, myStage, uiData, new SplashEntity(0, "Balls", "Instructional", "images.background1.png"));
+		//SpecificGameSplashView sView = new SpecificGameSplashView(myGameView, myStage, uiData, new SplashData(0, "Balls", "Instructional", "background1.png"));
 		//Stage specificSplashStage = new Stage();
 		//specificSplashStage.setScene(sView.getScene());
 		//specificSplashStage.showAndWait();
 		//sView.getScene();
+		SpecificGameSplashView sView = new SpecificGameSplashView(myGameView, myStage, uiData, c.getSplashEntity());
 		return sView;
 	}
 	

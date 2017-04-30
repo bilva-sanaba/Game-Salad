@@ -65,6 +65,6 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	}
 	
 	private void setSplashEntity(Map m) {
-		myData.setSplashEntity((SplashEntity) m.get(getSplashConstant())); 
+		myData.setSplashEntity((SplashData) m.get(getSplashConstant())); 
 	}
 }

@@ -18,6 +18,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	List<Map> results;
 
 	public Communicator(String s) {
+		System.out.println("COMMUNICATOR MADE: " + s);
 		fileName = s;
 		XMLPlacedParser xp = new XMLPlacedParser();
 		results = xp.getData(fileName);
@@ -61,8 +62,8 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 
 	@Override
-	public SplashEntity getSplashEntity() {
-		return (SplashEntity) results.get(2).get(getSplashConstant());
+	public SplashData getSplashEntity() {
+		return (SplashData) results.get(2).get(getSplashConstant());
 	}
 	public List<IEntityManager> futureGetData() {
 		List<IEntityManager> x = new ArrayList<IEntityManager>();

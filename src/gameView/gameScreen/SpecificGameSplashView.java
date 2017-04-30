@@ -3,7 +3,7 @@ package gameView.gameScreen;
 
 import java.util.Collection;
 
-import entity.SplashEntity;
+import entity.SplashData;
 import gameView.AbstractViewer;
 import gameView.UIView;
 import gameView.UIViewInterface;
@@ -29,12 +29,12 @@ public class SpecificGameSplashView extends AbstractViewer {
 	private static final String myName = SpecificGameSplashView.class.getSimpleName();
 	
 	private String myBackground;
-	private SplashEntity mySplashEntity;
+	private SplashData mySplashEntity;
 	private Scene myScene;
 	private Collection<AbstractCommand> myCommands;
 	private BorderPane myBP;
 	
-	public SpecificGameSplashView(UIView myGameView, Stage s, IUserInputData input, SplashEntity se){
+	public SpecificGameSplashView(UIView myGameView, Stage s, IUserInputData input, SplashData se){
 		super(myGameView, s, input);
 		mySplashEntity = se;
 		myCommands = getCommands(myName);
@@ -76,7 +76,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 		myBP.setCenter(lab);
 	}
 	private void addBackground(){
-		myBackground = mySplashEntity.getRestrictedImagePath();
+		myBackground = mySplashEntity.getBackgroundFilePath();
 		myBP.setBackground(makeBackground(myBackground));
 	}
 	

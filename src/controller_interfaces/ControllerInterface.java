@@ -77,6 +77,6 @@ public interface ControllerInterface {
 
 	void step(Set<KeyCode> keysPressed);
 
-	public SpecificGameSplashView playSpecificSplash();
+	public SpecificGameSplashView loadSpecificSplash();
 
 }

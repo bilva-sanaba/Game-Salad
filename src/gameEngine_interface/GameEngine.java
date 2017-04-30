@@ -81,7 +81,7 @@ import gamedata.IGameData;
 import gamedata.IRestrictedGameData;
 import engines.AbstractEngine;
 import entity.IEntityManager;
-import entity.SplashEntity;
+import entity.SplashData;
 import entity.presets.AbstractBlock;
 import entity.presets.AbstractBreakableBox;
 import entity.presets.AbstractEnemy;
@@ -173,7 +173,7 @@ public class GameEngine implements GameEngineInterface {
 	public Collection<IEntity> save(){
 		return myEntityManager.copy().getEntities();
 	}
-	public SplashEntity getSplashEntity(){
+	public SplashData getSplashEntity(){
 		return GPEM.getSplash();
 	}
 	/**
