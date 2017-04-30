@@ -85,16 +85,12 @@ import gamedata.GameData;
 import gamedata.GameDataFactory;
 import gamedata.IGameData;
 import gamedata.IRestrictedGameData;
-import engines.AbstractEngine;
 import entity.IEntityManager;
 import entity.SplashEntity;
 import entity.presets.AbstractBlock;
 import entity.presets.AbstractBreakableBox;
-import entity.presets.AbstractEnemy;
 import entity.presets.AbstractGoal;
-import entity.presets.AbstractMysteryBlock;
 import entity.presets.AbstractPowerup;
-import gamedata.GameData;
 /**
  * Basic GameEngine class Note: the engines must be created in someway, likely
  * via reflection
@@ -158,9 +154,8 @@ public class GameEngine implements GameEngineInterface {
 //		}
 		
 		//DUMMYLOAD
-		myEntityManager = dummyLoad();
-		myEntityManagers = new ArrayList<IEntityManager>();
-		myEntityManagers.add(myEntityManager);
+		myEntityManagers = dummyLoad();
+		myEntityManager = myEntityManagers.get(0);
 		
 		//REAL USE THIS
 //		myEntityManagers = c.getIEntityManagers();
@@ -200,7 +195,7 @@ public class GameEngine implements GameEngineInterface {
 			IGameData rgd = (IGameData) s.update(keysPressed,(IRestrictedGameData) myGameData);
 			GameDataFactory gdf = new GameDataFactory();
 			if (myGameData.getLevel().intValue()!=rgd.getLevel().intValue()){
-				System.out.println("levelChanged");
+				el.loadNew(myEntityManagers.get(rgd.getLevel().intValue()));
 			}
 			gdf.updateGameData(myGameData,rgd);		
 		}
@@ -350,7 +345,7 @@ public class GameEngine implements GameEngineInterface {
 		e.add(x);
 		return new EntityManager(e);
 	}
-	public IEntityManager dummyLoad(){
+	public List<IEntityManager> dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		Collection<Entity> e7 = new ArrayList<Entity>();
 		
@@ -418,6 +413,7 @@ public class GameEngine implements GameEngineInterface {
 		//
 		//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
+		e7.add(x.newCopy());
 		//		for (int i=0;i<20;i++){
 		//			Entity x = new Entity(i);
 		//			x.addComponent(new LocationComponent(i*50,450));
@@ -589,18 +585,18 @@ public class GameEngine implements GameEngineInterface {
 //		//
 //		//
 //		//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
-//		Collection<IEntity> e8 = new ArrayList<IEntity>();
-//		for (Entity exp : e7) {
-//			e8.add(exp);
-//		}
+		Collection<IEntity> e8 = new ArrayList<IEntity>();
+		for (Entity exp : e7) {
+			e8.add(exp);
+		}
 		myEntityManager = new EntityManager(e1);
-//		myEntityManagers= new ArrayList<IEntityManager>();
-//		myEntityManagers.add(myEntityManager);
-//		myEntityManagers.add(new EntityManager(e8));
+		myEntityManagers= new ArrayList<IEntityManager>();
+		myEntityManagers.add(myEntityManager);
+		myEntityManagers.add(new EntityManager(e8));
 		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), "", "" );
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,InfiniteEnum.None));
-		return myEntityManager;
+		return myEntityManagers;
 //		return myGameData;
 	}
 	//for testing
