@@ -1,7 +1,5 @@
 package view.window;
 
-import java.io.File;
-import java.util.ArrayList;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ChangeListener;
@@ -10,12 +8,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -23,6 +19,7 @@ import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
 import view.ViewData;
+import voogasalad.util.reflection.Reflection;
 
 public class EntityBuilderWindow implements Window {
 
@@ -90,11 +87,11 @@ public class EntityBuilderWindow implements Window {
 	
 	private void addOkayButton(Pane root) {
 		Node okayButton = util.buildButton("OkayLabel", e -> {
-			Entity tempEntity = new Entity(myData.getEntityID());
+			Entity tempEntity = (Entity) Reflection.createInstance(entityList[0], myData.getEntityID());
 			System.out.println(myImageName + " line 98 " + this.getClass());
 			tempEntity.addComponent(new SpriteComponent(myImageName));
 			myStage.close();
-			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, tempEntity);
+			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, tempEntity);
 			ecw.openWindow();
 		});
 		root.getChildren().add(okayButton);

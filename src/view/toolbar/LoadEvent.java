@@ -47,7 +47,6 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			System.out.println("BLOOMFELD FELD FELD FIELD FIELD" + name);
 			myData.setGameName(name);
 			List <Map> toPlace = xpp.getData(name);
-			
 			setPlacedEntities(toPlace.get(0));
 			setLevelEntities(toPlace.get(1));
 			setSplashEntity(toPlace.get(2));
