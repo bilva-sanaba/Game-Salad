@@ -32,7 +32,7 @@ public class PauseScreen extends AbstractViewer {
 	}
 
 	private void makeScene() {
-		mySlider = new Slider(0, 10, 10);
+		mySlider = new Slider(0, 1, 1);
 		setSliderAction();
 		myBox = new VBox(10, mySlider, makeButton(new CloseCommand(this)));
 		myBox.setAlignment(Pos.CENTER);
@@ -43,7 +43,7 @@ public class PauseScreen extends AbstractViewer {
 	    mySlider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                 Number old_val, Number new_val) {
-                    getUserInput().setRewind(new_val.intValue());
+                    getUserInput().setRewind(new_val.doubleValue());
             }
         });
 	}

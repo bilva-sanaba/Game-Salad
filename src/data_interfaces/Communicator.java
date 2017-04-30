@@ -18,7 +18,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	List<Map> results;
 
 	public Communicator(String s) {
-		fileName = getPrefix() + s + getSuffix();
+		fileName = s;
 		XMLPlacedParser xp = new XMLPlacedParser();
 		results = xp.getData(fileName);
 	}
@@ -30,10 +30,14 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		List <IEntityManager> ret = new ArrayList<IEntityManager>();
 		List <IEntity> toBeAdded;
 		
+		System.out.println("m size: " + m.size());
+		
 		for (int i = 1; i <= m.size(); i++) {
+			System.out.println("THISSSSS happens");
 			toBeAdded = new ArrayList<IEntity>();
 			for (Integer j: m.get(i).keySet()) {
 				toBeAdded.add(m.get(i).get(j));
+				System.out.println("this happens");
 			}
 			ret.add(new EntityManager(toBeAdded));
 		}
