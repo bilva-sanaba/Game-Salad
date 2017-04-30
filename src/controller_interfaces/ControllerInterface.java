@@ -74,6 +74,6 @@ public interface ControllerInterface {
 	public GameEngine getEngine();
 	
 
-	void step(Set<KeyCode> keysPressed, IRestrictedGameData gd);
+	void step(Set<KeyCode> keysPressed);
 
 }

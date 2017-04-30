@@ -1,7 +1,7 @@
 package gameView_interfaces;
 
-import gameView.Coordinate;
 import gameView.UIImageProperty;
+import gameView.tools.Coordinate;
 
 /**
  * Wrapper class for the UI game objects. Generic wrapper to encompass every

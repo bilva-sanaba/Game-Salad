@@ -3,17 +3,15 @@ package gameView.gameScreen;
 
 import java.util.Collection;
 
-import controller.Controller;
 import entity.SplashEntity;
 import gameView.AbstractViewer;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
-import gameView.splashScreen.SplashView;
 import gameView.tools.ResourceRetriever;
+import gameView.userInput.IUserInputData;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -23,6 +21,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class SpecificGameSplashView extends AbstractViewer {
 	
@@ -34,8 +33,8 @@ public class SpecificGameSplashView extends AbstractViewer {
 	private Collection<AbstractCommand> myCommands;
 	private BorderPane myBP;
 	
-	public SpecificGameSplashView(UIView view, SplashEntity se){
-		super(view);
+	public SpecificGameSplashView(UIView view, Stage s, IUserInputData input, SplashEntity se){
+		super(view, s, input);
 		mySplashEntity = se;
 		myCommands = getCommands(myName);
 		myBP = new BorderPane();

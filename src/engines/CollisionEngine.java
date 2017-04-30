@@ -17,7 +17,6 @@ import components.entityComponents.TypeComponent;
 import controller.Camera;
 import engines.subengines.GeneralPostCollisionHandler;
 import engines.subengines.ISubEngine;
-import engines.subengines.stopMovementAfterHit;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;

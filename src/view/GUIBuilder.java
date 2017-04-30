@@ -19,8 +19,8 @@ public class GUIBuilder {
 
 	private static final double SCREEN_HEIGHT = 700;
 	private static final double SCREEN_WIDTH = 1000;
-	private static final int INITIAL_GRID_ROWS = 50;
-	private static final int INITIAL_GRID_COLS = 50;
+	public static final int INITIAL_GRID_ROWS = 50;
+	public static final int INITIAL_GRID_COLS = 50;
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 	private LevelTabView levelTabs;
@@ -41,12 +41,12 @@ public class GUIBuilder {
 		myData = new ViewData(INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
 		GridView grid1 = new GridView(utilF, currentLevel, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS);
 		tab = new TabView(utilF, myData);
-		tab.addPresetEntities();
+		
 		toolbar = new ToolBarView(utilF, myData);
 		
 		levelTabs = new LevelTabView(grid1, myData);
 		
-		viewController = new ViewController(myData, levelTabs, tab);
+		viewController = new ViewController(myData, levelTabs, tab, utilF);
 		myData.addObserver(viewController);
 
 		myComp.add(levelTabs);
@@ -54,6 +54,7 @@ public class GUIBuilder {
 		myComp.add(toolbar);
 		
 		myBP = buildPane();
+		tab.addPresetEntities();
 	}
 
 	public Pane buildPane() {
