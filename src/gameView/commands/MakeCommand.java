@@ -12,7 +12,7 @@ public class MakeCommand extends AbstractCommand {
 
 	@Override
 	public boolean execute(Stage s) {
-		((ICommandView) getView()).makeGame();
+		((ICommandView) getView()).makeGame(); 
 		return true;
 	}
 

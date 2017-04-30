@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.util.Set;
 
 import data_interfaces.XMLException;
+import entity.SplashData;
 import gameView.gameScreen.GameScreen;
 import gameView.gameScreen.SpecificGameSplashView;
 
@@ -36,6 +37,8 @@ public class UIView implements UIViewInterface {
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
+	private SpecificGameSplashView mySpecificSplash;
+	private SplashData mySplashData;
 	private GameScreen myGameScene;
 	private IRestrictedGameData myData; 
 	private WorldAnimator myAnimation;
@@ -65,9 +68,13 @@ public class UIView implements UIViewInterface {
 	}
 	
 	@Override
-	public void runGame() {
-		setStage(myGameScene.getScene());//myGameScene
+	public void runSpecificSplash() {
+		setStage(mySpecificSplash.getScene());//myGameScene
 		
+	}
+	
+	public void runGame(){
+		setStage(myGameScene.getScene());
 	}
 	
 	public void loadGame(String file) {
@@ -75,13 +82,16 @@ public class UIView implements UIViewInterface {
 			savePoints();
 		}
 		myCurrentGame = file;
-		myData = myController.loadNewGame(file);
+		myData = myController.loadNewGame(myCurrentGame); //FOR SPLASH
+		//mySpecificSplash = myController.loadSpecificSplash(myCurrentGame);
+		mySplashData = myController.getSplashData(myCurrentGame);
+		mySpecificSplash = new SpecificGameSplashView(this, myStage, myUserInputData, mySplashData);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
-		myGameScene.addData(myData);
+		myGameScene.addData(myData); //FOR SPLASH
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
-		runGame();
+		runSpecificSplash();
 		
 		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
 		//setStage(new SpecificGameSplashView(this, getStage(), myUserInputData, myController.getEngine().getSplashEntity()).getScene());
@@ -89,7 +99,11 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void authorGame() {
-		myController.makeGame();
+		myController.makeGame(); //makeGame();
+	}
+	
+	public SplashData getSplashData(){
+		return mySplashData;
 	}
 	
 	public void saveGame() {

@@ -53,7 +53,7 @@ public class InputEngine extends AbstractEngine{
 			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 
 			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);	
 			ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
-			if(cc.checkControl() == true){	
+			if(cc!=null && cc.checkControl() == true){	
 				for (KeyCode key : keys){
 					if (ic.getActionMap().containsKey(key)){
 						for (IAction action : ic.getActionMap().get(key)){

@@ -42,13 +42,13 @@ public class EntityHandler implements Handler {
 		return ret;
 	}
 	
-	private SplashEntity getSplashEntity(NodeList nm) {
+	private SplashData getSplashEntity(NodeList nm) {
 		Node n = nm.item(0);
 		Element curr = (Element) n;
 		return createSplashEntity(curr);
 	}
 	
-	private SplashEntity createSplashEntity(Element curr) {
+	private SplashData createSplashEntity(Element curr) {
 		NodeList children = curr.getChildNodes();
 		int id = -1;
 		String displayName = "";
@@ -77,9 +77,9 @@ public class EntityHandler implements Handler {
 		return initializeSplashEntity(id, displayName, instructions, bfp, myCom);
 	}
 	
-	private SplashEntity initializeSplashEntity(int id, String displayName, String instructions, String bfp, List<IComponent> myCom) {
-		SplashEntity ret = new SplashEntity(id, displayName, instructions, bfp);
-		return (SplashEntity)attachComponents(ret,myCom);
+	private SplashData initializeSplashEntity(int id, String displayName, String instructions, String bfp, List<IComponent> myCom) {
+		SplashData ret = new SplashData(id, displayName, instructions, bfp);
+		return (SplashData)attachComponents(ret,myCom);
 	}
 	
 	private LevelEntity getLevelEntity(NodeList nm) {

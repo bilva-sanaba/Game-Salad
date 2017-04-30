@@ -6,6 +6,7 @@ import class_annotations.KeyAction;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ControllableComponent;
+import components.entityComponents.OrientationComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
@@ -22,6 +23,8 @@ public class RightAction implements IAction{
 		if(cc.checkControl() == true){
 			AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
 			ac.setX(6);
+			OrientationComponent oc = (OrientationComponent) player.getComponent(ComponentType.Orientation);
+			oc.setOrientation(0);
 		}
 
 		
