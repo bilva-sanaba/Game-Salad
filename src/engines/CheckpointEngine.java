@@ -17,12 +17,6 @@ public class CheckpointEngine extends AbstractEngine{
 	}
 
 	@Override
-	protected List<ComponentType> neededComponents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
 		for(IEntity e: getEManager().getEntities()){
 			if(e.getComponent(ComponentType.KeyInput) != null){

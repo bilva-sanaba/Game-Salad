@@ -1,14 +1,11 @@
 package components.keyExpressions;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import actions.IAction;
 import class_annotations.KeyAction;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
-import components.entityComponents.LocationComponent;
-import components.entityComponents.VelocityComponent;
+import components.entityComponents.ControllableComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
@@ -19,13 +16,15 @@ public class RightAction implements IAction{
 
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
-		LocationComponent lc = (LocationComponent) player.getComponent(ComponentType.Location);
 		
-		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
+		ControllableComponent cc = (ControllableComponent) player.getComponent(ComponentType.Controllable);
 		
-		//lc.setX(lc.getX() +2);
-		vc.setX(4);
+		if(cc.checkControl() == true){
+			AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
+			ac.setX(6);
+		}
+
+		
 		((IRestrictedEntity) player).changed(player);
 		GameDataFactory gdf = new GameDataFactory();
 		return gdf.blankEntityData(currentGameData);

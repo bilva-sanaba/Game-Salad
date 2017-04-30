@@ -15,13 +15,13 @@ public class GoalComponent implements IComponent {
 	public IComponent newCopy() {
 		GoalComponent myGoalComponent = new GoalComponent();
 		if(goalSatisfied == true){
-			myGoalComponent.satisfyGoal();
+			myGoalComponent.satisfyGoal(true);
 		}
 		return myGoalComponent;
 	}
 	
-	public void satisfyGoal(){
-		goalSatisfied = true;
+	public void satisfyGoal(boolean bool){
+		goalSatisfied = bool;
 	}
 	
 	public boolean checkIfSatisfied(){

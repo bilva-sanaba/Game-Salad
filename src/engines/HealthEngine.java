@@ -16,15 +16,9 @@ public class HealthEngine extends AbstractEngine{
 	}
 
 	@Override
-	protected List<ComponentType> neededComponents() {
+	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

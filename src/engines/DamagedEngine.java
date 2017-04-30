@@ -16,15 +16,8 @@ public class DamagedEngine extends AbstractEngine{
 	}
 
 	@Override
-	protected List<ComponentType> neededComponents() {
-		// TODO Auto-generated method stub
+	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
 		return null;
-	}
-
-	@Override
-	public void update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
-		
-		
 	}
 
 }

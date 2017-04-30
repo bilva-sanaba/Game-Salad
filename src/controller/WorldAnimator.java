@@ -134,7 +134,6 @@ public class WorldAnimator{
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
 
-       
         myAchievement.updateAchievementLoc(-1*myCamera.getX());
         myCamera.updateCamera();
         

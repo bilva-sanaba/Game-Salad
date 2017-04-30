@@ -21,12 +21,6 @@ public class TimeEngine extends AbstractEngine {
 	}
 
 	@Override
-	protected List<ComponentType> neededComponents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 
 	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
 		IRestrictedGameData rgd = gameData;

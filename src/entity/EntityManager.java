@@ -51,7 +51,7 @@ public class EntityManager extends Observable implements IEntityManager, IRestri
 		Collection<IEntity> copy = new ArrayList<IEntity>();
 		for (IEntity e: myEntities){
 			IEntity entCopy = e.clone();
-			copy.add(e);
+			copy.add(entCopy);
 		}
 		EntityManager emCopy = new EntityManager(copy);
 		return emCopy;

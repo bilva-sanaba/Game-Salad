@@ -34,5 +34,6 @@ public enum ComponentType {
 	FrontCamera(),
 	BackCamera(), 
 	Checkpoint(),
+	Controllable(),
 	TerminalVelComponent();
 }
