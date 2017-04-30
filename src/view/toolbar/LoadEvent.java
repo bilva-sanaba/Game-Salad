@@ -13,13 +13,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import view.GridView;
+import view.UtilityFactory;
 import view.ViewData;
 
 public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent {
 	private ViewData myData;
 	Map<Class<? extends Entity>, Consumer<Entity>> whattodo;
 	
-	public LoadEvent(ViewData data){
+	public LoadEvent(UtilityFactory utilF, ViewData data){
 		myData = data;
 		whattodo = new HashMap<Class<? extends Entity>, Consumer<Entity>>();
 		//whattodo.put(SplashEntity.class, e -> myData.setSplashEntity((SplashEntity) e));

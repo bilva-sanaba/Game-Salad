@@ -20,7 +20,7 @@ import view.ImageChooser;
 import view.UtilityFactory;
 
 public class SplashScreenBuilderWindow implements Window{	
-	private UtilityFactory utilF;
+	private UtilityFactory myUtilF;
 	private Text myFilePathDisplay;
 	private String splashScreenImagePath;
 	private String gameTitle;
@@ -30,12 +30,13 @@ public class SplashScreenBuilderWindow implements Window{
 	private Stage myStage = new Stage();
 	private VBox myRoot;
 	
-	public SplashScreenBuilderWindow() {
+	public SplashScreenBuilderWindow(UtilityFactory utilF) {
+		myUtilF = utilF;
 		myFilePathDisplay = new Text("");
 		myRoot = new VBox();
 	}
 	
-//	This shit needs to be refactored
+//	This shit needs to be refactored, use utilityfactory
 	public SplashEntity createEntity() {
 		myStage = new Stage();
 		myRoot.setPadding(new Insets(10));

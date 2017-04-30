@@ -9,12 +9,13 @@ import entity.SplashEntity;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
+import view.UtilityFactory;
 import view.ViewData;
 
 public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent {
 	ViewData myData;
 
-	public SaveEvent(ViewData data) {
+	public SaveEvent(UtilityFactory utilF, ViewData data) {
 		myData = data;
 	}
 

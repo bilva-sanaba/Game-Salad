@@ -1,12 +1,13 @@
 package view.toolbar;
 
+import view.UtilityFactory;
 import view.ViewData;
 
 public class ResetEvent implements ToolBarButtonEvent{
 	
 	private ViewData myData;
 	
-	public ResetEvent(ViewData dataIn){
+	public ResetEvent(UtilityFactory utilF, ViewData dataIn){
 		myData = dataIn;
 	}
 
@@ -14,5 +15,4 @@ public class ResetEvent implements ToolBarButtonEvent{
 	public void event() {
 		myData.removePlacedEntities();
 	}
-
 }
