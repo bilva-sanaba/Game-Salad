@@ -199,6 +199,9 @@ public class GameEngine implements GameEngineInterface {
 		for (AbstractEngine s : myEngines){
 			IGameData rgd = (IGameData) s.update(keysPressed,(IRestrictedGameData) myGameData);
 			GameDataFactory gdf = new GameDataFactory();
+			if (myGameData.getLevel().intValue()!=rgd.getLevel().intValue()){
+				System.out.println("levelChanged");
+			}
 			gdf.updateGameData(myGameData,rgd);		
 		}
 	}
@@ -474,43 +477,43 @@ public class GameEngine implements GameEngineInterface {
 		y.addComponent(new LabelComponent("Blok"));
 		//BLOCK
 
-	/*	y.addComponent(new TypeComponent(EntityType.Block));
-		y.addComponent(new TypeComponent(EntityType.Block));
->>>>>>> rewind
-		Entity p = new AbstractMysteryBlock(102,y); 
-		p.addComponent(new LocationComponent(900,50));
-		p.addComponent(new SpriteComponent(("platform_tile_023.png")));
-		ImagePropertiesComponent xpc = new ImagePropertiesComponent();
-		xpc.setHeight(50);
-		xpc.setWidth(50);
-		p.addComponent(xpc);
-		p.addComponent(new LabelComponent("Blok"));
-		e.add(p);
-//		Entity goal = new AbstractGoal(243);
-//		goal.addComponent(new LocationComponent(1300,150));
-//		goal.addComponent(new SpriteComponent(("transparent.png")));
-//		goal.addComponent(new ImagePropertiesComponent(50,50));
-//		goal.addComponent(new LabelComponent("Goal"));
-//		e.add(goal);
-		for (int i= 0; i<2; i++){
-			Entity enemy = new AbstractEnemy(106+i);
-			if (i==0){
-				enemy.addComponent(new LocationComponent(800, 20));
-			}else{
-				enemy.addComponent(new LocationComponent(1200,150));
-			}
-			enemy.addComponent(new SpriteComponent(("sand.jpg")));
-			ImagePropertiesComponent goalc = new ImagePropertiesComponent();
-			goalc.setHeight(50);
-			enemy.addComponent(new StepComponent(50));
-			enemy.addComponent(new VelocityComponent(-1,0));
-			enemy.addComponent(new LabelComponent("wecamefromnothingtosomething"));
-			goalc.setWidth(50);
-			enemy.addComponent(goalc);
-			enemy.addComponent(new StrengthComponent(5.0));
-			e.add(enemy);
-			enemy.addComponent(new CheckCollisionComponent(true));
-		}
+//		y.addComponent(new TypeComponent(EntityType.Block));
+//		y.addComponent(new TypeComponent(EntityType.Block));
+//>>>>>>> rewind
+//		Entity p = new AbstractMysteryBlock(102,y); 
+//		p.addComponent(new LocationComponent(900,50));
+//		p.addComponent(new SpriteComponent(("platform_tile_023.png")));
+//		ImagePropertiesComponent xpc = new ImagePropertiesComponent();
+//		xpc.setHeight(50);
+//		xpc.setWidth(50);
+//		p.addComponent(xpc);
+//		p.addComponent(new LabelComponent("Blok"));
+//		e.add(p);
+		Entity goal = new AbstractGoal(243);
+		goal.addComponent(new LocationComponent(700,100));
+		goal.addComponent(new SpriteComponent(("platform_tile_053.png")));
+		goal.addComponent(new ImagePropertiesComponent(50,50));
+		goal.addComponent(new LabelComponent("Goal"));
+		e.add(goal);
+//		for (int i= 0; i<2; i++){
+//			Entity enemy = new AbstractEnemy(106+i);
+//			if (i==0){
+//				enemy.addComponent(new LocationComponent(800, 20));
+//			}else{
+//				enemy.addComponent(new LocationComponent(1200,150));
+//			}
+//			enemy.addComponent(new SpriteComponent(("sand.jpg")));
+//			ImagePropertiesComponent goalc = new ImagePropertiesComponent();
+//			goalc.setHeight(50);
+//			enemy.addComponent(new StepComponent(50));
+//			enemy.addComponent(new VelocityComponent(-1,0));
+//			enemy.addComponent(new LabelComponent("wecamefromnothingtosomething"));
+//			goalc.setWidth(50);
+//			enemy.addComponent(goalc);
+//			enemy.addComponent(new StrengthComponent(5.0));
+//			e.add(enemy);
+//			enemy.addComponent(new CheckCollisionComponent(true));
+//		}
 
 
 	/*	p.addComponent(new TypeComponent(EntityType.Block));
@@ -596,7 +599,7 @@ public class GameEngine implements GameEngineInterface {
 //		myEntityManagers.add(new EntityManager(e8));
 		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), "", "" );
 
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,InfiniteEnum.Horizontal));
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,InfiniteEnum.None));
 		return myEntityManager;
 //		return myGameData;
 	}
