@@ -17,7 +17,7 @@ import data_interfaces.XMLDefinedParser;
 import data_interfaces.XMLWriter;
 import entity.Entity;
 import entity.LevelEntity;
-import entity.SplashEntity;
+import entity.SplashData;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
