@@ -36,6 +36,7 @@ public class UIView implements UIViewInterface {
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
+	private SpecificGameSplashView mySpecificSplash;
 	private GameScreen myGameScene;
 	private IRestrictedGameData myData; 
 	private WorldAnimator myAnimation;
@@ -66,7 +67,7 @@ public class UIView implements UIViewInterface {
 	
 	@Override
 	public void runGame() {
-		setStage(myGameScene.getScene());//myGameScene
+		setStage(mySpecificSplash.getScene());//myGameScene
 		
 	}
 	
@@ -76,6 +77,7 @@ public class UIView implements UIViewInterface {
 		}
 		myCurrentGame = file;
 		myData = myController.loadNewGame(file);
+		mySpecificSplash = myController.playSpecificSplash();
 		
 		//COMMENT OUT TO TEST WITH RUNNER
 		myGameScene.addData(myData);
@@ -89,7 +91,7 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void authorGame() {
-		myController.makeGame();
+		myController.makeGame(); //makeGame();
 	}
 	
 	public void saveGame() {

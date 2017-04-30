@@ -77,14 +77,15 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-	public void playSpecificSplash() {
+	public SpecificGameSplashView playSpecificSplash() {
 		//Communicator c = new Communicator(filePath);
 		//SplashEntity se = c.getSplashEntity();
 		SpecificGameSplashView sView = new SpecificGameSplashView(myGameView, myStage, uiData, new SplashEntity(0, "Balls", "Instructional", "images.background1.png"));
-		Stage specificSplashStage = new Stage();
-		specificSplashStage.setScene(sView.getScene());
-		specificSplashStage.showAndWait();
+		//Stage specificSplashStage = new Stage();
+		//specificSplashStage.setScene(sView.getScene());
+		//specificSplashStage.showAndWait();
 		//sView.getScene();
+		return sView;
 	}
 	
 	public void makeGame() {
