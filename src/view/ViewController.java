@@ -29,8 +29,29 @@ public class ViewController implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+//		if (myData.getUserSelectedEntity() == null) {
+//            LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
+//            level.getGrid().clearEntitiesOnGrid();
+//            level.getGrid().drawPlacedEntities();
+//            
+//            myTab.clearEntitiesOnTab();
+//            //myTab.addPresetEntities();
+//            myTab.addDefinedEntities();
+//
+//        }
+//	}	
+		if (arg == null){
+			Entity currentlySelected = myData.getUserSelectedEntity();
+			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
+			level.getGrid().clearEntitiesOnGrid();
+			level.getGrid().drawPlacedEntities();
 
-		if(arg != null){
+			myTab.clearEntitiesOnTab();
+			//myTab.addPresetEntities();
+			myTab.addDefinedEntities();
+			myTab.selectEntity(currentlySelected);
+		}
+		else if(arg.equals("reset")){
 			levelTabs.clearTabs();
 			for(int i : myData.getPlacedEntityMap().keySet()){
 				levelTabs.addNewTab(new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS));
@@ -41,17 +62,6 @@ public class ViewController implements Observer {
 			myTab.clearSelected();
 		}*/
 		
-		else{
-			Entity previouslySelected = myData.getUserSelectedEntity();
-			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
-			level.getGrid().clearEntitiesOnGrid();
-			level.getGrid().drawPlacedEntities();
-
-			myTab.clearEntitiesOnTab();
-			//myTab.addPresetEntities();
-			myTab.addDefinedEntities();
-			myTab.selectEntity(previouslySelected);
-		}
 	}
 
 }

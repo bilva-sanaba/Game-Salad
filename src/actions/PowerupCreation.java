@@ -24,8 +24,8 @@ public class PowerupCreation   extends AbstractAction implements IAction {
 		if (occ.checkIfCreation()){
 			IEntity powerup = occ.getCreationEffect();
 			if (powerup!=null){
-				Collection<Entity> list = new ArrayList<Entity>();
-				list.add((Entity) powerup);
+				Collection<IEntity> list = new ArrayList<IEntity>();
+				list.add( powerup);
 				LocationComponent newLC = ((LocationComponent) powerup.getComponent(ComponentType.Location));
 				ImagePropertiesComponent ipc = ((ImagePropertiesComponent) powerup.getComponent(ComponentType.ImageProperties));
 				newLC.setX(lc.getX());

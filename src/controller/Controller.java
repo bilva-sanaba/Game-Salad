@@ -6,7 +6,10 @@ import java.util.Set;
 
 import data_interfaces.*;
 import gameView.UIView;
-import gameView_interfaces.UIViewInterface;
+import gameView.UIViewInterface;
+import gameView.userInput.IRestrictedUserInputData;
+import gameView.userInput.IUserInputData;
+import gameView.userInput.UserInputData;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 import javafx.scene.image.ImageView;
@@ -39,8 +42,9 @@ public class Controller implements ControllerInterface {
 	public Controller(Stage s) {
 		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
-		myGameEngine = new GameEngine();
-		myGameView = new UIView(s, this);
+		UserInputData userInput = new UserInputData();
+		myGameEngine = new GameEngine((IRestrictedUserInputData) userInput);
+		myGameView = new UIView(s, this, (IUserInputData) userInput);
 	}
 
 	public void save(String fileName) {
@@ -53,14 +57,16 @@ public class Controller implements ControllerInterface {
 	@Override
 	public IRestrictedGameData loadNewGame(String gameName) { //IRestrictedEntityManager
 		Communicator c = new Communicator(gameName);
-		IRestrictedGameData gameData = myGameEngine.loadData(c); 
-		gd=gameData;
-		return gameData;
+		return myGameEngine.loadData(c);
+//		IRestrictedGameData gameData = myGameEngine.loadData(null); 
+//		gd=gameData;
+//		return gameData;
 	}
 
 	@Override
 	public void resetCurrentGame() throws XMLException {
 		if(!filePath.equals(null)){
+			Communicator c = new Communicator(filePath);
 			myGameEngine.loadData(new Communicator(filePath));;
 		}
 		else{
@@ -83,7 +89,7 @@ public class Controller implements ControllerInterface {
 		return myGameEngine;
 	}
 	
-	public void step(Set<KeyCode> keysPressed,IRestrictedGameData gd ){
-        myGameEngine.handleUpdates(keysPressed,gd);
+	public void step(Set<KeyCode> keysPressed){
+        myGameEngine.handleUpdates(keysPressed);
     }
 }

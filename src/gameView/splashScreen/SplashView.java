@@ -12,12 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import gameView.AbstractViewer;
 import gameView.ICommandView;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
 import gameView.tools.ResourceRetriever;
+import gameView.userInput.IUserInputData;
 
 public class SplashView extends AbstractViewer {
 
@@ -30,8 +32,8 @@ public class SplashView extends AbstractViewer {
 	private Collection<AbstractCommand> myCommands;
 	
 	
-	public SplashView(UIView view) {
-		super(view);
+	public SplashView(UIView view, Stage s, IUserInputData input) {
+		super(view, s, input);
 		myCommands = getCommands(myName);
 		myPane = new BorderPane();
 		myScene = new Scene(myPane, UIView.DEFAULT_SIZE.width,
@@ -61,6 +63,7 @@ public class SplashView extends AbstractViewer {
 		myCommands.stream().forEach(c -> {  
 			box.getChildren().add(makeButton(c));
 		});
+		
 		myPane.setBottom(box);
 	}
 	
