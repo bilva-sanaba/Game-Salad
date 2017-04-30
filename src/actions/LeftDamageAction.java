@@ -8,6 +8,7 @@ import components.entityComponents.DamagedComponent;
 import components.entityComponents.HealthComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.StrengthComponent;
+import components.entityComponents.TimeComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
@@ -38,9 +39,8 @@ public class LeftDamageAction implements IAction{
 		ac.setX(0);
 				
 		hc.setHealth(hc.getHealth() - sc.getStrength());
-		
+		System.out.println(hc.getHealth());
 		cc.loseControl();
-		System.out.println("control is lost");
 		
 		GameDataFactory gdf = new GameDataFactory();
 			

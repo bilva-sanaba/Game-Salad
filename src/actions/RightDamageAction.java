@@ -19,14 +19,14 @@ public class RightDamageAction implements IAction{
 
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
-			IRestrictedGameData currentGameData) {
+			IRestrictedGameData currentGameData) {	
 		
 		ControllableComponent cc = (ControllableComponent) player.getComponent(ComponentType.Controllable);
 		LocationComponent lc = (LocationComponent) player.getComponent(ComponentType.Location);
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		HealthComponent hc = (HealthComponent) player.getComponent(ComponentType.Health);
 		AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
-		
+
 		//TODO: WHEN BILVA CHANGES THE TIME ENGINE CHANGE DamagedComponent dc = (DamagedComponent) player.getComponent(ComponentType.Damaged);
 		
 		StrengthComponent sc = (StrengthComponent) npc.getComponent(ComponentType.Strength);
@@ -38,7 +38,7 @@ public class RightDamageAction implements IAction{
 		ac.setX(0);
 		
 		hc.setHealth(hc.getHealth() - sc.getStrength());
-		
+		System.out.println(hc.getHealth());
 		cc.loseControl();
 			
 		GameDataFactory gdf = new GameDataFactory();

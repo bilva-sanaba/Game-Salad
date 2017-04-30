@@ -2,6 +2,7 @@ package engines;
 import java.util.*;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
+import components.entityComponents.ControllableComponent;
 import entity.restricted.*;
 import gamedata.IRestrictedGameData;
 import components.entityComponents.LocationComponent;
@@ -19,7 +20,9 @@ public class MovementEngine extends AbstractEngine{
 
 	public IRestrictedGameData update(Collection<KeyCode> keys, IRestrictedGameData currentGameData) {
 		for (IEntity e: getEManager().getEntities()) {
-			if(hasComponent(e,ComponentType.KeyInput) && keys.isEmpty()){
+			if(hasComponent(e,ComponentType.KeyInput)){
+				ControllableComponent cc = (ControllableComponent) e.getComponent(ComponentType.Controllable);
+				if(keys.isEmpty() || !(cc.checkControl()))
 				decelerate(e);
 			}
 			if (hasComponent(e,ComponentType.Location)) {
@@ -33,7 +36,7 @@ public class MovementEngine extends AbstractEngine{
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
-		
+		//DECELERATES
 		if(vc.getX() > 0.5){
 			ac.setX(-0.9);
 		}
@@ -63,26 +66,23 @@ public class MovementEngine extends AbstractEngine{
 	protected void updateLocation(IEntity e) {
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-		
+		//UPDATES LOCATION
 		lc.setXY(lc.getX() + vc.getX(), lc.getY() + vc.getY());
 		((IRestrictedEntity) e).changed(e);
 	}
 	
 	private void updateMovement(IEntity e) {
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-			
+		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);	
 		vc.setX(vc.getX() + ac.getX());		
 		vc.setY(vc.getY() + ac.getY());
-		
+		//GRAVITY
 		if(vc.getY() != 0 && ac.getY() == 0){
 			ac.setY(0.9);
 		}
-		
-		//Handles terminal velocity
+		//TERMINAL VELOCITY
 		if(e.getComponent(ComponentType.TerminalVelocity) != null){
 			TerminalVelocityComponent tvc = (TerminalVelocityComponent) e.getComponent(ComponentType.TerminalVelocity);
-			
 			checkTerminalVelocityInX(vc, tvc);
 			checkTerminalVelocityInY(vc, tvc);
 		}
