@@ -56,15 +56,17 @@ public class Controller implements ControllerInterface {
 
 	@Override
 	public IRestrictedGameData loadNewGame(String gameName) { //IRestrictedEntityManager
-		//Communicator c = new Communicator(gameName);
-		IRestrictedGameData gameData = myGameEngine.loadData(null); 
-		gd=gameData;
-		return gameData;
+		Communicator c = new Communicator(gameName);
+		return myGameEngine.loadData(c);
+//		IRestrictedGameData gameData = myGameEngine.loadData(null); 
+//		gd=gameData;
+//		return gameData;
 	}
 
 	@Override
 	public void resetCurrentGame() throws XMLException {
 		if(!filePath.equals(null)){
+			Communicator c = new Communicator(filePath);
 			myGameEngine.loadData(new Communicator(filePath));;
 		}
 		else{

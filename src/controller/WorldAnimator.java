@@ -153,7 +153,8 @@ public class WorldAnimator{
 //        
 //        if(achievementShowing==true){
 //        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
-//    }
+//        }
+        
         myCamera.updateCamera();
         myObservers.clearSet();
     }
@@ -161,6 +162,7 @@ public class WorldAnimator{
     //TESTING PURPOSES
     public void fillMap() {
     	fillMapAndDisplay(myObservers.getUpdatedSet());
+    	myCamera.updateCamera();
     }
 
 	private void updateAchievement() throws ClassNotFoundException {

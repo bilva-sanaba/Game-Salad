@@ -124,6 +124,10 @@ public class TabView extends GUIComponent {
 		return myBox;
 	}
 	
+	public void selectEntity(Entity e){
+		blocksView.getSelectionModel().select(e);
+}
+		
 	private void savePreset() {
 		TextInputDialog tid = new TextInputDialog(myData.getGameName());
 		XMLWriter xw = new XMLWriter();

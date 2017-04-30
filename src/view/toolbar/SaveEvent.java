@@ -25,7 +25,7 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		List <Map> l = new ArrayList<Map>();
 		
 		l.add(myData.getPlacedEntityMap());
-		l.add(myData.getLevelEntity());
+		l.add(myData.getLevelEntityMap());
 		Map <Integer, SplashEntity> m = new HashMap<Integer, SplashEntity>();
 		m.put(getSplashConstant(), myData.getSplashEntity());
 		l.add(m);

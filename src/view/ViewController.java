@@ -11,34 +11,56 @@ public class ViewController implements Observer {
 	private ViewData myData;
 	private LevelTabView levelTabs;
 	private TabView myTab;
-	
-	public ViewController(ViewData dataIn, LevelTabView levelIn, TabView tabIn) {
+	private UtilityFactory utilF;
+
+	public ViewController(ViewData dataIn, LevelTabView levelIn, TabView tabIn, UtilityFactory utilIn) {
 		myData = dataIn;
 		levelTabs = levelIn;
 		myTab = tabIn;
+		utilF = utilIn;
 	}
 
-	
-/*	@Override
+
+	/*	@Override
 	public void update(Observable o, Object arg){
 		myGrid.clearEntitiesOnGrid();
 		myGrid.drawAllEntities();
 	} */
-	
+
 	@Override
 	public void update(Observable o, Object arg) {
-		
-		if (myData.getUserSelectedEntity() == null) {
-			myTab.clearSelected();
+//		if (myData.getUserSelectedEntity() == null) {
+//            LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
+//            level.getGrid().clearEntitiesOnGrid();
+//            level.getGrid().drawPlacedEntities();
+//            
+//            myTab.clearEntitiesOnTab();
+//            //myTab.addPresetEntities();
+//            myTab.addDefinedEntities();
+//
+//        }
+//	}	
+		if (arg == null){
+			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
+			level.getGrid().clearEntitiesOnGrid();
+			level.getGrid().drawPlacedEntities();
+
+			myTab.clearEntitiesOnTab();
+			//myTab.addPresetEntities();
+			myTab.addDefinedEntities();
+			myTab.selectEntity(myData.getUserSelectedEntity());
 		}
+		else if(arg.equals("reset")){
+			levelTabs.clearTabs();
+			for(int i : myData.getPlacedEntityMap().keySet()){
+				levelTabs.addNewTab(new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS));
+			}
+		}
+
+		/*if (myData.getUserSelectedEntity() == null) {
+			myTab.clearSelected();
+		}*/
 		
-		LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
-		level.getGrid().clearEntitiesOnGrid();
-		level.getGrid().drawPlacedEntities();
-		
-		myTab.clearEntitiesOnTab();
-		//myTab.addPresetEntities();
-		myTab.addDefinedEntities();
 	}
 
 }
