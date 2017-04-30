@@ -33,7 +33,7 @@ public class RightDamageAction extends AbstractAction implements IAction{
 			TimeComponent tc = (TimeComponent) player.getComponent(ComponentType.Time);
 			StrengthComponent sc = (StrengthComponent) npc.getComponent(ComponentType.Strength);
 			lc.setX(lc.getX()-0.01);
-			vc.setX(-15);
+			vc.setX(15);
 			ac.setX(0);
 			List<String> collection = new ArrayList<String>();
 			collection.add("transparent.png");
