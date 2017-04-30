@@ -64,7 +64,7 @@ public class Controller implements ControllerInterface {
 		List <Map> saveList = new ArrayList<Map>();
 		saveList.add(convertEntityManagers(myGameEngine.save()));
 		saveList.add(convertLevelEntities(c.getLevelEntities()));
-		saveList.add(convertSplashEntity(c.getSplashEntity()));
+		saveList.add(convertSplashData(c.getSplashEntity()));
 		xw.writeFile(fileName, saveList);
 	}
 	
@@ -88,8 +88,8 @@ public class Controller implements ControllerInterface {
 		return ret;
 	}
 	
-	private Map<Integer, SplashEntity> convertSplashEntity(SplashEntity se) {
-		Map<Integer, SplashEntity> ret = new HashMap<Integer, SplashEntity>();
+	private Map<Integer, SplashData> convertSplashData(SplashData se) {
+		Map<Integer, SplashData> ret = new HashMap<Integer, SplashData>();
 		ret.put(GameSavingDataTool.SPLASHCONSTANT, se);
 		return ret;
 	}
