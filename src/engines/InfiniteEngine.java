@@ -59,10 +59,14 @@ public class InfiniteEngine extends AbstractEngine {
 			}
 			else if (infinite==InfiniteEnum.Vertical){
 				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
-				if (mainPlayer.getY()-lc.getY()>difference/2){
-					lc.setY(lc.getY()-difference);
+				if (mainPlayer.getY()-lc.getY()>difference/2 && !repeated.contains(e)){
+					repeated.add(e);
+					IEntity newEntity = e.newCopy();
+					newEntity.addComponent(new LocationComponent(lc.getX(),lc.getY()+difference));
+					getEManager().getEntities().add(newEntity);
+					getEManager().changed(newEntity);
 				}
-				e.changed(e);
+				
 			}
 		}
 		return gameData;

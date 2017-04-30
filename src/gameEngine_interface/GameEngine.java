@@ -158,16 +158,16 @@ public class GameEngine implements GameEngineInterface {
 //		}
 		
 		//DUMMYLOAD
-//		myEntityManager = dummyLoad();
-//		myEntityManagers = new ArrayList<IEntityManager>();
-//		myEntityManagers.add(myEntityManager);
+		myEntityManager = dummyLoad();
+		myEntityManagers = new ArrayList<IEntityManager>();
+		myEntityManagers.add(myEntityManager);
 		
 		//REAL USE THIS
-		myEntityManagers = c.getIEntityManagers();
-		myEntityManager = myEntityManagers.get(0);
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
-				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
-				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager, c.getInfinite()));
+//		myEntityManagers = c.getIEntityManagers();
+//		myEntityManager = myEntityManagers.get(0);
+//		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
+//				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
+//				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager, c.getInfinite()));
 		
 		
 		el = new EntityLoader(myEntityManager);
@@ -368,7 +368,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new HealthComponent(100));
 		x.addComponent(new DamagedComponent());
 		x.addComponent(new TerminalVelocityComponent(10,10));
-		x.addComponent(new ControllableComponent());
+		x.addComponent(new ControllableComponent(true));
 
 		List<String> collection = new ArrayList<String>();
 		collection.add("mario_step1.gif");
