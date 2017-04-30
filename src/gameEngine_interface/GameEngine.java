@@ -308,7 +308,7 @@ public class GameEngine implements GameEngineInterface {
 		collection.add("mario_step1.gif");
 		collection.add("mario_step2.gif");
 		collection.add("mario_step3.gif");
-		ImageChangeAction ica = new ImageChangeAction(collection);
+		//ImageChangeAction ica = new ImageChangeAction(collection);
 		List<String> collection2 = new ArrayList<String>();
 		collection2.add("mario_leftstep1.gif");
 		collection2.add("mario_leftstep2.gif");
@@ -340,7 +340,7 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
+		//((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
@@ -378,15 +378,15 @@ public class GameEngine implements GameEngineInterface {
 		collection.add("mario_step1.gif");
 		collection.add("mario_step2.gif");
 		collection.add("mario_step3.gif");
-		ImageChangeAction ica = new ImageChangeAction(collection);
+		//ImageChangeAction ica = new ImageChangeAction(collection);
 		List<String> collection2 = new ArrayList<String>();
 		collection2.add("mario_leftstep1.gif");
 		collection2.add("mario_leftstep2.gif");
 		collection2.add("mario_leftstep3.gif");
-		ImageChangeAction ica2 = new ImageChangeAction(collection2);
+		//ImageChangeAction ica2 = new ImageChangeAction(collection2);
 		List<String> collection3 = new ArrayList<String>();
 		collection3.add("mario_jump.gif");
-		ImageChangeAction ica3 = new ImageChangeAction(collection3);
+		//ImageChangeAction ica3 = new ImageChangeAction(collection3);
 
 		x.addComponent(new GoalComponent());
 
@@ -408,12 +408,12 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(time);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
+		//((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
+		//((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
+		//((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
 		//
 		//
