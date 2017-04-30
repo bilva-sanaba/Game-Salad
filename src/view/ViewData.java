@@ -70,8 +70,7 @@ public class ViewData extends Observable {
 	
 	public int getEntityID(){
 		entityIDcounter++;
-		return entityIDcounter;
-		
+		return entityIDcounter;		
 	}
 	
 	public int getCurrentLevel(){
