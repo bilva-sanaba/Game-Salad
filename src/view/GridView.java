@@ -85,13 +85,13 @@ public class GridView extends GUIComponent {
 	private void addHo() {
 		myGrid.setPrefWidth(myGrid.getWidth() + 20);
 		myCol++;
-		myData.getLevelEntity().get(myLevelNumber).addCol();
+		myData.getLevelEntity().addCol();
 	}
 
 	private void addVert() {
 		myGrid.setPrefHeight(myGrid.getHeight() + 20);
 		myRow++;
-		myData.getLevelEntity().get(myLevelNumber).addRow();
+		myData.getLevelEntity().addRow();
 	}
 
 	private void placeImageAtLoc(double row, double col) {
@@ -190,8 +190,8 @@ public class GridView extends GUIComponent {
 	}
 
 	public void setUpLevel() {
-		int totalRow = myData.getLevelEntity().get(myLevelNumber).getRows();
-		int totalCol = myData.getLevelEntity().get(myLevelNumber).getCols();
+		int totalRow = myData.getLevelEntity().getRows();
+		int totalCol = myData.getLevelEntity().getCols();
 		while (myCol != totalCol) {
 			addHo();
 		}
@@ -201,7 +201,7 @@ public class GridView extends GUIComponent {
 	}
 
 	public void updateBackground() {
-		String filePath = myData.getLevelEntity().get(myLevelNumber).getBackgroundFilePath();
+		String filePath = myData.getLevelEntity().getBackgroundFilePath();
 		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
 
