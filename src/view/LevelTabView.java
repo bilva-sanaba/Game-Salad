@@ -27,13 +27,7 @@ public class LevelTabView extends GUIComponent{
 	}
 	
 	public void clearTabs(){
-		//myTabs.getTabs().clear();
-		myTabs = new TabPane();
-		myTabs.getSelectionModel().selectedItemProperty().addListener((obs,oldTab,newTab)->{
-            String temp = newTab.getText();
-            myData.setCurrentLevel(Integer.parseInt(temp.substring(temp.length()-1)));
-            System.out.println("switched tabs");
-        });
+		myTabs.getTabs().clear();
 		tabsList.clear();
 		currentLevel = 1;
 	}

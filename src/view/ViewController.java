@@ -28,6 +28,7 @@ public class ViewController implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		System.out.println("The update method is triggered from" + o + " and " + arg);
 //		if (myData.getUserSelectedEntity() == null) {
 //            LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
 //            level.getGrid().clearEntitiesOnGrid();
@@ -53,6 +54,7 @@ public class ViewController implements Observer {
 		else if(arg.equals("reset")){
 			levelTabs.clearTabs();
 			for(int i : myData.getPlacedEntityMap().keySet()){
+				System.out.println("making "+ i + " level tab");
 				levelTabs.addNewTab(new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS));
 			}
 		}

@@ -66,8 +66,6 @@ public class ViewData extends Observable {
 		currentLevel = level;
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
-	//	setChanged();
-	//	notifyObservers();
 	}
 	
 	public int getEntityID(){
