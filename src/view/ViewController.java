@@ -20,26 +20,8 @@ public class ViewController implements Observer {
 		utilF = utilIn;
 	}
 
-	/*	@Override
-	public void update(Observable o, Object arg){
-		myGrid.clearEntitiesOnGrid();
-		myGrid.drawAllEntities();
-	} */
-
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("The update method is triggered from" + o + " and " + arg);
-//		if (myData.getUserSelectedEntity() == null) {
-//            LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
-//            level.getGrid().clearEntitiesOnGrid();
-//            level.getGrid().drawPlacedEntities();
-//            
-//            myTab.clearEntitiesOnTab();
-//            //myTab.addPresetEntities();
-//            myTab.addDefinedEntities();
-//
-//        }
-//	}	
 		if (arg == null){
 			Entity currentlySelected = myData.getUserSelectedEntity();
 			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel());
@@ -55,13 +37,11 @@ public class ViewController implements Observer {
 			levelTabs.clearTabs();
 			for(int i : myData.getPlacedEntityMap().keySet()){
 				System.out.println("making "+ i + " level tab");
-				levelTabs.addNewTab(new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS));
+				GridView tempGrid = new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS);
+				tempGrid.setEntityIDcount(myData.getPlacedEntityMap().get(i).size());
+				levelTabs.addNewTab(tempGrid);
 			}
 		}
-
-		/*if (myData.getUserSelectedEntity() == null) {
-			myTab.clearSelected();
-		}*/
 		
 	}
 

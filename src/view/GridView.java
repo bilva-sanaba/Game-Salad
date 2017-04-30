@@ -85,6 +85,11 @@ public class GridView extends GUIComponent {
 		myBorderPane.setCenter(myScroll);
 	}
 	
+	public void setEntityIDcount(int in){
+		j = 1000 + in;
+		System.out.println(j + "is the number of entities");
+	}
+	
 	private Label buildMouseCords(){
 		Label mouseCords = new Label();
 		mouseCords.setText("X:0  Y:0");
@@ -106,10 +111,6 @@ public class GridView extends GUIComponent {
 	private void mouseMove(MouseEvent e){
 		mouseCords.setText("X:" + e.getX() + "  Y:" + e.getY());
 	}
-
-	/*	public void setLevelNumber(int levelNumber) {
-		myLevelNumber = levelNumber;
-	}*/
 
 	private void addHo() {
 		myGrid.setPrefWidth(myGrid.getWidth() + 60);
@@ -218,14 +219,16 @@ public class GridView extends GUIComponent {
 		placedImages.clear();
 	}
 
-	public void placeEntitiesFromFile(int levelNumber) {
+/*	public void placeEntitiesFromFile(int levelNumber) {
 		Entity tempEntity;
 		Map<Integer, Map<Integer, Entity>> myMap = myData.getPlacedEntityMap();
 		for (int i : myMap.get(myLevelNumber).keySet()) {
 			tempEntity = myMap.get(myLevelNumber).get(i);
 			drawEntity(tempEntity);
+			j++;
+			System.out.println(j + "is the current entityID value");
 		}
-	}
+	} */
 
 	public void setUpLevel() {
 		int totalRow = myData.getLevelEntity().getRows();
