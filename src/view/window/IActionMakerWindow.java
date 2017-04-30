@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import actions.IAction;
+import exceptions.InputException;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -69,14 +70,12 @@ public class IActionMakerWindow{
 		return myAction.toString();
 	}
 
-	public IAction openWindow() {
+	public IAction openWindow() throws InputException {
 		myStage.showAndWait();
 		try {
 			return (IAction) myAction.getConstructors()[listConstructNum].newInstance(myParams);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException e) {
-			
-		} catch (InputException e){
 			
 		}
 		return null;

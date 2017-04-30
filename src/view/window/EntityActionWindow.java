@@ -15,6 +15,7 @@ import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
+import exceptions.InputException;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -81,7 +82,11 @@ public class EntityActionWindow extends Window {
 			CollisionComponentType currentType = CollisionComponentType.values()[j];
 			List<Class<?>> listofAct = ar.getActionsWithAnnotation(currentType);
 			ArrayList<IAction> actions = new ArrayList<IAction>();
-			populatelist(actions, listofAct);
+			try {
+				populatelist(actions, listofAct);
+			} catch (InputException e1) {
+				//throw alert
+			}
 			allActions.put(currentType, actions);
 			ListView<IAction> viewActs = myUtilF.buildListView(actions);
 			VBox listandbut = myUtilF.buildVBox(new Text(currentType.name() + "Action"), viewActs,
@@ -130,7 +135,7 @@ public class EntityActionWindow extends Window {
 		viewActs.setMaxSize(200, 150);
 	}
 
-	private void populatelist(List<IAction> actions, List<Class<?>> listofAct) {
+	private void populatelist(List<IAction> actions, List<Class<?>> listofAct) throws InputException {
 		for (int i = 0; i < listofAct.size(); i++) {
 			Class<?> nextAction = listofAct.get(i);
 			IAction act = null;
