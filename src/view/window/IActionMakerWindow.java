@@ -1,30 +1,31 @@
 package view.window;
 
-import java.util.HashMap;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
 
 import actions.IAction;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import view.ActionFactory;
 import view.GUIBuilder;
+import view.Input;
 import view.UtilityFactory;
 
-public class IActionMakerWindow extends Window {
+public class IActionMakerWindow{
 	private UtilityFactory myUtilF;
 	private VBox root;
 	private Stage myStage = new Stage();
 	private Class<?> myAction;
-	private ActionFactory actFac;
+	private List<String> myParams;
+	private int stringConstructNum = 0;
+	private int listConstructNum = 0;
 
 	public IActionMakerWindow(UtilityFactory utilF, Class<?> act) {
 		myUtilF = utilF;
 		myAction = act;
+		myParams = new ArrayList<String>();
 		myStage.setScene(buildScene());
 	}
 
@@ -32,29 +33,53 @@ public class IActionMakerWindow extends Window {
 		root = new VBox();
 		buildIActionMaker();
 		Scene myScene = new Scene(root, 200, 200);
+		root.getChildren().add(myUtilF.buildButton("EnterInput", e -> closeAndSend()));
 		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
 		return myScene;
 	}
 
-	private void buildIActionMaker() {
-		
-	}
-		
-	private void changeParam(TextField text, Integer i) {
-		try{
-			
-		}catch(NullPointerException x){
-			
-		}
+
+	private void closeAndSend() {
+		myStage.close();
 	}
 	
+	private void buildIActionMaker() {
+		Constructor<?>[] actConst = myAction.getConstructors();
+		boolean allString = true;
+		for(int i = 0; i < actConst.length; i++){
+			for (int j = 0; j < actConst[i].getParameterTypes().length; j++){
+				allString = allString && (actConst[i].getParameterTypes()[j].toString().equals("String"));
+			}
+			if(allString){
+				stringConstructNum = i;
+			}
+			if(actConst[i].getParameterTypes().equals(List.class)){
+				listConstructNum = i;
+			}
+			allString = true;
+		}
+		for(int j = 0; j < actConst[stringConstructNum].getParameterCount(); j++){
+			Input getInput = new Input(myUtilF, myAction.toString());
+			myParams.add(getInput.getInput());
+		}
+		
+	}
+		
 	public String toString(){
 		return myAction.toString();
 	}
 
-	@Override
-	public void openWindow() {
-		myStage.show();
+	public IAction openWindow() {
+		myStage.showAndWait();
+		try {
+			return (IAction) myAction.getConstructors()[listConstructNum].newInstance(myParams);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| SecurityException e) {
+			
+		} catch (InputException e){
+			
+		}
+		return null;
 	}
 
 }

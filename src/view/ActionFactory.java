@@ -5,10 +5,10 @@ import voogasalad.util.reflection.Reflection;
 import voogasalad.util.reflection.ReflectionException;
 
 public class ActionFactory  {
-	private static final String PREFIX = "actions.";
-	private static final String SUFFIX = "Action";
+	private static final String PREFIX = "actions.maker.";
+	private static final String SUFFIX = "ActionMaker";
 
-	public IAction getAction(String actionName, Object...objects) {
+	public IAction getActionMaker(String actionName, Object...objects) {
 		IAction reflectedAction;
 		try {
 			reflectedAction = (IAction) Reflection.createInstance(PREFIX + actionName + SUFFIX, objects);

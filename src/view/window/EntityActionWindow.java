@@ -16,23 +16,21 @@ import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import view.GUIBuilder;
+import view.Input;
 import view.UtilityFactory;
 import view.ViewData;
+import voogasalad.util.reflection.Reflection;
 
 public class EntityActionWindow extends Window {
 	private UtilityFactory myUtilF;
@@ -42,6 +40,7 @@ public class EntityActionWindow extends Window {
 	private TextField labelType;
 	private ListView<EntityType> EntityTypeList;
 	private Map<CollisionComponentType, List<IAction>> allActions;
+	private Reflection refl = new Reflection();
 
 	public EntityActionWindow(UtilityFactory utilF, ViewData entityData, Entity myE) {
 		myUtilF = utilF;
@@ -140,13 +139,8 @@ public class EntityActionWindow extends Window {
 				actions.add(act);
 				System.out.println(nextAction.getName() + " line 59" + this.getClass());
 			} catch (InstantiationException | IllegalAccessException e) {
-				System.out.println(nextAction.getName() + " line 60" + this.getClass());
-				for (int j = 0; j < nextAction.getConstructors().length; j++){
-					System.out.println("\t" + nextAction.getConstructors()[j]);
-					for (int k = 0; k < nextAction.getConstructors()[j].getParameterCount(); k++){
-						System.out.println("\t\t" + nextAction.getConstructors()[j].getParameterTypes()[k]);
-					}
-				}
+				IActionMakerWindow actionMaker = new IActionMakerWindow(myUtilF, nextAction);
+				
 			}
 		}
 	}
