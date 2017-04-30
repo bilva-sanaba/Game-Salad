@@ -41,6 +41,7 @@ public class ViewController implements Observer {
 //        }
 //	}	
 		if (arg == null){
+			Entity currentlySelected = myData.getUserSelectedEntity();
 			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
 			level.getGrid().clearEntitiesOnGrid();
 			level.getGrid().drawPlacedEntities();
@@ -48,7 +49,7 @@ public class ViewController implements Observer {
 			myTab.clearEntitiesOnTab();
 			//myTab.addPresetEntities();
 			myTab.addDefinedEntities();
-			myTab.selectEntity(myData.getUserSelectedEntity());
+			myTab.selectEntity(currentlySelected);
 		}
 		else if(arg.equals("reset")){
 			levelTabs.clearTabs();
