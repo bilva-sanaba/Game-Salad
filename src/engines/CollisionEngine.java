@@ -80,7 +80,7 @@ public class CollisionEngine extends AbstractEngine {
 					IEntity entityTwo = entities[j];
 					CollidableComponent collidableE2 = (CollidableComponent) entityTwo.getComponent(ComponentType.Collidable);
 					if (collidableE2.getCollide() && entityOne!=entityTwo /*&& cam.withinCameraBounds(entityTwo)*/) {
-						checkIndividualCollision(entityOne, entityTwo, gd);
+						gd = checkIndividualCollision(entityOne, entityTwo, gd);
 					}
 				}
 			}
@@ -91,14 +91,14 @@ public class CollisionEngine extends AbstractEngine {
 	
 	
 	
-	private void checkIndividualCollision(IEntity entityOne, IEntity entityTwo, IRestrictedGameData gd) {
+	private IRestrictedGameData checkIndividualCollision(IEntity entityOne, IEntity entityTwo, IRestrictedGameData gd) {
 		
 		String collisionSide = collisionMethod.collides(entityOne, entityTwo);
-		sendCollisionToSubEngines(entityOne, entityTwo, collisionSide, gd);
+		return sendCollisionToSubEngines(entityOne, entityTwo, collisionSide, gd);
 		
 	}
 	
-	private void sendCollisionToSubEngines(IEntity entityOne, IEntity entityTwo, String collisionSide, IRestrictedGameData gd) {
+	private IRestrictedGameData sendCollisionToSubEngines(IEntity entityOne, IEntity entityTwo, String collisionSide, IRestrictedGameData gd) {
 		boolean collisionOccurs = false;
 		if (!collisionSide.equals(ITwoObjectCollide.NONE)) {
 			collisionOccurs = true;
@@ -112,6 +112,7 @@ public class CollisionEngine extends AbstractEngine {
 			}
 			
 		}
+		return gd;
 	}
 
 	public IRestrictedGameData update(Collection<KeyCode> keys,IRestrictedGameData gd) {

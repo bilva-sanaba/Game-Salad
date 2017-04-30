@@ -23,8 +23,10 @@ public class LeftAction implements IAction {
 		if(cc.checkControl() == true){
 			AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
 			ac.setX(-6);
+			if (player.getComponent(ComponentType.Orientation)!=null){
 			OrientationComponent oc = (OrientationComponent) player.getComponent(ComponentType.Orientation);
 			oc.setOrientation(180);
+			}
 		}
 		
 		((IRestrictedEntity) player).changed(player);

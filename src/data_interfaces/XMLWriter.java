@@ -21,13 +21,15 @@ import entity.IEntity;
 public class XMLWriter extends GameSavingDataTool implements Writer {
 
 	private void createFile(String fileName, String data) {
+		System.out.println(fileName);
+		System.out.println(data);
 		try {
 			File f = new File(getPrefix() + fileName + getSuffix());
 			BufferedWriter b = new BufferedWriter(new FileWriter(f));
 			b.write(data.toString());
 			b.close();
 		} catch (IOException e) {
-			// TODO call the alert that they built
+			System.out.println("File saving went wrong");
 		}
 	}
 

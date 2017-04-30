@@ -17,88 +17,27 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>27.25</imageHeight>
-                  <imageWidth>25.5</imageWidth>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
                 </components.entityComponents.ImagePropertiesComponent>
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
-                  <label>bob</label>
-                </components.entityComponents.LabelComponent>
-                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LocationComponent>
-                  <x>392.0</x>
-                  <y>288.0</y>
-                </components.entityComponents.LocationComponent>
-                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
-              </entry>
-            </myComponentMap>
-          </entity.Entity>
-        </entry>
-        <entry>
-          <int>1001</int>
-          <entity.Entity>
-            <changed>false</changed>
-            <obs/>
-            <identifier>1001</identifier>
-            <myComponentMap>
-              <entry>
-                <components.entityComponents.CollidableComponent>
-                  <collide>false</collide>
-                </components.entityComponents.CollidableComponent>
-                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <classPath>bob.png</classPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.HealthComponent>
-                  <health>0</health>
-                </components.entityComponents.HealthComponent>
-                <components.entityComponents.ComponentType>Health</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>40.0</imageHeight>
-                  <imageWidth>40.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LivesComponent>
-                  <lives>0</lives>
-                </components.entityComponents.LivesComponent>
-                <components.entityComponents.ComponentType>Lives</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LabelComponent>
-                  <label>dsdd</label>
+                  <label>Defult Player</label>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.KeyInputComponent>
                   <inputMap>
-                    <entry>
-                      <javafx.scene.input.KeyCode>W</javafx.scene.input.KeyCode>
-                      <list>
-                        <components.keyExpressions.JumpAction/>
-			
-                      </list>
-                    </entry>
-                    <entry>
-                      <javafx.scene.input.KeyCode>A</javafx.scene.input.KeyCode>
-                      <list>
-                        <components.keyExpressions.LeftAction/>
-                      </list>
-                    </entry>
                     <entry>
                       <javafx.scene.input.KeyCode>D</javafx.scene.input.KeyCode>
                       <list>
@@ -125,15 +64,79 @@
                 <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.StrengthComponent>
-                  <strength>0.0</strength>
-                </components.entityComponents.StrengthComponent>
-                <components.entityComponents.ComponentType>Strength</components.entityComponents.ComponentType>
+                <components.entityComponents.LocationComponent>
+                  <x>180.33333333333334</x>
+                  <y>87.66666666666669</y>
+                </components.entityComponents.LocationComponent>
+                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
+              </entry>
+            </myComponentMap>
+          </entity.Entity>
+        </entry>
+        <entry>
+          <int>1001</int>
+          <entity.Entity>
+            <changed>false</changed>
+            <obs/>
+            <identifier>1001</identifier>
+            <myComponentMap>
+              <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.SpriteComponent>
+                  <classPath>flappybird_yellow.png</classPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LabelComponent>
+                  <label>Defult Player</label>
+                </components.entityComponents.LabelComponent>
+                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.KeyInputComponent>
+                  <inputMap>
+                    <entry>
+                      <javafx.scene.input.KeyCode>A</javafx.scene.input.KeyCode>
+                      <list>
+                        <components.keyExpressions.LeftAction/>
+                      </list>
+                    </entry>
+                  </inputMap>
+                  <groovyMap/>
+                </components.entityComponents.KeyInputComponent>
+                <components.entityComponents.ComponentType>KeyInput</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.AccelerationComponent>
+                  <x>0.0</x>
+                  <y>0.0</y>
+                </components.entityComponents.AccelerationComponent>
+                <components.entityComponents.ComponentType>Acceleration</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.VelocityComponent>
+                  <x>0.0</x>
+                  <y>0.0</y>
+                </components.entityComponents.VelocityComponent>
+                <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>360.0</x>
-                  <y>184.0</y>
+                  <x>298.3333333333333</x>
+                  <y>182.33333333333331</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -152,8 +155,9 @@
         <identifier>-1</identifier>
         <myComponentMap/>
         <rows>50</rows>
-        <cols>50</cols>
+        <cols>70</cols>
         <backgroundFilePath>images/background1.png</backgroundFilePath>
+        <ie>None</ie>
       </entity.LevelEntity>
     </entry>
   </map>
@@ -161,10 +165,13 @@
     <entry>
       <int>1</int>
       <entity.SplashData>
-        <myID>0</myID>
-        <displayName>BALLS</displayName>
-        <instructions>dsjdsajdsajasksjk</instructions>
-        <backgroundFilePath>background2.png</backgroundFilePath>
+        <changed>false</changed>
+        <obs/>
+        <identifier>0</identifier>
+        <myComponentMap/>
+        <displayName>rg</displayName>
+        <instructions>sfg</instructions>
+        <backgroundFilePath>background3.png</backgroundFilePath>
       </entity.SplashData>
     </entry>
   </map>

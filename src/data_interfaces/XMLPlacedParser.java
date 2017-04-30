@@ -16,7 +16,6 @@ public class XMLPlacedParser extends GameSavingDataTool implements Parser {
 	private List<Map> loadFile(String fileName) {
 		XStream xs = new XStream(new DomDriver());
 		try {
-			System.out.println(getFileToString(fileName));
 			return (List<Map>) xs.fromXML(getFileToString(fileName));
 		} catch (Exception e) {
 			return null;
