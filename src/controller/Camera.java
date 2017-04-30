@@ -30,7 +30,7 @@ public class Camera extends Entity {
 	private Group root;
 	private LocationComponent myLC;
 	private double myFrameWidth;
-	
+	private Rectangle background;
 	
 	public Camera (int length, Scene myScene, LocationComponent lc , int id) {
 		super(id);
@@ -43,14 +43,18 @@ public class Camera extends Entity {
 		if (getComponent(ComponentType.Type) == null) {
 			addComponent(new TypeComponent(EntityType.Camera));
 		}
-		Rectangle r = new Rectangle();
-		ImagePattern ipMan = new ImagePattern(new Image(getClass().getClassLoader().getResource("background1.png").toString()));
-		r.setFill(ipMan);
-		r.setX(0);
-		r.setY(0);
-		r.setWidth(ipMan.getWidth());
-		r.setHeight(ipMan.getHeight());
-		root.getChildren().add(r);
+		background = new Rectangle();
+		background.setFill(new ImagePattern(new Image(getClass().getClassLoader().getResource("background1.png").toString())));
+		System.out.println(root.getLayoutX() + " is layout x");
+
+		background.setLayoutX(-root.getTranslateX());
+		
+
+		background.setLayoutY(-root.getTranslateY() -200);
+		background.setWidth(myFrame.getWidth());
+		background.setHeight(myFrame.getHeight()/8);
+		root.getChildren().add(background);
+		
 	}
 
 	public void updateCamera() {
