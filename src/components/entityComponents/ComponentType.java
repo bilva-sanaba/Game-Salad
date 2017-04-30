@@ -35,5 +35,6 @@ public enum ComponentType {
 	BackCamera(), 
 	Checkpoint(),
 	Controllable(),
-	TerminalVelComponent();
+	TerminalVelComponent(),
+	MonsterType();
 }
