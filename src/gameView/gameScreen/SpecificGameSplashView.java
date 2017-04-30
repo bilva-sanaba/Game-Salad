@@ -3,13 +3,13 @@ package gameView.gameScreen;
 
 import java.util.Collection;
 
-import controller.Controller;
-import entity.SplashEntity;
+import entity.SplashData;
 import gameView.AbstractViewer;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.commands.AbstractCommand;
-import gameView.splashScreen.SplashView;
 import gameView.tools.ResourceRetriever;
+import gameView.userInput.IUserInputData;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,19 +23,20 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class SpecificGameSplashView extends AbstractViewer {
 	
 	private static final String myName = SpecificGameSplashView.class.getSimpleName();
 	
 	private String myBackground;
-	private SplashEntity mySplashEntity;
+	private SplashData mySplashEntity;
 	private Scene myScene;
 	private Collection<AbstractCommand> myCommands;
 	private BorderPane myBP;
 	
-	public SpecificGameSplashView(UIView view, SplashEntity se){
-		super(view);
+	public SpecificGameSplashView(UIView myGameView, Stage s, IUserInputData input, SplashData se){
+		super(myGameView, s, input);
 		mySplashEntity = se;
 		myCommands = getCommands(myName);
 		myBP = new BorderPane();
@@ -59,10 +60,13 @@ public class SpecificGameSplashView extends AbstractViewer {
 		hbox.setAlignment(Pos.CENTER);
 		BorderPane.setMargin(hbox, new Insets(10, 10, 30, 10));
 		myBP.setTop(lab);
-		myCommands.stream()
+		/*myCommands.stream()
 			.forEach(c -> {
 				hbox.getChildren().add(makeButton(c));
-		});
+		});*/
+		Button b = new Button("Play");
+		b.setOnAction(e->buttonClicked());
+		hbox.getChildren().add(b);
 		myBP.setBottom(hbox);
 		addInstructions();
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height); 
@@ -70,13 +74,18 @@ public class SpecificGameSplashView extends AbstractViewer {
 		
 	}
 	
+	private void buttonClicked() {
+		// TODO Auto-generated method stub
+		myView.runGame();
+	}
+
 	private void addInstructions() {
 		Label lab = makeLabel(getInstructions(), "instructions");
 		lab.setStyle("-fx-wrap-text: true");
 		myBP.setCenter(lab);
 	}
 	private void addBackground(){
-		myBackground = mySplashEntity.getRestrictedImagePath();
+		myBackground = mySplashEntity.getBackgroundFilePath();
 		myBP.setBackground(makeBackground(myBackground));
 	}
 	

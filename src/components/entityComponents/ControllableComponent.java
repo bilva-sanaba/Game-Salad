@@ -5,7 +5,9 @@ import components.IComponent;
 public class ControllableComponent implements IComponent{
 	
 	private boolean controllable = true;
-
+	public ControllableComponent(boolean c){
+		controllable = c;
+	}
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Controllable;
@@ -13,7 +15,7 @@ public class ControllableComponent implements IComponent{
 
 	@Override
 	public IComponent newCopy() {
-		ControllableComponent myControllableComponent = new ControllableComponent();
+		ControllableComponent myControllableComponent = new ControllableComponent(true);
 		if(!(controllable)){
 			myControllableComponent.loseControl();
 		}

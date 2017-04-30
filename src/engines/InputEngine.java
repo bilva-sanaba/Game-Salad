@@ -34,7 +34,7 @@ public class InputEngine extends AbstractEngine{
 	public IRestrictedGameData update(Collection<KeyCode> keys, IRestrictedGameData gameData) {
 		newEntities.clear();
 		IRestrictedGameData rgd = new GameDataFactory().blankEntityData(gameData);
-		for (IEntity e : getEManager().getEntities()){
+		for (IEntity e : getEManager().getEntities().toArray(new IEntity[getEManager().getEntities().size()])){
 			rgd = handleInput(e,keys, rgd);
 		}
 		for (IRestrictedEntity e : newEntities){
@@ -53,7 +53,7 @@ public class InputEngine extends AbstractEngine{
 			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 
 			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);	
 			ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
-			if(cc.checkControl() == true){	
+			if(cc!=null && cc.checkControl() == true){	
 				for (KeyCode key : keys){
 					if (ic.getActionMap().containsKey(key)){
 						for (IAction action : ic.getActionMap().get(key)){

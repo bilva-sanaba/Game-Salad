@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -19,7 +20,7 @@ import entity.IEntity;
 
 public class XMLWriter extends GameSavingDataTool implements Writer {
 
-	private void createFile(String fileName, Object data) {
+	private void createFile(String fileName, String data) {
 		try {
 			File f = new File(getPrefix() + fileName + getSuffix());
 			BufferedWriter b = new BufferedWriter(new FileWriter(f));
@@ -38,7 +39,7 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 	 * @param gameData
 	 *            the data which should be saved
 	 */
-	public void writeFile(String fileName, Collection<IEntity> gameData) {
+	public void writeFile(String fileName, Collection gameData) {
 		ClassLoader loader = new LocalClassLoader();
 		XStream serializer = new XStream(new DomDriver());
 		String ret;
@@ -48,5 +49,7 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 		ret = serializer.toXML(gameData);
 		createFile(fileName, ret);
 	}
+
+	
 
 }
