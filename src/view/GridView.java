@@ -137,15 +137,11 @@ public class GridView extends GUIComponent {
 		spriteImage.setX(entityLocation.getX());
 		spriteImage.setY(entityLocation.getY());
 		spriteImage.setOnMousePressed(e -> {
-			if (e.isControlDown()) {
+			if (e.isControlDown() || e.isAltDown()) {
 				selectEntity(entity);
 				orgSceneX = e.getSceneX();
 				orgSceneY = e.getSceneY();
-
-				ImageView c = (ImageView) (e.getSource());
-
-				orgTranslateX = c.getTranslateX();
-				orgTranslateY = c.getTranslateY();
+				
 			}
 			if (rightClick.isShowing()) {
 				rightClick.hide();
@@ -156,28 +152,39 @@ public class GridView extends GUIComponent {
 			}
 		});
 		spriteImage.setOnMouseDragged(e -> {
+			ImageView c = (ImageView) (e.getSource());
+			double offsetX = e.getSceneX() - orgSceneX;
+			double offsetY = e.getSceneY() - orgSceneY;
+			
 			if (e.isControlDown()) {
-				double offsetX = e.getSceneX() - orgSceneX;
-				double offsetY = e.getSceneY() - orgSceneY;
-
-				ImageView c = (ImageView) (e.getSource());
-
+									
 				c.setTranslateX(c.getTranslateX() + offsetX);
 				c.setTranslateY(c.getTranslateY() + offsetY);
 
 				orgSceneX = e.getSceneX();
 				orgSceneY = e.getSceneY();
 			}
+			if (e.isAltDown()) {
+				ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity
+						.getComponent(ComponentType.ImageProperties);
+				c.setFitHeight(imageProp.getWidth() + offsetY);
+				c.setFitWidth(imageProp.getHeight() + offsetX);
+			}
 		});
 		spriteImage.setOnMouseReleased(e -> {
+			ImageView c = (ImageView) (e.getSource());
 			if (e.isControlDown()) {
 				unselectEntity(entity);
 				System.out.println("dropped at " + e.getSceneX() + " " + e.getSceneY());
 				entity.addComponent(new LocationComponent(e.getSceneX(), e.getSceneY()));
-				Iterator<IComponent> iter = entity.getComponents().iterator();
-				while (iter.hasNext()) {
-					System.out.println(iter.next().getComponentType().toString());
-				}
+//				Iterator<IComponent> iter = entity.getComponents().iterator();
+//				while (iter.hasNext()) {
+//					System.out.println(iter.next().getComponentType().toString());
+//				}
+			}
+			if (e.isAltDown()){
+				unselectEntity(entity);
+				entity.addComponent(new ImagePropertiesComponent(c.getFitWidth(), c.getFitHeight()));
 			}
 		});
 		placedImages.put(entity, spriteImage);
