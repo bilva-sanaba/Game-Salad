@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.util.Set;
 
 import data_interfaces.XMLException;
+import entity.SplashData;
 import gameView.gameScreen.GameScreen;
 import gameView.gameScreen.SpecificGameSplashView;
 
@@ -37,6 +38,7 @@ public class UIView implements UIViewInterface {
 	private ControllerInterface myController;
 	private SplashView mySplash;
 	private SpecificGameSplashView mySpecificSplash;
+	private SplashData mySplashData;
 	private GameScreen myGameScene;
 	private IRestrictedGameData myData; 
 	private WorldAnimator myAnimation;
@@ -81,7 +83,9 @@ public class UIView implements UIViewInterface {
 		}
 		myCurrentGame = file;
 		myData = myController.loadNewGame(myCurrentGame); //FOR SPLASH
-		mySpecificSplash = myController.loadSpecificSplash(myCurrentGame);
+		//mySpecificSplash = myController.loadSpecificSplash(myCurrentGame);
+		mySplashData = myController.getSplashData(myCurrentGame);
+		mySpecificSplash = new SpecificGameSplashView(this, myStage, myUserInputData, mySplashData);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
 		myGameScene.addData(myData); //FOR SPLASH
@@ -96,6 +100,10 @@ public class UIView implements UIViewInterface {
 	
 	public void authorGame() {
 		myController.makeGame(); //makeGame();
+	}
+	
+	public SplashData getSplashData(){
+		return mySplashData;
 	}
 	
 	public void saveGame() {

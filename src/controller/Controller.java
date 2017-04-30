@@ -77,10 +77,10 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-	public SpecificGameSplashView loadSpecificSplash(String gameName) {
+	
+	public SplashData getSplashData(String gameName){
 		Communicator c = new Communicator(gameName);
-		SpecificGameSplashView sView = new SpecificGameSplashView(myGameView, myStage, uiData, c.getSplashEntity());
-		return sView;
+		return c.getSplashEntity();
 	}
 	
 	public void makeGame() {
