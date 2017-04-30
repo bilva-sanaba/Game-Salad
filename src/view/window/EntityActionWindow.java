@@ -136,12 +136,12 @@ public class EntityActionWindow extends Window {
 			IAction act = null;
 			try {
 				act = (IAction) nextAction.newInstance();
-				actions.add(act);
 				System.out.println(nextAction.getName() + " line 59" + this.getClass());
 			} catch (InstantiationException | IllegalAccessException e) {
 				IActionMakerWindow actionMaker = new IActionMakerWindow(myUtilF, nextAction);
-				
+				act = actionMaker.openWindow();
 			}
+			actions.add(act);
 		}
 	}
 
