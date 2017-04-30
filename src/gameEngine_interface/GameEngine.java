@@ -174,8 +174,12 @@ public class GameEngine implements GameEngineInterface {
 		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
 		return dg;
 	}
-	public Collection<IEntity> save(){
-		return myEntityManager.copy().getEntities();
+	public List<IEntityManager> save(){
+		List<IEntityManager> mySaveState = new ArrayList<IEntityManager>();
+		for (IEntityManager em : myEntityManagers){
+			mySaveState.add(em.copy());
+		}
+		return mySaveState;
 	}
 	public SplashEntity getSplashEntity(){
 		return GPEM.getSplash();

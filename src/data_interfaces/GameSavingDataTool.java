@@ -10,7 +10,7 @@ public class GameSavingDataTool {
 	private static final String PREFIX = "games" + File.separator;
 	private static final String SUFFIX = ".xml";
 	private static String LINESEPARATOR = System.getProperty("line.separator");
-	private static int SPLASHCONSTANT = 1;
+	public static int SPLASHCONSTANT = 1;
 
 	protected String getPrefix() {
 		return PREFIX;
