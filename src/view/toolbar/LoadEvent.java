@@ -50,13 +50,21 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			setPlacedEntities(toPlace.get(0));
 			setLevelEntities(toPlace.get(1));
 			setSplashEntity(toPlace.get(2));
-			//idk what method to use here
+			myData.refresh();
 		}
 		
 	}
 	
 	private void setPlacedEntities(Map m) {
-		
+		Map <Integer, Map<Integer, Entity>> ret = m;
+		myData.getPlacedEntityMap().clear();
+		for (int i = 1; i <= ret.keySet().size(); i++) {
+			myData.getPlacedEntityMap().put(i, new HashMap<Integer, Entity>());
+		}
+		myData.resetLevelTabs();
+		for (int i = 1; i <= ret.keySet().size(); i++) {
+			myData.getPlacedEntityMap().put(i, ret.get(i));
+		}
 	}
 	
 	private void setLevelEntities(Map m) {
