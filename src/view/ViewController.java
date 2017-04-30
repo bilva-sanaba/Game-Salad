@@ -20,29 +20,11 @@ public class ViewController implements Observer {
 		utilF = utilIn;
 	}
 
-
-	/*	@Override
-	public void update(Observable o, Object arg){
-		myGrid.clearEntitiesOnGrid();
-		myGrid.drawAllEntities();
-	} */
-
 	@Override
 	public void update(Observable o, Object arg) {
-//		if (myData.getUserSelectedEntity() == null) {
-//            LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
-//            level.getGrid().clearEntitiesOnGrid();
-//            level.getGrid().drawPlacedEntities();
-//            
-//            myTab.clearEntitiesOnTab();
-//            //myTab.addPresetEntities();
-//            myTab.addDefinedEntities();
-//
-//        }
-//	}	
 		if (arg == null){
 			Entity currentlySelected = myData.getUserSelectedEntity();
-			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
+			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel());
 			level.getGrid().clearEntitiesOnGrid();
 			level.getGrid().drawPlacedEntities();
 
@@ -54,13 +36,12 @@ public class ViewController implements Observer {
 		else if(arg.equals("reset")){
 			levelTabs.clearTabs();
 			for(int i : myData.getPlacedEntityMap().keySet()){
-				levelTabs.addNewTab(new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS));
+				System.out.println("making "+ i + " level tab");
+				GridView tempGrid = new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS);
+				tempGrid.setEntityIDcount(myData.getPlacedEntityMap().get(i).size());
+				levelTabs.addNewTab(tempGrid);
 			}
 		}
-
-		/*if (myData.getUserSelectedEntity() == null) {
-			myTab.clearSelected();
-		}*/
 		
 	}
 
