@@ -12,7 +12,7 @@ public class GPEntityManager {
 			if (e.getClass().toString().equals("class entity.LevelEntity")) {
 				levelEntities.add((LevelEntity) e);
 			}
-			else if (e.getClass().toString().equals("class entity.SplashEntity")){
+			else if (e.getClass().toString().equals("class entity.SplashData")){
 				se = (SplashData) e;
 			}		
 		}

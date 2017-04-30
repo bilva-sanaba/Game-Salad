@@ -21,7 +21,7 @@ public class GameDataFactory {
 		double lives = currentData.getLives().doubleValue();
 		double lvl = currentData.getLevel().doubleValue();
 		LocationComponent lc = currentData.getMainLocation();
-		String ac = currentData.getAchievement().toString();
+		List<String> ac = currentData.getAchievement();
 		String music = currentData.getMusic().toString();
 		
 		return new GameData(points,lives,(IRestrictedEntityManager) new EntityManager(), lvl, lc, ac, music);
@@ -33,6 +33,11 @@ public class GameDataFactory {
 		gameData.setLevel(updatedData.getLevel().doubleValue());
 		if (gameData.getMusic().toString()!= updatedData.getMusic().toString()){
 			gameData.setMusic(updatedData.getMusic().toString());
+		}
+		if (gameData.getAchievement().size()!=updatedData.getAchievement().size()){
+			if (!gameData.getAchievement().get(gameData.getAchievement().size()-1).equals((updatedData.getAchievement().get(updatedData.getAchievement().size()-1)))){
+				gameData.setAchievement((String) updatedData.getAchievement().get(updatedData.getAchievement().size()-1));
+			}
 		}
 		//		List<Entity> newEntities = new ArrayList<Entity>();
 		//		for (IRestrictedEntity re : updatedData.getRestrictedEntityManager().getRestrictedEntities()){

@@ -30,6 +30,7 @@ import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.ObjectCreationComponent;
+import components.entityComponents.OrientationComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.TerminalVelocityComponent;
@@ -135,26 +136,27 @@ public class GameEngine implements GameEngineInterface {
 //		}
 		
 		//DUMMYLOAD
-		myEntityManagers = dummyLoad();
-		myEntityManager = myEntityManagers.get(0);
+//		myEntityManagers = dummyLoad();
+//		myEntityManager = myEntityManagers.get(0);
 		
 		//REAL USE THIS
-//		myEntityManagers = c.getIEntityManagers();
-//		myEntityManager = myEntityManagers.get(0);
+		myEntityManagers = c.getIEntityManagers();
+		myEntityManager = myEntityManagers.get(0);
 
-//		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 
-//		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
-//				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
-//				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager, c.getInfinite()));
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
+				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
+				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager, c.getInfinite()));
 
 		
 		
 		el = new EntityLoader(myEntityManager);
-//		GPEM = new GPEntityManager(c.getData());
+//		GPEM = new GPEntityManager(dummyLoad());
 //		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
-		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,currentMusic,"");
+		List<String> listl = new ArrayList<String>();
+		listl.add("");
+		myGameData = new GameData(points,lives,(IRestrictedEntityManager) myEntityManager, level, lc,listl,currentMusic);
 		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
 		return dg;
 	}
@@ -283,6 +285,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new KeyInputComponent());
 		x.addComponent(new TypeComponent(EntityType.Player));
 
+
 //		List<String> collection = new ArrayList<String>();
 //		collection.add("mario_step1.gif");
 //		collection.add("mario_step2.gif");
@@ -296,6 +299,7 @@ public class GameEngine implements GameEngineInterface {
 //		List<String> collection3 = new ArrayList<String>();
 //		collection3.add("mario_jump.gif");
 //		ImageChangeAction ica3 = new ImageChangeAction(collection3);
+
 
 		x.addComponent(new GoalComponent());
 		x.addComponent(new TerminalVelocityComponent(5,5));
@@ -319,7 +323,9 @@ public class GameEngine implements GameEngineInterface {
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
+
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
+
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
@@ -333,6 +339,8 @@ public class GameEngine implements GameEngineInterface {
 	public List<IEntityManager> dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		Collection<Entity> e7 = new ArrayList<Entity>();
+		SplashData sd = new SplashData(1000, "Title", "Instructions", "background1.png");
+		e.add(sd);
 		
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(100,150));
@@ -351,7 +359,8 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new HealthComponent(100));
 		x.addComponent(new DamagedComponent());
 		x.addComponent(new TerminalVelocityComponent(10,10));
-		x.addComponent(new ControllableComponent(true));
+		x.addComponent(new ControllableComponent());
+		x.addComponent(new OrientationComponent());
 
 		List<String> collection = new ArrayList<String>();
 		collection.add("mario_step1.gif");
@@ -387,12 +396,14 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(time);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
+
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
+
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
 		//
 		//
@@ -569,7 +580,9 @@ public class GameEngine implements GameEngineInterface {
 		myEntityManagers= new ArrayList<IEntityManager>();
 		myEntityManagers.add(myEntityManager);
 		myEntityManagers.add(new EntityManager(e8));
-		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), "", "" );
+		List<String> listl = new ArrayList<String>();
+		listl.add("");
+		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), listl, "" );
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,InfiniteEnum.None));
 		return myEntityManagers;
