@@ -157,7 +157,7 @@ public class GameEngine implements GameEngineInterface {
 //			castedEnts.add(e);
 //		}
 		
-//		//DUMMYLOAD
+		//DUMMYLOAD
 //		myEntityManager = dummyLoad();
 //		myEntityManagers = new ArrayList<IEntityManager>();
 //		myEntityManagers.add(myEntityManager);
@@ -167,7 +167,7 @@ public class GameEngine implements GameEngineInterface {
 		myEntityManager = myEntityManagers.get(0);
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
 				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
-				new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
+				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager, c.getInfinite()));
 		
 		
 		el = new EntityLoader(myEntityManager);
@@ -433,7 +433,7 @@ public class GameEngine implements GameEngineInterface {
 		//		}
 		//		e.add(g);e.add(t);
 //		e.add(x);
-		for (int i=1;i<35;i++){
+		for (int i=1;i<10;i++){
 			Entity p = new AbstractBlock(i);
 			//if (i!=12){
 				p.addComponent(new LocationComponent(i*50,200));
@@ -452,7 +452,7 @@ public class GameEngine implements GameEngineInterface {
 			e7.add(p);
 		}
 		
-		/*Entity pr = new AbstractBreakableBox(2356);
+		Entity pr = new AbstractBreakableBox(2356);
 		pr.addComponent(new LocationComponent(700,150));
 		pr.addComponent(new SpriteComponent(("platform_tile_035.png")));
 		ImagePropertiesComponent xpcr = new ImagePropertiesComponent();
@@ -461,7 +461,7 @@ public class GameEngine implements GameEngineInterface {
 		pr.addComponent(xpcr);
 		pr.addComponent(new LabelComponent("Blok"));
 		pr.addComponent(new TypeComponent(EntityType.Block));
-		e.add(pr);*/
+		e.add(pr);
 		
 		Entity y = new AbstractPowerup(101);
 		y.addComponent(new LocationComponent(1000,150));

@@ -1,5 +1,6 @@
 package engines;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class InfiniteEngine extends AbstractEngine {
 	private InfiniteEnum infinite;
 	private double difference;
 	private LocationComponent mainPlayer;
+	private List<IEntity> repeated = new ArrayList<IEntity>();
 	public InfiniteEngine(IEntityManager myEntityManager, InfiniteEnum infinite) {
 		super(myEntityManager);
 		this.infinite=infinite;
@@ -46,10 +48,10 @@ public class InfiniteEngine extends AbstractEngine {
 		for (IEntity e : getEManager().getEntities().toArray(new IEntity[getEManager().getEntities().size()])){
 			if (infinite==InfiniteEnum.Horizontal){
 				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
-				if (mainPlayer.getX()-lc.getX()>difference/2){
-					IEntity newEntity = e.clone();
-					LocationComponent newLC = (LocationComponent) newEntity.getComponent(ComponentType.Location);
-					newLC.setX(lc.getX()+difference);
+				if (mainPlayer.getX()-lc.getX()>difference/2 && !repeated.contains(e)){
+					repeated.add(e);
+					IEntity newEntity = e.newCopy();
+					newEntity.addComponent(new LocationComponent(lc.getX()+difference,lc.getY()));
 					getEManager().getEntities().add(newEntity);
 					getEManager().changed(newEntity);
 				}

@@ -148,7 +148,6 @@ public class WorldAnimator{
     	counter++;
     	myView.step(keysPressed);
     	//myEngine.handleUpdates(keysPressed);
-
         fillMapAndDisplay(myObservers.getUpdatedSet());
         
 //        updateAchievement();
