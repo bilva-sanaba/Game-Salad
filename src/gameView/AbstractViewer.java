@@ -1,32 +1,53 @@
 package gameView;
 
 import gameView.commands.AbstractCommand;
+import gameView.loginScreen.LoginScreen;
 import gameView.tools.ButtonFactory;
 import gameView.tools.CommandFactory;
 import gameView.tools.DisplayManager;
+import gameView.userInput.IUserInputData;
+import gameView.userManagement.IUserManager;
+import gameView.userManagement.UserData;
 
 import java.util.Collection;
-import java.util.ResourceBundle;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public abstract class AbstractViewer implements ICommandView {
 
-	private UIView myView;
+	protected UIView myView;
 	private ButtonFactory myButtonFactory;
+	private Stage myStage;
+	private IUserInputData myUserInput;
+
 	
-	public AbstractViewer(UIView view) {
+	public AbstractViewer(UIView view, Stage s, IUserInputData userInput) {
+		myStage = s;
 		myView = view;
-		myButtonFactory = new ButtonFactory(view, view.DEFAULT_BUTTONS);
+		myUserInput = userInput;
+		myButtonFactory = new ButtonFactory(UIView.DEFAULT_BUTTONS, getStage());
 	}
 	
 	public abstract Scene getScene();
 	
+	public IUserInputData getUserInput() {
+		return myUserInput;
+	}
+	
+	//FOR TESTING
+	public void setInput(IUserInputData data) {
+		myUserInput = data;
+	}
 	
 	protected UIView getView() {
 		return myView;
+	}
+	
+	protected Stage getStage() {
+		return myStage;
 	}
 	
 	protected Collection<AbstractCommand> getCommands(String name) {
@@ -45,29 +66,34 @@ public abstract class AbstractViewer implements ICommandView {
 	}
 	
 	public void loadGame(String filepath) {
-		System.out.println("ABSTRACT");
 		myView.loadGame(filepath);
 	}
 
 	public void restart() {
-		System.out.println("ABSTRACT");
 		myView.restart();
 	}
 	
 	public void saveGame() {
-		System.out.println("ABSTRACT");
 		getView().saveGame();
 	}
 	
 	public void makeGame() {
-		System.out.println("ABSTRACT");
 		getView().authorGame();
+	}
+	
+	public void loginScreen() {
+		Stage s = new Stage();
+		getView().newStage(new LoginScreen(getView(), s, getUserInput()), s);
+	}
+	
+	public IUserManager getUserManager() {
+		return getView().getUserManager();
 	}
 
 	//DOES NOTHING FOR SPLASHSCREEN
 	public void runGame() {
 		System.out.println("ABSTRACT");
-		getView().runGame();
+		//getView().runGame();
 	}
 	public DisplayManager getComponents() {
 		System.out.println("ABSTRACT");

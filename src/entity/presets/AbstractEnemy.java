@@ -1,14 +1,9 @@
 package entity.presets;
 
-import actions.BlockTopRegularCollision;
-import actions.BounceOffBottom;
-import actions.BounceOffLeft;
-import actions.BounceOffRight;
-import actions.LeftDamageAction;
-import actions.RightDamageAction;
 import actions.BounceOffTop;
+import actions.LeftDamageAction;
 import actions.PowerupUsage;
-import actions.RemoveAction;
+import actions.RightDamageAction;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
@@ -19,13 +14,14 @@ import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 
-public class AbstractEnemy extends Entity{
-	
+public class AbstractEnemy extends Entity {
+//	MonsterRadioButton = Label, ImageProperties, Health, Strength, Monster, Step, Collidable
 	public AbstractEnemy(int id) {
 		super(id);
 		addCollisionComponents();
 	}
 	private void addCollisionComponents(){
+		this.addComponent(new LabelComponent("Defult Enemy"));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
 

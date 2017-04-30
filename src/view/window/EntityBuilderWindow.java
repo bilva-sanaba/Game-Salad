@@ -1,7 +1,5 @@
 package view.window;
 
-import java.io.File;
-import java.util.ArrayList;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.beans.value.ChangeListener;
@@ -10,12 +8,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -23,6 +19,7 @@ import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
 import view.ViewData;
+import voogasalad.util.reflection.Reflection;
 
 public class EntityBuilderWindow extends Window{
 
@@ -34,9 +31,7 @@ public class EntityBuilderWindow extends Window{
 	private UtilityFactory util;
 	private ViewData myData;
 	private Stage myStage = new Stage();
-	private int i = 0;
 	private String[] entityList = {"Error"};
-	private static final String FILE_PATH = "file:" + File.separator + System.getProperty("user.dir") + File.separator + "images"+ File.separator;
 
 	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn) {
 		myData = dataIn;
@@ -67,8 +62,7 @@ public class EntityBuilderWindow extends Window{
 	private void addImageButton(Pane root){
 		Node imageButton = util.buildButton("ChooseImageLabel", e -> {
 			myImageName = imageChooser.chooseFile();
-			System.out.println(myImageName + " line 71 " + this.getClass());
-			Image image = new Image(FILE_PATH  + myImageName);
+			Image image = new Image(getClass().getClassLoader().getResourceAsStream(myImageName));
 			myImage.setImage(image);
 			myImage.setFitWidth(200);
 			myImage.setFitHeight(200);
@@ -93,12 +87,11 @@ public class EntityBuilderWindow extends Window{
 	
 	private void addOkayButton(Pane root){
 		Node okayButton = util.buildButton("OkayLabel", e -> {
-			Entity tempEntity = new Entity(i);
-			i++;
+			Entity tempEntity = (Entity) Reflection.createInstance(entityList[0], myData.getEntityID());
 			System.out.println(myImageName + " line 98 " + this.getClass());
 			tempEntity.addComponent(new SpriteComponent(myImageName));
 			myStage.close();
-			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, tempEntity);
+			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, tempEntity);
 			ecw.openWindow();
 		});
 		root.getChildren().add(okayButton);

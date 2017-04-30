@@ -18,7 +18,7 @@ public class BackgroundEvent implements ToolBarButtonEvent {
 		ImageChooser ic = new ImageChooser();
 		String filePath = ic.chooseFile();
 		
-		myData.getLevelEntity().setBackgroundFilePath("file:"+ File.separator + System.getProperty("user.dir") + File.separator + "images"+ File.separator + filePath);
+		myData.getLevelEntity().setBackgroundFilePath(filePath);
 		myData.refresh();
 	}
 

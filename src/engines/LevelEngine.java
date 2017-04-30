@@ -26,7 +26,7 @@ public class LevelEngine extends AbstractEngine{
 			if(hasComponent(e, ComponentType.Goal)){
 				GoalComponent gc = (GoalComponent) e.getComponent(ComponentType.Goal);
 				if(gc.checkIfSatisfied() == true){
-					gd.setLevel(gd.getLevel()+1);
+//					gd.setLevel(gd.getLevel()+1);
 					gc.satisfyGoal(false);
 				}
 			}

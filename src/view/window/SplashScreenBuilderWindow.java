@@ -2,7 +2,7 @@ package view.window;
 
 import java.io.File;
 
-import entity.SplashEntity;
+import entity.SplashData;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,7 +36,7 @@ public class SplashScreenBuilderWindow extends Window{
 	}
 	
 //	This shit needs to be refactored
-	public SplashEntity createEntity() {
+	public SplashData createEntity() {
 		myStage = new Stage();
 		myRoot.setPadding(new Insets(10));
 //		pickColor(root);
@@ -70,7 +70,7 @@ public class SplashScreenBuilderWindow extends Window{
 		myStage.showAndWait();
 
 //		beneath here is a splash entity which you instantiate with all the values you just found at the x's
-		SplashEntity s = new SplashEntity(1, gameTitle, instructions, splashScreenImagePath);
+		SplashData s = new SplashData(1, gameTitle, instructions, splashScreenImagePath);
 		return s;
 	}
 	

@@ -17,5 +17,4 @@ public class LevelEvent extends GameSavingDataTool implements ToolBarButtonEvent
 		SplashScreenBuilderWindow window = new SplashScreenBuilderWindow();
 		window.openWindow();
 	}
-
 }

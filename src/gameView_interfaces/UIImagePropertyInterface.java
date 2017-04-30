@@ -1,6 +1,6 @@
 package gameView_interfaces;
 
-import gameView.Coordinate;
+import gameView.tools.Coordinate;
 
 /**
  * Wrapper class to contain all the relevant information of the UIImageModel to

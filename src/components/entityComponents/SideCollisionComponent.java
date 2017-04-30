@@ -11,7 +11,7 @@ import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import gamedata.IRestrictedGameData;
 
-public class SideCollisionComponent extends AComponent implements IComponent {
+public class SideCollisionComponent implements IComponent {
 	private CollisionComponentType sideCollision;
 	private Map<String, ArrayList<IAction>> typeActionMap;
 	private Map<String, ArrayList<IAction>> labelActionMap;
@@ -21,9 +21,9 @@ public class SideCollisionComponent extends AComponent implements IComponent {
 		typeActionMap = type;
 		labelActionMap=label;
 	}
+	
 	public SideCollisionComponent(CollisionComponentType sideOfCollision) {
 		sideCollision = sideOfCollision;
-		
 		typeActionMap = new HashMap<String, ArrayList<IAction>>();
 		labelActionMap = new HashMap<String, ArrayList<IAction>>();
 	}
@@ -46,8 +46,7 @@ public class SideCollisionComponent extends AComponent implements IComponent {
 		typeActionMap.put(type.getTypeString(), actions);
 	}
 	
-	
-	
+
 	public IRestrictedGameData executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM, IRestrictedGameData dg) {
 		//maybe should refactor
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
@@ -86,6 +85,10 @@ public class SideCollisionComponent extends AComponent implements IComponent {
 	public IComponent newCopy() {
 		// TODO Auto-generated method stub
 		return new SideCollisionComponent(sideCollision, typeActionMap,labelActionMap);
+	}
+	
+	public int hashCode(){
+		return (getComponentType().toString() + sideCollision.toString()).hashCode();
 	}
 	
 }

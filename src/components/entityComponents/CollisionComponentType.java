@@ -4,8 +4,5 @@ public enum CollisionComponentType {
 	Top(),
 	Bottom(),
 	Left(),
-	Right();
-	
-	
-	
+	Right();	
 }

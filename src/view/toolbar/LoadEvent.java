@@ -2,6 +2,7 @@ package view.toolbar;
 
 import java.io.File;
 import java.util.*;
+import java.util.function.Consumer;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
@@ -16,14 +17,18 @@ import view.ViewData;
 
 public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent {
 	private ViewData myData;
+	Map<Class<? extends Entity>, Consumer<Entity>> whattodo;
 	
 	public LoadEvent(ViewData data){
 		myData = data;
+		whattodo = new HashMap<Class<? extends Entity>, Consumer<Entity>>();
+		//whattodo.put(SplashEntity.class, e -> myData.setSplashEntity((SplashEntity) e));
+		//whattodo.put(LevelEntity.class, e -> myData.setLevelEntity((LevelEntity) e));
 	}
 
 	@Override
 	public void event() {
-		Communicator c;
+		XMLPlacedParser xpp = new XMLPlacedParser();
 		Stage newStage = new Stage();
 		FileChooser fc = new FileChooser();
 		fc.setTitle("Choose the file to load: ");
@@ -40,41 +45,39 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 					- getSuffix().length());
 			System.out.println("BLOOMFELD FELD FELD FIELD FIELD" + name);
 			myData.setGameName(name);
-			c = new Communicator(name);
-			Collection <Entity> col = c.getData();
-//			System.out.println(col + " line 45 " + this.getClass());
+			List <Map> toPlace = xpp.getData(name);
+			setPlacedEntities(toPlace.get(0));
+			setLevelEntities(toPlace.get(1));
+			setSplashEntity(toPlace.get(2));
 			myData.refresh();
-			for (Entity e: col) {
-				System.out.println(e.getClass().toString());
-				if (e.getClass().toString().equals("class entity.LevelEntity")) {
-					System.out.println("Level entity is set");
-					myData.setLevelEntity((LevelEntity) e);
-				}
-				else if (e.getClass().toString().equals("class entity.SplashEntity")) {
-					myData.setSplashEntity((SplashEntity)e);
-				}
-				else if (isPlaced(e)) {
-					System.out.println("isplaced");
-					myData.placeEntity(e);
-				}
-				else {
-					System.out.println("defines an entity");
-					myData.defineEntity(e);
-				}
-			}
 		}
 		
 	}
 	
-	private boolean isPlaced(Entity e) {
-		try {
-			return (!e.getComponent(ComponentType.Location).equals(null));
+	private void setPlacedEntities(Map m) {
+		Map <Integer, Map<Integer, Entity>> ret = m;
+		myData.getPlacedEntityMap().clear();
+		for (int i = 1; i <= ret.keySet().size(); i++) {
+			myData.getPlacedEntityMap().put(i, new HashMap<Integer, Entity>());
 		}
-		catch (NullPointerException npe) {
-			return false;
+		myData.resetLevelTabs();
+		for (int i = 1; i <= ret.keySet().size(); i++) {
+			myData.getPlacedEntityMap().put(i, ret.get(i));
 		}
 	}
 	
+	private void setLevelEntities(Map m) {
+		Map <Integer, LevelEntity> lm = m;
+		for (int i = 1; i <= lm.size(); i++) {
+			myData.setLevelEntity(i, lm.get(i));
+		}
+	}
 	
-	
+	private void setSplashEntity(Map m) {
+		myData.setSplashEntity((SplashData) m.get(getSplashConstant())); 
+
+		Map<Integer, SplashData> sm = m;
+		myData.setSplashEntity((SplashData) sm.get(getSplashConstant())); 
+
+	}
 }

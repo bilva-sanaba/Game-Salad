@@ -1,4 +1,0 @@
-<list>
-  <string>jonathan</string>
-  <int>1</int>
-</list>
