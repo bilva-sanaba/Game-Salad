@@ -41,6 +41,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 				System.out.println("this happens");
 			}
 			ret.add(new EntityManager(toBeAdded));
+			
 		}
 		
 		return ret;
