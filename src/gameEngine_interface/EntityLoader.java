@@ -1,7 +1,9 @@
 package gameEngine_interface;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
@@ -16,19 +18,17 @@ public class EntityLoader {
 		mainEntityManager = mainManager;
 	}
 	public void loadNew(IEntityManager newManager) {
-		List<IEntity> nonReplaced = new ArrayList<IEntity>();
-		List<Integer> newNonReplaced = new ArrayList<Integer>();
+		Map<Integer, IEntity> replaced = new HashMap<Integer, IEntity>();
 		for (IEntity e : mainEntityManager.getEntities()){
 			e.changed(null);
 			if (e.getComponent(ComponentType.KeyInput)!=null){
-				nonReplaced.add(e);
-				newNonReplaced.add(e.getID());
+				replaced.put(e.getID(), e);
 			}
 		}
 		mainEntityManager.getEntities().clear();
 		for (IEntity e : newManager.getEntities()){
-			if (newNonReplaced.contains(e.getID())){
-				IEntity oldE = nonReplaced.get(e.getID());
+			if (replaced.keySet().contains(e.getID())){
+				IEntity oldE = replaced.get(e.getID());
 				recreateMainCharacter(oldE,e);
 				e=oldE;
 			}

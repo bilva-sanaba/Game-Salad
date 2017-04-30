@@ -45,6 +45,7 @@ public interface IEntity {
 	 * @param ct the component type
 	 * @return the icomponent or null if it does not exist
 	 */
+	public boolean hasComponent(ComponentType ct);
 	public IComponent getComponent(ComponentType ct);
 	public IComponent getComponent(IComponent ic);
 	
