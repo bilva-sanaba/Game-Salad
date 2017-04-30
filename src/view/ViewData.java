@@ -173,7 +173,7 @@ public class ViewData extends Observable {
 	}
 
 	// fix dependencies
-	public Map<Integer, HashMap<Integer, Entity>> getPlacedEntityMap() {
+	public HashMap<Integer, HashMap<Integer, Entity>> getPlacedEntityMap() {
 		return placedEntityMaps;
 	}
 

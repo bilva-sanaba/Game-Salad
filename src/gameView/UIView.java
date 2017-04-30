@@ -77,7 +77,7 @@ public class UIView implements UIViewInterface {
 		}
 		myCurrentGame = file;
 		//myData = myController.loadNewGame(file); //FOR SPLASH
-		mySpecificSplash = myController.loadSpecificSplash();
+		mySpecificSplash = myController.loadSpecificSplash(file);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
 		//myGameScene.addData(myData); //FOR SPLASH
