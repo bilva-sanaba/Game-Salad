@@ -1,8 +1,6 @@
 package gamedata;
 
-import java.util.ArrayList;
-
-import com.sun.javafx.UnmodifiableArrayList;
+import com.sun.javafx.collections.ImmutableObservableList;
 
 import components.entityComponents.LocationComponent;
 import entity.restricted.IRestrictedEntityManager;
@@ -24,5 +22,5 @@ public interface IRestrictedGameData {
 
 	public String getMusic();
 
-	public ObservableList<String> getAchievement();
+	public VoogaImmutableObservableList<String> getAchievement();
 }

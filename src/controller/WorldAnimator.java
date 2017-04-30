@@ -16,12 +16,12 @@ import gameView.observers.ImageConfig;
 import gameView.observers.ObserverManager;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
+import gamedata.VoogaImmutableObservableList;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -80,7 +80,7 @@ public class WorldAnimator{
 		root = new Group();
 		IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
 		myObservers = new ObserverManager(this, restrictedEntityManager);
-		ObservableList<String> myAchievements = myData.getAchievement();
+		VoogaImmutableObservableList<String> myAchievements = myData.getAchievement();
 		myAchievements.addListener(new ListChangeListener() {
 			@Override
 			public void onChanged(ListChangeListener.Change change) {
@@ -158,7 +158,7 @@ public class WorldAnimator{
 			myCamera.updateCamera();
 		}
 
-		private void updateAchievement(ObservableList<String> myAchievements) throws ClassNotFoundException {
+		private void updateAchievement(VoogaImmutableObservableList<String> myAchievements) throws ClassNotFoundException {
 			
 			String ach = myAchievements.get(myAchievements.size()-1);
 			addAchievement(ach);

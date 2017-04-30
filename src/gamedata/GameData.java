@@ -1,24 +1,17 @@
 package gamedata;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.javafx.UnmodifiableArrayList;
-
-import achievements.Achievement;
 import components.entityComponents.LocationComponent;
-import entity.SplashData;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -31,7 +24,7 @@ public class GameData implements IGameData,IRestrictedGameData{
 	private IRestrictedEntityManager restrictedEntityManager; 
 	private IntegerProperty level = new SimpleIntegerProperty(); 
 	private LocationComponent mainPlayerLocation;
-	private ObservableList<String> observableList;
+	private VoogaObservableList<String> observableList;
 	private ObservableList<String> readOnlyList;
 	private ListProperty<String> myAchievement;
 //	private ArrayList<String> myAchievements = new ArrayList<String>();
@@ -40,7 +33,7 @@ public class GameData implements IGameData,IRestrictedGameData{
 	
 	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, List<String> ac, String m){
 //		List<String> list= new ArrayList<String>();
-		observableList = FXCollections.observableArrayList(ac);
+		observableList = new VoogaObservableList<String>(ac);
 		readOnlyList = FXCollections.unmodifiableObservableList(observableList);
 //		myAchievement = new SimpleListProperty<String>(observableList);
 		points.setValue(p);
@@ -71,14 +64,6 @@ public class GameData implements IGameData,IRestrictedGameData{
 		return music;
 	}
 	
-	public ListProperty<String> getAchievementProperty(){
-		return myAchievement;
-	}
-//	public ArrayList<String> getAchievementProperty(){
-//		return myAchievements;
-//	}
-	
-	
 	public ReadOnlyDoubleProperty getPoints(){
 		return (ReadOnlyDoubleProperty) points;
 	}
@@ -94,11 +79,8 @@ public class GameData implements IGameData,IRestrictedGameData{
 		return music.get();
 	}
 	
-//	public ReadOnlyListProperty<String> getAchievement(){
-//		return (ReadOnlyListProperty<String>) myAchievement;
-//	}
-	public ObservableList<String> getAchievement(){
-		return readOnlyList;
+	public VoogaImmutableObservableList<String> getAchievement(){
+		return observableList;
 	}
 	
 	public void setPoints(double d){
