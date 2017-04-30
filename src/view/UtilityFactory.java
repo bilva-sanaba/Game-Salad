@@ -26,6 +26,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -72,6 +73,7 @@ public class UtilityFactory {
                 String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));
 
         Button result = new Button();
+        result.setTooltip(new Tooltip(property));
         String label = imagesResources.getString(property);
         if (label.matches(IMAGEFILE_SUFFIXES)) {
             result.setGraphic(new ImageView(
@@ -131,23 +133,23 @@ public class UtilityFactory {
 		return toolButtons;
 	}
 	
-	public List<MenuItem> makeRightClickMenu(ViewData data) {
+	public List<MenuItem> makeRightClickMenu(ViewData data, double x, double y) {
 		List<MenuItem> menuItems = new ArrayList<MenuItem>();
 		String[] names = menuResources.getString("MenuItemNames").split(SPLIT_REGEX);
 		String[] events = menuResources.getString("MenuEventNames").split(SPLIT_REGEX);
 		for(int i = 0; i < names.length; i++){
-			menuItems.add(buildMenuItem(names[i], events[i], data));
+			menuItems.add(buildMenuItem(names[i], events[i], data, x, y));
 		}
 		return menuItems;
 	}
 	
-	private MenuItem buildMenuItem(String property, String eventname, ViewData data){
+	private MenuItem buildMenuItem(String property, String eventname, ViewData data, double x, double y){
 		MenuItem menuItem = new MenuItem();
         menuItem.setText(property);
         EventFactory evfac = new EventFactory();
         menuItem.setOnAction(e -> {
 			try {
-				evfac.getRightClickEvent(eventname, data).execute();
+				evfac.getRightClickEvent(eventname, data, x, y).execute();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

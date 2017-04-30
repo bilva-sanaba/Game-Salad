@@ -17,19 +17,22 @@ import gamedata.IRestrictedGameData;
 public class ShootAction  extends AbstractAction implements IAction {
 
 	@Override
-	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		ObjectCreationComponent occ = (ObjectCreationComponent) player.getComponent(ComponentType.ObjectCreation);
-		npc = occ.getCreationEffect(); 
+
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
+		ObjectCreationComponent occ = (ObjectCreationComponent) other.getComponent(ComponentType.ObjectCreation);
+		IEntity newE = occ.getCreationEffect(); 
 		GameData returnData = getGameDataFactory().blankEntityData(currentGameData);
-		if (npc!=null){
-			LocationComponent lcplayer= (LocationComponent) player.getComponent(ComponentType.Location);
-			LocationComponent lcnpc= (LocationComponent) npc.getComponent(ComponentType.Location);
+		if (newE!=null){
+			LocationComponent lcplayer= (LocationComponent) other.getComponent(ComponentType.Location);
+			LocationComponent lcnpc= (LocationComponent) newE.getComponent(ComponentType.Location);
 			lcnpc.setX(lcplayer.getX()+60);
 			lcnpc.setY(lcplayer.getY());
-			occ.setEntity(npc.newCopy());
-			Collection<Entity> list = new ArrayList<Entity>();
-			list.add((Entity) npc);
+			occ.setEntity(newE.newCopy());
+			Collection<IEntity> list = new ArrayList<IEntity>();
+			list.add( newE);
 			EntityManager em = new EntityManager(list);
+			myEM.getEntities().add(newE);
+			myEM.changed(newE);
 			returnData.setRestrictedEntityManager((IRestrictedEntityManager) em);
 		}		
 		return returnData;

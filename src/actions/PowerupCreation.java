@@ -17,20 +17,21 @@ import gamedata.IRestrictedGameData;
 
 public class PowerupCreation   extends AbstractAction implements IAction {
 	@Override
-	public IRestrictedGameData executeAction(IEntity e, IEntity e2, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		ObjectCreationComponent occ = ((ObjectCreationComponent) e2.getComponent(ComponentType.ObjectCreation));
-		LocationComponent lc = ((LocationComponent) e2.getComponent(ComponentType.Location));
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
+		ObjectCreationComponent occ = ((ObjectCreationComponent) self.getComponent(ComponentType.ObjectCreation));
+		LocationComponent lc = ((LocationComponent) self.getComponent(ComponentType.Location));
 		GameData returnData = getGameDataFactory().blankEntityData(currentGameData);
-		
 		if (occ.checkIfCreation()){
 			IEntity powerup = occ.getCreationEffect();
 			if (powerup!=null){
-				Collection<Entity> list = new ArrayList<Entity>();
-				list.add((Entity) powerup);
+				Collection<IEntity> list = new ArrayList<IEntity>();
+				list.add( powerup);
 				LocationComponent newLC = ((LocationComponent) powerup.getComponent(ComponentType.Location));
 				ImagePropertiesComponent ipc = ((ImagePropertiesComponent) powerup.getComponent(ComponentType.ImageProperties));
 				newLC.setX(lc.getX());
 				newLC.setY(lc.getY()-ipc.getHeight());
+				myEM.getEntities().add(powerup);
+				myEM.changed(powerup);
 				EntityManager em = new EntityManager(list);
 				returnData.setRestrictedEntityManager((IRestrictedEntityManager) em);
 			}

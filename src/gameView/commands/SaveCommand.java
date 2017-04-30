@@ -11,8 +11,9 @@ public class SaveCommand extends AbstractCommand {
 	}
 
 	@Override
-	public void execute(Stage s) {
+	public boolean execute(Stage s) {
 		getView().saveGame();
+		return true;
 	}
 
 	@Override

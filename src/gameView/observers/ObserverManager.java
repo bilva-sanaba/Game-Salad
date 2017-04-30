@@ -64,10 +64,11 @@ public class ObserverManager {
          //UNCOMMENT FOR TEST RUNNER
          myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()-475);
          myEntities.get(e.getID()).getImageView().setTranslateY(e.getRestrictedLocation().getHeight()-175);
-         
+        
          //UNCOMMENT FOR NORMAL
-//         myEntities.get(e.getID()).setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
-//         myEntities.get(e.getID()).setTranslateY(e.getRestrictedLocation().getHeight()*50-175);
+         
+//         myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
+//         myEntities.get(e.getID()).getImageView().setTranslateY(e.getRestrictedLocation().getHeight()*50-175);
 		}
  		
 	}
@@ -75,6 +76,7 @@ public class ObserverManager {
 	private void updateImage(IRestrictedEntity e) {
 		if (!(e.getRestrictedImagePath().equals(""))) {
 			myEntities.get(e.getID()).getImageView().setImage(makeImage(e));
+			myEntities.get(e.getID()).setPath(e.getRestrictedImagePath());
 			updatedEntitySet.add(e.getID());
 			
 		} else {
@@ -100,6 +102,9 @@ public class ObserverManager {
 		ImageConfig iConfig = new ImageConfig(new ImageView(makeImage(arg)), test[test.length-1]);
         myEntities.put(arg.getID(), iConfig);
         updateImageView(arg);
+        
+        //FOR REVERSE
+		myWorld.fillMap();
 	}
 	
 	public void updateEntity(IRestrictedEntity observable, IRestrictedEntity arg) {

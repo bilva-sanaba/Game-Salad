@@ -16,13 +16,14 @@ public class ImageChangeAction  extends AbstractAction  implements IAction{
 		counter=0;
 	}
 	@Override
-	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
-		SpriteComponent sc = (SpriteComponent) player.getComponent(ComponentType.Sprite);
-		sc.setClassPath(possibleImages.get(counter));
-		counter = (counter+1)%possibleImages.size();
+		if (counter%10==0){
+			SpriteComponent sc = (SpriteComponent) other.getComponent(ComponentType.Sprite);
+			sc.setClassPath(possibleImages.get((counter/10)%possibleImages.size()));		
+			other.changed(other);
+		}
+		counter++;
 		return getGameDataFactory().blankEntityData(currentGameData);
-		
 	}
-
 }

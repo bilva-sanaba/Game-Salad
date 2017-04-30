@@ -11,7 +11,7 @@ public class ChangeMusicAction extends AbstractAction implements IAction {
 		newSong= song;
 	}
 	@Override
-	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
+	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		GameData gd = getGameDataFactory().blankEntityData(currentGameData);
 		gd.setMusic(newSong);

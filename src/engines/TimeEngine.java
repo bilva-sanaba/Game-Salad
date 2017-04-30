@@ -28,23 +28,34 @@ public class TimeEngine extends AbstractEngine {
 
 	@Override
 	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
-		for (IEntity e : getEManager().getEntities()){
+		IRestrictedGameData rgd = gameData;
+		for (IEntity e : getEManager().getEntities().toArray(new IEntity[getEManager().getEntities().size()])){
 			TimeComponent tc = (TimeComponent) e.getComponent(ComponentType.Time);
 			if (tc!=null){
 				Map<IAction,Integer> lastTime = tc.getLastTime(); 
-				Map<IAction,Integer> constantTime = tc.getConstantTime(); 
+				Map<IAction,Integer> constantTime = tc.getConstantTime();
+				Map<IAction,Integer> singleTime =tc.getSingleTime();
 				for (IAction action : constantTime.keySet()){
 					if (!lastTime.containsKey(action)){
 						lastTime.put(action,(int) System.currentTimeMillis());
 					}
 					if ((int) System.currentTimeMillis()-lastTime.get(action)> constantTime.get(action) ){
-						action.executeAction(e, null, getEManager(), gameData);
+						rgd = action.executeAction(e, null, getEManager(), rgd);
 						lastTime.put(action, (int) System.currentTimeMillis());
+					}
+				}
+				for (IAction action : singleTime.keySet()){
+					if (!lastTime.containsKey(action)){
+						lastTime.put(action,(int) System.currentTimeMillis());
+					}
+					if ((int) System.currentTimeMillis()-lastTime.get(action)> singleTime.get(action) ){
+						rgd = action.executeAction(e, null, getEManager(), rgd);
+						singleTime.remove(action);
 					}
 				}
 			}
 		}
-		return gameData;
+		return rgd;
 	}
 
 }

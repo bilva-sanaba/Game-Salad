@@ -1,5 +1,6 @@
 package view;
 
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -8,51 +9,47 @@ import entity.Entity;
 
 public class ViewController implements Observer {
 	private ViewData myData;
-	private GridView myGrid;
+	private LevelTabView levelTabs;
 	private TabView myTab;
-	
-	public ViewController(ViewData dataIn, GridView gridIn, TabView tabIn){
+	private UtilityFactory utilF;
+
+	public ViewController(ViewData dataIn, LevelTabView levelIn, TabView tabIn, UtilityFactory utilIn) {
 		myData = dataIn;
-		myGrid = gridIn;
+		levelTabs = levelIn;
 		myTab = tabIn;
+		utilF = utilIn;
 	}
-	
-	//TODO: implement this method
-	public void updateSelectedEntity(Entity entity){
-		if(!myData.getUserSelectedEntity().getComponent(ComponentType.Location).equals(null)){
-			myGrid.unselectEntity(myData.getUserSelectedEntity());
-		}
-		else{
-			myTab.clearSelected();
-		}
-		if(!entity.getComponent(ComponentType.Location).equals(null)){
-			myGrid.selectEntity(entity);
-		}
-		myData.setUserSelectedEntity(entity);
-	}
-	
+
+
+	/*	@Override
+	public void update(Observable o, Object arg){
+		myGrid.clearEntitiesOnGrid();
+		myGrid.drawAllEntities();
+	} */
+
 	@Override
 	public void update(Observable o, Object arg) {
-		if(arg.equals("refresh")){
-			myTab.clearEntitiesOnTab();
-			
-			myGrid.updateBackground();
-			myGrid.setUpLevel();
+
+		if(arg.equals("reset")){
+			levelTabs.clearTabs();
+			for(int i : myData.getPlacedEntityMap().keySet()){
+				levelTabs.addNewTab(new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS));
+			}
 		}
-		else if(arg.equals("reset")){
-			myGrid.clearEntitiesOnGrid();
-		}
-		else if(arg.equals("unplace")){
-			myGrid.removeEntity();
-		}
-		else if (!(((Entity) arg).getComponent(ComponentType.Location) == null)){
-			myGrid.drawEntity((Entity) arg);
-		}
-		else{
-			myTab.addEntity((Entity) arg);
-		}
-		if(myData.getUserSelectedEntity() == null){
+
+		/*if (myData.getUserSelectedEntity() == null) {
 			myTab.clearSelected();
+		}*/
+		else{
+			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel() - 1);
+			level.getGrid().clearEntitiesOnGrid();
+			level.getGrid().drawPlacedEntities();
+
+			myTab.clearEntitiesOnTab();
+			//myTab.addPresetEntities();
+			myTab.addDefinedEntities();
+			myTab.selectEntity(myData.getUserSelectedEntity());
 		}
 	}
+
 }
