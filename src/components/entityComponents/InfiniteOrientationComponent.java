@@ -4,14 +4,14 @@ import components.AComponent;
 import components.IComponent;
 
 public class InfiniteOrientationComponent extends AComponent implements IComponent {
-	private Orientation myO;
+	private OrientationComponent myO;
 	
-	public InfiniteOrientationComponent(Orientation o){
+	public InfiniteOrientationComponent(OrientationComponent o){
 		myO=o;
 	}
 	
 	public InfiniteOrientationComponent(String s) {
-		for (Orientation o: Orientation.values()) {
+		for (OrientationComponent o: OrientationComponent.values()) {
 			if (s.equals(o.toString())) {
 				myO = o;
 			}
@@ -22,11 +22,11 @@ public class InfiniteOrientationComponent extends AComponent implements ICompone
 	}
 	
 	
-	public Orientation getOrientation(){
+	public OrientationComponent getOrientation(){
 		return myO;
 	}
 	
-	public void setOrientation(Orientation o){
+	public void setOrientation(OrientationComponent o){
 		myO = o;
 	}
 	

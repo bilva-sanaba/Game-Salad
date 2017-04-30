@@ -82,8 +82,10 @@ public class Controller implements ControllerInterface {
 	
 	private Map<Integer, LevelEntity> convertLevelEntities(List <LevelEntity> le) {
 		Map<Integer, LevelEntity> ret = new HashMap<Integer, LevelEntity>();
-		for (int i = 0; i < le.size(); i++) {
-			ret.put(i+1, le.get(i));
+		int i = 0;
+		for (LevelEntity item: le) {
+			ret.put(i+1, item);
+			i++;
 		}
 		return ret;
 	}

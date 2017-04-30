@@ -1,9 +1,7 @@
 package entity;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Observable;
 
@@ -17,7 +15,6 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import entity.restricted.IRestrictedEntity;
 import javafx.geometry.Dimension2D;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
 /**

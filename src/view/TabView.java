@@ -99,6 +99,7 @@ public class TabView extends GUIComponent {
 		savePresetButton = util.buildButton("Save Preset", e -> savePreset());
 		loadPresetButton = util.buildButton("Load Preset", e -> userLoadPreset());
 		util.setPresets(blocksList);
+		myData.getLevelEntityMap().get(1).setInfiniteEnum(InfiniteEnum.None);
 	}
 
 	public void clearSelected(){
