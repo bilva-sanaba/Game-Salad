@@ -41,8 +41,8 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 		}
 		return temp;
 	}
-	public Entity newCopy(){
-		Entity temp = new Entity(identifier*10);
+	public Entity newCopy(int size){
+		Entity temp = new Entity(identifier+size);
 		for (IComponent a : myComponentMap.keySet()){
 			temp.addComponent(a.newCopy());
 		}

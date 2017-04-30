@@ -12,7 +12,7 @@ import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
-public class InfiniteEngine extends AbstractEngine {
+public class InfiniteEngine extends AbstractEngine implements IEngine{
 	private InfiniteEnum infinite;
 	private double difference;
 	private LocationComponent mainPlayer;
@@ -50,7 +50,7 @@ public class InfiniteEngine extends AbstractEngine {
 				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 				if (mainPlayer.getX()-lc.getX()>difference/2 && !repeated.contains(e)){
 					repeated.add(e);
-					IEntity newEntity = e.newCopy();
+					IEntity newEntity = e.newCopy(getEManager().getEntities().size());
 					newEntity.addComponent(new LocationComponent(lc.getX()+difference,lc.getY()));
 					getEManager().getEntities().add(newEntity);
 					getEManager().changed(newEntity);
@@ -61,7 +61,7 @@ public class InfiniteEngine extends AbstractEngine {
 				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 				if (mainPlayer.getY()-lc.getY()>difference/2 && !repeated.contains(e)){
 					repeated.add(e);
-					IEntity newEntity = e.newCopy();
+					IEntity newEntity = e.newCopy(getEManager().getEntities().size());
 					newEntity.addComponent(new LocationComponent(lc.getX(),lc.getY()+difference));
 					getEManager().getEntities().add(newEntity);
 					getEManager().changed(newEntity);

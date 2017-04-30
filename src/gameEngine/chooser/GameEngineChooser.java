@@ -1,6 +1,8 @@
 package gameEngine.chooser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import data_interfaces.InfiniteEnum;
@@ -18,10 +20,15 @@ public class GameEngineChooser implements IGameEngineChooser {
 	private List<IEngine> myEngines;
 	
 	public GameEngineChooser(IEntityManager myEntityManager, InfiniteEnum infinite){
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
-				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
-				new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
-		if (infinite!=InfiniteEnum.None){
+		myEngines = new ArrayList<IEngine>();
+		
+		myEngines.add(new InputEngine(myEntityManager));
+		myEngines.add(new MovementEngine(myEntityManager));
+		myEngines.add(new CollisionEngine(myEntityManager));
+		myEngines.add(new TimeEngine(myEntityManager));
+		myEngines.add(new AIEngine(myEntityManager));
+		
+		if (infinite != null && infinite!=InfiniteEnum.None){
 			myEngines.add(new InfiniteEngine(myEntityManager, infinite));
 		}
 	}

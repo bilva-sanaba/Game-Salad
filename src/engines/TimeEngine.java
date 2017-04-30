@@ -11,7 +11,7 @@ import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
-public class TimeEngine extends AbstractEngine { 
+public class TimeEngine extends AbstractEngine{ 
 	public TimeEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 	}
