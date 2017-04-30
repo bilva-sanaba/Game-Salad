@@ -60,10 +60,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
 import data_interfaces.EngineCommunication;
+import data_interfaces.InfiniteEnum;
 import data_interfaces.XMLDefinedParser;
 import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
+import engines.InfiniteEngine;
 import engines.InputEngine;
 import engines.LevelEngine;
 import engines.MovementEngine;
@@ -159,7 +161,9 @@ public class GameEngine implements GameEngineInterface {
 		//REAL USE THIS
 		myEntityManagers = c.getIEntityManagers();
 		myEntityManager = myEntityManagers.get(0);
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
+				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
+				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,c.getInfinite()));
 		
 		
 		el = new EntityLoader(myEntityManager);
