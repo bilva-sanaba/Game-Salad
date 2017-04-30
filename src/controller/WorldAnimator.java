@@ -206,7 +206,6 @@ public class WorldAnimator{
 
 
 		public void removeEntity(Integer entity){
-			System.out.println("CHAHCHAHCHA" + entity);
 			if (imageMap.containsKey(entity)){
 				//st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
 				//st.play();

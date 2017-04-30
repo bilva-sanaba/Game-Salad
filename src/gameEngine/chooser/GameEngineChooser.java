@@ -7,6 +7,7 @@ import data_interfaces.InfiniteEnum;
 import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
+import engines.IEngine;
 import engines.InfiniteEngine;
 import engines.InputEngine;
 import engines.MovementEngine;
@@ -14,7 +15,7 @@ import engines.TimeEngine;
 import entity.IEntityManager;
 
 public class GameEngineChooser implements IGameEngineChooser {
-	private List<AbstractEngine> myEngines;
+	private List<IEngine> myEngines;
 	
 	public GameEngineChooser(IEntityManager myEntityManager, InfiniteEnum infinite){
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
@@ -25,7 +26,7 @@ public class GameEngineChooser implements IGameEngineChooser {
 		}
 	}
 	@Override
-	public List<AbstractEngine> getEngines() {
+	public List<IEngine> getEngines() {
 		return myEngines;
 	}
 

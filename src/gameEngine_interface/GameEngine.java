@@ -15,6 +15,7 @@ import data_interfaces.EngineCommunication;
 import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
+import engines.IEngine;
 import engines.InfiniteEngine;
 import engines.InputEngine;
 import engines.MovementEngine;
@@ -44,14 +45,14 @@ import javafx.scene.input.KeyCode;
  */
 public class GameEngine implements GameEngineInterface {
 	private IEntityManager myEntityManager;
-	private List<AbstractEngine> myEngines;
+	private List<IEngine> myEngines;
 	private IGameData myGameData;
 	private IGameEngineChooser myGameEngineChooser;
 	private int numUpdates;
 	private boolean sliderPause;
 	private List<IEntityManager> myEntityManagers;
 	private List<IEntityManager> previousEntityManagers;
-	private EntityLoader el;
+	private EntityLoader myEntityLoader;
 	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
 	
 	public GameEngine(IRestrictedUserInputData data){
@@ -82,16 +83,13 @@ public class GameEngine implements GameEngineInterface {
 		myEntityManager = myEntityManagers.get(0);
 		myGameEngineChooser = new GameEngineChooser(myEntityManager, c.getInfinite());
 		myEngines = myGameEngineChooser.getEngines();
-//		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
-//				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
-//				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager, c.getInfinite()));
-		el = new EntityLoader(myEntityManager);
+		myEntityLoader = new EntityLoader(myEntityManager);
+		
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
 		List<String> listl = new ArrayList<String>();
-		listl.add("");
+
 		myGameData = new GameData(0,0,(IRestrictedEntityManager) myEntityManager, 0, lc,listl,"");
-		IRestrictedGameData dg = (IRestrictedGameData) myGameData;
-		return dg;
+		return (IRestrictedGameData) myGameData;
 	}
 	
 	public List<IEntityManager> save(){
@@ -109,7 +107,7 @@ public class GameEngine implements GameEngineInterface {
 	public void handleUpdates(Collection<KeyCode> keysPressed) {
 		resetStoredStates();
 		saveNewEntityManager();
-		for (AbstractEngine s : myEngines){
+		for (IEngine s : myEngines){
 			IRestrictedGameData rgd = s.update(keysPressed, (IRestrictedGameData) myGameData);
 			updateLevel(rgd);
 			GameDataFactory gameDataFactory = new GameDataFactory();
@@ -118,7 +116,7 @@ public class GameEngine implements GameEngineInterface {
 	}
 	private void updateLevel(IRestrictedGameData restrictedGameData){
 		if (myGameData.getLevel().intValue()!=restrictedGameData.getLevel().intValue()){
-			el.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()));
+			myEntityLoader.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()));
 		}
 	}
 	private void resetStoredStates(){
@@ -128,7 +126,7 @@ public class GameEngine implements GameEngineInterface {
 		}
 	}
 	
-	public IEntity getMainCharacter(){
+	private IEntity getMainCharacter(){
 		for(IEntity e : myEntityManager.getEntities()){
 			if(e.hasComponent(ComponentType.KeyInput)){
 				return e;
@@ -147,7 +145,7 @@ public class GameEngine implements GameEngineInterface {
 		Integer index = (Double.valueOf(previousEntityManagers.size()*next)).intValue();
 		if (next==1){index--;};
 		if (previousIndex!=index){
-			el.loadNew(previousEntityManagers.get(index));
+			myEntityLoader.loadNew(previousEntityManagers.get(index));
 		}
 	}
 	private void saveNewEntityManager() {
