@@ -9,7 +9,7 @@ public interface ICommand {
 	 * Execute the command 
 	 * @param s - stage
 	 */
-	public abstract void execute(Stage s);
+	public abstract boolean execute(Stage s);
 	
 	/**
 	 * Get name of command -- used for reflection

@@ -1,7 +1,6 @@
 package gameView.observers;
 
 import entity.restricted.IRestrictedEntity;
-import gameView.ImageManager;
 import java.util.Observable;
 import java.util.Observer;  
  
