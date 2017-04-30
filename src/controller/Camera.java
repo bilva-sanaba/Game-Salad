@@ -12,6 +12,9 @@ import entity.restricted.IRestrictedEntity;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 /*
  * @author Belal Taher
@@ -24,7 +27,7 @@ public class Camera extends Entity {
 	
 	private int myLevelLength;
 	private Scene myFrame;
-	private Parent root;
+	private Group root;
 	private LocationComponent myLC;
 	private double myFrameWidth;
 	
@@ -33,14 +36,21 @@ public class Camera extends Entity {
 		super(id);
 		myLevelLength = length;
 		myFrame = myScene;
-		root = myFrame.getRoot();
+		root = (Group) myFrame.getRoot();
 		myLC = lc;
 		myFrameWidth= myFrame.getWidth();
 
 		if (getComponent(ComponentType.Type) == null) {
 			addComponent(new TypeComponent(EntityType.Camera));
 		}
-		
+		Rectangle r = new Rectangle();
+		ImagePattern ipMan = new ImagePattern(new Image(getClass().getClassLoader().getResource("background1.png").toString()));
+		r.setFill(ipMan);
+		r.setX(0);
+		r.setY(0);
+		r.setWidth(ipMan.getWidth());
+		r.setHeight(ipMan.getHeight());
+		root.getChildren().add(r);
 	}
 
 	public void updateCamera() {
