@@ -80,8 +80,8 @@ public class UIView implements UIViewInterface {
 			savePoints();
 		}
 		myCurrentGame = file;
-		myData = myController.loadNewGame(file); //FOR SPLASH
-		mySpecificSplash = myController.loadSpecificSplash(file);
+		myData = myController.loadNewGame(myCurrentGame); //FOR SPLASH
+		mySpecificSplash = myController.loadSpecificSplash(myCurrentGame);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
 		myGameScene.addData(myData); //FOR SPLASH

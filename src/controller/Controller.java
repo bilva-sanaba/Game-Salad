@@ -79,12 +79,6 @@ public class Controller implements ControllerInterface {
 
 	public SpecificGameSplashView loadSpecificSplash(String gameName) {
 		Communicator c = new Communicator(gameName);
-		//SplashEntity se = c.getSplashEntity();
-		//SpecificGameSplashView sView = new SpecificGameSplashView(myGameView, myStage, uiData, new SplashData(0, "Balls", "Instructional", "background1.png"));
-		//Stage specificSplashStage = new Stage();
-		//specificSplashStage.setScene(sView.getScene());
-		//specificSplashStage.showAndWait();
-		//sView.getScene();
 		SpecificGameSplashView sView = new SpecificGameSplashView(myGameView, myStage, uiData, c.getSplashEntity());
 		return sView;
 	}
