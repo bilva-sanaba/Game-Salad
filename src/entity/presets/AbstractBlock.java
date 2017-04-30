@@ -1,27 +1,26 @@
 package entity.presets;
 
 import actions.BlockTopRegularCollision;
-
 import actions.BounceOffBottom;
 import actions.BounceOffLeft;
 import actions.BounceOffRight;
-import actions.BounceOffTop;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
-import components.entityComponents.EntityType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
-import components.entityComponents.TypeComponent;
 import entity.Entity;
 
 public class AbstractBlock extends Entity {
+	private final static double DEFAULT_SIZE = 50;
 	public AbstractBlock(int id) {
 		super(id);
 		addCollisionComponents();
 	}
 	private void addCollisionComponents(){
+		this.addComponent(new ImagePropertiesComponent(DEFAULT_SIZE,DEFAULT_SIZE));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
 //		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);

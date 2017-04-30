@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.Input;
 import view.UtilityFactory;
+import voogasalad.util.reflection.Reflection;
 
 public class IActionMakerWindow{
 	private UtilityFactory myUtilF;
@@ -23,9 +24,9 @@ public class IActionMakerWindow{
 	private int stringConstructNum = 0;
 	private int listConstructNum = 0;
 
-	public IActionMakerWindow(UtilityFactory utilF, Class<?> act) {
+	public IActionMakerWindow(UtilityFactory utilF, Class<?> absAct) {
 		myUtilF = utilF;
-		myAction = act;
+		myAction = absAct;
 		myParams = new ArrayList<String>();
 		myStage.setScene(buildScene());
 	}

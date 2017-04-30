@@ -40,8 +40,8 @@ public class EntityActionWindow extends Window {
 	private Entity myEntity;
 	private TextField labelType;
 	private ListView<EntityType> EntityTypeList;
-	private Map<CollisionComponentType, List<IAction>> allActions;
-	private Reflection refl = new Reflection();
+	private Map<CollisionComponentType, List<String>> allActions;
+	private Map<String, Class<?>> allAct = new  HashMap<String, Class<?>>();
 
 	public EntityActionWindow(UtilityFactory utilF, ViewData entityData, Entity myE) {
 		myUtilF = utilF;
@@ -58,37 +58,43 @@ public class EntityActionWindow extends Window {
 		EntityTypeList.setMaxSize(200, 100);
 		HBox top = myUtilF.buildHBox(new Text("Choose at Least One: "), labelType, EntityTypeList);
 		setOnGrid(myEntity.getImageView(), 1, 1);
-		setOnGrid(myUtilF.buildButton("MakeEntity", e -> makeEntity()),2,2);
+		setOnGrid(myUtilF.buildButton("MakeEntity", e -> makeEntity()), 2, 2);
 		buildActionMaker();
 		Scene myScene = new Scene(myUtilF.buildVBox(top, new ScrollPane(root)), 600, 600);
 		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
 		return myScene;
 	}
 
-	private void makeEntity() { 
+	private void makeEntity() {
 		myStage.close();
 	}
-	
-	private void setOnGrid(Node nod, int i, int j){
+
+	private void setOnGrid(Node nod, int i, int j) {
 		GridPane.setConstraints(nod, i, j);
 		GridPane.setHalignment(nod, HPos.CENTER);
 		root.getChildren().add(nod);
 	}
-	
+
 	private void buildActionMaker() {
 		ActionRetriever ar = new ActionRetriever();
-		allActions = new HashMap<CollisionComponentType, List<IAction>>();
+		allActions = new HashMap<CollisionComponentType, List<String>>();
 		for (int j = 0; j < CollisionComponentType.values().length; j++) {
 			CollisionComponentType currentType = CollisionComponentType.values()[j];
 			List<Class<?>> listofAct = ar.getActionsWithAnnotation(currentType);
-			ArrayList<IAction> actions = new ArrayList<IAction>();
+			// ArrayList<IAction> actions = new ArrayList<IAction>();
+			// try {
+			// populatelist(actions, listofAct);
+			// } catch (InputException e1) {
+			// //throw alert
+			// }
+			ArrayList<String> actions = new ArrayList<String>();
 			try {
-				populatelist(actions, listofAct);
+				populateString(actions, listofAct);
 			} catch (InputException e1) {
-				//throw alert
+				System.out.println("fuck");
 			}
 			allActions.put(currentType, actions);
-			ListView<IAction> viewActs = myUtilF.buildListView(actions);
+			ListView<String> viewActs = myUtilF.buildListView(actions);
 			VBox listandbut = myUtilF.buildVBox(new Text(currentType.name() + "Action"), viewActs,
 					myUtilF.buildButton("AddAction", e -> addAction(currentType, viewActs)));
 			setListView(listandbut, j);
@@ -96,7 +102,18 @@ public class EntityActionWindow extends Window {
 		}
 	}
 
-	private void addAction(CollisionComponentType collisionComponentType, ListView<IAction> viewActs) {
+	private void populateString(List<String> actions, List<Class<?>> listofAct) throws InputException {
+		for (int i = 0; i < listofAct.size(); i++) {
+			Class<?> nextAction = listofAct.get(i);
+			String act = null;
+			act = nextAction.toString();
+			System.out.println(nextAction.getName() + " line 59" + this.getClass());
+			actions.add(act);
+			allAct.put(act, nextAction);
+		}
+	}
+
+	private void addAction(CollisionComponentType collisionComponentType, ListView<String> viewActs) {
 		CollisionComponentsHandler sideCollisionActions = null;
 		if (myEntity.getComponent(ComponentType.CollisionHandler) == null) {
 			sideCollisionActions = new CollisionComponentsHandler();
@@ -115,19 +132,35 @@ public class EntityActionWindow extends Window {
 			System.out.println("use collisioncomp actionwindow");
 			sidecollision = sideCollisionActions.getCollisionComponent(collisionComponentType.toString());
 		}
-		if (viewActs.getSelectionModel().getSelectedIndex() >= 0) {
+		try {
 			if (!(labelType.getText().toString().equals(labelType.getPromptText().toString())
 					|| labelType.getText().toString().equals(""))) {
 				System.out.println("add label action");
-				sidecollision.addActionForLabel(new LabelComponent(labelType.getText()),
-						viewActs.getSelectionModel().getSelectedItem());
+				IAction act = getAction(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
+				sidecollision.addActionForLabel(new LabelComponent(labelType.getText()), act);
 			}
 			if (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0) {
 				System.out.println("add type action");
+				IAction act = getAction(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
 				sidecollision.addActionForType(new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()),
-						viewActs.getSelectionModel().getSelectedItem());
+						act);
 			}
+		} catch (InputException e) {
+			//ALERT
 		}
+
+	}
+
+	private IAction getAction(Class<?> absAct) throws InputException {
+		IAction act = null;
+		System.out.println(absAct + " line 59" + this.getClass());
+		try {
+			act = (IAction) absAct.newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			IActionMakerWindow actionMaker = new IActionMakerWindow(myUtilF, absAct);
+			act = actionMaker.openWindow();
+		}
+		return act;
 	}
 
 	private void initalizeListView(ListView<?> viewActs) {
