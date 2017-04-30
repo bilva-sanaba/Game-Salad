@@ -151,14 +151,17 @@ public class GameEngine implements GameEngineInterface {
 //			castedEnts.add(e);
 //		}
 		
-//		myEntityManager = dummyLoad();//myEntityManagers.get(0);
+		//DUMMYLOAD
+//		myEntityManager = dummyLoad();
 //		myEntityManagers = new ArrayList<IEntityManager>();
 //		myEntityManagers.add(myEntityManager);
 		
+		//REAL USE THIS
 		myEntityManagers = c.getIEntityManagers();
 		myEntityManager = myEntityManagers.get(0);
-		
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
+		
+		
 		el = new EntityLoader(myEntityManager);
 //		GPEM = new GPEntityManager(c.getData());
 //		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
@@ -196,10 +199,10 @@ public class GameEngine implements GameEngineInterface {
 		sliderPause=true;
 		Integer previousIndex = ((Double) (previousEntityManagers.size()*old)).intValue();
 		Integer index = ((Double) (previousEntityManagers.size()*next)).intValue();
+		if (next==1){index--;};
 		if (previousIndex!=index){
 			el.loadNew(previousEntityManagers.get(index));
 		}
-		
 	}
 	private void saveNewEntityManager() {
 		numUpdates++;

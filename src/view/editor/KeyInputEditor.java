@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import actions.IAction;
 import components.IComponent;
 import engines.IKeyInputPanel;
 import engines.KeyInputPanel;
@@ -25,7 +26,7 @@ import view.UtilityFactory;
 public class KeyInputEditor extends ComponentEditor {
 	private static final String ComponentName = "KeyInput";
 	private String[] myKeyString = {"false"}; // Initialize array
-	private Map<KeyCode,String> inputMap = new HashMap<KeyCode,String>();
+	private Map<KeyCode,ArrayList<IAction>> inputMap = new HashMap<KeyCode,ArrayList<IAction>>();
 
 		private HBox myBox;
 		
