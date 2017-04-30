@@ -154,16 +154,16 @@ public class GameEngine implements GameEngineInterface {
 //		}
 		
 		//DUMMYLOAD
-//		myEntityManager = dummyLoad();
-//		myEntityManagers = new ArrayList<IEntityManager>();
-//		myEntityManagers.add(myEntityManager);
+		myEntityManager = dummyLoad();
+		myEntityManagers = new ArrayList<IEntityManager>();
+		myEntityManagers.add(myEntityManager);
 		
 		//REAL USE THIS
-		myEntityManagers = c.getIEntityManagers();
-		myEntityManager = myEntityManagers.get(0);
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
-				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
-				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,c.getInfinite()));
+//		myEntityManagers = c.getIEntityManagers();
+//		myEntityManager = myEntityManagers.get(0);
+//		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
+//				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
+//				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,c.getInfinite()));
 		
 		
 		el = new EntityLoader(myEntityManager);
@@ -576,7 +576,7 @@ public class GameEngine implements GameEngineInterface {
 //		myEntityManagers.add(new EntityManager(e8));
 		myGameData= new GameData(0,0, (IRestrictedEntityManager) myEntityManager, 0, (LocationComponent) getMainCharacter().getComponent(ComponentType.Location), "", "" );
 
-		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,InfiniteEnum.Horizontal));
 		return myEntityManager;
 //		return myGameData;
 	}
