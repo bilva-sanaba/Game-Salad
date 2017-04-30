@@ -1,3 +1,21 @@
+/**** Network Window ****/
+
+.wide-box {
+	-fx-spacing: 50;
+	-fx-padding: 10;
+}
+
+.narrow-box {
+	-fx-spacing: 10
+}
+
+
+
+
+
+
+/**** General ****/
+
 .root {
 	-fx-base: rgb(80, 80, 80);
 	-fx-background: rgb(80, 80, 80);
@@ -92,3 +110,10 @@
     -fx-background-color: #76d7c4;
     -fx-text-fill: white;
 }
+
+
+
+
+
+
+

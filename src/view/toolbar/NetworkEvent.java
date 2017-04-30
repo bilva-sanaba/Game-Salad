@@ -17,6 +17,6 @@ public class NetworkEvent implements ToolBarButtonEvent {
 	@Override
 	public void event() {
 		NetworkWindow myNetWindow = new NetworkWindow(myUtilF, myData);
-		
+		myNetWindow.openWindow();
 	}
 }

@@ -26,11 +26,13 @@ public class NetworkWindow implements Window {
 	
 	private VBox makeRoot() {
 		VBox root = new VBox();
+		root.getChildren().addAll(makeJoinRoomGUI(), makeNewRoomGUI());
 		return root;
 	}
 	
 	private VBox makeJoinRoomGUI() {
 		VBox container = new VBox();
+		container.getStyleClass().add("narrow-box");
 		
 		Label title = new Label("Join Room:");
 		
@@ -60,8 +62,10 @@ public class NetworkWindow implements Window {
 	
 	private VBox makeNewRoomGUI() {
 		VBox container = new VBox();
+		container.getStyleClass().add("narrow-box");
 		
 		HBox buttonBox = new HBox();
+		buttonBox.getStyleClass().add("narrow-box");
 		Button newRoomButton = makeNewRoomButton();
 		Button closeRoomButton = makeCloseRoomButton();
 		buttonBox.getChildren().addAll(newRoomButton, closeRoomButton);
@@ -100,11 +104,14 @@ public class NetworkWindow implements Window {
 		VBox root = makeRoot();
 		Scene myScene = new Scene(root, 350, 400);
 		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
+		root.getStyleClass().add("wide-box");
 		return myScene;
 	}
 	
 	@Override
 	public void openWindow() {
+		myStage = new Stage();
+		myStage.setScene(buildScene());
 		myStage.show();
 	}
 }
