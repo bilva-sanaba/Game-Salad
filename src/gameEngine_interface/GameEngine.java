@@ -168,10 +168,10 @@ public class GameEngine implements GameEngineInterface {
 		for (AbstractEngine s : myEngines){
 			IGameData rgd = (IGameData) s.update(keysPressed,(IRestrictedGameData) myGameData);
 			GameDataFactory gdf = new GameDataFactory();
-			if (myGameData.getLevel()!=rgd.getLevel()){
+		/*	if (myGameData.getLevel()!=rgd.getLevel()){
 				EntityLoader el = new EntityLoader(myEntityManager);
 				el.loadNew(myEntityManagers.get((int) rgd.getLevel()));
-			}
+			}*/
 			gdf.updateGameData(myGameData,rgd);		
 		}
 		

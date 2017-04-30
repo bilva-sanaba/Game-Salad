@@ -26,7 +26,7 @@ public class GameDataFactory {
 		return new GameData(points,lives,(IRestrictedEntityManager) new EntityManager(), lvl, lc,music);
 	}
 	public void updateGameData(IGameData gameData, IRestrictedGameData updatedData){
-		gameData.setPoints(updatedData.getPoints());
+		//gameData.setPoints(updatedData.getPoints());
 		gameData.setLives(updatedData.getPoints());
 		gameData.setMainLocation(updatedData.getMainLocation());
 		gameData.setLevel(updatedData.getLevel());
