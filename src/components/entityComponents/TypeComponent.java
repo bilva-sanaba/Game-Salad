@@ -11,7 +11,7 @@ public class TypeComponent extends AComponent implements IComponent {
 	}
 	
 	public String getTypeString() {
-		return typeOfEntity.name();
+		return typeOfEntity.toString();
 	}
 
 	@Override
