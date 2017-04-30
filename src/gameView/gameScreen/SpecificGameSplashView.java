@@ -25,6 +25,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * @author Jacob
+ */
+
 public class SpecificGameSplashView extends AbstractViewer {
 	
 	private static final String myName = SpecificGameSplashView.class.getSimpleName();

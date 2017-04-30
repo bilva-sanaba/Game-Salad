@@ -158,13 +158,13 @@ public class GameEngine implements GameEngineInterface {
 //		}
 		
 		//DUMMYLOAD
-		myEntityManager = dummyLoad();
-		myEntityManagers = new ArrayList<IEntityManager>();
-		myEntityManagers.add(myEntityManager);
+		//myEntityManager = dummyLoad();
+		//myEntityManagers = new ArrayList<IEntityManager>();
+		//myEntityManagers.add(myEntityManager);
 		
 		//REAL USE THIS
-//		myEntityManagers = c.getIEntityManagers();
-//		myEntityManager = myEntityManagers.get(0);
+		myEntityManagers = c.getIEntityManagers();
+		myEntityManager = myEntityManagers.get(0);
 
 //		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 

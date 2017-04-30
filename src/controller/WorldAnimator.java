@@ -51,7 +51,7 @@ import gamedata.IRestrictedGameData;
 /**
  *
  * @author Jacob
- *
+ *Animation and placement of images from the authoring environment into the game player
  */
 public class WorldAnimator{
     public static final int FRAMES_PER_SECOND = 30;
@@ -68,7 +68,6 @@ public class WorldAnimator{
     private Scene myScene;
     private Timeline animation;
     private Group root;
-    private SequentialTransition st;
 
     private IRestrictedGameData myData;
 
@@ -81,8 +80,6 @@ public class WorldAnimator{
     private Achievement myAchievement;
     private UIViewInterface myView;
     private	ObserverManager myObservers;
-
-    private GameEngine myEngine;
     
     private Map<Integer, ImageConfig> imageMap= new HashMap<Integer, ImageConfig>();
 
@@ -103,24 +100,16 @@ public class WorldAnimator{
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
         myObservers = new ObserverManager(this, restrictedEntityManager);
         
-
-
-//BELALS SHIT
-
-        //myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
         myScene = new Scene(root,LENGTH,WIDTH);
-        //st = new SequentialTransition();
+
         LocationComponent lc = myData.getMainLocation();
-        //Change Length
+   
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
         
         myAchievementFactory = new AchievementFactory();
-        //myAchievement = myAchievementFactory.genAchievement("FirstKill");
-        //root.getChildren().add(myAchievement.getGroup());
         
         myObservers.getUpdatedSet();
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
-//        Entity mainCharacter = (Entity) myEngine.getMainCharacter();
 
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                 e-> {
@@ -138,8 +127,6 @@ public class WorldAnimator{
     }
     
     
-    //for testing
-    
     
     public Scene getScene() {
         return myScene;
@@ -147,14 +134,13 @@ public class WorldAnimator{
     private void step(double elapsedTime) throws ClassNotFoundException{
     	counter++;
     	myView.step(keysPressed);
-    	//myEngine.handleUpdates(keysPressed);
         fillMapAndDisplay(myObservers.getUpdatedSet());
         
-//        updateAchievement();
-//        
-//        if(achievementShowing==true){
-//        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
-//        }
+        updateAchievement();
+        
+        if(achievementShowing==true){
+        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
+        }
         
         myCamera.updateCamera();
         
@@ -202,7 +188,6 @@ public class WorldAnimator{
     	
     	Map<Integer, ImageConfig> map = myObservers.getEntityMap();
         for(Integer entity : entities){
-        //This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
         	if (map.get(entity)!=null){
         		updateEntity(entity,map);
         		createEntity(entity,map);
@@ -215,8 +200,6 @@ public class WorldAnimator{
     public void removeEntity(Integer entity){
     	System.out.println("CHAHCHAHCHA" + entity);
     	if (imageMap.containsKey(entity)){
-    		//st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
-    		//st.play();
     		imageMap.get(entity).getImageView().setImage(null);
     		root.getChildren().remove(imageMap.get(entity));
     		imageMap.remove(entity);    		
@@ -231,9 +214,6 @@ public class WorldAnimator{
 	            imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 	            
 	            root.getChildren().add(imageView);
-	            //makeAppear(imageView).play();
-	            //st.getChildren().add(makeAppear(imageView));
-	            //st.play();
 	        }
 	  }
 
@@ -262,30 +242,6 @@ public class WorldAnimator{
         
 
         return currentImage;
-        //COMMENT OUT TO TEST RUNNER
-
-        //currentImage.setTranslateX(re.getLocation().getX()*50-475);
-		//currentImage.setTranslateY(re.getLocation().getY()*50-175);
-        //currentImage.setFitHeight(re.getFitHeight());
-        //currentImage.setFitWidth(re.getFitWidth());
-    }
-
-
-    private FadeTransition makeFade(ImageView imageView){
-        double newOpacity = 0.0;
-        return createFade(newOpacity, imageView);
-    }
-    
-    private FadeTransition makeAppear(ImageView imageView){
-        double newOpacity = 1.0;
-        return createFade(newOpacity, imageView);
-    }
-    
-    private FadeTransition createFade(double newOpacity, ImageView imageView){
-        FadeTransition ft = new FadeTransition(Duration.millis(KEY_INPUT_SPEED), imageView);
-        ft.setToValue(newOpacity);
-        ft.setCycleCount(4);
-        return ft;
     }
     
     private void addAchievement() throws ClassNotFoundException{
@@ -301,7 +257,6 @@ public class WorldAnimator{
     	  if(counter%90==0 && achievementShowing){
           	root.getChildren().remove(myAchievement.getGroup());
           	achievementShowing=false;
-          	System.out.println("YACK YACK YACK YACK YACK");
           }
 	}
     
@@ -316,12 +271,6 @@ public class WorldAnimator{
     public void clearRoot(){
     	imageMap.clear();
     	root.getChildren().clear();
-    }
-    
-    
-    //FOR RUNNER TESTING
-    public void giveEngine(GameEngine f) {
-    	myEngine = f;
     }
     
 }
