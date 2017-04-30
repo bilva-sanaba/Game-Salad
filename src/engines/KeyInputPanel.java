@@ -1,11 +1,18 @@
 package engines;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import actions.IAction;
+import actions.ShootAction;
 import components.entityComponents.ConcreteKeyExpressions;
 import components.entityComponents.IKeyExpression;
 import components.entityComponents.KeyExpression;
+import components.keyExpressions.JumpAction;
+import components.keyExpressions.LeftAction;
+import components.keyExpressions.RightAction;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -21,23 +28,26 @@ import javafx.stage.Stage;
 
 public class KeyInputPanel implements IKeyInputPanel{
 
-	private Map<KeyCode, String> keyMap = new HashMap<KeyCode, String>();
+	private Map<KeyCode, ArrayList<IAction>> keyMap = new HashMap<KeyCode, ArrayList<IAction>>();
 	private KeyCode current; 
-	private String currentKC;
+	private IAction currentKC;
 
 	private String currentString;
 	private Text t = new Text();
 	private Scene myScene;
-	private ConcreteKeyExpressions[] x = ConcreteKeyExpressions.values();
+	private List<IAction> x;
 	private Map<String, String> c = new HashMap<String,String>();
 	public KeyInputPanel(){
-		
+		x = new ArrayList<IAction>();
+		x.add(new ShootAction());
+		x.add(new JumpAction());
+		x.add(new RightAction());
+		x.add(new LeftAction());
 	}
 
 
-	public Map<KeyCode, String> getMap() {
+	public Map<KeyCode, ArrayList<IAction>> getMap() {
 		// TODO Auto-generated method stub
-		System.out.println(keyMap);
 		return keyMap;
 	}
 	public void openWindow(){
@@ -48,17 +58,21 @@ public class KeyInputPanel implements IKeyInputPanel{
 		Button okayButton = new Button("Close");
 		okayButton.setOnAction(e -> {
 			//TODO: pass the color to a new entity or something?
-			System.out.println("close");
 			stage.close();
 		});
 		Button add = new Button("Add");
 		add.setOnAction(e -> {
 			if (current!=null && currentKC!=null){
-				System.out.println(current);
-				System.out.println(currentKC.getClass());
-				keyMap.put(current,currentKC);
+				if (keyMap.containsKey(current)){
+					keyMap.get(current).add(currentKC);
+				}else{
+					ArrayList<IAction> myActions = new ArrayList<IAction>();
+					myActions.add(currentKC);
+					keyMap.put(current, myActions);
+				}
 			}
-			System.out.println(keyMap);});
+		});
+			
 		Pane n = new Pane();
 		root.setTop(add);
 		root.setBottom(n);
@@ -80,10 +94,17 @@ public class KeyInputPanel implements IKeyInputPanel{
 
 	private ComboBox<String> createKeyInput(){
 		ComboBox<String> myComboBox = new ComboBox<String>();
-		for (ConcreteKeyExpressions y : x){
-			myComboBox.getItems().add(y.toString());
+		for (IAction y : x){
+			myComboBox.getItems().add(y.getClass().getName());
 		}
-		myComboBox.valueProperty().addListener((x, y, newValue) -> currentKC = newValue);  
+		myComboBox.valueProperty().addListener((x, y, newValue) -> {
+	try {
+		currentKC = (IAction) Class.forName(newValue).newInstance();
+	} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+});  
 		myComboBox.setPromptText("Pick an Action");
 		return myComboBox;
 	}

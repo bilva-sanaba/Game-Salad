@@ -113,11 +113,7 @@ public class CollisionEngine extends AbstractEngine {
 			
 		}
 	}
-	@Override
-	public List<ComponentType> neededComponents() {
-		// TODO Auto-generated method stub
-		return new ArrayList<ComponentType>();
-	}
+
 	public IRestrictedGameData update(Collection<KeyCode> keys,IRestrictedGameData gd) {
 		IRestrictedGameData rgd = gd;
 		newEntitiesCreated = new ArrayList<IEntity>();

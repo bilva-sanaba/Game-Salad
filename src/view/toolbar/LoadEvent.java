@@ -46,26 +46,37 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 					- getSuffix().length());
 			System.out.println("BLOOMFELD FELD FELD FIELD FIELD" + name);
 			myData.setGameName(name);
-			//			System.out.println(col + " line 45 " + this.getClass());
 			List <Map> toPlace = xpp.getData(name);
 			
 			setPlacedEntities(toPlace.get(0));
 			setLevelEntities(toPlace.get(1));
 			setSplashEntity(toPlace.get(2));
-			//idk what method to use here
+			myData.refresh();
 		}
 		
 	}
 	
 	private void setPlacedEntities(Map m) {
-		
+		Map <Integer, Map<Integer, Entity>> ret = m;
+		myData.getPlacedEntityMap().clear();
+		for (int i = 1; i <= ret.keySet().size(); i++) {
+			myData.getPlacedEntityMap().put(i, new HashMap<Integer, Entity>());
+		}
+		myData.resetLevelTabs();
+		for (int i = 1; i <= ret.keySet().size(); i++) {
+			myData.getPlacedEntityMap().put(i, ret.get(i));
+		}
 	}
 	
 	private void setLevelEntities(Map m) {
-		
+		Map <Integer, LevelEntity> lm = m;
+		for (int i = 1; i <= lm.size(); i++) {
+			myData.setLevelEntity(i, lm.get(i));
+		}
 	}
 	
 	private void setSplashEntity(Map m) {
-		myData.setSplashEntity((SplashEntity) m.get(getSplashConstant())); 
+		Map<Integer, SplashEntity> sm = m;
+		myData.setSplashEntity((SplashEntity) sm.get(getSplashConstant())); 
 	}
 }

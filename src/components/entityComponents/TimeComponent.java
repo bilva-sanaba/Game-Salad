@@ -12,17 +12,20 @@ public class TimeComponent implements IComponent {
 	private Map<IAction, Integer> timeActions;
 	private Map<IAction,Integer>  lastTimeAction;
 	private Map<IAction,Integer> singleTimeAction;
+	
 	public TimeComponent(){
 		timeActions = new HashMap<IAction, Integer>();
 		lastTimeAction = new HashMap<IAction,Integer>();
 		singleTimeAction= new HashMap<IAction,Integer>();
 		
 	}
+	
 	public TimeComponent(Map<IAction,Integer> timeActions2) {
 		timeActions= timeActions2;
 		lastTimeAction = new HashMap<IAction,Integer>();
 		singleTimeAction= new HashMap<IAction,Integer>();
 	}
+	
 	public TimeComponent(IAction action, Integer delay){
 		timeActions = new HashMap<IAction, Integer>();
 		lastTimeAction = new HashMap<IAction,Integer>();
@@ -40,26 +43,26 @@ public class TimeComponent implements IComponent {
 			singleTimeAction.put(action,delay);
 		}
 	}
+	
 	public Map<IAction,Integer> getLastTime(){
 		return lastTimeAction;
 	}
+	
 	public Map<IAction,Integer> getConstantTime(){
 		return timeActions;
 	}
 
 	@Override
 	public ComponentType getComponentType() {
-		// TODO Auto-generated method stub
 		return ComponentType.Time;
 	}
 
 	@Override
 	public IComponent newCopy() {
-		// TODO Auto-generated method stub
 		return new TimeComponent(timeActions);
 	}
+	
 	public Map<IAction, Integer> getSingleTime() {
-		// TODO Auto-generated method stub
 		return singleTimeAction;
 	}
 

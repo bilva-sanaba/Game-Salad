@@ -31,9 +31,9 @@ public class ViewData extends Observable {
 	private int entityIDcounter;
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
-	private HashMap<Integer, Entity> definedEntityMap;
-	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
-	private HashMap<Integer, LevelEntity> levelEntityMap;
+	private Map<Integer, Entity> definedEntityMap;
+	private Map<Integer, Map<Integer, Entity>> placedEntityMaps;
+	private Map<Integer, LevelEntity> levelEntityMap;
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
 	private Entity userGridSelectedEntity;
@@ -53,7 +53,7 @@ public class ViewData extends Observable {
 		undoStack = new Stack<RightClickEvent>();
 		redoStack = new Stack<RightClickEvent>();
 		definedEntityMap = new HashMap<Integer, Entity>();
-		placedEntityMaps = new HashMap<Integer, HashMap<Integer, Entity>>();
+		placedEntityMaps = new HashMap<Integer, Map<Integer, Entity>>();
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap = new HashMap<Integer, LevelEntity>();
 		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
@@ -173,7 +173,7 @@ public class ViewData extends Observable {
 	}
 
 	// fix dependencies
-	public Map<Integer, HashMap<Integer, Entity>> getPlacedEntityMap() {
+	public Map<Integer, Map<Integer, Entity>> getPlacedEntityMap() {
 		return placedEntityMaps;
 	}
 

@@ -64,9 +64,13 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	public SplashEntity getSplashEntity() {
 		return (SplashEntity) results.get(2).get(getSplashConstant());
 	}
-	public List<IEntityManager> futureGetData() {
-		List<IEntityManager> x = new ArrayList<IEntityManager>();
-		return x;
+
+
+
+	@Override
+	public InfiniteEnum getInfinite() {
+		Map<Integer, LevelEntity> m = results.get(1);
 		
+		return m.get(1).getInfiniteEnum();
 	}
 }

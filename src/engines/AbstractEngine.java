@@ -27,13 +27,6 @@ public abstract class AbstractEngine {
 	}
 
 	/**
-	 * Returns the componentTypes it needs to operate
-	 * 
-	 * @return
-	 */
-	protected abstract List<ComponentType> neededComponents();
-
-	/**
 	 * Updates its lists of components
 	 * @param keysPressed 
 	 * @return TODO

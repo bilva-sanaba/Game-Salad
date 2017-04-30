@@ -9,5 +9,7 @@ import entity.IEntityManager;
 public interface EngineCommunication {
 
 	public List<IEntityManager> getIEntityManagers();
+
+	public InfiniteEnum getInfinite();
 	
 }
