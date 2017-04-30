@@ -42,6 +42,8 @@ public enum ComponentType {
 	InfiniteSpacing(),
 	InfiniteBlockPattern(),
 	InfiniteBlockAction(),
+	Controllable(),
+	Checkpoint(),
 	Null()
 	;
 }

@@ -120,8 +120,7 @@ public class WorldAnimator{
         
         myObservers.getUpdatedSet();
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
-        
-        Entity mainCharacter = (Entity) myEngine.getMainCharacter();
+//        Entity mainCharacter = (Entity) myEngine.getMainCharacter();
 
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                 e-> {

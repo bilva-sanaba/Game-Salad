@@ -157,17 +157,17 @@ public class GameEngine implements GameEngineInterface {
 //			castedEnts.add(e);
 //		}
 		
-		//DUMMYLOAD
-		myEntityManager = dummyLoad();
-		myEntityManagers = new ArrayList<IEntityManager>();
-		myEntityManagers.add(myEntityManager);
+//		//DUMMYLOAD
+//		myEntityManager = dummyLoad();
+//		myEntityManagers = new ArrayList<IEntityManager>();
+//		myEntityManagers.add(myEntityManager);
 		
 		//REAL USE THIS
-//		myEntityManagers = c.getIEntityManagers();
-//		myEntityManager = myEntityManagers.get(0);
-//		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
-//				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
-//				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,c.getInfinite()));
+		myEntityManagers = c.getIEntityManagers();
+		myEntityManager = myEntityManagers.get(0);
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
+				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
+				new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
 		
 		
 		el = new EntityLoader(myEntityManager);
@@ -519,9 +519,9 @@ public class GameEngine implements GameEngineInterface {
 		e.add(p);*/
 		//p.addComponent(new TypeComponent(EntityType.Block));
 		//e.add(p);
-		Entity portal2 = createPortal();
-		e.add(portal2);
-		e.add(createPortal2());
+//		Entity portal2 = createPortal();
+//		e.add(portal2);
+//		e.add(createPortal2());
 		Collection<IEntity> e1 = new ArrayList<IEntity>();
 		for (Entity exp : e) {
 			e1.add(exp);

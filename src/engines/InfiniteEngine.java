@@ -41,19 +41,17 @@ public class InfiniteEngine extends AbstractEngine {
 	}
 
 	@Override
-	protected List<ComponentType> neededComponents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
-		for (IEntity e : getEManager().getEntities()){
+		
+		for (IEntity e : getEManager().getEntities().toArray(new IEntity[getEManager().getEntities().size()])){
 			if (infinite==InfiniteEnum.Horizontal){
 				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 				if (mainPlayer.getX()-lc.getX()>difference/2){
-					lc.setX(lc.getX()+difference);
-					e.changed(e);
+					IEntity newEntity = e.clone();
+					LocationComponent newLC = (LocationComponent) newEntity.getComponent(ComponentType.Location);
+					newLC.setX(lc.getX()+difference);
+					getEManager().getEntities().add(newEntity);
+					getEManager().changed(newEntity);
 				}
 				
 			}
