@@ -1,10 +1,11 @@
 package gameView.userInput;
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 
 public interface IUserInputData {
 
-	public ReadOnlyIntegerProperty getRewind();
+	public ReadOnlyDoubleProperty getRewind();
 	
-	public void setRewind(int k);
+	public void setRewind(double d);
 }

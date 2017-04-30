@@ -2,67 +2,63 @@
   <entity.SplashEntity>
     <changed>false</changed>
     <obs/>
-    <identifier>1</identifier>
+    <identifier>-2</identifier>
     <myComponents class="list"/>
+    <displayName>The game</displayName>
+    <instructions>Don&apos;t lose</instructions>
+    <backgroundFilePath>images/background1.png</backgroundFilePath>
   </entity.SplashEntity>
   <entity.LevelEntity>
     <changed>false</changed>
     <obs/>
     <identifier>-1</identifier>
     <myComponents class="list"/>
-    <rows>21</rows>
-    <cols>16</cols>
-    <backgroundFilePath>images/background1.png</backgroundFilePath>
+    <rows>14</rows>
+    <cols>13</cols>
+    <backgroundFilePath></backgroundFilePath>
   </entity.LevelEntity>
   <entity.Entity>
     <changed>false</changed>
     <obs/>
-    <identifier>0</identifier>
+    <identifier>3</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/dirt.jpg</classPath>
-      </components.entityComponents.SpriteComponent>
-      <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>50.0</imageHeight>
-        <imageWidth>50.0</imageWidth>
-      </components.entityComponents.ImagePropertiesComponent>
-      <components.entityComponents.LabelComponent>
-        <label>Dirt</label>
-      </components.entityComponents.LabelComponent>
-    </myComponents>
-  </entity.Entity>
-  <entity.Entity>
-    <changed>false</changed>
-    <obs/>
-    <identifier>1</identifier>
-    <myComponents class="list">
-      <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/sand.jpg</classPath>
-      </components.entityComponents.SpriteComponent>
-      <components.entityComponents.ImagePropertiesComponent>
-        <imageHeight>50.0</imageHeight>
-        <imageWidth>50.0</imageWidth>
-      </components.entityComponents.ImagePropertiesComponent>
-      <components.entityComponents.LabelComponent>
-        <label>Sand</label>
-      </components.entityComponents.LabelComponent>
-    </myComponents>
-  </entity.Entity>
-  <entity.Entity>
-    <changed>false</changed>
-    <obs/>
-    <identifier>2</identifier>
-    <myComponents class="list">
-      <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <changed>false</changed>
+    <obs/>
+    <identifier>1024</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>40.0</imageHeight>
+        <imageWidth>40.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LabelComponent>
+        <label></label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
+      <components.movementcomponents.LocationComponent>
+        <x>240.0</x>
+        <y>160.0</y>
+      </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
   <entity.Entity>
@@ -71,18 +67,21 @@
     <identifier>1000</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>350.0</x>
-        <y>90.0</y>
+        <x>430.0</x>
+        <y>170.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -92,18 +91,21 @@
     <identifier>1001</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>330.0</x>
-        <y>140.0</y>
+        <x>430.0</x>
+        <y>170.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -113,18 +115,21 @@
     <identifier>1002</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>280.0</x>
-        <y>230.0</y>
+        <x>430.0</x>
+        <y>170.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -134,18 +139,21 @@
     <identifier>1003</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>350.0</x>
-        <y>130.0</y>
+        <x>190.0</x>
+        <y>150.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -155,18 +163,21 @@
     <identifier>1004</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>430.0</x>
-        <y>190.0</y>
+        <x>150.0</x>
+        <y>360.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -176,18 +187,21 @@
     <identifier>1005</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>390.0</x>
-        <y>130.0</y>
+        <x>400.0</x>
+        <y>330.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -197,18 +211,21 @@
     <identifier>1006</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>340.0</x>
-        <y>130.0</y>
+        <x>260.0</x>
+        <y>320.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -218,18 +235,21 @@
     <identifier>1007</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>380.0</x>
-        <y>180.0</y>
+        <x>490.0</x>
+        <y>270.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -239,18 +259,21 @@
     <identifier>1008</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>370.0</x>
-        <y>170.0</y>
+        <x>440.0</x>
+        <y>250.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -260,18 +283,21 @@
     <identifier>1009</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>330.0</x>
-        <y>220.0</y>
+        <x>360.0</x>
+        <y>230.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -281,17 +307,20 @@
     <identifier>1010</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>370.0</x>
+        <x>310.0</x>
         <y>210.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
@@ -302,18 +331,21 @@
     <identifier>1011</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>320.0</x>
-        <y>120.0</y>
+        <x>300.0</x>
+        <y>180.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -323,18 +355,21 @@
     <identifier>1012</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>330.0</x>
-        <y>200.0</y>
+        <x>480.0</x>
+        <y>90.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -344,18 +379,21 @@
     <identifier>1013</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>360.0</x>
-        <y>190.0</y>
+        <x>530.0</x>
+        <y>180.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -365,18 +403,21 @@
     <identifier>1014</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>270.0</x>
-        <y>140.0</y>
+        <x>90.0</x>
+        <y>120.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -386,18 +427,21 @@
     <identifier>1015</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>220.0</x>
-        <y>120.0</y>
+        <x>270.0</x>
+        <y>90.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -407,18 +451,21 @@
     <identifier>1016</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>250.0</x>
-        <y>320.0</y>
+        <x>330.0</x>
+        <y>130.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -428,18 +475,21 @@
     <identifier>1017</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>140.0</x>
-        <y>340.0</y>
+        <x>280.0</x>
+        <y>120.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -449,18 +499,21 @@
     <identifier>1018</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>380.0</x>
-        <y>320.0</y>
+        <x>300.0</x>
+        <y>110.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -470,18 +523,21 @@
     <identifier>1019</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>540.0</x>
-        <y>320.0</y>
+        <x>300.0</x>
+        <y>110.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -491,18 +547,21 @@
     <identifier>1020</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>560.0</x>
-        <y>250.0</y>
+        <x>290.0</x>
+        <y>100.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>
@@ -512,18 +571,69 @@
     <identifier>1021</identifier>
     <myComponents class="list">
       <components.entityComponents.SpriteComponent>
-        <classPath>file:/C:/Users/Bilva/workspace/voogasalad_raindrop/images/character2.gif</classPath>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
       </components.entityComponents.SpriteComponent>
       <components.entityComponents.ImagePropertiesComponent>
         <imageHeight>40.0</imageHeight>
         <imageWidth>40.0</imageWidth>
       </components.entityComponents.ImagePropertiesComponent>
       <components.entityComponents.LabelComponent>
-        <label>bop</label>
+        <label></label>
       </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
       <components.movementcomponents.LocationComponent>
-        <x>580.0</x>
-        <y>190.0</y>
+        <x>290.0</x>
+        <y>100.0</y>
+      </components.movementcomponents.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <changed>false</changed>
+    <obs/>
+    <identifier>1022</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>40.0</imageHeight>
+        <imageWidth>40.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LabelComponent>
+        <label></label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
+      <components.movementcomponents.LocationComponent>
+        <x>260.0</x>
+        <y>120.0</y>
+      </components.movementcomponents.LocationComponent>
+    </myComponents>
+  </entity.Entity>
+  <entity.Entity>
+    <changed>false</changed>
+    <obs/>
+    <identifier>1023</identifier>
+    <myComponents class="list">
+      <components.entityComponents.SpriteComponent>
+        <classPath>file:/C:/Users/Jack/Desktop/SophomoreYear/CompSci308/voogasalad_raindrop/images/platform_tile_007.png</classPath>
+      </components.entityComponents.SpriteComponent>
+      <components.entityComponents.ImagePropertiesComponent>
+        <imageHeight>40.0</imageHeight>
+        <imageWidth>40.0</imageWidth>
+      </components.entityComponents.ImagePropertiesComponent>
+      <components.entityComponents.LabelComponent>
+        <label></label>
+      </components.entityComponents.LabelComponent>
+      <components.entityComponents.DurationComponent>
+        <duration>0.0</duration>
+      </components.entityComponents.DurationComponent>
+      <components.movementcomponents.LocationComponent>
+        <x>240.0</x>
+        <y>170.0</y>
       </components.movementcomponents.LocationComponent>
     </myComponents>
   </entity.Entity>

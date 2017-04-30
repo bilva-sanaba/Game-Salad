@@ -60,7 +60,7 @@ public class IActionMakerWindow{
 			allString = true;
 		}
 		for(int j = 0; j < actConst[stringConstructNum].getParameterCount(); j++){
-			Input getInput = new Input(myUtilF, myAction.toString());
+			Input getInput = new Input(myUtilF, myAction.toString().replace(" ", ""));
 			myParams.add(getInput.getInput());
 		}
 		

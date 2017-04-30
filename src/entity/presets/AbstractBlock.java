@@ -17,7 +17,6 @@ import components.entityComponents.TypeComponent;
 import entity.Entity;
 
 public class AbstractBlock extends Entity {
-
 	public AbstractBlock(int id) {
 		super(id);
 		addCollisionComponents();

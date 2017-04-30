@@ -52,6 +52,7 @@ import components.keyExpressions.RightAction;
 import controller.Camera;
 import controller.WorldAnimator;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
@@ -59,10 +60,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.input.KeyCode;
 import data_interfaces.Communicator;
 import data_interfaces.EngineCommunication;
+import data_interfaces.InfiniteEnum;
 import data_interfaces.XMLDefinedParser;
 import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
+import engines.InfiniteEngine;
 import engines.InputEngine;
 import engines.LevelEngine;
 import engines.MovementEngine;
@@ -115,17 +118,19 @@ public class GameEngine implements GameEngineInterface {
 	private boolean sliderPause = false;
 	private List<IEntityManager> myEntityManagers;
 	private List<IEntityManager> previousEntityManagers;
+	private EntityLoader el;
 	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
 	
 	public GameEngine(IRestrictedUserInputData data){
-		ReadOnlyIntegerProperty p = data.getRewind();
+		ReadOnlyDoubleProperty p = data.getRewind();
 		p.addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                 Number old_val, Number new_val) {
-            	if (old_val.intValue()!=new_val.intValue()){
-                    rewindState(new_val.intValue());
+            	if (old_val.doubleValue()!=new_val.doubleValue()){
+                    rewindState(old_val.doubleValue(),new_val.doubleValue());
+                    
             	}
-                    System.out.println(new_val.intValue());
+
             }
         });
 		previousEntityManagers = new ArrayList<IEntityManager>();
@@ -148,9 +153,20 @@ public class GameEngine implements GameEngineInterface {
 //			castedEnts.add(e);
 //		}
 		
-		myEntityManager = dummyLoad();//myEntityManagers.get(0);
-		myEntityManagers = new ArrayList<IEntityManager>();
-		myEntityManagers.add(myEntityManager);
+		//DUMMYLOAD
+//		myEntityManager = dummyLoad();
+//		myEntityManagers = new ArrayList<IEntityManager>();
+//		myEntityManagers.add(myEntityManager);
+		
+		//REAL USE THIS
+		myEntityManagers = c.getIEntityManagers();
+		myEntityManager = myEntityManagers.get(0);
+		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
+				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
+				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager,c.getInfinite()));
+		
+		
+		el = new EntityLoader(myEntityManager);
 //		GPEM = new GPEntityManager(c.getData());
 //		myEngines = Arrays.asList(new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new InputEngine(myEntityManager), new LevelEngine(myEntityManager));
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
@@ -183,23 +199,22 @@ public class GameEngine implements GameEngineInterface {
 		}
 	}
 	
-	private void rewindState(Integer i){
+	private void rewindState(Double old, Double next){
 		sliderPause=true;
-		Integer size = previousEntityManagers.size();
-		EntityLoader el = new EntityLoader(myEntityManager);
-		Integer index=size-(11-i);
-		if (index<0){
-			index=0;
+		Integer previousIndex = ((Double) (previousEntityManagers.size()*old)).intValue();
+		Integer index = ((Double) (previousEntityManagers.size()*next)).intValue();
+		if (next==1){index--;};
+		if (previousIndex!=index){
+			el.loadNew(previousEntityManagers.get(index));
 		}
-		el.loadNew(previousEntityManagers.get(index));
 	}
 	private void saveNewEntityManager() {
 		numUpdates++;
-		if (numUpdates % SAVE_FREQUENCY*20 == 0) {
+		if (numUpdates % SAVE_FREQUENCY*10 == 0) {
 			previousEntityManagers.add((myEntityManager.copy()));
 			
 		}
-		while (previousEntityManagers.size()>10) {
+		while (previousEntityManagers.size()>25) {
 			previousEntityManagers.remove(0);
 		}
 //		if (numUpdates==200){

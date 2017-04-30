@@ -16,6 +16,7 @@ import components.entityComponents.SideCollisionComponent;
 import entity.Entity;
 
 public class AbstractEnemy extends Entity {
+//	MonsterRadioButton = Label, ImageProperties, Health, Strength, Monster, Step, Collidable
 
 	public AbstractEnemy(int id) {
 		super(id);
