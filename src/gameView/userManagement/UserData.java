@@ -27,7 +27,11 @@ public class UserData {
 		password = passwordString;
 		myGameScores = new HashMap<String, Double>();
 		//myLastName = lastName;
-		image = imageString;
+		if (imageString == null) {
+			image = "";
+		} else {
+			image = imageString;
+		}
 	}
 	
 	public String getName(){

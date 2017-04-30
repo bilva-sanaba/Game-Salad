@@ -1,23 +1,15 @@
 package controller;
 
-import java.awt.Component;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.sun.org.apache.regexp.internal.recompile;
-
 import achievements.Achievement;
 import achievements.AchievementFactory;
-import achievements.AchievementTimer;
-import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
-import javafx.animation.PathTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.scene.Group;

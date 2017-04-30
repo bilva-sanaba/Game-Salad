@@ -10,6 +10,11 @@
 	-fx-font-size: 20;
 	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
 }
+#games {
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-font-size: 15;
+}
 
 #imagebutton {
 	-fx-background-color: #f5f5f5;

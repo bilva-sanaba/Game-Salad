@@ -20,7 +20,7 @@ public class UserDatabase {
 	
 	public UserData addNewUser(UserData user) {
 		String username = user.getName();
-		if (myUsers.containsKey(username)) {
+		if (myUsers.containsKey(username) || user.getPassword() == null) {
 			return null;
 		} else {
 			myUsers.put(username, user);

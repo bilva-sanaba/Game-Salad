@@ -52,6 +52,7 @@ import components.keyExpressions.RightAction;
 import controller.Camera;
 import controller.WorldAnimator;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
@@ -118,7 +119,7 @@ public class GameEngine implements GameEngineInterface {
 	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
 	
 	public GameEngine(IRestrictedUserInputData data){
-		ReadOnlyIntegerProperty p = data.getRewind();
+		ReadOnlyDoubleProperty p = data.getRewind();
 		p.addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                 Number old_val, Number new_val) {
