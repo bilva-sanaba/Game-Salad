@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
  * @author Jonathan Rub
  * @author Justin Yang
  * @author Jack Bloomfeld
+ * 
  */
 public class GUIBuilder {
 	public static final String RESOURCE_PACKAGE = "resources/";
@@ -20,7 +21,7 @@ public class GUIBuilder {
 	private static final double SCREEN_HEIGHT = 700;
 	private static final double SCREEN_WIDTH = 1000;
 	public static final int INITIAL_GRID_ROWS = 50;
-	public static final int INITIAL_GRID_COLS = 50;
+	public static final int INITIAL_GRID_COLS = 70;
 
 	private Collection<GUIComponent> myComp = new ArrayList<GUIComponent>();
 	private LevelTabView levelTabs;

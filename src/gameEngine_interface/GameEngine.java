@@ -7,25 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
-import actions.BlockBottomRegularCollision;
-import actions.BlockTopRegularCollision;
-import actions.BounceOffBlockBottomOrTop;
-import actions.BounceOffBlockSide;
-import actions.DoubleJump;
-import actions.IAction;
-import actions.ImageChangeAction;
 import actions.PointsAction;
 import actions.Reload;
 import actions.RemoveAction;
 import actions.ShootAction;
 import actions.Teleport;
-import alerts.VoogaError;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
@@ -44,8 +32,6 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.ObjectCreationComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
-import components.entityComponents.StrengthComponent;
-import components.entityComponents.StepComponent;
 import components.entityComponents.TerminalVelocityComponent;
 import components.entityComponents.TimeComponent;
 import components.entityComponents.TypeComponent;
@@ -55,14 +41,6 @@ import components.keyExpressions.LeftAction;
 import components.keyExpressions.RightAction;
 import controller.Camera;
 import controller.WorldAnimator;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.ReadOnlyDoubleProperty;
-import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.input.KeyCode;
-import data_interfaces.Communicator;
 import data_interfaces.EngineCommunication;
 import data_interfaces.InfiniteEnum;
 import data_interfaces.XMLDefinedParser;
@@ -71,13 +49,18 @@ import engines.AbstractEngine;
 import engines.CollisionEngine;
 import engines.InfiniteEngine;
 import engines.InputEngine;
-import engines.LevelEngine;
 import engines.MovementEngine;
 import engines.TimeEngine;
 import entity.Entity;
 import entity.EntityManager;
 import entity.GPEntityManager;
 import entity.IEntity;
+import entity.IEntityManager;
+import entity.SplashData;
+import entity.presets.AbstractBlock;
+import entity.presets.AbstractBreakableBox;
+import entity.presets.AbstractGoal;
+import entity.presets.AbstractPowerup;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameView.userInput.IRestrictedUserInputData;
@@ -85,12 +68,10 @@ import gamedata.GameData;
 import gamedata.GameDataFactory;
 import gamedata.IGameData;
 import gamedata.IRestrictedGameData;
-import entity.IEntityManager;
-import entity.SplashEntity;
-import entity.presets.AbstractBlock;
-import entity.presets.AbstractBreakableBox;
-import entity.presets.AbstractGoal;
-import entity.presets.AbstractPowerup;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.input.KeyCode;
 /**
  * Basic GameEngine class Note: the engines must be created in someway, likely
  * via reflection
@@ -160,9 +141,13 @@ public class GameEngine implements GameEngineInterface {
 		//REAL USE THIS
 //		myEntityManagers = c.getIEntityManagers();
 //		myEntityManager = myEntityManagers.get(0);
+
+//		myEngines = Arrays.asList(new InputEngine(myEntityManager), new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), new TimeEngine(myEntityManager),new AIEngine(myEntityManager));
+
 //		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
 //				new MovementEngine(myEntityManager), new CollisionEngine(myEntityManager), 
 //				new TimeEngine(myEntityManager),new AIEngine(myEntityManager), new InfiniteEngine(myEntityManager, c.getInfinite()));
+
 		
 		
 		el = new EntityLoader(myEntityManager);
@@ -176,7 +161,7 @@ public class GameEngine implements GameEngineInterface {
 	public Collection<IEntity> save(){
 		return myEntityManager.copy().getEntities();
 	}
-	public SplashEntity getSplashEntity(){
+	public SplashData getSplashEntity(){
 		return GPEM.getSplash();
 	}
 	/**
@@ -298,19 +283,19 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new KeyInputComponent());
 		x.addComponent(new TypeComponent(EntityType.Player));
 
-		List<String> collection = new ArrayList<String>();
-		collection.add("mario_step1.gif");
-		collection.add("mario_step2.gif");
-		collection.add("mario_step3.gif");
-		ImageChangeAction ica = new ImageChangeAction(collection);
-		List<String> collection2 = new ArrayList<String>();
-		collection2.add("mario_leftstep1.gif");
-		collection2.add("mario_leftstep2.gif");
-		collection2.add("mario_leftstep3.gif");
-		ImageChangeAction ica2 = new ImageChangeAction(collection2);
-		List<String> collection3 = new ArrayList<String>();
-		collection3.add("mario_jump.gif");
-		ImageChangeAction ica3 = new ImageChangeAction(collection3);
+//		List<String> collection = new ArrayList<String>();
+//		collection.add("mario_step1.gif");
+//		collection.add("mario_step2.gif");
+//		collection.add("mario_step3.gif");
+//		ImageChangeAction ica = new ImageChangeAction(collection);
+//		List<String> collection2 = new ArrayList<String>();
+//		collection2.add("mario_leftstep1.gif");
+//		collection2.add("mario_leftstep2.gif");
+//		collection2.add("mario_leftstep3.gif");
+//		ImageChangeAction ica2 = new ImageChangeAction(collection2);
+//		List<String> collection3 = new ArrayList<String>();
+//		collection3.add("mario_jump.gif");
+//		ImageChangeAction ica3 = new ImageChangeAction(collection3);
 
 		x.addComponent(new GoalComponent());
 		x.addComponent(new TerminalVelocityComponent(5,5));
@@ -332,12 +317,12 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(time);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
 		//
 		//
@@ -372,15 +357,15 @@ public class GameEngine implements GameEngineInterface {
 		collection.add("mario_step1.gif");
 		collection.add("mario_step2.gif");
 		collection.add("mario_step3.gif");
-		ImageChangeAction ica = new ImageChangeAction(collection);
-		List<String> collection2 = new ArrayList<String>();
-		collection2.add("mario_leftstep1.gif");
-		collection2.add("mario_leftstep2.gif");
-		collection2.add("mario_leftstep3.gif");
-		ImageChangeAction ica2 = new ImageChangeAction(collection2);
-		List<String> collection3 = new ArrayList<String>();
-		collection3.add("mario_jump.gif");
-		ImageChangeAction ica3 = new ImageChangeAction(collection3);
+//		ImageChangeAction ica = new ImageChangeAction(collection);
+//		List<String> collection2 = new ArrayList<String>();
+//		collection2.add("mario_leftstep1.gif");
+//		collection2.add("mario_leftstep2.gif");
+//		collection2.add("mario_leftstep3.gif");
+//		ImageChangeAction ica2 = new ImageChangeAction(collection2);
+//		List<String> collection3 = new ArrayList<String>();
+//		collection3.add("mario_jump.gif");
+//		ImageChangeAction ica3 = new ImageChangeAction(collection3);
 
 		x.addComponent(new GoalComponent());
 
@@ -402,12 +387,12 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(time);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.R, "if (vc.getY()==0) { vc.setY(-3) ; ac.setY(0.05) }");
 		//
 		//
@@ -473,6 +458,7 @@ public class GameEngine implements GameEngineInterface {
 		y.addComponent(new LabelComponent("Blok"));
 		//BLOCK
 
+
 //		y.addComponent(new TypeComponent(EntityType.Block));
 //		y.addComponent(new TypeComponent(EntityType.Block));
 //>>>>>>> rewind
@@ -511,16 +497,6 @@ public class GameEngine implements GameEngineInterface {
 //			enemy.addComponent(new CheckCollisionComponent(true));
 //		}
 
-
-	/*	p.addComponent(new TypeComponent(EntityType.Block));
-
-
-		e.add(p);*/
-		//p.addComponent(new TypeComponent(EntityType.Block));
-		//e.add(p);
-//		Entity portal2 = createPortal();
-//		e.add(portal2);
-//		e.add(createPortal2());
 		Collection<IEntity> e1 = new ArrayList<IEntity>();
 		for (Entity exp : e) {
 			e1.add(exp);
