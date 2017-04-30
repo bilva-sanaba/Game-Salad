@@ -44,6 +44,7 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.MonsterType;
 import components.entityComponents.MonsterTypeComponent;
 import components.entityComponents.ObjectCreationComponent;
+import components.entityComponents.OrientationComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.StrengthComponent;
@@ -374,7 +375,8 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new HealthComponent(100));
 		x.addComponent(new DamagedComponent());
 		x.addComponent(new TerminalVelocityComponent(10,10));
-		x.addComponent(new ControllableComponent(true));
+		x.addComponent(new ControllableComponent());
+		x.addComponent(new OrientationComponent());
 
 		List<String> collection = new ArrayList<String>();
 		collection.add("mario_step1.gif");
