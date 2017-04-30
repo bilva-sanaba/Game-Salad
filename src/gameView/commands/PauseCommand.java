@@ -1,4 +1,4 @@
-package gameView.commands;
+	package gameView.commands;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import controller.VoogaAlert;
 import gameView.ICommandView;
 import gameView.UIView;
+import gameView.pauseScreen.PauseScreen;
 
 public class PauseCommand extends AbstractCommand {
 
@@ -19,8 +20,12 @@ public class PauseCommand extends AbstractCommand {
 	}
 
 	@Override
-	public void execute(Stage s) {
-		((ICommandView) getView()).pauseGame();
+	public boolean execute(Stage s) {
+		getView().pauseGame();
+		Stage newStage = new Stage();
+		PauseScreen pauseScreen = new PauseScreen(null, newStage, getView().getUserInput());
+		newStage.setScene(pauseScreen.getScene());
+		newStage.show();
 //		 ColorAdjust adj = new ColorAdjust(0, -0.9, -0.5, 0);
 //		 GaussianBlur blur = new GaussianBlur(55); // 55 is just to show edge effect more clearly.
 //		 adj.setInput(blur);
@@ -29,6 +34,7 @@ public class PauseCommand extends AbstractCommand {
 //		 newStage.showAndWait();
 //		 adj = null;
 //		 s.getScene().getRoot().getEffect(adj);
+		return true;
 	}
 
 	@Override

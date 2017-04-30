@@ -25,7 +25,7 @@ public class StrengthComponent extends AComponent implements IComponent {
 		return strength;
 	}
 
-	public void setHealth(double s) {
+	public void setStrength(double s) {
 		strength = s;
 	}
 

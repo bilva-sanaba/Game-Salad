@@ -18,5 +18,7 @@ public interface IGameData extends IRestrictedGameData{
 	public void setMainLocation(LocationComponent lc);
 
 	public void setMusic(String s);
+	
+	public void setAchievement(String ac);
 
 }

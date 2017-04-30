@@ -11,6 +11,8 @@ import java.util.Set;
 import com.sun.org.apache.regexp.internal.recompile;
 
 import achievements.Achievement;
+import achievements.AchievementFactory;
+import achievements.AchievementTimer;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import javafx.animation.FadeTransition;
@@ -36,14 +38,15 @@ import entity.Entity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
-import gameView.Coordinate;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.gameScreen.IGameScreenEntity;
 import gameView.gameScreen.SpecificGameSplashView;
 import gameView.observers.ImageConfig;
 import gameView.observers.ObserverManager;
-import gameView_interfaces.UIViewInterface;
+import gameView.tools.Coordinate;
 import gamedata.GameData;
+import gamedata.IRestrictedGameData;
 
 /**
  *
@@ -67,10 +70,14 @@ public class WorldAnimator{
     private Group root;
     private SequentialTransition st;
 
-    private GameData myData;
-
+    private IRestrictedGameData myData;
 
     private Camera myCamera;
+    
+    private int counter=0;
+    private boolean achievementShowing = false;
+    
+    private AchievementFactory myAchievementFactory;
     private Achievement myAchievement;
     private UIViewInterface myView;
     private	ObserverManager myObservers;
@@ -87,14 +94,15 @@ public class WorldAnimator{
     public Group getGroup(){
     	return root;
     }
-    public void start (GameData myData, IGameScreenEntity screen){
+
+    public void start (GameData myData, IGameScreenEntity screen) throws ClassNotFoundException{ //achievementFactory
     	this.myData=myData;
         root = new Group();
         
        
         IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
         myObservers = new ObserverManager(this, restrictedEntityManager);
-
+        
 
 
 //BELALS SHIT
@@ -106,16 +114,25 @@ public class WorldAnimator{
         //Change Length
         myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
         
-        myAchievement = new Achievement("YOOOO");
-        root.getChildren().add(myAchievement.getGroup());
-
-
+        myAchievementFactory = new AchievementFactory();
+        //myAchievement = myAchievementFactory.genAchievement("FirstKill");
+        //root.getChildren().add(myAchievement.getGroup());
+        
+        myObservers.getUpdatedSet();
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
         
         Entity mainCharacter = (Entity) myEngine.getMainCharacter();
 
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
-                e-> step(SECOND_DELAY));
+                e-> {
+					try {
+						step(SECOND_DELAY);
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						VoogaAlert vA = new VoogaAlert("VoogaIssue", e1.getMessage());
+						vA.showAlert();//FIX THIS
+					}
+				});
         this.animation = new Timeline();
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.getKeyFrames().add(frame);
@@ -128,20 +145,36 @@ public class WorldAnimator{
     public Scene getScene() {
         return myScene;
     }
-    private void step(double elapsedTime){
-    	//myView.step(keysPressed);
-    	myEngine.handleUpdates(keysPressed,myData);
+    private void step(double elapsedTime) throws ClassNotFoundException{
+    	counter++;
+    	myView.step(keysPressed);
+    	//myEngine.handleUpdates(keysPressed);
 
         fillMapAndDisplay(myObservers.getUpdatedSet());
-
-        myAchievement.updateAchievementLoc(-1*myCamera.getX());
+        
+//        updateAchievement();
+//        
+//        if(achievementShowing==true){
+//        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
+//        }
+        
         myCamera.updateCamera();
         
         myObservers.clearSet();
     }
-
     
-    private void handleKeyReleased(KeyCode keyCode) {
+    //TESTING PURPOSES
+    public void fillMap() {
+    	fillMapAndDisplay(myObservers.getUpdatedSet());
+    	myCamera.updateCamera();
+    }
+
+	private void updateAchievement() throws ClassNotFoundException {
+		addAchievement();
+		removeAchievement();
+		
+	}
+	private void handleKeyReleased(KeyCode keyCode) {
         keysReleased.add(keyCode);
         keysPressed.remove(keyCode);
     }
@@ -200,6 +233,7 @@ public class WorldAnimator{
 	            imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 	            
 	            root.getChildren().add(imageView);
+	            //makeAppear(imageView).play();
 	            //st.getChildren().add(makeAppear(imageView));
 	            //st.play();
 	        }
@@ -252,8 +286,26 @@ public class WorldAnimator{
     private FadeTransition createFade(double newOpacity, ImageView imageView){
         FadeTransition ft = new FadeTransition(Duration.millis(KEY_INPUT_SPEED), imageView);
         ft.setToValue(newOpacity);
+        ft.setCycleCount(4);
         return ft;
     }
+    
+    private void addAchievement() throws ClassNotFoundException{
+        if(myData.getAchievement()!=null && !achievementShowing && myData.getAchievement()!=""){ //observed generate the achievement (myData.getStr)
+        	myAchievement = myAchievementFactory.genAchievement(myData.getAchievement());
+        	root.getChildren().add(myAchievement.getGroup());
+        	achievementShowing=true;
+        	counter=1;
+        }
+    }
+     
+    private void removeAchievement() {
+    	  if(counter%90==0 && achievementShowing){
+          	root.getChildren().remove(myAchievement.getGroup());
+          	achievementShowing=false;
+          	System.out.println("YACK YACK YACK YACK YACK");
+          }
+	}
     
     public void start(){
         animation.play();

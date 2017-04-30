@@ -7,6 +7,7 @@ import view.commands.RightClickEvent;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Queue;
 import java.util.Stack;
@@ -23,44 +24,74 @@ import data_interfaces.Communicator;
  * @author Jonathan
  * @author Justin
  * @author Jack
+ * @author Josh
  */
 public class ViewData extends Observable {
 
-	private static final int STARTINGROWS = 50;
-	private static final int STARTINGCOLS = 50;
-	private static final String PRESETFILE = "PresetEntities";
-
+	private int entityIDcounter;
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
-	private HashMap<Integer, Entity> definedEntityMap;
-	private HashMap<Integer, Entity> placedEntityMap;
-	private LevelEntity myLevelEntity;
+	private Map<Integer, Entity> definedEntityMap;
+	private Map<Integer, Map<Integer, Entity>> placedEntityMaps;
+	private Map<Integer, LevelEntity> levelEntityMap;
 	private SplashEntity mySplashEntity;
 	private Entity userSelectedEntity;
 	private Entity userGridSelectedEntity;
 	private Entity copiedEntity;
 	private String gameName;
+	private int currentLevel;
 	private Boolean saved = true;
+//TODO: implement the saved boolean to track whether the current state is saved
+	private int initialRows;
+	private int initialCols;
 
-	//TODO: implement the saved boolean to track whether the current state is saved
-
-	public ViewData() {
+	public ViewData(int initialRowsIn, int initialColsIn) {
+		entityIDcounter = 0;
+		currentLevel = 1;
+		initialRows = initialRowsIn;
+		initialCols = initialColsIn;
 		undoStack = new Stack<RightClickEvent>();
 		redoStack = new Stack<RightClickEvent>();
 		definedEntityMap = new HashMap<Integer, Entity>();
-		placedEntityMap = new HashMap<Integer, Entity>();
-		myLevelEntity = new LevelEntity(-1, STARTINGROWS, STARTINGCOLS, "images/background1.png");
+		placedEntityMaps = new HashMap<Integer, Map<Integer, Entity>>();
+		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
+		levelEntityMap = new HashMap<Integer, LevelEntity>();
+		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
 		mySplashEntity = new SplashEntity(-2, "The game", "Don't lose", "images/background1.png");
 		userSelectedEntity = null;
 		gameName = "";
 	}
-
-	public void addEvent(RightClickEvent e){
+	
+	public int getEntityID(){
+		entityIDcounter++;
+		return entityIDcounter;
+		
+	}
+	
+	public int getCurrentLevel(){
+		return currentLevel;
+	}
+	
+	public void setCurrentLevel(int i){
+		currentLevel = i;
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void addLevel(int level){
+		currentLevel = level;
+		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
+		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void addEvent(RightClickEvent e) {
 		undoStack.add(e);
 	}
 
 	public void undoLastEvent(){
-		if(undoStack.peek() != null){
+		if(undoStack.peek() != null) {
 			RightClickEvent e = undoStack.pop();
 			e.undo();
 			redoStack.add(e);
@@ -68,7 +99,7 @@ public class ViewData extends Observable {
 	}
 
 	public void redo(){
-		if(redoStack.peek() != null){
+		if(redoStack.peek() != null) {
 			RightClickEvent e = redoStack.pop();
 			e.execute();
 			undoStack.add(e);
@@ -94,55 +125,68 @@ public class ViewData extends Observable {
 	public void defineEntity(Entity entity) {
 		definedEntityMap.put(entity.getID(), entity);
 		setChanged();
-		notifyObservers(entity);
+		notifyObservers();
+	}
+	
+	public void defineEntityNoUpdate(Entity entity) {
+		definedEntityMap.put(entity.getID(), entity);
 	}
 
-	public void placeEntity(Entity entity) {
-		placedEntityMap.put(entity.getID(), entity);
+	// fix dependencies
+	public void placeEntity(int levelNumber, Entity entity) {
+		if (!placedEntityMaps.containsKey(levelNumber)) {
+			placedEntityMaps.put(levelNumber, new HashMap<Integer, Entity>());
+		}
+		placedEntityMaps.get(levelNumber).put(entity.getID(), entity);
 		setChanged();
-		notifyObservers(entity);
+		notifyObservers();
 	}
 
-	//TODO: implement CTRL + Z and stuff
 	public void undefineEntity(Entity entity) {
 		definedEntityMap.remove(entity.getID());
 	}
 
-	public void unplaceEntity(Entity e) {
-		placedEntityMap.remove(e);
-		userGridSelectedEntity = e;
-		//placedEntityMap.remove(userGridSelectedEntity.getID());
+	// fix dependencies
+	public void unplaceEntity(int levelNumber, Entity entity) {
+		placedEntityMaps.get(levelNumber).remove(entity);
+		userGridSelectedEntity = entity;
 		setChanged();
-		notifyObservers("unplace");
+		notifyObservers();
 	}
 
 	public void copyEntity(){
 		copiedEntity = userGridSelectedEntity;
 	}
-
-	public Entity pasteEntity(double x, double y){
+	
+	// fix dependencies
+	public Entity pasteEntity(int levelNumber, double x, double y) {
 		Entity tempEntity = copiedEntity.clone();
 		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
 		tempLocation.setXY(x, y);
-		placeEntity(tempEntity);
+		placeEntity(levelNumber, tempEntity);
 		userGridSelectedEntity = tempEntity;
 		return tempEntity;
 	}
-
-	public HashMap<Integer, Entity> getDefinedEntityMap() {
+	
+	public Map<Integer, Entity> getDefinedEntityMap() {
 		return definedEntityMap;
 	}
 
-	public HashMap<Integer, Entity> getPlacedEntityMap() {
-		return placedEntityMap;
+	// fix dependencies
+	public Map<Integer, Map<Integer, Entity>> getPlacedEntityMap() {
+		return placedEntityMaps;
 	}
 
-	public LevelEntity getLevelEntity () {
-		return myLevelEntity;
+	public Map<Integer, LevelEntity> getLevelEntityMap() {
+		return levelEntityMap;
 	}
-
-	public void setLevelEntity(LevelEntity l) {
-		myLevelEntity = l;
+	
+	public LevelEntity getLevelEntity(){
+		return levelEntityMap.get(currentLevel);
+	}
+	
+	public void setLevelEntity(int level, LevelEntity e){
+		levelEntityMap.put(level, e);
 	}
 
 	public SplashEntity getSplashEntity() {
@@ -161,26 +205,23 @@ public class ViewData extends Observable {
 		return gameName;
 	}
 
-	public void refresh(){
-		definedEntityMap.clear();
-		removePlacedEntities();
+	public void refresh() {
 		setChanged();
-		notifyObservers("refresh");
+		notifyObservers();
 	}
-
-	public void removePlacedEntities(){
-		placedEntityMap.clear();
+	
+	// fix dependencies
+	public void removePlacedEntities(int levelNumber) {
+		placedEntityMaps.get(levelNumber).clear();
+		setChanged();
+		notifyObservers();
+	}
+	
+	//TODO: Reset level tabs method
+	public void resetLevelTabs(){
 		setChanged();
 		notifyObservers("reset");
 	}
 
-	public void addPresetEntities(){
-		Communicator c = new Communicator(PRESETFILE);
-		Collection <Entity> col = c.getData();
-		for (Entity e: col) {
-			if (!e.getClass().toString().equals("class entity.LevelEntity") && !e.getClass().toString().equals("class entity.SplashEntity")) {
-				defineEntity(e);
-			}
-		}
-	}
+	
 }

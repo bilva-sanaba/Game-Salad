@@ -32,8 +32,16 @@ public enum ComponentType {
 	TerminalVelocity(),
 	Damaged(),
 	FrontCamera(),
-	BackCamera(), 
-	Checkpoint(),
-	Controllable(),
-	TerminalVelComponent();
+	BackCamera(),
+	TerminalVelComponent(),
+	FrictionComponent(),
+	InfiniteOrientation(),
+	InfiniteRepeat(),
+	InfiniteMonsterRandomness(),
+	InfinitePowerUpRandomness(),
+	InfiniteSpacing(),
+	InfiniteBlockPattern(),
+	InfiniteBlockAction(),
+	Null()
+	;
 }

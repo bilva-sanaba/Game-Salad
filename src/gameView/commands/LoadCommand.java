@@ -12,11 +12,13 @@ public class LoadCommand extends AbstractCommand {
 	}
 
 	@Override
-	public void execute(Stage s) {
+	public boolean execute(Stage s) {
 		GameChooser gameChoice = new GameChooser(s);
 		Stage newStage = gameChoice.selectFile();
 		newStage.showAndWait();
 		getView().loadGame(gameChoice.getFile());
+		System.out.println(getClass() + gameChoice.getFile());
+		return true;
 	}
 
 	@Override

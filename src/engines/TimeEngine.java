@@ -19,7 +19,7 @@ public class TimeEngine extends AbstractEngine {
 	@Override
 	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
 		IRestrictedGameData rgd = gameData;
-		for (IEntity e : getEManager().getEntities()){
+		for (IEntity e : getEManager().getEntities().toArray(new IEntity[getEManager().getEntities().size()])){
 			TimeComponent tc = (TimeComponent) e.getComponent(ComponentType.Time);
 			if (tc!=null){
 				Map<IAction,Integer> lastTime = tc.getLastTime(); 
