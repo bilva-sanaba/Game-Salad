@@ -3,10 +3,12 @@ package gameEngine_interface;
 
 import entity.Entity;
 import entity.IEntity;
+import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
 import java.util.Collection;
+import java.util.List;
 
 import data_interfaces.Communicator;
 import data_interfaces.EngineCommunication;
@@ -28,7 +30,7 @@ public interface GameEngineInterface {
 
 
 	
-	public Collection<IEntity> save();
+	public List<IEntityManager> save();
 	
 	public IRestrictedGameData loadData(EngineCommunication c);
 
