@@ -6,6 +6,7 @@ import java.util.Collection;
 import entity.SplashEntity;
 import gameView.AbstractViewer;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.commands.AbstractCommand;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
@@ -33,8 +34,8 @@ public class SpecificGameSplashView extends AbstractViewer {
 	private Collection<AbstractCommand> myCommands;
 	private BorderPane myBP;
 	
-	public SpecificGameSplashView(UIView view, Stage s, IUserInputData input, SplashEntity se){
-		super(view, s, input);
+	public SpecificGameSplashView(UIView myGameView, Stage s, IUserInputData input, SplashEntity se){
+		super(myGameView, s, input);
 		mySplashEntity = se;
 		myCommands = getCommands(myName);
 		myBP = new BorderPane();

@@ -7,6 +7,7 @@ import java.util.Set;
 import data_interfaces.*;
 import gameView.UIView;
 import gameView.UIViewInterface;
+import gameView.gameScreen.SpecificGameSplashView;
 import gameView.userInput.IRestrictedUserInputData;
 import gameView.userInput.IUserInputData;
 import gameView.userInput.UserInputData;
@@ -20,6 +21,7 @@ import data_interfaces.XMLException;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
+import entity.SplashEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
@@ -31,20 +33,21 @@ import gameEngine_interface.GameEngine;
 
 public class Controller implements ControllerInterface {
 
-	private UIViewInterface myGameView;
+	private UIView myGameView;
 	private GameEngine myGameEngine;
 	private WorldAnimator myWorldAnimator;
 	private Stage myStage;
 	private String filePath;
 	private GUIBuilder myGUIBuilder;
 	private IRestrictedGameData gd;
+	private UserInputData uiData;
 
 	public Controller(Stage s) {
 		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
-		UserInputData userInput = new UserInputData();
-		myGameEngine = new GameEngine((IRestrictedUserInputData) userInput);
-		myGameView = new UIView(s, this, (IUserInputData) userInput);
+		uiData = new UserInputData();
+		myGameEngine = new GameEngine((IRestrictedUserInputData) uiData);
+		myGameView = new UIView(s, this, (IUserInputData) uiData);
 	}
 
 	public void save(String fileName) {
@@ -74,9 +77,15 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-//	public void runGameAnimation() {
-//		myWorldAnimator.start(myGameEngine);
-//	}
+	public void playSpecificSplash() {
+		//Communicator c = new Communicator(filePath);
+		//SplashEntity se = c.getSplashEntity();
+		SpecificGameSplashView sView = new SpecificGameSplashView(myGameView, myStage, uiData, new SplashEntity(0, "Balls", "Instructional", "images.background1.png"));
+		Stage specificSplashStage = new Stage();
+		specificSplashStage.setScene(sView.getScene());
+		specificSplashStage.showAndWait();
+		//sView.getScene();
+	}
 	
 	public void makeGame() {
 		Stage authorStage = new Stage();
