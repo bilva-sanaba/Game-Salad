@@ -172,7 +172,7 @@ public class TabView extends GUIComponent {
 	
 	private void loadPreset(String fileName) {
 		XMLDefinedParser xdp = new XMLDefinedParser();
-		List <Entity> l = xdp.getData(fileName);
+		List<Entity> l = xdp.getData(fileName);
 		
 		for (Entity e: l) {
 			System.out.println("This is defined");

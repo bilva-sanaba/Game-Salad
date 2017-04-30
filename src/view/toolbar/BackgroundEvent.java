@@ -18,7 +18,6 @@ public class BackgroundEvent implements ToolBarButtonEvent {
 		ImageChooser ic = new ImageChooser();
 		String filePath = ic.chooseFile();
 		
-		// TODO: fix this shit for multiple levels
 		myData.getLevelEntity().setBackgroundFilePath(filePath);
 		myData.refresh();
 	}
