@@ -92,3 +92,11 @@
     -fx-background-color: #76d7c4;
     -fx-text-fill: white;
 }
+
+#actions .list-cell{
+	-fx-alignment: center;
+	-fx-position: center;
+	-fx-height: 200px;
+	-fx-width: 200px;
+}
+
