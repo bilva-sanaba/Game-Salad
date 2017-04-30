@@ -53,9 +53,10 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		Map <Integer, LevelEntity> m = results.get(1);
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
 		
-		for (int i = 1; i < m.size(); i++) {
+		for (int i = 1; i <= m.size(); i++) {
 			ret.add(m.get(i));
 		}
+		System.out.println("HOW MANY LEVEL ENTITIES" + ret.size());
 		return ret;
 	}
 
