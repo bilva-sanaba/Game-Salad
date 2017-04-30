@@ -12,6 +12,7 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
 import data_interfaces.Communicator;
+import data_interfaces.InfiniteEnum;
 import data_interfaces.XMLDefinedParser;
 import data_interfaces.XMLWriter;
 import entity.Entity;
@@ -22,11 +23,15 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -47,6 +52,7 @@ public class TabView extends GUIComponent {
 	private UtilityFactory util;
 	private ViewData myData;
 	private EntityBuilderWindow entityBuilder;
+	private InfiniteEnum infinite;
 
 	public TabView(UtilityFactory utilIn, ViewData data) {
 		myData = data;
@@ -121,6 +127,16 @@ public class TabView extends GUIComponent {
 		myBox.getChildren().add(b);
 		myBox.getChildren().add(savePresetButton);
 		myBox.getChildren().add(loadPresetButton);
+		HBox box = new HBox();
+		final ToggleGroup group = util.buildRadioButtonGroup("InfiniteType", box);
+		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+				String[] inf = (String[]) new_toggle.getUserData();
+				infinite = InfiniteEnum.valueOf(inf[0]);
+				myData.getLevelEntityMap().get(1).setInfiniteEnum(infinite);
+			}
+		});	
+		myBox.getChildren().add(box);
 		return myBox;
 	}
 	

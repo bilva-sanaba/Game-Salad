@@ -34,6 +34,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.MoveTo;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import entity.Entity;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
@@ -119,6 +120,8 @@ public class WorldAnimator{
         
         myObservers.getUpdatedSet();
         fillMapAndDisplay(myObservers.getEntityMap().keySet());
+        
+        Entity mainCharacter = (Entity) myEngine.getMainCharacter();
 
         KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                 e-> {
@@ -156,6 +159,7 @@ public class WorldAnimator{
 //        }
         
         myCamera.updateCamera();
+        
         myObservers.clearSet();
     }
     
