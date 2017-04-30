@@ -71,7 +71,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	@Override
 	public InfiniteEnum getInfinite() {
 		Map<Integer, LevelEntity> m = results.get(1);
-		
+		System.out.println(m.get(1).getInfiniteEnum());
 		return m.get(1).getInfiniteEnum();
 	}
 }

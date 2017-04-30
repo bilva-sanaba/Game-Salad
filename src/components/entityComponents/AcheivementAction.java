@@ -2,6 +2,7 @@ package components.entityComponents;
 
 import actions.AbstractAction;
 import actions.IAction;
+import components.keyExpressions.RightAction;
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IGameData;
@@ -14,7 +15,7 @@ public class AcheivementAction extends AbstractAction implements IAction{
 			IRestrictedGameData currentGameData) {
 		IGameData gd = getGameDataFactory().blankEntityData(currentGameData);
 		gd.setAchievement("FirstKill");
-		return gd;
+		return new RightAction().executeAction(other, self, myEM, currentGameData);
 	}
 
 }
