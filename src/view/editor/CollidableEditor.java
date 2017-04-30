@@ -31,5 +31,4 @@ public class CollidableEditor extends ComponentEditor{
 	public IComponent getComponent() {
 		return getCompF().getComponent(ComponentName, myColide);
 	}
-
 }

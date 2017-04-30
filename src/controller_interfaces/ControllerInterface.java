@@ -8,6 +8,7 @@ import data_interfaces.XMLException;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 import gameView.UIImageModel;
+import gameView.gameScreen.SpecificGameSplashView;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 
@@ -75,5 +76,7 @@ public interface ControllerInterface {
 	
 
 	void step(Set<KeyCode> keysPressed);
+
+	public SpecificGameSplashView loadSpecificSplash(String filePath);
 
 }
