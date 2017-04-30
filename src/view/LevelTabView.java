@@ -11,8 +11,10 @@ public class LevelTabView extends GUIComponent{
 	private HashMap<Integer, LevelTab> tabsList;
 	private TabPane myTabs;
 	private int currentLevel;
+	private ViewData myData;
 	
-	public LevelTabView(GridView myGrid, ViewData myData) {
+	public LevelTabView(GridView myGrid, ViewData myDataIn) {
+		myData = myDataIn;
 		currentLevel = 1;
 		tabsList = new HashMap<Integer, LevelTab>();
 		myTabs = new TabPane();
@@ -25,8 +27,15 @@ public class LevelTabView extends GUIComponent{
 	}
 	
 	public void clearTabs(){
-		myTabs.getTabs().clear();
+		//myTabs.getTabs().clear();
+		myTabs = new TabPane();
+		myTabs.getSelectionModel().selectedItemProperty().addListener((obs,oldTab,newTab)->{
+            String temp = newTab.getText();
+            myData.setCurrentLevel(Integer.parseInt(temp.substring(temp.length()-1)));
+            System.out.println("switched tabs");
+        });
 		tabsList.clear();
+		currentLevel = 1;
 	}
 	
 	public HashMap<Integer,LevelTab> getTabsList(){
