@@ -17,6 +17,7 @@ public class LoadCommand extends AbstractCommand {
 		Stage newStage = gameChoice.selectFile();
 		newStage.showAndWait();
 		getView().loadGame(gameChoice.getFile());
+		System.out.println(getClass() + gameChoice.getFile());
 		return true;
 	}
 

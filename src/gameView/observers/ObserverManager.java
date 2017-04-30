@@ -64,7 +64,7 @@ public class ObserverManager {
          //UNCOMMENT FOR TEST RUNNER
          myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()-475);
          myEntities.get(e.getID()).getImageView().setTranslateY(e.getRestrictedLocation().getHeight()-175);
-        
+
          //UNCOMMENT FOR NORMAL
          
 //         myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
@@ -102,9 +102,11 @@ public class ObserverManager {
 		ImageConfig iConfig = new ImageConfig(new ImageView(makeImage(arg)), test[test.length-1]);
         myEntities.put(arg.getID(), iConfig);
         updateImageView(arg);
+
         
         //FOR REVERSE
 		myWorld.fillMap();
+
 	}
 	
 	public void updateEntity(IRestrictedEntity observable, IRestrictedEntity arg) {

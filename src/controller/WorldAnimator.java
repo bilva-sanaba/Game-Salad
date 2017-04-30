@@ -162,6 +162,7 @@ public class WorldAnimator{
     //TESTING PURPOSES
     public void fillMap() {
     	fillMapAndDisplay(myObservers.getUpdatedSet());
+    	myCamera.updateCamera();
     }
 
 	private void updateAchievement() throws ClassNotFoundException {
