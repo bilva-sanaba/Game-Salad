@@ -9,6 +9,7 @@ import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
+import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
@@ -20,6 +21,7 @@ public class AbstractEnemy extends Entity {
 		addCollisionComponents();
 	}
 	private void addCollisionComponents(){
+		this.addComponent(new LabelComponent("Defult Enemy"));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
 
