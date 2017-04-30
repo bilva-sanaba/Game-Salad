@@ -1,5 +1,7 @@
 package actions;
 
+import java.util.List;
+
 import class_annotations.BottomAction;
 import class_annotations.LeftAction;
 import class_annotations.RightAction;
@@ -9,6 +11,7 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import exceptions.NotEnoughInputsException;
 import gamedata.IRestrictedGameData;
 
 
@@ -22,6 +25,18 @@ public class DoubleSize  extends AbstractAction implements IAction {
 	public DoubleSize(boolean correction){
 		c = correction;
 	}
+	
+	public DoubleSize(String correction) {
+		c = correction.toLowerCase().equals("true");
+	}
+	
+	public DoubleSize(List<String> inputs) throws NotEnoughInputsException {
+		inputs = super.validateList(inputs, 1);
+		c = inputs.get(0).toLowerCase().equals("true");
+		
+	}
+	
+	
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
 //		SpriteComponent x = (SpriteComponent) other.getComponent(ComponentType.Sprite);
