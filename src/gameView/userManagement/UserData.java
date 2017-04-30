@@ -1,15 +1,13 @@
 package gameView.userManagement;
 
 import gameView.tools.ImageViewContainer;
-
-import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class UserData {
 
@@ -18,15 +16,15 @@ public class UserData {
 	
 	private String username;
 	private String password;
-	//private String myLastName;
 	private String image;
 	private HashMap<String, Double> myGameScores;
+	private Collection<String> myAchievements;
 	
 	public UserData(String name, String passwordString, String imageString) {
 		username = name;
 		password = passwordString;
 		myGameScores = new HashMap<String, Double>();
-		//myLastName = lastName;
+		myAchievements = new ArrayList<String>();
 		if (imageString == null) {
 			image = "";
 		} else {
@@ -38,18 +36,22 @@ public class UserData {
 		return username;
 	}
 	
-//	public String getLastName() {
-//		return myLastName;
-//	}
-	
 	public void addPoints(String game, Double points) {
 		if (myGameScores.get(game) == null || myGameScores.get(game) < points) {
 			myGameScores.put(game, points);
 		}
 	}
 	
+	public void addAchievement(String achieve) {
+		myAchievements.add(achieve);
+	}
+	
 	public Iterator<String> getGames() {
 		return myGameScores.keySet().iterator();
+	}
+	
+	public Iterator<String> getAchievements() {
+		return myAchievements.iterator();
 	}
 	
 	public Double getPointValue(String key) {

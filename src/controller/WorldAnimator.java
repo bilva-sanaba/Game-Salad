@@ -86,7 +86,7 @@ public class WorldAnimator{
     	return root;
     }
 
-    public void start (GameData myData, IGameScreenEntity screen) throws ClassNotFoundException{ //achievementFactory
+    public void start (IRestrictedGameData myData, IGameScreenEntity screen) throws ClassNotFoundException{ //achievementFactory
     	this.myData=myData;
         root = new Group();
         

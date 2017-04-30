@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.util.Set;
 
 import data_interfaces.XMLException;
+import gameView.gameDataManagement.GameDataManager;
 import gameView.gameScreen.GameScreen;
 import gameView.gameScreen.SpecificGameSplashView;
 
@@ -37,7 +38,7 @@ public class UIView implements UIViewInterface {
 	private ControllerInterface myController;
 	private SplashView mySplash;
 	private GameScreen myGameScene;
-	private IRestrictedGameData myData; 
+	private GameDataManager myData; 
 	private WorldAnimator myAnimation;
 	private IUserManager myUserManager;
 	private IUserInputData myUserInputData; 
@@ -75,7 +76,7 @@ public class UIView implements UIViewInterface {
 			savePoints();
 		}
 		myCurrentGame = file;
-		myData = myController.loadNewGame(file);
+		myData = new GameDataManager(myController.loadNewGame(file));
 		
 		//COMMENT OUT TO TEST WITH RUNNER
 		myGameScene.addData(myData);
@@ -114,10 +115,10 @@ public class UIView implements UIViewInterface {
 		return myStage;
 	}
 	
-	public void addData(GameData data) {
-		myData = data;
-		myGameScene.addData(data);
-	}
+//	public void addData(GameData data) {
+//		myData = data;
+//		myGameScene.addData(data);
+//	}
 	
 	public void step(Set<KeyCode> keysPressed) {
 		myController.step(keysPressed);

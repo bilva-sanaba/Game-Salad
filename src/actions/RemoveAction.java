@@ -12,7 +12,7 @@ public class RemoveAction extends AbstractAction  implements IAction {
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		// TODO Auto-generated method 
-		return new GameData(currentGameData.getPoints().get(), currentGameData.getLives().get() , currentGameData.getRestrictedEntityManager(), currentGameData.getLevel().get(), currentGameData.getMainLocation(), "FirstKill", currentGameData.getMusic());
+		return new GameData(currentGameData.getPoints().get(), currentGameData.getLives().get() , currentGameData.getRestrictedEntityManager(), currentGameData.getLevel().get(), currentGameData.getMainLocation(), "FirstKill", currentGameData.getMusic().getValue());
 	}
 
 }

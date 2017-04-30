@@ -14,7 +14,6 @@ public class UserDatabase {
 	public UserDatabase() {
 		myHandler = new UserDataHandler();
 		myUsers = myHandler.loadUsers(DATA_FILE);
-		System.out.println(myUsers);
 	}
 	
 	

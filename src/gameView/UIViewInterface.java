@@ -62,7 +62,7 @@ public interface UIViewInterface {
 	 * Add an entity to the manager
 	 * @param entity - entity to add
 	 */
-	public void addData(GameData data);
+//	public void addData(GameData data);
 	
 	public void step(Set<KeyCode> keysPressed);
 

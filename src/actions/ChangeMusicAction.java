@@ -14,6 +14,7 @@ public class ChangeMusicAction extends AbstractAction implements IAction {
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		GameData gd = getGameDataFactory().blankEntityData(currentGameData);
+
 		gd.setMusic(newSong);
 		// TODO Auto-generated method stub
 		return gd;
