@@ -31,7 +31,6 @@ public class ViewData extends Observable {
 	private int entityIDcounter;
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
-	//MAKE THESE NOT HASHMAPS JESUS CHRIST
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
 	private HashMap<Integer, LevelEntity> levelEntityMap;
