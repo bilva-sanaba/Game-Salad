@@ -135,7 +135,7 @@ public class GameEngine implements GameEngineInterface {
 		
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
 
-		myGameData = new GameData(0,0,(IRestrictedEntityManager) myEntityManager, 0, lc, new ArrayList<String>(),"");
+		myGameData = new GameData(0,0,(IRestrictedEntityManager) myEntityManager, 1, lc, new ArrayList<String>(),"");
 		return (IRestrictedGameData) myGameData;
 	}
 	
@@ -163,7 +163,8 @@ public class GameEngine implements GameEngineInterface {
 	}
 	private void updateLevel(IRestrictedGameData restrictedGameData){
 		if (myGameData.getLevel().intValue()!=restrictedGameData.getLevel().intValue()){
-			myEntityLoader.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()));
+			if (restrictedGameData.getLevel().intValue()>=(myEntityManagers.size()-1))
+			myEntityLoader.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()-1));
 			previousEntityManagers.clear();
 		}
 	}
