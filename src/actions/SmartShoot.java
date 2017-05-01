@@ -74,8 +74,8 @@ public class SmartShoot extends AbstractAction implements IAction  {
 	private void directShot(LocationComponent shooter, LocationComponent target, VelocityComponent shot){
 		double velY = shooter.getY()-target.getY();
 		double velX = shooter.getX()-target.getX();
-		shot.setY(-velY/velX*4);
-		shot.setX(-velX/velX*4);
+		shot.setY(-velY/100);
+		shot.setX(-velX/100);
 	}
 
 }
