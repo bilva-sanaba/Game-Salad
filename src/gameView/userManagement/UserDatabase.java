@@ -1,6 +1,6 @@
 package gameView.userManagement;
 
-import gameView.tools.FrontEndException;
+
 import java.io.File;
 import java.util.HashMap;
 

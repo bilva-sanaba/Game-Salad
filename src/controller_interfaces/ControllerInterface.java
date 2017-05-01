@@ -1,14 +1,10 @@
 package controller_interfaces;
 
-import java.util.Observable;
 import java.util.Set;
 
 import javafx.scene.input.KeyCode;
 import data_interfaces.XMLException;
-import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
-import gameView.UIImageModel;
-import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 
 /**

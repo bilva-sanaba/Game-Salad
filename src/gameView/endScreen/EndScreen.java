@@ -50,16 +50,6 @@ public class EndScreen extends AbstractViewer {
 		return box;
 	}
 	
-	private VBox buildCommands() {
-		VBox box = new VBox(10);
-		box.setAlignment(Pos.CENTER);
-		getCommands(myName).stream()  
-		.forEach(c -> {
-			box.getChildren().add(makeButton(c));
-		});
-		return box;
-	}
-	
 	@Override
 	protected void setBackground(String s) {
 		myBP.getCenter().setStyle(String.format(

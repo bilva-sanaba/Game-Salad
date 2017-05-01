@@ -2,21 +2,15 @@ package gameView.splashScreen;
 
 import java.util.Collection;
 
-import entity.SplashEntity;
-import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import gameView.AbstractViewer;
-import gameView.ICommandView;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
 import gameView.tools.ResourceRetriever;
@@ -26,7 +20,6 @@ public class SplashView extends AbstractViewer {
 
 	private static final String myName = SplashView.class.getSimpleName();
 	private static final String SPLASH_LABEL = "RainDrop Salad";
-	private final String NEWLINE = "\n";
 	
 	protected Scene myScene;
 	private BorderPane myPane;
@@ -67,10 +60,6 @@ public class SplashView extends AbstractViewer {
 		});
 		setUserCommand();
 		myPane.setBottom(myCommandContainer);
-	}
-	
-	private BorderPane getRoot(){
-		return myPane;
 	}
 
 	@Override

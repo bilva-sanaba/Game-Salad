@@ -1,7 +1,6 @@
 package gameView.commands;
 
 import javafx.stage.Stage;
-import gameView.ICommandView;
 
 public interface ICommand {
 

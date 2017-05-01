@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import gameView.tools.DisplayManager;
 import gameView.userInput.IUserInputData;
 import gameView.userManagement.IUserManager;
-import gameView.userManagement.UserData;
 
 public interface ICommandView {
 
@@ -21,6 +20,5 @@ public interface ICommandView {
 	public IUserManager getUserManager();
 	public IUserInputData getUserInput();
 	public void profileScreen();
-	//public UIView getView();
 	
 }

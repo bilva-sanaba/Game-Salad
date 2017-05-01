@@ -94,7 +94,7 @@ public class UIView implements UIViewInterface {
 	
 	public void saveGame() {
 		String save = myUserManager.getCurrentUser().getName() + myCurrentGame;
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		save += new Timestamp(System.currentTimeMillis()).toString();
 		myUserManager.getCurrentUser().addGame(save);
 		updateUserStats();
 		myController.save(save);

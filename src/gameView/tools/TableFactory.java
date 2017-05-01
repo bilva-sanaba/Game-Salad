@@ -1,9 +1,6 @@
 package gameView.tools;
 
 import java.util.Collection;
-import java.util.Iterator;
-
-import gamedata.GameData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
