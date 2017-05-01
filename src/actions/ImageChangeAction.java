@@ -1,6 +1,8 @@
 package actions;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.SpriteComponent;
@@ -14,6 +16,12 @@ public class ImageChangeAction  extends AbstractAction  implements IAction{
 	private List<String> possibleImages;
 	private int counter;
 	
+	
+	public ImageChangeAction(Map<Integer, String> inputs) {
+		for (Integer key : inputs.keySet()) {
+			possibleImages.add(inputs.get(key));
+		}
+	}
 	
 	public ImageChangeAction(List<String> inputs) throws InputException{
 		possibleImages = super.validateList(inputs, inputs.size());

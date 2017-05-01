@@ -90,6 +90,7 @@
                       <javafx.scene.input.KeyCode>W</javafx.scene.input.KeyCode>
                       <list>
                         <components.keyExpressions.JumpAction/>
+			
                       </list>
                     </entry>
                     <entry>

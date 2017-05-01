@@ -8,6 +8,11 @@ public class ControllableComponent implements IComponent{
 	public ControllableComponent(boolean c){
 		controllable = c;
 	}
+	
+	public ControllableComponent(){
+		super();
+	}
+	
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Controllable;

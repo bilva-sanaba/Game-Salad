@@ -6,6 +6,7 @@ import java.util.Set;
 
 import data_interfaces.XMLException;
 import entity.SplashData;
+import gameView.gameDataManagement.GameDataManager;
 import gameView.gameScreen.GameScreen;
 import gameView.gameScreen.SpecificGameSplashView;
 
@@ -40,7 +41,7 @@ public class UIView implements UIViewInterface {
 	private SpecificGameSplashView mySpecificSplash;
 	private SplashData mySplashData;
 	private GameScreen myGameScene;
-	private IRestrictedGameData myData; 
+	private GameDataManager myData; 
 	private WorldAnimator myAnimation;
 	private IUserManager myUserManager;
 	private IUserInputData myUserInputData; 
@@ -82,7 +83,8 @@ public class UIView implements UIViewInterface {
 			savePoints();
 		}
 		myCurrentGame = file;
-		myData = myController.loadNewGame(myCurrentGame); //FOR SPLASH
+		
+		myData = new GameDataManager(myController.loadNewGame(file)); //FOR SPLASH
 		//mySpecificSplash = myController.loadSpecificSplash(myCurrentGame);
 		mySplashData = myController.getSplashData(myCurrentGame);
 		mySpecificSplash = new SpecificGameSplashView(this, myStage, myUserInputData, mySplashData);
@@ -107,8 +109,8 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void saveGame() {
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		myController.save(timestamp.toString());
+//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		myController.save(""+System.currentTimeMillis());
 	}
 	
 	public void restart() {
@@ -128,10 +130,10 @@ public class UIView implements UIViewInterface {
 		return myStage;
 	}
 	
-	public void addData(GameData data) {
-		myData = data;
-		myGameScene.addData(data);
-	}
+//	public void addData(GameData data) {
+//		myData = data;
+//		myGameScene.addData(data);
+//	}
 	
 	public void step(Set<KeyCode> keysPressed) {
 		myController.step(keysPressed);

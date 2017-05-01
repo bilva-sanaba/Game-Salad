@@ -11,23 +11,28 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.GoalComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import gamedata.IGameData;
 import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @TopAction()
 @BottomAction()
 public class GoalAction  extends AbstractAction  implements IAction{
-
+	private int toLevel;
+	public GoalAction(int level){
+		toLevel=level;
+	}
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
-		
-		for(IEntity e : myEM.getEntities()){
-			if(e.getComponent(ComponentType.Goal) != null){
-				GoalComponent gc = (GoalComponent) e.getComponent(ComponentType.Goal);
-				gc.satisfyGoal(true);
-			}
-		}
-		return getGameDataFactory().blankEntityData(currentGameData);
+		IGameData gameData =getGameDataFactory().blankEntityData(currentGameData);
+		gameData.setLevel(toLevel);
+//		for(IEntity e : myEM.getEntities()){
+//			if(e.getComponent(ComponentType.Goal) != null){
+//				GoalComponent gc = (GoalComponent) e.getComponent(ComponentType.Goal);
+//				gc.satisfyGoal(true);
+//			}
+//		}
+		return gameData;
 	}
 
 }

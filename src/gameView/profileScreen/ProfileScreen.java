@@ -2,11 +2,17 @@
 
 import java.util.Iterator;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -20,6 +26,7 @@ import gameView.tools.ImageButton;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
 import gameView.userManagement.IUserManager;
+import gameView.userManagement.UserData;
 
 public class ProfileScreen extends AbstractViewer {
 
@@ -63,11 +70,13 @@ public class ProfileScreen extends AbstractViewer {
 	}
 	
 	private VBox makeVBox() {
-		ImageButton image = new ImageButton(getStage(), myData.getCurrentUser().getProfilePicture().getPath());
+		ImageButton image = new ImageButton(getStage(), myData.getCurrentUser().getProfilePicture() == null? 
+				null: myData.getCurrentUser().getProfilePicture().getPath());
 		Label name = new Label(myData.getCurrentUser().getName());
 		HBox gameStats = makeStats();
+		VBox.setMargin(gameStats, new Insets(0, 10, 0, 0));
 		HBox options = makeOptionBox();
-		VBox toReturn = new VBox(20, image, name, options);  
+		VBox toReturn = new VBox(20, image, name, gameStats, options);  
 		toReturn.setAlignment(Pos.CENTER);
 		return toReturn;
 	}
@@ -82,19 +91,36 @@ public class ProfileScreen extends AbstractViewer {
 	}
 	
 	private HBox makeStats() {
-		VBox gamesBox = makeGameBox();
+		TableView<GameEntry> gamesBox = makeGameBox();
 		//VBox achievement = makeAchievements();
 		HBox statsBox = new HBox(10, gamesBox);
 		return statsBox;
 	}
 	
-	private VBox makeGameBox() {
-		VBox gameBox = new VBox(5);
+	private TableView<GameEntry> makeGameBox() {
+		ObservableList<GameEntry> data =
+	            FXCollections.observableArrayList();
+		TableView<GameEntry> gameBox = new TableView<GameEntry>();
+		gameBox.setPrefWidth(200);
+		gameBox.setEditable(true);
+		TableColumn<GameEntry, String> first = new TableColumn<GameEntry, String>("Game");
+        first.setMinWidth(100);
+		first.setCellValueFactory(
+                new PropertyValueFactory<GameEntry, String>("myFirstValue"));
+		TableColumn<GameEntry, String> second = new TableColumn<GameEntry, String>("Points");
+		second.setMinWidth(100);
+		second.setCellValueFactory(
+                new PropertyValueFactory<GameEntry, String>("mySecondValue"));
+
+		gameBox.setItems(data);
+		gameBox.getColumns().setAll(first, second);
 		Iterator<String> dataIt = myData.getCurrentUser().getGames();
 		while (dataIt.hasNext()) {
 			String game = dataIt.next();
-			gameBox.getChildren().add(new GameEntry(game, myData.getCurrentUser().getPointValue(game), 50));
+			System.out.println(game);
+			data.add(new GameEntry(game, myData.getCurrentUser().getPointValue(game)));
 		}
+		gameBox.setPrefHeight(200);
 		return gameBox; 
 	}
 }

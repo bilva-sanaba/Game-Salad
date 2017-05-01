@@ -23,11 +23,12 @@ public class ShootAction  extends AbstractAction implements IAction {
 		IEntity newE = occ.getCreationEffect(); 
 		GameData returnData = getGameDataFactory().blankEntityData(currentGameData);
 		if (newE!=null){
+//			newE.setID(myEM.getEntities().size());
 			LocationComponent lcplayer= (LocationComponent) other.getComponent(ComponentType.Location);
 			LocationComponent lcnpc= (LocationComponent) newE.getComponent(ComponentType.Location);
 			lcnpc.setX(lcplayer.getX()+60);
 			lcnpc.setY(lcplayer.getY());
-			occ.setEntity(newE.newCopy());
+			occ.setEntity(newE.newCopy(myEM.getEntities().size()));
 			Collection<IEntity> list = new ArrayList<IEntity>();
 			list.add( newE);
 			EntityManager em = new EntityManager(list);

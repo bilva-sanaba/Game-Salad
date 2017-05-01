@@ -7,18 +7,30 @@ public class LevelEntity extends Entity {
 	private int rows;
 	private int cols;
 	private String backgroundFilePath;
+	private String openingMusic;
+	private int lives;
 	private InfiniteEnum ie;
 
 	public LevelEntity(int id) {
 		super(id);
 	}
 
-	public LevelEntity(int id, int r, int c, String bfp) {
+	public LevelEntity(int id, int r, int c, String bfp, String music, int l) {
 		super(id);
 		rows = r;
 		cols = c;
 		backgroundFilePath = bfp;
+		openingMusic = music;
+		lives=l;
 		ie = InfiniteEnum.None;
+	}
+	
+	public String getMusic(){
+		return openingMusic;
+	}
+	
+	public int getLives(){
+		return lives; 
 	}
 	
 	public int getRows() {

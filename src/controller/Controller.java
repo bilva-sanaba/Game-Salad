@@ -1,7 +1,10 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import data_interfaces.*;
@@ -21,6 +24,9 @@ import data_interfaces.XMLException;
 import view.GUIBuilder;
 import view.UtilityFactory;
 import controller_interfaces.ControllerInterface;
+import entity.IEntity;
+import entity.IEntityManager;
+import entity.LevelEntity;
 import entity.SplashData;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
@@ -40,6 +46,7 @@ public class Controller implements ControllerInterface {
 	private String filePath;
 	private GUIBuilder myGUIBuilder;
 	private IRestrictedGameData gd;
+	private Communicator c;
 	private UserInputData uiData;
 
 	public Controller(Stage s) {
@@ -54,12 +61,44 @@ public class Controller implements ControllerInterface {
 		// TODO Auto-generated method stub
 		// loop through and save all write all items to XML
 		XMLWriter xw = new XMLWriter();
-		xw.writeFile(fileName, myGameEngine.save());
+		List <Map> saveList = new ArrayList<Map>();
+		saveList.add(convertEntityManagers(myGameEngine.save()));
+		saveList.add(convertLevelEntities(c.getLevelEntities()));
+		saveList.add(convertSplashData(c.getSplashEntity()));
+		xw.writeFile(fileName, saveList);
+	}
+	
+	private Map<Integer, Map<Integer, IEntity>> convertEntityManagers(List<IEntityManager> lem) {
+		Map<Integer, Map<Integer, IEntity>> ret = new HashMap<Integer, Map<Integer, IEntity>>();
+		for (int i = 0; i < lem.size(); i++) {
+			Map<Integer, IEntity> toAdd = new HashMap<Integer, IEntity>();
+			for (IEntity ie: lem.get(i).getEntities()) {
+				toAdd.put(ie.getID(), ie);
+			}
+			ret.put(i+1, toAdd);
+		}
+		return ret;
+	}
+	
+	private Map<Integer, LevelEntity> convertLevelEntities(List <LevelEntity> le) {
+		Map<Integer, LevelEntity> ret = new HashMap<Integer, LevelEntity>();
+		int i = 0;
+		for (LevelEntity item: le) {
+			ret.put(i+1, item);
+			i++;
+		}
+		return ret;
+	}
+	
+	private Map<Integer, SplashData> convertSplashData(SplashData se) {
+		Map<Integer, SplashData> ret = new HashMap<Integer, SplashData>();
+		ret.put(GameSavingDataTool.SPLASHCONSTANT, se);
+		return ret;
 	}
 
 	@Override
 	public IRestrictedGameData loadNewGame(String gameName) { //IRestrictedEntityManager
-		Communicator c = new Communicator(gameName);
+		c = new Communicator(gameName);
 		return myGameEngine.loadData(c);
 //		IRestrictedGameData gameData = myGameEngine.loadData(null); 
 //		gd=gameData;
