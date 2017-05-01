@@ -12,4 +12,7 @@ public interface EngineCommunication {
 
 	public InfiniteEnum getInfinite();
 	
+	public String getMusic();
+	
+	public int getLives();
 }

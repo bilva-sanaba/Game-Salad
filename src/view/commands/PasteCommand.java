@@ -10,6 +10,7 @@ private ViewData myData;
 private double x;
 private double y;
 private Entity pastedEntity;
+private int savedLevel;
 	
 	public PasteCommand(ViewData data, double xIn, double yIn){
 		myData = data;
@@ -19,12 +20,13 @@ private Entity pastedEntity;
 	
 	@Override
 	public void execute() {
-		pastedEntity = myData.pasteEntity(x, y);
+		savedLevel = myData.getCurrentLevel();
+		pastedEntity = myData.pasteEntity(savedLevel, x, y);
 		myData.addEvent(this);
 	}
 
 	@Override
 	public void undo() {
-		myData.unplaceEntity(pastedEntity);
+		myData.unplaceEntity(savedLevel, pastedEntity);
 	}
 }
