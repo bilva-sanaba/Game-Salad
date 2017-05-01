@@ -71,16 +71,34 @@ public class CollisionEngine extends AbstractEngine {
 			}
 				
 		}
+//		for (int i=0;i<entities.length;i++) {
+//			entities[i] = entities2.get(i);
+//			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
+//			if (type!=null && type.getType().equals(EntityType.Player)) {
+//				System.out.println("player exists");
+//			}
+//				
+//		}
 		for (int i=0;i<entities.length;i++) {
 			IEntity entityOne = entities[i];
+			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
+			if (type!=null && type.getType().equals(EntityType.Player)) {
+				System.out.println("player exists");
+			}
 			CheckCollisionComponent check = (CheckCollisionComponent) entityOne.getComponent(ComponentType.CheckCollision);
 			CollidableComponent collidable = (CollidableComponent) entityOne.getComponent(ComponentType.Collidable);
+			if (check != null && collidable != null) {
+				System.out.println(check.getCheckCollision() + " " + collidable.getCollide());
+
+			}
+			
 			if (check!= null && check.getCheckCollision() && collidable != null && collidable.getCollide() /*&& cam.withinCameraBounds(entityOne)*/) {
 				for (int j=i+1;j<entities.length;j++) {
 					IEntity entityTwo = entities[j];
 					CollidableComponent collidableE2 = (CollidableComponent) entityTwo.getComponent(ComponentType.Collidable);
+					System.out.println("reaches here");
 					if (collidableE2.getCollide() && entityOne!=entityTwo /*&& cam.withinCameraBounds(entityTwo)*/) {
-						checkIndividualCollision(entityOne, entityTwo, gd);
+						gd = checkIndividualCollision(entityOne, entityTwo, gd);
 					}
 				}
 			}
@@ -91,27 +109,28 @@ public class CollisionEngine extends AbstractEngine {
 	
 	
 	
-	private void checkIndividualCollision(IEntity entityOne, IEntity entityTwo, IRestrictedGameData gd) {
-		
+	private IRestrictedGameData checkIndividualCollision(IEntity entityOne, IEntity entityTwo, IRestrictedGameData gd) {
+		System.out.println("Collision checking occurs!");
 		String collisionSide = collisionMethod.collides(entityOne, entityTwo);
-		sendCollisionToSubEngines(entityOne, entityTwo, collisionSide, gd);
+		return sendCollisionToSubEngines(entityOne, entityTwo, collisionSide, gd);
 		
 	}
 	
-	private void sendCollisionToSubEngines(IEntity entityOne, IEntity entityTwo, String collisionSide, IRestrictedGameData gd) {
+	private IRestrictedGameData sendCollisionToSubEngines(IEntity entityOne, IEntity entityTwo, String collisionSide, IRestrictedGameData gd) {
 		boolean collisionOccurs = false;
 		if (!collisionSide.equals(ITwoObjectCollide.NONE)) {
 			collisionOccurs = true;
 		}
 		
 		if (collisionOccurs) {
-			
+			System.out.println("COLLISION OCCURRED");
 			for (ISubEngine engine : subEngines) {
 				gd = engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd);
 //				newEntitiesCreated.addAll(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd));
 			}
 			
 		}
+		return gd;
 	}
 
 	public IRestrictedGameData update(Collection<KeyCode> keys,IRestrictedGameData gd) {

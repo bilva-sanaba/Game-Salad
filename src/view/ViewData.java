@@ -31,6 +31,7 @@ public class ViewData extends Observable {
 	private int entityIDcounter;
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
+	//MAKE THESE NOT HASHMAPS JESUS CHRIST
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
 	private HashMap<Integer, LevelEntity> levelEntityMap;
@@ -57,7 +58,7 @@ public class ViewData extends Observable {
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap = new HashMap<Integer, LevelEntity>();
 		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
-		mySplashEntity = new SplashData(-2, "The game", "Don't lose", "images/background1.png");
+		mySplashEntity = new SplashData(-2, "The game", "Don't lose", "background1.png");
 		userSelectedEntity = null;
 		gameName = "";
 	}

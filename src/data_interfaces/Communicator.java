@@ -41,6 +41,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 				System.out.println("this happens");
 			}
 			ret.add(new EntityManager(toBeAdded));
+			
 		}
 		
 		return ret;
@@ -53,9 +54,10 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		Map <Integer, LevelEntity> m = results.get(1);
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
 		
-		for (int i = 1; i < m.size(); i++) {
+		for (int i = 1; i <= m.size(); i++) {
 			ret.add(m.get(i));
 		}
+		System.out.println("HOW MANY LEVEL ENTITIES" + ret.size());
 		return ret;
 	}
 
@@ -71,7 +73,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	@Override
 	public InfiniteEnum getInfinite() {
 		Map<Integer, LevelEntity> m = results.get(1);
-		
+		System.out.println(m.get(1).getInfiniteEnum());
 		return m.get(1).getInfiniteEnum();
 	}
 }
