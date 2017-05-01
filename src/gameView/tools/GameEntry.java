@@ -10,9 +10,9 @@ public class GameEntry {
 	private final SimpleStringProperty myFirstValue;
 	private final SimpleStringProperty mySecondValue;
 	
-	public GameEntry(String game, Double points) {
+	public GameEntry(String game, String value) {
 		this.myFirstValue = new SimpleStringProperty(game);
-		this.mySecondValue = new SimpleStringProperty(points.toString());
+		this.mySecondValue = new SimpleStringProperty(value);
 	}
 	
 	public String getMyFirstValue() {

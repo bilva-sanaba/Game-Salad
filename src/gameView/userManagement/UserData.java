@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import javafx.scene.image.Image;
 
 public class UserData {
@@ -58,12 +60,11 @@ public class UserData {
 	}
 	
 	public Iterator<String> getAchievements() {
-		return myGameScores.keySet().iterator();
-		//return myAchievements.iterator();
+		return myAchievements.iterator();
 	}
 	
-	public Double getPointValue(String key) {
-		return new Double(myGameScores.get(key).doubleValue());
+	public String getPointValue(String key) {
+		return new Double(myGameScores.get(key).doubleValue()).toString();
 	}
 	
 	public String getPassword() {
@@ -87,10 +88,15 @@ public class UserData {
 	}
 	
 	private ImageViewContainer makeImage(String s) {
-		if (s == null) {
+		if (s.equals("")) {
 			return null;
 		}
 		ImageViewContainer toAdd = new ImageViewContainer(new Image(image), image);
 		return toAdd;
+	}
+
+	public void addAchievement(String string) {
+		myAchievements.add(string);
+		
 	}
 }

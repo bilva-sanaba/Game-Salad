@@ -2,6 +2,7 @@
 package gameView;
 
 import java.awt.Dimension;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import data_interfaces.XMLException;
@@ -10,9 +11,6 @@ import gameView.endScreen.EndScreen;
 import gameView.gameDataManagement.GameDataManager;
 import gameView.gameScreen.GameScreen;
 import gameView.gameScreen.SpecificGameSplashView;
-
-import com.sun.jmx.snmp.Timestamp;
-
 import gameView.splashScreen.SplashView;
 import gameView.userInput.IUserInputData;
 import gameView.userManagement.IUserManager;
@@ -57,10 +55,6 @@ public class UIView implements UIViewInterface {
 		mySplash = new SplashView(this, s, myUserInputData);
 		myGameScene = new GameScreen(this, myStage, myUserInputData, myAnimation);
 		getSplashScreen();
-		//TODO UNCOMMENT TO USE
-		//getSplashScreen();  
-     	//SplashEntity test = new SplashEntity(1, "Splash", "instructions", "background1.png");
-		//setStage(new SpecificGameSplashView(this, test).getScene());
 	}
 
 	public void getSplashScreen() {
@@ -69,7 +63,7 @@ public class UIView implements UIViewInterface {
 	
 	@Override
 	public void runSpecificSplash() {
-		setStage(mySpecificSplash.getScene());//myGameScene
+		setStage(mySpecificSplash.getScene());
 		
 	}
 	
@@ -105,10 +99,13 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void saveGame() {
-		String save = myUserManager.getCurrentUser().getName() + myCurrentGame;
-		save += new Timestamp(System.currentTimeMillis()).toString();
-		myUserManager.getCurrentUser().addGame(save);
-		updateUserStats();
+		String save = myCurrentGame + new Timestamp(System.currentTimeMillis()).toLocalDateTime();
+		if (myUserManager.getCurrentUser() != null) {
+			save = myUserManager.getCurrentUser().getName() + save;
+			myUserManager.getCurrentUser().addGame(save);
+			updateUserStats();
+		}
+		System.out.println(save);
 		myController.save(save);
 	}
 	
