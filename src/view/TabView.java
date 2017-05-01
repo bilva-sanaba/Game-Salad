@@ -122,7 +122,7 @@ public class TabView extends GUIComponent {
 	
 	public void addPresetEntities() {
 		System.out.println("this is called");
-		//loadPreset(PRESETFILE);
+		loadPreset(PRESETFILE);
 	}
 
 	@Override
@@ -195,7 +195,7 @@ public class TabView extends GUIComponent {
 		List <Entity> l = xdp.getData(fileName);
 		
 		for (Entity e: l) {
-			System.out.println("This is defined");
+			e.setID(myData.getDefinedEntityID());
 			myData.defineEntity(e);
 		}
 	}
