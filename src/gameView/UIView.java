@@ -80,6 +80,7 @@ public class UIView implements UIViewInterface {
 		
 		//COMMENT OUT TO TEST WITH RUNNER
 		myGameScene.addData(myData);
+		//myGameScene.addBackground(myController.getEngine().getSplashEntity().getRestrictedImagePath());
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
 		runGame();

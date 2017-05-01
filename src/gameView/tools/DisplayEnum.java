@@ -1,7 +1,5 @@
 package gameView.tools;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
 public enum DisplayEnum {
 	TOP_LEFT	(0, 0),				

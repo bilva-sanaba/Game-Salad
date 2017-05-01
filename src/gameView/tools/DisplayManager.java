@@ -89,6 +89,7 @@ public class DisplayManager implements IDisplayManager {
 		      public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
 		        myAllDisplays.values().stream()
 		        	.forEach(c -> updateX(c, (Double) newVal));
+		        System.out.println("updatedX");
 		      }
 		    });
 		myHeightBound.addListener(new ChangeListener<Number>() {
@@ -96,6 +97,7 @@ public class DisplayManager implements IDisplayManager {
 		      public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
 		    	  myAllDisplays.values().stream()
 		        	.forEach(c -> updateY(c, (Double) newVal));
+		    	  System.out.println("updatedY");
 		      }
 		    });
 	}

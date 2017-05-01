@@ -18,7 +18,13 @@ import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -46,7 +52,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		myCommands = getCommands(myName);
 		myAnimation = animation;
 		initializeBoxes();
-		buildMainScene();   
+		buildMainScene();
 		myBP.applyCss();
 		myBP.layout();
 	}
@@ -60,7 +66,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	public void addData(GameDataManager data) {
 		myData = data;
 		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
-				myPane.widthProperty(), myPane.heightProperty(), myData.getData());
+				myScene.widthProperty(), myScene.heightProperty(), myData.getData());
 
 		try {
 			myAnimation.start(myData.getData(), this);
@@ -87,7 +93,6 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 
 	private void setSize(Pane box, String id, double width) {
 		box.setId(id);
-		//box.setPrefSize(width, 200);
 		box.setPrefWidth(width);
 	}
 
@@ -108,11 +113,6 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 				myTopBox.getChildren().add(makeButton(c));
 			});
 		myBP.setCenter(myPane);   
-		myBP.getCenter().setStyle(
-				"-fx-background-image: url(\"background1.png\");"
-				+ "-fx-background-repeat: stretch;"
-				+ "-fx-background-position: center center;"
-				+ "-fx-background-size: cover;"); 
 	}
 
 	@Override
@@ -145,6 +145,14 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	@Override
 	public void removeEntity(ImageView remove) {
 		myPane.getChildren().remove(remove);
+	}
+	
+	public void addBackground(String background){
+		myBP.getCenter().setStyle(String.format(
+				"-fx-background-image: url(\"%s\");"
+				+ "-fx-background-repeat: stretch;"
+				+ "-fx-background-position: center center;"
+				+ "-fx-background-size: cover;", background));
 	}
 
 }
