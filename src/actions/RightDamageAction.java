@@ -28,7 +28,7 @@ public class RightDamageAction extends AbstractAction implements IAction{
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {	
 		ControllableComponent cc = (ControllableComponent) player.getComponent(ComponentType.Controllable);
-		if(cc.checkControl() == true){
+		if(cc!=null && cc.checkControl() == true){
 			LocationComponent lc = (LocationComponent) player.getComponent(ComponentType.Location);
 			VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 			HealthComponent hc = (HealthComponent) player.getComponent(ComponentType.Health);

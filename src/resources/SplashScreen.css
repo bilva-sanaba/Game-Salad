@@ -25,6 +25,21 @@
 	-fx-text-fill: white;
 }
 
+#gamelabel {
+	-fx-font-family: "American Typewriter";
+	-fx-font-size: 100;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
+
+}
+
+#instructionslabel {
+	-fx-font-family: "American Typewriter";
+	-fx-font-size: 40;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
+}
+
 .button {
 	-fx-background-color: #708090;
 	-fx-text-fill: white;
@@ -39,9 +54,10 @@
 	
 }
 
+
 .label {
-	-fx-font-family: sans-serif;
-	-fx-font-size: 75;
+	-fx-font-family: "Baghdad";
+	-fx-font-size: 25;
 	-fx-text-fill: black;
 }
 

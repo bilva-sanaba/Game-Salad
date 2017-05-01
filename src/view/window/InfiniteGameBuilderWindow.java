@@ -12,7 +12,7 @@ import view.UtilityFactory;
 import view.ViewData;
 import view.editor.ComponentEditor;
 
-public class InfiniteGameBuilderWindow extends Window {
+public class InfiniteGameBuilderWindow implements Window {
 	private UtilityFactory myUtilF;
 	private ViewData myData;
 	private ComponentFactory myCompF;

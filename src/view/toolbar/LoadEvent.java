@@ -13,13 +13,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import view.GridView;
+import view.UtilityFactory;
 import view.ViewData;
 
 public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent {
 	private ViewData myData;
 	private final static String FILELOADSTRING = "Choose the file to load: ";
 	
-	public LoadEvent(ViewData data){
+	public LoadEvent(UtilityFactory utilF, ViewData data){
 		myData = data;
 		//whattodo.put(SplashEntity.class, e -> myData.setSplashEntity((SplashEntity) e));
 		//whattodo.put(LevelEntity.class, e -> myData.setLevelEntity((LevelEntity) e));

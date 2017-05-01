@@ -3,9 +3,6 @@ package gameView;
 import java.util.Set;
 
 import entity.SplashData;
-import entity.restricted.IRestrictedEntityManager;
-import gamedata.GameData;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 

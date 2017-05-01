@@ -5,10 +5,11 @@ import javafx.scene.control.Alert.AlertType;
 
 public class VoogaAlert {
 	private Alert alert;
+	private final String VOOGAISSUE = "VoogaIssue";
 	
-	public VoogaAlert(String title, String content){
+	public VoogaAlert(String content){
 		alert = new Alert(AlertType.ERROR);
-		alert.setTitle(title);
+		alert.setTitle(VOOGAISSUE);
 		alert.setContentText(content);
 	}
 	

@@ -22,12 +22,13 @@ public class ViewController implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-
 		if (arg == null){
 			Entity currentlySelected = myData.getUserSelectedEntity();
 			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel());
 			level.getGrid().clearEntitiesOnGrid();
 			level.getGrid().drawPlacedEntities();
+			level.getGrid().updateBackground();
+			
 			
 			myTab.clearEntitiesOnTab();
 			//myTab.addPresetEntities();
@@ -37,10 +38,9 @@ public class ViewController implements Observer {
 		else if(arg.equals("reset")){
 			levelTabs.clearTabs();
 			for(int i : myData.getPlacedEntityMap().keySet()){
-				System.out.println("making "+ i + " level tab");
 				GridView tempGrid = new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS);
-				tempGrid.setEntityIDcount(myData.getPlacedEntityMap().get(i).size());
-				levelTabs.addNewTab(tempGrid);
+				tempGrid.setEntityIDcount();
+				levelTabs.addNewTab(tempGrid, myData.getMaxLevel());
 			}
 		}
 		
