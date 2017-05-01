@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 
 import javafx.event.ActionEvent;
@@ -56,6 +57,15 @@ public class GameChooser {
 				myFiles.add(each); 
 			} 
 		} 
+		return makeStage();
+	}
+	
+	public Stage selectFile(Collection<String> files) {
+		myFiles.addAll(files);
+		return makeStage();
+	}
+	
+	private Stage makeStage() {
 		makeVBox();
 		ScrollablePopup myPopup = new ScrollablePopup("File Chooser", new ResourceRetriever().
 				getStyleSheets(this, GameChooser.class.getSimpleName()),
@@ -63,7 +73,6 @@ public class GameChooser {
 		myStage.setScene(myPopup.getScene());
 		return myStage; 
 	}
-	
 	/**
 	 * @return the string of the chosen file in its full path
 	 */

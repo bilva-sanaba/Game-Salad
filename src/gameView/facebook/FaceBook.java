@@ -1,4 +1,4 @@
-package gameView.loginScreen;
+package gameView.facebook;
 
 import gameView.tools.FrontEndException;
 import gameView.userManagement.UserData;
@@ -21,7 +21,8 @@ import com.restfb.json.JsonObject;
 import com.restfb.scope.ScopeBuilder;
 import com.restfb.types.User;
 
-public class FaceBookLogin {
+public class FaceBook {
+	
 	private final String CHROME_DRIVER = "data/chromedriver";
 	private final String APP_ID = "1995068140770452";
 	private final String APP_SECRET = "de3819d4811660b10cb879c1f9a891f6";
@@ -30,35 +31,32 @@ public class FaceBookLogin {
 			+ "client_id=" + APP_ID
 			+ "&redirect_uri=" + RESPONSE_URL
 			+ "&response_type=token"
-			+ "&scope=public_profile";
+			+ "&scope=public_profile";//,publish_pages,manage_pages";
 	
 	private String ACCESS_TOKEN; 
+	private FacebookClient myClient;
 
 	
-	public FaceBookLogin() {
+	public FaceBook() {
+		
 	}
 	
 	public UserData login() throws FrontEndException {
 		UserData userData;
-	
 		WebDriver driver = initializeDriver();
 		driver.get(LOGIN_URL);
-		
 		while (true) {
 			if (!driver.getCurrentUrl().contains("facebook")) {
 				ACCESS_TOKEN = regexMatch("access[_]token=(\\w)+", driver.getCurrentUrl()).split("=")[1];
-				FacebookClient client = new DefaultFacebookClient(ACCESS_TOKEN, Version.LATEST);
-				User user = client.fetchObject("me", User.class);
-				JsonObject profilePicture = client.fetchObject("me/picture", JsonObject.class, Parameter.with("redirect", "false"));
+				myClient = new DefaultFacebookClient(ACCESS_TOKEN, Version.LATEST);
+				User user = myClient.fetchObject("me", User.class);
+				JsonObject profilePicture = myClient.fetchObject("me/picture", JsonObject.class, Parameter.with("redirect", "false"));
 				userData = new UserData(user.getName(), "password", 
 						(String) profilePicture.get("data").asObject().get("url").asString());
-						//new ImageView(new Image((String) profilePicture.get("data").asObject().get("url").asString())));
 				driver.close();
 				break;
 			}
 		}
-		
-		System.out.println("FINISHED SIGNIGN IN");
 		return userData;
 	}
 	

@@ -20,5 +20,7 @@ public interface ICommandView {
 	public void loginScreen();
 	public IUserManager getUserManager();
 	public IUserInputData getUserInput();
+	public void profileScreen();
+	//public UIView getView();
 	
 }

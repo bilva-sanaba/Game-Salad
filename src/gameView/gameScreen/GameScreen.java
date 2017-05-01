@@ -125,7 +125,6 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 
 	@Override
 	public DisplayManager getComponents() {
-		System.out.println("GAMESCREEN");
 		return myDisplays; 
 	}
 	

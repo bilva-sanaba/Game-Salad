@@ -36,27 +36,27 @@ public class UIView implements UIViewInterface {
 	
 	private Stage myStage;
 	private ControllerInterface myController;
-	private SplashView mySplash;
-	private GameScreen myGameScene;
-	private GameDataManager myData; 
-	private WorldAnimator myAnimation;
-	private IUserManager myUserManager;
+	private SplashView mySplash;  
+	private GameScreen myGameScene; 
+	private GameDataManager myData;  
+	private WorldAnimator myAnimation;  
+	private IUserManager myUserManager;  
 	private IUserInputData myUserInputData; 
-	private String myCurrentGame;
+	private String myCurrentGame;  
 	
 	public UIView(Stage s, ControllerInterface controller, IUserInputData userInput) {
-		myStage = s;
+		myStage = s;   
 		setStageClose();
-		s.setTitle(STAGE_TITLE);
+		s.setTitle(STAGE_TITLE);  
 		myUserInputData = userInput;
 		myUserManager = new UserManager();
-		myController = controller;
+		myController = controller;   
 		myAnimation = new WorldAnimator(this);
 		mySplash = new SplashView(this, s, myUserInputData);
 		myGameScene = new GameScreen(this, myStage, myUserInputData, myAnimation);
 		getSplashScreen();
 		//TODO UNCOMMENT TO USE
-		//getSplashScreen();
+		//getSplashScreen();  
      	//SplashEntity test = new SplashEntity(1, "Splash", "instructions", "background1.png");
 		//setStage(new SpecificGameSplashView(this, test).getScene());
 	}
@@ -94,8 +94,10 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void saveGame() {
+		String save = myUserManager.getCurrentUser().getName() + myCurrentGame;
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		myController.save(timestamp.toString());
+		myUserManager.getCurrentUser().addGame(save);
+		myController.save(save);
 	}
 	
 	public void restart() {
@@ -143,7 +145,6 @@ public class UIView implements UIViewInterface {
 	}
 	
 	private void savePoints() {
-		System.out.println(myCurrentGame);
 		try {
 			myUserManager.getCurrentUser().addPoints(myCurrentGame, new Double(500));
 			//myUserManager.getCurrentUser().addPoints(myCurrentGame, myData.getPoints().doubleValue());

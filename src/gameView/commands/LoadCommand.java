@@ -2,7 +2,6 @@ package gameView.commands;
 
 import javafx.stage.Stage;
 import gameView.ICommandView;
-import gameView.UIView;
 import gameView.tools.GameChooser;
 
 public class LoadCommand extends AbstractCommand {
@@ -14,7 +13,7 @@ public class LoadCommand extends AbstractCommand {
 	@Override
 	public boolean execute(Stage s) {
 		GameChooser gameChoice = new GameChooser(s);
-		Stage newStage = gameChoice.selectFile();
+		Stage newStage = fileChoice(gameChoice);
 		newStage.showAndWait();
 		getView().loadGame(gameChoice.getFile());
 		return true;
@@ -23,6 +22,10 @@ public class LoadCommand extends AbstractCommand {
 	@Override
 	public String getName() {
 		return "Load";
+	}
+	
+	protected Stage fileChoice(GameChooser picker) {
+		return picker.selectFile();
 	}
 
 }

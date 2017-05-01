@@ -1,7 +1,9 @@
 package gameView;
 
 import gameView.commands.AbstractCommand;
+import gameView.commands.ProfileCommand;
 import gameView.loginScreen.LoginScreen;
+import gameView.profileScreen.ProfileScreen;
 import gameView.tools.ButtonFactory;
 import gameView.tools.CommandFactory;
 import gameView.tools.DisplayManager;
@@ -84,6 +86,11 @@ public abstract class AbstractViewer implements ICommandView {
 	public void loginScreen() {
 		Stage s = new Stage();
 		getView().newStage(new LoginScreen(getView(), s, getUserInput()), s);
+	}
+	
+	public void profileScreen() {
+		Stage s = new Stage();
+		getView().newStage(new ProfileScreen(getView(), s, getUserInput()), s);
 	}
 	
 	public IUserManager getUserManager() {

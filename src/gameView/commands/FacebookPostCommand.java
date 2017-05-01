@@ -1,5 +1,8 @@
 package gameView.commands;
 
+import com.restfb.Parameter;
+import com.restfb.types.FacebookType;
+
 import javafx.stage.Stage;
 import gameView.ICommandView;
 
@@ -11,7 +14,7 @@ public class FacebookPostCommand extends AbstractCommand {
 
 	@Override
 	public boolean execute(Stage s) {
-		//POST TO FACEBOOK
+		//getView().getUserManager().getCurrentUser().getClient().publish("me/feed", FacebookType.class, Parameter.with("message", "I ROCK!"));
 		return false;
 	}
 
