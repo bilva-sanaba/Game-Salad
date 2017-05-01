@@ -19,8 +19,9 @@ public class AbstractBlock extends Entity {
 		super(id);
 		addCollisionComponents();
 	}
+	
 	private void addCollisionComponents(){
-		this.addComponent(new LabelComponent("Defult Block"));
+		this.addComponent(new LabelComponent("Default Block"));
 		this.addComponent(new ImagePropertiesComponent(DEFAULT_SIZE,DEFAULT_SIZE));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));

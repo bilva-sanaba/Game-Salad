@@ -66,6 +66,7 @@ public class EntityConfigurationWindow extends Window {
 
 	private void buildComponentEditor() {
 		for (String comp : componentList) {
+			System.out.println(comp + " " + this.getClass());
 			makeComponent(comp);
 		}
 		ObservableList<ComponentType> ObsCopms = FXCollections.observableArrayList(ComponentType.values());
