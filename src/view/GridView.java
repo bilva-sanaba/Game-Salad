@@ -126,8 +126,7 @@ public class GridView extends GUIComponent {
 		System.out.println(userSelectedEntity.getID() + "is ID of the selected entity");
 		if (userSelectedEntity != null) {
 			Entity placedEntity = userSelectedEntity.clone();
-			placedEntity.setID(j);
-			j++;
+			placedEntity.setID(myData.getPlacedEntityID());
 			placedEntity.addComponent(new LocationComponent(row, col));
 			myData.placeEntity(myLevelNumber, placedEntity);
 		}
