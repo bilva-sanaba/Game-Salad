@@ -19,4 +19,20 @@
       <myGames class="list"/>
     </userdata>
   </entry>
+  <entry>
+    <string>Jacob Weiss</string>
+    <userdata>
+      <username>Jacob Weiss</username>
+      <password>password</password>
+      <image>https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/11705112_999088863459018_6647387008503140825_n.jpg?oh=5d769b93fa1573bdd214d8f3cb3a2c0d&amp;oe=5980A7D3</image>
+      <myGameScores>
+        <entry>
+          <null/>
+          <double>500.0</double>
+        </entry>
+      </myGameScores>
+      <myAchievements/>
+      <myGames class="list"/>
+    </userdata>
+  </entry>
 </users>
