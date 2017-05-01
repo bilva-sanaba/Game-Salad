@@ -107,8 +107,8 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void saveGame() {
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		myController.save(timestamp.toString());
+//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		myController.save(""+System.currentTimeMillis());
 	}
 	
 	public void restart() {

@@ -55,7 +55,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	}
 	
 	private void setPlacedEntities(Map m) {
-		Map <Integer, Map<Integer, Entity>> ret = m;
+		Map <Integer, HashMap<Integer, Entity>> ret = m;
 		myData.getPlacedEntityMap().clear();
 		for (int i = 1; i <= ret.keySet().size(); i++) {
 			myData.getPlacedEntityMap().put(i, new HashMap<Integer, Entity>());

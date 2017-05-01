@@ -1,7 +1,9 @@
 package actions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import class_annotations.LeftAction;
 import components.entityComponents.AccelerationComponent;
@@ -35,10 +37,12 @@ public class LeftDamageAction extends AbstractAction implements IAction{
 			lc.setX(lc.getX()-0.01);
 			vc.setX(-15);
 			ac.setX(0);
-			List<String> collection = new ArrayList<String>();
-			collection.add("transparent.png");
-			List<String> collection2 = new ArrayList<String>();
-			collection2.add("mario_step3.gif");
+			int counter = 0;
+			Map<Integer, String> collection = new HashMap<Integer, String>();
+			collection.put(counter, "transparent.png");
+			counter++;
+			Map<Integer, String> collection2 = new HashMap<Integer, String>();
+			collection2.put(counter,"mario_step3.gif");
 			for(int i = 0; i < 600; i = i + 200){
 				tc.addSingleAction(new ImageChangeAction(collection), new Integer(i));
 				tc.addSingleAction(new ImageChangeAction(collection2), new Integer(i+100));
