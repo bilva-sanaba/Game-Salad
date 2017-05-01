@@ -11,21 +11,15 @@ import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
-<<<<<<< HEAD
-=======
 import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
->>>>>>> ea79a05c8351a7751510556abb63dd537bd3a5ee
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-<<<<<<< HEAD
-=======
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Label;
->>>>>>> ea79a05c8351a7751510556abb63dd537bd3a5ee
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -136,7 +130,7 @@ public class GridView extends GUIComponent {
 
 	public void drawPlacedEntities() {
 		Set<Integer> entitySet = myData.getPlacedEntityMap().get(myLevelNumber).keySet();
-		if(entitySet.size() != 0){
+		if(entitySet.size() != 0) {
 			for (int entityID : entitySet) {
 				drawEntity(myData.getPlacedEntityMap().get(myLevelNumber).get(entityID));
 			}
