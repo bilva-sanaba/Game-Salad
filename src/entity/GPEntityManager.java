@@ -5,19 +5,19 @@ import java.util.*;
 
 public class GPEntityManager {
 	private Collection<LevelEntity> levelEntities;
-	private SplashEntity se;
+	private SplashData se;
 	public GPEntityManager(Collection<Entity> entities){
 		levelEntities = new ArrayList<LevelEntity>();
 		for (Entity e: entities) {
 			if (e.getClass().toString().equals("class entity.LevelEntity")) {
 				levelEntities.add((LevelEntity) e);
 			}
-			else if (e.getClass().toString().equals("class entity.SplashEntity")){
-				se = (SplashEntity) e;
+			else if (e.getClass().toString().equals("class entity.SplashData")){
+				se = (SplashData) e;
 			}		
 		}
 	}
-	public SplashEntity getSplash(){
+	public SplashData getSplash(){
 		return se;
 	}
 	public Collection<LevelEntity> getLevels(){

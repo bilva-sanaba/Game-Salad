@@ -1,7 +1,6 @@
 package gameView.splashScreen;
 
 import java.util.Collection;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

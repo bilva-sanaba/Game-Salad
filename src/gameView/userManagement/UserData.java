@@ -1,6 +1,7 @@
 package gameView.userManagement;
 
 import gameView.tools.ImageViewContainer;
+import gamedata.VoogaImmutableObservableList;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,8 +45,12 @@ public class UserData {
 		}
 	}
 	
-	public void addAchievement(Collection<String> achieve) {
-		myAchievements.addAll(achieve);
+	public void addAchievement(VoogaImmutableObservableList<String> achieve) {
+		Iterator<String> it = achieve.iterator();
+		while (it.hasNext()) {
+			myAchievements.add(it.next());
+		}
+		
 	}
 	
 	public Iterator<String> getGameScores() {

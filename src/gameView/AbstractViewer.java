@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 
 public abstract class AbstractViewer implements ICommandView {
 
-	private UIView myView;
+	protected UIView myView;
 	private ButtonFactory myButtonFactory;
 	private Stage myStage;
 	private IUserInputData myUserInput;

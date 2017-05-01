@@ -1,10 +1,15 @@
 package gamedata;
 
+import com.sun.javafx.collections.ImmutableObservableList;
+
 import components.entityComponents.LocationComponent;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
+import javafx.beans.property.ReadOnlyListProperty;
+import javafx.collections.ObservableList;
 import javafx.beans.property.ReadOnlyStringProperty;
+
 
 public interface IRestrictedGameData {
 	public ReadOnlyDoubleProperty getPoints();
@@ -19,5 +24,5 @@ public interface IRestrictedGameData {
 
 	public ReadOnlyStringProperty getMusic();
 
-	public String getAchievement();
+	public VoogaImmutableObservableList<String> getAchievement();
 }

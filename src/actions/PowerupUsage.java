@@ -1,6 +1,5 @@
 package actions;
 
-import components.entityComponents.SpriteComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;

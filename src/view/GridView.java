@@ -3,6 +3,7 @@ package view;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
@@ -12,6 +13,7 @@ import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import javafx.event.EventType;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -19,6 +21,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
@@ -43,7 +46,8 @@ public class GridView extends GUIComponent {
 	private Pane myGrid;
 	private ViewData myData;
 	private UtilityFactory util;
-	private int j = 1000;
+	private int j = 10000;
+	private Label mouseCords;
 	private int myRow;
 	private int myCol;
 	private int myLevelNumber;
@@ -51,8 +55,7 @@ public class GridView extends GUIComponent {
 	double orgTranslateX, orgTranslateY;
 	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
 	private BorderPane myBorderPane;
-	private TabPane myLevelTabs;
-	
+
 	// TODO: change placedentitymap to a map from levelnumber to placedentitymap
 	// Refactor gridview and make it nonshitty
 
@@ -64,18 +67,30 @@ public class GridView extends GUIComponent {
 		myData = data;
 		rightClick = new RightClickMenu(util, myData, 0, 0);
 		myGrid = new Pane();
-		myGrid.setPrefSize(500, 500);
+		myGrid.setPrefSize(720, 500);
 		myGrid.setOnMousePressed(e -> mousePress(e));
+		myGrid.setOnMouseMoved(e -> mouseMove(e));
 		myGrid.getStyleClass().add("view-grid");
 		myBorderPane = new BorderPane();
 		Button butt = util.buildButton("addHo", e -> addHo());
-		util.buildButton("addHo", e -> addHo());
 		Button butt2 = util.buildButton("addVert", e -> addVert());
-		util.buildButton("addVert", e -> addVert());
-		HBox box = new HBox(butt, butt2);
+		mouseCords = buildMouseCords();
+		HBox box = util.buildHBox(butt, butt2, mouseCords);
+		box.setPadding(new Insets(10));
+		box.setSpacing(10);
 		myBorderPane.setTop(box);
 		myScroll = new ScrollPane(myGrid);
 		myBorderPane.setCenter(myScroll);
+	}
+
+	public void setEntityIDcount(){
+		j += 10000;
+	}
+
+	private Label buildMouseCords(){
+		Label mouseCords = new Label();
+		mouseCords.setText("X:0  Y:0");
+		return mouseCords;
 	}
 
 	private void mousePress(MouseEvent e) {
@@ -85,41 +100,44 @@ public class GridView extends GUIComponent {
 		if (e.isSecondaryButtonDown()) {
 			rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 		}
-		else if (!e.isControlDown()) {
+		else if (!e.isControlDown() && !e.isAltDown()) {
 			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
-	
-	public void setLevelNumber(int levelNumber) {
-		myLevelNumber = levelNumber;
+
+	private void mouseMove(MouseEvent e){
+		mouseCords.setText("X:" + e.getX() + "  Y:" + e.getY());
 	}
 
 	private void addHo() {
-		myGrid.setPrefWidth(myGrid.getWidth() + 20);
+		myGrid.setPrefWidth(myGrid.getWidth() + 60);
 		myCol++;
 		myData.getLevelEntity().addCol();
 	}
 
 	private void addVert() {
-		myGrid.setPrefHeight(myGrid.getHeight() + 20);
+		myGrid.setPrefHeight(myGrid.getHeight() + 60);
 		myRow++;
 		myData.getLevelEntity().addRow();
 	}
 
 	private void placeImageAtLoc(double row, double col) {
 		Entity userSelectedEntity = myData.getUserSelectedEntity();
-		if (userSelectedEntity != null && userSelectedEntity.getComponent(ComponentType.Location) == null) {
+		System.out.println(userSelectedEntity.getID() + "is ID of the selected entity");
+		if (userSelectedEntity != null) {
 			Entity placedEntity = userSelectedEntity.clone();
-			placedEntity.setID(j);
-			j++;
+			placedEntity.setID(myData.getPlacedEntityID());
 			placedEntity.addComponent(new LocationComponent(row, col));
 			myData.placeEntity(myLevelNumber, placedEntity);
 		}
 	}
-	
+
 	public void drawPlacedEntities() {
-		for (int entityID : myData.getPlacedEntityMap().get(myLevelNumber).keySet()) {
-			drawEntity(myData.getPlacedEntityMap().get(myLevelNumber).get(entityID));
+		Set<Integer> entitySet = myData.getPlacedEntityMap().get(myLevelNumber).keySet();
+		if(entitySet.size() != 0){
+			for (int entityID : entitySet) {
+				drawEntity(myData.getPlacedEntityMap().get(myLevelNumber).get(entityID));
+			}
 		}
 	}
 
@@ -137,15 +155,10 @@ public class GridView extends GUIComponent {
 		spriteImage.setX(entityLocation.getX());
 		spriteImage.setY(entityLocation.getY());
 		spriteImage.setOnMousePressed(e -> {
-			if (e.isControlDown()) {
+			if (e.isControlDown() || e.isAltDown()) {
 				selectEntity(entity);
 				orgSceneX = e.getSceneX();
 				orgSceneY = e.getSceneY();
-
-				ImageView c = (ImageView) (e.getSource());
-
-				orgTranslateX = c.getTranslateX();
-				orgTranslateY = c.getTranslateY();
 			}
 			if (rightClick.isShowing()) {
 				rightClick.hide();
@@ -154,13 +167,14 @@ public class GridView extends GUIComponent {
 				selectEntity(entity);
 				rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			}
+
 		});
 		spriteImage.setOnMouseDragged(e -> {
-			if (e.isControlDown()) {
-				double offsetX = e.getSceneX() - orgSceneX;
-				double offsetY = e.getSceneY() - orgSceneY;
+			ImageView c = (ImageView) (e.getSource());
+			double offsetX = e.getSceneX() - orgSceneX;
+			double offsetY = e.getSceneY() - orgSceneY;
 
-				ImageView c = (ImageView) (e.getSource());
+			if (e.isControlDown()) {
 
 				c.setTranslateX(c.getTranslateX() + offsetX);
 				c.setTranslateY(c.getTranslateY() + offsetY);
@@ -168,17 +182,31 @@ public class GridView extends GUIComponent {
 				orgSceneX = e.getSceneX();
 				orgSceneY = e.getSceneY();
 			}
+			if (e.isAltDown()) {
+				ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity
+						.getComponent(ComponentType.ImageProperties);
+				c.setFitHeight(imageProp.getWidth() + offsetY);
+				c.setFitWidth(imageProp.getHeight() + offsetX);
+			}
 		});
 		spriteImage.setOnMouseReleased(e -> {
-			if (e.isControlDown()) {
-				unselectEntity(entity);
-				System.out.println("dropped at " + e.getSceneX() + " " + e.getSceneY());
-				entity.addComponent(new LocationComponent(e.getSceneX(), e.getSceneY()));
-				Iterator<IComponent> iter = entity.getComponents().iterator();
-				while (iter.hasNext()) {
-					System.out.println(iter.next().getComponentType().toString());
+				ImageView c = (ImageView) (e.getSource());
+				if (e.isControlDown()) {
+					unselectEntity(entity);
+					System.out.println("dropped at " + e.getSceneX() + " " + e.getSceneY());
+					entity.addComponent(new LocationComponent(e.getSceneX(), e.getSceneY()));
 				}
-			}
+				if (e.isAltDown()){
+					unselectEntity(entity);
+					ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
+					imageProp.setHeight(c.getFitHeight());
+					imageProp.setWidth(c.getFitWidth());
+					//entity.addComponent(new ImagePropertiesComponent(c.getFitWidth(), c.getFitHeight()));
+					//LocationComponent entityLoc = (LocationComponent) entity.getComponent(ComponentType.Location);
+					//entityLoc.setXY(e.getX(), e.getY());
+					entityLocation.setXY(e.getX(), e.getY());
+					//entity.addComponent(new LocationComponent(e.getSceneX(), e.getSceneY()));
+				}
 		});
 		placedImages.put(entity, spriteImage);
 		myGrid.getChildren().add(spriteImage);
@@ -186,20 +214,21 @@ public class GridView extends GUIComponent {
 
 	public void clearEntitiesOnGrid() {
 		for (Entity e : placedImages.keySet()) {
-			System.out.println("removing" + e);
 			myGrid.getChildren().remove(placedImages.get(e));
 		}
 		placedImages.clear();
 	}
 
-	public void placeEntitiesFromFile(int levelNumber) {
+	/*	public void placeEntitiesFromFile(int levelNumber) {
 		Entity tempEntity;
-		Map<Integer, HashMap<Integer, Entity>> myMap = myData.getPlacedEntityMap();
+		Map<Integer, Map<Integer, Entity>> myMap = myData.getPlacedEntityMap();
 		for (int i : myMap.get(myLevelNumber).keySet()) {
 			tempEntity = myMap.get(myLevelNumber).get(i);
 			drawEntity(tempEntity);
+			j++;
+			System.out.println(j + "is the current entityID value");
 		}
-	}
+	} */
 
 	public void setUpLevel() {
 		int totalRow = myData.getLevelEntity().getRows();
@@ -230,9 +259,9 @@ public class GridView extends GUIComponent {
 		ImageView temp = placedImages.get(myData.getUserGridSelectedEntity());
 		temp.setStyle("");
 	}
-	
+
 	public Node getContent() {
-		return myScroll;
+		return myBorderPane;
 	}
 
 	public void selectEntity(Entity entity) {

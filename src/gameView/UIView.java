@@ -5,9 +5,11 @@ import java.awt.Dimension;
 import java.util.Set;
 
 import data_interfaces.XMLException;
+import entity.SplashData;
 import gameView.endScreen.EndScreen;
 import gameView.gameDataManagement.GameDataManager;
 import gameView.gameScreen.GameScreen;
+import gameView.gameScreen.SpecificGameSplashView;
 
 import com.sun.jmx.snmp.Timestamp;
 
@@ -38,9 +40,11 @@ public class UIView implements UIViewInterface {
 	private GameScreen myGameScene; 
 	private GameDataManager myData;  
 	private WorldAnimator myAnimation;  
-	private IUserManager myUserManager;  
+	private IUserManager myUserManager; 
 	private IUserInputData myUserInputData; 
 	private String myCurrentGame;  
+	private SpecificGameSplashView mySpecificSplash;
+	private SplashData mySplashData;
 	
 	public UIView(Stage s, ControllerInterface controller, IUserInputData userInput) {
 		myStage = s;   
@@ -64,9 +68,13 @@ public class UIView implements UIViewInterface {
 	}
 	
 	@Override
-	public void runGame() {
-		setStage(myGameScene.getScene());//myGameScene
+	public void runSpecificSplash() {
+		setStage(mySpecificSplash.getScene());//myGameScene
 		
+	}
+	
+	public void runGame(){
+		setStage(myGameScene.getScene());
 	}
 	
 	public void loadGame(String file) {
@@ -74,22 +82,26 @@ public class UIView implements UIViewInterface {
 			updateUserStats();
 		}
 		myCurrentGame = file;
-		myData = new GameDataManager(this, myController.loadNewGame(file));
+		myData = new GameDataManager(this, myController.loadNewGame(file)); //FOR SPLASH
+		//mySpecificSplash = myController.loadSpecificSplash(myCurrentGame);
+		mySplashData = myController.getSplashData(myCurrentGame);
+		mySpecificSplash = new SpecificGameSplashView(this, myStage, myUserInputData, mySplashData);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
-		myGameScene.addData(myData);
-		//myGameScene.addBackground(myController.getEngine().getSplashEntity().getRestrictedImagePath());
+		myGameScene.addData(myData); //FOR SPLASH
+		myGameScene.addBackground(mySplashData.getBackgroundFilePath());
 		
-		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH  
-		runGame();
-		
-		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
-		//setStage(new SpecificGameSplashView(this, getStage(), myUserInputData, myController.getEngine().getSplashEntity()).getScene());
+		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
+		runSpecificSplash();
 		
 	}
 	
 	public void authorGame() {
-		myController.makeGame();
+		myController.makeGame(); //makeGame();
+	}
+	
+	public SplashData getSplashData(){
+		return mySplashData;
 	}
 	
 	public void saveGame() {
@@ -121,7 +133,7 @@ public class UIView implements UIViewInterface {
 	
 	private void ending(String end) {
 		AbstractViewer ending = new EndScreen(this, getStage(), myUserInputData, end, myData.getData().getPoints().doubleValue());
-		ending.addBackground("background1.png");//myController.getEngine().getSplashEntity().getRestrictedImagePath());
+		ending.addBackground(mySplashData.getRestrictedImagePath());
 		setStage(ending.getScene());
 	}
 	
@@ -143,7 +155,7 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void newStage(AbstractViewer view, Stage s) {
-		s.setScene(view.getScene());//login.getScene());
+		s.setScene(view.getScene());
 		s.showAndWait();
 	}
 	
@@ -158,16 +170,12 @@ public class UIView implements UIViewInterface {
 	
 	private void updateUserStats() {
 		try {
-			myUserManager.getCurrentUser().addPoints(myCurrentGame, new Double(500));
-			//myUserManager.getCurrentUser().addPoints(myCurrentGame, myData.getData().getPoints().doubleValue());
-			//myUserManager.getCurrentUser().addAchievements(myData.getData().getAchievements());
+			//myUserManager.getCurrentUser().addPoints(myCurrentGame, new Double(500));
+			myUserManager.getCurrentUser().addPoints(myCurrentGame, myData.getData().getPoints().doubleValue());
+			myUserManager.getCurrentUser().addAchievement(myData.getData().getAchievement());
 		} catch (Exception e) {
 			System.out.println("NO USER OR GAMEDATA INTIALIZED");
 		}
-//		if (myUserManager.getCurrentUser() != null && myData.getPoints() != null) {
-//			System.out.println("TRYING TO SAVE");
-//			myUserManager.getCurrentUser().addPoints(myCurrentGame, myData.getPoints().doubleValue());
-//		}
 		
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.GoalComponent;
+import components.entityComponents.LocationComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.GameData;
@@ -13,14 +14,10 @@ import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
 public class LevelEngine extends AbstractEngine{
-
-	public LevelEngine(IEntityManager myEntityManager) {
+	private List<IEntityManager> myEntityManagers;
+	public LevelEngine(IEntityManager myEntityManager, List<IEntityManager> myEMs) {
 		super(myEntityManager);
-	}
-
-	@Override
-	protected List<ComponentType> neededComponents() {
-		return null;
+		myEntityManagers = myEMs;
 	}
 
 	@Override
@@ -31,12 +28,14 @@ public class LevelEngine extends AbstractEngine{
 			if(hasComponent(e, ComponentType.Goal)){
 				GoalComponent gc = (GoalComponent) e.getComponent(ComponentType.Goal);
 				if(gc.checkIfSatisfied() == true){
-//					gd.setLevel(gd.getLevel().intValue()+1);
+					gd.setLevel(gd.getLevel().intValue()+1);
+					((LocationComponent) e.getComponent(ComponentType.Location)).setX(0);
 					gc.satisfyGoal(false);
 				}
 			}
 			
 		}
+
 		return gd;
 	}
 }

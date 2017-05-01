@@ -4,6 +4,7 @@ import components.AComponent;
 import components.IComponent;
 
 public class StrengthComponent extends AComponent implements IComponent {
+	
 	private double strength;
 
 	public StrengthComponent(double s) {
@@ -24,7 +25,7 @@ public class StrengthComponent extends AComponent implements IComponent {
 		return strength;
 	}
 
-	public void setHealth(double s) {
+	public void setStrength(double s) {
 		strength = s;
 	}
 

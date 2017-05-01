@@ -1,19 +1,22 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 
 public class LevelTabView extends GUIComponent{
-	private ArrayList<LevelTab> tabsList;
+	private HashMap<Integer, LevelTab> tabsList;
 	private TabPane myTabs;
 	private int currentLevel;
+	private ViewData myData;
 	
-	public LevelTabView(GridView myGrid, ViewData myData) {
+	public LevelTabView(GridView myGrid, ViewData myDataIn) {
+		myData = myDataIn;
 		currentLevel = 1;
-		tabsList = new ArrayList<LevelTab>();
+		tabsList = new HashMap<Integer, LevelTab>();
 		myTabs = new TabPane();
 		myTabs.getSelectionModel().selectedItemProperty().addListener((obs,oldTab,newTab)->{
             String temp = newTab.getText();
@@ -26,9 +29,10 @@ public class LevelTabView extends GUIComponent{
 	public void clearTabs(){
 		myTabs.getTabs().clear();
 		tabsList.clear();
+		currentLevel = 1;
 	}
 	
-	public ArrayList<LevelTab> getTabsList(){
+	public HashMap<Integer,LevelTab> getTabsList(){
 		return tabsList;
 	}
 	
@@ -38,8 +42,8 @@ public class LevelTabView extends GUIComponent{
 	
 	public void addNewTab(GridView myGrid) {
 		LevelTab tab1 = new LevelTab(myGrid, currentLevel);
+		tabsList.put(currentLevel,tab1);
 		currentLevel++;
-		tabsList.add(tab1);
 		myTabs.getTabs().add(tab1);
 		myTabs.getSelectionModel().select(tab1);
 	}

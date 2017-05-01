@@ -1,6 +1,7 @@
 package gameView.commands;
 
 import javafx.stage.Stage;
+import exceptions.InputException;
 import gameView.ICommandView;
 import gameView.tools.GameChooser;
 
@@ -16,6 +17,7 @@ public class LoadCommand extends AbstractCommand {
 		Stage newStage = fileChoice(gameChoice);
 		newStage.showAndWait();
 		getView().loadGame(gameChoice.getFile());
+		System.out.println(getClass() + gameChoice.getFile());
 		return true;
 	}
 

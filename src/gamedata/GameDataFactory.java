@@ -21,7 +21,13 @@ public class GameDataFactory {
 		double lives = currentData.getLives().doubleValue();
 		double lvl = currentData.getLevel().doubleValue();
 		LocationComponent lc = currentData.getMainLocation();
-		String ac = currentData.getAchievement().toString();
+
+		VoogaImmutableObservableList<String> achievements = currentData.getAchievement();
+		String[] acArray = achievements.toArray(new String[achievements.size()]);
+		List<String> ac = new ArrayList<String>();
+		for (String s : acArray){
+			ac.add(s);
+		}
 		String music = currentData.getMusic().getValue();
 		
 		return new GameData(points,lives,(IRestrictedEntityManager) new EntityManager(), lvl, lc, ac, music);
@@ -34,10 +40,10 @@ public class GameDataFactory {
 		if (!gameData.getMusic().getValue().equals(updatedData.getMusic().getValue())){
 			gameData.setMusic(updatedData.getMusic().getValue());
 		}
-		//		List<Entity> newEntities = new ArrayList<Entity>();
-		//		for (IRestrictedEntity re : updatedData.getRestrictedEntityManager().getRestrictedEntities()){
-		//			newEntities.add(re.clone());
-		//		}
-		//		gameData.setRestrictedEntityManager((IRestrictedEntityManager) new EntityManager(newEntities));
+		if (gameData.getAchievement().size()!=updatedData.getAchievement().size()){
+			if (!gameData.getAchievement().get(gameData.getAchievement().size()-1).equals((updatedData.getAchievement().get(updatedData.getAchievement().size()-1)))){
+				gameData.setAchievement((String) updatedData.getAchievement().get(updatedData.getAchievement().size()-1));
+			}
+		}
 	}
 }

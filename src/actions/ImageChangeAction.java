@@ -1,18 +1,33 @@
 package actions;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 import components.entityComponents.ComponentType;
 import components.entityComponents.SpriteComponent;
 import entity.IEntity;
 import entity.IEntityManager;
+import exceptions.InputException;
+import exceptions.NotEnoughInputsException;
 import gamedata.IRestrictedGameData;
 
 public class ImageChangeAction  extends AbstractAction  implements IAction{
 	private List<String> possibleImages;
 	private int counter;
-	public ImageChangeAction(List<String> strings){
-		possibleImages = strings;
+	
+	
+	public ImageChangeAction(Map<Integer, String> inputs) {
+		for (Integer key : inputs.keySet()) {
+			possibleImages.add(inputs.get(key));
+		}
+	}
+	
+	public ImageChangeAction(List<String> inputs) throws InputException{
+		possibleImages = super.validateList(inputs, inputs.size());
+		for (String s : inputs) {
+			s = super.validateFile(s); //just validates each string and throws exception otherwise
+		}
 		counter=0;
 	}
 	@Override

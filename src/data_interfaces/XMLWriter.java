@@ -27,7 +27,7 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 			b.write(data.toString());
 			b.close();
 		} catch (IOException e) {
-			// TODO call the alert that they built
+			System.out.println("File saving went wrong");
 		}
 	}
 

@@ -72,7 +72,11 @@ public class GameChooser {
 	 * @return the string of the chosen file in its full path
 	 */
 	public String getFile() {
-		return myChosenFile; 
+		String[] test = myChosenFile.split("[\\\\/]");
+		System.out.println("GET WRECKED");
+		System.out.println(test[test.length-1]);
+		return test[test.length-1];
+
 	}
 	
 	private void makeVBox() {

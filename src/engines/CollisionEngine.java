@@ -194,6 +194,7 @@ public class CollisionEngine extends AbstractEngine {
 	 * @return 
 	 */
 
+
 	private IRestrictedGameData checkCollisionsOccurred(IRestrictedGameData gd) {
 		List<IEntity> entities2 = (List<IEntity>) entManager.getEntities();
 		IEntity[] entities = new IEntity[entities2.size()];
@@ -206,10 +207,25 @@ public class CollisionEngine extends AbstractEngine {
 			}
 				
 		}
+//		for (int i=0;i<entities.length;i++) {
+//			entities[i] = entities2.get(i);
+//			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
+//			if (type!=null && type.getType().equals(EntityType.Player)) {
+//			}
+//				
+//		}
+		
 		for (int i=0;i<entities.length;i++) {
 			IEntity entityOne = entities[i];
+			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
+			if (type!=null && type.getType().equals(EntityType.Player)) {
+			}
 			CheckCollisionComponent check = (CheckCollisionComponent) entityOne.getComponent(ComponentType.CheckCollision);
 			CollidableComponent collidable = (CollidableComponent) entityOne.getComponent(ComponentType.Collidable);
+			if (check != null && collidable != null) {
+
+			}
+			
 			if (check!= null && check.getCheckCollision() && collidable != null && collidable.getCollide() /*&& cam.withinCameraBounds(entityOne)*/) {
 				for (int j=i+1;j<entities.length;j++) {
 					IEntity entityTwo = entities[j];
@@ -227,7 +243,6 @@ public class CollisionEngine extends AbstractEngine {
 	
 	
 	private IRestrictedGameData checkIndividualCollision(IEntity entityOne, IEntity entityTwo, IRestrictedGameData gd) {
-		
 		String collisionSide = collisionMethod.collides(entityOne, entityTwo);
 		return sendCollisionToSubEngines(entityOne, entityTwo, collisionSide, gd);
 		
@@ -240,7 +255,6 @@ public class CollisionEngine extends AbstractEngine {
 		}
 		
 		if (collisionOccurs) {
-			
 			for (ISubEngine engine : subEngines) {
 				gd = engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd);
 //				newEntitiesCreated.addAll(engine.handleCollision(entityOne, entityTwo, collisionSide, entManager,gd));
@@ -262,12 +276,6 @@ public class CollisionEngine extends AbstractEngine {
 //			entManager.changed(e);
 		}
 		return rgd;
-	}
-
-	@Override
-	protected List<ComponentType> neededComponents() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }

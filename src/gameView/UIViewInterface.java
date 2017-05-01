@@ -1,6 +1,8 @@
 package gameView;
 
 import java.util.Set;
+
+import entity.SplashData;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -61,6 +63,10 @@ public interface UIViewInterface {
 //	public void addData(GameData data);
 	
 	public void step(Set<KeyCode> keysPressed);
+
+	void runSpecificSplash();
+	
+	public SplashData getSplashData();
 
 	
 

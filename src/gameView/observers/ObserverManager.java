@@ -107,9 +107,11 @@ public class ObserverManager {
 		ImageConfig iConfig = new ImageConfig(new ImageView(makeImage(arg)), test[test.length-1]);
         myEntities.put(arg.getID(), iConfig);
         updateImageView(arg);
+
         
         //FOR REVERSE
 		myWorld.fillMap();
+
 	}
 	
 	public void updateEntity(IRestrictedEntity observable, IRestrictedEntity arg) {
