@@ -136,12 +136,15 @@ public class GameEngine implements GameEngineInterface {
 //		}
 		
 		//DUMMYLOAD
+
 //		myEntityManagers = dummyLoad();
 //		myEntityManager = myEntityManagers.get(0);
+
 		
 		//REAL USE THIS
 		myEntityManagers = c.getIEntityManagers();
 		myEntityManager = myEntityManagers.get(0);
+
 
 
 		myEngines = Arrays.asList(new InputEngine(myEntityManager), 
@@ -290,18 +293,18 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(new TypeComponent(EntityType.Player));
 
 
-//		List<String> collection = new ArrayList<String>();
-//		collection.add("mario_step1.gif");
-//		collection.add("mario_step2.gif");
-//		collection.add("mario_step3.gif");
-//		ImageChangeAction ica = new ImageChangeAction(collection);
-//		List<String> collection2 = new ArrayList<String>();
-//		collection2.add("mario_leftstep1.gif");
-//		collection2.add("mario_leftstep2.gif");
-//		collection2.add("mario_leftstep3.gif");
+//		Map<Integer, String> collection = new HashMap<Integer, String>();
+//		collection.put(0, "mario_step1.gif");
+//		collection.put(1, "mario_step2.gif");
+//		collection.put(2, "mario_step3.gif");
+//		//ImageChangeAction ica = new ImageChangeAction(collection);
+//		Map<Integer, String> collection2 = new HashMap<Integer,String>();
+//		collection2.put(0, "mario_leftstep1.gif");
+//		collection2.put(1, "mario_leftstep2.gif");
+//		collection2.put(2, "mario_leftstep3.gif");
 //		ImageChangeAction ica2 = new ImageChangeAction(collection2);
-//		List<String> collection3 = new ArrayList<String>();
-//		collection3.add("mario_jump.gif");
+//		Map<Integer, String> collection3 = new HashMap<Integer, String>();
+//		collection3.put(0, "mario_jump.gif");
 //		ImageChangeAction ica3 = new ImageChangeAction(collection3);
 
 
