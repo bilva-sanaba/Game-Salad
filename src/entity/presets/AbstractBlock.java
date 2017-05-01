@@ -8,9 +8,11 @@ import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
+import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
+import components.entityComponents.TypeComponent;
 import entity.Entity;
 
 public class AbstractBlock extends Entity {
@@ -24,6 +26,7 @@ public class AbstractBlock extends Entity {
 		this.addComponent(new ImagePropertiesComponent(DEFAULT_SIZE,DEFAULT_SIZE));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
+		this.addComponent(new TypeComponent(EntityType.Block));
 //		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 //		scc.addActionForType(new TypeComponent(EntityType.Player), new BlockTopRegularCollision());
 //		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
