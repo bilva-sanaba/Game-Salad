@@ -2,7 +2,6 @@ package gameView.commands;
 
 import javafx.stage.Stage;
 import gameView.ICommandView;
-import gameView.profileScreen.ProfileScreen;
 
 public class ProfileCommand extends AbstractCommand {
 
@@ -13,10 +12,7 @@ public class ProfileCommand extends AbstractCommand {
 	@Override
 	public boolean execute(Stage s) {
 		getView().pauseGame();
-		Stage newStage = new Stage();
-		ProfileScreen profile = new ProfileScreen(null, newStage, getView().getUserInput(), getView().getUserManager());
-		newStage.setScene(profile.getScene());
-		newStage.showAndWait();
+		getView().profileScreen();
 		getView().runGame();
 		return true;
 	}

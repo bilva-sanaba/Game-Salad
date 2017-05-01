@@ -1,7 +1,6 @@
 package gameView.tools;
 
 import gameView.ICommandView;
-import gameView.UIView;
 import gameView.commands.AbstractCommand;
 
 import java.util.ArrayList;
