@@ -1,11 +1,14 @@
 package gameEngine_interface;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
+import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 
@@ -16,19 +19,17 @@ public class EntityLoader {
 		mainEntityManager = mainManager;
 	}
 	public void loadNew(IEntityManager newManager) {
-		List<IEntity> nonReplaced = new ArrayList<IEntity>();
-		List<Integer> newNonReplaced = new ArrayList<Integer>();
+		IEntity originalMain = new Entity(0);
 		for (IEntity e : mainEntityManager.getEntities()){
 			e.changed(null);
 			if (e.getComponent(ComponentType.KeyInput)!=null){
-				nonReplaced.add(e);
-				newNonReplaced.add(e.getID());
+				originalMain=e;
 			}
 		}
 		mainEntityManager.getEntities().clear();
 		for (IEntity e : newManager.getEntities()){
-			if (newNonReplaced.contains(e.getID())){
-				IEntity oldE = nonReplaced.get(e.getID());
+			if (e.hasComponent(ComponentType.KeyInput)){
+				IEntity oldE = originalMain;
 				recreateMainCharacter(oldE,e);
 				e=oldE;
 			}

@@ -13,17 +13,11 @@ import entity.restricted.IRestrictedEntity;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
-public abstract class AbstractEngine {
-
-	protected List<ArrayList<IComponent>> myComponents = new ArrayList<ArrayList<IComponent>>();
+public abstract class AbstractEngine implements IEngine {
 	private IEntityManager myEManager;
 	
 	public AbstractEngine(IEntityManager myEntityManager){
 		myEManager = myEntityManager;
-//		int i = 0;
-//		for (ComponentType ct : neededComponents())
-//			myComponents.add((ArrayList<IComponent>) myEntityManager
-//					.getCertainComponents(neededComponents().get(i)));
 	}
 
 	/**

@@ -22,12 +22,13 @@ public class ViewController implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+
 		if (arg == null){
 			Entity currentlySelected = myData.getUserSelectedEntity();
 			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel());
 			level.getGrid().clearEntitiesOnGrid();
 			level.getGrid().drawPlacedEntities();
-
+			
 			myTab.clearEntitiesOnTab();
 			//myTab.addPresetEntities();
 			myTab.addDefinedEntities();
