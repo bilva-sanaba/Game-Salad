@@ -58,13 +58,18 @@ public class ObserverManager {
 			myWorld.removeEntity(e.getID());
 		}
 		else{
-         myEntities.get(e.getID()).getImageView().setFitHeight(e.getRestrictedIPComponent().getHeight());
-         myEntities.get(e.getID()).getImageView().setFitWidth(e.getRestrictedIPComponent().getWidth());
-         updateImage(e);
-         //UNCOMMENT FOR TEST RUNNER
-         myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()-475);
-         myEntities.get(e.getID()).getImageView().setTranslateY(e.getRestrictedLocation().getHeight()-175);
-        
+//			if (myEntities.get(e.getID()).getImageView().getFitHeight() != e.getRestrictedIPComponent().getHeight() &&
+//					myEntities.get(e.getID()).getImageView().getFitWidth() != e.getRestrictedIPComponent().getWidth()) {
+//				myEntities.get(e.getID()).getImageView().setScaleY(e.getRestrictedIPComponent().getHeight()/myEntities.get(e.getID()).getImageView().getFitHeight());
+//				myEntities.get(e.getID()).getImageView().setScaleX(e.getRestrictedIPComponent().getWidth()/myEntities.get(e.getID()).getImageView().getFitWidth());
+//			}
+			myEntities.get(e.getID()).getImageView().setFitHeight(e.getRestrictedIPComponent().getHeight());
+			myEntities.get(e.getID()).getImageView().setFitWidth(e.getRestrictedIPComponent().getWidth());
+			updateImage(e);
+			//UNCOMMENT FOR TEST RUNNER
+			myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()-475);
+			myEntities.get(e.getID()).getImageView().setTranslateY(e.getRestrictedLocation().getHeight()-175);
+
          //UNCOMMENT FOR NORMAL
          
 //         myEntities.get(e.getID()).getImageView().setTranslateX(e.getRestrictedLocation().getWidth()*50-475);
@@ -113,7 +118,6 @@ public class ObserverManager {
 			updateImageView(observable);
 		} 
 		else {
-			System.out.println(observable.getID() + "XXXXXXXX");
 			myEntities.put(observable.getID(), null);
 			myWorld.removeEntity(observable.getID());
 		}
