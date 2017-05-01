@@ -27,7 +27,6 @@ public class SpecificGameSplashView extends AbstractViewer {
 	
 	private static final String myName = SpecificGameSplashView.class.getSimpleName();
 	
-	private String myBackground;
 	private SplashEntity mySplashEntity;
 	private Scene myScene;
 	private Collection<AbstractCommand> myCommands;
@@ -51,7 +50,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 	}
 	
 	private void buildScene() {
-		addBackground();
+		addBackground(mySplashEntity.getRestrictedImagePath());
 		Label lab = makeLabel(mySplashEntity.getGameTitle(), "gamelabel");
 		BorderPane.setAlignment(lab, Pos.CENTER);
 		HBox hbox = new HBox();
@@ -74,15 +73,11 @@ public class SpecificGameSplashView extends AbstractViewer {
 		lab.setStyle("-fx-wrap-text: true");
 		myBP.setCenter(lab);
 	}
-	private void addBackground(){
-		myBackground = mySplashEntity.getRestrictedImagePath();
-		myBP.setBackground(makeBackground(myBackground));
-	}
 	
-	private Background makeBackground(String bg){
+	protected void setBackground(String bg){
 		Image background = new Image(getClass().getClassLoader().getResourceAsStream(bg));
 		BackgroundSize size = new BackgroundSize(0,0, true, true, true, true);
 		BackgroundImage image = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size);
-		return new Background(image);
+		myBP.setBackground(new Background(image));
 	}
 }

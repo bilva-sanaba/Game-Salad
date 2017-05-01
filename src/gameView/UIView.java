@@ -5,9 +5,9 @@ import java.awt.Dimension;
 import java.util.Set;
 
 import data_interfaces.XMLException;
+import gameView.endScreen.EndScreen;
 import gameView.gameDataManagement.GameDataManager;
 import gameView.gameScreen.GameScreen;
-import gameView.gameScreen.SpecificGameSplashView;
 
 import com.sun.jmx.snmp.Timestamp;
 
@@ -15,8 +15,6 @@ import gameView.splashScreen.SplashView;
 import gameView.userInput.IUserInputData;
 import gameView.userManagement.IUserManager;
 import gameView.userManagement.UserManager;
-import gamedata.GameData;
-import gamedata.IRestrictedGameData;
 import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.event.EventHandler;
@@ -76,13 +74,13 @@ public class UIView implements UIViewInterface {
 			savePoints();
 		}
 		myCurrentGame = file;
-		myData = new GameDataManager(myController.loadNewGame(file));
+		myData = new GameDataManager(this, myController.loadNewGame(file));
 		
 		//COMMENT OUT TO TEST WITH RUNNER
 		myGameScene.addData(myData);
 		//myGameScene.addBackground(myController.getEngine().getSplashEntity().getRestrictedImagePath());
 		
-		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
+		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH  
 		runGame();
 		
 		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
@@ -109,6 +107,22 @@ public class UIView implements UIViewInterface {
 		}
 	}
 	
+	public void wonGame() {
+		String won = "YOU WON!";
+		ending(won);
+	}
+	
+	public void lostGame() {
+		String lost = "GAME OVER";
+		ending(lost);
+	}
+	
+	private void ending(String end) {
+		AbstractViewer ending = new EndScreen(this, getStage(), myUserInputData, end, myData.getData().getPoints().doubleValue());
+		ending.addBackground("background1.png");//myController.getEngine().getSplashEntity().getRestrictedImagePath());
+		setStage(ending.getScene());
+	}
+	
 	private void setStage(Scene s) {
 		myStage.setScene(s);
 		myStage.show();
@@ -117,11 +131,6 @@ public class UIView implements UIViewInterface {
 	public Stage getStage() {
 		return myStage;
 	}
-	
-//	public void addData(GameData data) {
-//		myData = data;
-//		myGameScene.addData(data);
-//	}
 	
 	public void step(Set<KeyCode> keysPressed) {
 		myController.step(keysPressed);

@@ -4,8 +4,6 @@ import java.util.Collection;
 
 import controller.VoogaAlert;
 import controller.WorldAnimator;
-import gameEngine_interface.GameEngine;
-import gameEngine_interface.RunnerTest;
 import gameView.AbstractViewer;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
@@ -14,23 +12,12 @@ import gameView.gameDataManagement.GameDataManager;
 import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
-import gamedata.GameData;
-import gamedata.IRestrictedGameData;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class GameScreen extends AbstractViewer implements IGameScreenDisplays, IGameScreenEntity {
@@ -147,7 +134,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		myPane.getChildren().remove(remove);
 	}
 	
-	public void addBackground(String background){
+	public void setBackground(String background){
 		myBP.getCenter().setStyle(String.format(
 				"-fx-background-image: url(\"%s\");"
 				+ "-fx-background-repeat: stretch;"

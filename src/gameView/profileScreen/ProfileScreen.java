@@ -19,7 +19,6 @@ import javafx.stage.WindowEvent;
 import gameView.AbstractViewer;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
-import gameView.commands.FacebookPostCommand;
 import gameView.commands.LoadCommand;
 import gameView.commands.SignOutCommand;
 import gameView.commands.UserLoadCommand;
@@ -106,5 +105,9 @@ public class ProfileScreen extends AbstractViewer {
 			data.add(new GameEntry(game, myData.getCurrentUser().getPointValue(game)));
 		}   
 		return factory.getTable(data, args);
+	}
+
+	@Override
+	protected void setBackground(String s) {
 	}
 }

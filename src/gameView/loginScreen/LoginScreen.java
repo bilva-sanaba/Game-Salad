@@ -131,4 +131,13 @@ public class LoginScreen extends AbstractViewer {
 			getStage().close();
 		}
 	}
+
+	@Override
+	protected void setBackground(String s) {
+		myMain.setStyle(String.format(
+				"-fx-background-image: url(\"%s\");"
+				+ "-fx-background-repeat: stretch;"
+				+ "-fx-background-position: center center;"
+				+ "-fx-background-size: cover;", s));
+	}
 }

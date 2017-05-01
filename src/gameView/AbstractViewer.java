@@ -24,7 +24,6 @@ public abstract class AbstractViewer implements ICommandView {
 	private ButtonFactory myButtonFactory;
 	private Stage myStage;
 	private IUserInputData myUserInput;
-
 	
 	public AbstractViewer(UIView view, Stage s, IUserInputData userInput) {
 		myStage = s;
@@ -38,6 +37,12 @@ public abstract class AbstractViewer implements ICommandView {
 	public IUserInputData getUserInput() {
 		return myUserInput;
 	}
+	
+	public void addBackground(String s) {
+		setBackground(s);
+	}
+	
+	protected abstract void setBackground(String s);
 	
 	//FOR TESTING
 	public void setInput(IUserInputData data) {

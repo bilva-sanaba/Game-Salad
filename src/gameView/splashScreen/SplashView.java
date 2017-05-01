@@ -70,4 +70,14 @@ public class SplashView extends AbstractViewer {
 	private BorderPane getRoot(){
 		return myPane;
 	}
+
+	@Override
+	protected void setBackground(String s) {
+		myPane.getCenter().setStyle(String.format(
+				"-fx-background-image: url(\"%s\");"
+				+ "-fx-background-repeat: stretch;"
+				+ "-fx-background-position: center center;"
+				+ "-fx-background-size: cover;", s));
+		
+	}
 }

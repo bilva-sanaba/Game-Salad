@@ -67,4 +67,8 @@ public class PauseScreen extends AbstractViewer {
 	private void setStageAction() {
 		
 	}
+
+	@Override
+	protected void setBackground(String s) {
+	}
 }
