@@ -16,6 +16,7 @@ private int savedLevel;
 	
 	@Override
 	public void execute() {
+		
 		myEntity = myData.getUserGridSelectedEntity();
 		savedLevel = myData.getCurrentLevel();
 		myData.unplaceEntity(savedLevel, myEntity);
