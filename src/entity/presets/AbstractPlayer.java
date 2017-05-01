@@ -6,6 +6,7 @@ import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.ControllableComponent;
 import components.entityComponents.EntityType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.TypeComponent;
@@ -26,10 +27,10 @@ public class AbstractPlayer extends Entity {
 		this.addComponent(new VelocityComponent(0, 0));
 		this.addComponent(new AccelerationComponent(0, 0));
 		KeyInputComponent k = new KeyInputComponent();
-		k.addToMap(KeyCode.W, new AcheivementAction());
 		this.addComponent(k);
 		this.addComponent(new ControllableComponent());
 		this.addComponent(new TypeComponent(EntityType.Player));
 		this.addComponent(new CollidableComponent(true));
+		this.addComponent(new ImagePropertiesComponent(50,50));
 	}
 }

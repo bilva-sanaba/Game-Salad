@@ -32,7 +32,14 @@ public abstract class AbstractAction {
 	
 	
 	public String validateFile(String filePath) throws FileInputException{
-		if (filePath==null || filePath.equals("") || !(new File(filePath).exists())) {
+		if (filePath==null || filePath.equals("") ){
+			//Conditional removed because music would not play even if file did not cause errors when
+			//a clip was made of it. 
+			
+			
+//			|| !(new File(filePath).exists())) {
+//		}
+
 			throw new FileInputException(filePath);
 		}
 		return filePath;
