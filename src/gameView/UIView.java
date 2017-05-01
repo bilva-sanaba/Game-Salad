@@ -71,7 +71,7 @@ public class UIView implements UIViewInterface {
 	
 	public void loadGame(String file) {
 		if (myCurrentGame != null) {
-			savePoints();
+			updateUserStats();
 		}
 		myCurrentGame = file;
 		myData = new GameDataManager(this, myController.loadNewGame(file));
@@ -96,11 +96,13 @@ public class UIView implements UIViewInterface {
 		String save = myUserManager.getCurrentUser().getName() + myCurrentGame;
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		myUserManager.getCurrentUser().addGame(save);
+		updateUserStats();
 		myController.save(save);
 	}
 	
 	public void restart() {
 		try {
+			updateUserStats();
 			myController.resetCurrentGame();
 		} catch (XMLException e) {
 			//TODO: make exception
@@ -148,16 +150,17 @@ public class UIView implements UIViewInterface {
 	private void setStageClose() {
 		myStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	          public void handle(WindowEvent we) {
-	        	  savePoints();
+	        	  updateUserStats();
 	              myUserManager.saveAllUsers();
 	          }
 	      });    
 	}
 	
-	private void savePoints() {
+	private void updateUserStats() {
 		try {
 			myUserManager.getCurrentUser().addPoints(myCurrentGame, new Double(500));
-			//myUserManager.getCurrentUser().addPoints(myCurrentGame, myData.getPoints().doubleValue());
+			//myUserManager.getCurrentUser().addPoints(myCurrentGame, myData.getData().getPoints().doubleValue());
+			//myUserManager.getCurrentUser().addAchievements(myData.getData().getAchievements());
 		} catch (Exception e) {
 			System.out.println("NO USER OR GAMEDATA INTIALIZED");
 		}

@@ -3,7 +3,6 @@ package gameView;
 import gameView.commands.AbstractCommand;
 import gameView.commands.LoginCommand;
 import gameView.commands.ProfileCommand;
-import gameView.commands.SignInCommand;
 import gameView.loginScreen.LoginScreen;
 import gameView.profileScreen.ProfileScreen;
 import gameView.tools.ButtonFactory;
@@ -11,7 +10,6 @@ import gameView.tools.CommandFactory;
 import gameView.tools.DisplayManager;
 import gameView.userInput.IUserInputData;
 import gameView.userManagement.IUserManager;
-import gameView.userManagement.UserData;
 
 import java.util.Collection;
 
@@ -21,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public abstract class AbstractViewer implements ICommandView {
@@ -51,11 +48,6 @@ public abstract class AbstractViewer implements ICommandView {
 	}
 	
 	protected abstract void setBackground(String s);
-	
-	//FOR TESTING
-	public void setInput(IUserInputData data) {
-		myUserInput = data;
-	}
 	
 	protected UIView getView() {
 		return myView;
@@ -112,16 +104,14 @@ public abstract class AbstractViewer implements ICommandView {
 
 	//DOES NOTHING FOR SPLASHSCREEN
 	public void runGame() {
-		System.out.println("ABSTRACT");
 		//getView().runGame();
 	}
 	public DisplayManager getComponents() {
-		System.out.println("ABSTRACT");
 		return null;
 	}
 	public void pauseGame() {
-		System.out.println("ABSTRACT");
 	}
+	
 	public String getInstructions(){
 		return null;
 	}

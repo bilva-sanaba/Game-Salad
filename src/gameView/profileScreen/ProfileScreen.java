@@ -25,6 +25,7 @@ import gameView.commands.SignOutCommand;
 import gameView.commands.UserLoadCommand;
 import gameView.tools.GameEntry;
 import gameView.tools.ImageButton;
+import gameView.tools.ImageViewContainer;
 import gameView.tools.ResourceRetriever;
 import gameView.tools.TableFactory;
 import gameView.userInput.IUserInputData;
@@ -39,6 +40,7 @@ public class ProfileScreen extends AbstractViewer {
 	private Scene myScene;
 	private IUserManager myData;
 	private VBox myBox;
+	private ImageButton myImageButton;
 	
 	public ProfileScreen(UIView view, Stage s, IUserInputData input) {
 		super(view, s, input);
@@ -55,7 +57,7 @@ public class ProfileScreen extends AbstractViewer {
 	private void setStageReaction() {
 		getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
 	          public void handle(WindowEvent we) {
-	              
+	        	  myData.getCurrentUser().changePicture(((ImageViewContainer) myImageButton.getGraphic()).getPath());
 	          }
 	      });    
 	}
@@ -68,13 +70,13 @@ public class ProfileScreen extends AbstractViewer {
 	}
 	
 	private VBox makeVBox() {
-		ImageButton image = new ImageButton(getStage(), myData.getCurrentUser().getProfilePicture() == null? 
+		myImageButton = new ImageButton(getStage(), myData.getCurrentUser().getProfilePicture() == null? 
 				null: myData.getCurrentUser().getProfilePicture().getPath());
 		Label name = new Label(myData.getCurrentUser().getName());
 		HBox gameStats = makeStats();
 		HBox loadGames = makeCommandBox(new UserLoadCommand(this));
 		HBox options = makeCommandBox(new SignOutCommand(this));
-		VBox toReturn = new VBox(20, image, name, gameStats, loadGames, options);  
+		VBox toReturn = new VBox(20, myImageButton, name, gameStats, loadGames, options);  
 		toReturn.setAlignment(Pos.CENTER);
 		return toReturn;
 	}
