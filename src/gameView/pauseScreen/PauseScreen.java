@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import gameView.AbstractViewer;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.commands.CloseCommand;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
@@ -25,7 +26,7 @@ public class PauseScreen extends AbstractViewer {
 	private VBox myBox;
 	private Slider mySlider;
 	
-	public PauseScreen(UIView view, Stage s, IUserInputData userData) {
+	public PauseScreen(UIViewInterface view, Stage s, IUserInputData userData) {
 		super(view, s, userData);
 		setStageAction();
 		makeScene();
@@ -37,8 +38,6 @@ public class PauseScreen extends AbstractViewer {
 	}
 
 	private void makeScene() {
-//		mySlider = new Slider(0, 1, 1);
-//		setSliderAction();
 		myBox = new VBox(20, sliderBox(), makeButton(new CloseCommand(this)));
 		myBox.setAlignment(Pos.CENTER);
 		myScene = new Scene(myBox, UIView.DEFAULT_SIZE.width/3, UIView.DEFAULT_SIZE.height/5);

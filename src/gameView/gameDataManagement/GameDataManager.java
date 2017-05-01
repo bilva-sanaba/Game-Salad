@@ -21,10 +21,18 @@ public class GameDataManager {
 		
 	}
 	
+	/**
+	 * Returns restricted data
+	 * @return
+	 */
 	public IRestrictedGameData getData() {
 		return myGameData;
 	}
 	
+	/**
+	 * Returns music manager to handle music activation/deactivation
+	 * @return
+	 */
 	public MusicManager getMusic() {
 		return myMusic;
 	}

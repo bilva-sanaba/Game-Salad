@@ -39,16 +39,17 @@ public class ScoreComponent extends UIDisplayComponent {
 		myScore.setPrefSize((UIView.DEFAULT_SIZE.width/20)*3, (UIView.DEFAULT_SIZE.width/10)*0.5);
 		setLabel();
 	}
+
+	
+	@Override
+	protected void changedValue() {
+		setLabel();
+	}
 	
 	private void setLabel() {
 		myScore.getChildren().clear();
 		Label lbl = new Label("Score: " + myPoints.doubleValue());
 		lbl.setFont(new Font("Arial", 30));
 		myScore.getChildren().add(lbl);
-	}
-	
-	@Override
-	protected void changedValue() {
-		setLabel();
 	}
 }
