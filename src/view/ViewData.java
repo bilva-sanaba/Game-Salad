@@ -216,7 +216,6 @@ public class ViewData extends Observable {
 		notifyObservers();
 	}
 	
-	//TODO: Reset level tabs method
 	public void resetLevelTabs(){
 		setChanged();
 		notifyObservers("reset");
