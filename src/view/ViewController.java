@@ -22,7 +22,6 @@ public class ViewController implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-
 		if (arg == null){
 			Entity currentlySelected = myData.getUserSelectedEntity();
 			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel());
@@ -39,7 +38,7 @@ public class ViewController implements Observer {
 			for(int i : myData.getPlacedEntityMap().keySet()){
 				GridView tempGrid = new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS);
 				tempGrid.setEntityIDcount();
-				levelTabs.addNewTab(tempGrid);
+				levelTabs.addNewTab(tempGrid, myData.getMaxLevel());
 			}
 		}
 		
