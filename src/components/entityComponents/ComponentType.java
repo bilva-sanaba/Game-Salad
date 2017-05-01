@@ -41,10 +41,8 @@ public enum ComponentType {
 	InfiniteBlockPattern(),
 	InfiniteBlockAction(),
 	Controllable(),
-	MonsterType(),
 	Orientation(),
+	MonsterType(),
 	Checkpoint(),
-	Null()
-	;
+	Null();
 }
-

@@ -115,7 +115,6 @@ public class ObserverManager {
 			updateImageView(observable);
 		} 
 		else {
-			System.out.println(observable.getID() + "XXXXXXXX");
 			myEntities.put(observable.getID(), null);
 			myWorld.removeEntity(observable.getID());
 		}

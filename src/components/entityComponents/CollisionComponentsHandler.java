@@ -44,7 +44,6 @@ public class CollisionComponentsHandler extends AComponent implements IComponent
 
 	@Override
 	public IComponent newCopy() {
-		// TODO Auto-generated method stub
 		return new CollisionComponentsHandler(sideCollisionMap);
 	}
 }
