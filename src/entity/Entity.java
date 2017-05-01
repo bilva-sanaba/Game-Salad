@@ -156,12 +156,7 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 
 	@Override
 	public boolean hasComponent(ComponentType ct) {
-		for (IComponent myComponent : myComponentMap.keySet()) {
-			if (myComponent.getComponentType() == ct) {
-				return true;
-			}
-		}
-		return false;
+		return this.getComponent(ct)!=null;
 	}
 	
 }

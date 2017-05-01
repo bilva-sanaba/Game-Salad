@@ -23,7 +23,6 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		XMLPlacedParser xp = new XMLPlacedParser();
 		results = xp.getData(fileName);
 	}
-
 	
 	
 	public List<IEntityManager> getIEntityManagers() {
