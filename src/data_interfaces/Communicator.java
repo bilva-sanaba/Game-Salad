@@ -123,6 +123,15 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		return m.get(1).getInfiniteEnum();
 	}
 	
+	public String getMusic() {
+		Map<Integer, LevelEntity> m = results.get(1);
+		return m.get(1).getMusic();
+	}
+	
+	public int getLives () {
+		Map <Integer, LevelEntity> m = results.get(1);
+		return m.get(1).getLives();
+	}
 	
 	
 	
