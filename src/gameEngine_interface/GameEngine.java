@@ -134,8 +134,10 @@ public class GameEngine implements GameEngineInterface {
 		myEntityLoader = new EntityLoader(myEntityManager);
 		
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
+		List<String> listl = new ArrayList<String>();
+		listl.add("");
 
-		myGameData = new GameData(0,c.getLives(),(IRestrictedEntityManager) myEntityManager, 1, lc, new ArrayList<String>(),c.getMusic());
+		myGameData = new GameData(0,3,(IRestrictedEntityManager) myEntityManager, 1, lc, listl,"badboujee.wav");
 		return (IRestrictedGameData) myGameData;
 	}
 	
