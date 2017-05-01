@@ -23,9 +23,7 @@ import data_interfaces.Communicator;
  *
  * @author Jonathan
  * @author Justin
- * @author Jack (<- the one who made everything hash maps instead of maps and refused to change them 
- * because it would require too much work to change other places but who made all of our design worse 
- * as a result, seriously you can thank him for that)
+ * @author Jack
  * @author Josh
  */
 public class ViewData extends Observable {
@@ -71,15 +69,20 @@ public class ViewData extends Observable {
 		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
 	}
 	
-	public void removeLevel(){
-		for(int i = currentLevel; i < maxLevel; i++){
+	public void removeLevel(int level){
+		for(int i = level; i < maxLevel; i++){
 			placedEntityMaps.put(i, placedEntityMaps.get(i+1));
 			levelEntityMap.put(i, levelEntityMap.get(i+1));
 		}
 		placedEntityMaps.remove(placedEntityMaps.size());
 		levelEntityMap.remove(levelEntityMap.size());
-		System.out.println(placedEntityMaps.keySet() + "keyset");
 		maxLevel--;
+	}
+	
+	public void moveLevel(int level, int destination){
+		HashMap<Integer, Entity> swapper = placedEntityMaps.get(destination);
+		placedEntityMaps.put(destination, placedEntityMaps.get(level));
+		placedEntityMaps.put(level, swapper);
 	}
 	
 	public int getMaxLevel(){

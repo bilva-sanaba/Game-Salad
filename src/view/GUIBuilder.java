@@ -71,22 +71,34 @@ public class GUIBuilder {
 		buttons.setPadding(new Insets(10));
 		Button newLevel = utilF.buildButton("newLevelLabel", e-> {
 			myData.addLevel();
-			levelTabs.addNewTab(new GridView(utilF, myData.getMaxLevel(), myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS));
+			levelTabs.addNewTab(new GridView(utilF, myData.getMaxLevel(), myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS), myData.getMaxLevel());
 		});
 		Button deleteLevel = utilF.buildButton("deleteLevelLabel", e -> {
 			if(myData.getCurrentLevel() == 1){
 				//TODO: Error
 			}
 			else{
-				myData.removeLevel();
+				myData.removeLevel(myData.getCurrentLevel());
 				levelTabs.removeTab(myData.getCurrentLevel());
 			}
 		});
 		Button shiftLevelLeft = utilF.buildButton("ShiftLeftLabel", e ->{
-			
+			if(myData.getCurrentLevel() == 1){
+				//TODO: Error
+			}
+			else{
+				myData.moveLevel(myData.getCurrentLevel(), myData.getCurrentLevel() - 1);
+				levelTabs.selectTab(myData.getCurrentLevel() - 1);
+			}
 		});
 		Button shiftLevelRight = utilF.buildButton("ShiftRightLabel", e ->{
-			
+			if(myData.getCurrentLevel() == myData.getMaxLevel()){
+				//TODO: Error
+			}
+			else{
+				myData.moveLevel(myData.getCurrentLevel(), myData.getCurrentLevel() + 1);
+				levelTabs.selectTab(myData.getCurrentLevel() + 1);
+			}
 		});
 		buttons.getChildren().addAll(newLevel, deleteLevel, shiftLevelLeft, shiftLevelRight);
 		myPane.setBottom(buttons);
