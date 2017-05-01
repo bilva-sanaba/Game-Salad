@@ -12,7 +12,9 @@ import javafx.scene.control.TextInputDialog;
 import view.ViewData;
 
 public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent {
-	ViewData myData;
+	private ViewData myData;
+	private final static String FILESAVETITLE = "Saving File";
+	private final static String FILESAVEBODY = "Please choose a name for your game: ";
 
 	public SaveEvent(ViewData data) {
 		myData = data;
@@ -33,8 +35,8 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		
 		
 		TextInputDialog tid = new TextInputDialog(myData.getGameName());
-		tid.setTitle("Saving File");
-		tid.setHeaderText("Please choose a name for your game: ");
+		tid.setTitle(FILESAVETITLE);
+		tid.setHeaderText(FILESAVEBODY);
 		Optional<String> result = tid.showAndWait();
 		try {
 			myData.setGameName(result.get());
