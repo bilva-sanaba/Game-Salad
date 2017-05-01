@@ -1,7 +1,6 @@
 package gameView.commands;
 
 import javafx.stage.Stage;
-import exceptions.InputException;
 import gameView.ICommandView;
 import gameView.tools.GameChooser;
 

@@ -4,7 +4,6 @@ package gameView;
 import java.awt.Dimension;
 import java.sql.Timestamp;
 import java.util.Set;
-
 import data_interfaces.XMLException;
 import entity.SplashData;
 import gameView.endScreen.EndScreen;
@@ -36,8 +35,7 @@ public class UIView implements UIViewInterface {
 	private ControllerInterface myController;
 	private SplashView mySplash;  
 	private GameScreen myGameScene; 
-	private GameDataManager myData;  
-	private WorldAnimator myAnimation;  
+	private GameDataManager myData; 
 	private IUserManager myUserManager; 
 	private IUserInputData myUserInputData; 
 	private String myCurrentGame;  
@@ -51,20 +49,10 @@ public class UIView implements UIViewInterface {
 		myUserInputData = userInput;
 		myUserManager = new UserManager();
 		myController = controller;   
-		myAnimation = new WorldAnimator(this);
+		WorldAnimator myAnimation = new WorldAnimator(this);
 		mySplash = new SplashView(this, s, myUserInputData);
 		myGameScene = new GameScreen(this, myStage, myUserInputData, myAnimation);
 		getSplashScreen();
-	}
-
-	public void getSplashScreen() {
-		setStage(mySplash.getScene());
-	}
-	
-	@Override
-	public void runSpecificSplash() {
-		setStage(mySpecificSplash.getScene());
-		
 	}
 	
 	public void runGame(){
@@ -76,28 +64,19 @@ public class UIView implements UIViewInterface {
 			updateUserStats();
 		}
 		myCurrentGame = file;
-		myData = new GameDataManager(this, myController.loadNewGame(file)); //FOR SPLASH
-		//mySpecificSplash = myController.loadSpecificSplash(myCurrentGame);
+		myData = new GameDataManager(this, myController.loadNewGame(file));
 		mySplashData = myController.getSplashData(myCurrentGame);
 		mySpecificSplash = new SpecificGameSplashView(this, myStage, myUserInputData, mySplashData);
-		
-		//COMMENT OUT TO TEST WITH RUNNER
-		myGameScene.addData(myData); //FOR SPLASH
+		myGameScene.addData(myData);
 		myGameScene.addBackground(mySplashData.getBackgroundFilePath());
-		
-		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
 		runSpecificSplash();
 		
 	}
 	
 	public void authorGame() {
-		myController.makeGame(); //makeGame();
+		myController.makeGame();
 	}
-	
-	public SplashData getSplashData(){
-		return mySplashData;
-	}
-	
+		
 	public void saveGame() {
 		String save = myCurrentGame + new Timestamp(System.currentTimeMillis()).toLocalDateTime();
 		if (myUserManager.getCurrentUser() != null) {
@@ -105,7 +84,6 @@ public class UIView implements UIViewInterface {
 			myUserManager.getCurrentUser().addGame(save);
 			updateUserStats();
 		}
-		System.out.println(save);
 		myController.save(save);
 	}
 	
@@ -114,29 +92,15 @@ public class UIView implements UIViewInterface {
 			updateUserStats();
 			myController.resetCurrentGame();
 		} catch (XMLException e) {
-			//TODO: make exception
 		}
 	}
 	
 	public void wonGame() {
-		String won = "YOU WON!";
-		ending(won);
+		ending("YOU WON!");
 	}
 	
 	public void lostGame() {
-		String lost = "GAME OVER";
-		ending(lost);
-	}
-	
-	private void ending(String end) {
-		AbstractViewer ending = new EndScreen(this, getStage(), myUserInputData, end, myData.getData().getPoints().doubleValue());
-		ending.addBackground(mySplashData.getRestrictedImagePath());
-		setStage(ending.getScene());
-	}
-	
-	private void setStage(Scene s) {
-		myStage.setScene(s);
-		myStage.show();
+		ending("GAME OVER");
 	}
 	
 	public Stage getStage() {
@@ -156,6 +120,26 @@ public class UIView implements UIViewInterface {
 		s.showAndWait();
 	}
 	
+	private void getSplashScreen() {
+		setStage(mySplash.getScene());
+	}
+	
+	private void runSpecificSplash() {
+		setStage(mySpecificSplash.getScene());
+		
+	}
+	
+	private void ending(String end) {
+		AbstractViewer ending = new EndScreen(this, getStage(), myUserInputData, end, myData.getData().getPoints().doubleValue());
+		ending.addBackground(mySplashData.getRestrictedImagePath());
+		setStage(ending.getScene());
+	}
+	
+	private void setStage(Scene s) {
+		myStage.setScene(s);
+		myStage.show();
+	}
+	
 	private void setStageClose() {
 		myStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	          public void handle(WindowEvent we) {
@@ -167,7 +151,6 @@ public class UIView implements UIViewInterface {
 	
 	private void updateUserStats() {
 		try {
-			//myUserManager.getCurrentUser().addPoints(myCurrentGame, new Double(500));
 			myUserManager.getCurrentUser().addPoints(myCurrentGame, myData.getData().getPoints().doubleValue());
 			myUserManager.getCurrentUser().addAchievement(myData.getData().getAchievement());
 		} catch (Exception e) {

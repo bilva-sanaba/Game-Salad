@@ -27,12 +27,22 @@ public class UserDataHandler extends XMLWriter {
 		mySerializer.setClassLoader(loader);
 	}
 
+	/**
+	 * Saves all users using XStream Serializing
+	 * @param fileName - name of file to write to
+	 * @param data - map of all the users to save
+	 */
 	public void saveUsers(String fileName, Map<String, UserData> data ) {
 		String ret;
 		ret = mySerializer.toXML(data);
 		createFile(fileName, ret);
 	}
 	
+	/**
+	 * Loads user data from a specific file
+	 * @param fileName - file to load user data from
+	 * @return a map of usernames to userdata
+	 */
 	public HashMap<String, UserData> loadUsers(String fileName) {
 		HashMap<String, UserData> returnMap;
 		try {

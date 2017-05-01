@@ -12,6 +12,11 @@ public class TableFactory {
 	private Double myWidth;
 	private Double myHeight;
 	
+	/**
+	 * Make a table given the correct width, height
+	 * @param width
+	 * @param height
+	 */
 	public TableFactory(Double width, Double height) {
 		myWidth = width;
 		myHeight = height;

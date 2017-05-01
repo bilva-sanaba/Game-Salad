@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import gameView.AbstractViewer;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.commands.AbstractCommand;
 import gameView.commands.SignOutCommand;
 import gameView.commands.UserLoadCommand;
@@ -38,7 +39,7 @@ public class ProfileScreen extends AbstractViewer {
 	private VBox myBox;
 	private ImageButton myImageButton;
 	
-	public ProfileScreen(UIView view, Stage s, IUserInputData input) {
+	public ProfileScreen(UIViewInterface view, Stage s, IUserInputData input) {
 		super(view, s, input);
 		myData = getUserManager();
 		setStageReaction();
@@ -56,8 +57,7 @@ public class ProfileScreen extends AbstractViewer {
 	        	  try {
 	        		  myData.getCurrentUser().changePicture(((ImageViewContainer) myImageButton.getGraphic()).getPath());
 	        	  } catch (Exception e) {
-	        	  }
-	        	  
+	        	  } 
 	          }
 	      });    
 	}
@@ -66,7 +66,6 @@ public class ProfileScreen extends AbstractViewer {
 		myBox = makeVBox();
 		myScene = new Scene(myBox, WIDTH, HEIGHT);
 		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
-		
 	}
 	
 	private VBox makeVBox() {
