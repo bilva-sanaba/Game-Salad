@@ -44,7 +44,7 @@ public class GridView extends GUIComponent {
 	private int myRow;
 	private int myCol;
 	private int myLevelNumber;
-	double orgSceneX, orgSceneY;
+	double xClickOffset, yClickOffset;
 	double orgTranslateX, orgTranslateY;
 	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
 	private BorderPane myBorderPane;
@@ -136,7 +136,6 @@ public class GridView extends GUIComponent {
 
 	public void drawEntity(Entity entity) {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
-		System.out.println("drawn x: " + entityLocation.getX() + " drawn y: " + entityLocation.getY());
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
 		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity
@@ -148,11 +147,10 @@ public class GridView extends GUIComponent {
 		spriteImage.setFitWidth(width);
 		spriteImage.setX(entityLocation.getX());
 		spriteImage.setY(entityLocation.getY());
+		
 		spriteImage.setOnMousePressed(e -> {
 			if (e.isControlDown() || e.isAltDown()) {
 				selectEntity(entity);
-				orgSceneX = e.getSceneX();
-				orgSceneY = e.getSceneY();
 			}
 			if (rightClick.isShowing()) {
 				rightClick.hide();
@@ -161,15 +159,17 @@ public class GridView extends GUIComponent {
 				selectEntity(entity);
 				rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			}
-			
+			ImageView c = (ImageView) (e.getSource());
+			xClickOffset = e.getX() - c.getX();
+			yClickOffset = e.getY() - c.getY();
 		});
 		spriteImage.setOnMouseDragged(e -> {
 			ImageView c = (ImageView) (e.getSource());
 //			double offsetX = e.getSceneX() - orgSceneX;
 //			double offsetY = e.getSceneY() - orgSceneY;
 			if (e.isControlDown()) {
-				c.setX(e.getX());
-				c.setY(e.getY());
+				c.setX(e.getX() - xClickOffset);
+				c.setY(e.getY() - yClickOffset);
 			}
 //			if (e.isAltDown()) {
 //				ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity
@@ -180,14 +180,7 @@ public class GridView extends GUIComponent {
 		});
 		spriteImage.setOnMouseReleased(e -> {
 			ImageView c = (ImageView) (e.getSource());
-			if (e.isControlDown()) {
-				entity.addComponent(new LocationComponent(e.getX(), e.getY()));
-				System.out.println("lComp added " + e.getX() + " " + e.getY());
-				LocationComponent asdf = (LocationComponent) entity.getComponent(ComponentType.Location);
-				System.out.println("entity location: " + asdf.getX() + " " + asdf.getY());
-			}
 			if (e.isAltDown()) {
-				entity.addComponent(new LocationComponent(e.getX(), e.getY()));
 				entity.addComponent(new ImagePropertiesComponent(c.getFitWidth(), c.getFitHeight()));
 			}
 			entity.addComponent(new LocationComponent(e.getX(), e.getY()));
