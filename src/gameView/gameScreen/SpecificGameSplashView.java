@@ -23,6 +23,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -85,6 +86,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 
 	private void addInstructions() {
 		Label lab = makeLabel(getInstructions(), "instructions");
+		lab.setFont(new Font("Comic Sans", 10));
 		lab.setStyle("-fx-wrap-text: true");
 		myBP.setCenter(lab);
 	}
