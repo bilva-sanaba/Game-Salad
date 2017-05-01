@@ -32,7 +32,6 @@ public class ViewData extends Observable {
 
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
-	//MAKE THESE NOT HASHMAPS JESUS CHRIST
 	private HashMap<Integer, Entity> definedEntityMap;
 	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
 	private HashMap<Integer, LevelEntity> levelEntityMap;
@@ -57,7 +56,7 @@ public class ViewData extends Observable {
 		placedEntityMaps = new HashMap<Integer, HashMap<Integer, Entity>>();
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap = new HashMap<Integer, LevelEntity>();
-		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
+		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
 		mySplashEntity = new SplashData(-2, "The game", "Don't lose", "background1.png");
 		userSelectedEntity = null;
 		gameName = "";
@@ -66,7 +65,7 @@ public class ViewData extends Observable {
 	public void addLevel(int level){
 		currentLevel = level;
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
-		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
+		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
 	}
 	
 	public int getPlacedEntityID(){	
@@ -158,9 +157,9 @@ public class ViewData extends Observable {
 	}
 
 	// fix dependencies
-	public void unplaceEntity(int levelNumber, Entity entity) {
-		placedEntityMaps.get(levelNumber).remove(entity);
-		userGridSelectedEntity = entity;
+	public void unplaceEntity(int level, Entity entity) {
+		placedEntityMaps.get(level).remove(entity);
+		System.out.println("shouldve cut" + entity + "from level" + currentLevel);
 		setChanged();
 		notifyObservers();
 	}
@@ -170,12 +169,13 @@ public class ViewData extends Observable {
 	}
 	
 	// fix dependencies
-	public Entity pasteEntity(int levelNumber, double x, double y) {
+	public Entity pasteEntity(int level, double x, double y) {
 		Entity tempEntity = copiedEntity.clone();
 		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
 		tempLocation.setXY(x, y);
-		placeEntity(levelNumber, tempEntity);
-		userGridSelectedEntity = tempEntity;
+		placeEntity(level, tempEntity);
+		//userGridSelectedEntity = tempEntity;
+		System.out.println("pasted");
 		return tempEntity;
 	}
 	
@@ -228,7 +228,6 @@ public class ViewData extends Observable {
 		notifyObservers();
 	}
 	
-	//TODO: Reset level tabs method
 	public void resetLevelTabs(){
 		setChanged();
 		notifyObservers("reset");

@@ -68,8 +68,8 @@ public class GUIBuilder {
 		myPane.setCenter(levelTabs.buildComponent());
 		Button newLevel = utilF.buildButton("newLevelLabel", e-> {
 			currentLevel++;
-			levelTabs.addNewTab(new GridView(utilF, currentLevel, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS));
 			myData.addLevel(currentLevel);
+			levelTabs.addNewTab(new GridView(utilF, currentLevel, myData, INITIAL_GRID_ROWS, INITIAL_GRID_COLS));
 		});
 		myPane.setBottom(newLevel);
 		myPane.setId("root");

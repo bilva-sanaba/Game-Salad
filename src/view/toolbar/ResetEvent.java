@@ -12,7 +12,7 @@ public class ResetEvent implements ToolBarButtonEvent{
 
 	@Override
 	public void event() {
-		myData.removePlacedEntities();
+		myData.removePlacedEntities(myData.getCurrentLevel());
 	}
 
 }
