@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import gameView.AbstractViewer;
@@ -70,5 +71,10 @@ public class PauseScreen extends AbstractViewer {
 
 	@Override
 	protected void setBackground(String s) {
+	}
+
+	@Override
+	protected Pane getButtonContainer() {
+		return myBox;
 	}
 }

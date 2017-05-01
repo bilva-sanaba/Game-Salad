@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import gameView.AbstractViewer;
@@ -66,6 +67,11 @@ public class EndScreen extends AbstractViewer {
 				+ "-fx-background-repeat: stretch;"
 				+ "-fx-background-position: center center;"
 				+ "-fx-background-size: cover;", s));
+	}
+
+	@Override
+	protected Pane getButtonContainer() {
+		return myBP;
 	}
 
 }

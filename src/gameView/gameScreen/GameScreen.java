@@ -99,6 +99,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
 			});
+		setUserCommand();
 		myBP.setCenter(myPane);   
 	}
 
@@ -140,6 +141,11 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 				+ "-fx-background-repeat: stretch;"
 				+ "-fx-background-position: center center;"
 				+ "-fx-background-size: cover;", background));
+	}
+
+	@Override
+	protected Pane getButtonContainer() {
+		return myTopBox;
 	}
 
 }

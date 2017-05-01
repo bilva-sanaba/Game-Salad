@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -30,6 +31,7 @@ public class SplashView extends AbstractViewer {
 	protected Scene myScene;
 	private BorderPane myPane;
 	private Collection<AbstractCommand> myCommands;
+	private VBox myCommandContainer;
 	
 	
 	public SplashView(UIView view, Stage s, IUserInputData input) {
@@ -56,15 +58,15 @@ public class SplashView extends AbstractViewer {
 		myPane.setId("mainpane");
 		BorderPane.setMargin(lab, new Insets(10, 10, 10, 10));
 		myPane.setCenter(lab);
-		VBox box = new VBox(20);
-		box.setId("mainbox");
-		box.setAlignment(Pos.CENTER);
-		BorderPane.setMargin(box, new Insets(10, 10, 30, 10));
+		myCommandContainer = new VBox(20);
+		myCommandContainer.setId("mainbox");
+		myCommandContainer.setAlignment(Pos.CENTER);
+		BorderPane.setMargin(myCommandContainer, new Insets(10, 10, 30, 10));
 		myCommands.stream().forEach(c -> {  
-			box.getChildren().add(makeButton(c));
+			myCommandContainer.getChildren().add(makeButton(c));
 		});
-		
-		myPane.setBottom(box);
+		setUserCommand();
+		myPane.setBottom(myCommandContainer);
 	}
 	
 	private BorderPane getRoot(){
@@ -79,5 +81,10 @@ public class SplashView extends AbstractViewer {
 				+ "-fx-background-position: center center;"
 				+ "-fx-background-size: cover;", s));
 		
+	}
+
+	@Override
+	protected Pane getButtonContainer() {
+		return myCommandContainer;
 	}
 }

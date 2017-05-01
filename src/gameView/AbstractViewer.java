@@ -1,7 +1,9 @@
 package gameView;
 
 import gameView.commands.AbstractCommand;
+import gameView.commands.LoginCommand;
 import gameView.commands.ProfileCommand;
+import gameView.commands.SignInCommand;
 import gameView.loginScreen.LoginScreen;
 import gameView.profileScreen.ProfileScreen;
 import gameView.tools.ButtonFactory;
@@ -13,9 +15,13 @@ import gameView.userManagement.UserData;
 
 import java.util.Collection;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public abstract class AbstractViewer implements ICommandView {
@@ -24,6 +30,8 @@ public abstract class AbstractViewer implements ICommandView {
 	private ButtonFactory myButtonFactory;
 	private Stage myStage;
 	private IUserInputData myUserInput;
+	private Button myLogIn;
+	private Button myProfile;
 	
 	public AbstractViewer(UIView view, Stage s, IUserInputData userInput) {
 		myStage = s;
@@ -117,5 +125,39 @@ public abstract class AbstractViewer implements ICommandView {
 	public String getInstructions(){
 		return null;
 	}
+	
+	protected void setUserCommand() {
+		myLogIn = makeButton(new LoginCommand(this));
+		myProfile = makeButton(new ProfileCommand(this));
+		setUserBinding();
+		makeUserButton(getView().getUserManager().hasCurrentUser().get());
+	}
+	
+	private void setUserBinding() {
+		getView().getUserManager().hasCurrentUser().addListener(new ChangeListener<Boolean>(){
+	        public void changed(ObservableValue<? extends Boolean> o,Boolean oldVal, 
+	        		Boolean newVal){
+	             makeUserButton(newVal);
+	        }
+	      });
+	}
+	
+	private void makeUserButton(boolean bool) {
+		if (bool) {
+			switchButton(myProfile, myLogIn);
+		} else {
+			switchButton(myLogIn, myProfile);
+		}
+	}
+	
+	private void switchButton(Button toAdd, Button toRemove) {
+		try{
+			getButtonContainer().getChildren().remove(toRemove);
+			getButtonContainer().getChildren().add(toAdd);
+		} catch (Exception e) {
+			getButtonContainer().getChildren().add(toAdd);
+		}
+	}
+	protected abstract Pane getButtonContainer();
 	
 }

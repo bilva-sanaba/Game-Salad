@@ -21,6 +21,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class SpecificGameSplashView extends AbstractViewer {
@@ -31,6 +32,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 	private Scene myScene;
 	private Collection<AbstractCommand> myCommands;
 	private BorderPane myBP;
+	private HBox myButtonContainer;
 	
 	public SpecificGameSplashView(UIView view, Stage s, IUserInputData input, SplashEntity se){
 		super(view, s, input);
@@ -53,15 +55,16 @@ public class SpecificGameSplashView extends AbstractViewer {
 		addBackground(mySplashEntity.getRestrictedImagePath());
 		Label lab = makeLabel(mySplashEntity.getGameTitle(), "gamelabel");
 		BorderPane.setAlignment(lab, Pos.CENTER);
-		HBox hbox = new HBox();
-		hbox.setAlignment(Pos.CENTER);
-		BorderPane.setMargin(hbox, new Insets(10, 10, 30, 10));
+		myButtonContainer = new HBox();
+		myButtonContainer.setAlignment(Pos.CENTER);
+		BorderPane.setMargin(myButtonContainer, new Insets(10, 10, 30, 10));
 		myBP.setTop(lab);
 		myCommands.stream()
 			.forEach(c -> {
-				hbox.getChildren().add(makeButton(c));
+				myButtonContainer.getChildren().add(makeButton(c));
 		});
-		myBP.setBottom(hbox);
+		setUserCommand();
+		myBP.setBottom(myButtonContainer);
 		addInstructions();
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height); 
 		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
@@ -79,5 +82,10 @@ public class SpecificGameSplashView extends AbstractViewer {
 		BackgroundSize size = new BackgroundSize(0,0, true, true, true, true);
 		BackgroundImage image = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size);
 		myBP.setBackground(new Background(image));
+	}
+
+	@Override
+	protected Pane getButtonContainer() {
+		return myButtonContainer;
 	}
 }
