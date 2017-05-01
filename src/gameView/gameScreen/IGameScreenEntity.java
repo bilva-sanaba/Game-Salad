@@ -1,10 +1,7 @@
 package gameView.gameScreen;
 
 import javafx.scene.image.ImageView;
-import entity.restricted.IRestrictedEntityManager;
 import gameView.gameDataManagement.GameDataManager;
-import gamedata.GameData;
-import gamedata.IRestrictedGameData;
 
 public interface IGameScreenEntity {
 

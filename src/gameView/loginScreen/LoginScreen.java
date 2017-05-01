@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import gameView.AbstractViewer;
@@ -130,5 +131,19 @@ public class LoginScreen extends AbstractViewer {
 		if (bool) {
 			getStage().close();
 		}
+	}
+
+	@Override
+	protected void setBackground(String s) {
+		myMain.setStyle(String.format(
+				"-fx-background-image: url(\"%s\");"
+				+ "-fx-background-repeat: stretch;"
+				+ "-fx-background-position: center center;"
+				+ "-fx-background-size: cover;", s));
+	}
+
+	@Override
+	protected Pane getButtonContainer() {
+		return myRight;
 	}
 }

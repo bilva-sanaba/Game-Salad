@@ -3,21 +3,21 @@ package gameView.commands;
 import javafx.stage.Stage;
 import gameView.ICommandView;
 
-public class FacebookPostCommand extends AbstractCommand {
+public class PlayAgainCommand extends AbstractCommand {
 
-	public FacebookPostCommand(ICommandView m) {
+	public PlayAgainCommand(ICommandView m) {
 		super(m);
 	}
 
 	@Override
 	public boolean execute(Stage s) {
-		//POST TO FACEBOOK
+		getView().restart();
 		return false;
 	}
 
 	@Override
 	public String getName() {
-		return "FacebookPost";
+		return "PlayAgain";
 	}
 
 }

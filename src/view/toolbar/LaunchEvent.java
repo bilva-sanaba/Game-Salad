@@ -10,13 +10,14 @@ import data_interfaces.Communicator;
 import data_interfaces.XMLWriter;
 import entity.Entity;
 import javafx.scene.control.TextInputDialog;
+import view.UtilityFactory;
 import view.ViewData;
 
 public class LaunchEvent implements ToolBarButtonEvent {
 
 	ViewData myData;
 
-	public LaunchEvent(ViewData data) {
+	public LaunchEvent(UtilityFactory utilF, ViewData data) {
 		myData = data;
 	}
 

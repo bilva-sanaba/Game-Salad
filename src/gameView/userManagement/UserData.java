@@ -1,30 +1,33 @@
 package gameView.userManagement;
 
 import gameView.tools.ImageViewContainer;
+import gamedata.VoogaImmutableObservableList;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Set;
+
 import javafx.scene.image.Image;
 
 public class UserData {
-
-	public static final List<String> DATA_FIELDS = Arrays.asList("username", "password", "image");
-	
 	
 	private String username;
 	private String password;
 	private String image;
 	private HashMap<String, Double> myGameScores;
-	private Collection<String> myAchievements;
+	private Set<String> myAchievements;
+	private Collection<String> myGames;
 	
 	public UserData(String name, String passwordString, String imageString) {
 		username = name;
 		password = passwordString;
 		myGameScores = new HashMap<String, Double>();
-		myAchievements = new ArrayList<String>();
+		myAchievements = new HashSet<String>();
+		myGames = new ArrayList<String>();
 		if (imageString == null) {
 			image = "";
 		} else {
@@ -42,16 +45,21 @@ public class UserData {
 		}
 	}
 	
-	public void addAchievement(String achieve) {
-		myAchievements.add(achieve);
+	public void addAchievement(VoogaImmutableObservableList<String> achieve) {
+		Iterator<String> it = achieve.iterator();
+		while (it.hasNext()) {
+			myAchievements.add(it.next());
+		}
+		
 	}
 	
-	public Iterator<String> getGames() {
+	public Iterator<String> getGameScores() {
 		return myGameScores.keySet().iterator();
 	}
 	
 	public Iterator<String> getAchievements() {
-		return myAchievements.iterator();
+		return myGameScores.keySet().iterator();
+		//return myAchievements.iterator();
 	}
 	
 	public Double getPointValue(String key) {
@@ -61,8 +69,21 @@ public class UserData {
 	public String getPassword() {
 		return password;
 	}
+	
 	public ImageViewContainer getProfilePicture() {
 		return makeImage(image);
+	}
+	
+	public void changePicture(String newImage) {
+		image = newImage;
+	}
+	
+	public void addGame(String file) {
+		myGames.add(file);
+	}
+	
+	public Collection<String> getGames() {
+		return Collections.unmodifiableCollection(myGames);
 	}
 	
 	private ImageViewContainer makeImage(String s) {

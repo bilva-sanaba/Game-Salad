@@ -1,5 +1,7 @@
 package view.window;
 
-public abstract class Window {
-	public abstract void openWindow();
+public interface Window {
+	
+	public void openWindow();
+	
 }

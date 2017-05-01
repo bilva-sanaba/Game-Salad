@@ -137,7 +137,9 @@ public class GameEngine implements GameEngineInterface {
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
 		List<String> listl = new ArrayList<String>();
 		listl.add("");
-		myGameData = new GameData(0,0,(IRestrictedEntityManager) myEntityManager, 0, lc, listl,"");
+
+		myGameData = new GameData(0,3,(IRestrictedEntityManager) myEntityManager, 1, lc, listl,"badboujee.wav");
+
 		return (IRestrictedGameData) myGameData;
 	}
 	
@@ -165,8 +167,13 @@ public class GameEngine implements GameEngineInterface {
 	}
 	private void updateLevel(IRestrictedGameData restrictedGameData){
 		if (myGameData.getLevel().intValue()!=restrictedGameData.getLevel().intValue()){
-			myEntityLoader.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()));
-			previousEntityManagers.clear();
+			if (restrictedGameData.getLevel().intValue()>(myEntityManagers.size()+1)){
+				GameDataFactory gdf = new GameDataFactory();
+				myGameData.setLevel(-1);
+			}else{
+				myEntityLoader.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()-1));
+				previousEntityManagers.clear();
+			}				
 		}
 	}
 	private void resetStoredStates(){
