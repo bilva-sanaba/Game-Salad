@@ -8,6 +8,8 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.collections.ObservableList;
+import javafx.beans.property.ReadOnlyStringProperty;
+
 
 public interface IRestrictedGameData {
 	public ReadOnlyDoubleProperty getPoints();
@@ -20,7 +22,7 @@ public interface IRestrictedGameData {
 
 	public LocationComponent getMainLocation();
 
-	public String getMusic();
+	public ReadOnlyStringProperty getMusic();
 
 	public VoogaImmutableObservableList<String> getAchievement();
 }
