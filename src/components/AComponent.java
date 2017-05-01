@@ -12,6 +12,7 @@ public abstract class AComponent implements IComponent {
 	
 	@Override
 	public int hashCode(){
+		System.out.println(getComponentType());
 		return getComponentType().toString().hashCode();
 	}
 	
