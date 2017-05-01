@@ -70,7 +70,6 @@ public class TabView extends GUIComponent {
 					this.setGraphic(null);
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
-					System.out.println(entitySprite.getSprite() + " line 44 " + this.getClass());
 					ImageView spriteImage = new ImageView(entitySprite.getSprite());
 					if (item.getComponent(ComponentType.ImageProperties) != null) {
 						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item
@@ -122,7 +121,7 @@ public class TabView extends GUIComponent {
 	
 	public void addPresetEntities() {
 		System.out.println("this is called");
-		//loadPreset(PRESETFILE);
+		loadPreset(PRESETFILE);
 	}
 
 	@Override
@@ -191,6 +190,7 @@ public class TabView extends GUIComponent {
 	}
 	
 	private void loadPreset(String fileName) {
+<<<<<<< HEAD
 //		XMLDefinedParser xdp = new XMLDefinedParser();
 //		List<Entity> l = xdp.getData(fileName);
 //		
@@ -198,6 +198,15 @@ public class TabView extends GUIComponent {
 //			System.out.println("This is defined");
 //			myData.defineEntity(e);
 //		}
+=======
+		XMLDefinedParser xdp = new XMLDefinedParser();
+		List <Entity> l = xdp.getData(fileName);
+		
+		for (Entity e: l) {
+			e.setID(myData.getDefinedEntityID());
+			myData.defineEntity(e);
+		}
+>>>>>>> 2365c482b6229d7f3846e3bd224c3cd7c6621318
 	}
 
 }

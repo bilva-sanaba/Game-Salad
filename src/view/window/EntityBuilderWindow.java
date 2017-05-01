@@ -90,7 +90,7 @@ public class EntityBuilderWindow implements Window {
 		Node okayButton = util.buildButton("OkayLabel", e -> {
 			AbstractBlock newBlock = new AbstractBlock(1);
 			System.out.println(newBlock.getClass() + " -> " + entityList[0]);
-			Entity tempEntity = (Entity) Reflection.createInstance(entityList[0], myData.getEntityID());
+			Entity tempEntity = (Entity) Reflection.createInstance(entityList[0], myData.getDefinedEntityID());
 			System.out.println(myImageName + " line 98 " + this.getClass());
 			tempEntity.addComponent(new SpriteComponent(myImageName));
 			myStage.close();

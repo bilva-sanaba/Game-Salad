@@ -165,20 +165,12 @@ public class GridView extends GUIComponent {
 		});
 		spriteImage.setOnMouseDragged(e -> {
 			ImageView c = (ImageView) (e.getSource());
+//			double offsetX = e.getSceneX() - orgSceneX;
+//			double offsetY = e.getSceneY() - orgSceneY;
 			if (e.isControlDown()) {
 				c.setX(e.getX());
 				c.setY(e.getY());
 			}
-//			double offsetX = e.getSceneX() - orgSceneX;
-//			double offsetY = e.getSceneY() - orgSceneY;
-//			
-//			if (e.isControlDown()) {
-//				c.setTranslateX(c.getTranslateX() + offsetX);
-//				c.setTranslateY(c.getTranslateY() + offsetY);
-//
-//				orgSceneX = e.getSceneX();
-//				orgSceneY = e.getSceneY();
-//			}
 //			if (e.isAltDown()) {
 //				ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity
 //						.getComponent(ComponentType.ImageProperties);
