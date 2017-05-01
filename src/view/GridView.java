@@ -191,7 +191,7 @@ public class GridView extends GUIComponent {
 				// Change 10 to static MIN_ENTITY_WIDTH/HEIGHT
 				c.setFitHeight(Math.max(imageWidth + offsetY, 10));
 				c.setFitWidth(Math.max(imageHeight + offsetX, 10));
-				entity.addComponent(new ImagePropertiesComponent(c.getFitWidth(), c.getFitHeight()));
+				entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
 			}
 		});
 		spriteImage.setOnMouseReleased(e -> {
