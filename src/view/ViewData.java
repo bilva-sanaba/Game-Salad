@@ -56,7 +56,7 @@ public class ViewData extends Observable {
 		placedEntityMaps = new HashMap<Integer, HashMap<Integer, Entity>>();
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap = new HashMap<Integer, LevelEntity>();
-		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
+		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
 		mySplashEntity = new SplashData(-2, "The game", "Don't lose", "background1.png");
 		userSelectedEntity = null;
 		gameName = "";
@@ -65,7 +65,7 @@ public class ViewData extends Observable {
 	public void addLevel(int level){
 		currentLevel = level;
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
-		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
+		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
 	}
 	
 	public int getEntityID(){
