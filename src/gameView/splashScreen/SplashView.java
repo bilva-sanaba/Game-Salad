@@ -1,21 +1,15 @@
 package gameView.splashScreen;
 
 import java.util.Collection;
-
-import entity.SplashData;
-import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import gameView.AbstractViewer;
-import gameView.ICommandView;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
 import gameView.tools.ResourceRetriever;
@@ -25,11 +19,11 @@ public class SplashView extends AbstractViewer {
 
 	private static final String myName = SplashView.class.getSimpleName();
 	private static final String SPLASH_LABEL = "RainDrop Salad";
-	private final String NEWLINE = "\n";
 	
 	protected Scene myScene;
 	private BorderPane myPane;
 	private Collection<AbstractCommand> myCommands;
+	private VBox myCommandContainer;
 	
 	
 	public SplashView(UIView view, Stage s, IUserInputData input) {
@@ -56,18 +50,29 @@ public class SplashView extends AbstractViewer {
 		myPane.setId("mainpane");
 		BorderPane.setMargin(lab, new Insets(10, 10, 10, 10));
 		myPane.setCenter(lab);
-		VBox box = new VBox(20);
-		box.setId("mainbox");
-		box.setAlignment(Pos.CENTER);
-		BorderPane.setMargin(box, new Insets(10, 10, 30, 10));
+		myCommandContainer = new VBox(20);
+		myCommandContainer.setId("mainbox");
+		myCommandContainer.setAlignment(Pos.CENTER);
+		BorderPane.setMargin(myCommandContainer, new Insets(10, 10, 30, 10));
 		myCommands.stream().forEach(c -> {  
-			box.getChildren().add(makeButton(c));
+			myCommandContainer.getChildren().add(makeButton(c));
 		});
-		
-		myPane.setBottom(box);
+		setUserCommand();
+		myPane.setBottom(myCommandContainer);
 	}
-	
-	private BorderPane getRoot(){
-		return myPane;
+
+	@Override
+	protected void setBackground(String s) {
+		myPane.getCenter().setStyle(String.format(
+				"-fx-background-image: url(\"%s\");"
+				+ "-fx-background-repeat: stretch;"
+				+ "-fx-background-position: center center;"
+				+ "-fx-background-size: cover;", s));
+		
+	}
+
+	@Override
+	protected Pane getButtonContainer() {
+		return myCommandContainer;
 	}
 }

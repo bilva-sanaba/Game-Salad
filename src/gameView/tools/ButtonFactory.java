@@ -1,10 +1,5 @@
 package gameView.tools;
 
-import java.util.ResourceBundle;
-
-import javax.imageio.ImageIO;
-
-import gameView.UIView;
 import gameView.commands.AbstractCommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,16 +10,12 @@ import view.UtilityFactory;
 public class ButtonFactory extends UtilityFactory {
 
 	private Stage myStage;
-	private ResourceBundle myResources;
 	private String myFile;
 
 	public ButtonFactory(String file, Stage s) {
 		super(file);
 		myStage = s;
 		myFile = file;
-		if (myFile != null) {
-			myResources = ResourceBundle.getBundle(UIView.DEFAULT_LOCATION + file);
-		}
 	}
 
 	/**

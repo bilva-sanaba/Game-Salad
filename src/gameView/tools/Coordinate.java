@@ -1,6 +1,5 @@
 package gameView.tools;
 
-import components.entityComponents.LocationComponent;
 import components.entityComponents.XYComponent;
 
 public class Coordinate {

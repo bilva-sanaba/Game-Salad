@@ -1,7 +1,7 @@
 package gameView.tools;
 
 import gameView.displayComponents.UIDisplayComponent;
-import gameView.gameScreen.GameScreen;
+import gameView.gameScreen.IGameScreenDisplays;
 import gamedata.IRestrictedGameData;
 
 import java.util.Collection;
@@ -20,12 +20,12 @@ public class DisplayManager implements IDisplayManager {
 	
 	private HashMap<String, UIDisplayComponent> myAllDisplays;
 	private HashMap<String, UIDisplayComponent> myActiveDisplays;
-	private GameScreen myScreen;
+	private IGameScreenDisplays myScreen;
 	private ReadOnlyDoubleProperty myWidthBound;
 	private ReadOnlyDoubleProperty myHeightBound;
 	private IRestrictedGameData myGameData;
 	
-	public DisplayManager(GameScreen screen, String filePath, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, 
+	public DisplayManager(IGameScreenDisplays screen, String filePath, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, 
 			IRestrictedGameData gameData) {
 		myGameData = gameData;
 		myScreen = screen;
@@ -89,6 +89,7 @@ public class DisplayManager implements IDisplayManager {
 		      public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
 		        myAllDisplays.values().stream()
 		        	.forEach(c -> updateX(c, (Double) newVal));
+		        System.out.println("updatedX");
 		      }
 		    });
 		myHeightBound.addListener(new ChangeListener<Number>() {
@@ -96,6 +97,7 @@ public class DisplayManager implements IDisplayManager {
 		      public void changed(ObservableValue<? extends Number> o, Number oldVal, Number newVal) {
 		    	  myAllDisplays.values().stream()
 		        	.forEach(c -> updateY(c, (Double) newVal));
+		    	  System.out.println("updatedY");
 		      }
 		    });
 	}

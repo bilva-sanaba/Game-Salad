@@ -4,8 +4,6 @@ import java.util.Collection;
 
 import controller.VoogaAlert;
 import controller.WorldAnimator;
-import gameEngine_interface.GameEngine;
-import gameEngine_interface.RunnerTest;
 import gameView.AbstractViewer;
 import gameView.UIView;
 import gameView.commands.AbstractCommand;
@@ -14,16 +12,12 @@ import gameView.gameDataManagement.GameDataManager;
 import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
-import gamedata.GameData;
-import gamedata.IRestrictedGameData;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameScreen extends AbstractViewer implements IGameScreenDisplays, IGameScreenEntity {
@@ -33,15 +27,13 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private BorderPane myBP;
 	private GameDataManager myData;
 	private HBox myTopBox;
-	private VBox myLeftBox;
-	private VBox myRightBox;
 	private StackPane myPane;
 	private WorldAnimator myAnimation;
 	private DisplayManager myDisplays;
-	private Collection<AbstractCommand> myCommands;
-	private VoogaAlert myAlert;
+	private Collection<AbstractCommand> myCommands;  
+	private VoogaAlert myAlert;   
 	private final String VOOGAISSUE = "Vooga Issue";
-
+      
 	public GameScreen(UIView view, Stage s, IUserInputData input, WorldAnimator animation) {
 		super(view, s, input);
 		myCommands = getCommands(myName);
@@ -61,16 +53,14 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	public void addData(GameDataManager data) {
 		myData = data;
 		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
-				myPane.widthProperty(), myPane.heightProperty(), myData.getData());
+				myScene.widthProperty(), myScene.heightProperty(), myData.getData());
 
 		try {
 			myAnimation.start(myData.getData(), this);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			myAlert = new VoogaAlert(VOOGAISSUE, e.getMessage());
 			myAlert.showAlert();
 		}
-		//myManager = new ImageManager(myData);
 	}
 
 	public void runGame() {
@@ -86,14 +76,10 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private void initializeBoxes() {
 		myTopBox = setHBox("top", UIView.DEFAULT_SIZE.width);
 		myPane = new StackPane();
-		// myBottomBox = setHBox("bottom", UIView.DEFAULT_SIZE.width, 100);
-		// myLeftBox = setSides("left", 100, UIView.DEFAULT_SIZE.height);
-		// myRightBox = setSides("right", 100, UIView.DEFAULT_SIZE.height);
 	}
 
 	private void setSize(Pane box, String id, double width) {
 		box.setId(id);
-		//box.setPrefSize(width, 200);
 		box.setPrefWidth(width);
 	}
 
@@ -103,29 +89,22 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		return box;
 	}
 
-	private VBox setSides(String id, double width, double height) {
-		VBox box = new VBox(8);
-		setSize(box, id, width);
-		return box;
-	}
-
 	private void buildMainScene() {
-		myBP = new BorderPane(null, myTopBox, myRightBox, null,
-				myLeftBox);
+		myBP = new BorderPane(null, myTopBox, null, null,
+				null);
 		myBP.setId("main");
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
-		myCommands.stream()
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName)); 
+		myCommands.stream()  
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
 			});
-		myBP.setCenter(myPane);
-		//myAnimation.setKeys(myScene);
+		setUserCommand();
+		myBP.setCenter(myPane);   
 	}
 
 	@Override
 	public DisplayManager getComponents() {
-		System.out.println("GAMESCREEN");
 		return myDisplays; 
 	}
 	
@@ -154,6 +133,19 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	@Override
 	public void removeEntity(ImageView remove) {
 		myPane.getChildren().remove(remove);
+	}
+	
+	public void setBackground(String background){
+		myBP.getCenter().setStyle(String.format(
+				"-fx-background-image: url(\"%s\");"
+				+ "-fx-background-repeat: stretch;"
+				+ "-fx-background-position: center center;"
+				+ "-fx-background-size: cover;", background));
+	}
+
+	@Override
+	protected Pane getButtonContainer() {
+		return myTopBox;
 	}
 
 }

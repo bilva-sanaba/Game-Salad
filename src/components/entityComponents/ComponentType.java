@@ -43,5 +43,6 @@ public enum ComponentType {
 	Controllable(),
 	Orientation(),
 	Checkpoint(),
+	MonsterType(),
 	Null();
 }

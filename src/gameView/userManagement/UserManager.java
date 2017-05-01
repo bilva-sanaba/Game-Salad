@@ -1,14 +1,19 @@
 package gameView.userManagement;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import gameView.tools.FrontEndException;
 
 public class UserManager implements IUserManager {
 
 	private UserData myCurrentUser;
+	private BooleanProperty myHasUser;
 	private UserDatabase myDatabase;
 	
 	public UserManager() {
 		myDatabase = new UserDatabase();
+		myHasUser = new SimpleBooleanProperty(false);
 	}
 	
 	@Override
@@ -19,16 +24,12 @@ public class UserManager implements IUserManager {
 	@Override
 	public boolean addUser(UserData data) {
 		UserData currUser = myDatabase.addNewUser(data);
-		System.out.println("NEW USER ADDED IN USER MANAGER");
-		System.out.println(data.getName());
 		return nullCheck(currUser, "ALREADY A USER");
 	}
 
 	@Override
 	public boolean selectUser(UserData data) {
 		UserData currentUser = myDatabase.getUser(data);
-		System.out.println("USER SELECTED IN USER MANAGER");
-		System.out.println(data.getName());
 		return nullCheck(currentUser, "INCORRECT USERNAME/PASSWORD COMBINATION");
 	}
 
@@ -39,7 +40,6 @@ public class UserManager implements IUserManager {
 		} else {
 			return selectUser(data);
 		}
-		
 	}
 	
 	@Override
@@ -50,6 +50,11 @@ public class UserManager implements IUserManager {
 	@Override
 	public void signOut() {
 		myCurrentUser = null;
+		myHasUser.set(false);
+	}
+	
+	public ReadOnlyBooleanProperty hasCurrentUser() {
+		return myHasUser;
 	}
 	
 	private boolean nullCheck(UserData data, String message) {
@@ -57,6 +62,7 @@ public class UserManager implements IUserManager {
 			throw new FrontEndException(message);
 		} else {
 			myCurrentUser = data;
+			myHasUser.set(true);
 			return true;
 		}
 	}

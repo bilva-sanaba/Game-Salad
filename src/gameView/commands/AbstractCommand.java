@@ -3,7 +3,6 @@ package gameView.commands;
 import javafx.stage.Stage;
 import exceptions.InputException;
 import gameView.ICommandView;
-import gameView.UIView;
 
 public abstract class AbstractCommand implements ICommand {
 
