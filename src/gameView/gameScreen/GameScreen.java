@@ -58,7 +58,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		try {
 			myAnimation.start(getGameData().getData(), this);
 		} catch (ClassNotFoundException e) {
-			myAlert = new VoogaAlert(VOOGAISSUE, e.getMessage());
+			myAlert = new VoogaAlert(e.getMessage());
 			myAlert.showAlert();
 		}
 	}
@@ -117,6 +117,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 			});
 		setUserCommand();
 		myBP.setCenter(myPane);   
+
 	}
 	
 	/**

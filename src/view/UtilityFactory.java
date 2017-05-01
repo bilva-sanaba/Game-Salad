@@ -81,7 +81,7 @@ public class UtilityFactory {
         } else {
             result.setText(label);
         }
-        EventFactory evfac = new EventFactory();
+        EventFactory evfac = new EventFactory(this);
         result.setOnAction(e -> {
 			try {
 				evfac.getEvent(eventname, data).event();
@@ -146,7 +146,7 @@ public class UtilityFactory {
 	private MenuItem buildMenuItem(String property, String eventname, ViewData data, double x, double y){
 		MenuItem menuItem = new MenuItem();
         menuItem.setText(property);
-        EventFactory evfac = new EventFactory();
+        EventFactory evfac = new EventFactory(this);
         menuItem.setOnAction(e -> {
 			try {
 				evfac.getRightClickEvent(eventname, data, x, y).execute();

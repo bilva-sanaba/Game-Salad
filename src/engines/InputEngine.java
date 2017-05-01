@@ -62,6 +62,7 @@ public class InputEngine extends AbstractEngine {
 							((IRestrictedEntity) e).changed(e);
 						}
 					}
+					System.out.println("CHECK: " + rgd.getAchievement().get(0));
 //					if (ic.getGroovyMap().containsKey(key)){
 //						try {
 //							vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
@@ -76,6 +77,7 @@ public class InputEngine extends AbstractEngine {
 				}
 			}
 		}
+		
 		return rgd;	
 	}
 }

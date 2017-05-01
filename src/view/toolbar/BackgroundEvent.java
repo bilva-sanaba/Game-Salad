@@ -3,13 +3,14 @@ package view.toolbar;
 import java.io.File;
 
 import view.ImageChooser;
+import view.UtilityFactory;
 import view.ViewData;
 
 public class BackgroundEvent implements ToolBarButtonEvent {
 	
 	private ViewData myData;
 	
-	public BackgroundEvent(ViewData myD) {
+	public BackgroundEvent(UtilityFactory utilF, ViewData myD) {
 		myData = myD;
 	}
 
@@ -21,5 +22,4 @@ public class BackgroundEvent implements ToolBarButtonEvent {
 		myData.getLevelEntity().setBackgroundFilePath(filePath);
 		myData.refresh();
 	}
-
 }

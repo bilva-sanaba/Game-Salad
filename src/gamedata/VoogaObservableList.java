@@ -61,6 +61,7 @@ public class VoogaObservableList<E> implements ObservableList<E>, VoogaImmutable
 	@Override
 	public E get(int index) {
 		// TODO Auto-generated method stub
+		System.out.println("INDEX: " + index);
 		return myList.get(index);
 	}
 

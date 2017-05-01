@@ -23,9 +23,7 @@ import data_interfaces.Communicator;
  *
  * @author Jonathan
  * @author Justin
- * @author Jack (<- the one who made everything hash maps instead of maps and refused to change them 
- * because it would require too much work to change other places but who made all of our design worse 
- * as a result, seriously you can thank him for that)
+ * @author Jack
  * @author Josh
  */
 public class ViewData extends Observable {
@@ -41,6 +39,7 @@ public class ViewData extends Observable {
 	private Entity copiedEntity;
 	private String gameName;
 	private int currentLevel;
+	private int maxLevel;
 	private Boolean saved = true;
 //TODO: implement the saved boolean to track whether the current state is saved
 	private int initialRows;
@@ -48,6 +47,7 @@ public class ViewData extends Observable {
 
 	public ViewData(int initialRowsIn, int initialColsIn) {
 		currentLevel = 1;
+		maxLevel = 1;
 		initialRows = initialRowsIn;
 		initialCols = initialColsIn;
 		undoStack = new Stack<RightClickEvent>();
@@ -62,15 +62,35 @@ public class ViewData extends Observable {
 		gameName = "";
 	}
 	
-	public void addLevel(int level){
-		currentLevel = level;
+	public void addLevel(){
+		maxLevel++;
+		currentLevel = maxLevel;
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
 	}
 	
+	public void removeLevel(int level){
+		for(int i = level; i < maxLevel; i++){
+			placedEntityMaps.put(i, placedEntityMaps.get(i+1));
+			levelEntityMap.put(i, levelEntityMap.get(i+1));
+		}
+		placedEntityMaps.remove(placedEntityMaps.size());
+		levelEntityMap.remove(levelEntityMap.size());
+		maxLevel--;
+	}
+	
+	public void moveLevel(int level, int destination){
+		HashMap<Integer, Entity> swapper = placedEntityMaps.get(destination);
+		placedEntityMaps.put(destination, placedEntityMaps.get(level));
+		placedEntityMaps.put(level, swapper);
+	}
+	
+	public int getMaxLevel(){
+		return maxLevel;
+	}
+	
 	public int getPlacedEntityID(){	
 		return findMapMax(placedEntityMaps.get(currentLevel)) + 1;
-				
 	}
 	
 	public int getDefinedEntityID() {
@@ -222,8 +242,8 @@ public class ViewData extends Observable {
 	}
 	
 	// fix dependencies
-	public void removePlacedEntities(int levelNumber) {
-		placedEntityMaps.get(levelNumber).clear();
+	public void removePlacedEntities() {
+		placedEntityMaps.get(currentLevel).clear();
 		setChanged();
 		notifyObservers();
 	}

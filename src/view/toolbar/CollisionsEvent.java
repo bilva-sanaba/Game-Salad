@@ -1,11 +1,12 @@
 package view.toolbar;
 
+import view.UtilityFactory;
 import view.ViewData;
 
 public class CollisionsEvent implements ToolBarButtonEvent {
 	ViewData myData;
 
-	public CollisionsEvent(ViewData data) {
+	public CollisionsEvent(UtilityFactory utilF, ViewData data) {
 		myData = data;
 	}
 
@@ -14,5 +15,4 @@ public class CollisionsEvent implements ToolBarButtonEvent {
 		// TODO Auto-generated method stub
 
 	}
-
 }
