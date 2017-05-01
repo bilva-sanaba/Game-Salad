@@ -37,7 +37,6 @@ public class ViewController implements Observer {
 		else if(arg.equals("reset")){
 			levelTabs.clearTabs();
 			for(int i : myData.getPlacedEntityMap().keySet()){
-				System.out.println("making "+ i + " level tab");
 				GridView tempGrid = new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS);
 				tempGrid.setEntityIDcount();
 				levelTabs.addNewTab(tempGrid);

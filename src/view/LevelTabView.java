@@ -10,18 +10,16 @@ import javafx.scene.layout.Region;
 public class LevelTabView extends GUIComponent{
 	private HashMap<Integer, LevelTab> tabsList;
 	private TabPane myTabs;
-	private int currentLevel;
 	private ViewData myData;
 	
 	public LevelTabView(GridView myGrid, ViewData myDataIn) {
 		myData = myDataIn;
-		currentLevel = 1;
 		tabsList = new HashMap<Integer, LevelTab>();
 		myTabs = new TabPane();
 		myTabs.getSelectionModel().selectedItemProperty().addListener((obs,oldTab,newTab)->{
             String temp = newTab.getText();
             myData.setCurrentLevel(Integer.parseInt(temp.substring(temp.length()-1)));
-            System.out.println("switched tabs");
+            System.out.println("switched tabs to" + temp + "and the highest level is" + myData.getMaxLevel());
         });
 		addNewTab(myGrid);
 	}
@@ -29,7 +27,6 @@ public class LevelTabView extends GUIComponent{
 	public void clearTabs(){
 		myTabs.getTabs().clear();
 		tabsList.clear();
-		currentLevel = 1;
 	}
 	
 	public HashMap<Integer,LevelTab> getTabsList(){
@@ -41,11 +38,23 @@ public class LevelTabView extends GUIComponent{
 	}
 	
 	public void addNewTab(GridView myGrid) {
-		LevelTab tab1 = new LevelTab(myGrid, currentLevel);
-		tabsList.put(currentLevel,tab1);
-		currentLevel++;
+		LevelTab tab1 = new LevelTab(myGrid, myData.getMaxLevel());
+		tabsList.put(myData.getMaxLevel(),tab1);
 		myTabs.getTabs().add(tab1);
 		myTabs.getSelectionModel().select(tab1);
+	}
+	
+	public void removeTab(int level){
+		LevelTab tab = tabsList.get(level);
+		for(int i = level; i < tabsList.size(); i++){
+			tabsList.put(i, tabsList.get(i+1));
+			tabsList.get(i).setLevelNumber(i);
+		}
+		myTabs.getTabs().remove(tab);
+		tabsList.remove(tabsList.size());
+		myTabs.getSelectionModel().select(level-1);
+		System.out.println("switching to tab" + (level-1));
+		//myData.setCurrentLevel(level-1);
 	}
 
 	@Override

@@ -4,6 +4,15 @@
 	-fx-control-inner-background: rgb(80, 80, 80);
 }
 
+.tab-pane .tab
+{
+    -fx-background-color: gray;
+}
+.tab-pane .tab:selected
+{
+    -fx-background-color: rgb(80,80,80);
+}
+
 .text {
 	-fx-font-family: arial;
 	-fx-font-size: 16;
@@ -60,7 +69,6 @@
 	-fx-background-color: linear-gradient(#2A5058, #61a2b1)
 }
 
-/**** Scrollbar ****/
 .scroll-bar { 
     -fx-background-color: transparent;
 }
