@@ -163,6 +163,7 @@ public class ViewData extends Observable {
 		tempLocation.setXY(x, y);
 		placeEntity(level, tempEntity);
 		//userGridSelectedEntity = tempEntity;
+		System.out.println("pasted");
 		return tempEntity;
 	}
 	

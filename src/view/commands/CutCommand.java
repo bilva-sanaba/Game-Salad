@@ -20,7 +20,7 @@ private int savedLevel;
 		myEntity = myData.getUserGridSelectedEntity();
 		savedLevel = myData.getCurrentLevel();
 		myData.unplaceEntity(savedLevel, myEntity);
-		myData.setUserSelectedEntity(null);
+		myData.setUserGridSelectedEntity(null);
 		myData.addEvent(this);
 	}
 
