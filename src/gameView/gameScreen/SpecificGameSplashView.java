@@ -85,8 +85,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 	}
 
 	private void addInstructions() {
-		Label lab = makeLabel(getInstructions(), "instructions");
-		lab.setFont(new Font("Comic Sans", 2));
+		Label lab = makeLabel(getInstructions(), "instructionslabel");
 		lab.setStyle("-fx-wrap-text: true");
 		myBP.setCenter(lab);
 	}
