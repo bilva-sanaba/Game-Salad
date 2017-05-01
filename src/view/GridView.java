@@ -17,16 +17,24 @@ import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import view.commands.RightClickMenu;
+import view.window.EntityConfigurationWindow;
+
 
 /**
  * @author Jonathan Rub
@@ -45,7 +53,7 @@ public class GridView extends GUIComponent {
 	private int myCol;
 	private int myLevelNumber;
 	double xClickOffset, yClickOffset;
-	double orgTranslateX, orgTranslateY;
+	double imageWidth, imageHeight;
 	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
 	private BorderPane myBorderPane;
 
@@ -75,9 +83,12 @@ public class GridView extends GUIComponent {
 		myBorderPane.setCenter(myScroll);
 	}
 	
-	public void setEntityIDcount(int in){
-		j = 1000 + in;
-		System.out.println(j + "is the number of entities");
+	public void setLevelNumber(int i) {
+		myLevelNumber = i;
+	}
+	
+	public void setEntityIDcount() {
+		j += 10000;
 	}
 	
 	private Label buildMouseCords(){
@@ -147,7 +158,8 @@ public class GridView extends GUIComponent {
 		spriteImage.setFitWidth(width);
 		spriteImage.setX(entityLocation.getX());
 		spriteImage.setY(entityLocation.getY());
-		
+		ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity
+				.getComponent(ComponentType.ImageProperties);
 		spriteImage.setOnMousePressed(e -> {
 			if (e.isControlDown() || e.isAltDown()) {
 				selectEntity(entity);
@@ -162,28 +174,27 @@ public class GridView extends GUIComponent {
 			ImageView c = (ImageView) (e.getSource());
 			xClickOffset = e.getX() - c.getX();
 			yClickOffset = e.getY() - c.getY();
+			
+			imageWidth = imageProp.getWidth();
+			imageHeight = imageProp.getHeight();
 		});
 		spriteImage.setOnMouseDragged(e -> {
 			ImageView c = (ImageView) (e.getSource());
-//			double offsetX = e.getSceneX() - orgSceneX;
-//			double offsetY = e.getSceneY() - orgSceneY;
+			double offsetX = e.getX() - c.getX() - xClickOffset;
+			double offsetY = e.getY() - c.getY() - yClickOffset;
 			if (e.isControlDown()) {
 				c.setX(e.getX() - xClickOffset);
 				c.setY(e.getY() - yClickOffset);
+				entity.addComponent(new LocationComponent(e.getX() - xClickOffset, e.getY() - yClickOffset));
 			}
-//			if (e.isAltDown()) {
-//				ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity
-//						.getComponent(ComponentType.ImageProperties);
-//				c.setFitHeight(imageProp.getWidth() + offsetY);
-//				c.setFitWidth(imageProp.getHeight() + offsetX);
-//			}
-		});
-		spriteImage.setOnMouseReleased(e -> {
-			ImageView c = (ImageView) (e.getSource());
 			if (e.isAltDown()) {
+				// Change 10 to static MIN_ENTITY_WIDTH/HEIGHT
+				c.setFitHeight(Math.max(imageWidth + offsetY, 10));
+				c.setFitWidth(Math.max(imageHeight + offsetX, 10));
 				entity.addComponent(new ImagePropertiesComponent(c.getFitWidth(), c.getFitHeight()));
 			}
-			entity.addComponent(new LocationComponent(e.getX(), e.getY()));
+		});
+		spriteImage.setOnMouseReleased(e -> {
 			unselectEntity(entity);
 		});
 		placedImages.put(entity, spriteImage);
