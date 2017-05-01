@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.util.Set;
 
 import data_interfaces.XMLException;
+import entity.SplashData;
+import gameView.gameDataManagement.GameDataManager;
 import gameView.gameScreen.GameScreen;
 import gameView.gameScreen.SpecificGameSplashView;
 
@@ -36,8 +38,10 @@ public class UIView implements UIViewInterface {
 	private Stage myStage;
 	private ControllerInterface myController;
 	private SplashView mySplash;
+	private SpecificGameSplashView mySpecificSplash;
+	private SplashData mySplashData;
 	private GameScreen myGameScene;
-	private IRestrictedGameData myData; 
+	private GameDataManager myData; 
 	private WorldAnimator myAnimation;
 	private IUserManager myUserManager;
 	private IUserInputData myUserInputData; 
@@ -65,9 +69,13 @@ public class UIView implements UIViewInterface {
 	}
 	
 	@Override
-	public void runGame() {
-		setStage(myGameScene.getScene());//myGameScene
+	public void runSpecificSplash() {
+		setStage(mySpecificSplash.getScene());//myGameScene
 		
+	}
+	
+	public void runGame(){
+		setStage(myGameScene.getScene());
 	}
 	
 	public void loadGame(String file) {
@@ -75,13 +83,17 @@ public class UIView implements UIViewInterface {
 			savePoints();
 		}
 		myCurrentGame = file;
-		myData = myController.loadNewGame(file);
+		
+		myData = new GameDataManager(myController.loadNewGame(file)); //FOR SPLASH
+		//mySpecificSplash = myController.loadSpecificSplash(myCurrentGame);
+		mySplashData = myController.getSplashData(myCurrentGame);
+		mySpecificSplash = new SpecificGameSplashView(this, myStage, myUserInputData, mySplashData);
 		
 		//COMMENT OUT TO TEST WITH RUNNER
-		myGameScene.addData(myData);
+		myGameScene.addData(myData); //FOR SPLASH
 		
 		//TODO COMMENT OUT TO USE SPECIFIC GAME SPLASH
-		runGame();
+		runSpecificSplash();
 		
 		//TODO UNCOMMENT WHEN YOU WANT TO USE THE SPECIFIC GAME SPLASHSCREEN
 		//setStage(new SpecificGameSplashView(this, getStage(), myUserInputData, myController.getEngine().getSplashEntity()).getScene());
@@ -89,12 +101,16 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void authorGame() {
-		myController.makeGame();
+		myController.makeGame(); //makeGame();
+	}
+	
+	public SplashData getSplashData(){
+		return mySplashData;
 	}
 	
 	public void saveGame() {
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		myController.save(timestamp.toString());
+//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		myController.save(""+System.currentTimeMillis());
 	}
 	
 	public void restart() {
@@ -114,10 +130,10 @@ public class UIView implements UIViewInterface {
 		return myStage;
 	}
 	
-	public void addData(GameData data) {
-		myData = data;
-		myGameScene.addData(data);
-	}
+//	public void addData(GameData data) {
+//		myData = data;
+//		myGameScene.addData(data);
+//	}
 	
 	public void step(Set<KeyCode> keysPressed) {
 		myController.step(keysPressed);

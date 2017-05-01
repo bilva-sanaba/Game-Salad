@@ -66,11 +66,9 @@ public class GridView extends GUIComponent {
 		myGrid.getStyleClass().add("view-grid");
 		myBorderPane = new BorderPane();
 		Button butt = util.buildButton("addHo", e -> addHo());
-		util.buildButton("addHo", e -> addHo());
 		Button butt2 = util.buildButton("addVert", e -> addVert());
-		util.buildButton("addVert", e -> addVert());
 		mouseCords = buildMouseCords();
-		HBox box = new HBox(butt, butt2, mouseCords);
+		HBox box = util.buildHBox(butt, butt2, mouseCords);
 		box.setPadding(new Insets(10));
 		box.setSpacing(10);
 		myBorderPane.setTop(box);
@@ -96,7 +94,7 @@ public class GridView extends GUIComponent {
 		if (e.isSecondaryButtonDown()) {
 			rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 		}
-		else if (!e.isControlDown()) {
+		else if (!e.isControlDown() && !e.isAltDown()) {
 			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
@@ -155,7 +153,6 @@ public class GridView extends GUIComponent {
 				selectEntity(entity);
 				orgSceneX = e.getSceneX();
 				orgSceneY = e.getSceneY();
-				
 			}
 			if (rightClick.isShowing()) {
 				rightClick.hide();
@@ -164,6 +161,7 @@ public class GridView extends GUIComponent {
 				selectEntity(entity);
 				rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			}
+			
 		});
 		spriteImage.setOnMouseDragged(e -> {
 			ImageView c = (ImageView) (e.getSource());
@@ -190,16 +188,12 @@ public class GridView extends GUIComponent {
 			if (e.isControlDown()) {
 				unselectEntity(entity);
 				System.out.println("dropped at " + e.getSceneX() + " " + e.getSceneY());
-				entity.addComponent(new LocationComponent(e.getSceneX(), e.getSceneY()));
-//				Iterator<IComponent> iter = entity.getComponents().iterator();
-//				while (iter.hasNext()) {
-//					System.out.println(iter.next().getComponentType().toString());
-//				}
 			}
 			if (e.isAltDown()){
 				unselectEntity(entity);
 				entity.addComponent(new ImagePropertiesComponent(c.getFitWidth(), c.getFitHeight()));
 			}
+			entity.addComponent(new LocationComponent(e.getSceneX(), e.getSceneY()));
 		});
 		placedImages.put(entity, spriteImage);
 		myGrid.getChildren().add(spriteImage);

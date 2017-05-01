@@ -22,7 +22,7 @@ public class MovementEngine extends AbstractEngine{
 		for (IEntity e: getEManager().getEntities()) {
 			if(hasComponent(e,ComponentType.KeyInput)){
 				ControllableComponent cc = (ControllableComponent) e.getComponent(ComponentType.Controllable);
-				if(keys.isEmpty() || !(cc.checkControl()))
+				if(keys.isEmpty() || (cc!=null && !(cc.checkControl())))
 				decelerate(e);
 			}
 			if (hasComponent(e,ComponentType.Location)) {

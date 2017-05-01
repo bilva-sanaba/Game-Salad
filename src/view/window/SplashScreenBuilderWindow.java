@@ -2,7 +2,7 @@ package view.window;
 
 import java.io.File;
 
-import entity.SplashEntity;
+import entity.SplashData;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,8 +36,7 @@ public class SplashScreenBuilderWindow implements Window{
 		myRoot = new VBox();
 	}
 	
-//	This shit needs to be refactored, use utilityfactory
-	public SplashEntity createEntity() {
+	public SplashData createEntity() {
 		myStage = new Stage();
 		myRoot.setPadding(new Insets(10));
 //		pickColor(root);
@@ -71,21 +70,9 @@ public class SplashScreenBuilderWindow implements Window{
 		myStage.showAndWait();
 
 //		beneath here is a splash entity which you instantiate with all the values you just found at the x's
-		SplashEntity s = new SplashEntity(1, gameTitle, instructions, splashScreenImagePath);
+		SplashData s = new SplashData(1, gameTitle, instructions, splashScreenImagePath);
 		return s;
 	}
-	
-//	private void pickColor(Pane root){
-//		Label backgroundColorTitle = new Label("Background Color");
-//		GridPane.setConstraints(backgroundColorTitle, 0, 0);
-//		ColorPicker colorPicker = new ColorPicker();
-//		GridPane.setConstraints(colorPicker, 1, 1);
-//		Circle circle = new Circle(50);
-//		GridPane.setConstraints(circle, 0, 1);
-//		circle.setFill(colorPicker.getValue());
-//		colorPicker.setOnAction(e -> circle.setFill(colorPicker.getValue()));
-//		root.getChildren().addAll(backgroundColorTitle, circle, colorPicker);	
-//	}
 	
 	private void selectText(Pane root){
 		Label getGameTitle = new Label("Game Title:");

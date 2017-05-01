@@ -2,6 +2,7 @@ package view.window;
 
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
+import entity.presets.AbstractBlock;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -87,6 +88,8 @@ public class EntityBuilderWindow implements Window {
 	
 	private void addOkayButton(Pane root) {
 		Node okayButton = util.buildButton("OkayLabel", e -> {
+			AbstractBlock newBlock = new AbstractBlock(1);
+			System.out.println(newBlock.getClass() + " -> " + entityList[0]);
 			Entity tempEntity = (Entity) Reflection.createInstance(entityList[0], myData.getEntityID());
 			System.out.println(myImageName + " line 98 " + this.getClass());
 			tempEntity.addComponent(new SpriteComponent(myImageName));

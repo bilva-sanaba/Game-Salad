@@ -26,7 +26,8 @@ public class Camera extends Entity {
 	private Scene myFrame;
 	private Parent root;
 	private LocationComponent myLC;
-	
+	private double myFrameWidth;
+	private double myFrameHeight;
 	
 	public Camera (int length, Scene myScene, LocationComponent lc , int id) {
 		super(id);
@@ -34,6 +35,8 @@ public class Camera extends Entity {
 		myFrame = myScene;
 		root = myFrame.getRoot();
 		myLC = lc;
+		myFrameWidth= myFrame.getWidth();
+		myFrameHeight= myFrame.getHeight();
 
 		if (getComponent(ComponentType.Type) == null) {
 			addComponent(new TypeComponent(EntityType.Camera));
@@ -43,8 +46,8 @@ public class Camera extends Entity {
 
 	public void updateCamera() {
 
-		
-		root.setTranslateX(-myLC.getX() + myFrame.getWidth() / 2);
+		root.setTranslateX(-myLC.getX() + myFrameWidth / 2);
+		root.setTranslateY(-myLC.getY()+110);
 		
 		/*if(playerLocRelativeToCam <= LEFT_BOUND_FROM_EDGE && followerLoc.getX()>0){
 			root.setTranslateX(root.getTranslateX() - followerVel.getX() + 4);

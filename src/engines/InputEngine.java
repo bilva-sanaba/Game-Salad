@@ -22,7 +22,7 @@ import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
-public class InputEngine extends AbstractEngine{
+public class InputEngine extends AbstractEngine {
 	private ScriptEngine engine; 
 	private Collection<IRestrictedEntity> newEntities = new ArrayList<IRestrictedEntity>();
 	public InputEngine(IEntityManager myEntityManager) {
@@ -53,7 +53,7 @@ public class InputEngine extends AbstractEngine{
 			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 
 			AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);	
 			ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
-			if(cc.checkControl() == true){	
+			if(cc!=null && cc.checkControl() == true){	
 				for (KeyCode key : keys){
 					if (ic.getActionMap().containsKey(key)){
 						for (IAction action : ic.getActionMap().get(key)){
@@ -62,17 +62,17 @@ public class InputEngine extends AbstractEngine{
 							((IRestrictedEntity) e).changed(e);
 						}
 					}
-					if (ic.getGroovyMap().containsKey(key)){
-						try {
-							vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-							ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-							engine.put("vc", vc);
-							engine.put("ac", ac);
-							engine.eval(ic.getGroovyMap().get(key));
-						} catch (ScriptException e1) {
-							GroovyAlert alert = new GroovyAlert("Invalid Author Key Action", "This program crashed due to an incorrect expression written by the author");
-						}
-					}
+//					if (ic.getGroovyMap().containsKey(key)){
+//						try {
+//							vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
+//							ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
+//							engine.put("vc", vc);
+//							engine.put("ac", ac);
+//							engine.eval(ic.getGroovyMap().get(key));
+//						} catch (ScriptException e1) {
+//							GroovyAlert alert = new GroovyAlert("Invalid Author Key Action", "This program crashed due to an incorrect expression written by the author");
+//						}
+//					}
 				}
 			}
 		}

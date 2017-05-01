@@ -56,7 +56,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	}
 	
 	private void setPlacedEntities(Map m) {
-		Map <Integer, Map<Integer, Entity>> ret = m;
+		Map <Integer, HashMap<Integer, Entity>> ret = m;
 		myData.getPlacedEntityMap().clear();
 		for (int i = 1; i <= ret.keySet().size(); i++) {
 			myData.getPlacedEntityMap().put(i, new HashMap<Integer, Entity>());
@@ -75,7 +75,10 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	}
 	
 	private void setSplashEntity(Map m) {
-		Map<Integer, SplashEntity> sm = m;
-		myData.setSplashEntity((SplashEntity) sm.get(getSplashConstant())); 
+		myData.setSplashEntity((SplashData) m.get(getSplashConstant())); 
+
+		Map<Integer, SplashData> sm = m;
+		myData.setSplashEntity((SplashData) sm.get(getSplashConstant())); 
+
 	}
 }

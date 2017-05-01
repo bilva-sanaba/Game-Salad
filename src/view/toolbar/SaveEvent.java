@@ -5,7 +5,7 @@ import data_interfaces.*;
 
 import entity.Entity;
 import entity.IEntity;
-import entity.SplashEntity;
+import entity.SplashData;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
@@ -27,7 +27,7 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		
 		l.add(myData.getPlacedEntityMap());
 		l.add(myData.getLevelEntityMap());
-		Map <Integer, SplashEntity> m = new HashMap<Integer, SplashEntity>();
+		Map <Integer, SplashData> m = new HashMap<Integer, SplashData>();
 		m.put(getSplashConstant(), myData.getSplashEntity());
 		l.add(m);
 		

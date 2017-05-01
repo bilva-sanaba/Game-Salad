@@ -47,7 +47,7 @@ public class ObjectCreationComponent extends AComponent implements IComponent{
 	}
 	@Override
 	public IComponent newCopy() {
-		ObjectCreationComponent occ= new ObjectCreationComponent(storedEntity.newCopy());
+		ObjectCreationComponent occ= new ObjectCreationComponent(storedEntity.newCopy(0));
 		occ.setCreating(creating);
 		return occ;
 	}

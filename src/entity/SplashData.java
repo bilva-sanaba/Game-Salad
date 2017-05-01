@@ -9,13 +9,13 @@ import components.entityComponents.SpriteComponent;
  * @author Josh
  *
  */
-public class SplashEntity extends Entity {
+public class SplashData extends Entity{
 
 	private String displayName;
 	private String instructions;
 	private String backgroundFilePath;
 	
-	public SplashEntity(int id, String title, String inst, String imagePath) {
+	public SplashData(int id, String title, String inst, String imagePath) {
 		super(id);
 		displayName = title;
 		instructions = inst;

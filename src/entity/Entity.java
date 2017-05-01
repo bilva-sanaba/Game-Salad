@@ -1,9 +1,7 @@
 package entity;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Observable;
 
@@ -17,7 +15,6 @@ import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import entity.restricted.IRestrictedEntity;
 import javafx.geometry.Dimension2D;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
 /**
@@ -44,8 +41,8 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 		}
 		return temp;
 	}
-	public Entity newCopy(){
-		Entity temp = new Entity(identifier*10);
+	public Entity newCopy(int size){
+		Entity temp = new Entity(identifier+size);
 		for (IComponent a : myComponentMap.keySet()){
 			temp.addComponent(a.newCopy());
 		}
@@ -153,7 +150,11 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	public void changed(Object o) {
 		setChanged();
 		notifyObservers(o);
-		// TODO Auto-generated method stub
-		
 	}
+
+	@Override
+	public boolean hasComponent(ComponentType ct) {
+		return this.getComponent(ct)!=null;
+	}
+	
 }
