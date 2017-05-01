@@ -49,7 +49,6 @@ public class GridView extends GUIComponent {
 	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
 	private BorderPane myBorderPane;
 
-	// TODO: change placedentitymap to a map from levelnumber to placedentitymap
 	// Refactor gridview and make it nonshitty
 
 	public GridView(UtilityFactory utilIn, int levelNumber, ViewData data, int rows, int cols) {
@@ -88,7 +87,7 @@ public class GridView extends GUIComponent {
 	}
 
 	private void mousePress(MouseEvent e) {
-		if(rightClick.isShowing()){
+		if (rightClick.isShowing()){
 			rightClick.hide();
 		}
 		if (e.isSecondaryButtonDown()) {
@@ -128,7 +127,7 @@ public class GridView extends GUIComponent {
 
 	public void drawPlacedEntities() {
 		Set<Integer> entitySet = myData.getPlacedEntityMap().get(myLevelNumber).keySet();
-		if(entitySet.size() != 0) {
+		if (entitySet.size() != 0) {
 			for (int entityID : entitySet) {
 				drawEntity(myData.getPlacedEntityMap().get(myLevelNumber).get(entityID));
 			}
@@ -137,6 +136,7 @@ public class GridView extends GUIComponent {
 
 	public void drawEntity(Entity entity) {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
+		System.out.println("drawn x: " + entityLocation.getX() + " drawn y: " + entityLocation.getY());
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
 		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity
@@ -165,35 +165,41 @@ public class GridView extends GUIComponent {
 		});
 		spriteImage.setOnMouseDragged(e -> {
 			ImageView c = (ImageView) (e.getSource());
-			double offsetX = e.getSceneX() - orgSceneX;
-			double offsetY = e.getSceneY() - orgSceneY;
-			
 			if (e.isControlDown()) {
-									
-				c.setTranslateX(c.getTranslateX() + offsetX);
-				c.setTranslateY(c.getTranslateY() + offsetY);
-
-				orgSceneX = e.getSceneX();
-				orgSceneY = e.getSceneY();
+				c.setX(e.getX());
+				c.setY(e.getY());
 			}
-			if (e.isAltDown()) {
-				ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity
-						.getComponent(ComponentType.ImageProperties);
-				c.setFitHeight(imageProp.getWidth() + offsetY);
-				c.setFitWidth(imageProp.getHeight() + offsetX);
-			}
+//			double offsetX = e.getSceneX() - orgSceneX;
+//			double offsetY = e.getSceneY() - orgSceneY;
+//			
+//			if (e.isControlDown()) {
+//				c.setTranslateX(c.getTranslateX() + offsetX);
+//				c.setTranslateY(c.getTranslateY() + offsetY);
+//
+//				orgSceneX = e.getSceneX();
+//				orgSceneY = e.getSceneY();
+//			}
+//			if (e.isAltDown()) {
+//				ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity
+//						.getComponent(ComponentType.ImageProperties);
+//				c.setFitHeight(imageProp.getWidth() + offsetY);
+//				c.setFitWidth(imageProp.getHeight() + offsetX);
+//			}
 		});
 		spriteImage.setOnMouseReleased(e -> {
 			ImageView c = (ImageView) (e.getSource());
 			if (e.isControlDown()) {
-				unselectEntity(entity);
-				System.out.println("dropped at " + e.getSceneX() + " " + e.getSceneY());
+				entity.addComponent(new LocationComponent(e.getX(), e.getY()));
+				System.out.println("lComp added " + e.getX() + " " + e.getY());
+				LocationComponent asdf = (LocationComponent) entity.getComponent(ComponentType.Location);
+				System.out.println("entity location: " + asdf.getX() + " " + asdf.getY());
 			}
-			if (e.isAltDown()){
-				unselectEntity(entity);
+			if (e.isAltDown()) {
+				entity.addComponent(new LocationComponent(e.getX(), e.getY()));
 				entity.addComponent(new ImagePropertiesComponent(c.getFitWidth(), c.getFitHeight()));
 			}
-			entity.addComponent(new LocationComponent(e.getSceneX(), e.getSceneY()));
+			entity.addComponent(new LocationComponent(e.getX(), e.getY()));
+			unselectEntity(entity);
 		});
 		placedImages.put(entity, spriteImage);
 		myGrid.getChildren().add(spriteImage);
@@ -243,8 +249,11 @@ public class GridView extends GUIComponent {
 	}
 
 	public void unselectEntity(Entity entity) {
-		ImageView temp = placedImages.get(myData.getUserGridSelectedEntity());
-		temp.setStyle("");
+		if (myData.getUserGridSelectedEntity() != null) {
+			ImageView temp = placedImages.get(myData.getUserGridSelectedEntity());
+			temp.setStyle("");
+			myData.setUserGridSelectedEntity(null);
+		}
 	}
 
 	public Node getContent() {
