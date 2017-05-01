@@ -23,12 +23,13 @@ import data_interfaces.Communicator;
  *
  * @author Jonathan
  * @author Justin
- * @author Jack
+ * @author Jack (<- the one who made everything hash maps instead of maps and refused to change them 
+ * because it would require too much work to change other places but who made all of our design worse 
+ * as a result, seriously you can thank him for that)
  * @author Josh
  */
 public class ViewData extends Observable {
 
-	private int entityIDcounter;
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
 	//MAKE THESE NOT HASHMAPS JESUS CHRIST
@@ -47,7 +48,6 @@ public class ViewData extends Observable {
 	private int initialCols;
 
 	public ViewData(int initialRowsIn, int initialColsIn) {
-		entityIDcounter = 0;
 		currentLevel = 1;
 		initialRows = initialRowsIn;
 		initialCols = initialColsIn;
@@ -69,9 +69,22 @@ public class ViewData extends Observable {
 		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png"));
 	}
 	
-	public int getEntityID(){
-		entityIDcounter++;
-		return entityIDcounter;		
+	public int getPlacedEntityID(){	
+		return findMapMax(placedEntityMaps.get(currentLevel)) + 1;
+				
+	}
+	
+	public int getDefinedEntityID() {
+		return findMapMax(definedEntityMap) + 1;
+	}
+	
+	private int findMapMax(Map <Integer, Entity> m) {
+		int max = 0;
+		for (Integer i: m.keySet()) {
+			if (i > max)
+				max = i;
+		}
+		return max;
 	}
 	
 	public int getCurrentLevel(){
