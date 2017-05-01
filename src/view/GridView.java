@@ -82,6 +82,10 @@ public class GridView extends GUIComponent {
 		myScroll = new ScrollPane(myGrid);
 		myBorderPane.setCenter(myScroll);
 	}
+	
+	public void setLevelNumber(int i){
+		myLevelNumber = i;
+	}
 
 	public void setEntityIDcount(){
 		j += 10000;
