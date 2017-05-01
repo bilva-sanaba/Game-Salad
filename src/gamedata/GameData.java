@@ -10,6 +10,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
+import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -53,7 +54,7 @@ public class GameData implements IGameData,IRestrictedGameData{
 	public LocationComponent getMainLocation(){
 		return mainPlayerLocation;
 	}
-	public StringProperty getMusicProperty(){
+	public ReadOnlyStringProperty getMusicProperty(){
 		return music;
 	}
 
@@ -68,8 +69,8 @@ public class GameData implements IGameData,IRestrictedGameData{
 		return (ReadOnlyIntegerProperty) level; 
 	}
 
-	public String getMusic(){
-		return music.get();
+	public ReadOnlyStringProperty getMusic(){
+		return music;
 	}
 
 	public VoogaImmutableObservableList<String> getAchievement(){

@@ -14,13 +14,12 @@ public class UserDatabase {
 	public UserDatabase() {
 		myHandler = new UserDataHandler();
 		myUsers = myHandler.loadUsers(DATA_FILE);
-		System.out.println(myUsers);
 	}
 	
 	
 	public UserData addNewUser(UserData user) {
 		String username = user.getName();
-		if (myUsers.containsKey(username)) {
+		if (myUsers.containsKey(username) || user.getPassword() == null) {
 			return null;
 		} else {
 			myUsers.put(username, user);

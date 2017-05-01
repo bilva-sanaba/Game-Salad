@@ -40,6 +40,16 @@ import components.keyExpressions.LeftAction;
 import components.keyExpressions.RightAction;
 import controller.Camera;
 import controller.WorldAnimator;
+
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.ReadOnlyIntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.input.KeyCode;
+import data_interfaces.Communicator;
+
 import data_interfaces.EngineCommunication;
 import data_interfaces.InfiniteEnum;
 import engines.AIEngine;
@@ -124,9 +134,8 @@ public class GameEngine implements GameEngineInterface {
 		myEntityLoader = new EntityLoader(myEntityManager);
 		
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
-		List<String> listl = new ArrayList<String>();
 
-		myGameData = new GameData(0,0,(IRestrictedEntityManager) myEntityManager, 0, lc,listl,"");
+		myGameData = new GameData(0,0,(IRestrictedEntityManager) myEntityManager, 0, lc, new ArrayList<String>(),"");
 		return (IRestrictedGameData) myGameData;
 	}
 	
@@ -155,6 +164,7 @@ public class GameEngine implements GameEngineInterface {
 	private void updateLevel(IRestrictedGameData restrictedGameData){
 		if (myGameData.getLevel().intValue()!=restrictedGameData.getLevel().intValue()){
 			myEntityLoader.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()));
+			previousEntityManagers.clear();
 		}
 	}
 	private void resetStoredStates(){

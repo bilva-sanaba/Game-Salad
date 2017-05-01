@@ -34,6 +34,7 @@ import javafx.util.Duration;
  *
  */
 public class WorldAnimator{
+
 	public static final int FRAMES_PER_SECOND = 30;
 	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
 	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
@@ -75,7 +76,7 @@ public class WorldAnimator{
 		return root;
 	}
 
-	public void start (GameData myData, IGameScreenEntity screen) throws ClassNotFoundException{ //achievementFactory
+	public void start (IRestrictedGameData myData, IGameScreenEntity screen) throws ClassNotFoundException{ //achievementFactory
 		this.myData=myData;
 		root = new Group();
 		IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
@@ -118,7 +119,6 @@ public class WorldAnimator{
 						try {
 							step(SECOND_DELAY);
 						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
 							VoogaAlert vA = new VoogaAlert("VoogaIssue", e1.getMessage());
 							vA.showAlert();//FIX THIS
 						}

@@ -8,6 +8,7 @@ import java.util.Map;
 import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
+import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 
@@ -18,17 +19,17 @@ public class EntityLoader {
 		mainEntityManager = mainManager;
 	}
 	public void loadNew(IEntityManager newManager) {
-		Map<Integer, IEntity> replaced = new HashMap<Integer, IEntity>();
+		IEntity originalMain = new Entity(0);
 		for (IEntity e : mainEntityManager.getEntities()){
 			e.changed(null);
 			if (e.getComponent(ComponentType.KeyInput)!=null){
-				replaced.put(e.getID(), e);
+				originalMain=e;
 			}
 		}
 		mainEntityManager.getEntities().clear();
 		for (IEntity e : newManager.getEntities()){
-			if (replaced.keySet().contains(e.getID())){
-				IEntity oldE = replaced.get(e.getID());
+			if (e.hasComponent(ComponentType.KeyInput)){
+				IEntity oldE = originalMain;
 				recreateMainCharacter(oldE,e);
 				e=oldE;
 			}
