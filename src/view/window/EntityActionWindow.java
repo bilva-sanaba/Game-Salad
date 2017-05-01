@@ -33,7 +33,7 @@ import view.UtilityFactory;
 import view.ViewData;
 import voogasalad.util.reflection.Reflection;
 
-public class EntityActionWindow extends Window {
+public class EntityActionWindow implements Window {
 	private UtilityFactory myUtilF;
 	private GridPane root;
 	private Stage myStage = new Stage();

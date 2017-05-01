@@ -1,10 +1,31 @@
 <users>
   <entry>
+    <string></string>
+    <userdata>
+      <username></username>
+      <password></password>
+      <myGameScores/>
+    </userdata>
+  </entry>
+  <entry>
     <string>henrytaylor</string>
     <userdata>
       <username>henrytaylor</username>
       <password>thisismypassword</password>
       <image>javafx.scene.image.Image@15ca002e</image>
+    </userdata>
+  </entry>
+  <entry>
+    <string>asdf</string>
+    <userdata>
+      <username>asdf</username>
+      <password>asdf</password>
+      <myGameScores>
+        <entry>
+          <string>yousA</string>
+          <double>500.0</double>
+        </entry>
+      </myGameScores>
     </userdata>
   </entry>
   <entry>

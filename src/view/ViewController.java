@@ -28,6 +28,8 @@ public class ViewController implements Observer {
 			LevelTab level = levelTabs.getTabsList().get(myData.getCurrentLevel());
 			level.getGrid().clearEntitiesOnGrid();
 			level.getGrid().drawPlacedEntities();
+			level.getGrid().updateBackground();
+			
 			
 			myTab.clearEntitiesOnTab();
 			//myTab.addPresetEntities();

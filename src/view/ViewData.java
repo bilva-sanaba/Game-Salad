@@ -239,8 +239,8 @@ public class ViewData extends Observable {
 	}
 	
 	// fix dependencies
-	public void removePlacedEntities(int levelNumber) {
-		placedEntityMaps.get(levelNumber).clear();
+	public void removePlacedEntities() {
+		placedEntityMaps.get(currentLevel).clear();
 		setChanged();
 		notifyObservers();
 	}
