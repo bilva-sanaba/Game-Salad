@@ -15,7 +15,7 @@ public class AcheivementAction extends AbstractAction implements IAction{
 			IRestrictedGameData currentGameData) {
 		IGameData gd = getGameDataFactory().blankEntityData(currentGameData);
 		gd.setAchievement("FirstKill");
-		return new RightAction().executeAction(other, self, myEM, currentGameData);
+		return gd;
 	}
 
 }

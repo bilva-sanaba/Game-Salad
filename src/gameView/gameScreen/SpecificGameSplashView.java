@@ -23,8 +23,14 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+
 import javafx.scene.layout.Pane;
+
 import javafx.stage.Stage;
+
+/**
+ * @author Jacob
+ */
 
 public class SpecificGameSplashView extends AbstractViewer {
 	
@@ -86,7 +92,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 	}
 
 	private void addInstructions() {
-		Label lab = makeLabel(getInstructions(), "instructions");
+		Label lab = makeLabel(getInstructions(), "instructionslabel");
 		lab.setStyle("-fx-wrap-text: true");
 		myBP.setCenter(lab);
 	}

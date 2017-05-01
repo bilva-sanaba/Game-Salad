@@ -13,6 +13,7 @@ import actions.RemoveAction;
 import actions.ShootAction;
 import actions.Teleport;
 import components.entityComponents.AccelerationComponent;
+import components.entityComponents.AcheivementAction;
 import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
@@ -122,8 +123,8 @@ public class GameEngine implements GameEngineInterface {
 	public IRestrictedGameData loadData(EngineCommunication c){	
 		//DUMMYLOAD
 
-//		myEntityManagers = dummyLoad();
-//		myEntityManager = myEntityManagers.get(0);
+///		myEntityManagers = dummyLoad();
+///	myEntityManager = myEntityManagers.get(0);
 
 		
 		//REAL USE THIS
@@ -138,6 +139,7 @@ public class GameEngine implements GameEngineInterface {
 		listl.add("");
 
 		myGameData = new GameData(0,3,(IRestrictedEntityManager) myEntityManager, 1, lc, listl,"badboujee.wav");
+
 		return (IRestrictedGameData) myGameData;
 	}
 	
@@ -323,6 +325,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(time);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.H, new AcheivementAction());
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
 

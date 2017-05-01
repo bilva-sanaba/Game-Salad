@@ -33,7 +33,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private Collection<AbstractCommand> myCommands;  
 	private VoogaAlert myAlert;   
 	private final String VOOGAISSUE = "Vooga Issue";
-      
+
 	public GameScreen(UIView view, Stage s, IUserInputData input, WorldAnimator animation) {
 		super(view, s, input);
 		myCommands = getCommands(myName);
@@ -58,7 +58,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		try {
 			myAnimation.start(myData.getData(), this);
 		} catch (ClassNotFoundException e) {
-			myAlert = new VoogaAlert(VOOGAISSUE, e.getMessage());
+			myAlert = new VoogaAlert(e.getMessage());
 			myAlert.showAlert();
 		}
 	}
@@ -101,6 +101,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 			});
 		setUserCommand();
 		myBP.setCenter(myPane);   
+
 	}
 
 	@Override
