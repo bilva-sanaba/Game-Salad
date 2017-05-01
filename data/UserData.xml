@@ -1,38 +1,50 @@
 <users>
   <entry>
-    <string>hank</string>
+    <string>henrytaylor</string>
     <userdata>
-      <username>hank</username>
-      <password>password</password>
-      <image>file:/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/images/flappybird_yellow.png</image>
-      <myGameScores>
-        <entry>
-          <null/>
-          <double>500.0</double>
-        </entry>
-        <entry>
-          <string>12234456</string>
-          <double>500.0</double>
-        </entry>
-      </myGameScores>
-      <myAchievements/>
-      <myGames class="list"/>
+      <username>henrytaylor</username>
+      <password>thisismypassword</password>
+      <image>javafx.scene.image.Image@15ca002e</image>
     </userdata>
   </entry>
   <entry>
-    <string>Jacob Weiss</string>
+    <string>john</string>
     <userdata>
-      <username>Jacob Weiss</username>
-      <password>password</password>
-      <image>https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/11705112_999088863459018_6647387008503140825_n.jpg?oh=5d769b93fa1573bdd214d8f3cb3a2c0d&amp;oe=5980A7D3</image>
+      <username>john</username>
+      <password>a</password>
+      <image>file:/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/images/portal.png</image>
+    </userdata>
+  </entry>
+  <entry>
+    <string>butt</string>
+    <userdata>
+      <username>butt</username>
+      <password>face</password>
       <myGameScores>
         <entry>
-          <null/>
+          <string>12234456</string>
+          <double>700.0</double>
+        </entry>
+        <entry>
+          <string>aaaaaaaC</string>
           <double>500.0</double>
         </entry>
       </myGameScores>
-      <myAchievements/>
-      <myGames class="list"/>
+    </userdata>
+  </entry>
+  <entry>
+    <string>jack</string>
+    <userdata>
+      <username>jack</username>
+      <password>pass</password>
+      <image>file:/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/images/portal.png</image>
+    </userdata>
+  </entry>
+  <entry>
+    <string>Henry Taylor</string>
+    <userdata>
+      <username>Henry Taylor</username>
+      <image>https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/17951884_10154728016417669_3921410893467097756_n.jpg?oh=f6b44b005f17afe1893c8449373646e4&amp;oe=5991722E</image>
     </userdata>
   </entry>
 </users>
