@@ -53,6 +53,7 @@ import entity.*;
 import entity.presets.AbstractBlock;
 import entity.presets.AbstractBreakableBox;
 import entity.presets.AbstractGoal;
+import entity.presets.AbstractMysteryBlock;
 import entity.presets.AbstractPowerup;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
@@ -126,7 +127,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		Map<Integer, LevelEntity> m = results.get(1);
 //		System.out.println(m.get(1).getInfiniteEnum());
 //		return m.get(1).getInfiniteEnum();
-		return InfiniteEnum.None;
+		return InfiniteEnum.Horizontal;
 	}
 	public List<IEntityManager> dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
@@ -201,7 +202,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		//
 		//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
 		e.add(x);
-		e7.add(x.newCopy(100));
+		e7.add(x.newCopy(32410));
 		//		for (int i=0;i<20;i++){
 		//			Entity x = new Entity(i);
 		//			x.addComponent(new LocationComponent(i*50,450));
@@ -220,7 +221,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		//		}
 		//		e.add(g);e.add(t);
 //		e.add(x);
-		for (int i=1;i<10;i++){
+		for (int i=1;i<35;i++){
 			Entity p = new AbstractBlock(i);
 			//if (i!=12){
 				p.addComponent(new LocationComponent(i*50,200));
@@ -263,22 +264,22 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 
 //		y.addComponent(new TypeComponent(EntityType.Block));
-//		y.addComponent(new TypeComponent(EntityType.Block));
-//		Entity p = new AbstractMysteryBlock(102,y); 
-//		p.addComponent(new LocationComponent(900,50));
-//		p.addComponent(new SpriteComponent(("platform_tile_023.png")));
-//		ImagePropertiesComponent xpc = new ImagePropertiesComponent();
-//		xpc.setHeight(50);
-//		xpc.setWidth(50);
-//		p.addComponent(xpc);
-//		p.addComponent(new LabelComponent("Blok"));
-//		e.add(p);
-		Entity goal = new AbstractGoal(243);
-		goal.addComponent(new LocationComponent(700,100));
-		goal.addComponent(new SpriteComponent(("platform_tile_053.png")));
-		goal.addComponent(new ImagePropertiesComponent(50,50));
-		goal.addComponent(new LabelComponent("Goal"));
-		e.add(goal);
+		y.addComponent(new TypeComponent(EntityType.Block));
+		Entity p = new AbstractMysteryBlock(102,y); 
+		p.addComponent(new LocationComponent(900,50));
+		p.addComponent(new SpriteComponent(("platform_tile_023.png")));
+		ImagePropertiesComponent xpc = new ImagePropertiesComponent();
+		xpc.setHeight(50);
+		xpc.setWidth(50);
+		p.addComponent(xpc);
+		p.addComponent(new LabelComponent("Blok"));
+		e.add(p);
+//		Entity goal = new AbstractGoal(243);
+//		goal.addComponent(new LocationComponent(700,100));
+//		goal.addComponent(new SpriteComponent(("platform_tile_053.png")));
+//		goal.addComponent(new ImagePropertiesComponent(50,50));
+//		goal.addComponent(new LabelComponent("Goal"));
+//		e.add(goal);
 //		for (int i= 0; i<2; i++){
 //			Entity enemy = new AbstractEnemy(106+i);
 //			if (i==0){

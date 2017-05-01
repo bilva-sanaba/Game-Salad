@@ -577,6 +577,7 @@ public class GameEngine implements GameEngineInterface {
 	public void addCamera(Camera c) {
 		myEntityManager.changed(c);
 	}
+	
 	private Entity createPortal() {
 		Entity portal2 = new Entity(110);
 		portal2.addComponent(new LocationComponent(450, 125));
