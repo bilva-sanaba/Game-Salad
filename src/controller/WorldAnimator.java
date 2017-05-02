@@ -68,6 +68,8 @@ public class WorldAnimator{
 	private boolean pause = false;
 
 	public WorldAnimator(UIViewInterface view){
+		System.out.println("WORLDANIMATOR IS CREATED");
+	
 		myView = view;
 	}
 	public Group getGroup(){
