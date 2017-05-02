@@ -6,6 +6,7 @@ import actions.BounceOffLeft;
 import actions.BounceOffRight;
 import actions.BounceOffTop;
 import actions.DeathAction;
+import actions.GoalAction;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
@@ -30,7 +31,7 @@ public class DoodleJumpPlatform extends Entity {
 		this.addComponent(new TimeComponent());
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 		scc.addActionForType(new TypeComponent(EntityType.Player), new BounceOffTop());
-		scc.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
+		scc.addActionForType(new TypeComponent(EntityType.Player), new GoalAction(3));
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 	}
 }

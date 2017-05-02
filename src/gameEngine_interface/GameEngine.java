@@ -105,7 +105,7 @@ public class GameEngine implements GameEngineInterface {
 	}
 	private void updateLevel(IRestrictedGameData restrictedGameData){
 		if (myGameData.getLevel().intValue()!=restrictedGameData.getLevel().intValue()){
-			if (restrictedGameData.getLevel().intValue()>(myEntityManagers.size()+1)){
+			if (restrictedGameData.getLevel().intValue()>(myEntityManagers.size())){
 				GameDataFactory gdf = new GameDataFactory();
 				myGameData.setLevel(-1);
 			}else{
