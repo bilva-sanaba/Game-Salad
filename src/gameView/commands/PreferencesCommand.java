@@ -29,6 +29,7 @@ public class PreferencesCommand extends AbstractCommand {
 
 	@Override
 	public boolean execute(Stage s) {
+		getView().pauseGame();
 		initialize();
 		myBox.getChildren().clear();
 		myStage.setTitle(getName());
