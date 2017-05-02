@@ -169,8 +169,8 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 			ret.add(new EntityManager(toBeAdded));
 			
 		}
-		return dummyLoad();
-//		return ret;
+//		return dummyLoad();
+		return ret;
 		
 	}
 
@@ -196,9 +196,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public SplashData getSplashEntity() {
-		SplashData s = new SplashData(1427, "sgsdg", "sghs", "background1.png");
-//		return (SplashData) results.get(2).get(getSplashConstant());
-		return s;
+//		SplashData s = new SplashData(1427, "sgsdg", "sghs", "background1.png");
+		return (SplashData) results.get(2).get(getSplashConstant());
+//		return s;
 	}
 
 
