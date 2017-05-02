@@ -98,11 +98,11 @@ public class GridView extends GUIComponent {
 	}
 
 	private void mousePress(MouseEvent e) {
-		if (rightClick.isShowing()){
+		/*if (rightClick.isShowing()){
 			rightClick.hide();
-		}
+		}*/
 		if (e.isSecondaryButtonDown()) {
-			rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
+			//rightClick.show(myGrid, null, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 		}
 		else if (!e.isControlDown() && !e.isAltDown()) {
 			placeImageAtLoc(e.getX(), e.getY());
@@ -164,12 +164,12 @@ public class GridView extends GUIComponent {
 			if (e.isControlDown() || e.isAltDown()) {
 				selectEntity(entity);
 			}
-			if (rightClick.isShowing()) {
+		/*	if (rightClick.isShowing()) {
 				rightClick.hide();
-			}
+			}*/
 			if (e.isSecondaryButtonDown()) {
 				selectEntity(entity);
-				rightClick.show(myGrid, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
+				rightClick.show(myGrid, entity, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			}
 			ImageView c = (ImageView) (e.getSource());
 			xClickOffset = e.getX() - c.getX();
@@ -195,7 +195,8 @@ public class GridView extends GUIComponent {
 			}
 		});
 		spriteImage.setOnMouseReleased(e -> {
-			unselectEntity(entity);
+			if(!rightClick.isShowing())
+				unselectEntity(entity);
 		});
 		placedImages.put(entity, spriteImage);
 		myGrid.getChildren().add(spriteImage);
