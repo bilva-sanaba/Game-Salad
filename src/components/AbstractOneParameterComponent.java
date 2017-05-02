@@ -5,19 +5,18 @@ import java.lang.reflect.InvocationTargetException;
 
 import components.entityComponents.ComponentType;
 
-public abstract class AbstractOneParameterComponent<E>  implements IComponent{
+public abstract class AbstractOneParameterComponent<E> extends AComponent  implements IComponent{
 	private E myString;
-
 	public AbstractOneParameterComponent(E obj){
 		myString = obj;
 	}
 	public AbstractOneParameterComponent(){}
 	
-	public E getObject(){
+	public Object getString(){
 		return myString;
-	}
-
-	public void setObject(E obj){
+	}	
+	
+	public void setString(E obj){
 		myString = obj;
 	}
 
@@ -26,12 +25,24 @@ public abstract class AbstractOneParameterComponent<E>  implements IComponent{
 	public IComponent newCopy() {
 		Class c = this.getClass();
 		Constructor ctor;
-		try {
-			ctor = c.getConstructor(getObject().getClass());
-			return (IComponent) ctor.newInstance(myString);
-		} catch (NoSuchMethodException| SecurityException | IllegalArgumentException |InstantiationException | IllegalAccessException | InvocationTargetException e) {
-			// Add error checking
+		if (myString==null){
+			try {
+				ctor = c.getConstructor();
+				return (IComponent) ctor.newInstance();
+			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				//add Error Handline here;
+			}
+
+
+		}else {
+			try {
+				ctor = c.getConstructor(myString.getClass());
+				return (IComponent) ctor.newInstance(myString);
+			} catch (NoSuchMethodException| SecurityException | IllegalArgumentException |InstantiationException | IllegalAccessException | InvocationTargetException e) {
+				//Add Error handling here.
+			}
 		}
 		return null;
 	}
+	
 }
