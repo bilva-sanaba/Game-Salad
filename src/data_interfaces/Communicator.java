@@ -55,6 +55,7 @@ import engines.InfiniteEngine;
 import engines.InputEngine;
 import engines.MovementEngine;
 import engines.TimeEngine;
+import engines.infinite.InfiniteEnum;
 import entity.*;
 import entity.presets.AbstractBlock;
 import entity.presets.AbstractBreakableBox;
@@ -63,6 +64,7 @@ import entity.presets.AbstractGoal;
 import entity.presets.AbstractMysteryBlock;
 import entity.presets.AbstractPowerup;
 import entity.presets.DeathBlock;
+import entity.presets.DoodleJumpPlatform;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
 import javafx.scene.input.KeyCode;
@@ -221,7 +223,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		Map<Integer, LevelEntity> m = results.get(1);
 //		System.out.println(m.get(1).getInfiniteEnum());
 //		return m.get(1).getInfiniteEnum();
-		return InfiniteEnum.Horizontal;
+		return InfiniteEnum.Vertical;
 	}
 	public List<IEntityManager> dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
@@ -280,6 +282,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		y2.addComponent(new CheckCollisionComponent(true));
 		x.addComponent(new ObjectCreationComponent(y2));
 		TimeComponent time = new TimeComponent(new Reload(), 1000);
+		time.addAction(new PointsAction(100), 100);
 		x.addComponent(time);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
@@ -287,7 +290,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, ica);
-		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
+//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new PointsAction(100));
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, new LeftAction());
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.A, ica2);
 
@@ -316,9 +319,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		//		e.add(g);e.add(t);
 //		e.add(x);
 		for (int i=1;i<35;i++){
-			Entity p = new AbstractBlock(i);
+			Entity p = new DoodleJumpPlatform(i);
 			//if (i!=12){
-				p.addComponent(new LocationComponent(i*50,200));
+				p.addComponent(new LocationComponent(500*Math.random(),i*50));
 			//}else{
 			//	p.addComponent(new LocationComponent(i*50,50));
 			//}
@@ -333,18 +336,18 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 			e.add(p);
 			e7.add(p);
 		}
-		for (int i= 0; i<35; i++){
-			Entity pr = new DeathBlock(2356*(i+3));
-			pr.addComponent(new LocationComponent(i*50,400));
-			pr.addComponent(new SpriteComponent(("transparent.png")));
-			ImagePropertiesComponent xpcr = new ImagePropertiesComponent();
-			xpcr.setHeight(50);
-			xpcr.setWidth(50);
-			pr.addComponent(xpcr);
-			pr.addComponent(new LabelComponent("Blok"));
-			pr.addComponent(new TypeComponent(EntityType.Block));
-			e.add(pr);
-		}
+//		for (int i= 0; i<35; i++){
+//			Entity pr = new DeathBlock(2356*(i+3));
+//			pr.addComponent(new LocationComponent(i*50,400));
+//			pr.addComponent(new SpriteComponent(("transparent.png")));
+//			ImagePropertiesComponent xpcr = new ImagePropertiesComponent();
+//			xpcr.setHeight(50);
+//			xpcr.setWidth(50);
+//			pr.addComponent(xpcr);
+//			pr.addComponent(new LabelComponent("Blok"));
+//			pr.addComponent(new TypeComponent(EntityType.Block));
+//			e.add(pr);
+//		}
 		Entity pr = new DeathBlock(2356);
 		pr.addComponent(new LocationComponent(700,150));
 		pr.addComponent(new SpriteComponent(("platform_tile_063.png")));
@@ -404,7 +407,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 			if (i==0){
 				enemy.addComponent(new LocationComponent(800, 20));
 				enemy.addComponent(new ObjectCreationComponent(y3));
-				enemy.addComponent(new TimeComponent(new SmartShoot(), 2000));
+//				enemy.addComponent(new TimeComponent(new SmartShoot(), 2000));
 			}else{
 				enemy.addComponent(new LocationComponent(1200,150));
 
