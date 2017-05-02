@@ -33,14 +33,14 @@ public class AbstractEnemy extends Entity {
 
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
 		scq.addActionForType(new TypeComponent(EntityType.Player), new LeftDamageAction());
-		scq.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
+//		scq.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
 		
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
 		scr.addActionForType(new TypeComponent(EntityType.Player), new LeftDamageAction());
-		scr.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
+//		scr.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
 		scb.addActionForType(new TypeComponent(EntityType.Player), new RightDamageAction());
-		scb.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
+//		scb.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);

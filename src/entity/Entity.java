@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Observable;
 
 import components.IComponent;
+import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
@@ -105,8 +106,8 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	
 	@Override
 	public String toString(){
-		if(((LabelComponent)this.getComponent(ComponentType.Label)).getLabel() != null){
-			return ((LabelComponent)this.getComponent(ComponentType.Label)).getLabel();
+		if(((LabelComponent)this.getComponent(ComponentType.Label)).getObject() != null){
+			return ((LabelComponent)this.getComponent(ComponentType.Label)).getObject();
 		}
 		return "null label component";
 	}
@@ -121,7 +122,7 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	@Override
 	public String getRestrictedImagePath() {
 		SpriteComponent sc = (SpriteComponent) getComponent(ComponentType.Sprite);
-		return sc.getClassPath();
+		return sc.getObject();
 	}
 
 	@Override
@@ -156,5 +157,6 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	public boolean hasComponent(ComponentType ct) {
 		return this.getComponent(ct)!=null;
 	}
+	
 	
 }

@@ -1,9 +1,13 @@
 package entity.presets;
 
+import actions.BlockBottomRegularCollision;
+import actions.BlockLeftRegularCollision;
+import actions.BlockRightRegularCollision;
 import actions.BlockTopRegularCollision;
 import actions.BounceOffBottom;
 import actions.BounceOffLeft;
 import actions.BounceOffRight;
+import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
@@ -20,36 +24,51 @@ public class AbstractBlock extends Entity {
 	private final static double DEFAULT_SIZE = 50;
 	public AbstractBlock(int id) {
 		super(id);
+		System.out.println("block id = " + id);
 		addCollisionComponents();
 	}
 	
 	private void addCollisionComponents(){
-		this.addComponent(new LabelComponent("Default Block"));
+		initializeBasicBlock(true);
+
+	}
+	
+	public void initializeBasicBlock(boolean initializeCollisionComponents) {
 		this.addComponent(new ImagePropertiesComponent(DEFAULT_SIZE,DEFAULT_SIZE));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
 		this.addComponent(new TypeComponent(EntityType.Block));
-		this.addComponent(new TimeComponent());
-//		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
-//		scc.addActionForType(new TypeComponent(EntityType.Player), new BlockTopRegularCollision());
-//		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
-//		scq.addActionForType(new TypeComponent(EntityType.Player), new BlockTopRegularCollision());
-//		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
-//		scr.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
-//		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
-//		scb.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
-		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
-		scc.addActionForType(new TypeComponent(EntityType.Player), new BlockTopRegularCollision());
-		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
-		scq.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBottom());
-		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
-		scr.addActionForType(new TypeComponent(EntityType.Player), new BounceOffLeft());
-		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
-		scb.addActionForType(new TypeComponent(EntityType.Player), new BounceOffRight());
-		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
-		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
-		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);
-		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scr);
+		this.addComponent(new CheckCollisionComponent(false));
+		if (initializeCollisionComponents) {
+			initializeBasicCollisionComponents();
+		}
+		
 	}
+	
+	public void initializeBasicCollisionComponents() {
+		CollisionComponentsHandler collisionRepo = (CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler);
+		SideCollisionComponent top = new SideCollisionComponent(CollisionComponentType.Top);
+		for(EntityType type : EntityType.values()) {
+			top.addActionForType(new TypeComponent(type), new BlockTopRegularCollision());
+		}
+		SideCollisionComponent left = new SideCollisionComponent(CollisionComponentType.Left);
+		for (EntityType type : EntityType.values()) {
+			left.addActionForType(new TypeComponent(type), new BlockLeftRegularCollision());
+		}
+		SideCollisionComponent right = new SideCollisionComponent(CollisionComponentType.Right);
+		for (EntityType type : EntityType.values()) {
+			right.addActionForType(new TypeComponent(type), new BlockRightRegularCollision());
+		}
+		SideCollisionComponent bottom = new SideCollisionComponent(CollisionComponentType.Bottom);
+		for(EntityType type : EntityType.values()) {
+			bottom.addActionForType(new TypeComponent(type), new BlockBottomRegularCollision());
+		}
+		collisionRepo.addCollisionComponent(top);
+		collisionRepo.addCollisionComponent(left);
+		collisionRepo.addCollisionComponent(right);
+		collisionRepo.addCollisionComponent(bottom);
+		
+	}
+	
 
 }

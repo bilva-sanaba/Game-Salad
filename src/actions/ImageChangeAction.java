@@ -37,7 +37,7 @@ public class ImageChangeAction  extends AbstractAction  implements IAction{
 			IRestrictedGameData currentGameData) {
 		if (counter%10==0){
 			SpriteComponent sc = (SpriteComponent) other.getComponent(ComponentType.Sprite);
-			sc.setClassPath(possibleImages.get((counter/10)%possibleImages.size()));		
+			sc.setObject(possibleImages.get((counter/10)%possibleImages.size()));		
 			other.changed(other);
 		}
 		counter++;

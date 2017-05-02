@@ -1,6 +1,6 @@
 package components.entityComponents;
 
-import components.AComponent;
+import components.AbstractOneParameterComponent;
 import components.IComponent;
 
 /**
@@ -10,12 +10,10 @@ import components.IComponent;
  * @author Bilva
  *
  */
-public class LabelComponent extends AComponent implements IComponent {
-
-	private String label;
+public class LabelComponent extends AbstractOneParameterComponent<String> implements IComponent {
 
 	public LabelComponent(String l) {
-		label = l;
+		super(l);
 	}
 
 	public LabelComponent() {
@@ -25,17 +23,5 @@ public class LabelComponent extends AComponent implements IComponent {
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Label;
-	}
-
-	public void setLabel(String newLabel) {
-		label = newLabel;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-	
-	public IComponent newCopy() {
-		return new LabelComponent(getLabel());
 	}
 }

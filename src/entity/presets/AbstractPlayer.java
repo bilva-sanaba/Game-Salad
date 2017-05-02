@@ -1,7 +1,7 @@
 package entity.presets;
 
+import actions.AcheivementAction;
 import components.entityComponents.AccelerationComponent;
-import components.entityComponents.AcheivementAction;
 import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.ControllableComponent;
@@ -18,6 +18,7 @@ public class AbstractPlayer extends Entity {
 //	CharacterRadioButton = Label, ImageProperties, Health, Strength, KeyInput, Lives, Collidable, Velocity, Acceleration
 	public AbstractPlayer(int id) {
 		super(id);
+		System.out.println("player is made");
 		addCollisionComponents();
 	}
 

@@ -178,14 +178,17 @@ public class ViewData extends Observable {
 
 	// fix dependencies
 	public void unplaceEntity(int level, Entity entity) {
-		placedEntityMaps.get(level).remove(entity);
-		System.out.println("shouldve cut" + entity + "from level" + currentLevel);
+		placedEntityMaps.get(level).remove(entity.getID());
 		setChanged();
 		notifyObservers();
 	}
 
-	public void copyEntity(){
-		copiedEntity = userGridSelectedEntity;
+	public void copyEntity(Entity entity){
+		copiedEntity = entity;
+	}
+	
+	public Entity getCopiedEntity(){
+		return copiedEntity;
 	}
 	
 	// fix dependencies
@@ -242,8 +245,8 @@ public class ViewData extends Observable {
 	}
 	
 	// fix dependencies
-	public void removePlacedEntities() {
-		placedEntityMaps.get(currentLevel).clear();
+	public void removePlacedEntities(int level) {
+		placedEntityMaps.get(level).clear();
 		setChanged();
 		notifyObservers();
 	}
