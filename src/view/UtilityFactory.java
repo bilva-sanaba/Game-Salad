@@ -60,7 +60,7 @@ public class UtilityFactory {
 	
 	public Tab buildTab(String label, Boolean closable){
 		Tab myTab = new Tab();
-		myTab.setText(label);
+		myTab.setText(myResources.getString(label));
 		myTab.setClosable(closable);
 		return myTab;
 	}
@@ -86,7 +86,7 @@ public class UtilityFactory {
 			try {
 				evfac.getEvent(eventname, data).event();
 			} catch (Exception e1) {
-				e1.printStackTrace();
+//				alert
 			}
 		});
         return result;
@@ -102,19 +102,19 @@ public class UtilityFactory {
 	
 	public Button buildButton(String string, EventHandler eventname) {
         Button result = new Button();
-        result.setText(string);
+        result.setText(myResources.getString(string));
         result.setOnAction(eventname);
         return result;
 	}
 	
 	public MenuItem builtMenuItem(String name, EventHandler<ActionEvent> event){
-		MenuItem myMenuItem = new MenuItem(name);
+		MenuItem myMenuItem = new MenuItem(myResources.getString(name));
 		myMenuItem.setOnAction(event);
 		return myMenuItem;
 	}
 
 	private RadioButton buildRadioButton(String property, boolean selected, ToggleGroup group, VBox vbox){
-		RadioButton myButton = new RadioButton(property);
+		RadioButton myButton = new RadioButton(myResources.getString(property));
 		myButton.setSelected(selected);
 		myButton.setToggleGroup(group);
 		myButton.setUserData(myResources.getString(property+"RadioButton").split(SPLIT_REGEX));
@@ -145,7 +145,7 @@ public class UtilityFactory {
 	
 	private MenuItem buildMenuItem(String property, String eventname, ViewData data, double x, double y){
 		MenuItem menuItem = new MenuItem();
-        menuItem.setText(property);
+        menuItem.setText(myResources.getString(property));
         EventFactory evfac = new EventFactory(this);
         menuItem.setOnAction(e -> {
 			try {
