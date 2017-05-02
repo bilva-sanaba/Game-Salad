@@ -1,7 +1,7 @@
 package entity.presets;
 
+import actions.AcheivementAction;
 import components.entityComponents.AccelerationComponent;
-import components.entityComponents.AcheivementAction;
 import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.ControllableComponent;
@@ -28,7 +28,7 @@ public class AbstractPlayer extends Entity {
 		this.addComponent(new AccelerationComponent(0, 0));
 		KeyInputComponent k = new KeyInputComponent();
 		this.addComponent(k);
-		this.addComponent(new ControllableComponent());
+		this.addComponent(new ControllableComponent(true));
 		this.addComponent(new TypeComponent(EntityType.Player));
 		this.addComponent(new CollidableComponent(true));
 		this.addComponent(new ImagePropertiesComponent(50,50));

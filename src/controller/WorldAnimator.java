@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 
 import achievements.Achievement;
-import achievements.AchievementFactory;
 import components.entityComponents.LocationComponent;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;

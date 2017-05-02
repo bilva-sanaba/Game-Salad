@@ -27,7 +27,7 @@ public class LifeComponent extends UIDisplayComponent {
 	
 	@Override
 	public DisplayEnum getPos() {
-		return DisplayEnum.TOP_LEFT;
+		return DisplayEnum.TOP_RIGHT;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package components.entityComponents;
 
 import components.IComponent;
+import components.XYComponent;
 
 /**
  * Component used for determining the location of an object

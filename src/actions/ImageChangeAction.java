@@ -1,5 +1,6 @@
 package actions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -18,6 +19,7 @@ public class ImageChangeAction  extends AbstractAction  implements IAction{
 	
 	
 	public ImageChangeAction(Map<Integer, String> inputs) {
+		possibleImages = new ArrayList<String>();
 		for (Integer key : inputs.keySet()) {
 			possibleImages.add(inputs.get(key));
 		}
@@ -35,7 +37,7 @@ public class ImageChangeAction  extends AbstractAction  implements IAction{
 			IRestrictedGameData currentGameData) {
 		if (counter%10==0){
 			SpriteComponent sc = (SpriteComponent) other.getComponent(ComponentType.Sprite);
-			sc.setClassPath(possibleImages.get((counter/10)%possibleImages.size()));		
+			sc.setObject(possibleImages.get((counter/10)%possibleImages.size()));		
 			other.changed(other);
 		}
 		counter++;

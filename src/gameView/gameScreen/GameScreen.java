@@ -33,10 +33,9 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private VoogaAlert myAlert;   
 	private final String VOOGAISSUE = "Vooga Issue";
       
-	public GameScreen(UIViewInterface view, Stage s, IUserInputData input, WorldAnimator animation) {
+	public GameScreen(UIViewInterface view, Stage s, IUserInputData input) {
 		super(view, s, input);
 		myCommands = getCommands(myName);
-		myAnimation = animation;
 		initializeBoxes();
 		buildMainScene();
 		myBP.applyCss();
@@ -52,27 +51,40 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 
 	@Override
 	public void addData(GameDataManager data) {
+		checkWorldAnimator();
 		super.addData(data);
+		reset();
 		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
 				myScene.widthProperty(), myScene.heightProperty(), getGameData().getData());
 		try {
+			myAnimation = new WorldAnimator(getView());
 			myAnimation.start(getGameData().getData(), this);
 		} catch (ClassNotFoundException e) {
 			myAlert = new VoogaAlert(e.getMessage());
 			myAlert.showAlert();
 		}
 	}
-
+	
 	@Override
-	public void runGame() {
-		getGameData().getMusic().playMusic();
-		myAnimation.start();
+	public DisplayManager getComponents() {
+		return myDisplays; 
 	}
 	
 	@Override
-	public void pauseGame() {
-		getGameData().getMusic().stopMusic();
-		myAnimation.pause();
+	public void removeComponent(UIDisplayComponent toRemove) {
+		myPane.getChildren().remove(toRemove.getDisplay());
+	} 
+	@Override
+	public void addComponent(UIDisplayComponent toAdd) {
+		myPane.getChildren().add(toAdd.getDisplay());
+	} 
+	
+	public void checkWorldAnimator() {
+		try {
+			pauseGame();
+		} catch (Exception e) {
+			System.out.println("NO WORLD ANIMATOR");
+		}
 	}
 	
 	@Override
@@ -120,29 +132,24 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 
 	}
 	
+	private void reset() {
+		myPane.getChildren().clear();
+	}
+	
 	/**
 	 * THE FOLLOWING METHODS ARE FOR COMMANDS
 	 */
-
+	
 	@Override
-	public DisplayManager getComponents() {
-		return myDisplays; 
+	public void runGame() {
+		getGameData().getMusic().playMusic();
+		myAnimation.start();
 	}
 	
-	public void removeComponent(UIDisplayComponent toRemove) {
-		myPane.getChildren().remove(toRemove.getDisplay());
-	} 
-	
-	public void addComponent(UIDisplayComponent toAdd) {
-		myPane.getChildren().add(toAdd.getDisplay());
-	} 
-	
 	@Override
-	public void loadGame(String filePath) {
-		myPane.getChildren().clear();
-		myDisplays.addAllActive();
-		myAnimation.clearRoot();
-		super.loadGame(filePath);
+	public void pauseGame() {
+		getGameData().getMusic().stopMusic();
+		myAnimation.pause();
 	}
 
 }
