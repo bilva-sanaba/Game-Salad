@@ -1,9 +1,9 @@
 package gameView.tools;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javafx.beans.property.SimpleStringProperty;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 
 public class GameEntry {
 
@@ -31,5 +31,8 @@ public class GameEntry {
 		this.mySecondValue.set(mySecondValue);
 	}
 
+	public Collection<String> getValues() {
+		return new ArrayList<String>(){{ add(myFirstValue.getValue()); add(mySecondValue.getValue());}};
+	}
 	
 }

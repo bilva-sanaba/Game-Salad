@@ -9,6 +9,7 @@ import entity.SplashData;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
+import view.UtilityFactory;
 import view.ViewData;
 
 public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent {
@@ -16,7 +17,7 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	private final static String FILESAVETITLE = "Saving File";
 	private final static String FILESAVEBODY = "Please choose a name for your game: ";
 
-	public SaveEvent(ViewData data) {
+	public SaveEvent(UtilityFactory utilF, ViewData data) {
 		myData = data;
 	}
 

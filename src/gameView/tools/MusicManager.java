@@ -15,6 +15,7 @@ public class MusicManager {
 	public MusicManager(ReadOnlyStringProperty music) {	
 		myMusic = music;
 		setBinding();
+		startMusic();
 	}
 	
 	public void stopMusic() {

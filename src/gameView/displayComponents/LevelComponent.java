@@ -1,12 +1,10 @@
 package gameView.displayComponents;
 
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
-import gameView.UIView;
 import gameView.tools.DisplayEnum;
 import gamedata.IRestrictedGameData;
 

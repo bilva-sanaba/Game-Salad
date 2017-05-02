@@ -1,8 +1,6 @@
 package gameView.tools;
 
 import java.awt.Dimension;
-
-import gameView.UIView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -13,13 +11,11 @@ import javafx.scene.layout.BorderPane;
 
 public class ScrollablePopup {
 	
-	private String myName;
 	private Scene myScene;
 	private ScrollPane myScroll;
 	private BorderPane myPane;
 	
 	public ScrollablePopup(String name, String cssFile, Node contentToScroll, Button button, Dimension dim) {
-		myName = name;
 		setUpScroll(contentToScroll);
 		setUpBorderPane(button);
 		myScene = new Scene(myPane, dim.width, dim.height);
