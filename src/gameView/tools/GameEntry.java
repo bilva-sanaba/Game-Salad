@@ -1,18 +1,25 @@
 package gameView.tools;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javafx.beans.property.SimpleStringProperty;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 
 public class GameEntry {
 
 	private final SimpleStringProperty myFirstValue;
 	private final SimpleStringProperty mySecondValue;
 	
-	public GameEntry(String game, Double points) {
+	
+	/**
+	 * Used to create a table view in the profile screen. To add a potential new value, add a private final value (such as myFirstValue),
+	 * then add the correct getters/setters in the extact same format as below
+	 * @param game - firstvalue	
+	 * @param value - secondvalue
+	 */
+	public GameEntry(String game, String value) {
 		this.myFirstValue = new SimpleStringProperty(game);
-		this.mySecondValue = new SimpleStringProperty(points.toString());
+		this.mySecondValue = new SimpleStringProperty(value);
 	}
 	
 	public String getMyFirstValue() {
@@ -31,5 +38,8 @@ public class GameEntry {
 		this.mySecondValue.set(mySecondValue);
 	}
 
+	public Collection<String> getValues() {
+		return new ArrayList<String>(){{ add(myFirstValue.getValue()); add(mySecondValue.getValue());}};
+	}
 	
 }

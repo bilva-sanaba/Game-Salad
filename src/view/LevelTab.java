@@ -14,6 +14,7 @@ public class LevelTab extends Tab {
 
 	public void setLevelNumber(int levelNumber) {
 		this.setText(String.format("Level %d", levelNumber));
+		myGrid.setLevelNumber(levelNumber);
 	}
 
 	public GridView getGrid(){

@@ -1,6 +1,6 @@
 package view.toolbar;
 
-
+import view.UtilityFactory;
 import entity.SplashData;
 import view.ViewData;
 import view.window.*;
@@ -8,14 +8,16 @@ import view.window.*;
 public class SplashScreenEvent implements ToolBarButtonEvent {
 
 	private ViewData myData;
+	private UtilityFactory myUtilF;
 	
-	public SplashScreenEvent(ViewData vd) {
+	public SplashScreenEvent(UtilityFactory utilF, ViewData vd) {
 		myData = vd;
+		myUtilF = utilF;
 	}
 	
 	@Override
 	public void event() {
-		SplashScreenBuilderWindow ssbw = new SplashScreenBuilderWindow();
+		SplashScreenBuilderWindow ssbw = new SplashScreenBuilderWindow(myUtilF);
 		SplashData s = ssbw.createEntity();
 		System.out.println("wiener");
 		System.out.println(s.getGameTitle()+"<- THIS IS THIS THING");

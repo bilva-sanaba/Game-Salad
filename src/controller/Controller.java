@@ -41,8 +41,6 @@ public class Controller implements ControllerInterface {
 
 	private UIView myGameView;
 	private GameEngine myGameEngine;
-	private WorldAnimator myWorldAnimator;
-	private Stage myStage;
 	private String filePath;
 	private GUIBuilder myGUIBuilder;
 	private IRestrictedGameData gd;
@@ -50,7 +48,6 @@ public class Controller implements ControllerInterface {
 	private UserInputData uiData;
 
 	public Controller(Stage s) {
-		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
 		uiData = new UserInputData();
 		myGameEngine = new GameEngine((IRestrictedUserInputData) uiData);
@@ -97,12 +94,12 @@ public class Controller implements ControllerInterface {
 	}
 
 	@Override
-	public IRestrictedGameData loadNewGame(String gameName) { //IRestrictedEntityManager
-		c = new Communicator(gameName);
-		return myGameEngine.loadData(c);
-//		IRestrictedGameData gameData = myGameEngine.loadData(null); 
-//		gd=gameData;
-//		return gameData;
+	public IRestrictedGameData loadNewGame(String gameName) {
+		filePath = gameName;
+		Communicator c = new Communicator(gameName);
+		IRestrictedGameData gameData = myGameEngine.loadData(c); 
+		gd=gameData;
+		return gameData;
 	}
 
 	@Override

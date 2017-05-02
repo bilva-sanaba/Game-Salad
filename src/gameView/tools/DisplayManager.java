@@ -1,7 +1,7 @@
 package gameView.tools;
 
 import gameView.displayComponents.UIDisplayComponent;
-import gameView.gameScreen.GameScreen;
+import gameView.gameScreen.IGameScreenDisplays;
 import gamedata.IRestrictedGameData;
 
 import java.util.Collection;
@@ -20,12 +20,12 @@ public class DisplayManager implements IDisplayManager {
 	
 	private HashMap<String, UIDisplayComponent> myAllDisplays;
 	private HashMap<String, UIDisplayComponent> myActiveDisplays;
-	private GameScreen myScreen;
+	private IGameScreenDisplays myScreen;
 	private ReadOnlyDoubleProperty myWidthBound;
 	private ReadOnlyDoubleProperty myHeightBound;
 	private IRestrictedGameData myGameData;
 	
-	public DisplayManager(GameScreen screen, String filePath, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, 
+	public DisplayManager(IGameScreenDisplays screen, String filePath, ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, 
 			IRestrictedGameData gameData) {
 		myGameData = gameData;
 		myScreen = screen;
@@ -35,6 +35,9 @@ public class DisplayManager implements IDisplayManager {
 		copyMap(myAllDisplays);
 	}
 	
+	/**
+	 * Add a component to active displays and display on Screen
+	 */
 	public void add(String toAdd) {
 		if (!myActiveDisplays.containsKey(toAdd)) {
 			myActiveDisplays.put(toAdd, myAllDisplays.get(toAdd));
@@ -42,6 +45,9 @@ public class DisplayManager implements IDisplayManager {
 		myScreen.addComponent(myAllDisplays.get(toAdd));
 	}
 	
+	/**
+	 * remove a component to active displays and remove from Screen
+	 */
 	public void remove(String toRemove) {
 		myActiveDisplays.remove(toRemove);
 		myScreen.removeComponent(myAllDisplays.get(toRemove));
@@ -100,17 +106,17 @@ public class DisplayManager implements IDisplayManager {
 		    });
 	}
 	
-	private void updateX(UIDisplayComponent width, Double newVal) {
-		double x = (width.getPos().x())/100;
+	private void updateX(UIDisplayComponent comp, Double newVal) {
+		double x = (comp.getPos().x())/100;
 		if (x!= 0) {
-			width.getDisplay().setTranslateX(newVal*x-(width.getSize().getWidth()*x));
+			comp.getDisplay().setTranslateX(newVal*x-(comp.getSize().getWidth()*x));
 		}
 	}
 	
-	private void updateY(UIDisplayComponent height, Double newVal) {
-		double y = (height.getPos().y())/100;
+	private void updateY(UIDisplayComponent comp, Double newVal) {
+		double y = (comp.getPos().y())/100;
 		if (y!= 0) {
-			height.getDisplay().setTranslateY(newVal*y-(height.getSize().getHeight()*y));
+			comp.getDisplay().setTranslateY(newVal*y-(comp.getSize().getHeight()*y));
 		}
 	}
 }

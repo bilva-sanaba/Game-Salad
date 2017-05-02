@@ -2,7 +2,7 @@ package gameView.commands;
 
 import javafx.stage.Stage;
 import gameView.ICommandView;
-import gameView.loginScreen.FaceBookLogin;
+import gameView.facebook.FaceBook;
 import gameView.userManagement.UserData;
 
 public class FacebookCommand extends AbstractCommand{
@@ -13,7 +13,7 @@ public class FacebookCommand extends AbstractCommand{
 
 	@Override
 	public boolean execute(Stage s) {
-		FaceBookLogin facebook = new FaceBookLogin();
+		FaceBook facebook = new FaceBook();
 		UserData user = facebook.login();
 		return getView().getUserManager().facebookUser(user);
 		

@@ -1,11 +1,9 @@
 package gameView.displayComponents;
 
-
 import gameObject.GameConfig;
 import gameView.tools.DisplayEnum;
 import gamedata.IRestrictedGameData;
 import javafx.beans.binding.NumberExpressionBase;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Dimension2D;

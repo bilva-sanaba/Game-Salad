@@ -13,6 +13,7 @@ import actions.RemoveAction;
 import actions.ShootAction;
 import actions.Teleport;
 import components.entityComponents.AccelerationComponent;
+import components.entityComponents.AcheivementAction;
 import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
@@ -121,6 +122,8 @@ public class GameEngine implements GameEngineInterface {
 	
 	public IRestrictedGameData loadData(EngineCommunication c){	
 
+///		myEntityManagers = dummyLoad();
+///	myEntityManager = myEntityManagers.get(0);
 
 		
 		//REAL USE THIS
@@ -131,8 +134,11 @@ public class GameEngine implements GameEngineInterface {
 		myEntityLoader = new EntityLoader(myEntityManager);
 		
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
+		List<String> listl = new ArrayList<String>();
+		listl.add("");
 
-		myGameData = new GameData(0,0,(IRestrictedEntityManager) myEntityManager, 0, lc, new ArrayList<String>(),"");
+		myGameData = new GameData(0,3,(IRestrictedEntityManager) myEntityManager, 1, lc, listl,"badboujee.wav");
+
 		return (IRestrictedGameData) myGameData;
 	}
 	
@@ -160,8 +166,13 @@ public class GameEngine implements GameEngineInterface {
 	}
 	private void updateLevel(IRestrictedGameData restrictedGameData){
 		if (myGameData.getLevel().intValue()!=restrictedGameData.getLevel().intValue()){
-			myEntityLoader.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()));
-			previousEntityManagers.clear();
+			if (restrictedGameData.getLevel().intValue()>(myEntityManagers.size()+1)){
+				GameDataFactory gdf = new GameDataFactory();
+				myGameData.setLevel(-1);
+			}else{
+				myEntityLoader.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()-1));
+				previousEntityManagers.clear();
+			}				
 		}
 	}
 	private void resetStoredStates(){
@@ -313,6 +324,7 @@ public class GameEngine implements GameEngineInterface {
 		x.addComponent(time);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.V, new ShootAction());
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, new JumpAction());
+		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.H, new AcheivementAction());
 //		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.W, ica3);
 		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.D, new RightAction());
 
