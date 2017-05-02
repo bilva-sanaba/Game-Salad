@@ -10,17 +10,17 @@ public class EditCommand implements RightClickEvent {
 
 private ViewData myData;
 private UtilityFactory util;
-private Entity entity;
+private Entity myEntity;
 	
-	public EditCommand(ViewData data, Entity e, UtilityFactory uf){
+	public EditCommand(UtilityFactory uf, ViewData data, Entity entity, double x, double y){
 		myData = data;
 		util = uf;
-		entity = e;
+		myEntity = entity;
 	}
 	
 	@Override
 	public void execute() {
-		new EntityConfigurationWindow(util, myData, entity);		
+		new EntityConfigurationWindow(util, myData, myEntity);		
 	}
 
 	@Override

@@ -133,23 +133,23 @@ public class UtilityFactory {
 		return toolButtons;
 	}
 	
-	public List<MenuItem> makeRightClickMenu(ViewData data, double x, double y) {
+	public List<MenuItem> makeRightClickMenu(ViewData data, Entity entity, double x, double y) {
 		List<MenuItem> menuItems = new ArrayList<MenuItem>();
 		String[] names = menuResources.getString("MenuItemNames").split(SPLIT_REGEX);
 		String[] events = menuResources.getString("MenuEventNames").split(SPLIT_REGEX);
 		for(int i = 0; i < names.length; i++){
-			menuItems.add(buildMenuItem(names[i], events[i], data, x, y));
+			menuItems.add(buildMenuItem(names[i], events[i], data, entity, x, y));
 		}
 		return menuItems;
 	}
 	
-	private MenuItem buildMenuItem(String property, String eventname, ViewData data, double x, double y){
+	private MenuItem buildMenuItem(String property, String eventname, ViewData data, Entity entity, double x, double y){
 		MenuItem menuItem = new MenuItem();
         menuItem.setText(property);
         EventFactory evfac = new EventFactory(this);
         menuItem.setOnAction(e -> {
 			try {
-				evfac.getRightClickEvent(eventname, data, x, y).execute();
+				evfac.getRightClickEvent(eventname, this, data, entity, x, y).execute();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
