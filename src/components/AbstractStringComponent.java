@@ -12,6 +12,7 @@ public abstract class AbstractStringComponent extends AComponent implements ICom
 	public AbstractStringComponent(String inputString) {
 		myString = inputString;
 	}
+	
 
 	public String getString() { 
 		return myString;
