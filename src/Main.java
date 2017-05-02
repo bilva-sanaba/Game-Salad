@@ -1,5 +1,4 @@
 import gameView.loginScreen.LoginScreen;
-import components.entityComponents.SpriteComponent;
 import controller.Controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
