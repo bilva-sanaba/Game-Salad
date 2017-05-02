@@ -3,10 +3,9 @@ package engines;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
-import data_interfaces.InfiniteEnum;
+import engines.infinite.InfiniteEnum;
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;

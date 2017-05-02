@@ -47,7 +47,7 @@ public class InputEngine extends AbstractEngine {
 	
 	private IRestrictedGameData handleInput(IEntity e, Collection<KeyCode> keys, IRestrictedGameData gameData){
 		IRestrictedGameData rgd = gameData;
-		if (e.getComponent(ComponentType.KeyInput)!=null){
+		if (e.hasComponent(ComponentType.KeyInput)){
 			ControllableComponent cc = (ControllableComponent) e.getComponent(ComponentType.Controllable);
 			KeyInputComponent ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 			VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity); 
