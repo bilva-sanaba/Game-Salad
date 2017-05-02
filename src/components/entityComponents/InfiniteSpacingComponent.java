@@ -1,13 +1,14 @@
 package components.entityComponents;
 
 import components.AComponent;
+import components.AbstractOneParameterComponent;
 import components.IComponent;
 
-public class InfiniteSpacingComponent extends AComponent implements IComponent {
-	private double spacing;
+public class InfiniteSpacingComponent extends AbstractOneParameterComponent<Double> implements IComponent {
+	
 
 	public InfiniteSpacingComponent(double s) {
-		spacing = s;
+		super(s);
 	}
 	
 	public InfiniteSpacingComponent(){
@@ -18,17 +19,4 @@ public class InfiniteSpacingComponent extends AComponent implements IComponent {
 	public ComponentType getComponentType() {
 		return ComponentType.InfiniteSpacing;
 	}
-
-	public double getInfiniteSpacingComponent() {
-		return spacing;
-	}
-
-	public void setInfiniteSpacingComponent(double s) {
-		spacing = s;
-	}
-
-	public IComponent newCopy() {
-		return new InfiniteSpacingComponent(getInfiniteSpacingComponent());
-	}
-
 }

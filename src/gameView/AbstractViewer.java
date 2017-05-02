@@ -55,11 +55,11 @@ public abstract class AbstractViewer implements ICommandView {
 		myData = data;
 	}
 	
-	protected abstract void setBackground(String s);
-	
 	protected GameDataManager getGameData() {
 		return myData;
 	}
+	
+	protected abstract void setBackground(String s);
 	
 	protected UIViewInterface getView() {
 		return myView;
@@ -124,11 +124,11 @@ public abstract class AbstractViewer implements ICommandView {
 	 * THE FOLLOWING LINES ARE USED BY COMMANDS TO PERFORM A VARIETY OF ACTIONS
 	 */
 	public void loadGame(String filepath) {
-		myView.loadGame(filepath);
+		getView().loadGame(filepath);
 	}
 
 	public void restart() {
-		myView.restart();
+		getView().restart();
 	}
 	
 	public void saveGame() {

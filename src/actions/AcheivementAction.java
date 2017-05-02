@@ -1,7 +1,5 @@
-package components.entityComponents;
+package actions;
 
-import actions.AbstractAction;
-import actions.IAction;
 import components.keyExpressions.RightAction;
 import entity.IEntity;
 import entity.IEntityManager;

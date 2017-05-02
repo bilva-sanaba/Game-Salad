@@ -16,6 +16,7 @@ import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
+import components.entityComponents.TimeComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 

@@ -47,7 +47,7 @@ public class EntityBuilderWindow implements Window {
 
 	private Scene buildScene() {
 		Pane pane = buildPane();
-		Scene myScene = new Scene(pane, 350, 400);
+		Scene myScene = new Scene(pane);
 		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
 		return myScene;
 	}

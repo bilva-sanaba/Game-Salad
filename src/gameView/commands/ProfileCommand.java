@@ -13,7 +13,6 @@ public class ProfileCommand extends AbstractCommand {
 	public boolean execute(Stage s) {
 		getView().pauseGame();
 		getView().profileScreen();
-		getView().runGame();
 		return true;
 	}
 

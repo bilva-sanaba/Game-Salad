@@ -63,6 +63,8 @@ public class InfiniteEngine extends AbstractEngine implements IEngine{
 					newEntity.addComponent(new LocationComponent(lc.getX()+difference,lc.getY()));
 					getEManager().getEntities().add(newEntity);
 					getEManager().changed(newEntity);
+					getEManager().getEntities().remove(e);
+					e.changed(null);
 				}
 				
 			}
