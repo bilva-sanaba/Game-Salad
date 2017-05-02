@@ -1,13 +1,10 @@
 package components.entityComponents;
 
 import components.AComponent;
-import components.AbstractStringComponent;
+import components.AbstractOneParameterComponent;
 import components.IComponent;
 
-public class BackgroundComponent extends AbstractStringComponent implements IComponent {
-
-
-	
+public class BackgroundComponent extends AbstractOneParameterComponent<String> implements IComponent {
 	public BackgroundComponent(String fileP) {
 		super(fileP);
 	}
@@ -15,6 +12,5 @@ public class BackgroundComponent extends AbstractStringComponent implements ICom
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Background;
-	}
-	
+	}	
 }

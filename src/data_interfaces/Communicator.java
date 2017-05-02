@@ -221,7 +221,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		Map<Integer, LevelEntity> m = results.get(1);
 //		System.out.println(m.get(1).getInfiniteEnum());
 //		return m.get(1).getInfiniteEnum();
-		return InfiniteEnum.None;
+		return InfiniteEnum.Horizontal;
 	}
 	public List<IEntityManager> dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
@@ -404,7 +404,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 			if (i==0){
 				enemy.addComponent(new LocationComponent(800, 20));
 				enemy.addComponent(new ObjectCreationComponent(y3));
-//				enemy.addComponent(new TimeComponent(new SmartShoot(), 2000));
+				enemy.addComponent(new TimeComponent(new SmartShoot(), 2000));
 			}else{
 				enemy.addComponent(new LocationComponent(1200,150));
 

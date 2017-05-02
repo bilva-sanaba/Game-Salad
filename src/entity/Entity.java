@@ -105,8 +105,8 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	
 	@Override
 	public String toString(){
-		if(((LabelComponent)this.getComponent(ComponentType.Label)).getString() != null){
-			return ((LabelComponent)this.getComponent(ComponentType.Label)).getString();
+		if(((LabelComponent)this.getComponent(ComponentType.Label)).getObject() != null){
+			return ((LabelComponent)this.getComponent(ComponentType.Label)).getObject();
 		}
 		return "null label component";
 	}
@@ -121,7 +121,7 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	@Override
 	public String getRestrictedImagePath() {
 		SpriteComponent sc = (SpriteComponent) getComponent(ComponentType.Sprite);
-		return sc.getString();
+		return sc.getObject();
 	}
 
 	@Override

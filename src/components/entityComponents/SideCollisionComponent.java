@@ -29,12 +29,12 @@ public class SideCollisionComponent implements IComponent {
 	}
 	
 	public void addActionForLabel(LabelComponent label, IAction action) {
-		if(!labelActionMap.containsKey(label.getString())) {
-			labelActionMap.put(label.getString(), new ArrayList<IAction>());
+		if(!labelActionMap.containsKey(label.getObject())) {
+			labelActionMap.put(label.getObject(), new ArrayList<IAction>());
 		}
-		ArrayList<IAction> actions = labelActionMap.get(label.getString());
+		ArrayList<IAction> actions = labelActionMap.get(label.getObject());
 		actions.add(action);
-		labelActionMap.put(label.getString(), actions);
+		labelActionMap.put(label.getObject(), actions);
 	}
 	
 	public void addActionForType(TypeComponent type, IAction action) {
@@ -52,8 +52,8 @@ public class SideCollisionComponent implements IComponent {
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
-		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getString())) {
-			for (IAction action : labelActionMap.get(entityLabel.getString())) {
+		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getObject())) {
+			for (IAction action : labelActionMap.get(entityLabel.getObject())) {
 				dg = action.executeAction(e, e2,myEM, dg);
 //				for (IRestrictedEntity re : dg.getRestrictedEntityManager().getRestrictedEntities()){
 //					newEntities.add(re.clone());

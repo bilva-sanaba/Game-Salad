@@ -1,7 +1,6 @@
 package components.entityComponents;
 
-import components.AComponent;
-import components.AbstractStringComponent;
+import components.AbstractOneParameterComponent;
 import components.IComponent;
 
 /**
@@ -11,7 +10,7 @@ import components.IComponent;
  * @author Bilva
  *
  */
-public class LabelComponent extends AbstractStringComponent implements IComponent {
+public class LabelComponent extends AbstractOneParameterComponent<String> implements IComponent {
 
 	public LabelComponent(String l) {
 		super(l);

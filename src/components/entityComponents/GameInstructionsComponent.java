@@ -1,14 +1,13 @@
 package components.entityComponents;
 
-import components.AComponent;
-import components.AbstractStringComponent;
+import components.AbstractOneParameterComponent;
 import components.IComponent;
 
 /**
  * @author Justin
  * 
  */
-public class GameInstructionsComponent extends AbstractStringComponent implements IComponent {
+public class GameInstructionsComponent extends AbstractOneParameterComponent<String> implements IComponent {
 
 	
 	public GameInstructionsComponent(String instructions) {
