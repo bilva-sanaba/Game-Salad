@@ -6,6 +6,8 @@ import java.util.Collection;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.ObjectCreationComponent;
+import components.entityComponents.OrientationComponent;
+import components.entityComponents.VelocityComponent;
 import entity.Entity;
 import entity.EntityManager;
 import entity.IEntity;
@@ -26,9 +28,20 @@ public class ShootAction  extends AbstractAction implements IAction {
 //			newE.setID(myEM.getEntities().size());
 			LocationComponent lcplayer= (LocationComponent) other.getComponent(ComponentType.Location);
 			LocationComponent lcnpc= (LocationComponent) newE.getComponent(ComponentType.Location);
-			lcnpc.setX(lcplayer.getX()+60);
-			lcnpc.setY(lcplayer.getY());
+			
+			OrientationComponent orientationPlayer = (OrientationComponent) other.getComponent(ComponentType.Orientation);
+			int orientation = -1;
+			if (orientationPlayer.getOrientation() == 0) {
+				orientation =1;
+			}
+			
+			VelocityComponent vcNPC = (VelocityComponent) newE.getComponent(ComponentType.Velocity);
+			
+			
 			occ.setEntity(newE.newCopy(myEM.getEntities().size()));
+			vcNPC.setX(vcNPC.getX()*orientation);
+			lcnpc.setX(lcplayer.getX()+(orientation*60));
+			lcnpc.setY(lcplayer.getY());
 			Collection<IEntity> list = new ArrayList<IEntity>();
 			list.add( newE);
 			EntityManager em = new EntityManager(list);

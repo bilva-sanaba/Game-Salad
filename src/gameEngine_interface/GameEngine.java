@@ -121,7 +121,6 @@ public class GameEngine implements GameEngineInterface {
 	}
 	
 	public IRestrictedGameData loadData(EngineCommunication c){	
-		//DUMMYLOAD
 
 ///		myEntityManagers = dummyLoad();
 ///	myEntityManager = myEntityManagers.get(0);
