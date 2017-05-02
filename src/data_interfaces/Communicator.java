@@ -191,7 +191,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public List<LevelEntity> getLevelEntities() {
-		Map <Integer, LevelEntity> m = results.get(1);
+//		Map <Integer, LevelEntity> m = results.get(1);
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
 		LevelEntity l = new LevelEntity(0,500,500,"background1.png", "badboujee.wav",3);
 		
