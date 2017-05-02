@@ -33,7 +33,7 @@ public class LevelComponent extends UIDisplayComponent {
 
 	@Override
 	public DisplayEnum getPos() {
-		return DisplayEnum.TOP_CENTER;
+		return DisplayEnum.TOP_LEFT;
 	}
 
 	@Override
@@ -42,7 +42,6 @@ public class LevelComponent extends UIDisplayComponent {
 		myLabel = new Label();
 		setLabel();
 		myBox = new HBox(myLabel);
-		System.out.println(myBox.getWidth());
 		
 	}
 	

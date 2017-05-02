@@ -29,7 +29,7 @@ public class ScoreComponent extends UIDisplayComponent {
 
 	@Override
 	public DisplayEnum getPos() {
-		return DisplayEnum.TOP_RIGHT;
+		return DisplayEnum.TOP_CENTER;
 	}
 
 	@Override

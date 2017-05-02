@@ -103,8 +103,7 @@ public class Controller implements ControllerInterface {
 	@Override
 	public void resetCurrentGame() throws XMLException {
 		if(!filePath.equals(null)){
-			Communicator c = new Communicator(filePath);
-			myGameEngine.loadData(new Communicator(filePath));;
+			loadNewGame(filePath);
 		}
 		else{
 			throw new XMLException(String.format("No current game"));

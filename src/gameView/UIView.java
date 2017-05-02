@@ -4,7 +4,6 @@ package gameView;
 import java.awt.Dimension;
 import java.sql.Timestamp;
 import java.util.Set;
-import data_interfaces.XMLException;
 import entity.SplashData;
 import gameView.endScreen.EndScreen;
 import gameView.gameDataManagement.GameDataManager;
@@ -14,7 +13,6 @@ import gameView.splashScreen.SplashView;
 import gameView.userInput.IUserInputData;
 import gameView.userManagement.IUserManager;
 import gameView.userManagement.UserManager;
-import controller.WorldAnimator;
 import controller_interfaces.ControllerInterface;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -48,10 +46,9 @@ public class UIView implements UIViewInterface {
 		s.setTitle(STAGE_TITLE);  
 		myUserInputData = userInput;
 		myUserManager = new UserManager();
-		myController = controller;   
-		WorldAnimator myAnimation = new WorldAnimator(this);
+		myController = controller;
 		mySplash = new SplashView(this, s, myUserInputData);
-		myGameScene = new GameScreen(this, myStage, myUserInputData, myAnimation);
+		myGameScene = new GameScreen(this, myStage, myUserInputData);
 		getSplashScreen();
 	}
 	
@@ -88,19 +85,11 @@ public class UIView implements UIViewInterface {
 	}
 	
 	public void restart() {
+		updateUserStats();
 		try {
-			updateUserStats();
-			myController.resetCurrentGame();
-		} catch (XMLException e) {
+			loadGame(myCurrentGame);
+		} catch (Exception e) {
 		}
-	}
-	
-	public void wonGame() {
-		ending("YOU WON!");
-	}
-	
-	public void lostGame() {
-		ending("GAME OVER");
 	}
 	
 	public Stage getStage() {
@@ -119,6 +108,13 @@ public class UIView implements UIViewInterface {
 		s.setScene(view.getScene());
 		s.showAndWait();
 	}
+
+	public void ending(String end) {
+		myGameScene.checkWorldAnimator();
+		AbstractViewer ending = new EndScreen(this, getStage(), myUserInputData, end, myData.getData().getPoints().doubleValue());
+		ending.addBackground(mySplashData.getBackgroundFilePath());
+		setStage(ending.getScene());
+	}
 	
 	private void getSplashScreen() {
 		setStage(mySplash.getScene());
@@ -127,12 +123,6 @@ public class UIView implements UIViewInterface {
 	private void runSpecificSplash() {
 		setStage(mySpecificSplash.getScene());
 		
-	}
-	
-	private void ending(String end) {
-		AbstractViewer ending = new EndScreen(this, getStage(), myUserInputData, end, myData.getData().getPoints().doubleValue());
-		ending.addBackground(mySplashData.getBackgroundFilePath());
-		setStage(ending.getScene());
 	}
 	
 	private void setStage(Scene s) {
