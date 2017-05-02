@@ -32,11 +32,11 @@ public class SideCollisionComponent implements IComponent {
 		if(!labelActionMap.containsKey(label.getObject())) {
 			labelActionMap.put(label.getObject(), new ArrayList<IAction>());
 		}
-		ArrayList<IAction> actions = labelActionMap.get(label.getLabel());
+		ArrayList<IAction> actions = labelActionMap.get(label.getObject());
 		if (!actions.contains(action)) {
 			actions.add(action);
 		}
-		labelActionMap.put(label.getLabel(), actions);
+		labelActionMap.put(label.getObject(), actions);
 	}
 	
 	public void addActionForType(TypeComponent type, IAction action) {
@@ -97,7 +97,7 @@ public class SideCollisionComponent implements IComponent {
 	
 	public void clearMappings(LabelComponent labelToClear, TypeComponent typeToClear) {
 		if (labelToClear!= null) {
-			labelActionMap.put(labelToClear.getLabel(), new ArrayList<IAction>());
+			labelActionMap.put(labelToClear.getObject(), new ArrayList<IAction>());
 		}
 		if (typeToClear!=null) {
 			typeActionMap.put(typeToClear.getTypeString(), new ArrayList<IAction>());
@@ -111,8 +111,8 @@ public class SideCollisionComponent implements IComponent {
 			}
 		}
 		if (label!=null) {
-			if (labelActionMap.get(label.getLabel())!=null) {
-				labelActionMap.get(label.getLabel()).remove(toRemove);
+			if (labelActionMap.get(label.getObject())!=null) {
+				labelActionMap.get(label.getObject()).remove(toRemove);
 			}
 		}
 	}
