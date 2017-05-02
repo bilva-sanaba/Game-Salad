@@ -55,8 +55,6 @@ public class Controller implements ControllerInterface {
 	}
 
 	public void save(String fileName) {
-		// TODO Auto-generated method stub
-		// loop through and save all write all items to XML
 		XMLWriter xw = new XMLWriter();
 		List <Map> saveList = new ArrayList<Map>();
 		saveList.add(convertEntityManagers(myGameEngine.save()));
