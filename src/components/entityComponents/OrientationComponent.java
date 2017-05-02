@@ -7,6 +7,9 @@ public class OrientationComponent extends AComponent implements IComponent{
 
 	private int myOrientation = 0;
 	
+	public static final int LEFT = 180;
+	public static final int RIGHT = 0;
+	
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Orientation;

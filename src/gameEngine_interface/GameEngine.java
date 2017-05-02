@@ -42,6 +42,7 @@ public class GameEngine implements GameEngineInterface {
 	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
 	
 	public GameEngine(IRestrictedUserInputData data){
+		System.out.println("GameEngine is created");
 		initializeUserData(data);
 		previousEntityManagers = new ArrayList<IEntityManager>();
 		sliderPause = false;
@@ -130,9 +131,7 @@ public class GameEngine implements GameEngineInterface {
 		return null;
 	}
 	
-//	public void addCamera(Camera c) {
-//		myEntityManager.changed(c);
-//	}
+
 	
 	private void rewindState(Double old, Double next){
 		sliderPause=true;

@@ -2,6 +2,7 @@ package view.commands;
 
 import java.util.List;
 
+import entity.Entity;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -28,9 +29,9 @@ public class RightClickMenu{
 		menuItems.stream().forEach(menu.getItems()::add);
 	}
 	
-	public void show(Pane pane, double x, double y, double placex, double placey){
+	public void show(Pane pane, Entity e, double x, double y, double placex, double placey){
 		ContextMenu newMenu = new ContextMenu();
-		fillMenu(utilF.makeRightClickMenu(myData, placex, placey), newMenu);
+		fillMenu(utilF.makeRightClickMenu(myData, e, placex, placey), newMenu);
 		currentMenu = newMenu;
 		currentMenu.show(pane, x, y);
 		isShowing = true;

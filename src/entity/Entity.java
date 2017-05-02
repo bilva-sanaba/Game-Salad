@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Observable;
 
 import components.IComponent;
+import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
@@ -156,5 +157,6 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	public boolean hasComponent(ComponentType ct) {
 		return this.getComponent(ct)!=null;
 	}
+	
 	
 }

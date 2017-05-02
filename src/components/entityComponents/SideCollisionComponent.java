@@ -32,9 +32,11 @@ public class SideCollisionComponent implements IComponent {
 		if(!labelActionMap.containsKey(label.getObject())) {
 			labelActionMap.put(label.getObject(), new ArrayList<IAction>());
 		}
-		ArrayList<IAction> actions = labelActionMap.get(label.getObject());
-		actions.add(action);
-		labelActionMap.put(label.getObject(), actions);
+		ArrayList<IAction> actions = labelActionMap.get(label.getLabel());
+		if (!actions.contains(action)) {
+			actions.add(action);
+		}
+		labelActionMap.put(label.getLabel(), actions);
 	}
 	
 	public void addActionForType(TypeComponent type, IAction action) {
@@ -42,7 +44,9 @@ public class SideCollisionComponent implements IComponent {
 			typeActionMap.put(type.getTypeString(), new ArrayList<IAction>());
 		}
 		ArrayList<IAction> actions = typeActionMap.get(type.getTypeString());
-		actions.add(action);
+		if (!actions.contains(action)) {
+			actions.add(action);
+		}
 		typeActionMap.put(type.getTypeString(), actions);
 	}
 	
@@ -89,6 +93,33 @@ public class SideCollisionComponent implements IComponent {
 	
 	public int hashCode(){
 		return (getComponentType().toString() + sideCollision.toString()).hashCode();
+	}
+	
+	public void clearMappings(LabelComponent labelToClear, TypeComponent typeToClear) {
+		if (labelToClear!= null) {
+			labelActionMap.put(labelToClear.getLabel(), new ArrayList<IAction>());
+		}
+		if (typeToClear!=null) {
+			typeActionMap.put(typeToClear.getTypeString(), new ArrayList<IAction>());
+		}
+	}
+	
+	public void removeSpecificActionMapping(IAction toRemove, TypeComponent type, LabelComponent label) {
+		if (type!=null) {
+			if (typeActionMap.get(type.getTypeString())!=null) {
+				typeActionMap.get(type.getTypeString()).remove(toRemove);
+			}
+		}
+		if (label!=null) {
+			if (labelActionMap.get(label.getLabel())!=null) {
+				labelActionMap.get(label.getLabel()).remove(toRemove);
+			}
+		}
+	}
+	
+	public void clearAllMappings() {
+		typeActionMap = new HashMap<String, ArrayList<IAction>>();
+		labelActionMap = new HashMap<String, ArrayList<IAction>>();
 	}
 	
 }
