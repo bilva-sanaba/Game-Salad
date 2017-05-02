@@ -9,6 +9,12 @@ import components.IComponent;
 public class CollisionComponentsHandler extends AComponent implements IComponent {
 	private Map<String, SideCollisionComponent> sideCollisionMap;
 	
+	
+	public static final String TOP = "Top";
+	public static final String LEFT = "Left";
+	public static final String BOTTOM = "Bottom";
+	public static final String RIGHT = "Right";
+	
 	public CollisionComponentsHandler(Map <String, SideCollisionComponent> map){
 		sideCollisionMap = map;
 		
