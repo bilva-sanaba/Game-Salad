@@ -77,7 +77,7 @@ public class GameEngine implements GameEngineInterface {
 		List<String> listl = new ArrayList<String>();
 		listl.add("");
 
-		myGameData = new GameData(0,3,(IRestrictedEntityManager) myEntityManager, 1, lc, listl,"badboujee.wav");
+		myGameData = new GameData(0,c.getLives(),(IRestrictedEntityManager) myEntityManager, 1, lc, listl,c.getMusic());
 
 		return (IRestrictedGameData) myGameData;
 	}
@@ -106,7 +106,7 @@ public class GameEngine implements GameEngineInterface {
 	}
 	private void updateLevel(IRestrictedGameData restrictedGameData){
 		if (myGameData.getLevel().intValue()!=restrictedGameData.getLevel().intValue()){
-			if (restrictedGameData.getLevel().intValue()>(myEntityManagers.size()+1)){
+			if (restrictedGameData.getLevel().intValue()>(myEntityManagers.size())){
 				GameDataFactory gdf = new GameDataFactory();
 				myGameData.setLevel(-1);
 			}else{

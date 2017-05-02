@@ -7,8 +7,6 @@ import java.util.Map;
 
 import actions.IAction;
 import components.IComponent;
-import engines.IKeyInputPanel;
-import engines.KeyInputPanel;
 import components.entityComponents.IKeyExpression;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
