@@ -62,81 +62,13 @@ import entity.presets.AbstractEnemy;
 import entity.presets.AbstractGoal;
 import entity.presets.AbstractMysteryBlock;
 import entity.presets.AbstractPowerup;
+import entity.presets.DeathBlock;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
 import javafx.scene.input.KeyCode;
 
 public class Communicator extends GameSavingDataTool implements EngineCommunication, PlayerCommunication {
 
-	private String fileName;
-	List<Map> results;
-
-	public Communicator(String s) {
-		fileName = s;
-		XMLPlacedParser xp = new XMLPlacedParser();
-		results = xp.getData(fileName);
-	}
-	
-	public List<IEntityManager> getIEntityManagers() {
-		Map <Integer, Map<Integer, Entity>> m = results.get(0);
-		List <IEntityManager> ret = new ArrayList<IEntityManager>();
-		List <IEntity> toBeAdded;
-		
-		for (int i = 1; i <= m.size(); i++) {
-			toBeAdded = new ArrayList<IEntity>();
-			for (Integer j: m.get(i).keySet()) {
-				toBeAdded.add(m.get(i).get(j));
-			}
-			ret.add(new EntityManager(toBeAdded));
-			
-		}
-		return ret;
-		
-	}
-
-
-
-	@Override
-	public List<LevelEntity> getLevelEntities() {
-		Map <Integer, LevelEntity> m = results.get(1);
-		List<LevelEntity> ret = new ArrayList<LevelEntity>();
-		
-		for (int i = 1; i <= m.size(); i++) {
-			ret.add(m.get(i));
-		}
-		System.out.println("HOW MANY LEVEL ENTITIES" + ret.size());
-		
-		return ret;
-	}
-
-
-
-	@Override
-	public SplashData getSplashEntity() {
-		return (SplashData) results.get(2).get(getSplashConstant());
-	}
-
-
-
-	@Override
-	public InfiniteEnum getInfinite() {
-		Map<Integer, LevelEntity> m = results.get(1);
-		System.out.println(m.get(1).getInfiniteEnum());
-		return m.get(1).getInfiniteEnum();
-	}
-	
-	public String getMusic() {
-		Map<Integer, LevelEntity> m = results.get(1);
-		return m.get(1).getMusic();
-	}
-	
-	public int getLives () {
-		Map <Integer, LevelEntity> m = results.get(1);
-		return m.get(1).getLives();
-	}
-	
-	
-	
 //	private String fileName;
 //	List<Map> results;
 //
@@ -199,6 +131,18 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		return m.get(1).getInfiniteEnum();
 //	}
 //	
+//	public String getMusic() {
+//		Map<Integer, LevelEntity> m = results.get(1);
+//		return m.get(1).getMusic();
+//	}
+//	
+//	public int getLives () {
+//		Map <Integer, LevelEntity> m = results.get(1);
+//		return m.get(1).getLives();
+//	}
+	
+	
+
 	public String getMusic() {
 		Map<Integer, LevelEntity> m = results.get(1);
 		return m.get(1).getMusic();
@@ -247,7 +191,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public List<LevelEntity> getLevelEntities() {
-		Map <Integer, LevelEntity> m = results.get(1);
+//		Map <Integer, LevelEntity> m = results.get(1);
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
 		LevelEntity l = new LevelEntity(0,500,500,"background1.png", "badboujee.wav",3);
 		
@@ -389,10 +333,21 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 			e.add(p);
 			e7.add(p);
 		}
-		
-		Entity pr = new AbstractBreakableBox(2356);
+		for (int i= 0; i<35; i++){
+			Entity pr = new DeathBlock(2356*(i+3));
+			pr.addComponent(new LocationComponent(i*50,400));
+			pr.addComponent(new SpriteComponent(("transparent.png")));
+			ImagePropertiesComponent xpcr = new ImagePropertiesComponent();
+			xpcr.setHeight(50);
+			xpcr.setWidth(50);
+			pr.addComponent(xpcr);
+			pr.addComponent(new LabelComponent("Blok"));
+			pr.addComponent(new TypeComponent(EntityType.Block));
+			e.add(pr);
+		}
+		Entity pr = new DeathBlock(2356);
 		pr.addComponent(new LocationComponent(700,150));
-		pr.addComponent(new SpriteComponent(("platform_tile_035.png")));
+		pr.addComponent(new SpriteComponent(("platform_tile_063.png")));
 		ImagePropertiesComponent xpcr = new ImagePropertiesComponent();
 		xpcr.setHeight(50);
 		xpcr.setWidth(50);
@@ -449,7 +404,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 			if (i==0){
 				enemy.addComponent(new LocationComponent(800, 20));
 				enemy.addComponent(new ObjectCreationComponent(y3));
-				enemy.addComponent(new TimeComponent(new SmartShoot(), 2000));
+//				enemy.addComponent(new TimeComponent(new SmartShoot(), 2000));
 			}else{
 				enemy.addComponent(new LocationComponent(1200,150));
 

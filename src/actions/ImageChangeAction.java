@@ -1,5 +1,6 @@
 package actions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -18,6 +19,7 @@ public class ImageChangeAction  extends AbstractAction  implements IAction{
 	
 	
 	public ImageChangeAction(Map<Integer, String> inputs) {
+		possibleImages = new ArrayList<String>();
 		for (Integer key : inputs.keySet()) {
 			possibleImages.add(inputs.get(key));
 		}

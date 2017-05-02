@@ -94,7 +94,7 @@ public class Controller implements ControllerInterface {
 	@Override
 	public IRestrictedGameData loadNewGame(String gameName) {
 		filePath = gameName;
-		Communicator c = new Communicator(gameName);
+		c = new Communicator(gameName);
 		IRestrictedGameData gameData = myGameEngine.loadData(c); 
 		gd=gameData;
 		return gameData;

@@ -131,7 +131,7 @@ public class UIView implements UIViewInterface {
 	
 	private void ending(String end) {
 		AbstractViewer ending = new EndScreen(this, getStage(), myUserInputData, end, myData.getData().getPoints().doubleValue());
-		ending.addBackground(mySplashData.getRestrictedImagePath());
+		ending.addBackground(mySplashData.getBackgroundFilePath());
 		setStage(ending.getScene());
 	}
 	

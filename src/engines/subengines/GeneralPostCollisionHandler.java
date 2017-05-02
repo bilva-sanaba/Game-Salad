@@ -31,6 +31,11 @@ public class GeneralPostCollisionHandler implements ISubEngine{
 		if (myEM.getEntities().containsAll(col)){
 		CollisionComponentsHandler handlerE1 = (CollisionComponentsHandler) e1.getComponent(ComponentType.CollisionHandler);
 		CollisionComponentsHandler handlerE0 = (CollisionComponentsHandler) e0.getComponent(ComponentType.CollisionHandler);
+//		if (e0.getID()==0){
+//			
+//			System.out.println("Main Player collided");
+//			System.out.println(e1.getID());
+//		}
 		if (handlerE1 != null && handlerE1.getCollisionComponent(side) != null) {
 			gd = handlerE1.getCollisionComponent(side).executeOnCollide(e0, e1,myEM,gd);
 		}
