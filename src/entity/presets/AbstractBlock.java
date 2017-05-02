@@ -37,13 +37,13 @@ public class AbstractBlock extends Entity {
 //		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
 //		scb.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
-		scc.addActionForLabel(new LabelComponent("grrraah"), new BlockTopRegularCollision());
+		scc.addActionForType(new TypeComponent(EntityType.Player), new BlockTopRegularCollision());
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
-		scq.addActionForLabel(new LabelComponent("grrraah"), new BounceOffBottom());
+		scq.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBottom());
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
-		scr.addActionForLabel(new LabelComponent("grrraah"), new BounceOffLeft());
+		scr.addActionForType(new TypeComponent(EntityType.Player), new BounceOffLeft());
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
-		scb.addActionForLabel(new LabelComponent("grrraah"), new BounceOffRight());
+		scb.addActionForType(new TypeComponent(EntityType.Player), new BounceOffRight());
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);
