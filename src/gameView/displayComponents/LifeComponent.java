@@ -44,8 +44,8 @@ public class LifeComponent extends UIDisplayComponent {
 	
 	private void addLifeImages() {
 		myLives.getChildren().clear();
-		myLives.setPrefSize((UIView.DEFAULT_SIZE.width/20)*myLifeNumber.doubleValue(), (UIView.DEFAULT_SIZE.width/10)*0.5);
-		for (int i = 0; i < myLifeNumber.doubleValue(); i++) {
+		myLives.setPrefSize((UIView.DEFAULT_SIZE.width/20)*myLifeNumber.intValue(), (UIView.DEFAULT_SIZE.width/10)*0.5);
+		for (int i = 0; i < myLifeNumber.intValue(); i++) {
 			myLives.getChildren().add(makeLabel());
 		}
 	}
@@ -55,7 +55,7 @@ public class LifeComponent extends UIDisplayComponent {
 		ImageView lifeLabel = new ImageView();
 		lifeLabel.setId("lifelabel");
 		lifeLabel.setFitHeight(myLives.getPrefHeight());
-		lifeLabel.setFitWidth(myLives.getPrefWidth()/getConfig().getLives());
+		lifeLabel.setFitWidth(myLives.getPrefWidth()/myLifeNumber.intValue());
 		return lifeLabel;
 	}
 
