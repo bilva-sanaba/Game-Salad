@@ -29,14 +29,14 @@ public class SideCollisionComponent implements IComponent {
 	}
 	
 	public void addActionForLabel(LabelComponent label, IAction action) {
-		if(!labelActionMap.containsKey(label.getObject())) {
-			labelActionMap.put(label.getObject(), new ArrayList<IAction>());
+		if(!labelActionMap.containsKey(label.getString())) {
+			labelActionMap.put(label.getString(), new ArrayList<IAction>());
 		}
-		ArrayList<IAction> actions = labelActionMap.get(label.getObject());
+		ArrayList<IAction> actions = labelActionMap.get(label.getString());
 		if (!actions.contains(action)) {
 			actions.add(action);
 		}
-		labelActionMap.put(label.getObject(), actions);
+		labelActionMap.put(label.getString(), actions);
 	}
 	
 	public void addActionForType(TypeComponent type, IAction action) {
@@ -56,8 +56,8 @@ public class SideCollisionComponent implements IComponent {
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
-		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getObject())) {
-			for (IAction action : labelActionMap.get(entityLabel.getObject())) {
+		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getString())) {
+			for (IAction action : labelActionMap.get(entityLabel.getString())) {
 				dg = action.executeAction(e, e2,myEM, dg);
 //				for (IRestrictedEntity re : dg.getRestrictedEntityManager().getRestrictedEntities()){
 //					newEntities.add(re.clone());
@@ -97,7 +97,7 @@ public class SideCollisionComponent implements IComponent {
 	
 	public void clearMappings(LabelComponent labelToClear, TypeComponent typeToClear) {
 		if (labelToClear!= null) {
-			labelActionMap.put(labelToClear.getObject(), new ArrayList<IAction>());
+			labelActionMap.put(labelToClear.getString(), new ArrayList<IAction>());
 		}
 		if (typeToClear!=null) {
 			typeActionMap.put(typeToClear.getTypeString(), new ArrayList<IAction>());
@@ -111,8 +111,8 @@ public class SideCollisionComponent implements IComponent {
 			}
 		}
 		if (label!=null) {
-			if (labelActionMap.get(label.getObject())!=null) {
-				labelActionMap.get(label.getObject()).remove(toRemove);
+			if (labelActionMap.get(label.getString())!=null) {
+				labelActionMap.get(label.getString()).remove(toRemove);
 			}
 		}
 	}

@@ -2,12 +2,16 @@ package components.entityComponents;
 
 
 import components.AbstractOneParameterComponent;
+import components.AbstractStringComponent;
 import components.IComponent;
 import javafx.scene.image.Image;
 
-public class SpriteComponent extends AbstractOneParameterComponent<String> implements IComponent {	
+public class SpriteComponent extends AbstractStringComponent implements IComponent {
+	private String myPath;
 	public SpriteComponent(String path){
 		super(path);
+		myPath=path;
+		
 	}
 	
 	public SpriteComponent() {
@@ -20,6 +24,7 @@ public class SpriteComponent extends AbstractOneParameterComponent<String> imple
 
 	
 	public Image getSprite(){
-		return new Image(getClass().getClassLoader().getResourceAsStream(getObject()));
+		return new Image(getClass().getClassLoader().getResourceAsStream(getString()));
 	}
+	
 }
