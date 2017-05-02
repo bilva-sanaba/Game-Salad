@@ -238,7 +238,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		xc.setWidth(50);
 		x.addComponent(xc);
 		x.addComponent(new VelocityComponent(0,0));
-		x.addComponent(new AccelerationComponent(0,0));
+		x.addComponent(new AccelerationComponent(0,1));
 		x.addComponent(new CollidableComponent(true));
 		x.addComponent(new LabelComponent("grrraah"));
 		x.addComponent(new KeyInputComponent());
