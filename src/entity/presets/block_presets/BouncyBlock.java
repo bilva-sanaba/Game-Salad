@@ -22,7 +22,7 @@ public class BouncyBlock extends Entity {
 		CheckCollisionComponent collisionCheck = new CheckCollisionComponent(false);
 		SpriteComponent sprite = new SpriteComponent();
 		
-		sprite.setClassPath(imagePath);
+		sprite.setString(imagePath);
 		LocationComponent loc = new LocationComponent();
 		loc.setXY(xCoord, yCoord);
 		ImagePropertiesComponent imageDimensions = new ImagePropertiesComponent();

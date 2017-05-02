@@ -12,7 +12,11 @@ public abstract class AbstractStringComponent extends AComponent implements ICom
 	public AbstractStringComponent(String inputString) {
 		myString = inputString;
 	}
-	
+
+
+	public AbstractStringComponent() {
+	}
+
 
 	public String getString() { 
 		return myString;
@@ -26,12 +30,23 @@ public abstract class AbstractStringComponent extends AComponent implements ICom
 	public IComponent newCopy() {
 		Class c = this.getClass();
 		Constructor ctor;
-		try {
-			ctor = c.getConstructor(String.class);
-			return (IComponent) ctor.newInstance(myString);
-		} catch (NoSuchMethodException| SecurityException | IllegalArgumentException |InstantiationException | IllegalAccessException | InvocationTargetException e) {
-			//Add Error handling here.
-			return null;
+		if (myString==null){
+			try {
+				ctor = c.getConstructor();
+				return (IComponent) ctor.newInstance();
+			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				//add Error Handline here;
+			}
+
+
+		}else {
+			try {
+				ctor = c.getConstructor(String.class);
+				return (IComponent) ctor.newInstance(myString);
+			} catch (NoSuchMethodException| SecurityException | IllegalArgumentException |InstantiationException | IllegalAccessException | InvocationTargetException e) {
+				//Add Error handling here.
+			}
 		}
+		return null;
 	}
 }

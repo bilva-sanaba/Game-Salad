@@ -1,17 +1,18 @@
 package components.entityComponents;
 
 import components.AComponent;
+import components.AbstractStringComponent;
 import components.IComponent;
 
 /**
  * @author Justin
  * 
  */
-public class GameInstructionsComponent extends AComponent implements IComponent {
-	private String myGameInstructions;
+public class GameInstructionsComponent extends AbstractStringComponent implements IComponent {
+
 	
 	public GameInstructionsComponent(String instructions) {
-		myGameInstructions = instructions;
+		super(instructions);
 	}
 	
 	public GameInstructionsComponent() {
@@ -21,17 +22,5 @@ public class GameInstructionsComponent extends AComponent implements IComponent 
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.GameInstructions;
-	}
-	
-	public String getGameInstructions() {
-		return myGameInstructions;
-	}
-	
-	public void setGameInstructions(String instructions) {
-		myGameInstructions = instructions;
-	}
-	
-	public IComponent newCopy() {
-		return new GameInstructionsComponent(getGameInstructions());
 	}
 }

@@ -166,22 +166,22 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	}
 	
 	public List<IEntityManager> getIEntityManagers() {
-		Map <Integer, Map<Integer, Entity>> m = results.get(0);
+//		Map <Integer, Map<Integer, Entity>> m = results.get(0);
 		List <IEntityManager> ret = new ArrayList<IEntityManager>();
 		List <IEntity> toBeAdded;
 		
-		System.out.println("m size: " + m.size());
-		
-		for (int i = 1; i <= m.size(); i++) {
-			System.out.println("THISSSSS happens");
-			toBeAdded = new ArrayList<IEntity>();
-			for (Integer j: m.get(i).keySet()) {
-				toBeAdded.add(m.get(i).get(j));
-				System.out.println("this happens");
-			}
-			ret.add(new EntityManager(toBeAdded));
-			
-		}
+//		System.out.println("m size: " + m.size());
+//		
+//		for (int i = 1; i <= m.size(); i++) {
+//			System.out.println("THISSSSS happens");
+//			toBeAdded = new ArrayList<IEntity>();
+//			for (Integer j: m.get(i).keySet()) {
+//				toBeAdded.add(m.get(i).get(j));
+//				System.out.println("this happens");
+//			}
+//			ret.add(new EntityManager(toBeAdded));
+//			
+//		}
 		return dummyLoad();
 //		return ret;
 		

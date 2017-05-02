@@ -43,7 +43,7 @@ public class Explosion  extends AbstractAction  implements IAction {
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
 //		ImagePropertiesComponent ic = (ImagePropertiesComponent) other.getComponent(ComponentType.ImageProperties);
 		SpriteComponent otherSprite = (SpriteComponent) other.getComponent(ComponentType.Sprite);
-		otherSprite.setClassPath(imgPath);
+		otherSprite.setString(imgPath);
 		
 
 		return getGameDataFactory().blankEntityData(currentGameData);

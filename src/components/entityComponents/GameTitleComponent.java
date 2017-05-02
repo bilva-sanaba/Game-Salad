@@ -1,13 +1,14 @@
 package components.entityComponents;
 
 import components.AComponent;
+import components.AbstractStringComponent;
 import components.IComponent;
 
 /**
  * @author Justin
  *
  */
-public class GameTitleComponent extends AComponent implements IComponent {
+public class GameTitleComponent extends AbstractStringComponent implements IComponent {
 	private String myGameTitle;
 	
 	public GameTitleComponent(String gameTitle) {
@@ -21,17 +22,5 @@ public class GameTitleComponent extends AComponent implements IComponent {
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.GameTitle;
-	}
-	
-	public String getGameTitle() {
-		return myGameTitle;
-	}
-	
-	public void setGameTitle(String title) {
-		myGameTitle = title;
-	}
-	
-	public IComponent newCopy() {
-		return new GameTitleComponent(getGameTitle());
 	}
 }
