@@ -84,6 +84,7 @@ public class GridView extends GUIComponent {
 			rightClick.show(myGrid, myData.getCopiedEntity(), e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 		}
 		else if (!e.isSecondaryButtonDown() && !e.isControlDown() && !e.isAltDown()) {
+			rightClick.hide();
 			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
