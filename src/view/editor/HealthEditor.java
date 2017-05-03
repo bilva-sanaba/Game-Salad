@@ -12,12 +12,12 @@ public class HealthEditor extends ComponentEditor {
 	private static final String ComponentName = "Health";
 	
 	private HBox myBox;
-	private int myHealth;
+	private double myHealth;
 	
 	public HealthEditor(UtilityFactory utilf) {
 		myBox = utilf.buildSlider(ComponentName, new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				myHealth = newValue.intValue(); 
+				myHealth = newValue.doubleValue(); 
 			}
 		});
 		setInputNode(myBox);
