@@ -13,22 +13,22 @@ import javafx.scene.layout.Pane;
 import view.UtilityFactory;
 import view.ViewData;
 
-public class RightClickMenu{
+public class RightClickMenu {
 	private boolean isShowing;
 	private ViewData myData;
 	private UtilityFactory utilF;
 	private ContextMenu currentMenu;
-	
-	public RightClickMenu(UtilityFactory utilIn, ViewData dataIn, double x, double y){
+
+	public RightClickMenu(UtilityFactory utilIn, ViewData dataIn) {
 		utilF = utilIn;
 		myData = dataIn;
 	}
-	
+
 	private void fillMenu(List<MenuItem> menuItems, ContextMenu menu) {
 		menuItems.stream().forEach(menu.getItems()::add);
 	}
-	
-	public void show(Pane pane, Entity e, double x, double y, double placex, double placey){
+
+	public void show(Pane pane, Entity e, double x, double y, double placex, double placey) {
 		ContextMenu newMenu = new ContextMenu();
 		fillMenu(utilF.makeRightClickMenu(myData, e, placex, placey), newMenu);
 		currentMenu = newMenu;
@@ -43,13 +43,13 @@ public class RightClickMenu{
 
 		}
 	}
-	
-	public boolean isShowing(){
+
+	public boolean isShowing() {
 		boolean show;
-		try{
-			show =  currentMenu.isShowing();
-		}catch (Exception e){
-			show =  false;
+		try {
+			show = currentMenu.isShowing();
+		} catch (Exception e) {
+			show = false;
 		}
 		return show;
 	}

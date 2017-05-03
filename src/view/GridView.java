@@ -53,9 +53,10 @@ public class GridView extends GUIComponent {
 		myCol = cols;
 		myData = data;
 		
-		rightClick = new RightClickMenu(util, myData, 0, 0);
+		rightClick = new RightClickMenu(util, myData);
 		
 		myGrid = util.buildGrid(GRIDWIDTH, GRIDHEIGHT, "view-grid");
+
 		myGrid.setOnMousePressed(e -> mousePress(e));
 		myGrid.setOnMouseMoved(e -> mouseMove(e));
 		
@@ -115,7 +116,6 @@ public class GridView extends GUIComponent {
 
 	private void placeImageAtLoc(double row, double col) {
 		Entity userSelectedEntity = myData.getUserSelectedEntity();
-		System.out.println(userSelectedEntity);
 		if (userSelectedEntity != null) {
 			Entity placedEntity = userSelectedEntity.clone();
 			placedEntity.setID(myData.getPlacedEntityID());
