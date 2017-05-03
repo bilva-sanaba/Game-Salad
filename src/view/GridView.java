@@ -65,7 +65,7 @@ public class GridView extends GUIComponent {
 		myRow = rows;
 		myCol = cols;
 		myData = data;
-		rightClick = new RightClickMenu(util, myData, 0, 0);
+		rightClick = new RightClickMenu(util, myData);
 		myGrid = new Pane();
 		myGrid.setPrefSize(720, 500);
 		myGrid.setOnMousePressed(e -> mousePress(e));
@@ -102,7 +102,7 @@ public class GridView extends GUIComponent {
 			rightClick.hide();
 		}*/
 		if (e.isSecondaryButtonDown()) {
-			//rightClick.show(myGrid, null, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
+			rightClick.show(myGrid, (Entity) e.getSource(), e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 		}
 		else if (!e.isControlDown() && !e.isAltDown()) {
 			placeImageAtLoc(e.getX(), e.getY());

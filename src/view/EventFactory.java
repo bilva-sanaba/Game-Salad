@@ -22,7 +22,7 @@ public class EventFactory {
 		myUtilF = utilF;
 	}
 
-	public ToolBarButtonEvent getEvent(String eventname, ViewData data) {	
+	public ToolBarButtonEvent getEvent(String eventname, ViewData data) {
 		ToolBarButtonEvent reflectedEvent;
 		System.out.println(PREFIX + eventname);
 		try {
