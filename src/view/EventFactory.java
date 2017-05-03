@@ -22,9 +22,8 @@ public class EventFactory {
 		myUtilF = utilF;
 	}
 
-	public ToolBarButtonEvent getEvent(String eventname, ViewData data) {	
+	public ToolBarButtonEvent getEvent(String eventname, ViewData data) {
 		ToolBarButtonEvent reflectedEvent;
-		System.out.println(PREFIX + eventname);
 		try {
 			reflectedEvent = (ToolBarButtonEvent) Reflection.createInstance(PREFIX + eventname, myUtilF, data);
 		} catch (Exception e) {
@@ -33,18 +32,16 @@ public class EventFactory {
 		return reflectedEvent;
 	}
 
-	public RightClickEvent getRightClickEvent(String eventname, UtilityFactory util, ViewData data, Entity entity, double x, double y) {	
-		System.out.println(util);
-		System.out.println(data);
-		System.out.println(entity);
+	public RightClickEvent getRightClickEvent(String eventname, UtilityFactory util, ViewData data, Entity entity,
+			double x, double y) {
 		RightClickEvent reflectedEvent;
-		System.out.println(RIGHTCLICKPREFIX + eventname);
 		try {
-			if(eventname.equals("EditCommand")){
-				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, util, data, entity, x, y);
-			}
-			else{
-				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, data, entity, x, y);
+			if (eventname.equals("EditCommand")) {
+				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, util, data,
+						entity, x, y);
+			} else {
+				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, data, entity,
+						x, y);
 			}
 		} catch (Exception e) {
 			throw new ReflectionException(ReflectionException.EVENT_REFLECTION_ERROR);
