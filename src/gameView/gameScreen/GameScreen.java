@@ -6,6 +6,7 @@ import controller.VoogaAlert;
 import controller.WorldAnimator;
 import gameView.AbstractViewer;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.commands.AbstractCommand;
 import gameView.displayComponents.UIDisplayComponent;
 import gameView.gameDataManagement.GameDataManager;
@@ -13,7 +14,6 @@ import gameView.tools.DisplayManager;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -25,7 +25,6 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private static final String myName = GameScreen.class.getSimpleName();
 	private Scene myScene;
 	private BorderPane myBP;
-	private GameDataManager myData;
 	private HBox myTopBox;
 	private StackPane myPane;
 	private WorldAnimator myAnimation;
@@ -33,44 +32,73 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private Collection<AbstractCommand> myCommands;  
 	private VoogaAlert myAlert;   
 	private final String VOOGAISSUE = "Vooga Issue";
-
-	public GameScreen(UIView view, Stage s, IUserInputData input, WorldAnimator animation) {
+      
+	public GameScreen(UIViewInterface view, Stage s, IUserInputData input) {
 		super(view, s, input);
 		myCommands = getCommands(myName);
-		myAnimation = animation;
 		initializeBoxes();
 		buildMainScene();
 		myBP.applyCss();
 		myBP.layout();
 	}
 
+	@Override
 	public Scene getScene() {
 		myPane.getChildren().add(myAnimation.getGroup());
 		myAnimation.setKeys(myScene);
 		return myScene;
 	}
 
+	@Override
 	public void addData(GameDataManager data) {
-		myData = data;
+		checkWorldAnimator();
+		super.addData(data);
+		reset();
 		myDisplays = new DisplayManager(this, UIView.DEFAULT_LOCATION+UIView.DEFAULT_BUTTONS,
-				myScene.widthProperty(), myScene.heightProperty(), myData.getData());
-
+				myScene.widthProperty(), myScene.heightProperty(), getGameData().getData());
 		try {
-			myAnimation.start(myData.getData(), this);
+			myAnimation = new WorldAnimator(getView());
+			myAnimation.start(getGameData().getData(), this);
 		} catch (ClassNotFoundException e) {
 			myAlert = new VoogaAlert(e.getMessage());
 			myAlert.showAlert();
 		}
 	}
-
-	public void runGame() {
-		myData.getMusic().playMusic();
-		myAnimation.start();
+	
+	@Override
+	public DisplayManager getComponents() {
+		return myDisplays; 
 	}
 	
-	public void pauseGame() {
-		myData.getMusic().stopMusic();
-		myAnimation.pause();
+	@Override
+	public void removeComponent(UIDisplayComponent toRemove) {
+		myPane.getChildren().remove(toRemove.getDisplay());
+	} 
+	@Override
+	public void addComponent(UIDisplayComponent toAdd) {
+		myPane.getChildren().add(toAdd.getDisplay());
+	} 
+	
+	public void checkWorldAnimator() {
+		try {
+			pauseGame();
+		} catch (Exception e) {
+			System.out.println("NO WORLD ANIMATOR");
+		}
+	}
+	
+	@Override
+	protected void setBackground(String background){
+		myBP.getCenter().setStyle(String.format(
+				"-fx-background-image: url(\"%s\");"
+				+ "-fx-background-repeat: stretch;"
+				+ "-fx-background-position: center center;"
+				+ "-fx-background-size: cover;", background));
+	}
+
+	@Override
+	protected Pane getButtonContainer() {
+		return myTopBox;
 	}
 
 	private void initializeBoxes() {
@@ -103,50 +131,25 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		myBP.setCenter(myPane);   
 
 	}
-
-	@Override
-	public DisplayManager getComponents() {
-		return myDisplays; 
-	}
 	
-	public void removeComponent(UIDisplayComponent toRemove) {
-		myPane.getChildren().remove(toRemove.getDisplay());
-	} 
-	
-	public void addComponent(UIDisplayComponent toAdd) {
-		myPane.getChildren().add(toAdd.getDisplay());
-	} 
-	
-	@Override
-	public void loadGame(String filePath) {
+	private void reset() {
 		myPane.getChildren().clear();
-		myDisplays.addAllActive();
-		myAnimation.clearRoot();
-		super.loadGame(filePath);
-	}
-
-	@Override
-	public void addEntity(ImageView add) {
-		myPane.getChildren().add(add);
-		
-	}
-
-	@Override
-	public void removeEntity(ImageView remove) {
-		myPane.getChildren().remove(remove);
 	}
 	
-	public void setBackground(String background){
-		myBP.getCenter().setStyle(String.format(
-				"-fx-background-image: url(\"%s\");"
-				+ "-fx-background-repeat: stretch;"
-				+ "-fx-background-position: center center;"
-				+ "-fx-background-size: cover;", background));
-	}
-
+	/**
+	 * THE FOLLOWING METHODS ARE FOR COMMANDS
+	 */
+	
 	@Override
-	protected Pane getButtonContainer() {
-		return myTopBox;
+	public void runGame() {
+		getGameData().getMusic().playMusic();
+		myAnimation.start();
+	}
+	
+	@Override
+	public void pauseGame() {
+		getGameData().getMusic().stopMusic();
+		myAnimation.pause();
 	}
 
 }

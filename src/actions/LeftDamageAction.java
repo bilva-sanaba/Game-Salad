@@ -48,7 +48,9 @@ public class LeftDamageAction extends AbstractAction implements IAction{
 				tc.addSingleAction(new ImageChangeAction(collection2), new Integer(i+100));
 			}
 			tc.addSingleAction(new RestoreControl(), 600);	
+			if (hc!=null && sc!=null){
 			hc.setHealth(hc.getHealth() - sc.getStrength());
+			}
 			cc.loseControl();
 		}
 		GameDataFactory gdf = new GameDataFactory();

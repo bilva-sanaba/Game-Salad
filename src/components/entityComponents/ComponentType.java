@@ -44,5 +44,6 @@ public enum ComponentType {
 	Orientation(),
 	Checkpoint(),
 	MonsterType(),
+	Invincible(),
 	Null();
 }

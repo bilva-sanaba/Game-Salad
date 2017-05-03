@@ -41,8 +41,6 @@ public class Controller implements ControllerInterface {
 
 	private UIView myGameView;
 	private GameEngine myGameEngine;
-	private WorldAnimator myWorldAnimator;
-	private Stage myStage;
 	private String filePath;
 	private GUIBuilder myGUIBuilder;
 	private IRestrictedGameData gd;
@@ -50,7 +48,6 @@ public class Controller implements ControllerInterface {
 	private UserInputData uiData;
 
 	public Controller(Stage s) {
-		myStage = s;
 		myGUIBuilder = new GUIBuilder(new UtilityFactory("English"));
 		uiData = new UserInputData();
 		myGameEngine = new GameEngine((IRestrictedUserInputData) uiData);
@@ -58,8 +55,6 @@ public class Controller implements ControllerInterface {
 	}
 
 	public void save(String fileName) {
-		// TODO Auto-generated method stub
-		// loop through and save all write all items to XML
 		XMLWriter xw = new XMLWriter();
 		List <Map> saveList = new ArrayList<Map>();
 		saveList.add(convertEntityManagers(myGameEngine.save()));
@@ -99,7 +94,7 @@ public class Controller implements ControllerInterface {
 	@Override
 	public IRestrictedGameData loadNewGame(String gameName) {
 		filePath = gameName;
-		Communicator c = new Communicator(gameName);
+		c = new Communicator(gameName);
 		IRestrictedGameData gameData = myGameEngine.loadData(c); 
 		gd=gameData;
 		return gameData;
@@ -108,8 +103,7 @@ public class Controller implements ControllerInterface {
 	@Override
 	public void resetCurrentGame() throws XMLException {
 		if(!filePath.equals(null)){
-			Communicator c = new Communicator(filePath);
-			myGameEngine.loadData(new Communicator(filePath));;
+			loadNewGame(filePath);
 		}
 		else{
 			throw new XMLException(String.format("No current game"));

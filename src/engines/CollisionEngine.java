@@ -146,8 +146,10 @@ import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
+import components.entityComponents.KeyInputComponent;
 import components.IComponent;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.LocationComponent;
 import components.entityComponents.TypeComponent;
 import controller.Camera;
 import engines.subengines.GeneralPostCollisionHandler;
@@ -174,7 +176,8 @@ public class CollisionEngine extends AbstractEngine {
 	private List<IEntity> newEntitiesCreated;
 	private ITwoObjectCollide collisionMethod = new ObjectCollisionAlgorithm();
 	private int numSubEnginesAdded;
-		public CollisionEngine(IEntityManager myEntityManager) {
+	
+	public CollisionEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
 		subEngines = new ArrayList<ISubEngine>();
 		entManager = myEntityManager;
@@ -188,6 +191,10 @@ public class CollisionEngine extends AbstractEngine {
 		
 	}
 	
+	private void withinBoundsOfMainPlayer(IEntity mainPlayer, IEntity otherEntity) {
+		
+	}
+	
 	/**
 	 * This method goes through all entities, takes their locations, and figures out if any are bumping into each other. If any are,
 	 * it sends components of those objects to subEngines which can handle effects (such moving the entity or changing the entities image, etc.)
@@ -198,41 +205,32 @@ public class CollisionEngine extends AbstractEngine {
 	private IRestrictedGameData checkCollisionsOccurred(IRestrictedGameData gd) {
 		List<IEntity> entities2 = (List<IEntity>) entManager.getEntities();
 		IEntity[] entities = new IEntity[entities2.size()];
-		Camera cam = null;
+		IEntity mainPlayer = null;
 		for (int i=0;i<entities.length;i++) {
 			entities[i] = entities2.get(i);
-			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
-			if (type!=null && type.getType().equals(EntityType.Camera)) {
-				cam = (Camera) entities[i];
+			KeyInputComponent mainPlayerCheck = (KeyInputComponent) entities[i].getComponent(ComponentType.KeyInput);
+			if (mainPlayerCheck!=null) {
+				mainPlayer = entities[i];
 			}
 				
 		}
-//		for (int i=0;i<entities.length;i++) {
-//			entities[i] = entities2.get(i);
-//			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
-//			if (type!=null && type.getType().equals(EntityType.Player)) {
-//			}
-//				
-//		}
+
 		
 		for (int i=0;i<entities.length;i++) {
 			IEntity entityOne = entities[i];
 			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
-			if (type!=null && type.getType().equals(EntityType.Player)) {
-			}
 			CheckCollisionComponent check = (CheckCollisionComponent) entityOne.getComponent(ComponentType.CheckCollision);
 			CollidableComponent collidable = (CollidableComponent) entityOne.getComponent(ComponentType.Collidable);
-			if (check != null && collidable != null) {
 
-			}
 			
 			if (check!= null && check.getCheckCollision() && collidable != null && collidable.getCollide() /*&& cam.withinCameraBounds(entityOne)*/) {
 				for (int j=i+1;j<entities.length;j++) {
 					IEntity entityTwo = entities[j];
 					CollidableComponent collidableE2 = (CollidableComponent) entityTwo.getComponent(ComponentType.Collidable);
-					if (collidableE2.getCollide() && entityOne!=entityTwo /*&& cam.withinCameraBounds(entityTwo)*/) {
+					if (collidableE2 != null && collidableE2.getCollide() && entityOne!=entityTwo /*&& cam.withinCameraBounds(entityTwo)*/) {
 						gd = checkIndividualCollision(entityOne, entityTwo, gd);
 					}
+					
 				}
 			}
 		}

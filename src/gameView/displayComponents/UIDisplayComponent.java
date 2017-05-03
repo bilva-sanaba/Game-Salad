@@ -1,6 +1,5 @@
 package gameView.displayComponents;
 
-
 import gameObject.GameConfig;
 import gameView.tools.DisplayEnum;
 import gamedata.IRestrictedGameData;

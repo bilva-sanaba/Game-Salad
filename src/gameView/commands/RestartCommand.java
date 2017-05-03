@@ -11,7 +11,7 @@ public class RestartCommand extends AbstractCommand {
 
 	@Override
 	public boolean execute(Stage s) {
-		((ICommandView) getView()).restart();
+		getView().restart();
 		return true;
 		
 	}

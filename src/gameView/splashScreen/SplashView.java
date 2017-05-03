@@ -1,6 +1,7 @@
 package gameView.splashScreen;
 
 import java.util.Collection;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import gameView.AbstractViewer;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.commands.AbstractCommand;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
@@ -26,7 +28,7 @@ public class SplashView extends AbstractViewer {
 	private VBox myCommandContainer;
 	
 	
-	public SplashView(UIView view, Stage s, IUserInputData input) {
+	public SplashView(UIViewInterface view, Stage s, IUserInputData input) {
 		super(view, s, input);
 		myCommands = getCommands(myName);
 		myPane = new BorderPane();
@@ -34,7 +36,6 @@ public class SplashView extends AbstractViewer {
 				UIView.DEFAULT_SIZE.height);
 		addBackground();
 		this.buildMainScene();
-		//this.transitionToMain();
 	}
 	
 	public Scene getScene() {

@@ -56,7 +56,7 @@ public class GUIBuilder {
 		myComp.add(toolbar);
 
 		myBP = buildPane();
-		tab.addPresetEntities();
+		//tab.addPresetEntities();
 	}
 
 	public Pane buildPane() {

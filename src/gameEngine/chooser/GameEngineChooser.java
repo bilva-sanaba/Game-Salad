@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import data_interfaces.InfiniteEnum;
 import engines.AIEngine;
 import engines.AbstractEngine;
 import engines.CollisionEngine;
@@ -14,6 +13,7 @@ import engines.InfiniteEngine;
 import engines.InputEngine;
 import engines.MovementEngine;
 import engines.TimeEngine;
+import engines.infinite.InfiniteEnum;
 import entity.IEntityManager;
 
 public class GameEngineChooser implements IGameEngineChooser {

@@ -29,12 +29,14 @@ public class SideCollisionComponent implements IComponent {
 	}
 	
 	public void addActionForLabel(LabelComponent label, IAction action) {
-		if(!labelActionMap.containsKey(label.getLabel())) {
-			labelActionMap.put(label.getLabel(), new ArrayList<IAction>());
+		if(!labelActionMap.containsKey(label.getObject())) {
+			labelActionMap.put(label.getObject(), new ArrayList<IAction>());
 		}
-		ArrayList<IAction> actions = labelActionMap.get(label.getLabel());
-		actions.add(action);
-		labelActionMap.put(label.getLabel(), actions);
+		ArrayList<IAction> actions = labelActionMap.get(label.getObject());
+		if (!actions.contains(action)) {
+			actions.add(action);
+		}
+		labelActionMap.put(label.getObject(), actions);
 	}
 	
 	public void addActionForType(TypeComponent type, IAction action) {
@@ -42,7 +44,9 @@ public class SideCollisionComponent implements IComponent {
 			typeActionMap.put(type.getTypeString(), new ArrayList<IAction>());
 		}
 		ArrayList<IAction> actions = typeActionMap.get(type.getTypeString());
-		actions.add(action);
+		if (!actions.contains(action)) {
+			actions.add(action);
+		}
 		typeActionMap.put(type.getTypeString(), actions);
 	}
 	
@@ -52,8 +56,8 @@ public class SideCollisionComponent implements IComponent {
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
-		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getLabel())) {
-			for (IAction action : labelActionMap.get(entityLabel.getLabel())) {
+		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getObject())) {
+			for (IAction action : labelActionMap.get(entityLabel.getObject())) {
 				dg = action.executeAction(e, e2,myEM, dg);
 //				for (IRestrictedEntity re : dg.getRestrictedEntityManager().getRestrictedEntities()){
 //					newEntities.add(re.clone());
@@ -89,6 +93,33 @@ public class SideCollisionComponent implements IComponent {
 	
 	public int hashCode(){
 		return (getComponentType().toString() + sideCollision.toString()).hashCode();
+	}
+	
+	public void clearMappings(LabelComponent labelToClear, TypeComponent typeToClear) {
+		if (labelToClear!= null) {
+			labelActionMap.put(labelToClear.getObject(), new ArrayList<IAction>());
+		}
+		if (typeToClear!=null) {
+			typeActionMap.put(typeToClear.getTypeString(), new ArrayList<IAction>());
+		}
+	}
+	
+	public void removeSpecificActionMapping(IAction toRemove, TypeComponent type, LabelComponent label) {
+		if (type!=null) {
+			if (typeActionMap.get(type.getTypeString())!=null) {
+				typeActionMap.get(type.getTypeString()).remove(toRemove);
+			}
+		}
+		if (label!=null) {
+			if (labelActionMap.get(label.getObject())!=null) {
+				labelActionMap.get(label.getObject()).remove(toRemove);
+			}
+		}
+	}
+	
+	public void clearAllMappings() {
+		typeActionMap = new HashMap<String, ArrayList<IAction>>();
+		labelActionMap = new HashMap<String, ArrayList<IAction>>();
 	}
 	
 }

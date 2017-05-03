@@ -21,10 +21,18 @@ public class GameDataManager {
 		
 	}
 	
+	/**
+	 * Returns restricted data
+	 * @return
+	 */
 	public IRestrictedGameData getData() {
 		return myGameData;
 	}
 	
+	/**
+	 * Returns music manager to handle music activation/deactivation
+	 * @return
+	 */
 	public MusicManager getMusic() {
 		return myMusic;
 	}
@@ -34,7 +42,7 @@ public class GameDataManager {
 	        public void changed(ObservableValue<? extends Number> o,Number oldVal, 
 	                 Number newVal){
 	             if (newVal.intValue() == -1) {
-	            	myView.wonGame(); 
+	            	myView.ending("YOU WON!");
 	             }
 	        }
 	      });
@@ -45,7 +53,7 @@ public class GameDataManager {
 	        public void changed(ObservableValue<? extends Number> o,Number oldVal, 
 	                 Number newVal){
 	        	if (newVal.intValue() == 0) {
-	        		 myView.lostGame();
+	        		 myView.ending("GAME OVER!");
 	        	}
 	        }
 	      });

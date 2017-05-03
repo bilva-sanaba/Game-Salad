@@ -12,9 +12,9 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
 import data_interfaces.Communicator;
-import data_interfaces.InfiniteEnum;
 import data_interfaces.XMLDefinedParser;
 import data_interfaces.XMLWriter;
+import engines.infinite.InfiniteEnum;
 import entity.Entity;
 import entity.LevelEntity;
 import entity.SplashData;
@@ -70,7 +70,7 @@ public class TabView extends GUIComponent {
 					this.setGraphic(null);
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
-					ImageView spriteImage = new ImageView(entitySprite.getSprite());
+					ImageView spriteImage = new ImageView(entitySprite.getSprite()); //entitySprite.getSprite();
 					if (item.getComponent(ComponentType.ImageProperties) != null) {
 						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item
 								.getComponent(ComponentType.ImageProperties);
@@ -95,8 +95,8 @@ public class TabView extends GUIComponent {
 			entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
 			entityBuilder.showEntityBuilder();
 		});
-		savePresetButton = util.buildButton("Save Preset", e -> savePreset());
-		loadPresetButton = util.buildButton("Load Preset", e -> userLoadPreset());
+		savePresetButton = util.buildButton("SavePreset", e -> savePreset());
+		loadPresetButton = util.buildButton("LoadPreset", e -> userLoadPreset());
 		util.setPresets(blocksList);
 		myData.getLevelEntityMap().get(1).setInfiniteEnum(InfiniteEnum.None);
 	}
@@ -119,10 +119,10 @@ public class TabView extends GUIComponent {
 		}
 	}
 	
-	public void addPresetEntities() {
+/*	public void addPresetEntities() {
 		System.out.println("this is called");
 		loadPreset(PRESETFILE);
-	}
+	}*/
 
 	@Override
 	public Region buildComponent() {
