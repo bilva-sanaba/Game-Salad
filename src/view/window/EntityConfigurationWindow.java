@@ -99,7 +99,7 @@ public class EntityConfigurationWindow implements Window {
 		for (ComponentEditor comp : myCompEdits.values()) {
 			myEntity.addComponent(comp.getComponent());
 		}
-		myData.defineEntity(myEntity);
+		myData.defineEntity(myEntity.newCopy(myData.getDefinedEntityID()));
 		myData.setUserSelectedEntity(myEntity);
 		myStage.close();
 	}

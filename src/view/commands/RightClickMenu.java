@@ -22,7 +22,6 @@ public class RightClickMenu {
 	public RightClickMenu(UtilityFactory utilIn, ViewData dataIn) {
 		utilF = utilIn;
 		myData = dataIn;
-		isShowing = false;
 	}
 
 	private void fillMenu(List<MenuItem> menuItems, ContextMenu menu) {
@@ -39,11 +38,22 @@ public class RightClickMenu {
 
 	public void hide() {
 		currentMenu.hide();
-		isShowing = false;
 	}
+<<<<<<< HEAD
 
 	public boolean isShowing() {
 		return isShowing;
+=======
+	
+	public boolean isShowing(){
+		boolean show;
+		try{
+			show =  currentMenu.isShowing();
+		}catch (Exception e){
+			show =  false;
+		}
+		return show;
+>>>>>>> 6a1ccbdc9f4aaf7a1eee3db726749b72174821b3
 	}
 
 }
