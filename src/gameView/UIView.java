@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 
-public class UIView implements UIViewInterface {
+public class UIView implements UIViewInterface, IUIView {
 	
 	public static final Dimension DEFAULT_SIZE = new Dimension(1000, 650);
 	public static final String DEFAULT_BUTTONS =  "EnglishCommands";
