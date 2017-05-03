@@ -37,7 +37,11 @@ public class RightClickMenu{
 	}
 	
 	public void hide(){
-		currentMenu.hide();
+		try{
+			currentMenu.hide();
+		}catch (Exception e){
+
+		}
 	}
 	
 	public boolean isShowing(){
