@@ -55,7 +55,6 @@ public class SmartShoot extends AbstractAction implements IAction  {
 			myEM.changed(newE);
 			returnData.setRestrictedEntityManager((IRestrictedEntityManager) em);
 		}		
-		System.out.println(returnData.getRestrictedEntityManager().getRestrictedEntities().size());
 		return returnData;
 	}
 

@@ -41,8 +41,6 @@ public class GameDataFactory {
 			gameData.setMusic(updatedData.getMusic().getValue());
 		}
 		if (gameData.getAchievement().size()!=updatedData.getAchievement().size()){
-			System.out.println("GDSIZE: " + gameData.getAchievement().size());
-			System.out.println("UPDATEDSIZE: " + gameData.getAchievement().size());
 			if (!gameData.getAchievement().get(gameData.getAchievement().size()-1).equals((updatedData.getAchievement().get(updatedData.getAchievement().size()-1)))){
 				gameData.setAchievement((String) updatedData.getAchievement().get(updatedData.getAchievement().size()-1));
 			}

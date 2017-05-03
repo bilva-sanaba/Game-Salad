@@ -153,7 +153,6 @@ public class EntityActionWindow implements Window {
 
 	private IAction getAction(Class<?> absAct) throws InputException {
 		IAction act = null;
-		System.out.println(absAct + " line 59" + this.getClass());
 		try {
 			act = (IAction) absAct.newInstance();
 		} catch (InstantiationException | IllegalAccessException e) {

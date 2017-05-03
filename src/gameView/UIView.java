@@ -78,7 +78,7 @@ public class UIView implements UIViewInterface, IUIView {
 		String save = myCurrentGame + new Timestamp(System.currentTimeMillis()).toLocalDateTime();
 		if (myUserManager.getCurrentUser() != null) {
 			save = myUserManager.getCurrentUser().getName() + save;
-			myUserManager.getCurrentUser().addGame(save);
+			myUserManager.getCurrentUser().addGame(myCurrentGame, save);
 			updateUserStats();
 		}
 		myController.save(save);
