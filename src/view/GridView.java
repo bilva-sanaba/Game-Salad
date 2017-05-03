@@ -74,10 +74,6 @@ public class GridView extends GUIComponent {
 		myLevelNumber = i;
 	}
 	
-	public void setEntityIDcount() {
-		j += 10000;
-	}
-	
 	private Label buildMouseCords(){
 		Label mouseCords = new Label();
 		mouseCords.setText("X:0  Y:0");
@@ -111,10 +107,10 @@ public class GridView extends GUIComponent {
 
 	private void placeImageAtLoc(double row, double col) {
 		Entity userSelectedEntity = myData.getUserSelectedEntity();
-		if (userSelectedEntity != null && userSelectedEntity.getComponent(ComponentType.Location) == null) {
+		System.out.println(userSelectedEntity);
+		if (userSelectedEntity != null) {
 			Entity placedEntity = userSelectedEntity.clone();
-			placedEntity.setID(j);
-			j++;
+			placedEntity.setID(myData.getPlacedEntityID());
 			placedEntity.addComponent(new LocationComponent(row, col));
 			myData.placeEntity(myLevelNumber, placedEntity);
 		}
