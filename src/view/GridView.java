@@ -89,7 +89,7 @@ public class GridView extends GUIComponent {
 		}
 		if (e.isSecondaryButtonDown()) {
 			rightClick.show(myGrid, myData.getCopiedEntity(), e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
-		}else if (!e.isControlDown() && !e.isAltDown()) {
+		} else if (!e.isControlDown() && !e.isAltDown()) {
 			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
@@ -151,7 +151,6 @@ public class GridView extends GUIComponent {
 				rightClick.hide();
 			}
 			if (e.isSecondaryButtonDown()) {
-				selectEntity(entity);
 				rightClick.show(myGrid, entity, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			}
 			ImageView c = (ImageView) (e.getSource());

@@ -33,15 +33,17 @@ public class EventFactory {
 		return reflectedEvent;
 	}
 
-	public RightClickEvent getRightClickEvent(String eventname, UtilityFactory util, ViewData data, Entity entity, double x, double y) {	
+	public RightClickEvent getRightClickEvent(String eventname, UtilityFactory util, ViewData data, Entity entity,
+			double x, double y) {
 		RightClickEvent reflectedEvent;
 		System.out.println(RIGHTCLICKPREFIX + eventname);
 		try {
-			if(eventname.equals("EditCommand")){
-				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, util, data, entity, x, y);
-			}
-			else{
-				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, data, entity, x, y);
+			if (eventname.equals("EditCommand")) {
+				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, util, data,
+						entity, x, y);
+			} else {
+				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, data, entity,
+						x, y);
 			}
 		} catch (Exception e) {
 			throw new ReflectionException(ReflectionException.EVENT_REFLECTION_ERROR);
