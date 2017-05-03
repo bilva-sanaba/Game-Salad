@@ -34,6 +34,9 @@ public class EventFactory {
 	}
 
 	public RightClickEvent getRightClickEvent(String eventname, UtilityFactory util, ViewData data, Entity entity, double x, double y) {	
+		System.out.println(util);
+		System.out.println(data);
+		System.out.println(entity);
 		RightClickEvent reflectedEvent;
 		System.out.println(RIGHTCLICKPREFIX + eventname);
 		try {

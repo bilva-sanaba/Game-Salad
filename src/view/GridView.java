@@ -22,6 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import view.commands.RightClickMenu;
 
+
 /**
  * @author Jonathan Rub
  * @author Justin Yang
@@ -68,33 +69,31 @@ public class GridView extends GUIComponent {
 		myScroll = new ScrollPane(myGrid);
 		myBorderPane.setCenter(myScroll);
 	}
-
+	
 	public void setLevelNumber(int i) {
 		myLevelNumber = i;
 	}
-
+	
 	public void setEntityIDcount() {
 		j += 10000;
 	}
-
-	private Label buildMouseCords() {
+	
+	private Label buildMouseCords(){
 		Label mouseCords = new Label();
 		mouseCords.setText("X:0  Y:0");
 		return mouseCords;
 	}
 
 	private void mousePress(MouseEvent e) {
-		if (rightClick.isShowing()) {
-			rightClick.hide();
-		}
-		if (e.isSecondaryButtonDown()) {
+		if (!rightClick.isShowing() && e.isSecondaryButtonDown()) {
 			rightClick.show(myGrid, myData.getCopiedEntity(), e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
-		}else if (!e.isControlDown() && !e.isAltDown()) {
+		}
+		else if (!e.isSecondaryButtonDown() && !e.isControlDown() && !e.isAltDown()) {
 			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
-
-	private void mouseMove(MouseEvent e) {
+	
+	private void mouseMove(MouseEvent e){
 		mouseCords.setText("X:" + e.getX() + "  Y:" + e.getY());
 	}
 
@@ -134,8 +133,7 @@ public class GridView extends GUIComponent {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity
-				.getComponent(ComponentType.ImageProperties);
+		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
 		// Modify this part to make children span multiple rows/columns
 		double height = imageProperties.getHeight();
 		double width = imageProperties.getWidth();
@@ -147,17 +145,14 @@ public class GridView extends GUIComponent {
 			if (e.isControlDown() || e.isAltDown()) {
 				selectEntity(entity);
 			}
-			if (rightClick.isShowing()) {
-				rightClick.hide();
-			}
-			if (e.isSecondaryButtonDown()) {
+			if (!rightClick.isShowing() && e.isSecondaryButtonDown()) {
 				selectEntity(entity);
 				rightClick.show(myGrid, entity, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			}
 			ImageView c = (ImageView) (e.getSource());
 			xClickOffset = e.getX() - c.getX();
 			yClickOffset = e.getY() - c.getY();
-
+			
 			imageWidth = c.getFitWidth();
 			imageHeight = c.getFitHeight();
 		});
@@ -173,7 +168,7 @@ public class GridView extends GUIComponent {
 			if (e.isAltDown()) {
 				// Change 10 to static MIN_ENTITY_WIDTH/HEIGHT
 				c.setFitHeight(Math.max(imageHeight + offsetY, 10));
-				c.setFitWidth(Math.max(imageWidth + offsetX, 10));
+				c.setFitWidth(Math.max(imageWidth+ offsetX, 10));
 			}
 		});
 		spriteImage.setOnMouseReleased(e -> {
