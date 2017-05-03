@@ -1,6 +1,7 @@
 package components.entityComponents;
 
 import components.IComponent;
+import components.XYComponent;
 
 public class VelocityComponent extends XYComponent implements IComponent {
 	public VelocityComponent(double x, double y) {

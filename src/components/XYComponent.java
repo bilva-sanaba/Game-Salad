@@ -1,6 +1,4 @@
-package components.entityComponents;
-
-import components.AComponent;
+package components;
 
 public abstract class XYComponent extends AComponent {
 	private double x;

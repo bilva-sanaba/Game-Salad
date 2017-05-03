@@ -1,6 +1,7 @@
 package components.entityComponents;
 
 import components.IComponent;
+import components.XYComponent;
 
 public class TerminalVelocityComponent extends XYComponent implements IComponent{
 

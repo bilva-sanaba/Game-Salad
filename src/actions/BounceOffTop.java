@@ -11,7 +11,7 @@ import gamedata.IRestrictedGameData;
 @TopAction()
 public class BounceOffTop extends AbstractAction  implements IAction {
 	public static final double VELOCITY_REVERSE = -1;
-	public static final double BOUNCE_FACTOR = 0.66;
+	public static final double BOUNCE_FACTOR = 1.5;
 
 	
 

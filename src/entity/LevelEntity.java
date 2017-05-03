@@ -1,6 +1,6 @@
 package entity;
 
-import data_interfaces.InfiniteEnum;
+import engines.infinite.InfiniteEnum;
 
 public class LevelEntity extends Entity {
 	

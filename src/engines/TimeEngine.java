@@ -34,7 +34,7 @@ public class TimeEngine extends AbstractEngine{
 						lastTime.put(action, (int) System.currentTimeMillis());
 					}
 				}
-				for (IAction action : singleTime.keySet()){
+				for (IAction action : singleTime.keySet().toArray(new IAction[singleTime.keySet().size()])){
 					if (!lastTime.containsKey(action)){
 						lastTime.put(action,(int) System.currentTimeMillis());
 					}

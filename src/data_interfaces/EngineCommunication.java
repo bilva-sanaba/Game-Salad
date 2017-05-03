@@ -3,6 +3,7 @@ package data_interfaces;
 import java.util.Collection;
 import java.util.List;
 
+import engines.infinite.InfiniteEnum;
 import entity.Entity;
 import entity.IEntityManager;
 
