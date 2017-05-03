@@ -107,7 +107,7 @@ public class UtilityFactory {
 	}
 
 	private RadioButton buildRadioButton(String property, boolean selected, ToggleGroup group, VBox vbox) {
-		RadioButton myButton = new RadioButton(myResources.getString(property));
+		RadioButton myButton = new RadioButton(property);
 		myButton.setSelected(selected);
 		myButton.setToggleGroup(group);
 		myButton.setUserData(myResources.getString(property + "RadioButton").split(SPLIT_REGEX));
@@ -184,7 +184,6 @@ public class UtilityFactory {
 		myBox.getChildren().add(myLabel);
 		myBox.getChildren().add(mySlider);
 		mySlider.setSnapToTicks(sliderProp[5].equals("true"));
-		System.out.println(Double.parseDouble(sliderProp[6]));
 		mySlider.setMajorTickUnit(Double.parseDouble(sliderProp[6]));
 		mySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
 			mySlider.setValue(newValue.doubleValue());

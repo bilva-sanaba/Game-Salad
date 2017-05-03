@@ -24,7 +24,6 @@ public class EventFactory {
 
 	public ToolBarButtonEvent getEvent(String eventname, ViewData data) {
 		ToolBarButtonEvent reflectedEvent;
-		System.out.println(PREFIX + eventname);
 		try {
 			reflectedEvent = (ToolBarButtonEvent) Reflection.createInstance(PREFIX + eventname, myUtilF, data);
 		} catch (Exception e) {
@@ -36,7 +35,6 @@ public class EventFactory {
 	public RightClickEvent getRightClickEvent(String eventname, UtilityFactory util, ViewData data, Entity entity,
 			double x, double y) {
 		RightClickEvent reflectedEvent;
-		System.out.println(RIGHTCLICKPREFIX + eventname);
 		try {
 			if (eventname.equals("EditCommand")) {
 				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, util, data,

@@ -107,7 +107,6 @@ public class GridView extends GUIComponent {
 
 	private void placeImageAtLoc(double row, double col) {
 		Entity userSelectedEntity = myData.getUserSelectedEntity();
-		System.out.println(userSelectedEntity);
 		if (userSelectedEntity != null) {
 			Entity placedEntity = userSelectedEntity.clone();
 			placedEntity.setID(myData.getPlacedEntityID());
