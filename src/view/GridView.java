@@ -34,7 +34,6 @@ public class GridView extends GUIComponent {
 	private Pane myGrid;
 	private ViewData myData;
 	private UtilityFactory util;
-	private int j = 1000;
 	private Label mouseCords;
 	private int myRow;
 	private int myCol;

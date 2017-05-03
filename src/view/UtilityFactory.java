@@ -107,7 +107,7 @@ public class UtilityFactory {
 	}
 
 	private RadioButton buildRadioButton(String property, boolean selected, ToggleGroup group, VBox vbox) {
-		RadioButton myButton = new RadioButton(myResources.getString(property));
+		RadioButton myButton = new RadioButton(property);
 		myButton.setSelected(selected);
 		myButton.setToggleGroup(group);
 		myButton.setUserData(myResources.getString(property + "RadioButton").split(SPLIT_REGEX));
