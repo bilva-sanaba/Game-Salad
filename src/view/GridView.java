@@ -2,38 +2,25 @@ package view;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
-import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
-import javafx.event.EventType;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import view.commands.RightClickMenu;
-import view.window.EntityConfigurationWindow;
 
 
 /**
@@ -65,7 +52,7 @@ public class GridView extends GUIComponent {
 		myRow = rows;
 		myCol = cols;
 		myData = data;
-		rightClick = new RightClickMenu(util, myData, 0, 0);
+		rightClick = new RightClickMenu(util, myData);
 		myGrid = new Pane();
 		myGrid.setPrefSize(720, 500);
 		myGrid.setOnMousePressed(e -> mousePress(e));
@@ -87,10 +74,6 @@ public class GridView extends GUIComponent {
 		myLevelNumber = i;
 	}
 	
-	public void setEntityIDcount() {
-		j += 10000;
-	}
-	
 	private Label buildMouseCords(){
 		Label mouseCords = new Label();
 		mouseCords.setText("X:0  Y:0");
@@ -98,13 +81,10 @@ public class GridView extends GUIComponent {
 	}
 
 	private void mousePress(MouseEvent e) {
-		/*if (rightClick.isShowing()){
-			rightClick.hide();
-		}*/
-		if (e.isSecondaryButtonDown()) {
-			//rightClick.show(myGrid, null, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
+		if (!rightClick.isShowing() && e.isSecondaryButtonDown()) {
+			rightClick.show(myGrid, myData.getCopiedEntity(), e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 		}
-		else if (!e.isControlDown() && !e.isAltDown()) {
+		else if (!e.isSecondaryButtonDown() && !e.isControlDown() && !e.isAltDown()) {
 			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
@@ -127,10 +107,9 @@ public class GridView extends GUIComponent {
 
 	private void placeImageAtLoc(double row, double col) {
 		Entity userSelectedEntity = myData.getUserSelectedEntity();
-		if (userSelectedEntity != null && userSelectedEntity.getComponent(ComponentType.Location) == null) {
+		if (userSelectedEntity != null) {
 			Entity placedEntity = userSelectedEntity.clone();
-			placedEntity.setID(j);
-			j++;
+			placedEntity.setID(myData.getPlacedEntityID());
 			placedEntity.addComponent(new LocationComponent(row, col));
 			myData.placeEntity(myLevelNumber, placedEntity);
 		}
@@ -149,8 +128,7 @@ public class GridView extends GUIComponent {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity
-				.getComponent(ComponentType.ImageProperties);
+		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
 		// Modify this part to make children span multiple rows/columns
 		double height = imageProperties.getHeight();
 		double width = imageProperties.getWidth();
@@ -158,16 +136,11 @@ public class GridView extends GUIComponent {
 		spriteImage.setFitWidth(width);
 		spriteImage.setX(entityLocation.getX());
 		spriteImage.setY(entityLocation.getY());
-		ImagePropertiesComponent imageProp = (ImagePropertiesComponent) entity
-				.getComponent(ComponentType.ImageProperties);
 		spriteImage.setOnMousePressed(e -> {
 			if (e.isControlDown() || e.isAltDown()) {
 				selectEntity(entity);
 			}
-		/*	if (rightClick.isShowing()) {
-				rightClick.hide();
-			}*/
-			if (e.isSecondaryButtonDown()) {
+			if (!rightClick.isShowing() && e.isSecondaryButtonDown()) {
 				selectEntity(entity);
 				rightClick.show(myGrid, entity, e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
 			}
@@ -175,8 +148,8 @@ public class GridView extends GUIComponent {
 			xClickOffset = e.getX() - c.getX();
 			yClickOffset = e.getY() - c.getY();
 			
-			imageWidth = imageProp.getWidth();
-			imageHeight = imageProp.getHeight();
+			imageWidth = c.getFitWidth();
+			imageHeight = c.getFitHeight();
 		});
 		spriteImage.setOnMouseDragged(e -> {
 			ImageView c = (ImageView) (e.getSource());
@@ -189,14 +162,14 @@ public class GridView extends GUIComponent {
 			}
 			if (e.isAltDown()) {
 				// Change 10 to static MIN_ENTITY_WIDTH/HEIGHT
-				c.setFitHeight(Math.max(imageWidth + offsetY, 10));
-				c.setFitWidth(Math.max(imageHeight + offsetX, 10));
-				entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
+				c.setFitHeight(Math.max(imageHeight + offsetY, 10));
+				c.setFitWidth(Math.max(imageWidth+ offsetX, 10));
 			}
 		});
 		spriteImage.setOnMouseReleased(e -> {
-			if(!rightClick.isShowing())
-				unselectEntity(entity);
+			ImageView c = (ImageView) (e.getSource());
+			unselectEntity(entity);
+			entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
 		});
 		placedImages.put(entity, spriteImage);
 		myGrid.getChildren().add(spriteImage);
@@ -208,17 +181,6 @@ public class GridView extends GUIComponent {
 		}
 		placedImages.clear();
 	}
-
-/*	public void placeEntitiesFromFile(int levelNumber) {
-		Entity tempEntity;
-		Map<Integer, Map<Integer, Entity>> myMap = myData.getPlacedEntityMap();
-		for (int i : myMap.get(myLevelNumber).keySet()) {
-			tempEntity = myMap.get(myLevelNumber).get(i);
-			drawEntity(tempEntity);
-			j++;
-			System.out.println(j + "is the current entityID value");
-		}
-	} */
 
 	public void setUpLevel() {
 		int totalRow = myData.getLevelEntity().getRows();
