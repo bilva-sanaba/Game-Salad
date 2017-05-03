@@ -5,7 +5,7 @@ import components.IComponent;
 
 /**
  * 
- * @author Jack
+ * @author Jonathan
  *
  */
 public class HealthComponent extends AComponent implements IComponent {

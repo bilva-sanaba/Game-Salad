@@ -7,10 +7,8 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
-import actions.IAction;
 import entity.Entity;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,18 +20,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
 
 /**
@@ -101,7 +95,7 @@ public class UtilityFactory {
 
 	public Button buildButton(String string, EventHandler eventname) {
 		Button result = new Button();
-		result.setText(string);
+		result.setText(myResources.getString(string));
 		result.setOnAction(eventname);
 		return result;
 	}

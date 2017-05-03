@@ -81,7 +81,7 @@ public class EntityConfigurationWindow implements Window {
 		});
 		root.getChildren().add(myUtilF.buildHBox(
 				myUtilF.buildButton("AddActions", e -> addActions()),
-				myUtilF.buildButton("AddEntitiy", e -> enterButton())));
+				myUtilF.buildButton("AddEntity", e -> enterButton())));
 	}
 	
 	private void makeComponent(String comp) {
