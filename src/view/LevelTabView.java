@@ -8,7 +8,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 
-public class LevelTabView extends GUIComponent{
+public class LevelTabView extends GUIComponent {
 	private HashMap<Integer, LevelTab> tabsList;
 	private TabPane myTabs;
 	private ViewData myData;
@@ -17,23 +17,23 @@ public class LevelTabView extends GUIComponent{
 		myData = myDataIn;
 		tabsList = new HashMap<Integer, LevelTab>();
 		myTabs = new TabPane();
-		myTabs.getSelectionModel().selectedItemProperty().addListener((obs,oldTab,newTab)->{
+		myTabs.getSelectionModel().selectedItemProperty().addListener((obs,oldTab,newTab) -> {
 			String[] level = newTab.getText().split(" ");
 			myData.setCurrentLevel(Integer.parseInt(level[1]));
 		});
 		addNewTab(myGrid, myData.getMaxLevel());
 	}
 
-	public void clearTabs(){
+	public void clearTabs() {
 		myTabs.getTabs().clear();
 		tabsList.clear();
 	}
 	
-	public void selectTab(int tabIndex){
+	public void selectTab(int tabIndex) {
 		myTabs.getSelectionModel().select(tabIndex - 1);
 	}
 
-	public HashMap<Integer,LevelTab> getTabsList(){
+	public HashMap<Integer,LevelTab> getTabsList() {
 		return tabsList;
 	}
 
@@ -48,9 +48,9 @@ public class LevelTabView extends GUIComponent{
 		myTabs.getSelectionModel().select(tab1);
 	}
 
-	public void removeTab(int level){
+	public void removeTab(int level) {
 		LevelTab tab = tabsList.get(level);
-		for(int i = level; i < tabsList.size(); i++){
+		for(int i = level; i < tabsList.size(); i++) {
 			tabsList.put(i, tabsList.get(i+1));
 			tabsList.get(i).setLevelNumber(i);
 		}
@@ -59,7 +59,7 @@ public class LevelTabView extends GUIComponent{
 		myTabs.getSelectionModel().select(level-1);
 	}
 
-	/*public void moveTab(int level, int destination){
+	/*public void moveTab(int level, int destination) {
 		LevelTab swapper = tabsList.get(destination);
 		swapper.setLevelNumber(level);
 		LevelTab current = tabsList.get(level);
