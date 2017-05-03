@@ -212,6 +212,13 @@ public class UtilityFactory {
 		hb.getChildren().addAll(nodes);
 		return hb;
 	}
+	
+	public Pane buildGrid(int width, int height, String style){
+		Pane myGrid = new Pane();
+		myGrid.setPrefSize(width, height);
+		myGrid.getStyleClass().add(style);
+		return myGrid;
+	}
 
 	public <T> ListView<T> buildListView(List<T> list) {
 		ObservableList<T> obslist = FXCollections.observableArrayList(list);
