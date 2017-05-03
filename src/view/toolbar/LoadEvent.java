@@ -18,11 +18,10 @@ import view.ViewData;
 
 public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent {
 	private ViewData myData;
-	Map<Class<? extends Entity>, Consumer<Entity>> whattodo;
+	private final static String FILELOADSTRING = "Choose the file to load: ";
 	
 	public LoadEvent(UtilityFactory utilF, ViewData data){
 		myData = data;
-		whattodo = new HashMap<Class<? extends Entity>, Consumer<Entity>>();
 		//whattodo.put(SplashEntity.class, e -> myData.setSplashEntity((SplashEntity) e));
 		//whattodo.put(LevelEntity.class, e -> myData.setLevelEntity((LevelEntity) e));
 	}
@@ -32,7 +31,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		XMLPlacedParser xpp = new XMLPlacedParser();
 		Stage newStage = new Stage();
 		FileChooser fc = new FileChooser();
-		fc.setTitle("Choose the file to load: ");
+		fc.setTitle(FILELOADSTRING);
 		fc.setInitialDirectory(new File(System.getProperty("user.dir")));
 		fc.getExtensionFilters().setAll(
 				new ExtensionFilter("Text Files", "*" + getSuffix()));
@@ -44,7 +43,6 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			String firstSplit = splitS[splitS.length - 1];
 			String name = firstSplit.substring(0, firstSplit.length()
 					- getSuffix().length());
-			System.out.println("BLOOMFELD FELD FELD FIELD FIELD" + name);
 			myData.setGameName(name);
 			List <Map> toPlace = xpp.getData(name);
 			setPlacedEntities(toPlace.get(0));

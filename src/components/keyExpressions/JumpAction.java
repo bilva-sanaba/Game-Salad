@@ -23,7 +23,7 @@ public class JumpAction implements IAction {
 		VelocityComponent vc = (VelocityComponent) player.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
 		if (vc.getY()==0){
-			vc.setY(-40);
+			vc.setY(-20);
 			ac.setY(0.9);
 		}
 		

@@ -4,36 +4,27 @@ import java.util.HashMap;
 
 public class EntryValues {
 
-	private HashMap<String, String> myValues;
+	private HashMap<Integer, String> myValues;
 	
-	public EntryValues(String... titles) {
-		myValues = new HashMap<String, String>();
-		makeMap(titles);
+	public EntryValues() {
+		myValues = new HashMap<Integer, String>();
+		makeMap();
 	}
 	
-//	public String getTitle(int k) {
-//		return retrieve(myTitles, k);
-//	}
-	
-	public String getValue(String title) {
-		return retrieve(myValues, title);
+	public String getValue(int k) {
+		return retrieve(myValues, k);
 	}
 	
-	private String retrieve(HashMap<Integer, String> myMap, String title) {
-		if (myMap.containsKey(title)) {
-			return myMap.get(title);
+	private String retrieve(HashMap<Integer, String> myMap, int k) {
+		if (myMap.containsKey(k)) {
+			return myMap.get(k);
 		} else {
 			return "";
 		}
 	}
 	
-	private void makeMap(String... titles) {
+	private void makeMap() {
 		myValues.put(1, "myFirstValue");
 		myValues.put(2, "mySecondValue");
-		int count = 1;
-		for (String each: titles) {
-			myTitles.put(count, each);
-			count++;
-		}
 	}
 }

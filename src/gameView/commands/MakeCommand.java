@@ -2,7 +2,6 @@ package gameView.commands;
 
 import javafx.stage.Stage;
 import gameView.ICommandView;
-import gameView.UIView;
 
 public class MakeCommand extends AbstractCommand {
 
@@ -12,7 +11,7 @@ public class MakeCommand extends AbstractCommand {
 
 	@Override
 	public boolean execute(Stage s) {
-		((ICommandView) getView()).makeGame(); 
+		getView().makeGame(); 
 		return true;
 	}
 

@@ -8,6 +8,10 @@ import javax.imageio.ImageIO;
 
 import javafx.scene.image.Image;
 
+/*THIS CLASS IS UNUSED BUT COULD BE USED
+ * IF ONE WANTED TO ADD MORE IN THE FUTURE
+ */
+
 public class ImageSaver {
 
 	/**

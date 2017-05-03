@@ -6,7 +6,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
@@ -14,30 +13,23 @@ import javafx.stage.Stage;
 import gameView.ICommandView;
 import gameView.UIView;
 import gameView.tools.DisplayManager;
-import gameView.tools.GameChooser;
 import gameView.tools.ResourceRetriever;
 import gameView.tools.ScrollablePopup;
 
 public class PreferencesCommand extends AbstractCommand {
 
 	private Stage myStage;
-	private Scene myScene;
 	private VBox myBox;
 	private DisplayManager myDisplays;
 	private ScrollablePopup myPopup;
 	
 	public PreferencesCommand(ICommandView m) {
 		super(m);
-//		myBox = new VBox(); 
-//		myBox.setId("box");
-//		myStage = new Stage();
-//		myPopup = new ScrollablePopup("Preferences", "/resources/Preferences.css", myBox, makeCloseButton(),
-//				new Dimension(UIView.DEFAULT_SIZE.width/3, UIView.DEFAULT_SIZE.height/3));
-//		myDisplays = ((ICommandGameView) getView()).getComponents();
 	}
 
 	@Override
 	public boolean execute(Stage s) {
+		getView().pauseGame();
 		initialize();
 		myBox.getChildren().clear();
 		myStage.setTitle(getName());

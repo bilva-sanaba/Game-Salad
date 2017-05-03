@@ -3,10 +3,7 @@ package gameView.displayComponents;
 import gameView.UIView;
 import gameView.tools.DisplayEnum;
 import gamedata.IRestrictedGameData;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -28,9 +25,15 @@ public class LifeComponent extends UIDisplayComponent {
 		return myLives;
 	}
 	
+	@Override
 	public DisplayEnum getPos() {
-		return DisplayEnum.TOP_LEFT;
+		return DisplayEnum.TOP_RIGHT;
 	}
+
+	@Override
+	protected void changedValue() {
+		addLifeImages();
+	} 
 	
 	protected void setID() {
 		myLifeNumber = (ReadOnlyIntegerProperty) setValue(getData().getLives());
@@ -55,10 +58,5 @@ public class LifeComponent extends UIDisplayComponent {
 		lifeLabel.setFitWidth(myLives.getPrefWidth()/getConfig().getLives());
 		return lifeLabel;
 	}
-
-	@Override
-	protected void changedValue() {
-		addLifeImages();
-	} 
 
 }

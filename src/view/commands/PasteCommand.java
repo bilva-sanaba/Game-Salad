@@ -1,5 +1,6 @@
 package view.commands;
 
+import components.entityComponents.LocationComponent;
 import entity.Entity;
 import view.GridView;
 import view.ViewData;
@@ -12,7 +13,7 @@ private double y;
 private Entity pastedEntity;
 private int savedLevel;
 	
-	public PasteCommand(ViewData data, double xIn, double yIn){
+	public PasteCommand(ViewData data, Entity entity, double xIn, double yIn){
 		myData = data;
 		x = xIn;
 		y = yIn;
@@ -21,7 +22,9 @@ private int savedLevel;
 	@Override
 	public void execute() {
 		savedLevel = myData.getCurrentLevel();
-		pastedEntity = myData.pasteEntity(savedLevel, x, y);
+		pastedEntity = myData.getCopiedEntity().clone();
+		pastedEntity.addComponent(new LocationComponent(x, y));
+		myData.placeEntity(savedLevel, pastedEntity);
 		myData.addEvent(this);
 	}
 

@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 
 import achievements.Achievement;
-import achievements.AchievementFactory;
 import components.entityComponents.LocationComponent;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
@@ -31,7 +30,7 @@ import javafx.util.Duration;
 /**
  *
  * @author Jacob
- *
+ *Animation and placement of images from the authoring environment into the game player
  */
 public class WorldAnimator{
 
@@ -49,17 +48,16 @@ public class WorldAnimator{
 	private Scene myScene;
 	private Timeline animation;
 	private Group root;
-	private SequentialTransition st;
 
-	private IRestrictedGameData myData;
 
 	private Camera myCamera;
 
 	private int counter=0;
 	private boolean achievementShowing = false;
 
-	private AchievementFactory myAchievementFactory;
+	private int achievementSize=0;
 	private Achievement myAchievement;
+	VoogaImmutableObservableList<String> myAchievements;
 	private UIViewInterface myView;
 	private	ObserverManager myObservers;
 
@@ -70,6 +68,8 @@ public class WorldAnimator{
 	private boolean pause = false;
 
 	public WorldAnimator(UIViewInterface view){
+		System.out.println("WORLDANIMATOR IS CREATED");
+	
 		myView = view;
 	}
 	public Group getGroup(){
@@ -77,49 +77,35 @@ public class WorldAnimator{
 	}
 
 	public void start (IRestrictedGameData myData, IGameScreenEntity screen) throws ClassNotFoundException{ //achievementFactory
-		this.myData=myData;
 		root = new Group();
 		IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
 		myObservers = new ObserverManager(this, restrictedEntityManager);
-		VoogaImmutableObservableList<String> myAchievements = myData.getAchievement();
+		myAchievements = myData.getAchievement();
 		myAchievements.addListener(new ListChangeListener() {
 			@Override
 			public void onChanged(ListChangeListener.Change change) {
 				try {
-					updateAchievement(myAchievements);
+					updateAchievement();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					VoogaAlert a = new VoogaAlert(e.getMessage());
 				}
-
 			}
 		});
 
-
-
-			//BELALS SHIT
-
-			//myScene = myGameBuilder.setUpGame(root, restrictedEntityManager, 500,500);
 			myScene = new Scene(root,LENGTH,WIDTH);
-			//st = new SequentialTransition();
 			LocationComponent lc = myData.getMainLocation();
-			//Change Length
 			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
-
-			myAchievementFactory = new AchievementFactory();
-			//myAchievement = myAchievementFactory.genAchievement("FirstKill");
-			//root.getChildren().add(myAchievement.getGroup());
 
 			myObservers.getUpdatedSet();
 			fillMapAndDisplay(myObservers.getEntityMap().keySet());
-			//        Entity mainCharacter = (Entity) myEngine.getMainCharacter();
 
 			KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
 					e-> {
 						try {
 							step(SECOND_DELAY);
 						} catch (ClassNotFoundException e1) {
-							VoogaAlert vA = new VoogaAlert("VoogaIssue", e1.getMessage());
+							VoogaAlert vA = new VoogaAlert(e1.getMessage());
 							vA.showAlert();//FIX THIS
 						}
 					});
@@ -128,39 +114,36 @@ public class WorldAnimator{
 			animation.getKeyFrames().add(frame);
 		}
 
-
-		//for testing
-
-
 		public Scene getScene() {
 			return myScene;
 		}
 		private void step(double elapsedTime) throws ClassNotFoundException{
 			counter++;
 			myView.step(keysPressed);
-			//myEngine.handleUpdates(keysPressed);
 			fillMapAndDisplay(myObservers.getUpdatedSet());
-
-//			        updateAchievement();
+			
+			updateAchievement();
 			        
-			        if(achievementShowing==true){
-			        	myAchievement.updateAchievementLoc(-1*myCamera.getX());
-			        }
+			if(achievementShowing==true){
+			   myAchievement.updateAchievementLoc(-1*myCamera.getX());
+			}
 
 			myCamera.updateCamera();
 
 			myObservers.clearSet();
 		}
 
-		//TESTING PURPOSES
 		public void fillMap() {
 			fillMapAndDisplay(myObservers.getUpdatedSet());
 			myCamera.updateCamera();
 		}
 
-		private void updateAchievement(VoogaImmutableObservableList<String> myAchievements) throws ClassNotFoundException {
-			
-			String ach = myAchievements.get(myAchievements.size()-1);
+		private void updateAchievement() throws ClassNotFoundException {
+			String ach="";
+			if(achievementSize!=myAchievements.size()-1){ //subtract one for empty string
+				ach = myAchievements.get(myAchievements.size()-1);
+				System.out.println("HIT ME BABY ONE MORE TIME");
+			}
 			addAchievement(ach);
 			removeAchievement();
 		}
@@ -223,9 +206,6 @@ public class WorldAnimator{
 				imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
 
 				root.getChildren().add(imageView);
-				//makeAppear(imageView).play();
-				//st.getChildren().add(makeAppear(imageView));
-				//st.play();
 			}
 		}
 
@@ -254,38 +234,16 @@ public class WorldAnimator{
 
 
 			return currentImage;
-			//COMMENT OUT TO TEST RUNNER
-
-			//currentImage.setTranslateX(re.getLocation().getX()*50-475);
-			//currentImage.setTranslateY(re.getLocation().getY()*50-175);
-			//currentImage.setFitHeight(re.getFitHeight());
-			//currentImage.setFitWidth(re.getFitWidth());
 		}
 
-
-		private FadeTransition makeFade(ImageView imageView){
-			double newOpacity = 0.0;
-			return createFade(newOpacity, imageView);
-		}
-
-		private FadeTransition makeAppear(ImageView imageView){
-			double newOpacity = 1.0;
-			return createFade(newOpacity, imageView);
-		}
-
-		private FadeTransition createFade(double newOpacity, ImageView imageView){
-			FadeTransition ft = new FadeTransition(Duration.millis(KEY_INPUT_SPEED), imageView);
-			ft.setToValue(newOpacity);
-			ft.setCycleCount(4);
-			return ft;
-		}
 
 		private void addAchievement(String ach) throws ClassNotFoundException{
 			if(!achievementShowing && ach!=""){ //observed generate the achievement (myData.getStr)
-				myAchievement = myAchievementFactory.genAchievement(ach);
+				myAchievement = new Achievement(ach);
 				root.getChildren().add(myAchievement.getGroup());
 				achievementShowing=true;
 				counter=1;
+				achievementSize++;
 			}
 		}
 
