@@ -62,7 +62,6 @@ public class UserData {
 		while (it.hasNext()) {
 			myAchievements.add(it.next());
 		}
-		
 	}
 	
 	/**

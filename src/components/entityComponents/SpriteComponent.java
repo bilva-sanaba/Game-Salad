@@ -1,7 +1,5 @@
 package components.entityComponents;
 
-
-import components.AbstractOneParameterComponent;
 import components.AbstractStringComponent;
 import components.IComponent;
 import javafx.scene.image.Image;
