@@ -25,7 +25,6 @@ public class DeathBlock extends Entity {
 		super(id);
 		addCollisionComponents();
 	}
-	
 	private void addCollisionComponents(){
 		this.addComponent(new TypeComponent(EntityType.Block));
 		this.addComponent(new LabelComponent("Default Block"));
@@ -53,6 +52,7 @@ public class DeathBlock extends Entity {
 
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
 		scb.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
+
 
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
