@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import entity.Entity;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
@@ -21,10 +23,12 @@ public class LevelTabView extends GUIComponent {
 			LevelTab temp = (LevelTab) newTab;
 			myData.setCurrentLevel(temp.getLevel());
 		});
+		
 		addNewTab(myGrid, myData.getMaxLevel());
 	}
 
 	public void clearTabs() {
+		myTabs.getSelectionModel().clearSelection();
 		System.out.println("pre error");
 		myTabs.getTabs().removeAll(tabsList.values());
 		System.out.println("post error");

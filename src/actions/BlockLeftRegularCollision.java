@@ -22,6 +22,9 @@ public class BlockLeftRegularCollision extends AbstractAction implements IAction
 		LocationComponent selfLocation = (LocationComponent) self.getComponent(ComponentType.Location);
 		ImagePropertiesComponent otherImageProp = (ImagePropertiesComponent) other.getComponent(ComponentType.ImageProperties);
 		otherLocation.setX(selfLocation.getX() - otherImageProp.getWidth());
+		if (!other.hasComponent(ComponentType.Orientation)){
+			other.addComponent(new OrientationComponent());
+		}
 		OrientationComponent otherOrientation = (OrientationComponent) other.getComponent(ComponentType.Orientation);
 		otherOrientation.setOrientation(OrientationComponent.LEFT);
 		return getGameDataFactory().blankEntityData(currentGameData);

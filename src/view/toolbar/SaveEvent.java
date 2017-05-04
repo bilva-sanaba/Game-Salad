@@ -40,7 +40,6 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		try {
 			myData.setGameName(result.get());
 			fileName = result.get();
-			System.out.print(result.get());
 			xw.writeFile(fileName, l);
 		} catch (NoSuchElementException e) {
 			return;

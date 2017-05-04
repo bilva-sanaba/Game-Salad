@@ -3,7 +3,7 @@ package gameView.tools;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class FrontEndException extends RuntimeException{
+public class FrontEndException extends RuntimeException {
 
 	public FrontEndException(String message) {
 		Alert a = new Alert(AlertType.ERROR);

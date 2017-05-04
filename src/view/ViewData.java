@@ -246,6 +246,8 @@ public class ViewData extends Observable {
 	}
 
 	public void resetLevelTabs() {
+		maxLevel = placedEntityMaps.size();
+		currentLevel = 1;
 		setChanged();
 		notifyObservers("reset");
 	}

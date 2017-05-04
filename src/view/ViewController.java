@@ -36,12 +36,10 @@ public class ViewController implements Observer {
 			myTab.selectEntity(currentlySelected);
 		}
 		else if(arg.equals("reset")){
-			//myData.setMaxLevel(1);
 			levelTabs.clearTabs();
 			for(int i : myData.getPlacedEntityMap().keySet()){
 				GridView tempGrid = new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS);
-				levelTabs.addNewTab(tempGrid, myData.getMaxLevel());
-				System.out.println("Max level is: " + myData.getMaxLevel());
+				levelTabs.addNewTab(tempGrid, i);
 			}
 		}
 		

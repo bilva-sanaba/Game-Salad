@@ -65,14 +65,9 @@ public interface ControllerInterface {
 	 *
 	 * Resets the current game using the original XML file
 	 */
-	public void resetCurrentGame() throws XMLException;
-
-	//public void runGameAnimation();
+	//public void resetCurrentGame() throws XMLException;
 	
 	public void makeGame();
-	
-	public GameEngine getEngine();
-	
 
 	void step(Set<KeyCode> keysPressed);
 

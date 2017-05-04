@@ -197,7 +197,7 @@ public class GridView extends GUIComponent {
 		unselectEntity(entity);
 		entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
 	}
-
+	
 	private double snapToGrid(double val, int gridInterval) {
 		double remainder = val % gridInterval;
 		if (remainder > gridInterval / 2) {

@@ -59,6 +59,10 @@ public class TimeComponent implements IComponent {
 
 	@Override
 	public IComponent newCopy() {
+		Map<IAction, Integer> copyMap = new HashMap<IAction, Integer>();
+		for (IAction s: timeActions.keySet()) {
+			copyMap.put(s, timeActions.get(s));
+		}
 		return new TimeComponent(timeActions);
 	}
 	
