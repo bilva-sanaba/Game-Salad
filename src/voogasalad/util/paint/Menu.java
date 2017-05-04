@@ -57,12 +57,7 @@ public class Menu implements IMenu {
 			myCanvas.snapshot(wi);
 			ir.turnAllWhiteTransparent(wi);
 			ri = SwingFXUtils.fromFXImage(wi, null);
-			System.out.println(ri.getHeight());
-			boolean bob = ImageIO.write(ri, "png", new File(System.getProperty("user.dir") + File.separator + PREFIX + result.get() + ".png"));
-			System.out.println(bob);
 		} catch (NoSuchElementException e) {
-			return;
-		} catch (IOException e) {
 			return;
 		}
 	}

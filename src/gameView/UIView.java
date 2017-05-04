@@ -75,7 +75,7 @@ public class UIView implements UIViewInterface, IUIView {
 	}
 		
 	public void saveGame() {
-		String save = myCurrentGame + new Timestamp(System.currentTimeMillis()).toLocalDateTime().withNano(0);
+		String save = myCurrentGame + System.currentTimeMillis();
 		if (myUserManager.getCurrentUser() != null) {
 			save = myUserManager.getCurrentUser().getName() + save;
 			myUserManager.getCurrentUser().addGame(myCurrentGame, save);
@@ -146,6 +146,5 @@ public class UIView implements UIViewInterface, IUIView {
 		} catch (Exception e) {
 			System.out.println("NO USER OR GAMEDATA INTIALIZED");
 		}
-		
 	}
 }

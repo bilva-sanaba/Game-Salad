@@ -25,4 +25,6 @@ public interface IRestrictedGameData {
 	public ReadOnlyStringProperty getMusic();
 
 	public VoogaImmutableObservableList<String> getAchievement();
+	
+	public boolean getCamera();
 }

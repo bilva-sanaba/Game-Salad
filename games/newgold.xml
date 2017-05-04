@@ -113,8 +113,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>115.8</x>
-                  <y>207.39999999999998</y>
+                  <x>90.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -162,8 +162,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>131.8</x>
-                  <y>183.39999999999998</y>
+                  <x>140.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -211,8 +211,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>243.0</x>
-                  <y>187.0</y>
+                  <x>190.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -260,8 +260,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>302.2</x>
-                  <y>189.0</y>
+                  <x>240.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -309,8 +309,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>441.4</x>
-                  <y>181.0</y>
+                  <x>290.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -358,8 +358,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>393.0</x>
-                  <y>101.0</y>
+                  <x>340.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -407,8 +407,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>268.2</x>
-                  <y>320.6</y>
+                  <x>390.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -456,8 +456,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>161.8</x>
-                  <y>368.20000000000005</y>
+                  <x>440.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -505,8 +505,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>493.0</x>
-                  <y>395.79999999999995</y>
+                  <x>490.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -548,196 +548,83 @@
               </entry>
               <entry>
                 <components.entityComponents.CollisionComponentsHandler>
-                  <sideCollisionMap reference="../../../../../../entry/entity.Entity/myComponentMap/entry[5]/components.entityComponents.CollisionComponentsHandler/sideCollisionMap"/>
+                  <sideCollisionMap>
+                    <entry>
+                      <string>Left</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Left</sideCollision>
+                        <typeActionMap/>
+                        <labelActionMap>
+                          <entry>
+                            <string>grrraah</string>
+                            <list>
+                              <actions.BounceOffLeft>
+                                <gdf/>
+                              </actions.BounceOffLeft>
+                            </list>
+                          </entry>
+                        </labelActionMap>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                    <entry>
+                      <string>Top</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Top</sideCollision>
+                        <typeActionMap/>
+                        <labelActionMap>
+                          <entry>
+                            <string>grrraah</string>
+                            <list>
+                              <actions.BlockTopRegularCollision>
+                                <gdf/>
+                              </actions.BlockTopRegularCollision>
+                            </list>
+                          </entry>
+                        </labelActionMap>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                    <entry>
+                      <string>Right</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Right</sideCollision>
+                        <typeActionMap/>
+                        <labelActionMap>
+                          <entry>
+                            <string>grrraah</string>
+                            <list>
+                              <actions.BounceOffRight>
+                                <gdf/>
+                              </actions.BounceOffRight>
+                            </list>
+                          </entry>
+                        </labelActionMap>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                    <entry>
+                      <string>Bottom</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Bottom</sideCollision>
+                        <typeActionMap/>
+                        <labelActionMap>
+                          <entry>
+                            <string>grrraah</string>
+                            <list>
+                              <actions.BounceOffBottom>
+                                <gdf/>
+                              </actions.BounceOffBottom>
+                            </list>
+                          </entry>
+                        </labelActionMap>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                  </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>659.4</x>
-                  <y>390.6</y>
-                </components.entityComponents.LocationComponent>
-                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
-              </entry>
-            </myComponentMap>
-          </entity.Entity>
-        </entry>
-        <entry>
-          <int>11</int>
-          <entity.Entity>
-            <changed>false</changed>
-            <obs/>
-            <identifier>11</identifier>
-            <myComponentMap>
-              <entry>
-                <components.entityComponents.CollidableComponent>
-                  <collide>true</collide>
-                </components.entityComponents.CollidableComponent>
-                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>platform_tile_022.png</myString>
-                  <myPath>platform_tile_022.png</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LabelComponent>
-                  <myString>Default Block</myString>
-                </components.entityComponents.LabelComponent>
-                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.CollisionComponentsHandler>
-                  <sideCollisionMap reference="../../../../../../entry/entity.Entity/myComponentMap/entry[5]/components.entityComponents.CollisionComponentsHandler/sideCollisionMap"/>
-                </components.entityComponents.CollisionComponentsHandler>
-                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LocationComponent>
-                  <x>434.6</x>
-                  <y>401.0</y>
-                </components.entityComponents.LocationComponent>
-                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
-              </entry>
-            </myComponentMap>
-          </entity.Entity>
-        </entry>
-        <entry>
-          <int>12</int>
-          <entity.Entity>
-            <changed>false</changed>
-            <obs/>
-            <identifier>12</identifier>
-            <myComponentMap>
-              <entry>
-                <components.entityComponents.CollidableComponent>
-                  <collide>true</collide>
-                </components.entityComponents.CollidableComponent>
-                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>platform_tile_022.png</myString>
-                  <myPath>platform_tile_022.png</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LabelComponent>
-                  <myString>Default Block</myString>
-                </components.entityComponents.LabelComponent>
-                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.CollisionComponentsHandler>
-                  <sideCollisionMap reference="../../../../../../entry/entity.Entity/myComponentMap/entry[5]/components.entityComponents.CollisionComponentsHandler/sideCollisionMap"/>
-                </components.entityComponents.CollisionComponentsHandler>
-                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LocationComponent>
-                  <x>341.8</x>
-                  <y>409.79999999999995</y>
-                </components.entityComponents.LocationComponent>
-                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
-              </entry>
-            </myComponentMap>
-          </entity.Entity>
-        </entry>
-        <entry>
-          <int>13</int>
-          <entity.Entity>
-            <changed>false</changed>
-            <obs/>
-            <identifier>13</identifier>
-            <myComponentMap>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>character3.jpg</myString>
-                  <myPath>character3.jpg</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>27.25</imageHeight>
-                  <imageWidth>17.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LabelComponent>
-                  <myString>Defult Player</myString>
-                </components.entityComponents.LabelComponent>
-                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.KeyInputComponent>
-                  <inputMap>
-                    <entry>
-                      <javafx.scene.input.KeyCode>LEFT</javafx.scene.input.KeyCode>
-                      <list>
-                        <components.keyExpressions.LeftAction/>
-                      </list>
-                    </entry>
-                    <entry>
-                      <javafx.scene.input.KeyCode>UP</javafx.scene.input.KeyCode>
-                      <list>
-                        <components.keyExpressions.JumpAction/>
-                      </list>
-                    </entry>
-                    <entry>
-                      <javafx.scene.input.KeyCode>RIGHT</javafx.scene.input.KeyCode>
-                      <list>
-                        <components.keyExpressions.RightAction/>
-                        <components.keyExpressions.LeftAction reference="../../../entry/list/components.keyExpressions.LeftAction"/>
-                      </list>
-                    </entry>
-                  </inputMap>
-                  <groovyMap/>
-                </components.entityComponents.KeyInputComponent>
-                <components.entityComponents.ComponentType>KeyInput</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.AccelerationComponent>
-                  <x>0.0</x>
-                  <y>0.0</y>
-                </components.entityComponents.AccelerationComponent>
-                <components.entityComponents.ComponentType>Acceleration</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ControllableComponent>
-                  <controllable>true</controllable>
-                </components.entityComponents.ControllableComponent>
-                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.VelocityComponent>
-                  <x>0.0</x>
-                  <y>0.0</y>
-                </components.entityComponents.VelocityComponent>
-                <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LocationComponent>
-                  <x>344.6</x>
-                  <y>17.0</y>
+                  <x>790.0</x>
+                  <y>190.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -756,11 +643,11 @@
         <identifier>-1</identifier>
         <myComponentMap/>
         <rows>50</rows>
-        <cols>70</cols>
+        <cols>67</cols>
         <backgroundFilePath>images/background1.png</backgroundFilePath>
         <openingMusic></openingMusic>
         <lives>3</lives>
-        <ie>Vertical</ie>
+        <ie>None</ie>
       </entity.LevelEntity>
     </entry>
   </map>

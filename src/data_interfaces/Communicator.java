@@ -75,11 +75,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	List<Map> results;
 
 	public Communicator(String s) {
-		System.out.println("COMMUNICATOR MADE: " + s);
 		fileName = s;
 		XMLPlacedParser xp = new XMLPlacedParser();
 		results = xp.getData(fileName);
-		System.out.println("RESULTS SIZE: " + results.size());
 	}
 	
 	public List<IEntityManager> getIEntityManagers() {
@@ -96,27 +94,13 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 			
 		}
 		return ret;
-	/*	
-		for (int i = 1; i <= m.size(); i++) {
-			System.out.println("THISSSSS happens");
-			toBeAdded = new ArrayList<IEntity>();
-			for (Integer j: m.get(i).keySet()) {
-				toBeAdded.add(m.get(i).get(j));
-				System.out.println("this happens");
-			}
-			ret.add(new EntityManager(toBeAdded));
-			
-		}*/
-//		return dummyLoad();
-		//return ret;
-
 	}
+	
 
 
 
 	@Override
 	public List<LevelEntity> getLevelEntities() {
-
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
 		
@@ -130,7 +114,6 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public SplashData getSplashEntity() {
-
 		return (SplashData) results.get(getSplashOrder()).get(getSplashConstant());
 	}
 
@@ -142,9 +125,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getInfiniteEnum();
-
 	}
-	
+
+
 	public String getMusic() {
 		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getMusic();
@@ -153,5 +136,11 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	public int getLives() {
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getLives();
+	}
+
+	@Override
+	public boolean getCameraOn() {
+		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
+		return m.get(getStorageLevel()).getCamera();
 	}
 }

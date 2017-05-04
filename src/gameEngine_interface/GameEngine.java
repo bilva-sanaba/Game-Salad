@@ -76,7 +76,7 @@ public class GameEngine implements GameEngineInterface {
 		List<String> listl = new ArrayList<String>();
 		listl.add("");
 
-		myGameData = new GameData(0,c.getLives(),(IRestrictedEntityManager) myEntityManager, 1, lc, listl,c.getMusic());
+		myGameData = new GameData(0,c.getLives(),(IRestrictedEntityManager) myEntityManager, 1, lc, listl,c.getMusic(), c.getCameraOn());
 
 		return (IRestrictedGameData) myGameData;
 	}

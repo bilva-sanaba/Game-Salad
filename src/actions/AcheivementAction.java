@@ -15,5 +15,4 @@ public class AcheivementAction extends AbstractAction implements IAction{
 		gd.setAchievement("FirstKill");
 		return gd;
 	}
-
 }

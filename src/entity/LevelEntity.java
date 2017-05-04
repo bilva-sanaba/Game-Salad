@@ -10,6 +10,7 @@ public class LevelEntity extends Entity {
 	private String openingMusic;
 	private int lives;
 	private InfiniteEnum ie;
+	private boolean camera = false;
 
 	public LevelEntity(int id) {
 		super(id);
@@ -49,12 +50,12 @@ public class LevelEntity extends Entity {
 		return ie;
 	}
 	
-	public void addRow() {
-		rows++;
+	public void addRow(int i) {
+		rows+=i;
 	}
 	
-	public void addCol() {
-		cols++;
+	public void addCol(int i) {
+		cols+=i;
 	}
 	
 	public void setBackgroundFilePath(String fileP) {
@@ -63,5 +64,13 @@ public class LevelEntity extends Entity {
 	
 	public void setInfiniteEnum(InfiniteEnum ie2) {
 		ie = ie2;
+	}
+	
+	public boolean getCamera(){
+		return camera;
+	}
+	
+	public void setCamera(boolean b){
+		camera = b;
 	}
 }

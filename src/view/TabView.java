@@ -26,6 +26,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
@@ -50,6 +51,7 @@ public class TabView extends GUIComponent {
 	private Button b;
 	private Button savePresetButton;
 	private Button loadPresetButton;
+	private CheckBox cameraOption;
 	private UtilityFactory util;
 	private ViewData myData;
 	private EntityBuilderWindow entityBuilder;
@@ -95,6 +97,13 @@ public class TabView extends GUIComponent {
 			entityBuilder = new EntityBuilderWindow(util, blocksList, myData);
 			entityBuilder.showEntityBuilder();
 		});
+		cameraOption = new CheckBox("Enable Camera");
+		cameraOption.selectedProperty().addListener(new ChangeListener<Boolean>() {
+		    @Override
+		    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+		        myData.getLevelEntity(1).setCamera(newValue);
+		    }
+		});
 		savePresetButton = util.buildButton("SavePreset", e -> savePreset());
 		loadPresetButton = util.buildButton("LoadPreset", e -> userLoadPreset());
 		util.setPresets(blocksList);
@@ -131,10 +140,7 @@ public class TabView extends GUIComponent {
 
 	@Override
 	public Region buildComponent() {
-		myBox.getChildren().add(blocksView);
-		myBox.getChildren().add(b);
-		myBox.getChildren().add(savePresetButton);
-		myBox.getChildren().add(loadPresetButton);
+		myBox.getChildren().addAll(blocksView,b,savePresetButton,loadPresetButton,cameraOption);
 		HBox box = new HBox();
 		final ToggleGroup group = util.buildRadioButtonGroup("InfiniteType", box);
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
