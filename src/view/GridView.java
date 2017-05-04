@@ -31,6 +31,7 @@ public class GridView extends GUIComponent {
 	
 	private static final int GRIDWIDTH = 720;
 	private static final int GRIDHEIGHT = 500;
+	private static final int GRID_INTERVAL = 10;
 	
 	private RightClickMenu rightClick;
 	private ScrollPane myScroll;
@@ -119,7 +120,9 @@ public class GridView extends GUIComponent {
 		if (userSelectedEntity != null) {
 			Entity placedEntity = userSelectedEntity.clone();
 			placedEntity.setID(myData.getPlacedEntityID());
-			placedEntity.addComponent(new LocationComponent(row, col));
+			double newRow = snapToGrid(row, GRID_INTERVAL);
+			double newCol = snapToGrid(col, GRID_INTERVAL);
+			placedEntity.addComponent(new LocationComponent(newRow, newCol));
 			myData.placeEntity(myLevelNumber, placedEntity);
 		}
 	}
@@ -154,14 +157,26 @@ public class GridView extends GUIComponent {
 		double offsetX = e.getX() - c.getX() - xClickOffset;
 		double offsetY = e.getY() - c.getY() - yClickOffset;
 		if (e.isControlDown()) {
-			c.setX(e.getX() - xClickOffset);
-			c.setY(e.getY() - yClickOffset);
-			entity.addComponent(new LocationComponent(e.getX() - xClickOffset, e.getY() - yClickOffset));
+			double newX = snapToGrid(e.getX() - xClickOffset, GRID_INTERVAL);
+			double newY = snapToGrid(e.getY() - yClickOffset, GRID_INTERVAL);
+			c.setX(newX);
+			c.setY(newY);
+			entity.addComponent(new LocationComponent(newX, newY));
 		}
 		if (e.isAltDown()) {
 			// Change 10 to static MIN_ENTITY_WIDTH/HEIGHT
 			c.setFitHeight(Math.max(imageHeight + offsetY, 10));
 			c.setFitWidth(Math.max(imageWidth+ offsetX, 10));
+		}
+	}
+	
+	private double snapToGrid(double val, int gridInterval) {
+		double remainder = val % gridInterval;
+		if (remainder > gridInterval / 2) {
+			return val - remainder + gridInterval;
+		}
+		else {
+			return val - remainder;
 		}
 	}
 	
