@@ -1,4 +1,4 @@
-package entity.presets;
+package entity.presets.block_presets;
 
 import actions.BounceOffTop;
 import components.entityComponents.CheckCollisionComponent;
@@ -13,6 +13,7 @@ import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
+import entity.presets.AbstractBlock;
 
 public class BouncyBlock extends AbstractBlock {
 

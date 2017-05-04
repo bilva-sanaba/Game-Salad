@@ -1,15 +1,16 @@
-package entity.presets;
+package entity.presets.block_presets;
 
-import actions.SpeedUp;
+import actions.SlowDown;
 import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
+import entity.presets.AbstractBlock;
 
-public class SpeedBlock extends AbstractBlock {
+public class SlowBlock extends AbstractBlock {
 
-	public SpeedBlock(int id) {
+	public SlowBlock(int id) {
 		super(id);
 		initialize();
 	}
@@ -19,7 +20,7 @@ public class SpeedBlock extends AbstractBlock {
 		CollisionComponentsHandler collisionRepo = (CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler);
 		SideCollisionComponent top = collisionRepo.getCollisionComponent(CollisionComponentsHandler.TOP);
 		top.clearMappings(null, new TypeComponent(EntityType.Player));
-		top.addActionForType(new TypeComponent(EntityType.Player), new SpeedUp());
+		top.addActionForType(new TypeComponent(EntityType.Player), new SlowDown());
 	}
-	
+
 }
