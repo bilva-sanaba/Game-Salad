@@ -79,17 +79,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		XMLPlacedParser xp = new XMLPlacedParser();
 		results = xp.getData(fileName);
 	}
-	public String getMusic() {
-		Map<Integer, LevelEntity> m = results.get(1);
-		return m.get(1).getMusic();
-	}
 	
-	public int getLives () {
-		Map <Integer, LevelEntity> m = results.get(1);
-		return m.get(1).getLives();
-	}
 	public List<IEntityManager> getIEntityManagers() {
-		Map <Integer, Map<Integer, Entity>> m = results.get(0);
+		Map <Integer, Map<Integer, Entity>> m = results.get(getEntityOrder());
 		List <IEntityManager> ret = new ArrayList<IEntityManager>();
 		List <IEntity> toBeAdded;
 		
@@ -109,10 +101,8 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public List<LevelEntity> getLevelEntities() {
-		Map <Integer, LevelEntity> m = results.get(1);
+		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
-
-		
 		for (int i = 1; i <= m.size(); i++) {
 			ret.add(m.get(i));
 		}
@@ -123,15 +113,24 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public SplashData getSplashEntity() {
-		return (SplashData) results.get(2).get(getSplashConstant());
+		return (SplashData) results.get(getSplashOrder()).get(getSplashConstant());
 	}
 
 
 
 	@Override
 	public InfiniteEnum getInfinite() {
-		Map<Integer, LevelEntity> m = results.get(1);
-		return m.get(1).getInfiniteEnum();
+		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
+		return m.get(getStorageLevel()).getInfiniteEnum();
 	}
-
+	
+	public String getMusic() {
+		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
+		return m.get(getStorageLevel()).getMusic();
+	}
+	
+	public int getLives () {
+		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
+		return m.get(getStorageLevel()).getLives();
+	}
 }
