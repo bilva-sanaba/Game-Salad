@@ -14,5 +14,6 @@ public enum EditableComponents {
 	Sprite(),
 	Step(),
 	Strength(),
+	TerminalVelocity(),
 	Velocity(),
 }

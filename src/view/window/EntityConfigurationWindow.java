@@ -76,6 +76,11 @@ public class EntityConfigurationWindow implements Window {
 			@Override
 			public void changed(ObservableValue<? extends EditableComponents> observable, EditableComponents oldVal,
 					EditableComponents newVal) {
+//				if (selectedComponents.containsKey(newVal) && selectedComponents.get(newVal) == ) {
+//					
+//				}
+				System.out.println("Old " + oldVal);
+				System.out.println("New " + newVal);
 				makeComponent(newVal.toString());
 			}
 		});
@@ -85,13 +90,9 @@ public class EntityConfigurationWindow implements Window {
 	}
 	
 	private void makeComponent(String comp) {
-		try {
-			ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
-			myCompEdits.put(comp, editor);
-			root.getChildren().add(editor.getInputNode());
-		} catch (Exception e) {
-			System.out.println("Can not edit this component");
-		}
+		ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
+		myCompEdits.put(comp, editor);
+		root.getChildren().add(editor.getInputNode());
 	}
 
 	private void enterButton() {
