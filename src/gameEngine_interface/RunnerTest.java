@@ -23,7 +23,6 @@ public class RunnerTest {
 	}
 	
 	public WorldAnimator getAnimator() {
-		System.out.println(myWorld);
 		return myWorld;
 	}
 	public GameEngine getEngine() {
