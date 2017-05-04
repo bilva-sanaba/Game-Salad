@@ -9426,17 +9426,17 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.LivesComponent>
+                  <lives>2</lives>
+                </components.entityComponents.LivesComponent>
+                <components.entityComponents.ComponentType>Lives</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
                 </components.entityComponents.ImagePropertiesComponent>
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LivesComponent>
-                  <lives>2</lives>
-                </components.entityComponents.LivesComponent>
-                <components.entityComponents.ComponentType>Lives</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
@@ -9445,18 +9445,11 @@
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.ControllableComponent>
-                  <controllable>true</controllable>
-                </components.entityComponents.ControllableComponent>
-                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.KeyInputComponent>
                   <inputMap>
                     <entry>
                       <javafx.scene.input.KeyCode>W</javafx.scene.input.KeyCode>
                       <list>
-                        <components.keyExpressions.JumpAction/>
                         <components.keyExpressions.JumpAction/>
                       </list>
                     </entry>
@@ -9478,6 +9471,12 @@
                   <y>0.0</y>
                 </components.entityComponents.VelocityComponent>
                 <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CheckCollisionComponent>
@@ -9506,13 +9505,13 @@
         <obs/>
         <identifier>-1</identifier>
         <myComponentMap/>
-        <rows>96</rows>
+        <rows>92</rows>
         <cols>116</cols>
         <backgroundFilePath>images/background1.png</backgroundFilePath>
         <openingMusic></openingMusic>
         <lives>3</lives>
         <ie>Horizontal</ie>
-        <camera>false</camera>
+        <camera>true</camera>
       </entity.LevelEntity>
     </entry>
   </map>
