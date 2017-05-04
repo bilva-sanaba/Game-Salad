@@ -1,7 +1,6 @@
-package entity.presets.block_presets;
+package entity.presets;
 
 import components.entityComponents.LabelComponent;
-import entity.presets.AbstractBlock;
 
 public class RegularBlock extends AbstractBlock {
 

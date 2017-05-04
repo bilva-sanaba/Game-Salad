@@ -2,7 +2,6 @@ package view.commands;
 
 import components.entityComponents.LocationComponent;
 import entity.Entity;
-import view.GridView;
 import view.ViewData;
 
 public class PasteCommand implements RightClickEvent{
