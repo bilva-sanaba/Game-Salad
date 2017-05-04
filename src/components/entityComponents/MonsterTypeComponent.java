@@ -11,6 +11,10 @@ public class MonsterTypeComponent extends AComponent implements IComponent{
 		typeOfMonster = type;
 	}
 	
+	public MonsterTypeComponent(String s){
+		typeOfMonster = MonsterType.valueOf(s);
+	}
+	
 	public String getTypeString() {
 		return typeOfMonster.name();
 	}
