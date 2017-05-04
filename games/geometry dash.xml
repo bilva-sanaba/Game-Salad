@@ -9400,11 +9400,11 @@
           </entity.Entity>
         </entry>
         <entry>
-          <int>29</int>
+          <int>28</int>
           <entity.Entity>
             <changed>false</changed>
             <obs/>
-            <identifier>29</identifier>
+            <identifier>28</identifier>
             <myComponentMap>
               <entry>
                 <components.entityComponents.CollidableComponent>
@@ -9414,8 +9414,8 @@
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
-                  <myString>platform_tile_022.png</myString>
-                  <myPath>platform_tile_022.png</myPath>
+                  <myString>pipe_up.png</myString>
+                  <myPath>pipe_up.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
@@ -9433,104 +9433,9 @@
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
-                  <myString>asdf</myString>
+                  <myString>asd</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.CollisionComponentsHandler>
-                  <sideCollisionMap>
-                    <entry>
-                      <string>Bottom</string>
-                      <components.entityComponents.SideCollisionComponent>
-                        <sideCollision>Bottom</sideCollision>
-                        <typeActionMap>
-                          <entry>
-                            <string>Player</string>
-                            <list>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                            </list>
-                          </entry>
-                          <entry>
-                            <string>Block</string>
-                            <list>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                              <actions.BounceOffBottom>
-                                <gdf/>
-                              </actions.BounceOffBottom>
-                            </list>
-                          </entry>
-                        </typeActionMap>
-                        <labelActionMap/>
-                      </components.entityComponents.SideCollisionComponent>
-                    </entry>
-                  </sideCollisionMap>
-                </components.entityComponents.CollisionComponentsHandler>
-                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.KeyInputComponent>
@@ -9540,28 +9445,17 @@
                       <list>
                         <components.keyExpressions.LeftAction/>
                         <components.keyExpressions.LeftAction/>
-                        <components.keyExpressions.LeftAction/>
-                        <components.keyExpressions.LeftAction/>
                       </list>
                     </entry>
                     <entry>
                       <javafx.scene.input.KeyCode>W</javafx.scene.input.KeyCode>
                       <list>
                         <components.keyExpressions.JumpAction/>
-                        <components.keyExpressions.JumpAction/>
-                        <components.keyExpressions.JumpAction/>
-                        <components.keyExpressions.JumpAction/>
-                        <components.keyExpressions.JumpAction/>
-                        <components.keyExpressions.JumpAction/>
                       </list>
                     </entry>
                     <entry>
                       <javafx.scene.input.KeyCode>D</javafx.scene.input.KeyCode>
                       <list>
-                        <components.keyExpressions.RightAction/>
-                        <components.keyExpressions.RightAction/>
-                        <components.keyExpressions.RightAction/>
-                        <components.keyExpressions.RightAction/>
                         <components.keyExpressions.RightAction/>
                       </list>
                     </entry>
@@ -9572,8 +9466,8 @@
               </entry>
               <entry>
                 <components.entityComponents.VelocityComponent>
-                  <x>0.0</x>
-                  <y>0.0</y>
+                  <x>1.625</x>
+                  <y>2.375</y>
                 </components.entityComponents.VelocityComponent>
                 <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
               </entry>
@@ -9591,22 +9485,22 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TerminalVelocityComponent>
-                  <x>11.1875</x>
-                  <y>12.125</y>
-                </components.entityComponents.TerminalVelocityComponent>
-                <components.entityComponents.ComponentType>TerminalVelocity</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.ControllableComponent>
                   <controllable>true</controllable>
                 </components.entityComponents.ControllableComponent>
                 <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TerminalVelocityComponent>
+                  <x>8.8125</x>
+                  <y>10.25</y>
+                </components.entityComponents.TerminalVelocityComponent>
+                <components.entityComponents.ComponentType>TerminalVelocity</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.AccelerationComponent>
-                  <x>0.0</x>
-                  <y>0.0</y>
+                  <x>2.0625</x>
+                  <y>2.1875</y>
                 </components.entityComponents.AccelerationComponent>
                 <components.entityComponents.ComponentType>Acceleration</components.entityComponents.ComponentType>
               </entry>
@@ -9618,7 +9512,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>210.0</x>
+                  <x>250.0</x>
                   <y>380.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
@@ -9643,7 +9537,7 @@
         <openingMusic></openingMusic>
         <lives>3</lives>
         <ie>Horizontal</ie>
-        <camera>true</camera>
+        <camera>false</camera>
       </entity.LevelEntity>
     </entry>
   </map>
