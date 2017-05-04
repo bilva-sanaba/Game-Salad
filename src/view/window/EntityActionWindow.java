@@ -171,8 +171,12 @@ public class EntityActionWindow implements Window {
 			Class<?> nextAction = listofAct.get(i);
 			String act = null;
 			act = nextAction.toString();
-			nametoAct.put(myUtilF.getText(act), act);
-			actions.add(myUtilF.getText(act));
+			try{
+				nametoAct.put(myUtilF.getText(act), act);
+				actions.add(myUtilF.getText(act));
+			}catch(Exception e){
+				
+			}
 			allAct.put(act, nextAction);
 		}
 	}
@@ -193,7 +197,8 @@ public class EntityActionWindow implements Window {
 			sidecollision = sideCollisionActions.getCollisionComponent(collisionComponentType.toString());
 		}
 		try {
-			System.out.println(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
+			System.out.println(viewActs.getSelectionModel().getSelectedItem());
+			System.out.println("here :( " + allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
 			IAction act = getAction(allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
 			if (!(labelType.getText().toString().equals(labelType.getPromptText().toString())
 					|| labelType.getText().toString().equals(""))) {
