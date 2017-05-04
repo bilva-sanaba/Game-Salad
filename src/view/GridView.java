@@ -94,8 +94,11 @@ public class GridView extends GUIComponent {
 		}
 		else if (!e.isSecondaryButtonDown() && !e.isControlDown() && !e.isAltDown()) {
 			rightClick.hide();
-			placeImageAtLoc(e.getX(), e.getY());
+			placeImageAtLoc(e.getX() , e.getY());
 		}
+	}
+	private void snapTo10(int x){
+		
 	}
 	
 	private void mouseMove(MouseEvent e){
