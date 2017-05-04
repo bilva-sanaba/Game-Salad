@@ -81,35 +81,35 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		results = xp.getData(fileName);
 	}
 	public String getMusic() {
-//		Map<Integer, LevelEntity> m = results.get(1);
-//		return m.get(1).getMusic();
-		return "badboujee.wav";
+		Map<Integer, LevelEntity> m = results.get(1);
+		return m.get(1).getMusic();
+//		return "badboujee.wav";
 	}
 	
 	public int getLives () {
-//		Map <Integer, LevelEntity> m = results.get(1);
-//		return m.get(1).getLives();
-		return 3;
+		Map <Integer, LevelEntity> m = results.get(1);
+		return m.get(1).getLives();
+//		return 3;
 	}
 	public List<IEntityManager> getIEntityManagers() {
-//		Map <Integer, Map<Integer, Entity>> m = results.get(0);
+		Map <Integer, Map<Integer, Entity>> m = results.get(0);
 		List <IEntityManager> ret = new ArrayList<IEntityManager>();
 		List <IEntity> toBeAdded;
 		
-//		System.out.println("m size: " + m.size());
-//		
-//		for (int i = 1; i <= m.size(); i++) {
-//			System.out.println("THISSSSS happens");
-//			toBeAdded = new ArrayList<IEntity>();
-//			for (Integer j: m.get(i).keySet()) {
-//				toBeAdded.add(m.get(i).get(j));
-//				System.out.println("this happens");
-//			}
-//			ret.add(new EntityManager(toBeAdded));
-//			
-//		}
-		return dummyLoad();
-//		return ret;
+		System.out.println("m size: " + m.size());
+		
+		for (int i = 1; i <= m.size(); i++) {
+			System.out.println("THISSSSS happens");
+			toBeAdded = new ArrayList<IEntity>();
+			for (Integer j: m.get(i).keySet()) {
+				toBeAdded.add(m.get(i).get(j));
+				System.out.println("this happens");
+			}
+			ret.add(new EntityManager(toBeAdded));
+			
+		}
+//		return dummyLoad();
+		return ret;
 		
 	}
 
@@ -117,16 +117,16 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public List<LevelEntity> getLevelEntities() {
-//		Map <Integer, LevelEntity> m = results.get(1);
+		Map <Integer, LevelEntity> m = results.get(1);
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
-		LevelEntity l = new LevelEntity(0,500,500,"background1.png", "badboujee.wav",3);
+//		LevelEntity l = new LevelEntity(0,500,500,"background1.png", "badboujee.wav",3);
+//		
+//		ret.add(l);
 		
-		ret.add(l);
-		
-//		for (int i = 1; i <= m.size(); i++) {
-//			ret.add(m.get(i));
-//		}
-//		System.out.println("HOW MANY LEVEL ENTITIES" + ret.size());
+		for (int i = 1; i <= m.size(); i++) {
+			ret.add(m.get(i));
+		}
+		System.out.println("HOW MANY LEVEL ENTITIES" + ret.size());
 		
 		return ret;
 	}
@@ -136,18 +136,18 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	@Override
 	public SplashData getSplashEntity() {
 		SplashData s = new SplashData(1427, "sgsdg", "sghs", "background1.png");
-//		return (SplashData) results.get(2).get(getSplashConstant());
-		return s;
+		return (SplashData) results.get(2).get(getSplashConstant());
+//		return s;
 	}
 
 
 
 	@Override
 	public InfiniteEnum getInfinite() {
-//		Map<Integer, LevelEntity> m = results.get(1);
-//		System.out.println(m.get(1).getInfiniteEnum());
-//		return m.get(1).getInfiniteEnum();
-		return InfiniteEnum.Vertical;
+		Map<Integer, LevelEntity> m = results.get(1);
+		System.out.println(m.get(1).getInfiniteEnum());
+		return m.get(1).getInfiniteEnum();
+//		return InfiniteEnum.Vertical;
 	}
 	
 	
