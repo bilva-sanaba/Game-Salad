@@ -165,6 +165,7 @@ public class EntityActionWindow implements Window {
 			}
 			if (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0) {
 				IAction act = getAction(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
+				System.out.println(act.getClass().getSimpleName() + " was created");
 				sidecollision.addActionForType(new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()),
 						act);
 			}
