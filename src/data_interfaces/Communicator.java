@@ -79,23 +79,23 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		XMLPlacedParser xp = new XMLPlacedParser();
 		results = xp.getData(fileName);
 	}
-	
 	public List<IEntityManager> getIEntityManagers() {
 		Map <Integer, Map<Integer, Entity>> m = results.get(getEntityOrder());
 		List <IEntityManager> ret = new ArrayList<IEntityManager>();
 		List <IEntity> toBeAdded;
-		
+
+
 		for (int i = 1; i <= m.size(); i++) {
 			toBeAdded = new ArrayList<IEntity>();
 			for (Integer j: m.get(i).keySet()) {
 				toBeAdded.add(m.get(i).get(j));
 			}
 			ret.add(new EntityManager(toBeAdded));
-			
+
 		}
 		return ret;
-		
 	}
+	
 
 
 
@@ -103,6 +103,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	public List<LevelEntity> getLevelEntities() {
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
+
 		for (int i = 1; i <= m.size(); i++) {
 			ret.add(m.get(i));
 		}
@@ -123,12 +124,13 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getInfiniteEnum();
 	}
-	
+
+
 	public String getMusic() {
 		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getMusic();
 	}
-	
+
 	public int getLives () {
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getLives();
