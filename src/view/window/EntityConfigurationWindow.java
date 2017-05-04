@@ -36,6 +36,7 @@ public class EntityConfigurationWindow implements Window {
 	private Stage myStage = new Stage();
 	private Entity myEntity;
 	private HashMap<String, ComponentEditor> myCompEdits = new HashMap<String, ComponentEditor>();
+	private HashMap<EditableComponents, Boolean> selectedComponents;
 
 	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, Entity entityIn) {
 		initalizeVars(utilF, entityData, entityType, entityIn);
@@ -55,6 +56,7 @@ public class EntityConfigurationWindow implements Window {
 		myData.setUserSelectedEntity(myEntity);
 		componentList = entityType;
 		myStage.setScene(buildScene());
+		selectedComponents = new HashMap<>();
 	}
 
 	private Scene buildScene() {
@@ -76,6 +78,11 @@ public class EntityConfigurationWindow implements Window {
 			@Override
 			public void changed(ObservableValue<? extends EditableComponents> observable, EditableComponents oldVal,
 					EditableComponents newVal) {
+//				if (selectedComponents.containsKey(newVal) && selectedComponents.get(newVal) == ) {
+//					
+//				}
+				System.out.println("Old " + oldVal);
+				System.out.println("New " + newVal);
 				makeComponent(newVal.toString());
 			}
 		});
