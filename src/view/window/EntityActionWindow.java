@@ -179,10 +179,10 @@ public class EntityActionWindow implements Window {
 			Class<?> nextAction = listofAct.get(i);
 			String act = null;
 			act = nextAction.toString();
-
+			try{
 			nametoAct.put(myUtilF.getText(act), act);
 			actions.add(myUtilF.getText(act));
-
+			}catch(Exception e){}
 			allAct.put(act, nextAction);
 		}
 	}
@@ -223,6 +223,7 @@ public class EntityActionWindow implements Window {
 				}
 			}
 			if (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0) {
+
 				System.out.println("add type action");
 				if (addDuration) {
 					tc.addAction(act, myDuration);
@@ -230,6 +231,7 @@ public class EntityActionWindow implements Window {
 					sidecollision.addActionForType(
 							new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()), act);
 				}
+
 			}
 		} catch (InputException e) {
 			// ALERT
