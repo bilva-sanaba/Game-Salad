@@ -96,7 +96,7 @@ public class EntityActionWindow implements Window {
 			allActions.put(currentType, actions);
 			ListView<String> viewActs = myUtilF.buildListView(actions);
 			VBox listandbut = myUtilF.buildVBox(new Text(currentType.name() + "Action"), viewActs,
-					myUtilF.buildButton("AddAction", e -> addAction(currentType, viewActs)));
+					myUtilF.buildButton("AddActions", e -> addAction(currentType, viewActs)));
 			setListView(listandbut, j);
 			initalizeListView(viewActs);
 		}

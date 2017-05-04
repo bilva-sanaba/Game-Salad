@@ -10,20 +10,20 @@ import javafx.scene.text.Text;
 import view.UtilityFactory;
 
 public class AccelerationEditor extends ComponentEditor {
-	private static final String ComponentName = "Acceleration";
 	
+	private EditableComponents componentName = EditableComponents.Acceleration;
 	private VBox myBox;
 	private double myXAcceleration; 
 	private double myYAcceleration; 
 	
 	public AccelerationEditor(UtilityFactory utilf) {
 		myBox = new VBox();
-		HBox xaccel = utilf.buildSlider(ComponentName+"X", new ChangeListener<Number>() {
+		HBox xaccel = utilf.buildSlider(componentName.toString()+"X", new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myXAcceleration = newValue.doubleValue(); 
 			}
 		});
-		HBox yaccel = utilf.buildSlider(ComponentName+"Y", new ChangeListener<Number>() {
+		HBox yaccel = utilf.buildSlider(componentName.toString()+"Y", new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myYAcceleration = newValue.doubleValue(); 
 			}
@@ -34,6 +34,6 @@ public class AccelerationEditor extends ComponentEditor {
 	
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myXAcceleration, myYAcceleration);
+		return getCompF().getComponent(componentName.toString(), myXAcceleration, myYAcceleration);
 	}
 }

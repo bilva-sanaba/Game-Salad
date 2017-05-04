@@ -7,13 +7,12 @@ import javafx.scene.layout.HBox;
 import view.UtilityFactory;
 
 public class LivesEditor extends ComponentEditor {
-	private static final String ComponentName = "Lives";
-	
+	private EditableComponents componentName = EditableComponents.Lives;	
 	private HBox myBox;
 	private int myLives;
 	
 	public LivesEditor(UtilityFactory utilf) {
-		myBox = utilf.buildSlider(ComponentName, new ChangeListener<Number>() {
+		myBox = utilf.buildSlider(componentName.toString(), new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myLives = newValue.intValue(); 
 			}
@@ -22,7 +21,7 @@ public class LivesEditor extends ComponentEditor {
 	}
 	
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myLives);
+		return getCompF().getComponent(componentName.toString(), myLives);
 	}
 	
 }

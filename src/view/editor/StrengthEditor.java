@@ -7,13 +7,12 @@ import javafx.scene.layout.HBox;
 import view.UtilityFactory;
 
 public class StrengthEditor extends ComponentEditor {
-	private static final String ComponentName = "Strength";
-
+	private EditableComponents componentName = EditableComponents.Strength;
 	private HBox myBox;
 	private double myStrength;
 
 	public StrengthEditor(UtilityFactory utilf) {
-		myBox = utilf.buildSlider(ComponentName, new ChangeListener<Number>() {
+		myBox = utilf.buildSlider(componentName.toString(), new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myStrength = newValue.doubleValue(); 
 			}
@@ -22,7 +21,7 @@ public class StrengthEditor extends ComponentEditor {
 	}
 
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myStrength);
+		return getCompF().getComponent(componentName.toString(), myStrength);
 	}
 
 }
