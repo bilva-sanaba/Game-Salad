@@ -48,19 +48,19 @@ public class AbstractBlock extends Entity {
 		CollisionComponentsHandler collisionRepo = (CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler);
 		SideCollisionComponent top = new SideCollisionComponent(CollisionComponentType.Top);
 		for(EntityType type : EntityType.values()) {
-			top.addActionForType(new TypeComponent(type), new BlockTopRegularCollision());
+			//top.addActionForType(new TypeComponent(type), new BlockTopRegularCollision());
 		}
 		SideCollisionComponent left = new SideCollisionComponent(CollisionComponentType.Left);
 		for (EntityType type : EntityType.values()) {
-			left.addActionForType(new TypeComponent(type), new BlockLeftRegularCollision());
+			//left.addActionForType(new TypeComponent(type), new BlockLeftRegularCollision());
 		}
 		SideCollisionComponent right = new SideCollisionComponent(CollisionComponentType.Right);
 		for (EntityType type : EntityType.values()) {
-			right.addActionForType(new TypeComponent(type), new BlockRightRegularCollision());
+			//right.addActionForType(new TypeComponent(type), new BlockRightRegularCollision());
 		}
 		SideCollisionComponent bottom = new SideCollisionComponent(CollisionComponentType.Bottom);
 		for(EntityType type : EntityType.values()) {
-			bottom.addActionForType(new TypeComponent(type), new BlockBottomRegularCollision());
+			//bottom.addActionForType(new TypeComponent(type), new BlockBottomRegularCollision());
 		}
 		collisionRepo.addCollisionComponent(top);
 		collisionRepo.addCollisionComponent(left);
