@@ -9420,10 +9420,22 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.FrictionComponent>
+                  <friction>false</friction>
+                </components.entityComponents.FrictionComponent>
+                <components.entityComponents.ComponentType>Friction</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.HealthComponent>
                   <health>0.0</health>
                 </components.entityComponents.HealthComponent>
                 <components.entityComponents.ComponentType>Health</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LivesComponent>
@@ -9457,18 +9469,6 @@
                   <y>0.0</y>
                 </components.entityComponents.VelocityComponent>
                 <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ControllableComponent>
-                  <controllable>true</controllable>
-                </components.entityComponents.ControllableComponent>
-                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.FrictionComponent>
-                  <friction>false</friction>
-                </components.entityComponents.FrictionComponent>
-                <components.entityComponents.ComponentType>Friction</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.TypeComponent>
@@ -32153,6 +32153,14 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>platform_tile_067.png</myString>
                   <myPath>platform_tile_067.png</myPath>
@@ -32268,14 +32276,6 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>4510.0</x>
                   <y>340.0</y>
@@ -32292,6 +32292,14 @@
             <obs/>
             <identifier>107</identifier>
             <myComponentMap>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
               <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
@@ -32310,14 +32318,6 @@
                   <myPath>platform_tile_046.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -32464,6 +32464,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -32572,14 +32580,6 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>4630.0</x>
                   <y>240.0</y>
@@ -32602,7 +32602,7 @@
         <myComponentMap/>
         <rows>50</rows>
         <cols>614</cols>
-        <backgroundFilePath>images/background1.png</backgroundFilePath>
+        <backgroundFilePath>background5.gif</backgroundFilePath>
         <openingMusic></openingMusic>
         <lives>3</lives>
         <ie>None</ie>
@@ -32616,11 +32616,11 @@
       <entity.SplashData>
         <changed>false</changed>
         <obs/>
-        <identifier>-2</identifier>
+        <identifier>0</identifier>
         <myComponentMap/>
-        <displayName>The game</displayName>
-        <instructions>Don&apos;t lose</instructions>
-        <backgroundFilePath>background1.png</backgroundFilePath>
+        <displayName>suck my ass</displayName>
+        <instructions>- belal</instructions>
+        <backgroundFilePath>background5.gif</backgroundFilePath>
       </entity.SplashData>
     </entry>
   </map>
