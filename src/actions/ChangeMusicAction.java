@@ -24,6 +24,7 @@ public class ChangeMusicAction extends AbstractAction implements IAction {
 	public ChangeMusicAction(List<String> reflectionInputs) throws Exception {
 		reflectionInputs = super.validateList(reflectionInputs, 1);
 		newSong = reflectionInputs.get(0);
+		
 	}
 	
 	
@@ -31,7 +32,7 @@ public class ChangeMusicAction extends AbstractAction implements IAction {
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		GameData gd = getGameDataFactory().blankEntityData(currentGameData);
-
+		System.out.println(newSong + " is the song");
 		gd.setMusic(newSong);
 		// TODO Auto-generated method stub
 		return gd;

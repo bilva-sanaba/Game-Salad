@@ -28,6 +28,9 @@ public class AIEngine extends AbstractEngine{
 				StepComponent sc = (StepComponent) e.getComponent(ComponentType.Step);
 				VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 				sc.takeStep();
+				if (sc.getStepLeft() <= 0 && mtc.getType().equals(MonsterType.Left)) {
+					
+				}
 				if(sc.getStepLeft() <= 0 && mtc.getType().equals(MonsterType.LeftAndRight)){
 					vc.setX(-vc.getX());
 					sc.setStep(sc.getTotalStep());
