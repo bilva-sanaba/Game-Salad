@@ -34,9 +34,10 @@ public class ImageChangeAction  extends AbstractAction  implements IAction{
 	}
 	
 	public ImageChangeAction(List<String> inputs) throws InputException{
-		possibleImages = super.validateList(inputs, inputs.size());
-		for (String s : inputs) {
-			s = super.validateFile(s); //just validates each string and throws exception otherwise
+		String[] sb = inputs.get(0).split(",");
+		for (String s : sb) {
+			s = super.validateFile(s);
+			possibleImages.add(s);//just validates each string and throws exception otherwise
 		}
 		counter=0;
 	}

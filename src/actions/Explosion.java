@@ -29,10 +29,7 @@ public class Explosion  extends AbstractAction  implements IAction {
 	}
 	
 	
-	public Explosion(String imagePath) throws InputException {
-		this();
-		imgPath = super.validateFile(imagePath);
-	}
+	
 	
 	public Explosion(List<String> inputs) throws InputException {
 		inputs = super.validateList(inputs, 1);
