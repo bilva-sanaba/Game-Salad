@@ -202,12 +202,10 @@ public class EntityActionWindow implements Window {
 			IAction act = getAction(allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
 			if (!(labelType.getText().toString().equals(labelType.getPromptText().toString())
 					|| labelType.getText().toString().equals(""))) {
-
-				System.out.println("add label action");
 				if(addDuration){
 					tc.addAction(act, myDuration);
 				}else{
-					sidecollision.addActionForLabel(new LabelComponent(labelType.getText()), act);
+				sidecollision.addActionForLabel(new LabelComponent(labelType.getText()), act);
 				}
 			}
 			if (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0) {
