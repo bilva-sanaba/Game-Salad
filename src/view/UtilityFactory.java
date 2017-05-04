@@ -232,4 +232,19 @@ public class UtilityFactory {
 	public void setPresets(ObservableList<Entity> list) {
 
 	}
+
+
+
+
+	public String getText(String act) {
+		String rec = act;
+		try{
+			rec = myResources.getString(act.split(" ")[1]);
+		}catch(Exception e){
+			rec = myResources.getString(act);
+		}
+		return rec;
+	}
+	
+	
 }

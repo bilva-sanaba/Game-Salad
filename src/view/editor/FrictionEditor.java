@@ -8,21 +8,20 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import view.UtilityFactory;
 
-public class GoalEditor extends ComponentEditor{
-	private EditableComponents componentName = EditableComponents.Goal;
-	private String[] goal = {"false"}; // Initialize array
+public class FrictionEditor extends ComponentEditor{
+	private EditableComponents componentName = EditableComponents.Friction;
+	private String[] frction = {"false"}; // Initialize array
 	private HBox myBox;
-	private boolean myGoal;
+	private boolean myFriction;
 
 
-	public GoalEditor(UtilityFactory utilf) {
-		System.out.println("made goal edior");
+	public FrictionEditor(UtilityFactory utilf) {
 		myBox = new HBox();
-		final ToggleGroup group = utilf.buildRadioButtonGroup("SelectGoalType", myBox);
+		final ToggleGroup group = utilf.buildRadioButtonGroup("SelectFrictionType", myBox);
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-				goal = (String[]) new_toggle.getUserData();
-				myGoal = goal[0].equals("true");
+				frction = (String[]) new_toggle.getUserData();
+				myFriction = frction[0].equals("true");
 			}
 		});			
 		setInputNode(myBox);
@@ -30,6 +29,7 @@ public class GoalEditor extends ComponentEditor{
 	
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(componentName.toString(), myGoal);
+		return getCompF().getComponent(componentName.toString(), myFriction);
 	}
 }
+

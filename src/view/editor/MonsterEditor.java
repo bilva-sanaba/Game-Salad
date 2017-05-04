@@ -11,7 +11,7 @@ import javafx.scene.layout.HBox;
 import view.UtilityFactory;
 
 public class MonsterEditor  extends ComponentEditor {
-	private EditableComponents componentName = EditableComponents.MonsterActions;
+	private EditableComponents componentName = EditableComponents.MonsterType;
 	private String[] myMMPString = {"UpAndDown"}; // Initialize array
 	private ArrayList<Node> nodeList = new ArrayList<Node>();
 		
