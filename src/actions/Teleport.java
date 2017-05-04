@@ -22,6 +22,7 @@ public class Teleport extends AbstractAction  implements IAction {
 	private double teleportYLocation;
 	
 	public Teleport(double newX, double newY) {
+		System.out.println("was created");
 		teleportXLocation = newX;
 		teleportYLocation = newY;
 	}
