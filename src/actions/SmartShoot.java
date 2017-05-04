@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.ObjectCreationComponent;
@@ -15,6 +19,10 @@ import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 
+@TopAction()
+@LeftAction()
+@RightAction()
+@BottomAction()
 public class SmartShoot extends AbstractAction implements IAction  {
 	private List<LocationComponent> targets;
 	public SmartShoot(){

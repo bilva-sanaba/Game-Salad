@@ -106,6 +106,10 @@ public class TabView extends GUIComponent {
 		myData.getLevelEntityMap().get(1).setInfiniteEnum(InfiniteEnum.None);
 	}
 
+	public void setCamera(boolean b){
+		cameraOption.selectedProperty().set(b);
+	}
+	
 	public void clearSelected() {
 		blocksView.getSelectionModel().clearSelection();
 	}
