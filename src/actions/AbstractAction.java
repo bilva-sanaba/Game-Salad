@@ -8,7 +8,7 @@ import exceptions.NotEnoughInputsException;
 import exceptions.NumericInputException;
 import gamedata.GameDataFactory;
 
-public abstract class AbstractAction {
+public abstract class AbstractAction implements IAction{
 	private GameDataFactory gdf;
 	public AbstractAction(){
 		gdf = new GameDataFactory();
@@ -56,9 +56,6 @@ public abstract class AbstractAction {
 			}
 		}
 		throw new NotEnoughInputsException(numNecessaryInputs, inputsToAction.size());
-	}
-	
-	
-	
-	
+	}	
+
 }

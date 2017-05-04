@@ -18,6 +18,7 @@ import view.GUIBuilder;
 import view.UtilityFactory;
 import view.ViewData;
 import view.editor.ComponentEditor;
+import view.editor.EditableComponents;
 
 /**
  * make a window interface
@@ -68,13 +69,13 @@ public class EntityConfigurationWindow implements Window {
 		for (String comp : componentList) {
 			makeComponent(comp);
 		}
-		ObservableList<ComponentType> ObsCopms = FXCollections.observableArrayList(ComponentType.values());
-		ListView<ComponentType> components = new ListView<ComponentType>(ObsCopms);
+		ObservableList<EditableComponents> ObsCopms = FXCollections.observableArrayList(EditableComponents.values());
+		ListView<EditableComponents> components = new ListView<EditableComponents>(ObsCopms);
 		root.getChildren().add(components);
-		components.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ComponentType>() {
+		components.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<EditableComponents>() {
 			@Override
-			public void changed(ObservableValue<? extends ComponentType> observable, ComponentType oldVal,
-					ComponentType newVal) {
+			public void changed(ObservableValue<? extends EditableComponents> observable, EditableComponents oldVal,
+					EditableComponents newVal) {
 				makeComponent(newVal.toString());
 			}
 		});
@@ -86,7 +87,6 @@ public class EntityConfigurationWindow implements Window {
 	private void makeComponent(String comp) {
 		try {
 			ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
-			System.out.println(comp + " line 102 "  + this.getClass());
 			myCompEdits.put(comp, editor);
 			root.getChildren().add(editor.getInputNode());
 		} catch (Exception e) {

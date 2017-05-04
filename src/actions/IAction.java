@@ -11,5 +11,5 @@ public interface IAction {
 	 * @param e
 	 */
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData);
-	
+
 }

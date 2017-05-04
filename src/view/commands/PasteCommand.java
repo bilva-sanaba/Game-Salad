@@ -22,7 +22,7 @@ private int savedLevel;
 	@Override
 	public void execute() {
 		savedLevel = myData.getCurrentLevel();
-		pastedEntity = myData.getCopiedEntity().clone();
+		pastedEntity = myData.getCopiedEntity().newCopy(myData.getPlacedEntityID());
 		pastedEntity.addComponent(new LocationComponent(x, y));
 		myData.placeEntity(savedLevel, pastedEntity);
 		myData.addEvent(this);

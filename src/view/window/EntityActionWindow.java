@@ -91,12 +91,11 @@ public class EntityActionWindow implements Window {
 			try {
 				populateString(actions, listofAct);
 			} catch (InputException e1) {
-				System.out.println("fuck");
 			}
 			allActions.put(currentType, actions);
 			ListView<String> viewActs = myUtilF.buildListView(actions);
 			VBox listandbut = myUtilF.buildVBox(new Text(currentType.name() + "Action"), viewActs,
-					myUtilF.buildButton("AddAction", e -> addAction(currentType, viewActs)));
+					myUtilF.buildButton("AddActions", e -> addAction(currentType, viewActs)));
 			setListView(listandbut, j);
 			initalizeListView(viewActs);
 		}
@@ -107,7 +106,6 @@ public class EntityActionWindow implements Window {
 			Class<?> nextAction = listofAct.get(i);
 			String act = null;
 			act = nextAction.toString();
-			System.out.println(nextAction.getName() + " line 59" + this.getClass());
 			actions.add(act);
 			allAct.put(act, nextAction);
 		}
@@ -117,30 +115,24 @@ public class EntityActionWindow implements Window {
 		CollisionComponentsHandler sideCollisionActions = null;
 		if (myEntity.getComponent(ComponentType.CollisionHandler) == null) {
 			sideCollisionActions = new CollisionComponentsHandler();
-			System.out.println("Create handler actionwindow");
 			myEntity.addComponent(sideCollisionActions);
 		} else {
-			System.out.println("use handler actionwindow");
 			sideCollisionActions = (CollisionComponentsHandler) myEntity.getComponent(ComponentType.CollisionHandler);
 		}
 		SideCollisionComponent sidecollision = null;
 		if (sideCollisionActions.getCollisionComponent(collisionComponentType.toString()) == null) {
 			sidecollision = new SideCollisionComponent(collisionComponentType);
 			sideCollisionActions.addCollisionComponent(sidecollision);
-			System.out.println("Create collisioncomp actionwindow");
 		} else {
-			System.out.println("use collisioncomp actionwindow");
 			sidecollision = sideCollisionActions.getCollisionComponent(collisionComponentType.toString());
 		}
 		try {
 			if (!(labelType.getText().toString().equals(labelType.getPromptText().toString())
 					|| labelType.getText().toString().equals(""))) {
-				System.out.println("add label action");
 				IAction act = getAction(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
 				sidecollision.addActionForLabel(new LabelComponent(labelType.getText()), act);
 			}
 			if (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0) {
-				System.out.println("add type action");
 				IAction act = getAction(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
 				sidecollision.addActionForType(new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()),
 						act);
@@ -173,7 +165,6 @@ public class EntityActionWindow implements Window {
 			IAction act = null;
 			try {
 				act = (IAction) nextAction.newInstance();
-				System.out.println(nextAction.getName() + " line 59" + this.getClass());
 			} catch (InstantiationException | IllegalAccessException e) {
 				IActionMakerWindow actionMaker = new IActionMakerWindow(myUtilF, nextAction);
 				act = actionMaker.openWindow();
