@@ -71,8 +71,12 @@ public class GameChooser {
 	 * @return the string of the chosen file in its full path
 	 */
 	public String getFile() {
-		String[] test = myChosenFile.split("[\\\\/]");
-		return test[test.length-1];
+		try {
+			String[] test = myChosenFile.split("[\\\\/]");
+			return test[test.length-1];
+		} catch (Exception e) {
+			throw new FrontEndException("No File Chosen");
+		}
 	}
 	
 	private void makeVBox() {

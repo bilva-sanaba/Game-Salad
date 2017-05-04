@@ -50,6 +50,7 @@ public class ObserverManager {
         for (IRestrictedEntity e: manager){
         	e.addObserver(myEntityObserver);
             String[] test = e.getRestrictedImagePath().split("[\\\\/]");
+            System.out.println(test[test.length-1]);
             ImageView iView = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(test[test.length-1])));
             ImageConfig iConfig = new ImageConfig(iView, test[test.length-1]);
             myEntities.put(e.getID(), iConfig);

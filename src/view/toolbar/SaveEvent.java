@@ -33,8 +33,6 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		m.put(getSplashConstant(), myData.getSplashEntity());
 		l.add(m);
 		
-		
-		
 		TextInputDialog tid = new TextInputDialog(myData.getGameName());
 		tid.setTitle(FILESAVETITLE);
 		tid.setHeaderText(FILESAVEBODY);
@@ -42,7 +40,6 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		try {
 			myData.setGameName(result.get());
 			fileName = result.get();
-			System.out.print(result.get());
 			xw.writeFile(fileName, l);
 		} catch (NoSuchElementException e) {
 			return;

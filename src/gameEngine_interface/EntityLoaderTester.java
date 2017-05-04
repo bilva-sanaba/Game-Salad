@@ -20,7 +20,6 @@ public class EntityLoaderTester {
 		newEM.getEntities().add(new Entity(20));	
 		EntityLoader el = new EntityLoader(main);
 		el.loadNew(newEM);
-		System.out.println(main.getEntities().size());
 		}
 
 }
