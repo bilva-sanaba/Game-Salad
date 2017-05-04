@@ -12,5 +12,6 @@ public enum PresetEntites {
 	DeathBlock,
 	DoodleJumpPlatform,
 	SlowBlock,
-	SpeedBlock;
+	SpeedBlock,
+	PortalBlock;
 }

@@ -195,7 +195,8 @@ public class EntityActionWindow implements Window {
 			sidecollision = sideCollisionActions.getCollisionComponent(collisionComponentType.toString());
 		}
 		try {
-			System.out.println(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
+			System.out.println(viewActs.getSelectionModel().getSelectedItem());
+			System.out.println("here :( " + allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
 			IAction act = getAction(allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
 			if (!(labelType.getText().toString().equals(labelType.getPromptText().toString())
 					|| labelType.getText().toString().equals(""))) {
@@ -207,6 +208,7 @@ public class EntityActionWindow implements Window {
 				}
 			}
 			if (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0) {
+
 				System.out.println("add type action");
 				if (addDuration) {
 					tc.addAction(act, myDuration);
@@ -214,6 +216,7 @@ public class EntityActionWindow implements Window {
 					sidecollision.addActionForType(
 							new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()), act);
 				}
+
 			}
 		} catch (InputException e) {
 			// ALERT

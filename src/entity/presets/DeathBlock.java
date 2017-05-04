@@ -43,16 +43,17 @@ public class DeathBlock extends Entity {
 //		scb.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 		scc.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
-//		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 150));
+
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
 		scq.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
-//		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 150));
+
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
 		scr.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
-//		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 150));
+
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
 		scb.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
-//		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 150));
+
+
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);
