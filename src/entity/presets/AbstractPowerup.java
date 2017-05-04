@@ -10,17 +10,20 @@ import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
 import entity.Entity;
 
 public class AbstractPowerup extends Entity {
+	private final static double DEFAULT_SIZE = 50;
 
 	public AbstractPowerup(int id) {
 		super(id);
 		addPowerupUsage();
 	}
 	private void addPowerupUsage(){
+		this.addComponent(new ImagePropertiesComponent(DEFAULT_SIZE,DEFAULT_SIZE));
 		this.addComponent(new LabelComponent("Defult Power Up"));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
