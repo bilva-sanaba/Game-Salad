@@ -24,10 +24,11 @@ public class AbstractBlock extends Entity {
 	private final static double DEFAULT_SIZE = 50;
 	public AbstractBlock(int id) {
 		super(id);
+	
 		addCollisionComponents();
 	}
 	
-	private void addCollisionComponents(){
+	public void addCollisionComponents(){
 		initializeBasicBlock(true);
 
 	}
@@ -47,6 +48,7 @@ public class AbstractBlock extends Entity {
 	public void initializeBasicCollisionComponents() {
 		CollisionComponentsHandler collisionRepo = (CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler);
 		SideCollisionComponent top = new SideCollisionComponent(CollisionComponentType.Top);
+		System.out.println("this occurs line 50 of abstractblock.java");
 		for(EntityType type : EntityType.values()) {
 			top.addActionForType(new TypeComponent(type), new BlockTopRegularCollision());
 		}

@@ -207,6 +207,7 @@ public class EntityActionWindow implements Window {
 				}
 			}
 			if (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0) {
+
 				System.out.println("add type action");
 				if (addDuration) {
 					tc.addAction(act, myDuration);
@@ -214,6 +215,7 @@ public class EntityActionWindow implements Window {
 					sidecollision.addActionForType(
 							new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()), act);
 				}
+
 			}
 		} catch (InputException e) {
 			// ALERT
