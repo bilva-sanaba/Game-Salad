@@ -25,6 +25,9 @@ public class AbstractEnemy extends Entity {
 	public AbstractEnemy(int id) {
 		super(id);
 		addCollisionComponents();
+		this.addComponent(new MonsterTypeComponent(MonsterType.LeftAndRight));
+		this.addComponent(new StepComponent(20));
+		
 	}
 	private void addCollisionComponents(){
 		this.addComponent(new CollisionComponentsHandler());

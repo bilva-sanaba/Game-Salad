@@ -44,7 +44,6 @@ public class AbstractBlock extends Entity {
 		}
 		
 	}
-	
 	public void initializeBasicCollisionComponents() {
 		CollisionComponentsHandler collisionRepo = (CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler);
 		SideCollisionComponent top = new SideCollisionComponent(CollisionComponentType.Top);

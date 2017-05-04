@@ -26,6 +26,7 @@ public class AbstractPlayer extends Entity {
 		super(id);
 		System.out.println("player is made");
 		addCollisionComponents();
+		this.addComponent(new TimeComponent());
 	}
 
 	private void addCollisionComponents() {
