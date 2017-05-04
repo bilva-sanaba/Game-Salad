@@ -4,11 +4,11 @@
       <int>1</int>
       <map>
         <entry>
-          <int>1000</int>
+          <int>1</int>
           <entity.Entity>
             <changed>false</changed>
             <obs/>
-            <identifier>1000</identifier>
+            <identifier>1</identifier>
             <myComponentMap>
               <entry>
                 <components.entityComponents.CollidableComponent>
@@ -18,7 +18,8 @@
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
-                  <classPath>dirt.jpg</classPath>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
@@ -31,7 +32,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
-                  <label>Block</label>
+                  <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
@@ -112,8 +113,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>318.0</x>
-                  <y>107.0</y>
+                  <x>90.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -121,11 +122,11 @@
           </entity.Entity>
         </entry>
         <entry>
-          <int>1001</int>
+          <int>2</int>
           <entity.Entity>
             <changed>false</changed>
             <obs/>
-            <identifier>1001</identifier>
+            <identifier>2</identifier>
             <myComponentMap>
               <entry>
                 <components.entityComponents.CollidableComponent>
@@ -135,7 +136,8 @@
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
-                  <classPath>dirt.jpg</classPath>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
@@ -148,7 +150,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
-                  <label>Block</label>
+                  <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
@@ -160,8 +162,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>378.0</x>
-                  <y>201.0</y>
+                  <x>140.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -169,11 +171,11 @@
           </entity.Entity>
         </entry>
         <entry>
-          <int>1002</int>
+          <int>3</int>
           <entity.Entity>
             <changed>false</changed>
             <obs/>
-            <identifier>1002</identifier>
+            <identifier>3</identifier>
             <myComponentMap>
               <entry>
                 <components.entityComponents.CollidableComponent>
@@ -183,7 +185,8 @@
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
-                  <classPath>dirt.jpg</classPath>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
@@ -196,7 +199,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
-                  <label>Block</label>
+                  <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
@@ -208,8 +211,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>586.0</x>
-                  <y>215.0</y>
+                  <x>190.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -217,11 +220,11 @@
           </entity.Entity>
         </entry>
         <entry>
-          <int>1003</int>
+          <int>4</int>
           <entity.Entity>
             <changed>false</changed>
             <obs/>
-            <identifier>1003</identifier>
+            <identifier>4</identifier>
             <myComponentMap>
               <entry>
                 <components.entityComponents.CollidableComponent>
@@ -231,7 +234,8 @@
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
-                  <classPath>dirt.jpg</classPath>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
@@ -244,7 +248,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
-                  <label>Block</label>
+                  <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
@@ -256,8 +260,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>821.0</x>
-                  <y>270.0</y>
+                  <x>240.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -265,11 +269,11 @@
           </entity.Entity>
         </entry>
         <entry>
-          <int>1004</int>
+          <int>5</int>
           <entity.Entity>
             <changed>false</changed>
             <obs/>
-            <identifier>1004</identifier>
+            <identifier>5</identifier>
             <myComponentMap>
               <entry>
                 <components.entityComponents.CollidableComponent>
@@ -279,7 +283,8 @@
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
-                  <classPath>dirt.jpg</classPath>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
@@ -292,7 +297,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
-                  <label>Block</label>
+                  <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
@@ -304,8 +309,8 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>962.0</x>
-                  <y>273.0</y>
+                  <x>290.0</x>
+                  <y>180.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -313,11 +318,11 @@
           </entity.Entity>
         </entry>
         <entry>
-          <int>1005</int>
+          <int>6</int>
           <entity.Entity>
             <changed>false</changed>
             <obs/>
-            <identifier>1005</identifier>
+            <identifier>6</identifier>
             <myComponentMap>
               <entry>
                 <components.entityComponents.CollidableComponent>
@@ -327,7 +332,8 @@
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
-                  <classPath>dirt.jpg</classPath>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
@@ -340,7 +346,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
-                  <label>Block</label>
+                  <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
@@ -352,8 +358,273 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>986.0</x>
-                  <y>228.0</y>
+                  <x>340.0</x>
+                  <y>180.0</y>
+                </components.entityComponents.LocationComponent>
+                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
+              </entry>
+            </myComponentMap>
+          </entity.Entity>
+        </entry>
+        <entry>
+          <int>7</int>
+          <entity.Entity>
+            <changed>false</changed>
+            <obs/>
+            <identifier>7</identifier>
+            <myComponentMap>
+              <entry>
+                <components.entityComponents.CollidableComponent>
+                  <collide>true</collide>
+                </components.entityComponents.CollidableComponent>
+                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LabelComponent>
+                  <myString>Default Block</myString>
+                </components.entityComponents.LabelComponent>
+                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.CollisionComponentsHandler>
+                  <sideCollisionMap reference="../../../../../../entry/entity.Entity/myComponentMap/entry[5]/components.entityComponents.CollisionComponentsHandler/sideCollisionMap"/>
+                </components.entityComponents.CollisionComponentsHandler>
+                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LocationComponent>
+                  <x>390.0</x>
+                  <y>180.0</y>
+                </components.entityComponents.LocationComponent>
+                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
+              </entry>
+            </myComponentMap>
+          </entity.Entity>
+        </entry>
+        <entry>
+          <int>8</int>
+          <entity.Entity>
+            <changed>false</changed>
+            <obs/>
+            <identifier>8</identifier>
+            <myComponentMap>
+              <entry>
+                <components.entityComponents.CollidableComponent>
+                  <collide>true</collide>
+                </components.entityComponents.CollidableComponent>
+                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LabelComponent>
+                  <myString>Default Block</myString>
+                </components.entityComponents.LabelComponent>
+                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.CollisionComponentsHandler>
+                  <sideCollisionMap reference="../../../../../../entry/entity.Entity/myComponentMap/entry[5]/components.entityComponents.CollisionComponentsHandler/sideCollisionMap"/>
+                </components.entityComponents.CollisionComponentsHandler>
+                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LocationComponent>
+                  <x>440.0</x>
+                  <y>180.0</y>
+                </components.entityComponents.LocationComponent>
+                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
+              </entry>
+            </myComponentMap>
+          </entity.Entity>
+        </entry>
+        <entry>
+          <int>9</int>
+          <entity.Entity>
+            <changed>false</changed>
+            <obs/>
+            <identifier>9</identifier>
+            <myComponentMap>
+              <entry>
+                <components.entityComponents.CollidableComponent>
+                  <collide>true</collide>
+                </components.entityComponents.CollidableComponent>
+                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LabelComponent>
+                  <myString>Default Block</myString>
+                </components.entityComponents.LabelComponent>
+                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.CollisionComponentsHandler>
+                  <sideCollisionMap reference="../../../../../../entry/entity.Entity/myComponentMap/entry[5]/components.entityComponents.CollisionComponentsHandler/sideCollisionMap"/>
+                </components.entityComponents.CollisionComponentsHandler>
+                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LocationComponent>
+                  <x>490.0</x>
+                  <y>180.0</y>
+                </components.entityComponents.LocationComponent>
+                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
+              </entry>
+            </myComponentMap>
+          </entity.Entity>
+        </entry>
+        <entry>
+          <int>10</int>
+          <entity.Entity>
+            <changed>false</changed>
+            <obs/>
+            <identifier>10</identifier>
+            <myComponentMap>
+              <entry>
+                <components.entityComponents.CollidableComponent>
+                  <collide>true</collide>
+                </components.entityComponents.CollidableComponent>
+                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>platform_tile_022.png</myString>
+                  <myPath>platform_tile_022.png</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LabelComponent>
+                  <myString>Default Block</myString>
+                </components.entityComponents.LabelComponent>
+                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.CollisionComponentsHandler>
+                  <sideCollisionMap>
+                    <entry>
+                      <string>Left</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Left</sideCollision>
+                        <typeActionMap/>
+                        <labelActionMap>
+                          <entry>
+                            <string>grrraah</string>
+                            <list>
+                              <actions.BounceOffLeft>
+                                <gdf/>
+                              </actions.BounceOffLeft>
+                            </list>
+                          </entry>
+                        </labelActionMap>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                    <entry>
+                      <string>Top</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Top</sideCollision>
+                        <typeActionMap/>
+                        <labelActionMap>
+                          <entry>
+                            <string>grrraah</string>
+                            <list>
+                              <actions.BlockTopRegularCollision>
+                                <gdf/>
+                              </actions.BlockTopRegularCollision>
+                            </list>
+                          </entry>
+                        </labelActionMap>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                    <entry>
+                      <string>Right</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Right</sideCollision>
+                        <typeActionMap/>
+                        <labelActionMap>
+                          <entry>
+                            <string>grrraah</string>
+                            <list>
+                              <actions.BounceOffRight>
+                                <gdf/>
+                              </actions.BounceOffRight>
+                            </list>
+                          </entry>
+                        </labelActionMap>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                    <entry>
+                      <string>Bottom</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Bottom</sideCollision>
+                        <typeActionMap/>
+                        <labelActionMap>
+                          <entry>
+                            <string>grrraah</string>
+                            <list>
+                              <actions.BounceOffBottom>
+                                <gdf/>
+                              </actions.BounceOffBottom>
+                            </list>
+                          </entry>
+                        </labelActionMap>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                  </sideCollisionMap>
+                </components.entityComponents.CollisionComponentsHandler>
+                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LocationComponent>
+                  <x>790.0</x>
+                  <y>190.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -372,8 +643,10 @@
         <identifier>-1</identifier>
         <myComponentMap/>
         <rows>50</rows>
-        <cols>76</cols>
+        <cols>67</cols>
         <backgroundFilePath>images/background1.png</backgroundFilePath>
+        <openingMusic></openingMusic>
+        <lives>3</lives>
         <ie>None</ie>
       </entity.LevelEntity>
     </entry>
@@ -382,10 +655,13 @@
     <entry>
       <int>1</int>
       <entity.SplashData>
-        <myID>-2</myID>
+        <changed>false</changed>
+        <obs/>
+        <identifier>-2</identifier>
+        <myComponentMap/>
         <displayName>The game</displayName>
         <instructions>Don&apos;t lose</instructions>
-        <backgroundFilePath>images/background1.png</backgroundFilePath>
+        <backgroundFilePath>background1.png</backgroundFilePath>
       </entity.SplashData>
     </entry>
   </map>

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import data_interfaces.*;
+import gameView.IUIView;
 import gameView.UIView;
 import gameView.UIViewInterface;
 import gameView.gameScreen.SpecificGameSplashView;
@@ -39,7 +40,7 @@ import gameEngine_interface.GameEngine;
 
 public class Controller implements ControllerInterface {
 
-	private UIView myGameView;
+	private IUIView myGameView;
 	private GameEngine myGameEngine;
 	private String filePath;
 	private GUIBuilder myGUIBuilder;
@@ -100,15 +101,15 @@ public class Controller implements ControllerInterface {
 		return gameData;
 	}
 
-	@Override
-	public void resetCurrentGame() throws XMLException {
-		if(!filePath.equals(null)){
-			loadNewGame(filePath);
-		}
-		else{
-			throw new XMLException(String.format("No current game"));
-		}
-	}
+//	@Override
+//	public void resetCurrentGame() throws XMLException {
+//		if(!filePath.equals(null)){
+//			loadNewGame(filePath);
+//		}
+//		else{
+//			throw new XMLException(String.format("No current game"));
+//		}
+//	}
 
 	
 	public SplashData getSplashData(String gameName){
@@ -121,10 +122,6 @@ public class Controller implements ControllerInterface {
 		authorStage.setScene(myGUIBuilder.buildScene());
 		authorStage.showAndWait();
 		authorStage.getScene().setRoot(new Region());
-	}
-	
-	public GameEngine getEngine() {
-		return myGameEngine;
 	}
 	
 	public void step(Set<KeyCode> keysPressed){
