@@ -71,12 +71,6 @@ public class WorldAnimator{
 	private boolean pause = false;
 
 	public WorldAnimator(UIViewInterface view){
-<<<<<<< HEAD
-	
-=======
-		System.out.println("WORLDANIMATOR IS CREATED");
-
->>>>>>> eb5341aeba93ad5058f166a9eb9f31fa927bf1f7
 		myView = view;
 	}
 	public Pane getGroup(){
@@ -105,8 +99,9 @@ public class WorldAnimator{
 			myScene = new Scene(root,LENGTH,WIDTH);
 
 			LocationComponent lc = myData.getMainLocation();
-			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
-
+			
+			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1, myData.getCamera());
+			
 			myObservers.getUpdatedSet();
 			fillMapAndDisplay(myObservers.getEntityMap().keySet());
 

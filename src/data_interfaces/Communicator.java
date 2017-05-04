@@ -103,7 +103,6 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	public List<LevelEntity> getLevelEntities() {
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
-
 		for (int i = 1; i <= m.size(); i++) {
 			ret.add(m.get(i));
 		}
@@ -134,5 +133,10 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	public int getLives () {
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getLives();
+	}
+	@Override
+	public boolean getCameraOn() {
+		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
+		return m.get(getStorageLevel()).getCamera();
 	}
 }
