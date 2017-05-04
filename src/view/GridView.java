@@ -30,8 +30,10 @@ import view.commands.RightClickMenu;
  */
 public class GridView extends GUIComponent {
 
+
 	private static final int GRIDWIDTH = 900;
 	private static final int GRIDHEIGHT = 720;
+
 	private static final int GRID_INTERVAL = 10;
 
 	private RightClickMenu rightClick;
@@ -58,7 +60,7 @@ public class GridView extends GUIComponent {
 
 		rightClick = new RightClickMenu(util, myData);
 
-		myGrid = util.buildGrid(GRIDWIDTH, GRIDHEIGHT, "view-grid");
+		myGrid = util.buildGrid(cols * 10, rows * 10, "view-grid");
 
 		myGrid.setOnMousePressed(e -> mousePress(e));
 		myGrid.setOnMouseMoved(e -> mouseMove(e));
@@ -109,29 +111,30 @@ public class GridView extends GUIComponent {
 
 	private void addHo() {
 		myGrid.setPrefWidth(myGrid.getWidth() + 60);
-		myCol++;
-		myData.getLevelEntity(myData.getCurrentLevel()).addCol(1);
+		myCol+= 6;
+		myData.getLevelEntity(myData.getCurrentLevel()).addCol(6);
+
 	}
 
 	private void addVert() {
 		myGrid.setPrefHeight(myGrid.getHeight() + 60);
-		myRow++;
-		myData.getLevelEntity(myData.getCurrentLevel()).addRow(1);
+		myRow+=6;
+		myData.getLevelEntity(myData.getCurrentLevel()).addRow(6);
 	}
 
 	private void removeHo(){
-		if(myCol > 97){
+		if(myCol > 66){
 			myGrid.setPrefWidth(myGrid.getWidth() - 60);
-			myCol--;
-			myData.getLevelEntity(myData.getCurrentLevel()).addCol(-1);
+			myCol-=6;
+			myData.getLevelEntity(myData.getCurrentLevel()).addCol(-6);
 		}
 	}
 
 	private void removeVert(){
-		if(myRow > 96){
+		if(myRow > 48){
 			myGrid.setPrefHeight(myGrid.getHeight() - 60);
-			myRow--;
-			myData.getLevelEntity(myData.getCurrentLevel()).addRow(-1);
+			myRow-=6;
+			myData.getLevelEntity(myData.getCurrentLevel()).addRow(-6);
 		}
 	}
 
