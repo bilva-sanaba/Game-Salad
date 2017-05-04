@@ -44,6 +44,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	@Override
 	public Scene getScene() {
 		myPane.getChildren().add(myAnimation.getGroup());
+		myDisplays.addAllActive();
 		myAnimation.setKeys(myScene);
 		return myScene;
 	}
