@@ -11,10 +11,10 @@ import entity.IEntityManager;
 import gamedata.IGameData;
 import gamedata.IRestrictedGameData;
 
-@TopAction()
-@LeftAction()
-@RightAction()
-@BottomAction()
+//@TopAction()
+//@LeftAction()
+//@RightAction()
+//@BottomAction()
 public class DeathAction extends AbstractAction implements IAction{
 
 	@Override
