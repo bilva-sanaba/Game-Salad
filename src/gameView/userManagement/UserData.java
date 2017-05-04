@@ -46,9 +46,10 @@ public class UserData {
 	 * @param points - corresponding score
 	 */
 	public void addPoints(String game, Double points) {
-		String gameToSave = mySavedGameMap.containsKey(game) ? mySavedGameMap.get(game) : game;
-		if (myGameScores.get(gameToSave) == null || myGameScores.get(gameToSave) < points) {
-			myGameScores.put(gameToSave, points);
+		if (mySavedGameMap.containsKey(game)) {
+			addPoints(mySavedGameMap.get(game), points);
+		} else if (myGameScores.get(game) == null || myGameScores.get(game) < points) {
+			myGameScores.put(game, points);
 		}
 	}
 	
@@ -115,7 +116,7 @@ public class UserData {
 	 */
 	public void addGame(String originalGame, String newGame) {
 		myGames.add(newGame);
-		mySavedGameMap.put(originalGame, newGame);
+		mySavedGameMap.put(newGame, originalGame);
 	}
 	
 	/**

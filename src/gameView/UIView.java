@@ -75,7 +75,7 @@ public class UIView implements UIViewInterface, IUIView {
 	}
 		
 	public void saveGame() {
-		String save = myCurrentGame + new Timestamp(System.currentTimeMillis()).toLocalDateTime();
+		String save = myCurrentGame + new Timestamp(System.currentTimeMillis()).toLocalDateTime().withNano(0);
 		if (myUserManager.getCurrentUser() != null) {
 			save = myUserManager.getCurrentUser().getName() + save;
 			myUserManager.getCurrentUser().addGame(myCurrentGame, save);
