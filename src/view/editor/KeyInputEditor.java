@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 import view.UtilityFactory;
 
 public class KeyInputEditor extends ComponentEditor {
-	private static final String ComponentName = "KeyInput";
+	private EditableComponents componentName = EditableComponents.KeyInput;
 	private String[] myKeyString = {"false"}; // Initialize array
 	private Map<KeyCode,ArrayList<IAction>> inputMap = new HashMap<KeyCode,ArrayList<IAction>>();
 
@@ -46,6 +46,6 @@ public class KeyInputEditor extends ComponentEditor {
 		
 		@Override
 		public IComponent getComponent() {
-			return getCompF().getComponent(ComponentName, inputMap);
+			return getCompF().getComponent(componentName.toString(), inputMap);
 		}
 }

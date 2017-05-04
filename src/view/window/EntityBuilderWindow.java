@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.AuthoringException;
 import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
@@ -103,7 +104,10 @@ public class EntityBuilderWindow implements Window {
 	
 	private void addOkayButton(Pane root) {
 		Node okayButton = util.buildButton("OkayLabel", e -> {
-			Entity tempEntity = (Entity) Reflection.createInstance("entity.presets." + entityList, myData.getDefinedEntityID());
+			if (myImageName.equals("")) {
+				throw new AuthoringException("NO_IMAGE");
+			}
+			Entity tempEntity = (Entity) Reflection.createInstance(entityList[0], myData.getDefinedEntityID());
 			tempEntity.addComponent(new SpriteComponent(myImageName));
 			myStage.close();
 			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, tempEntity);
