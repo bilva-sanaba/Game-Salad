@@ -9438,6 +9438,12 @@
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.KeyInputComponent>
                   <inputMap>
                     <entry>
@@ -9472,12 +9478,6 @@
                 <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.ControllableComponent>
-                  <controllable>true</controllable>
-                </components.entityComponents.ControllableComponent>
-                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.TypeComponent>
                   <typeOfEntity>Player</typeOfEntity>
                 </components.entityComponents.TypeComponent>
@@ -9492,8 +9492,8 @@
               </entry>
               <entry>
                 <components.entityComponents.TerminalVelocityComponent>
-                  <x>8.8125</x>
-                  <y>10.25</y>
+                  <x>8.125</x>
+                  <y>9.0625</y>
                 </components.entityComponents.TerminalVelocityComponent>
                 <components.entityComponents.ComponentType>TerminalVelocity</components.entityComponents.ComponentType>
               </entry>
