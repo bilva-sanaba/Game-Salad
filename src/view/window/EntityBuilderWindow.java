@@ -107,7 +107,7 @@ public class EntityBuilderWindow implements Window {
 			if (myImageName.equals("")) {
 				throw new AuthoringException("NO_IMAGE");
 			}
-			Entity tempEntity = (Entity) Reflection.createInstance(entityList[0], myData.getDefinedEntityID());
+			Entity tempEntity = (Entity) Reflection.createInstance(entityList, myData.getDefinedEntityID());
 			tempEntity.addComponent(new SpriteComponent(myImageName));
 			myStage.close();
 			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, tempEntity);
