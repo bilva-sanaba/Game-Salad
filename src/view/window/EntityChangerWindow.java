@@ -1,9 +1,7 @@
 package view.window;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import components.IComponent;
-import components.entityComponents.ComponentType;
+
 import entity.Entity;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,16 +18,8 @@ import view.ViewData;
 import view.editor.ComponentEditor;
 import view.editor.EditableComponents;
 
-/**
- * make a window interface
- * 
- * @author Justin
- * @author Jonathan
- * @author Jack
- */
-public class EntityConfigurationWindow implements Window {
+public class EntityChangerWindow implements Window {
 	private UtilityFactory myUtilF;
-	private ViewData myData;
 	private String[] componentList;
 	private ComponentFactory myCompF;
 	private VBox root;
@@ -37,30 +27,10 @@ public class EntityConfigurationWindow implements Window {
 	private Entity myEntity;
 	private HashMap<String, ComponentEditor> myCompEdits = new HashMap<String, ComponentEditor>();
 
-	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, Entity entityIn) {
-		initalizeVars(utilF, entityData, entityType, entityIn);
-	}
-
-	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, Entity e) {
-		String[] empty = {};
-		initalizeVars(utilF, entityData, empty, e);
-		openWindow();
-	}
-	
-	public EntityConfigurationWindow(UtilityFactory util, Entity tempEntity) {
-		myCompF = new ComponentFactory();
-		myUtilF = util;
-		myEntity = tempEntity;
-		myStage.setScene(buildScene());
-	}
-
-	private void initalizeVars(UtilityFactory utilF, ViewData entityData, String[] entityType, Entity entityIn){
+	public EntityChangerWindow(UtilityFactory utilF, Entity entityIn) {
 		myCompF = new ComponentFactory();
 		myUtilF = utilF;
-		myData = entityData;
 		myEntity = entityIn;
-		myData.setUserSelectedEntity(myEntity);
-		componentList = entityType;
 		myStage.setScene(buildScene());
 	}
 
@@ -73,9 +43,6 @@ public class EntityConfigurationWindow implements Window {
 	}
 
 	private void buildComponentEditor() {
-		for (String comp : componentList) {
-			makeComponent(comp);
-		}
 		ObservableList<EditableComponents> ObsCopms = FXCollections.observableArrayList(EditableComponents.values());
 		ListView<EditableComponents> components = new ListView<EditableComponents>(ObsCopms);
 		root.getChildren().add(components);
@@ -86,25 +53,21 @@ public class EntityConfigurationWindow implements Window {
 				makeComponent(newVal.toString());
 			}
 		});
-		root.getChildren().add(myUtilF.buildHBox(
-				myUtilF.buildButton("AddActions", e -> addActions()),
-				myUtilF.buildButton("AddEntity", e -> enterButton())));
+		root.getChildren().add(myUtilF.buildButton("AddEntity", e -> enterButton()));
 	}
-	
+
 	private void makeComponent(String comp) {
-		System.out.println(comp);
 		try {
 			ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
-			System.out.println(comp + " line 102 "  + this.getClass());
+			System.out.println(comp + " line 102 " + this.getClass());
 			myCompEdits.put(comp, editor);
 			root.getChildren().add(editor.getInputNode());
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println("Can not edit this component");
 		}
 	}
-	
-	private void compileEntity(){
+
+	private void compileEntity() {
 		for (ComponentEditor comp : myCompEdits.values()) {
 			myEntity.addComponent(comp.getComponent());
 		}
@@ -112,21 +75,11 @@ public class EntityConfigurationWindow implements Window {
 
 	private void enterButton() {
 		compileEntity();
-		try{
-			myData.defineEntity(myEntity.newCopy(myData.getDefinedEntityID()));
-			myData.setUserSelectedEntity(myEntity);
-		}catch(Exception e){
-			
-		}
 		myStage.close();
-	}
-	
-	private void addActions(){
-		new EntityActionWindow(myUtilF, myData, myEntity);
 	}
 
 	@Override
 	public void openWindow() {
-		myStage.show();
+		myStage.showAndWait();
 	}
 }
