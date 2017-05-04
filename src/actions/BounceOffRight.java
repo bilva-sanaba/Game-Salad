@@ -1,5 +1,6 @@
 package actions;
 
+import class_annotations.RightAction;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
@@ -9,6 +10,7 @@ import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 
+@RightAction()
 public class BounceOffRight extends AbstractAction  implements IAction {
 
 	public static final double VELOCITY_REVERSE = -1;
