@@ -36,7 +36,6 @@ public class SmartShoot extends AbstractAction implements IAction  {
 		IEntity newE = occ.getCreationEffect(); 
 		GameData returnData = getGameDataFactory().blankEntityData(currentGameData);
 		if (newE!=null){
-			System.out.println("We shooting");
 			LocationComponent target = nearestTarget(shooterLocation,targets);
 			LocationComponent lcnpc= (LocationComponent) newE.getComponent(ComponentType.Location);
 			VelocityComponent vcnpc= (VelocityComponent) newE.getComponent(ComponentType.Velocity);
@@ -55,7 +54,6 @@ public class SmartShoot extends AbstractAction implements IAction  {
 			myEM.changed(newE);
 			returnData.setRestrictedEntityManager((IRestrictedEntityManager) em);
 		}		
-		System.out.println(returnData.getRestrictedEntityManager().getRestrictedEntities().size());
 		return returnData;
 	}
 
