@@ -94,8 +94,9 @@ public class WorldAnimator{
 
 			myScene = new Scene(root,LENGTH,WIDTH);
 			LocationComponent lc = myData.getMainLocation();
-			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
-
+			
+			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1, myData.getCamera());
+			
 			myObservers.getUpdatedSet();
 			fillMapAndDisplay(myObservers.getEntityMap().keySet());
 

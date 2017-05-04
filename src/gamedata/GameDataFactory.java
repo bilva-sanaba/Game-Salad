@@ -30,7 +30,7 @@ public class GameDataFactory {
 		}
 		String music = currentData.getMusic().getValue();
 		
-		return new GameData(points,lives,(IRestrictedEntityManager) new EntityManager(), lvl, lc, ac, music);
+		return new GameData(points,lives,(IRestrictedEntityManager) new EntityManager(), lvl, lc, ac, music, currentData.getCamera());
 	}
 	public void updateGameData(IGameData gameData, IRestrictedGameData updatedData){
 		gameData.setPoints(updatedData.getPoints().doubleValue());
