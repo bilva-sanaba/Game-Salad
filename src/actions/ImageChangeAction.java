@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.SpriteComponent;
 import entity.IEntity;
@@ -13,6 +17,10 @@ import exceptions.InputException;
 import exceptions.NotEnoughInputsException;
 import gamedata.IRestrictedGameData;
 
+@TopAction()
+@LeftAction()
+@RightAction()
+@BottomAction()
 public class ImageChangeAction  extends AbstractAction  implements IAction{
 	private List<String> possibleImages;
 	private int counter;
