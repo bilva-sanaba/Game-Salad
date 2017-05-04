@@ -7,7 +7,6 @@ import javafx.scene.shape.Shape;
 
 public abstract class DrawingTool {
 	private Color color;
-	private PaintAction paintAction;
 	
 	private static final Color DEFAULTCOLOR = Color.BLACK;
 	
