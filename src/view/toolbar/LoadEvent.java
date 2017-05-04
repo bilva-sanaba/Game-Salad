@@ -45,8 +45,8 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 					- getSuffix().length());
 			myData.setGameName(name);
 			List <Map> toPlace = xpp.getData(name);
-			setPlacedEntities(toPlace.get(0));
 			setLevelEntities(toPlace.get(1));
+			setPlacedEntities(toPlace.get(0));
 			setSplashEntity(toPlace.get(2));
 			myData.refresh();
 		}
@@ -65,6 +65,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	}
 	
 	private void setLevelEntities(Map m) {
+		myData.getLevelEntityMap().clear();
 		Map <Integer, LevelEntity> lm = m;
 		for (int i = 1; i <= lm.size(); i++) {
 			myData.setLevelEntity(i, lm.get(i));
@@ -72,7 +73,6 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 	}
 	
 	private void setSplashEntity(Map m) {
-		myData.setSplashEntity((SplashData) m.get(getSplashConstant())); 
 
 		Map<Integer, SplashData> sm = m;
 		myData.setSplashEntity((SplashData) sm.get(getSplashConstant())); 

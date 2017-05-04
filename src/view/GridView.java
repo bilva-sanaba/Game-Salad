@@ -246,10 +246,8 @@ public class GridView extends GUIComponent {
 	}
 
 	public void updateBackground() {
-		if(myData.getLevelEntity().getBackgroundFilePath() != null){
 			String filePath = myData.getLevelEntity().getBackgroundFilePath();
 			myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
-		}
 	}
 
 	private void removeEntity(Entity entity) {
