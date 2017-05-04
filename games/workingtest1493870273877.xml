@@ -17,6 +17,12 @@
                 <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.DamagedComponent>
+                  <damaged>false</damaged>
+                </components.entityComponents.DamagedComponent>
+                <components.entityComponents.ComponentType>Damaged</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>mario_step2.gif</myString>
                   <myPath>mario_step2.gif</myPath>
@@ -39,11 +45,9 @@
                 <components.entityComponents.KeyInputComponent>
                   <inputMap>
                     <entry>
-                      <javafx.scene.input.KeyCode>V</javafx.scene.input.KeyCode>
+                      <javafx.scene.input.KeyCode>A</javafx.scene.input.KeyCode>
                       <list>
-                        <actions.ShootAction>
-                          <gdf/>
-                        </actions.ShootAction>
+                        <components.keyExpressions.LeftAction/>
                       </list>
                     </entry>
                     <entry>
@@ -53,9 +57,11 @@
                       </list>
                     </entry>
                     <entry>
-                      <javafx.scene.input.KeyCode>A</javafx.scene.input.KeyCode>
+                      <javafx.scene.input.KeyCode>V</javafx.scene.input.KeyCode>
                       <list>
-                        <components.keyExpressions.LeftAction/>
+                        <actions.ShootAction>
+                          <gdf/>
+                        </actions.ShootAction>
                       </list>
                     </entry>
                     <entry>
@@ -100,14 +106,15 @@
                 <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions>
-                    <entry>
-                      <actions.Reload>
-                        <gdf/>
-                      </actions.Reload>
-                      <int>1000</int>
-                    </entry>
                     <entry>
                       <actions.PointsAction>
                         <gdf/>
@@ -115,24 +122,17 @@
                       </actions.PointsAction>
                       <int>100</int>
                     </entry>
+                    <entry>
+                      <actions.Reload>
+                        <gdf/>
+                      </actions.Reload>
+                      <int>1000</int>
+                    </entry>
                   </timeActions>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.GoalComponent>
-                  <goalSatisfied>false</goalSatisfied>
-                </components.entityComponents.GoalComponent>
-                <components.entityComponents.ComponentType>Goal</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.TerminalVelocityComponent>
@@ -143,7 +143,6 @@
               </entry>
               <entry>
                 <components.entityComponents.ObjectCreationComponent>
-                  <creating>true</creating>
                   <storedEntity class="entity.Entity">
                     <changed>false</changed>
                     <obs/>
@@ -169,21 +168,6 @@
                         <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
                       </entry>
                       <entry>
-                        <components.entityComponents.TimeComponent>
-                          <timeActions>
-                            <entry>
-                              <actions.RemoveAction>
-                                <gdf/>
-                              </actions.RemoveAction>
-                              <int>3000</int>
-                            </entry>
-                          </timeActions>
-                          <lastTimeAction/>
-                          <singleTimeAction/>
-                        </components.entityComponents.TimeComponent>
-                        <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-                      </entry>
-                      <entry>
                         <components.entityComponents.ImagePropertiesComponent>
                           <imageHeight>50.0</imageHeight>
                           <imageWidth>50.0</imageWidth>
@@ -204,6 +188,21 @@
                         <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
                       </entry>
                       <entry>
+                        <components.entityComponents.TimeComponent>
+                          <timeActions>
+                            <entry>
+                              <actions.RemoveAction>
+                                <gdf/>
+                              </actions.RemoveAction>
+                              <int>3000</int>
+                            </entry>
+                          </timeActions>
+                          <lastTimeAction/>
+                          <singleTimeAction/>
+                        </components.entityComponents.TimeComponent>
+                        <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
                         <components.entityComponents.LocationComponent>
                           <x>800.0</x>
                           <y>150.0</y>
@@ -218,14 +217,9 @@
                       </entry>
                     </myComponentMap>
                   </storedEntity>
+                  <creating>true</creating>
                 </components.entityComponents.ObjectCreationComponent>
                 <components.entityComponents.ComponentType>ObjectCreation</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.DamagedComponent>
-                  <damaged>false</damaged>
-                </components.entityComponents.DamagedComponent>
-                <components.entityComponents.ComponentType>Damaged</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.AccelerationComponent>
@@ -235,9 +229,15 @@
                 <components.entityComponents.ComponentType>Acceleration</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.GoalComponent>
+                  <goalSatisfied>false</goalSatisfied>
+                </components.entityComponents.GoalComponent>
+                <components.entityComponents.ComponentType>Goal</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>-62.0</x>
-                  <y>2229.4</y>
+                  <x>-112.0</x>
+                  <y>2129.4</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -343,14 +343,6 @@
             <identifier>2</identifier>
             <myComponentMap>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
                 </components.entityComponents.CollidableComponent>
@@ -409,6 +401,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -428,14 +428,6 @@
             <identifier>3</identifier>
             <myComponentMap>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
                 </components.entityComponents.CollidableComponent>
@@ -494,6 +486,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -539,6 +539,14 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LabelComponent>
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
@@ -571,14 +579,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -617,6 +617,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -658,14 +666,6 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>392.040954134734</x>
                   <y>250.0</y>
@@ -682,14 +682,6 @@
             <obs/>
             <identifier>6</identifier>
             <myComponentMap>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
               <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
@@ -749,6 +741,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -780,14 +780,6 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>dirt.jpg</myString>
                   <myPath>dirt.jpg</myPath>
@@ -836,6 +828,14 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>295.9435370293786</x>
                   <y>350.0</y>
@@ -852,6 +852,14 @@
             <obs/>
             <identifier>8</identifier>
             <myComponentMap>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
               <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
@@ -870,14 +878,6 @@
                   <myPath>dirt.jpg</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -1049,14 +1049,6 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LabelComponent>
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
@@ -1091,6 +1083,14 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>430.6532629763394</x>
                   <y>500.0</y>
@@ -1118,14 +1118,6 @@
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
@@ -1174,6 +1166,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -1212,14 +1212,6 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -1231,6 +1223,14 @@
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CollisionComponentsHandler>
@@ -1290,6 +1290,14 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>dirt.jpg</myString>
                   <myPath>dirt.jpg</myPath>
@@ -1336,14 +1344,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -1395,14 +1395,6 @@
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollisionComponentsHandler>
                   <sideCollisionMap>
                     <entry>
@@ -1429,6 +1421,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -1480,14 +1480,6 @@
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollisionComponentsHandler>
                   <sideCollisionMap>
                     <entry>
@@ -1514,6 +1506,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -1874,7 +1874,6 @@
               </entry>
               <entry>
                 <components.entityComponents.ObjectCreationComponent>
-                  <creating>true</creating>
                   <storedEntity class="entity.Entity">
                     <changed>false</changed>
                     <obs/>
@@ -2035,6 +2034,7 @@
                       </entry>
                     </myComponentMap>
                   </storedEntity>
+                  <creating>true</creating>
                 </components.entityComponents.ObjectCreationComponent>
                 <components.entityComponents.ComponentType>ObjectCreation</components.entityComponents.ComponentType>
               </entry>
@@ -2166,6 +2166,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -2205,14 +2213,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -2357,7 +2357,6 @@
               </entry>
               <entry>
                 <components.entityComponents.ObjectCreationComponent>
-                  <creating>true</creating>
                   <storedEntity class="entity.Entity">
                     <changed>false</changed>
                     <obs/>
@@ -2382,6 +2381,21 @@
                           <imageWidth>20.0</imageWidth>
                         </components.entityComponents.ImagePropertiesComponent>
                         <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.TimeComponent>
+                          <timeActions>
+                            <entry>
+                              <actions.RemoveAction>
+                                <gdf/>
+                              </actions.RemoveAction>
+                              <int>3000</int>
+                            </entry>
+                          </timeActions>
+                          <lastTimeAction/>
+                          <singleTimeAction/>
+                        </components.entityComponents.TimeComponent>
+                        <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
                       </entry>
                       <entry>
                         <components.entityComponents.LabelComponent>
@@ -2468,21 +2482,6 @@
                         <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
                       </entry>
                       <entry>
-                        <components.entityComponents.TimeComponent>
-                          <timeActions>
-                            <entry>
-                              <actions.RemoveAction>
-                                <gdf/>
-                              </actions.RemoveAction>
-                              <int>3000</int>
-                            </entry>
-                          </timeActions>
-                          <lastTimeAction/>
-                          <singleTimeAction/>
-                        </components.entityComponents.TimeComponent>
-                        <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-                      </entry>
-                      <entry>
                         <components.entityComponents.VelocityComponent>
                           <x>3.0</x>
                           <y>0.0</y>
@@ -2498,6 +2497,7 @@
                       </entry>
                     </myComponentMap>
                   </storedEntity>
+                  <creating>true</creating>
                 </components.entityComponents.ObjectCreationComponent>
                 <components.entityComponents.ComponentType>ObjectCreation</components.entityComponents.ComponentType>
               </entry>
@@ -2521,7 +2521,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>824.0</x>
+                  <x>834.0</x>
                   <y>1720.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
@@ -2536,6 +2536,14 @@
             <obs/>
             <identifier>18</identifier>
             <myComponentMap>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
               <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
@@ -2554,14 +2562,6 @@
                   <myPath>dirt.jpg</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -2804,19 +2804,19 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>dirt.jpg</myString>
+                  <myPath>dirt.jpg</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>dirt.jpg</myString>
-                  <myPath>dirt.jpg</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -2883,14 +2883,6 @@
                 <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.TypeComponent>
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
@@ -2902,6 +2894,14 @@
                   <myPath>dirt.jpg</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -2974,14 +2974,6 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>dirt.jpg</myString>
                   <myPath>dirt.jpg</myPath>
@@ -3000,6 +2992,14 @@
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CollisionComponentsHandler>
@@ -3073,14 +3073,6 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LabelComponent>
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
@@ -3113,6 +3105,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -3275,7 +3275,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>1224.0</x>
+                  <x>1234.0</x>
                   <y>1850.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
@@ -3323,14 +3323,6 @@
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollisionComponentsHandler>
                   <sideCollisionMap>
                     <entry>
@@ -3357,6 +3349,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -3395,19 +3395,19 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
@@ -3467,6 +3467,14 @@
                 <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TypeComponent>
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
@@ -3478,14 +3486,6 @@
                   <myPath>dirt.jpg</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -4142,7 +4142,6 @@
               </entry>
               <entry>
                 <components.entityComponents.ObjectCreationComponent>
-                  <creating>true</creating>
                   <storedEntity class="entity.Entity">
                     <changed>false</changed>
                     <obs/>
@@ -4303,6 +4302,7 @@
                       </entry>
                     </myComponentMap>
                   </storedEntity>
+                  <creating>true</creating>
                 </components.entityComponents.ObjectCreationComponent>
                 <components.entityComponents.ComponentType>ObjectCreation</components.entityComponents.ComponentType>
               </entry>
@@ -4356,6 +4356,14 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LabelComponent>
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
@@ -4388,14 +4396,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -4434,14 +4434,6 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -4483,6 +4475,14 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>492.6728492053459</x>
                   <y>1600.0</y>
@@ -4499,14 +4499,6 @@
             <obs/>
             <identifier>33</identifier>
             <myComponentMap>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
               <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
@@ -4566,6 +4558,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -4604,14 +4604,6 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -4651,6 +4643,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -4795,27 +4795,11 @@
               </entry>
               <entry>
                 <components.entityComponents.ObjectCreationComponent>
-                  <creating>true</creating>
                   <storedEntity class="entity.Entity">
                     <changed>false</changed>
                     <obs/>
                     <identifier>23401</identifier>
                     <myComponentMap>
-                      <entry>
-                        <components.entityComponents.TimeComponent>
-                          <timeActions>
-                            <entry>
-                              <actions.RemoveAction>
-                                <gdf/>
-                              </actions.RemoveAction>
-                              <int>3000</int>
-                            </entry>
-                          </timeActions>
-                          <lastTimeAction/>
-                          <singleTimeAction/>
-                        </components.entityComponents.TimeComponent>
-                        <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-                      </entry>
                       <entry>
                         <components.entityComponents.CollidableComponent>
                           <collide>true</collide>
@@ -4841,6 +4825,21 @@
                           <myString>grrraa</myString>
                         </components.entityComponents.LabelComponent>
                         <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.TimeComponent>
+                          <timeActions>
+                            <entry>
+                              <actions.RemoveAction>
+                                <gdf/>
+                              </actions.RemoveAction>
+                              <int>3000</int>
+                            </entry>
+                          </timeActions>
+                          <lastTimeAction/>
+                          <singleTimeAction/>
+                        </components.entityComponents.TimeComponent>
+                        <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
                       </entry>
                       <entry>
                         <components.entityComponents.CollisionComponentsHandler>
@@ -4936,6 +4935,7 @@
                       </entry>
                     </myComponentMap>
                   </storedEntity>
+                  <creating>true</creating>
                 </components.entityComponents.ObjectCreationComponent>
                 <components.entityComponents.ComponentType>ObjectCreation</components.entityComponents.ComponentType>
               </entry>
@@ -4959,7 +4959,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>774.0</x>
+                  <x>764.0</x>
                   <y>2120.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
@@ -5118,7 +5118,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>1174.0</x>
+                  <x>1164.0</x>
                   <y>2250.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
@@ -5153,19 +5153,19 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
@@ -5219,18 +5219,18 @@
             <identifier>44</identifier>
             <myComponentMap>
               <entry>
+                <components.entityComponents.CollidableComponent>
+                  <collide>true</collide>
+                </components.entityComponents.CollidableComponent>
+                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.CollidableComponent>
-                  <collide>true</collide>
-                </components.entityComponents.CollidableComponent>
-                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.TypeComponent>
@@ -5323,14 +5323,6 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -5372,6 +5364,14 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>152.28719166435917</x>
                   <y>1850.0</y>
@@ -5399,14 +5399,6 @@
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
@@ -5455,6 +5447,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -5645,19 +5645,19 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
@@ -5737,6 +5737,14 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LabelComponent>
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
@@ -5769,14 +5777,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -5822,6 +5822,14 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LabelComponent>
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
@@ -5856,14 +5864,6 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>152.28719166435917</x>
                   <y>2250.0</y>
@@ -5893,14 +5893,6 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>dirt.jpg</myString>
                   <myPath>dirt.jpg</myPath>
@@ -5913,6 +5905,14 @@
                   <imageWidth>50.0</imageWidth>
                 </components.entityComponents.ImagePropertiesComponent>
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
@@ -5985,6 +5985,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -6024,14 +6032,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -6070,14 +6070,6 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -6117,6 +6109,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -6168,6 +6168,14 @@
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.CollisionComponentsHandler>
                   <sideCollisionMap>
                     <entry>
@@ -6194,14 +6202,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -6231,14 +6231,6 @@
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
@@ -6289,6 +6281,14 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>487.9815587722557</x>
                   <y>2500.0</y>
@@ -6305,6 +6305,14 @@
             <obs/>
             <identifier>72</identifier>
             <myComponentMap>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
               <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
@@ -6330,14 +6338,6 @@
                   <imageWidth>50.0</imageWidth>
                 </components.entityComponents.ImagePropertiesComponent>
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
@@ -6417,14 +6417,6 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LabelComponent>
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
@@ -6457,6 +6449,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -6658,14 +6658,6 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>dirt.jpg</myString>
                   <myPath>dirt.jpg</myPath>
@@ -6714,6 +6706,14 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>105.49114667056536</x>
                   <y>2750.0</y>
@@ -6750,19 +6750,19 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
@@ -6816,14 +6816,6 @@
             <identifier>84</identifier>
             <myComponentMap>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
                 </components.entityComponents.CollidableComponent>
@@ -6841,6 +6833,14 @@
                   <myPath>dirt.jpg</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -6901,14 +6901,6 @@
             <identifier>86</identifier>
             <myComponentMap>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
                 </components.entityComponents.CollidableComponent>
@@ -6919,6 +6911,14 @@
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
@@ -7005,6 +7005,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -7016,14 +7024,6 @@
                   <myString>Blok</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CollisionComponentsHandler>
@@ -7071,14 +7071,6 @@
             <identifier>90</identifier>
             <myComponentMap>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
                 </components.entityComponents.CollidableComponent>
@@ -7089,6 +7081,14 @@
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.SpriteComponent>
@@ -7253,14 +7253,6 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>dirt.jpg</myString>
                   <myPath>dirt.jpg</myPath>
@@ -7273,6 +7265,14 @@
                   <imageWidth>50.0</imageWidth>
                 </components.entityComponents.ImagePropertiesComponent>
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
@@ -7343,14 +7343,6 @@
                   <myPath>platform_tile_063.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -7461,6 +7453,14 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>700.0</x>
                   <y>1850.0</y>
@@ -7549,176 +7549,6 @@
                 <components.entityComponents.LocationComponent>
                   <x>242.6138134420262</x>
                   <y>3150.0</y>
-                </components.entityComponents.LocationComponent>
-                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
-              </entry>
-            </myComponentMap>
-          </entity.Entity>
-        </entry>
-        <entry>
-          <int>98</int>
-          <entity.Entity>
-            <changed>false</changed>
-            <obs/>
-            <identifier>98</identifier>
-            <myComponentMap>
-              <entry>
-                <components.entityComponents.CollidableComponent>
-                  <collide>true</collide>
-                </components.entityComponents.CollidableComponent>
-                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TypeComponent>
-                  <typeOfEntity>Block</typeOfEntity>
-                </components.entityComponents.TypeComponent>
-                <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>dirt.jpg</myString>
-                  <myPath>dirt.jpg</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LabelComponent>
-                  <myString>Blok</myString>
-                </components.entityComponents.LabelComponent>
-                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.CollisionComponentsHandler>
-                  <sideCollisionMap>
-                    <entry>
-                      <string>Top</string>
-                      <components.entityComponents.SideCollisionComponent>
-                        <sideCollision>Top</sideCollision>
-                        <typeActionMap>
-                          <entry>
-                            <string>Player</string>
-                            <list>
-                              <actions.BounceOffTop>
-                                <gdf/>
-                              </actions.BounceOffTop>
-                              <actions.GoalAction>
-                                <gdf/>
-                                <toLevel>3</toLevel>
-                              </actions.GoalAction>
-                            </list>
-                          </entry>
-                        </typeActionMap>
-                        <labelActionMap/>
-                      </components.entityComponents.SideCollisionComponent>
-                    </entry>
-                  </sideCollisionMap>
-                </components.entityComponents.CollisionComponentsHandler>
-                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LocationComponent>
-                  <x>346.9913814342547</x>
-                  <y>3200.0</y>
-                </components.entityComponents.LocationComponent>
-                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
-              </entry>
-            </myComponentMap>
-          </entity.Entity>
-        </entry>
-        <entry>
-          <int>100</int>
-          <entity.Entity>
-            <changed>false</changed>
-            <obs/>
-            <identifier>100</identifier>
-            <myComponentMap>
-              <entry>
-                <components.entityComponents.CollidableComponent>
-                  <collide>true</collide>
-                </components.entityComponents.CollidableComponent>
-                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TypeComponent>
-                  <typeOfEntity>Block</typeOfEntity>
-                </components.entityComponents.TypeComponent>
-                <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>dirt.jpg</myString>
-                  <myPath>dirt.jpg</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LabelComponent>
-                  <myString>Blok</myString>
-                </components.entityComponents.LabelComponent>
-                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.CollisionComponentsHandler>
-                  <sideCollisionMap>
-                    <entry>
-                      <string>Top</string>
-                      <components.entityComponents.SideCollisionComponent>
-                        <sideCollision>Top</sideCollision>
-                        <typeActionMap>
-                          <entry>
-                            <string>Player</string>
-                            <list>
-                              <actions.BounceOffTop>
-                                <gdf/>
-                              </actions.BounceOffTop>
-                              <actions.GoalAction>
-                                <gdf/>
-                                <toLevel>3</toLevel>
-                              </actions.GoalAction>
-                            </list>
-                          </entry>
-                        </typeActionMap>
-                        <labelActionMap/>
-                      </components.entityComponents.SideCollisionComponent>
-                    </entry>
-                  </sideCollisionMap>
-                </components.entityComponents.CollisionComponentsHandler>
-                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LocationComponent>
-                  <x>22.949022015217203</x>
-                  <y>3250.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -8074,7 +7904,6 @@
               </entry>
               <entry>
                 <components.entityComponents.ObjectCreationComponent>
-                  <creating>true</creating>
                   <storedEntity class="entity.Entity">
                     <changed>false</changed>
                     <obs/>
@@ -8235,6 +8064,7 @@
                       </entry>
                     </myComponentMap>
                   </storedEntity>
+                  <creating>true</creating>
                 </components.entityComponents.ObjectCreationComponent>
                 <components.entityComponents.ComponentType>ObjectCreation</components.entityComponents.ComponentType>
               </entry>
@@ -8387,7 +8217,6 @@
               </entry>
               <entry>
                 <components.entityComponents.ObjectCreationComponent>
-                  <creating>true</creating>
                   <storedEntity class="entity.Entity">
                     <changed>false</changed>
                     <obs/>
@@ -8528,6 +8357,7 @@
                       </entry>
                     </myComponentMap>
                   </storedEntity>
+                  <creating>true</creating>
                 </components.entityComponents.ObjectCreationComponent>
                 <components.entityComponents.ComponentType>ObjectCreation</components.entityComponents.ComponentType>
               </entry>
@@ -8539,7 +8369,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>776.0</x>
+                  <x>766.0</x>
                   <y>20.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
@@ -8698,7 +8528,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>1176.0</x>
+                  <x>1166.0</x>
                   <y>150.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
@@ -8732,14 +8562,6 @@
                 <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.TypeComponent>
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
@@ -8751,6 +8573,14 @@
                   <myPath>platform_tile_063.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
