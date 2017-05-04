@@ -11,6 +11,7 @@ import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.KeyInputComponent;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.TimeComponent;
 import components.entityComponents.TypeComponent;
 import components.entityComponents.VelocityComponent;
 import components.keyExpressions.JumpAction;
@@ -25,6 +26,7 @@ public class AbstractPlayer extends Entity {
 		super(id);
 		System.out.println("player is made");
 		addCollisionComponents();
+		this.addComponent(new TimeComponent());
 	}
 
 	private void addCollisionComponents() {
