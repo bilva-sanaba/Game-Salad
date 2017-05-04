@@ -815,6 +815,12 @@
             <identifier>16</identifier>
             <myComponentMap>
               <entry>
+                <components.entityComponents.CollidableComponent>
+                  <collide>true</collide>
+                </components.entityComponents.CollidableComponent>
+                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>character3.jpg</myString>
                   <myPath>character3.jpg</myPath>
@@ -842,17 +848,17 @@
                 <components.entityComponents.ComponentType>KeyInput</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.AccelerationComponent>
                   <x>0.0</x>
                   <y>0.0</y>
                 </components.entityComponents.AccelerationComponent>
                 <components.entityComponents.ComponentType>Acceleration</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ControllableComponent>
-                  <controllable>true</controllable>
-                </components.entityComponents.ControllableComponent>
-                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.VelocityComponent>
