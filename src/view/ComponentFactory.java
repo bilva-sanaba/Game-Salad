@@ -36,6 +36,7 @@ public class ComponentFactory implements newComponentFactory {
 	public ComponentEditor getComponentEditor(String comp, UtilityFactory myUtilF) {
 		ComponentEditor reflectedComponent;
 		try {
+			System.out.println(EDITOR_PREFIX + comp + EDITOR_SUFFIX);
 			reflectedComponent = (ComponentEditor) Reflection.createInstance(EDITOR_PREFIX + comp + EDITOR_SUFFIX, myUtilF);
 		} catch (Exception e) {
 			throw new ReflectionException(ReflectionException.COMPONENT_REFLECTION_ERROR);
