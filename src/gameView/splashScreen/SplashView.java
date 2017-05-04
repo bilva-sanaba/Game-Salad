@@ -50,7 +50,7 @@ public class SplashView extends AbstractViewer {
 	}
 	@Override
 	protected String getName() {
-		return GameScreen.class.getSimpleName();	
+		return SplashView.class.getSimpleName();	
 	}
 	
 	private void addBackground() {
