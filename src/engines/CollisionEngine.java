@@ -218,13 +218,12 @@ public class CollisionEngine extends AbstractEngine {
 		
 		for (int i=0;i<entities.length;i++) {
 			IEntity entityOne = entities[i];
-			TypeComponent type = (TypeComponent) entities[i].getComponent(ComponentType.Type);
 			CheckCollisionComponent check = (CheckCollisionComponent) entityOne.getComponent(ComponentType.CheckCollision);
 			CollidableComponent collidable = (CollidableComponent) entityOne.getComponent(ComponentType.Collidable);
 
 			
 			if (check!= null && check.getCheckCollision() && collidable != null && collidable.getCollide() /*&& cam.withinCameraBounds(entityOne)*/) {
-				for (int j=i+1;j<entities.length;j++) {
+				for (int j=0;j<entities.length;j++) {
 					IEntity entityTwo = entities[j];
 					CollidableComponent collidableE2 = (CollidableComponent) entityTwo.getComponent(ComponentType.Collidable);
 					if (collidableE2 != null && collidableE2.getCollide() && entityOne!=entityTwo /*&& cam.withinCameraBounds(entityTwo)*/) {
@@ -242,6 +241,7 @@ public class CollisionEngine extends AbstractEngine {
 	
 	private IRestrictedGameData checkIndividualCollision(IEntity entityOne, IEntity entityTwo, IRestrictedGameData gd) {
 		String collisionSide = collisionMethod.collides(entityOne, entityTwo);
+		System.out.println(collisionSide + " is the collision side");
 		return sendCollisionToSubEngines(entityOne, entityTwo, collisionSide, gd);
 		
 	}
@@ -273,6 +273,7 @@ public class CollisionEngine extends AbstractEngine {
 //			entManager.getEntities().add(e);
 //			entManager.changed(e);
 		}
+		
 		return rgd;
 	}
 	
