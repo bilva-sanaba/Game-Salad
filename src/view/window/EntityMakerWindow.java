@@ -6,7 +6,10 @@ import java.util.Map;
 
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
-import entity.presets.PresetEntites;
+
+import entity.presets.AbstractBlock;
+import entity.presets.PresetEntities;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -77,9 +80,9 @@ public class EntityMakerWindow implements Window {
 
 	private void addRadioButtons(Pane root) {
 		Node entityType = new Label("Kind of Entity:");
-		Map<String, PresetEntites> stringFromPreset = new HashMap<String, PresetEntites>();
-		for (int i = 0; i < PresetEntites.values().length; i++) {
-			PresetEntites st = PresetEntites.values()[i];
+		Map<String, PresetEntities> stringFromPreset = new HashMap<String, PresetEntities>();
+		for (int i = 0; i < PresetEntities.values().length; i++) {
+			PresetEntities st = PresetEntities.values()[i];
 			System.out.println(util.getText(st.toString()));
 			stringFromPreset.put(util.getText(st.toString()), st);
 		}

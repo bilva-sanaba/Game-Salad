@@ -105,6 +105,7 @@ public class EntityConfigurationWindow implements Window {
 		} catch (Exception e) {
 			System.out.println("Can not edit this component");
 		}
+
 	}
 	
 	private void compileEntity(){

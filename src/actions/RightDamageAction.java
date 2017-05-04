@@ -50,7 +50,7 @@ public class RightDamageAction extends AbstractAction implements IAction{
 				tc.addSingleAction(new ImageChangeAction(collection2), new Integer(i+100));
 			}
 			tc.addSingleAction(new RestoreControl(), 600);	
-			hc.setHealth(hc.getHealth() - sc.getStrength());
+			//hc.setHealth(hc.getHealth() - sc.getStrength());
 			cc.loseControl();
 		}
 		GameDataFactory gdf = new GameDataFactory();

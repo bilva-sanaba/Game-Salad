@@ -13,6 +13,7 @@ public abstract class AbstractOneParameterComponent<E> extends AComponent  imple
 	public AbstractOneParameterComponent(){}
 	
 	public E getString(){
+
 		return myString;
 	}	
 	
