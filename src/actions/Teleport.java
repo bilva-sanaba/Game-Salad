@@ -30,6 +30,7 @@ public class Teleport extends AbstractAction  implements IAction {
 		inputs = super.validateList(inputs, 2);
 		teleportXLocation = super.parseDouble(inputs.get(0));
 		teleportYLocation = super.parseDouble(inputs.get(1));
+		System.out.println("exception not reached");
 	}
 	
 	

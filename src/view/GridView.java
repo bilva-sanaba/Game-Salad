@@ -207,6 +207,7 @@ public class GridView extends GUIComponent {
 	}
 
 	public void drawEntity(Entity entity) {
+		System.out.println(entity.getID());
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
