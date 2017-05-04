@@ -1,19 +1,14 @@
 package view.window;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import components.entityComponents.ComponentType;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
-import entity.presets.AbstractBlock;
 import entity.presets.PresetEntites;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;

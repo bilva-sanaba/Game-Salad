@@ -9,7 +9,7 @@ import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 
-@TopAction()
+//@TopAction()
 public class DoodleJumpBounce extends AbstractAction implements IAction {
 
 	

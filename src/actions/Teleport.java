@@ -22,14 +22,17 @@ public class Teleport extends AbstractAction  implements IAction {
 	private double teleportYLocation;
 	
 	public Teleport(double newX, double newY) {
+		System.out.println("was created");
 		teleportXLocation = newX;
 		teleportYLocation = newY;
 	}
 
 	public Teleport(List<String> inputs) throws InputException {
+		System.out.println("pre exception checking");
 		inputs = super.validateList(inputs, 2);
 		teleportXLocation = super.parseDouble(inputs.get(0));
 		teleportYLocation = super.parseDouble(inputs.get(1));
+		System.out.println("post exception checking");
 	}
 	
 	

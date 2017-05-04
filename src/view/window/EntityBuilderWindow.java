@@ -6,6 +6,7 @@ import java.util.Map;
 
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
+import entity.presets.AbstractBlock;
 import entity.presets.PresetEntites;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
