@@ -21,7 +21,6 @@ public class BlockTopRegularCollision extends AbstractAction implements IAction 
 		ImagePropertiesComponent ipE0 = (ImagePropertiesComponent) other.getComponent(ComponentType.ImageProperties);
 		LocationComponent lcE1 = (LocationComponent) self.getComponent(ComponentType.Location);
 		lcE0.setY(lcE1.getY()-ipE0.getHeight());
-		if (!lc.getString().equals("Block")) {
 			VelocityComponent vc = (VelocityComponent) other.getComponent(ComponentType.Velocity);
 //			AccelerationComponent ac = (AccelerationComponent) other.getComponent(ComponentType.Acceleration);
 			if (vc.getY() > 0) {
@@ -29,7 +28,7 @@ public class BlockTopRegularCollision extends AbstractAction implements IAction 
 //				ac.setY(0);
 			}
 			
-		}
+		
 		return getGameDataFactory().blankEntityData(currentGameData);
 
 	}

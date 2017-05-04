@@ -13,7 +13,9 @@ public class BlockBottomRegularCollision extends AbstractAction implements IActi
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		VelocityComponent velo = (VelocityComponent) other.getComponent(ComponentType.Velocity);
-		velo.setY(-1*velo.getY());
+		if (velo!=null) {
+			velo.setY(-1*velo.getY());
+		}
 
 		return getGameDataFactory().blankEntityData(currentGameData);
 	}
