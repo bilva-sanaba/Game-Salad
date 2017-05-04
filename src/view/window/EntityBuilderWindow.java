@@ -87,7 +87,7 @@ public class EntityBuilderWindow implements Window {
 	private void addOkayButton(Pane root) {
 		Node okayButton = util.buildButton("OkayLabel", e -> {
 			if (myImageName.equals("")) {
-				throw new AuthoringException(AuthoringException.NO_IMAGE);
+				throw new AuthoringException("NO_IMAGE");
 			}
 			Entity tempEntity = (Entity) Reflection.createInstance(entityList[0], myData.getDefinedEntityID());
 			tempEntity.addComponent(new SpriteComponent(myImageName));

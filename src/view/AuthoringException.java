@@ -1,20 +1,35 @@
 package view;
 
+import java.io.File;
+import java.util.ResourceBundle;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class AuthoringException extends RuntimeException {
-	
-	public static final String NO_IMAGE = "Choose an image you wild animal";
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final String DEFAULT_RESOURCE_PACKAGE = "resources" + File.separator;
+	public static final String AUTHORING_RESOURCES = "AuthoringExceptions";
+	public static final String AUTHORING_ERROR = "Authoring Exception";
+	public static final String AUTHORING_HEADER = "Error in Authoring Environment";
+	
+	private ResourceBundle myErrors = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + AUTHORING_RESOURCES);
+	private Alert error = new Alert(AlertType.INFORMATION);
 
 	public AuthoringException(String message) {
-        super(message);
+		error.setTitle(AUTHORING_ERROR);
+		error.setHeaderText(AUTHORING_HEADER);
+		error.setContentText(myErrors.getString(message));
+		error.showAndWait();
     }
 
 	public AuthoringException(String message, Object ... values) {
-        super(String.format(message, values));
-    }
-
-	public AuthoringException(Throwable cause) {
-        super(cause);
-    }
+		error.setTitle(AUTHORING_ERROR);
+		error.setHeaderText(AUTHORING_HEADER);
+		String errorMessage = String.format(myErrors.getString(message), values);
+		error.setContentText(errorMessage);
+		error.showAndWait();
+	}
 }
