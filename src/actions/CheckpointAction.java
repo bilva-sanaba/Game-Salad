@@ -1,5 +1,6 @@
 package actions;
 
+import class_annotations.*;
 import components.entityComponents.CheckpointComponent;
 import components.entityComponents.ComponentType;
 import entity.IEntity;
@@ -7,6 +8,10 @@ import entity.IEntityManager;
 import gameEngine_interface.EntityLoader;
 import gamedata.IRestrictedGameData;
 
+@TopAction()
+@LeftAction()
+@RightAction()
+@BottomAction()
 public class CheckpointAction extends AbstractAction implements IAction {
 
 	@Override

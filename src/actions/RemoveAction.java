@@ -1,6 +1,9 @@
 package actions;
 
-import class_annotations.*;
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.GameData;
@@ -8,9 +11,9 @@ import gamedata.IGameData;
 import gamedata.IRestrictedGameData;
 
 @TopAction()
-@BottomAction()
 @LeftAction()
 @RightAction()
+@BottomAction()
 public class RemoveAction extends AbstractAction  implements IAction {
 
 	

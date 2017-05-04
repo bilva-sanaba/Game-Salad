@@ -41,6 +41,7 @@ public class ViewController implements Observer {
 				GridView tempGrid = new GridView(utilF, i, myData, myData.getLevelEntity(i).getRows(), myData.getLevelEntity(i).getCols());
 				levelTabs.addNewTab(tempGrid, i);
 			}
+			myTab.setCamera(myData.getLevelEntity(1).getCamera());
 		}
 		
 	}
