@@ -10,10 +10,10 @@ public enum EditableComponents {
 	KeyInput(),
 	Label(),
 	Lives(),
-	MonsterActions(),
 	Sprite(),
 	Step(),
 	Strength(),
-	TerminalVelocity(),
-	Velocity(),
+	Velocity(), Stationary(), ObjectCreation(), MonsterType, Goal,
+	TerminalVelocity(), Friction;
+
 }

@@ -6,6 +6,7 @@ import actions.BounceOffLeft;
 import actions.BounceOffRight;
 import actions.DeathAction;
 import actions.Teleport;
+import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
@@ -31,6 +32,7 @@ public class DeathBlock extends Entity {
 		this.addComponent(new ImagePropertiesComponent(DEFAULT_SIZE,DEFAULT_SIZE));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
+		this.addComponent(new CheckCollisionComponent(true));
 		this.addComponent(new TimeComponent());
 //		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 //		scc.addActionForType(new TypeComponent(EntityType.Player), new BlockTopRegularCollision());
@@ -41,17 +43,17 @@ public class DeathBlock extends Entity {
 //		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
 //		scb.addActionForType(new TypeComponent(EntityType.Player), new BounceOffBlockSide());
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
-		scc.addActionForLabel(new LabelComponent("grrraah"), new DeathAction());
-		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 150));
+		scc.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
+
 		SideCollisionComponent scq = new SideCollisionComponent(CollisionComponentType.Bottom);
-		scq.addActionForLabel(new LabelComponent("grrraah"), new DeathAction());
-		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 150));
+		scq.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
+
 		SideCollisionComponent scr = new SideCollisionComponent(CollisionComponentType.Left);
-		scr.addActionForLabel(new LabelComponent("grrraah"), new DeathAction());
-		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 150));
+		scr.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
+
 		SideCollisionComponent scb = new SideCollisionComponent(CollisionComponentType.Right);
-		scb.addActionForLabel(new LabelComponent("grrraah"), new DeathAction());
-		scc.addActionForLabel(new LabelComponent("grrraah"), new Teleport(100, 150));
+		scb.addActionForType(new TypeComponent(EntityType.Player), new DeathAction());
+
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scc);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scq);
 		((CollisionComponentsHandler) this.getComponent(ComponentType.CollisionHandler)).addCollisionComponent(scb);

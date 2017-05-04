@@ -68,7 +68,6 @@ public class SideCollisionComponent implements IComponent {
 		}
 		if (entityType!= null && typeActionMap.containsKey(entityType.getTypeString())) {
 			for (IAction action : typeActionMap.get(entityType.getTypeString())) {
-
 				dg= action.executeAction(e, e2,myEM, dg);
 //				for (IRestrictedEntity re : dg.getRestrictedEntityManager().getRestrictedEntities()){
 //					newEntities.add(re.clone());
