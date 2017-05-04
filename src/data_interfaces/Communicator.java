@@ -135,5 +135,11 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getLives();
 	}
+
+	@Override
+	public boolean getCameraOn() {
+		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
+		return m.get(getStorageLevel()).getCamera();
+	}
 	
 }
