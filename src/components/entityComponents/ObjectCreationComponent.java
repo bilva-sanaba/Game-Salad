@@ -2,7 +2,6 @@ package components.entityComponents;
 
 import components.AComponent;
 import components.IComponent;
-import entity.Entity;
 import entity.IEntity;
 
 public class ObjectCreationComponent extends AComponent implements IComponent{
