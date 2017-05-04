@@ -1,6 +1,7 @@
 package view;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import components.entityComponents.ComponentType;
@@ -43,7 +44,7 @@ public class GridView extends GUIComponent {
 	private int myLevelNumber;
 	double xClickOffset, yClickOffset;
 	double imageWidth, imageHeight;
-	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
+	private Map<Entity, ImageView> placedImages;
 	private BorderPane myBorderPane;
 
 	public GridView(UtilityFactory utilIn, int levelNumber, ViewData data, int rows, int cols) {
@@ -52,6 +53,7 @@ public class GridView extends GUIComponent {
 		myRow = rows;
 		myCol = cols;
 		myData = data;
+		placedImages = new HashMap<Entity, ImageView>();
 		
 		rightClick = new RightClickMenu(util, myData);
 		
@@ -96,9 +98,6 @@ public class GridView extends GUIComponent {
 			rightClick.hide();
 			placeImageAtLoc(e.getX() , e.getY());
 		}
-	}
-	private void snapTo10(int x){
-		
 	}
 	
 	private void mouseMove(MouseEvent e){
@@ -168,6 +167,12 @@ public class GridView extends GUIComponent {
 		}
 	}
 	
+	private void entityMouseReleased(MouseEvent e, Entity entity){
+			ImageView c = (ImageView) (e.getSource());
+			unselectEntity(entity);
+			entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
+	}
+	
 	public void drawEntity(Entity entity) {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
@@ -182,11 +187,7 @@ public class GridView extends GUIComponent {
 		spriteImage.setY(entityLocation.getY());
 		spriteImage.setOnMousePressed(e -> entityMousePress(e, entity));
 		spriteImage.setOnMouseDragged(e -> entityMouseDrag(e, entity));
-		spriteImage.setOnMouseReleased(e -> {
-			ImageView c = (ImageView) (e.getSource());
-			unselectEntity(entity);
-			entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
-		});
+		spriteImage.setOnMouseReleased(e -> entityMouseReleased(e, entity));
 		placedImages.put(entity, spriteImage);
 		myGrid.getChildren().add(spriteImage);
 	}

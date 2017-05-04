@@ -26,9 +26,9 @@ public class ViewData extends Observable {
 
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
-	private HashMap<Integer, Entity> definedEntityMap;
-	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
-	private HashMap<Integer, LevelEntity> levelEntityMap;
+	private Map<Integer, Entity> definedEntityMap;
+	private Map<Integer, Map<Integer, Entity>> placedEntityMaps;
+	private Map<Integer, LevelEntity> levelEntityMap;
 	private SplashData mySplashEntity;
 	private Entity userSelectedEntity;
 	private Entity userGridSelectedEntity;
@@ -47,7 +47,7 @@ public class ViewData extends Observable {
 		undoStack = new Stack<RightClickEvent>();
 		redoStack = new Stack<RightClickEvent>();
 		definedEntityMap = new HashMap<Integer, Entity>();
-		placedEntityMaps = new HashMap<Integer, HashMap<Integer, Entity>>();
+		placedEntityMaps = new HashMap<Integer, Map<Integer, Entity>>();
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap = new HashMap<Integer, LevelEntity>();
 		levelEntityMap.put(currentLevel,
@@ -76,7 +76,7 @@ public class ViewData extends Observable {
 	}
 
 	public void moveLevel(int level, int destination) {
-		HashMap<Integer, Entity> swapper = placedEntityMaps.get(destination);
+		Map<Integer, Entity> swapper = placedEntityMaps.get(destination);
 		placedEntityMaps.put(destination, placedEntityMaps.get(level));
 		placedEntityMaps.put(level, swapper);
 	}
@@ -201,7 +201,7 @@ public class ViewData extends Observable {
 	}
 
 	// fix dependencies
-	public HashMap<Integer, HashMap<Integer, Entity>> getPlacedEntityMap() {
+	public Map<Integer, Map<Integer, Entity>> getPlacedEntityMap() {
 		return placedEntityMaps;
 	}
 
