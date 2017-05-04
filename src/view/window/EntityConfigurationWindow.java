@@ -76,12 +76,21 @@ public class EntityConfigurationWindow implements Window {
 			@Override
 			public void changed(ObservableValue<? extends EditableComponents> observable, EditableComponents oldVal,
 					EditableComponents newVal) {
+//				if (selectedComponents.containsKey(newVal) && selectedComponents.get(newVal) == ) {
+//					
+//				}
+				System.out.println("Old " + oldVal);
+				System.out.println("New " + newVal);
 				makeComponent(newVal.toString());
 			}
 		});
 		root.getChildren().add(myUtilF.buildHBox(
 				myUtilF.buildButton("AddActions", e -> addActions()),
 				myUtilF.buildButton("AddEntity", e -> enterButton())));
+	}
+	
+	private void deleteButton() {
+		
 	}
 	
 	private void makeComponent(String comp) {
