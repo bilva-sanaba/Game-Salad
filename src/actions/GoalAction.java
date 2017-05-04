@@ -22,6 +22,9 @@ public class GoalAction  extends AbstractAction  implements IAction{
 	public GoalAction(int level){
 		toLevel=level;
 	}
+	public GoalAction(List<String> x) {
+		toLevel = Integer.parseInt(x.get(0));
+	}
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		IGameData gameData =getGameDataFactory().blankEntityData(currentGameData);
