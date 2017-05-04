@@ -235,8 +235,13 @@ public class UtilityFactory {
 	}
 
 	public String getText(String act) {
-		System.out.println(act);
-		return act;
+		String rec = act;
+		try{
+			rec = myResources.getString(act.split(" ")[1]);
+		}catch(Exception e){
+			rec = myResources.getString(act);
+		}
+		return rec;
 	}
 	
 	
