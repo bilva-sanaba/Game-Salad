@@ -1,4 +1,3 @@
-
 package view.window;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import components.entityComponents.TimeComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 import exceptions.InputException;
-
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -27,10 +25,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,10 +37,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import view.GUIBuilder;
-import view.Input;
 import view.UtilityFactory;
 import view.ViewData;
-import voogasalad.util.reflection.Reflection;
 
 public class EntityActionWindow implements Window {
 	private UtilityFactory myUtilF;
@@ -54,7 +48,6 @@ public class EntityActionWindow implements Window {
 	private TextField labelType;
 	private ListView<EntityType> EntityTypeList;
 	private Map<CollisionComponentType, List<String>> allActions;
-
 	private Map<String, Class<?>> allAct = new HashMap<String, Class<?>>();
 	private String[] myDur;
 	private TimeComponent tc = null;
@@ -76,7 +69,7 @@ public class EntityActionWindow implements Window {
 		EntityTypeList = myUtilF.buildListView(EntityType.values());
 		EntityTypeList.setMinSize(200, 100);
 		EntityTypeList.setMaxSize(200, 100);
-		HBox top = myUtilF.buildHBox(new Text("Choose at Least One: "), labelType, EntityTypeList);
+		HBox top = myUtilF.buildHBox(new Text("Choose at Least One: "), labelType, EntityTypeList, addDuration());
 		setOnGrid(myEntity.getImageView(), 1, 1);
 		setOnGrid(myUtilF.buildButton("MakeEntity", e -> makeEntity()), 2, 2);
 		buildActionMaker();
@@ -112,7 +105,6 @@ public class EntityActionWindow implements Window {
 			addDuration = false;
 		}
 	}
-
 
 	private void makeEntity() {
 		myStage.close();
@@ -204,20 +196,10 @@ public class EntityActionWindow implements Window {
 		}
 		try {
 			System.out.println(viewActs.getSelectionModel().getSelectedItem());
-			System.out.println("here :( " + allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
+			System.out.println("here 😞 " + allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
 			IAction act = getAction(allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
 			if (!(labelType.getText().toString().equals(labelType.getPromptText().toString())
 					|| labelType.getText().toString().equals(""))) {
-
-				IAction act = getAction(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
-				System.out.println(labelType.getText() + " is the label");
-				sidecollision.addActionForLabel(new LabelComponent(labelType.getText()), act);
-			}
-			if (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0) {
-				IAction act = getAction(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
-				sidecollision.addActionForType(new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()),
-						act);
-
 				System.out.println("add label action");
 				if (addDuration) {
 					tc.addAction(act, myDuration);
