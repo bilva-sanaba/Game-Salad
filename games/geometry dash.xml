@@ -9441,13 +9441,6 @@
                 <components.entityComponents.KeyInputComponent>
                   <inputMap>
                     <entry>
-                      <javafx.scene.input.KeyCode>A</javafx.scene.input.KeyCode>
-                      <list>
-                        <components.keyExpressions.LeftAction/>
-                        <components.keyExpressions.LeftAction/>
-                      </list>
-                    </entry>
-                    <entry>
                       <javafx.scene.input.KeyCode>W</javafx.scene.input.KeyCode>
                       <list>
                         <components.keyExpressions.JumpAction/>
@@ -9457,6 +9450,13 @@
                       <javafx.scene.input.KeyCode>D</javafx.scene.input.KeyCode>
                       <list>
                         <components.keyExpressions.RightAction/>
+                      </list>
+                    </entry>
+                    <entry>
+                      <javafx.scene.input.KeyCode>A</javafx.scene.input.KeyCode>
+                      <list>
+                        <components.keyExpressions.LeftAction/>
+                        <components.keyExpressions.LeftAction/>
                       </list>
                     </entry>
                   </inputMap>
@@ -9472,6 +9472,12 @@
                 <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TypeComponent>
                   <typeOfEntity>Player</typeOfEntity>
                 </components.entityComponents.TypeComponent>
@@ -9483,12 +9489,6 @@
                   <imageWidth>50.0</imageWidth>
                 </components.entityComponents.ImagePropertiesComponent>
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ControllableComponent>
-                  <controllable>true</controllable>
-                </components.entityComponents.ControllableComponent>
-                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.TerminalVelocityComponent>
@@ -9512,7 +9512,7 @@
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
-                  <x>250.0</x>
+                  <x>110.0</x>
                   <y>380.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
@@ -9537,7 +9537,7 @@
         <openingMusic></openingMusic>
         <lives>3</lives>
         <ie>Horizontal</ie>
-        <camera>false</camera>
+        <camera>true</camera>
       </entity.LevelEntity>
     </entry>
   </map>
