@@ -29,8 +29,6 @@ public class BlockBottomRegularCollision extends AbstractAction implements IActi
 //				ac.setY(0);
 			}
 			
-		
-			
 		return getGameDataFactory().blankEntityData(currentGameData);
 	}
 }

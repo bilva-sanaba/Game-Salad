@@ -89,7 +89,6 @@ public class EntityBuilderWindow implements Window {
 		ListView<String> presetEnt = util.buildListView(new ArrayList(stringFromPreset.keySet()));
 		presetEnt.setMaxHeight(250);
 		root.getChildren().add(presetEnt);
-		
 		presetEnt.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldVal, String newVal) {

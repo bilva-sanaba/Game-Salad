@@ -23,7 +23,7 @@ public class PointsAction extends AbstractAction implements IAction {
 		increment = d;
 	}
 	public PointsAction(){
-		increment=1;
+		increment=10;
 	}
 	
 	public PointsAction(String points) throws NumericInputException {
@@ -39,7 +39,7 @@ public class PointsAction extends AbstractAction implements IAction {
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		GameData gd = getGameDataFactory().blankEntityData(currentGameData);
-		gd.setPoints(gd.getPoints().doubleValue()+increment);
+		gd.setPoints(gd.getPoints().doubleValue()+50);
 		return (IRestrictedGameData) gd;
 	}
 
