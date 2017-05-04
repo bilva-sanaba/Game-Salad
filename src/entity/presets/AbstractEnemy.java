@@ -5,13 +5,18 @@ import actions.DeathAction;
 import actions.LeftDamageAction;
 import actions.PowerupUsage;
 import actions.RightDamageAction;
+import components.entityComponents.CheckCollisionComponent;
 import components.entityComponents.CollidableComponent;
 import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.MonsterType;
+import components.entityComponents.MonsterTypeComponent;
 import components.entityComponents.SideCollisionComponent;
+import components.entityComponents.StepComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 
@@ -22,10 +27,15 @@ public class AbstractEnemy extends Entity {
 		addCollisionComponents();
 	}
 	private void addCollisionComponents(){
-		this.addComponent(new LabelComponent("Defult Enemy"));
 		this.addComponent(new CollisionComponentsHandler());
 		this.addComponent(new CollidableComponent(true));
-
+		this.addComponent(new ImagePropertiesComponent(50,50));
+		this.addComponent(new CollisionComponentsHandler());
+		this.addComponent(new CollidableComponent(true));
+		this.addComponent(new TypeComponent(EntityType.Monster));
+		this.addComponent(new CheckCollisionComponent(true));
+		this.addComponent(new StepComponent(1));
+		this.addComponent(new MonsterTypeComponent(MonsterType.LeftAndRight));
 		SideCollisionComponent scc = new SideCollisionComponent(CollisionComponentType.Top);
 		scc.addActionForType(new TypeComponent(EntityType.Player), new PowerupUsage());
 		scc.addActionForType(new TypeComponent(EntityType.Player), new BounceOffTop());

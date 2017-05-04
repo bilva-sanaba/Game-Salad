@@ -8,10 +8,6 @@ import entity.IEntityManager;
 import gameEngine_interface.EntityLoader;
 import gamedata.IRestrictedGameData;
 
-@TopAction()
-@LeftAction()
-@RightAction()
-@BottomAction()
 public class CheckpointAction extends AbstractAction implements IAction {
 
 	@Override
