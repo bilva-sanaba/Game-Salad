@@ -11,7 +11,10 @@ import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.LabelComponent;
+import components.entityComponents.MonsterType;
+import components.entityComponents.MonsterTypeComponent;
 import components.entityComponents.SideCollisionComponent;
+import components.entityComponents.StepComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 
@@ -20,6 +23,9 @@ public class AbstractEnemy extends Entity {
 	public AbstractEnemy(int id) {
 		super(id);
 		addCollisionComponents();
+		this.addComponent(new MonsterTypeComponent(MonsterType.LeftAndRight));
+		this.addComponent(new StepComponent(20));
+		
 	}
 	private void addCollisionComponents(){
 		this.addComponent(new LabelComponent("Defult Enemy"));
