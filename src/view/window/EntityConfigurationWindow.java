@@ -96,7 +96,6 @@ public class EntityConfigurationWindow implements Window {
 	private void makeComponent(String comp) {
 		try {
 			ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
-			System.out.println(comp + " line 102 "  + this.getClass());
 			myCompEdits.put(comp, editor);
 			root.getChildren().add(editor.getInputNode());
 		} catch (Exception e) {
