@@ -36,12 +36,6 @@ public class ViewData extends Observable {
 	private String gameName;
 	private int currentLevel;
 	private int maxLevel;
-<<<<<<< HEAD
-=======
-	private Boolean saved = true;
-	// TODO: implement the saved boolean to track whether the current state is
-	// saved
->>>>>>> master
 	private int initialRows;
 	private int initialCols;
 
@@ -191,15 +185,6 @@ public class ViewData extends Observable {
 
 	public Entity getCopiedEntity() {
 		return copiedEntity;
-	}
-
-	// fix dependencies
-	public Entity pasteEntity(int level, double x, double y) {
-		Entity tempEntity = copiedEntity.clone();
-		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
-		tempLocation.setXY(x, y);
-		placeEntity(level, tempEntity);
-		return tempEntity;
 	}
 
 	public Map<Integer, Entity> getDefinedEntityMap() {

@@ -13,7 +13,10 @@ public class BounceOffTop extends AbstractAction  implements IAction {
 	public static final double VELOCITY_REVERSE = -1;
 	public static final double BOUNCE_FACTOR = 1.5;
 
-	
+	@Override
+	public String toString(){
+		return "Bounce of the Top";
+	}
 
 	@Override
 
