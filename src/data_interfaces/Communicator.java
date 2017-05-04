@@ -75,7 +75,6 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	List<Map> results;
 
 	public Communicator(String s) {
-		System.out.println("COMMUNICATOR MADE: " + s);
 		fileName = s;
 		XMLPlacedParser xp = new XMLPlacedParser();
 		results = xp.getData(fileName);
@@ -96,6 +95,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		}
 		return ret;
 	}
+	
 
 
 
@@ -103,14 +103,6 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	public List<LevelEntity> getLevelEntities() {
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
-		LevelEntity l = new LevelEntity(0,500,500,"background1.png", "badboujee.wav",3);
-
-		ret.add(l);
-
-//		for (int i = 1; i <= m.size(); i++) {
-//			ret.add(m.get(i));
-//		}
-//		System.out.println("HOW MANY LEVEL ENTITIES" + ret.size());
 		for (int i = 1; i <= m.size(); i++) {
 			ret.add(m.get(i));
 		}
@@ -141,5 +133,10 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	public int getLives () {
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getLives();
+	}
+	@Override
+	public boolean getCameraOn() {
+		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
+		return m.get(getStorageLevel()).getCamera();
 	}
 }

@@ -35,4 +35,10 @@ public interface EngineCommunication {
 	 * @return the number of lives
 	 */
 	public int getLives();
+	
+	/**
+	 * Return whether the camera is on or off
+	 * @return true if camera should be on, false if it should be off
+	 */
+	public boolean getCameraOn();
 }

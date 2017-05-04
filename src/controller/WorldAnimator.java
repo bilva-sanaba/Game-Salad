@@ -71,8 +71,6 @@ public class WorldAnimator{
 	private boolean pause = false;
 
 	public WorldAnimator(UIViewInterface view){
-		System.out.println("WORLDANIMATOR IS CREATED");
-
 		myView = view;
 	}
 	public Pane getGroup(){
@@ -101,8 +99,9 @@ public class WorldAnimator{
 			myScene = new Scene(root,LENGTH,WIDTH);
 
 			LocationComponent lc = myData.getMainLocation();
-			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
-
+			
+			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1, myData.getCamera());
+			
 			myObservers.getUpdatedSet();
 			fillMapAndDisplay(myObservers.getEntityMap().keySet());
 
@@ -148,7 +147,6 @@ public class WorldAnimator{
 			String ach="";
 			if(achievementSize!=myAchievements.size()-1){ //subtract one for empty string
 				ach = myAchievements.get(myAchievements.size()-1);
-				System.out.println("HIT ME BABY ONE MORE TIME");
 			}
 			addAchievement(ach);
 			removeAchievement();
@@ -257,7 +255,6 @@ public class WorldAnimator{
 			if(counter%90==0 && achievementShowing){
 				root.getChildren().remove(myAchievement.getGroup());
 				achievementShowing=false;
-				System.out.println("YACK YACK YACK YACK YACK");
 			}
 		}
 

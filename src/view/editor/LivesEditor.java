@@ -15,7 +15,6 @@ public class LivesEditor extends ComponentEditor {
 		myBox = utilf.buildSlider(componentName.toString(), new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myLives = newValue.intValue(); 
-				System.out.println(myLives);
 			}
 		});
 		setInputNode(myBox);

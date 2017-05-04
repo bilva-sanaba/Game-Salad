@@ -16,7 +16,6 @@ public class DeathAction extends AbstractAction implements IAction{
 		if (!other.hasComponent(ComponentType.Invincible)){
 			other.addComponent(new InvincibilityComponent(false));
 		}
-//		System.out.println("death");
 		gd.setLives(gd.getLives().doubleValue()-1);
 	
 		return gd;

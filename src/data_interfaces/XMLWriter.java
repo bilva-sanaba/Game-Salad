@@ -14,12 +14,15 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
+import controller.VoogaAlert;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
 import entity.IEntity;
 import javafx.scene.control.Alert;
 
 public class XMLWriter extends GameSavingDataTool implements Writer {
+	
+	private static final String ALERTMESSAGE = "File Saving Corrupted";
 
 	private void createFile(String fileName, String data) {
 		try {
@@ -27,9 +30,9 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 			BufferedWriter b = new BufferedWriter(new FileWriter(f));
 			b.write(data.toString());
 			b.close();
-		} catch (IOException e) {
-			Alert a = new Alert(null, "File Saving Corrupted!", null);
-			a.show();
+		} catch (Exception e) {
+			VoogaAlert a = new VoogaAlert(ALERTMESSAGE);
+			a.showAlert();
 		}
 	}
 
@@ -37,6 +40,7 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 		ClassLoader loader = new LocalClassLoader();
 		XStream serializer = new XStream(new DomDriver());
 		String ret;
+		serializer.setMode(XStream.NO_REFERENCES);
 
 		serializer.setClassLoader(loader);
 
