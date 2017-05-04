@@ -209,7 +209,7 @@ public class ViewData extends Observable {
 		return levelEntityMap;
 	}
 
-	public LevelEntity getLevelEntity() {
+	public LevelEntity getLevelEntity(int i) {
 		return levelEntityMap.get(currentLevel);
 	}
 

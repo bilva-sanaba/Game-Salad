@@ -110,20 +110,20 @@ public class GridView extends GUIComponent {
 	private void addHo() {
 		myGrid.setPrefWidth(myGrid.getWidth() + 60);
 		myCol++;
-		myData.getLevelEntity().addCol(1);
+		myData.getLevelEntity(myData.getCurrentLevel()).addCol(1);
 	}
 
 	private void addVert() {
 		myGrid.setPrefHeight(myGrid.getHeight() + 60);
 		myRow++;
-		myData.getLevelEntity().addRow(1);
+		myData.getLevelEntity(myData.getCurrentLevel()).addRow(1);
 	}
 
 	private void removeHo(){
 		if(myCol > 97){
 			myGrid.setPrefWidth(myGrid.getWidth() - 60);
 			myCol--;
-			myData.getLevelEntity().addCol(-1);
+			myData.getLevelEntity(myData.getCurrentLevel()).addCol(-1);
 		}
 	}
 
@@ -131,7 +131,7 @@ public class GridView extends GUIComponent {
 		if(myRow > 96){
 			myGrid.setPrefHeight(myGrid.getHeight() - 60);
 			myRow--;
-			myData.getLevelEntity().addRow(-1);
+			myData.getLevelEntity(myData.getCurrentLevel()).addRow(-1);
 		}
 	}
 
@@ -235,8 +235,8 @@ public class GridView extends GUIComponent {
 	}
 
 	public void setUpLevel() {
-		int totalRow = myData.getLevelEntity().getRows();
-		int totalCol = myData.getLevelEntity().getCols();
+		int totalRow = myData.getLevelEntity(myData.getCurrentLevel()).getRows();
+		int totalCol = myData.getLevelEntity(myData.getCurrentLevel()).getCols();
 		while (myCol != totalCol) {
 			addHo();
 		}
@@ -246,7 +246,7 @@ public class GridView extends GUIComponent {
 	}
 
 	public void updateBackground() {
-			String filePath = myData.getLevelEntity().getBackgroundFilePath();
+			String filePath = myData.getLevelEntity(myData.getCurrentLevel()).getBackgroundFilePath();
 			myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
 
