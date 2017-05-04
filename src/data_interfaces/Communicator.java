@@ -97,8 +97,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		List <IEntityManager> ret = new ArrayList<IEntityManager>();
 		List <IEntity> toBeAdded;
 		
-
-		//System.out.println("m size: " + m.size());
+		System.out.println("m size: " + m.size());
 		
 		for (int i = 1; i <= m.size(); i++) {
 			System.out.println("THISSSSS happens");
@@ -119,16 +118,16 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public List<LevelEntity> getLevelEntities() {
-//		Map <Integer, LevelEntity> m = results.get(1);
+		Map <Integer, LevelEntity> m = results.get(1);
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
-		LevelEntity l = new LevelEntity(0,500,500,"background1.png", "badboujee.wav",3);
+//		LevelEntity l = new LevelEntity(0,500,500,"background1.png", "badboujee.wav",3);
+//		
+//		ret.add(l);
 		
-		ret.add(l);
-		
-//		for (int i = 1; i <= m.size(); i++) {
-//			ret.add(m.get(i));
-//		}
-//		System.out.println("HOW MANY LEVEL ENTITIES" + ret.size());
+		for (int i = 1; i <= m.size(); i++) {
+			ret.add(m.get(i));
+		}
+		System.out.println("HOW MANY LEVEL ENTITIES" + ret.size());
 		
 		return ret;
 	}
@@ -138,6 +137,8 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	@Override
 	public SplashData getSplashEntity() {
 //		SplashData s = new SplashData(1427, "sgsdg", "sghs", "background1.png");
+
+		SplashData s = new SplashData(1427, "sgsdg", "sghs", "background1.png");
 		return (SplashData) results.get(2).get(getSplashConstant());
 //		return s;
 	}
@@ -146,10 +147,10 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public InfiniteEnum getInfinite() {
-//		Map<Integer, LevelEntity> m = results.get(1);
-//		System.out.println(m.get(1).getInfiniteEnum());
-//		return m.get(1).getInfiniteEnum();
-		return InfiniteEnum.Vertical;
+		Map<Integer, LevelEntity> m = results.get(1);
+		System.out.println(m.get(1).getInfiniteEnum());
+		return m.get(1).getInfiniteEnum();
+//		return InfiniteEnum.Vertical;
 	}
 	
 	
@@ -606,6 +607,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 ////		//
 ////		//
 ////		//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
+
 //		Collection<IEntity> e8 = new ArrayList<IEntity>();
 //		for (Entity exp : e7) {
 //			e8.add(exp);

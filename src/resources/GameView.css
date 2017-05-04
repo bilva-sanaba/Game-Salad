@@ -3,7 +3,7 @@
 	-fx-background-repeat: stretch;
 }
 #top {
-	-fx-background-color: rgba(0, 0, 0, 0.3);
+	-fx-background-color: rgba(0, 0, 0, .4);
 	-fx-background-repeat: stretch;
 	-fx-spacing: 10;
 	-fx-alignment: center-left;

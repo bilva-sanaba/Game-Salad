@@ -68,7 +68,6 @@ public class WorldAnimator{
 	private boolean pause = false;
 
 	public WorldAnimator(UIViewInterface view){
-		System.out.println("WORLDANIMATOR IS CREATED");
 	
 		myView = view;
 	}
@@ -142,7 +141,6 @@ public class WorldAnimator{
 			String ach="";
 			if(achievementSize!=myAchievements.size()-1){ //subtract one for empty string
 				ach = myAchievements.get(myAchievements.size()-1);
-				System.out.println("HIT ME BABY ONE MORE TIME");
 			}
 			addAchievement(ach);
 			removeAchievement();
@@ -251,7 +249,6 @@ public class WorldAnimator{
 			if(counter%90==0 && achievementShowing){
 				root.getChildren().remove(myAchievement.getGroup());
 				achievementShowing=false;
-				System.out.println("YACK YACK YACK YACK YACK");
 			}
 		}
 
