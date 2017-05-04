@@ -5,7 +5,16 @@ import components.IComponent;
 public class GoalComponent implements IComponent {
 	
 	private boolean goalSatisfied = false;
-
+	
+	public GoalComponent(boolean g){
+		System.out.println(g + "make goal");
+		goalSatisfied = g;
+	}
+	
+	public GoalComponent(){
+		super();
+	}
+	
 	@Override
 	public ComponentType getComponentType() {
 		return ComponentType.Goal;
@@ -13,11 +22,8 @@ public class GoalComponent implements IComponent {
 
 	@Override
 	public IComponent newCopy() {
-		GoalComponent myGoalComponent = new GoalComponent();
-		if(goalSatisfied == true){
-			myGoalComponent.satisfyGoal(true);
-		}
-		return myGoalComponent;
+		return new GoalComponent(goalSatisfied);
+		
 	}
 	
 	public void satisfyGoal(boolean bool){

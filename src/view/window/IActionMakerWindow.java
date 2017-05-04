@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.Input;
 import view.UtilityFactory;
-import voogasalad.util.reflection.Reflection;
 
 public class IActionMakerWindow{
 	private UtilityFactory myUtilF;
