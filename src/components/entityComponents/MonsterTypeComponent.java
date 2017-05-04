@@ -8,6 +8,7 @@ public class MonsterTypeComponent extends AComponent implements IComponent{
 	private MonsterType typeOfMonster;
 
 	public MonsterTypeComponent(MonsterType type) {
+	System.out.println("made " + type);
 		typeOfMonster = type;
 	}
 	

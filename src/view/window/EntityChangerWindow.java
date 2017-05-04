@@ -20,7 +20,6 @@ import view.editor.EditableComponents;
 
 public class EntityChangerWindow implements Window {
 	private UtilityFactory myUtilF;
-	private String[] componentList;
 	private ComponentFactory myCompF;
 	private VBox root;
 	private Stage myStage = new Stage();

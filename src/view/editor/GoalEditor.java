@@ -16,6 +16,7 @@ public class GoalEditor extends ComponentEditor{
 
 
 	public GoalEditor(UtilityFactory utilf) {
+		System.out.println("made goal edior");
 		myBox = new HBox();
 		final ToggleGroup group = utilf.buildRadioButtonGroup("SelectGoalType", myBox);
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {

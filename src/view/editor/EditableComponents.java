@@ -13,5 +13,5 @@ public enum EditableComponents {
 	Sprite(),
 	Step(),
 	Strength(),
-	Velocity(), Stationary(), ObjectCreation(), MonsterActions, MonsterType, Goal;
+	Velocity(), Stationary(), ObjectCreation(), MonsterType, Goal;
 }
