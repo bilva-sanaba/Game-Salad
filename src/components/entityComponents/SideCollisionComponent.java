@@ -53,6 +53,7 @@ public class SideCollisionComponent implements IComponent {
 
 	public IRestrictedGameData executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM, IRestrictedGameData dg) {
 		//maybe should refactor
+		
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
