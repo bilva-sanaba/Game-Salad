@@ -4895,19 +4895,19 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>horse.png</myString>
+                  <myPath>horse.png</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>horse.png</myString>
-                  <myPath>horse.png</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -5054,6 +5054,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -5065,14 +5073,6 @@
                   <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CollisionComponentsHandler>
@@ -5199,19 +5199,19 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>horse.png</myString>
-                  <myPath>horse.png</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>horse.png</myString>
+                  <myPath>horse.png</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -5966,6 +5966,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -6072,14 +6080,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -6131,14 +6131,6 @@
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollisionComponentsHandler>
                   <sideCollisionMap>
                     <entry>
@@ -6232,6 +6224,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LocationComponent>
@@ -6422,6 +6422,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -6530,478 +6538,9 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LocationComponent>
                   <x>1400.0</x>
                   <y>430.0</y>
-                </components.entityComponents.LocationComponent>
-                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
-              </entry>
-            </myComponentMap>
-          </entity.Entity>
-        </entry>
-        <entry>
-          <int>1456</int>
-          <entity.Entity>
-            <changed>false</changed>
-            <obs/>
-            <identifier>1456</identifier>
-            <myComponentMap>
-              <entry>
-                <components.entityComponents.CollidableComponent>
-                  <collide>true</collide>
-                </components.entityComponents.CollidableComponent>
-                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>mario_step1.gif</myString>
-                  <myPath>mario_step1.gif</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LabelComponent>
-                  <myString>Defult Player</myString>
-                </components.entityComponents.LabelComponent>
-                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.KeyInputComponent>
-                  <inputMap>
-                    <entry>
-                      <javafx.scene.input.KeyCode>A</javafx.scene.input.KeyCode>
-                      <list>
-                        <components.keyExpressions.LeftAction/>
-                      </list>
-                    </entry>
-                    <entry>
-                      <javafx.scene.input.KeyCode>W</javafx.scene.input.KeyCode>
-                      <list>
-                        <components.keyExpressions.JumpAction/>
-                      </list>
-                    </entry>
-                    <entry>
-                      <javafx.scene.input.KeyCode>D</javafx.scene.input.KeyCode>
-                      <list>
-                        <components.keyExpressions.RightAction/>
-                      </list>
-                    </entry>
-                    <entry>
-                      <javafx.scene.input.KeyCode>C</javafx.scene.input.KeyCode>
-                      <list>
-                        <actions.ShootAction>
-                          <gdf/>
-                        </actions.ShootAction>
-                      </list>
-                    </entry>
-                  </inputMap>
-                  <groovyMap/>
-                </components.entityComponents.KeyInputComponent>
-                <components.entityComponents.ComponentType>KeyInput</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.VelocityComponent>
-                  <x>0.0</x>
-                  <y>-5.9999999999999995E-12</y>
-                </components.entityComponents.VelocityComponent>
-                <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TypeComponent>
-                  <typeOfEntity>Player</typeOfEntity>
-                </components.entityComponents.TypeComponent>
-                <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TerminalVelocityComponent>
-                  <x>24.8125</x>
-                  <y>24.8125</y>
-                </components.entityComponents.TerminalVelocityComponent>
-                <components.entityComponents.ComponentType>TerminalVelocity</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ObjectCreationComponent>
-                  <storedEntity class="entity.Entity">
-                    <changed>false</changed>
-                    <obs/>
-                    <identifier>0</identifier>
-                    <myComponentMap>
-                      <entry>
-                        <components.entityComponents.CollidableComponent>
-                          <collide>true</collide>
-                        </components.entityComponents.CollidableComponent>
-                        <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
-                      </entry>
-                      <entry>
-                        <components.entityComponents.TypeComponent>
-                          <typeOfEntity>Block</typeOfEntity>
-                        </components.entityComponents.TypeComponent>
-                        <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
-                      </entry>
-                      <entry>
-                        <components.entityComponents.SpriteComponent>
-                          <myString>platform_tile_059.png</myString>
-                          <myPath>platform_tile_059.png</myPath>
-                        </components.entityComponents.SpriteComponent>
-                        <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-                      </entry>
-                      <entry>
-                        <components.entityComponents.ImagePropertiesComponent>
-                          <imageHeight>50.0</imageHeight>
-                          <imageWidth>50.0</imageWidth>
-                        </components.entityComponents.ImagePropertiesComponent>
-                        <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-                      </entry>
-                      <entry>
-                        <components.entityComponents.CollisionComponentsHandler>
-                          <sideCollisionMap>
-                            <entry>
-                              <string>Left</string>
-                              <components.entityComponents.SideCollisionComponent>
-                                <sideCollision>Left</sideCollision>
-                                <typeActionMap>
-                                  <entry>
-                                    <string>Item</string>
-                                    <list>
-                                      <actions.BlockLeftRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockLeftRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Player</string>
-                                    <list>
-                                      <actions.BlockLeftRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockLeftRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Goal</string>
-                                    <list>
-                                      <actions.BlockLeftRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockLeftRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Monster</string>
-                                    <list>
-                                      <actions.BlockLeftRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockLeftRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Block</string>
-                                    <list>
-                                      <actions.BlockLeftRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockLeftRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Camera</string>
-                                    <list>
-                                      <actions.BlockLeftRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockLeftRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>None</string>
-                                    <list>
-                                      <actions.BlockLeftRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockLeftRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Projectile</string>
-                                    <list>
-                                      <actions.BlockLeftRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockLeftRegularCollision>
-                                    </list>
-                                  </entry>
-                                </typeActionMap>
-                                <labelActionMap/>
-                              </components.entityComponents.SideCollisionComponent>
-                            </entry>
-                            <entry>
-                              <string>Top</string>
-                              <components.entityComponents.SideCollisionComponent>
-                                <sideCollision>Top</sideCollision>
-                                <typeActionMap>
-                                  <entry>
-                                    <string>Item</string>
-                                    <list>
-                                      <actions.BlockTopRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockTopRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Player</string>
-                                    <list>
-                                      <actions.SpeedUp>
-                                        <gdf/>
-                                        <previouslySeenEntities/>
-                                      </actions.SpeedUp>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Goal</string>
-                                    <list>
-                                      <actions.BlockTopRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockTopRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Monster</string>
-                                    <list>
-                                      <actions.BlockTopRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockTopRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Block</string>
-                                    <list>
-                                      <actions.BlockTopRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockTopRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Camera</string>
-                                    <list>
-                                      <actions.BlockTopRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockTopRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>None</string>
-                                    <list>
-                                      <actions.BlockTopRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockTopRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Projectile</string>
-                                    <list>
-                                      <actions.BlockTopRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockTopRegularCollision>
-                                    </list>
-                                  </entry>
-                                </typeActionMap>
-                                <labelActionMap/>
-                              </components.entityComponents.SideCollisionComponent>
-                            </entry>
-                            <entry>
-                              <string>Right</string>
-                              <components.entityComponents.SideCollisionComponent>
-                                <sideCollision>Right</sideCollision>
-                                <typeActionMap>
-                                  <entry>
-                                    <string>Item</string>
-                                    <list>
-                                      <actions.BlockRightRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockRightRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Player</string>
-                                    <list>
-                                      <actions.BlockRightRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockRightRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Goal</string>
-                                    <list>
-                                      <actions.BlockRightRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockRightRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Monster</string>
-                                    <list>
-                                      <actions.BlockRightRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockRightRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Block</string>
-                                    <list>
-                                      <actions.BlockRightRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockRightRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Camera</string>
-                                    <list>
-                                      <actions.BlockRightRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockRightRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>None</string>
-                                    <list>
-                                      <actions.BlockRightRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockRightRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Projectile</string>
-                                    <list>
-                                      <actions.BlockRightRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockRightRegularCollision>
-                                    </list>
-                                  </entry>
-                                </typeActionMap>
-                                <labelActionMap/>
-                              </components.entityComponents.SideCollisionComponent>
-                            </entry>
-                            <entry>
-                              <string>Bottom</string>
-                              <components.entityComponents.SideCollisionComponent>
-                                <sideCollision>Bottom</sideCollision>
-                                <typeActionMap>
-                                  <entry>
-                                    <string>Item</string>
-                                    <list>
-                                      <actions.BlockBottomRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockBottomRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Player</string>
-                                    <list>
-                                      <actions.BlockBottomRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockBottomRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Goal</string>
-                                    <list>
-                                      <actions.BlockBottomRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockBottomRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Monster</string>
-                                    <list>
-                                      <actions.BlockBottomRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockBottomRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Block</string>
-                                    <list>
-                                      <actions.BlockBottomRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockBottomRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Camera</string>
-                                    <list>
-                                      <actions.BlockBottomRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockBottomRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>None</string>
-                                    <list>
-                                      <actions.BlockBottomRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockBottomRegularCollision>
-                                    </list>
-                                  </entry>
-                                  <entry>
-                                    <string>Projectile</string>
-                                    <list>
-                                      <actions.BlockBottomRegularCollision>
-                                        <gdf/>
-                                      </actions.BlockBottomRegularCollision>
-                                    </list>
-                                  </entry>
-                                </typeActionMap>
-                                <labelActionMap/>
-                              </components.entityComponents.SideCollisionComponent>
-                            </entry>
-                          </sideCollisionMap>
-                        </components.entityComponents.CollisionComponentsHandler>
-                        <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-                      </entry>
-                      <entry>
-                        <components.entityComponents.CheckCollisionComponent>
-                          <checkCollision>false</checkCollision>
-                        </components.entityComponents.CheckCollisionComponent>
-                        <components.entityComponents.ComponentType>CheckCollision</components.entityComponents.ComponentType>
-                      </entry>
-                    </myComponentMap>
-                  </storedEntity>
-                  <creating>true</creating>
-                </components.entityComponents.ObjectCreationComponent>
-                <components.entityComponents.ComponentType>ObjectCreation</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ControllableComponent>
-                  <controllable>true</controllable>
-                </components.entityComponents.ControllableComponent>
-                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.AccelerationComponent>
-                  <x>0.0</x>
-                  <y>0.0</y>
-                </components.entityComponents.AccelerationComponent>
-                <components.entityComponents.ComponentType>Acceleration</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.CheckCollisionComponent>
-                  <checkCollision>true</checkCollision>
-                </components.entityComponents.CheckCollisionComponent>
-                <components.entityComponents.ComponentType>CheckCollision</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LocationComponent>
-                  <x>160.0</x>
-                  <y>300.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
@@ -7653,122 +7192,6 @@
           </entity.Entity>
         </entry>
         <entry>
-          <int>1468</int>
-          <entity.Entity>
-            <changed>false</changed>
-            <obs/>
-            <identifier>1468</identifier>
-            <myComponentMap>
-              <entry>
-                <components.entityComponents.CollidableComponent>
-                  <collide>true</collide>
-                </components.entityComponents.CollidableComponent>
-                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>portal.png</myString>
-                  <myPath>portal.png</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.ImagePropertiesComponent>
-                  <imageHeight>50.0</imageHeight>
-                  <imageWidth>50.0</imageWidth>
-                </components.entityComponents.ImagePropertiesComponent>
-                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.CollisionComponentsHandler>
-                  <sideCollisionMap>
-                    <entry>
-                      <string>Left</string>
-                      <components.entityComponents.SideCollisionComponent>
-                        <sideCollision>Left</sideCollision>
-                        <typeActionMap>
-                          <entry>
-                            <string>Player</string>
-                            <list>
-                              <actions.GoalAction>
-                                <gdf/>
-                                <toLevel>1</toLevel>
-                              </actions.GoalAction>
-                            </list>
-                          </entry>
-                        </typeActionMap>
-                        <labelActionMap/>
-                      </components.entityComponents.SideCollisionComponent>
-                    </entry>
-                    <entry>
-                      <string>Top</string>
-                      <components.entityComponents.SideCollisionComponent>
-                        <sideCollision>Top</sideCollision>
-                        <typeActionMap>
-                          <entry>
-                            <string>Player</string>
-                            <list>
-                              <actions.GoalAction>
-                                <gdf/>
-                                <toLevel>1</toLevel>
-                              </actions.GoalAction>
-                            </list>
-                          </entry>
-                        </typeActionMap>
-                        <labelActionMap/>
-                      </components.entityComponents.SideCollisionComponent>
-                    </entry>
-                    <entry>
-                      <string>Right</string>
-                      <components.entityComponents.SideCollisionComponent>
-                        <sideCollision>Right</sideCollision>
-                        <typeActionMap>
-                          <entry>
-                            <string>Player</string>
-                            <list>
-                              <actions.GoalAction>
-                                <gdf/>
-                                <toLevel>1</toLevel>
-                              </actions.GoalAction>
-                            </list>
-                          </entry>
-                        </typeActionMap>
-                        <labelActionMap/>
-                      </components.entityComponents.SideCollisionComponent>
-                    </entry>
-                    <entry>
-                      <string>Bottom</string>
-                      <components.entityComponents.SideCollisionComponent>
-                        <sideCollision>Bottom</sideCollision>
-                        <typeActionMap>
-                          <entry>
-                            <string>Player</string>
-                            <list>
-                              <actions.GoalAction>
-                                <gdf/>
-                                <toLevel>1</toLevel>
-                              </actions.GoalAction>
-                            </list>
-                          </entry>
-                        </typeActionMap>
-                        <labelActionMap/>
-                      </components.entityComponents.SideCollisionComponent>
-                    </entry>
-                  </sideCollisionMap>
-                </components.entityComponents.CollisionComponentsHandler>
-                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.LocationComponent>
-                  <x>3550.0</x>
-                  <y>300.0</y>
-                </components.entityComponents.LocationComponent>
-                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
-              </entry>
-            </myComponentMap>
-          </entity.Entity>
-        </entry>
-        <entry>
           <int>1469</int>
           <entity.Entity>
             <changed>false</changed>
@@ -7808,14 +7231,6 @@
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollisionComponentsHandler>
                   <sideCollisionMap>
                     <entry>
@@ -7889,6 +7304,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CheckCollisionComponent>
@@ -7940,14 +7363,6 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LabelComponent>
                   <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
@@ -8027,6 +7442,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CheckCollisionComponent>
@@ -8084,6 +7507,14 @@
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.CollisionComponentsHandler>
                   <sideCollisionMap>
                     <entry>
@@ -8159,14 +7590,6 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CheckCollisionComponent>
                   <checkCollision>true</checkCollision>
                 </components.entityComponents.CheckCollisionComponent>
@@ -8207,6 +7630,14 @@
                   <myPath>horse.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -8295,14 +7726,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CheckCollisionComponent>
@@ -8604,14 +8027,6 @@
             <identifier>1475</identifier>
             <myComponentMap>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
                 </components.entityComponents.CollidableComponent>
@@ -8717,6 +8132,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CheckCollisionComponent>
@@ -8748,14 +8171,6 @@
                 <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.TypeComponent>
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
@@ -8855,6 +8270,14 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CheckCollisionComponent>
@@ -8892,19 +8315,19 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>horse.png</myString>
+                  <myPath>horse.png</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>horse.png</myString>
-                  <myPath>horse.png</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -9168,14 +8591,6 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>horse.png</myString>
                   <myPath>horse.png</myPath>
@@ -9188,6 +8603,14 @@
                   <imageWidth>50.0</imageWidth>
                 </components.entityComponents.ImagePropertiesComponent>
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.LabelComponent>
@@ -9582,14 +9005,6 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>horse.png</myString>
                   <myPath>horse.png</myPath>
@@ -9685,6 +9100,14 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.CheckCollisionComponent>
                   <checkCollision>true</checkCollision>
                 </components.entityComponents.CheckCollisionComponent>
@@ -9727,6 +9150,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -9738,14 +9169,6 @@
                   <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CollisionComponentsHandler>
@@ -10134,6 +9557,14 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>horse.png</myString>
                   <myPath>horse.png</myPath>
@@ -10152,14 +9583,6 @@
                   <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CollisionComponentsHandler>
@@ -10279,6 +9702,14 @@
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.ImagePropertiesComponent>
                   <imageHeight>50.0</imageHeight>
                   <imageWidth>50.0</imageWidth>
@@ -10367,14 +9798,6 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.CheckCollisionComponent>
                   <checkCollision>true</checkCollision>
                 </components.entityComponents.CheckCollisionComponent>
@@ -10397,6 +9820,14 @@
             <obs/>
             <identifier>1488</identifier>
             <myComponentMap>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
               <entry>
                 <components.entityComponents.CollidableComponent>
                   <collide>true</collide>
@@ -10503,14 +9934,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CheckCollisionComponent>
@@ -10824,19 +10247,19 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.SpriteComponent>
-                  <myString>horse.png</myString>
-                  <myPath>horse.png</myPath>
-                </components.entityComponents.SpriteComponent>
-                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.TimeComponent>
                   <timeActions/>
                   <lastTimeAction/>
                   <singleTimeAction/>
                 </components.entityComponents.TimeComponent>
                 <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>horse.png</myString>
+                  <myPath>horse.png</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -10976,14 +10399,6 @@
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.LabelComponent>
                   <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
@@ -11065,6 +10480,14 @@
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.CheckCollisionComponent>
                   <checkCollision>true</checkCollision>
                 </components.entityComponents.CheckCollisionComponent>
@@ -11105,6 +10528,14 @@
                   <myPath>horse.png</myPath>
                 </components.entityComponents.SpriteComponent>
                 <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.ImagePropertiesComponent>
@@ -11193,14 +10624,6 @@
                   </sideCollisionMap>
                 </components.entityComponents.CollisionComponentsHandler>
                 <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CheckCollisionComponent>
@@ -11370,6 +10793,14 @@
                 <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TypeComponent>
                   <typeOfEntity>Block</typeOfEntity>
                 </components.entityComponents.TypeComponent>
@@ -11394,14 +10825,6 @@
                   <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CollisionComponentsHandler>
@@ -11514,14 +10937,6 @@
                 <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.TimeComponent>
-                  <timeActions/>
-                  <lastTimeAction/>
-                  <singleTimeAction/>
-                </components.entityComponents.TimeComponent>
-                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>horse.png</myString>
                   <myPath>horse.png</myPath>
@@ -11540,6 +10955,14 @@
                   <myString>Default Block</myString>
                 </components.entityComponents.LabelComponent>
                 <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TimeComponent>
+                  <timeActions/>
+                  <lastTimeAction/>
+                  <singleTimeAction/>
+                </components.entityComponents.TimeComponent>
+                <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.CollisionComponentsHandler>
@@ -11626,6 +11049,392 @@
                 <components.entityComponents.LocationComponent>
                   <x>1330.0</x>
                   <y>480.0</y>
+                </components.entityComponents.LocationComponent>
+                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
+              </entry>
+            </myComponentMap>
+          </entity.Entity>
+        </entry>
+        <entry>
+          <int>1497</int>
+          <entity.Entity>
+            <changed>false</changed>
+            <obs/>
+            <identifier>1497</identifier>
+            <myComponentMap>
+              <entry>
+                <components.entityComponents.CollidableComponent>
+                  <collide>true</collide>
+                </components.entityComponents.CollidableComponent>
+                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>mario_step1.gif</myString>
+                  <myPath>mario_step1.gif</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LabelComponent>
+                  <myString>Defult Player</myString>
+                </components.entityComponents.LabelComponent>
+                <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.KeyInputComponent>
+                  <inputMap>
+                    <entry>
+                      <javafx.scene.input.KeyCode>C</javafx.scene.input.KeyCode>
+                      <list>
+                        <actions.ShootAction>
+                          <gdf/>
+                        </actions.ShootAction>
+                      </list>
+                    </entry>
+                    <entry>
+                      <javafx.scene.input.KeyCode>W</javafx.scene.input.KeyCode>
+                      <list>
+                        <components.keyExpressions.JumpAction/>
+                      </list>
+                    </entry>
+                    <entry>
+                      <javafx.scene.input.KeyCode>D</javafx.scene.input.KeyCode>
+                      <list>
+                        <components.keyExpressions.RightAction/>
+                      </list>
+                    </entry>
+                    <entry>
+                      <javafx.scene.input.KeyCode>A</javafx.scene.input.KeyCode>
+                      <list>
+                        <components.keyExpressions.LeftAction/>
+                      </list>
+                    </entry>
+                  </inputMap>
+                  <groovyMap/>
+                </components.entityComponents.KeyInputComponent>
+                <components.entityComponents.ComponentType>KeyInput</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.VelocityComponent>
+                  <x>0.0</x>
+                  <y>-8.0E-12</y>
+                </components.entityComponents.VelocityComponent>
+                <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TypeComponent>
+                  <typeOfEntity>Player</typeOfEntity>
+                </components.entityComponents.TypeComponent>
+                <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.TerminalVelocityComponent>
+                  <x>24.8125</x>
+                  <y>24.8125</y>
+                </components.entityComponents.TerminalVelocityComponent>
+                <components.entityComponents.ComponentType>TerminalVelocity</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ObjectCreationComponent>
+                  <storedEntity class="entity.Entity">
+                    <changed>false</changed>
+                    <obs/>
+                    <identifier>0</identifier>
+                    <myComponentMap>
+                      <entry>
+                        <components.entityComponents.CollidableComponent>
+                          <collide>true</collide>
+                        </components.entityComponents.CollidableComponent>
+                        <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.TypeComponent>
+                          <typeOfEntity>Block</typeOfEntity>
+                        </components.entityComponents.TypeComponent>
+                        <components.entityComponents.ComponentType>Type</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.SpriteComponent>
+                          <myString>platform_tile_059.png</myString>
+                          <myPath>platform_tile_059.png</myPath>
+                        </components.entityComponents.SpriteComponent>
+                        <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.ImagePropertiesComponent>
+                          <imageHeight>50.0</imageHeight>
+                          <imageWidth>50.0</imageWidth>
+                        </components.entityComponents.ImagePropertiesComponent>
+                        <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.LabelComponent>
+                          <myString>Default Block</myString>
+                        </components.entityComponents.LabelComponent>
+                        <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.TimeComponent>
+                          <timeActions/>
+                          <lastTimeAction/>
+                          <singleTimeAction/>
+                        </components.entityComponents.TimeComponent>
+                        <components.entityComponents.ComponentType>Time</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.CollisionComponentsHandler>
+                          <sideCollisionMap>
+                            <entry>
+                              <string>Left</string>
+                              <components.entityComponents.SideCollisionComponent>
+                                <sideCollision>Left</sideCollision>
+                                <typeActionMap>
+                                  <entry>
+                                    <string>Player</string>
+                                    <list>
+                                      <actions.DeathAction>
+                                        <gdf/>
+                                      </actions.DeathAction>
+                                    </list>
+                                  </entry>
+                                </typeActionMap>
+                                <labelActionMap/>
+                              </components.entityComponents.SideCollisionComponent>
+                            </entry>
+                            <entry>
+                              <string>Top</string>
+                              <components.entityComponents.SideCollisionComponent>
+                                <sideCollision>Top</sideCollision>
+                                <typeActionMap>
+                                  <entry>
+                                    <string>Player</string>
+                                    <list>
+                                      <actions.DeathAction>
+                                        <gdf/>
+                                      </actions.DeathAction>
+                                    </list>
+                                  </entry>
+                                </typeActionMap>
+                                <labelActionMap/>
+                              </components.entityComponents.SideCollisionComponent>
+                            </entry>
+                            <entry>
+                              <string>Right</string>
+                              <components.entityComponents.SideCollisionComponent>
+                                <sideCollision>Right</sideCollision>
+                                <typeActionMap>
+                                  <entry>
+                                    <string>Player</string>
+                                    <list>
+                                      <actions.DeathAction>
+                                        <gdf/>
+                                      </actions.DeathAction>
+                                    </list>
+                                  </entry>
+                                </typeActionMap>
+                                <labelActionMap/>
+                              </components.entityComponents.SideCollisionComponent>
+                            </entry>
+                            <entry>
+                              <string>Bottom</string>
+                              <components.entityComponents.SideCollisionComponent>
+                                <sideCollision>Bottom</sideCollision>
+                                <typeActionMap>
+                                  <entry>
+                                    <string>Player</string>
+                                    <list>
+                                      <actions.DeathAction>
+                                        <gdf/>
+                                      </actions.DeathAction>
+                                    </list>
+                                  </entry>
+                                </typeActionMap>
+                                <labelActionMap/>
+                              </components.entityComponents.SideCollisionComponent>
+                            </entry>
+                          </sideCollisionMap>
+                        </components.entityComponents.CollisionComponentsHandler>
+                        <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.TerminalVelocityComponent>
+                          <x>0.0</x>
+                          <y>0.0</y>
+                        </components.entityComponents.TerminalVelocityComponent>
+                        <components.entityComponents.ComponentType>TerminalVelocity</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.VelocityComponent>
+                          <x>0.0</x>
+                          <y>-2.0E-12</y>
+                        </components.entityComponents.VelocityComponent>
+                        <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
+                      </entry>
+                      <entry>
+                        <components.entityComponents.CheckCollisionComponent>
+                          <checkCollision>true</checkCollision>
+                        </components.entityComponents.CheckCollisionComponent>
+                        <components.entityComponents.ComponentType>CheckCollision</components.entityComponents.ComponentType>
+                      </entry>
+                    </myComponentMap>
+                  </storedEntity>
+                  <creating>true</creating>
+                </components.entityComponents.ObjectCreationComponent>
+                <components.entityComponents.ComponentType>ObjectCreation</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.AccelerationComponent>
+                  <x>0.0</x>
+                  <y>0.0</y>
+                </components.entityComponents.AccelerationComponent>
+                <components.entityComponents.ComponentType>Acceleration</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.CheckCollisionComponent>
+                  <checkCollision>true</checkCollision>
+                </components.entityComponents.CheckCollisionComponent>
+                <components.entityComponents.ComponentType>CheckCollision</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LocationComponent>
+                  <x>200.0</x>
+                  <y>300.0</y>
+                </components.entityComponents.LocationComponent>
+                <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
+              </entry>
+            </myComponentMap>
+          </entity.Entity>
+        </entry>
+        <entry>
+          <int>1498</int>
+          <entity.Entity>
+            <changed>false</changed>
+            <obs/>
+            <identifier>1498</identifier>
+            <myComponentMap>
+              <entry>
+                <components.entityComponents.CollidableComponent>
+                  <collide>true</collide>
+                </components.entityComponents.CollidableComponent>
+                <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.SpriteComponent>
+                  <myString>portal.png</myString>
+                  <myPath>portal.png</myPath>
+                </components.entityComponents.SpriteComponent>
+                <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.GoalComponent>
+                  <goalSatisfied>true</goalSatisfied>
+                </components.entityComponents.GoalComponent>
+                <components.entityComponents.ComponentType>Goal</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.ImagePropertiesComponent>
+                  <imageHeight>50.0</imageHeight>
+                  <imageWidth>50.0</imageWidth>
+                </components.entityComponents.ImagePropertiesComponent>
+                <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.CollisionComponentsHandler>
+                  <sideCollisionMap>
+                    <entry>
+                      <string>Left</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Left</sideCollision>
+                        <typeActionMap>
+                          <entry>
+                            <string>Player</string>
+                            <list>
+                              <actions.GoalAction>
+                                <gdf/>
+                                <toLevel>1</toLevel>
+                              </actions.GoalAction>
+                            </list>
+                          </entry>
+                        </typeActionMap>
+                        <labelActionMap/>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                    <entry>
+                      <string>Top</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Top</sideCollision>
+                        <typeActionMap>
+                          <entry>
+                            <string>Player</string>
+                            <list>
+                              <actions.GoalAction>
+                                <gdf/>
+                                <toLevel>1</toLevel>
+                              </actions.GoalAction>
+                            </list>
+                          </entry>
+                        </typeActionMap>
+                        <labelActionMap/>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                    <entry>
+                      <string>Right</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Right</sideCollision>
+                        <typeActionMap>
+                          <entry>
+                            <string>Player</string>
+                            <list>
+                              <actions.GoalAction>
+                                <gdf/>
+                                <toLevel>1</toLevel>
+                              </actions.GoalAction>
+                            </list>
+                          </entry>
+                        </typeActionMap>
+                        <labelActionMap/>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                    <entry>
+                      <string>Bottom</string>
+                      <components.entityComponents.SideCollisionComponent>
+                        <sideCollision>Bottom</sideCollision>
+                        <typeActionMap>
+                          <entry>
+                            <string>Player</string>
+                            <list>
+                              <actions.GoalAction>
+                                <gdf/>
+                                <toLevel>1</toLevel>
+                              </actions.GoalAction>
+                            </list>
+                          </entry>
+                        </typeActionMap>
+                        <labelActionMap/>
+                      </components.entityComponents.SideCollisionComponent>
+                    </entry>
+                  </sideCollisionMap>
+                </components.entityComponents.CollisionComponentsHandler>
+                <components.entityComponents.ComponentType>CollisionHandler</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.LocationComponent>
+                  <x>3550.0</x>
+                  <y>300.0</y>
                 </components.entityComponents.LocationComponent>
                 <components.entityComponents.ComponentType>Location</components.entityComponents.ComponentType>
               </entry>
