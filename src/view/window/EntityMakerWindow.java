@@ -1,15 +1,18 @@
 package view.window;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import components.entityComponents.ComponentType;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import entity.presets.AbstractBlock;
 import entity.presets.PresetEntites;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -29,7 +32,7 @@ import view.UtilityFactory;
 import view.ViewData;
 import voogasalad.util.reflection.Reflection;
 
-public class EntityBuilderWindow implements Window {
+public class EntityMakerWindow implements Window {
 
 	private final Image defaultImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
 	private ImageView myImage;
@@ -37,19 +40,18 @@ public class EntityBuilderWindow implements Window {
 	private Entity myEntity;
 	private ImageChooser imageChooser = new ImageChooser();
 	private UtilityFactory util;
-	private ViewData myData;
 	private Stage myStage = new Stage();
 	private String entityList;
+	private EntityChangerWindow ecw = null;
 
-	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn) {
-		myData = dataIn;
+	public EntityMakerWindow(UtilityFactory utilIn) {
 		util = utilIn;
 	}
 
 	public void showEntityBuilder() {
 		myImage = new ImageView(defaultImage);
 		myStage.setScene(buildScene());
-		myStage.show();
+		openWindow();
 	}
 
 	private Scene buildScene() {
@@ -89,13 +91,13 @@ public class EntityBuilderWindow implements Window {
 		ListView<String> presetEnt = util.buildListView(new ArrayList(stringFromPreset.keySet()));
 		presetEnt.setMaxHeight(250);
 		root.getChildren().add(presetEnt);
-		
 		presetEnt.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldVal, String newVal) {
 				entityList = stringFromPreset.get(newVal).toString();
 			}
 		});
+
 	}
 
 	private void addOkayButton(Pane root) {
@@ -103,24 +105,11 @@ public class EntityBuilderWindow implements Window {
 			if (myImageName.equals("")) {
 				throw new AuthoringException("NO_IMAGE");
 			}
-			Entity tempEntity = null;
-			try {
-				tempEntity = (Entity) Reflection.createInstance("entity.presets." + entityList,
-						myData.getDefinedEntityID());
-			} catch (Exception x) {
-				tempEntity = (Entity) Reflection.createInstance("entity.presets." + entityList, 0);
-			}
-
-			tempEntity.addComponent(new SpriteComponent(myImageName));
-			myStage.close();
-			EntityConfigurationWindow ecw = null;
-			if (myData != null){
-				ecw = new EntityConfigurationWindow(util, myData, tempEntity);
-			}else{
-				ecw = new EntityConfigurationWindow(util, tempEntity);
-				
-			}
+			myEntity = (Entity) Reflection.createInstance("entity.presets." + entityList, 0);
+			myEntity.addComponent(new SpriteComponent(myImageName));
+			ecw = new EntityChangerWindow(util, myEntity);
 			ecw.openWindow();
+			myStage.close();
 		});
 		root.getChildren().add(okayButton);
 	}
@@ -133,10 +122,10 @@ public class EntityBuilderWindow implements Window {
 		addOkayButton(pane);
 		return pane;
 	}
-	
+
 	@Override
 	public void openWindow() {
-		myStage.show();
+		myStage.showAndWait();
 	}
 
 }

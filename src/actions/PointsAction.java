@@ -2,6 +2,10 @@ package actions;
 
 import java.util.List;
 
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import entity.IEntity;
 import entity.IEntityManager;
 import exceptions.InputException;
@@ -9,6 +13,10 @@ import exceptions.NumericInputException;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 
+@TopAction()
+@LeftAction()
+@RightAction()
+@BottomAction()
 public class PointsAction extends AbstractAction implements IAction {
 	private double increment;
 	public PointsAction(double d){

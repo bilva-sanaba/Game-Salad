@@ -62,6 +62,7 @@ import entity.presets.AbstractBreakableBox;
 import entity.presets.AbstractEnemy;
 import entity.presets.AbstractGoal;
 import entity.presets.AbstractMysteryBlock;
+import entity.presets.AbstractPlayer;
 import entity.presets.AbstractPowerup;
 import entity.presets.DeathBlock;
 import entity.presets.DoodleJumpPlatform;
