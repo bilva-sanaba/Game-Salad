@@ -1,14 +1,23 @@
 package view.window;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import components.entityComponents.ComponentType;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
 import entity.presets.AbstractBlock;
+import entity.presets.PresetEntites;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -33,7 +42,7 @@ public class EntityBuilderWindow implements Window {
 	private UtilityFactory util;
 	private ViewData myData;
 	private Stage myStage = new Stage();
-	private String[] entityList = {"Error"};
+	private String entityList;
 
 	public EntityBuilderWindow(UtilityFactory utilIn, ObservableList<Entity> blocksListIn, ViewData dataIn) {
 		myData = dataIn;
@@ -74,14 +83,23 @@ public class EntityBuilderWindow implements Window {
 	
 	private void addRadioButtons(Pane root) {
 		Node entityType = new Label("Kind of Entity:");
-		root.getChildren().add(entityType);
-
-		final ToggleGroup group = util.buildRadioButtonGroup("SelectEntityType", root);
-		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-				entityList = (String[]) new_toggle.getUserData();
+		Map<String, PresetEntites> stringFromPreset = new HashMap<String, PresetEntites>();
+		for(int i = 0; i < PresetEntites.values().length; i++){
+			PresetEntites st = PresetEntites.values()[i];
+			System.out.println(util.getText(st.toString()));
+			stringFromPreset.put(util.getText(st.toString()), st);
+		}
+		ListView<String> presetEnt = util.buildListView(new ArrayList(stringFromPreset.keySet()));
+		presetEnt.setMaxHeight(250);
+		root.getChildren().add(presetEnt);
+		presetEnt.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldVal,
+					String newVal) {
+				entityList = stringFromPreset.get(newVal).toString();
 			}
 		});
+
 	}
 	
 	private void addOkayButton(Pane root) {

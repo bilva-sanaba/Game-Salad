@@ -2,15 +2,19 @@ package view;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 
 import entity.Entity;
+import entity.presets.PresetEntites;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -229,7 +233,14 @@ public class UtilityFactory {
 		return new ListView<T>(obslist);
 	}
 
-	public void setPresets(ObservableList<Entity> list) {
-
+	public String getText(String string) {
+		try{
+			return myResources.getString(string.split(" ")[1]);
+		}catch(ArrayIndexOutOfBoundsException e){
+			return myResources.getString(string);
+		}catch(Exception e){
+			return string;
+		}
 	}
+
 }

@@ -187,15 +187,6 @@ public class ViewData extends Observable {
 		return copiedEntity;
 	}
 
-	// fix dependencies
-	public Entity pasteEntity(int level, double x, double y) {
-		Entity tempEntity = copiedEntity.clone();
-		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
-		tempLocation.setXY(x, y);
-		placeEntity(level, tempEntity);
-		return tempEntity;
-	}
-
 	public Map<Integer, Entity> getDefinedEntityMap() {
 		return definedEntityMap;
 	}

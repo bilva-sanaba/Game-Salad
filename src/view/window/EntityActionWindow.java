@@ -81,12 +81,6 @@ public class EntityActionWindow implements Window {
 		for (int j = 0; j < CollisionComponentType.values().length; j++) {
 			CollisionComponentType currentType = CollisionComponentType.values()[j];
 			List<Class<?>> listofAct = ar.getActionsWithAnnotation(currentType);
-			// ArrayList<IAction> actions = new ArrayList<IAction>();
-			// try {
-			// populatelist(actions, listofAct);
-			// } catch (InputException e1) {
-			// //throw alert
-			// }
 			ArrayList<String> actions = new ArrayList<String>();
 			try {
 				populateString(actions, listofAct);
@@ -107,8 +101,7 @@ public class EntityActionWindow implements Window {
 			Class<?> nextAction = listofAct.get(i);
 			String act = null;
 			act = nextAction.toString();
-			System.out.println(nextAction.getName() + " line 59" + this.getClass());
-			actions.add(act);
+			actions.add(myUtilF.getText(act));
 			allAct.put(act, nextAction);
 		}
 	}
@@ -153,7 +146,6 @@ public class EntityActionWindow implements Window {
 
 	private IAction getAction(Class<?> absAct) throws InputException {
 		IAction act = null;
-		System.out.println(absAct + " line 59" + this.getClass());
 		try {
 			act = (IAction) absAct.newInstance();
 		} catch (InstantiationException | IllegalAccessException e) {
@@ -166,21 +158,6 @@ public class EntityActionWindow implements Window {
 	private void initalizeListView(ListView<?> viewActs) {
 		viewActs.setId("actions");
 		viewActs.setMaxSize(200, 150);
-	}
-
-	private void populatelist(List<IAction> actions, List<Class<?>> listofAct) throws InputException {
-		for (int i = 0; i < listofAct.size(); i++) {
-			Class<?> nextAction = listofAct.get(i);
-			IAction act = null;
-			try {
-				act = (IAction) nextAction.newInstance();
-				System.out.println(nextAction.getName() + " line 59" + this.getClass());
-			} catch (InstantiationException | IllegalAccessException e) {
-				IActionMakerWindow actionMaker = new IActionMakerWindow(myUtilF, nextAction);
-				act = actionMaker.openWindow();
-			}
-			actions.add(act);
-		}
 	}
 
 	private void setListView(Node viewActs, int j) {
