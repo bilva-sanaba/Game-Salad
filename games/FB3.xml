@@ -17,18 +17,6 @@
                 <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.ControllableComponent>
-                  <controllable>true</controllable>
-                </components.entityComponents.ControllableComponent>
-                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.FrictionComponent>
-                  <friction>false</friction>
-                </components.entityComponents.FrictionComponent>
-                <components.entityComponents.ComponentType>Friction</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>flappybird_yellow.png</myString>
                   <myPath>flappybird_yellow.png</myPath>
@@ -61,6 +49,12 @@
                   <groovyMap/>
                 </components.entityComponents.KeyInputComponent>
                 <components.entityComponents.ComponentType>KeyInput</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.FrictionComponent>
+                  <friction>false</friction>
+                </components.entityComponents.FrictionComponent>
+                <components.entityComponents.ComponentType>Friction</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.VelocityComponent>
@@ -97,6 +91,12 @@
                 <components.entityComponents.ComponentType>Acceleration</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.CheckCollisionComponent>
                   <checkCollision>true</checkCollision>
                 </components.entityComponents.CheckCollisionComponent>
@@ -125,11 +125,11 @@
         <myComponentMap/>
         <rows>72</rows>
         <cols>90</cols>
-        <backgroundFilePath>images/background1.png</backgroundFilePath>
+        <backgroundFilePath>background1.png</backgroundFilePath>
         <openingMusic></openingMusic>
         <lives>3</lives>
-        <ie>None</ie>
-        <camera>false</camera>
+        <ie>Horizontal</ie>
+        <camera>true</camera>
       </entity.LevelEntity>
     </entry>
   </map>
