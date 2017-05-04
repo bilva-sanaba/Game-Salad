@@ -9,6 +9,12 @@ import components.IComponent;
 public class CollisionComponentsHandler extends AComponent implements IComponent {
 	private Map<String, SideCollisionComponent> sideCollisionMap;
 	
+	
+	public static final String TOP = "Top";
+	public static final String LEFT = "Left";
+	public static final String BOTTOM = "Bottom";
+	public static final String RIGHT = "Right";
+	
 	public CollisionComponentsHandler(Map <String, SideCollisionComponent> map){
 		sideCollisionMap = map;
 		
@@ -44,7 +50,10 @@ public class CollisionComponentsHandler extends AComponent implements IComponent
 
 	@Override
 	public IComponent newCopy() {
-		// TODO Auto-generated method stub
-		return new CollisionComponentsHandler(sideCollisionMap);
+		Map<String, SideCollisionComponent> copyMap = new HashMap<String, SideCollisionComponent>();
+		for (String s: sideCollisionMap.keySet()) {
+			copyMap.put(s, (SideCollisionComponent) sideCollisionMap.get(s).newCopy());
+		}
+		return new CollisionComponentsHandler(copyMap);
 	}
 }

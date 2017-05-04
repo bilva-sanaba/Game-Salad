@@ -1,7 +1,34 @@
+/**** Network Window ****/
+
+.wide-box {
+	-fx-spacing: 50;
+	-fx-padding: 10;
+}
+
+.narrow-box {
+	-fx-spacing: 10
+}
+
+
+
+
+
+
+/**** General ****/
+
 .root {
 	-fx-base: rgb(80, 80, 80);
 	-fx-background: rgb(80, 80, 80);
 	-fx-control-inner-background: rgb(80, 80, 80);
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: gray;
+}
+.tab-pane .tab:selected
+{
+    -fx-background-color: rgb(80,80,80);
 }
 
 .text {
@@ -60,7 +87,6 @@
 	-fx-background-color: linear-gradient(#2A5058, #61a2b1)
 }
 
-/**** Scrollbar ****/
 .scroll-bar { 
     -fx-background-color: transparent;
 }
@@ -92,3 +118,11 @@
     -fx-background-color: #76d7c4;
     -fx-text-fill: white;
 }
+
+#actions .list-cell{
+	-fx-alignment: center;
+	-fx-position: center;
+	-fx-height: 200px;
+	-fx-width: 200px;
+}
+

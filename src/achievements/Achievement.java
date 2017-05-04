@@ -13,7 +13,7 @@ public class Achievement implements IAchievement {
 	private final int WIDTH = 2;
 	private final int HEIGHT = 4;
 	private final int xCORRECTION = 50;
-	private final int yCORRECTION = 350;
+	private final int yCORRECTION = -450;
 	
 	//private String message;
 	private Group group;

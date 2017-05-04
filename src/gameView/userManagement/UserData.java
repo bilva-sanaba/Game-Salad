@@ -1,66 +1,130 @@
 package gameView.userManagement;
 
 import gameView.tools.ImageViewContainer;
+import gamedata.VoogaImmutableObservableList;
 
-import java.io.File;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Set;
+
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class UserData {
-
-	public static final List<String> DATA_FIELDS = Arrays.asList("username", "password", "image");
-	
 	
 	private String username;
 	private String password;
-	//private String myLastName;
 	private String image;
 	private HashMap<String, Double> myGameScores;
+	private Set<String> myAchievements;
+	private Collection<String> myGames;
 	
 	public UserData(String name, String passwordString, String imageString) {
 		username = name;
 		password = passwordString;
 		myGameScores = new HashMap<String, Double>();
-		//myLastName = lastName;
-		image = imageString;
+		myAchievements = new HashSet<String>();
+		myGames = new ArrayList<String>();
+		image = imageString == null ? "" : imageString;
 	}
 	
+	/**
+	 * @return name of user
+	 */
 	public String getName(){
 		return username;
 	}
 	
-//	public String getLastName() {
-//		return myLastName;
-//	}
-	
+	/**
+	 * Adds a new high score to a specific game
+	 * @param game - current game being played 
+	 * @param points - corresponding score
+	 */
 	public void addPoints(String game, Double points) {
 		if (myGameScores.get(game) == null || myGameScores.get(game) < points) {
 			myGameScores.put(game, points);
 		}
 	}
 	
-	public Iterator<String> getGames() {
+	/**
+	 * Adds new achievements 
+	 * @param achieve - list of achievements the user has accrued during playing session
+	 */
+	public void addAchievement(VoogaImmutableObservableList<String> achieve) {
+		Iterator<String> it = achieve.iterator();
+		while (it.hasNext()) {
+			myAchievements.add(it.next());
+		}
+		
+	}
+	
+	/**
+	 * @return Iterator of all the games
+	 */
+	public Iterator<String> getGameScores() {
 		return myGameScores.keySet().iterator();
 	}
 	
-	public Double getPointValue(String key) {
-		return new Double(myGameScores.get(key).doubleValue());
+	/**
+	 * @return iterator of all the achievements
+	 */
+	public Iterator<String> getAchievements() {
+		return myAchievements.iterator();
 	}
 	
+	/**
+	 * @param key - a specific game
+	 * @return - String value of the number of points for that game
+	 */
+	public String getPointValue(String key) {
+		return new Double(myGameScores.get(key).doubleValue()).toString();
+	}
+	
+	/**
+	 * @return - user password
+	 */
 	public String getPassword() {
 		return password;
 	}
+	
+	/**
+	 * @return ImageViewContainer of users image
+	 */
 	public ImageViewContainer getProfilePicture() {
 		return makeImage(image);
 	}
 	
+	/**
+	 * Changes the user's profile picture
+	 * @param newImage - new picture
+	 */
+	public void changePicture(String newImage) {
+		image = newImage;
+	}
+	
+	/**
+	 * Adds a user-specific game -- if a user saves during gameplay, it will add the current game to allow user to load and pick up 
+	 * where they left off
+	 * @param file
+	 */
+	public void addGame(String file) {
+		myGames.add(file);
+	}
+	
+	/**
+	 * @return an unmodifiable list of all the user's games
+	 */
+	public Collection<String> getGames() {
+		return Collections.unmodifiableCollection(myGames);
+	}
+	
 	private ImageViewContainer makeImage(String s) {
-		if (s == null) {
+		if (s.equals("")) {
 			return null;
 		}
 		ImageViewContainer toAdd = new ImageViewContainer(new Image(image), image);

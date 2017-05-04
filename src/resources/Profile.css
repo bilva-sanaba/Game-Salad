@@ -10,6 +10,11 @@
 	-fx-font-size: 20;
 	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
 }
+#games {
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-font-size: 15;
+}
 
 #imagebutton {
 	-fx-background-color: #f5f5f5;
@@ -39,4 +44,27 @@
 	-fx-font-weight: bold;
 	-fx-font-size: 20;
 	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
+}
+
+.table-view {
+    -fx-base: #a9a9a9;
+    -fx-control-inner-background: #a9a9a9;
+    -fx-background-color: #a9a9a9;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Arial Narrow";
+    -fx-text-fill: black;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
 }

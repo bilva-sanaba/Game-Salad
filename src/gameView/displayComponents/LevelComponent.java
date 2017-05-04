@@ -1,12 +1,10 @@
 package gameView.displayComponents;
 
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
-import gameView.UIView;
 import gameView.tools.DisplayEnum;
 import gamedata.IRestrictedGameData;
 
@@ -35,7 +33,7 @@ public class LevelComponent extends UIDisplayComponent {
 
 	@Override
 	public DisplayEnum getPos() {
-		return DisplayEnum.TOP_CENTER;
+		return DisplayEnum.TOP_LEFT;
 	}
 
 	@Override
@@ -44,7 +42,6 @@ public class LevelComponent extends UIDisplayComponent {
 		myLabel = new Label();
 		setLabel();
 		myBox = new HBox(myLabel);
-		System.out.println(myBox.getWidth());
 		
 	}
 	

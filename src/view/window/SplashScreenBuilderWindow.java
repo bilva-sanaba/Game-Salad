@@ -2,7 +2,7 @@ package view.window;
 
 import java.io.File;
 
-import entity.SplashEntity;
+import entity.SplashData;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,8 +19,8 @@ import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
 
-public class SplashScreenBuilderWindow extends Window{	
-	private UtilityFactory utilF;
+public class SplashScreenBuilderWindow implements Window{	
+	private UtilityFactory myUtilF;
 	private Text myFilePathDisplay;
 	private String splashScreenImagePath;
 	private String gameTitle;
@@ -30,13 +30,13 @@ public class SplashScreenBuilderWindow extends Window{
 	private Stage myStage = new Stage();
 	private VBox myRoot;
 	
-	public SplashScreenBuilderWindow() {
+	public SplashScreenBuilderWindow(UtilityFactory utilF) {
+		myUtilF = utilF;
 		myFilePathDisplay = new Text("");
 		myRoot = new VBox();
 	}
 	
-//	This shit needs to be refactored
-	public SplashEntity createEntity() {
+	public SplashData createEntity() {
 		myStage = new Stage();
 		myRoot.setPadding(new Insets(10));
 //		pickColor(root);
@@ -70,21 +70,9 @@ public class SplashScreenBuilderWindow extends Window{
 		myStage.showAndWait();
 
 //		beneath here is a splash entity which you instantiate with all the values you just found at the x's
-		SplashEntity s = new SplashEntity(1, gameTitle, instructions, splashScreenImagePath);
+		SplashData s = new SplashData(1, gameTitle, instructions, splashScreenImagePath);
 		return s;
 	}
-	
-//	private void pickColor(Pane root){
-//		Label backgroundColorTitle = new Label("Background Color");
-//		GridPane.setConstraints(backgroundColorTitle, 0, 0);
-//		ColorPicker colorPicker = new ColorPicker();
-//		GridPane.setConstraints(colorPicker, 1, 1);
-//		Circle circle = new Circle(50);
-//		GridPane.setConstraints(circle, 0, 1);
-//		circle.setFill(colorPicker.getValue());
-//		colorPicker.setOnAction(e -> circle.setFill(colorPicker.getValue()));
-//		root.getChildren().addAll(backgroundColorTitle, circle, colorPicker);	
-//	}
 	
 	private void selectText(Pane root){
 		Label getGameTitle = new Label("Game Title:");

@@ -1,0 +1,23 @@
+.root {
+	-fx-background-color: #a9a9a9;
+}
+
+.button {
+	-fx-background-color: #708090;
+	-fx-text-fill: white;
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-font-size: 20;
+	-fx-effect: dropshadow(gaussian, #2f4f4f, 10, 0.2, 0, 0);
+}
+
+.label {
+	-fx-font-family: "Arial Narrow";
+	-fx-font-weight: bold;
+	-fx-font-size: 20;
+}
+
+.slider {
+	-fx-major-tick-unit: .1;
+	-fx-snap-to-ticks: true;
+}

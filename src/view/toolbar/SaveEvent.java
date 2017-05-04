@@ -5,16 +5,19 @@ import data_interfaces.*;
 
 import entity.Entity;
 import entity.IEntity;
-import entity.SplashEntity;
+import entity.SplashData;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
+import view.UtilityFactory;
 import view.ViewData;
 
 public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent {
-	ViewData myData;
+	private ViewData myData;
+	private final static String FILESAVETITLE = "Saving File";
+	private final static String FILESAVEBODY = "Please choose a name for your game: ";
 
-	public SaveEvent(ViewData data) {
+	public SaveEvent(UtilityFactory utilF, ViewData data) {
 		myData = data;
 	}
 
@@ -26,15 +29,15 @@ public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		
 		l.add(myData.getPlacedEntityMap());
 		l.add(myData.getLevelEntityMap());
-		Map <Integer, SplashEntity> m = new HashMap<Integer, SplashEntity>();
+		Map <Integer, SplashData> m = new HashMap<Integer, SplashData>();
 		m.put(getSplashConstant(), myData.getSplashEntity());
 		l.add(m);
 		
 		
 		
 		TextInputDialog tid = new TextInputDialog(myData.getGameName());
-		tid.setTitle("Saving File");
-		tid.setHeaderText("Please choose a name for your game: ");
+		tid.setTitle(FILESAVETITLE);
+		tid.setHeaderText(FILESAVEBODY);
 		Optional<String> result = tid.showAndWait();
 		try {
 			myData.setGameName(result.get());

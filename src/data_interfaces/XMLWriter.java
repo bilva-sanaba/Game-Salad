@@ -17,6 +17,7 @@ import components.entityComponents.SpriteComponent;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
 import entity.IEntity;
+import javafx.scene.control.Alert;
 
 public class XMLWriter extends GameSavingDataTool implements Writer {
 
@@ -27,18 +28,11 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 			b.write(data.toString());
 			b.close();
 		} catch (IOException e) {
-			// TODO call the alert that they built
+			Alert a = new Alert(null, "File Saving Corrupted!", null);
+			a.show();
 		}
 	}
 
-	/**
-	 * writes an XML file which saves game data
-	 * 
-	 * @param fileName
-	 *            the desired name for the file
-	 * @param gameData
-	 *            the data which should be saved
-	 */
 	public void writeFile(String fileName, Collection gameData) {
 		ClassLoader loader = new LocalClassLoader();
 		XStream serializer = new XStream(new DomDriver());

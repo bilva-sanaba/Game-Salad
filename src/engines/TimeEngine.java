@@ -1,11 +1,7 @@
 package engines;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import actions.IAction;
 import components.entityComponents.ComponentType;
@@ -15,15 +11,9 @@ import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
-public class TimeEngine extends AbstractEngine { 
+public class TimeEngine extends AbstractEngine{ 
 	public TimeEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
-	}
-
-	@Override
-	protected List<ComponentType> neededComponents() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -44,7 +34,7 @@ public class TimeEngine extends AbstractEngine {
 						lastTime.put(action, (int) System.currentTimeMillis());
 					}
 				}
-				for (IAction action : singleTime.keySet()){
+				for (IAction action : singleTime.keySet().toArray(new IAction[singleTime.keySet().size()])){
 					if (!lastTime.containsKey(action)){
 						lastTime.put(action,(int) System.currentTimeMillis());
 					}

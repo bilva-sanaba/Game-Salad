@@ -26,7 +26,11 @@ public class XMLDefinedParser extends GameSavingDataTool implements Parser {
 
 	private List<Entity> loadFile(String fileName) {
 		XStream xs = new XStream(new DomDriver());
-		return (ArrayList) xs.fromXML(getFileToString(fileName));
+		try {
+			return (ArrayList) xs.fromXML(getFileToString(fileName));
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**

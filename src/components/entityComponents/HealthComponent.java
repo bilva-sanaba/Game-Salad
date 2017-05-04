@@ -5,13 +5,14 @@ import components.IComponent;
 
 /**
  * 
- * @author Jack
+ * @author Jonathan
  *
  */
 public class HealthComponent extends AComponent implements IComponent {
-	private int health;
+	
+	private double health;
 
-	public HealthComponent(int h) {
+	public HealthComponent(double h) {
 		health = h;
 	}
 	
@@ -24,11 +25,11 @@ public class HealthComponent extends AComponent implements IComponent {
 		return ComponentType.Health;
 	}
 
-	public int getHealth() {
+	public double getHealth() {
 		return health;
 	}
 
-	public void setHealth(int h) {
+	public void setHealth(double h) {
 		health = h;
 	}
 

@@ -1,6 +1,5 @@
 package gameView.commands;
 
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import gameView.ICommandView;
 import gameView.tools.FrontEndException;

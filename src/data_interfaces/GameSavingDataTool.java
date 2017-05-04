@@ -10,7 +10,11 @@ public class GameSavingDataTool {
 	private static final String PREFIX = "games" + File.separator;
 	private static final String SUFFIX = ".xml";
 	private static String LINESEPARATOR = System.getProperty("line.separator");
-	private static int SPLASHCONSTANT = 1;
+	public static int SPLASHCONSTANT = 1;
+	private static final int SPLASHORDER = 2;
+	private static final int LEVELORDER = 1;
+	private static final int ENTITYORDER = 0;
+	private static final int STORAGELEVEL = 1;
 
 	protected String getPrefix() {
 		return PREFIX;
@@ -28,7 +32,29 @@ public class GameSavingDataTool {
 		return SPLASHCONSTANT;
 	}
 	
-	protected String getFileToString(String fileName) {
+	protected int getSplashOrder() {
+		return SPLASHORDER;
+	}
+	
+	protected int getLevelOrder() {
+		return LEVELORDER;
+	}
+	
+	protected int getEntityOrder() {
+		return ENTITYORDER;
+	}
+	
+	protected int getStorageLevel() {
+		return STORAGELEVEL;
+	}
+	
+	/**
+	 * Conversts the XML file to a string for parsing
+	 * @param fileName the name of the file without the prefix or suffix
+	 * @return the String of the XML file
+	 * @throws Exception
+	 */
+	protected String getFileToString(String fileName) throws Exception {
 		String line = null;
 		StringBuilder stringBuilder = new StringBuilder();
 		try {
@@ -42,12 +68,9 @@ public class GameSavingDataTool {
 			br.close();
 			
 		} catch (FileNotFoundException e) {
-			// TODO add an error here
-			System.out.println("Hi i happen");
-			return null;
+			throw new Exception("FileNotFound");
 		} catch (IOException e) {
-			System.out.println("hi i happen");
-			return null;
+			throw new Exception("IO");
 		}
 		return stringBuilder.toString();
 	}

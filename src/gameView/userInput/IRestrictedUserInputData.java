@@ -1,10 +1,19 @@
 package gameView.userInput;
 
-import javafx.beans.property.ReadOnlyIntegerProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 
+/**
+ * User Input Data interface to be passed to backend
+ * @author Henry
+ *
+ */
 public interface IRestrictedUserInputData {
 
-	public ReadOnlyIntegerProperty getRewind();
+	/**
+	 * Contains the value for the rewind function
+	 * @return
+	 */
+	public ReadOnlyDoubleProperty getRewind();
 	
 	
 }

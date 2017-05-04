@@ -13,15 +13,15 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import view.GridView;
+import view.UtilityFactory;
 import view.ViewData;
 
 public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent {
 	private ViewData myData;
-	Map<Class<? extends Entity>, Consumer<Entity>> whattodo;
+	private final static String FILELOADSTRING = "Choose the file to load: ";
 	
-	public LoadEvent(ViewData data){
+	public LoadEvent(UtilityFactory utilF, ViewData data){
 		myData = data;
-		whattodo = new HashMap<Class<? extends Entity>, Consumer<Entity>>();
 		//whattodo.put(SplashEntity.class, e -> myData.setSplashEntity((SplashEntity) e));
 		//whattodo.put(LevelEntity.class, e -> myData.setLevelEntity((LevelEntity) e));
 	}
@@ -31,7 +31,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 		XMLPlacedParser xpp = new XMLPlacedParser();
 		Stage newStage = new Stage();
 		FileChooser fc = new FileChooser();
-		fc.setTitle("Choose the file to load: ");
+		fc.setTitle(FILELOADSTRING);
 		fc.setInitialDirectory(new File(System.getProperty("user.dir")));
 		fc.getExtensionFilters().setAll(
 				new ExtensionFilter("Text Files", "*" + getSuffix()));
@@ -43,28 +43,40 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			String firstSplit = splitS[splitS.length - 1];
 			String name = firstSplit.substring(0, firstSplit.length()
 					- getSuffix().length());
-			System.out.println("BLOOMFELD FELD FELD FIELD FIELD" + name);
 			myData.setGameName(name);
-			//			System.out.println(col + " line 45 " + this.getClass());
 			List <Map> toPlace = xpp.getData(name);
-			
 			setPlacedEntities(toPlace.get(0));
 			setLevelEntities(toPlace.get(1));
 			setSplashEntity(toPlace.get(2));
-			//idk what method to use here
+			myData.refresh();
 		}
 		
 	}
 	
 	private void setPlacedEntities(Map m) {
-		
+		Map <Integer, HashMap<Integer, Entity>> ret = m;
+		myData.getPlacedEntityMap().clear();
+		for (int i = 1; i <= ret.keySet().size(); i++) {
+			myData.getPlacedEntityMap().put(i, new HashMap<Integer, Entity>());
+		}
+		myData.resetLevelTabs();
+		for (int i = 1; i <= ret.keySet().size(); i++) {
+			myData.getPlacedEntityMap().put(i, ret.get(i));
+		}
 	}
 	
 	private void setLevelEntities(Map m) {
-		
+		Map <Integer, LevelEntity> lm = m;
+		for (int i = 1; i <= lm.size(); i++) {
+			myData.setLevelEntity(i, lm.get(i));
+		}
 	}
 	
 	private void setSplashEntity(Map m) {
-		myData.setSplashEntity((SplashEntity) m.get(getSplashConstant())); 
+		myData.setSplashEntity((SplashData) m.get(getSplashConstant())); 
+
+		Map<Integer, SplashData> sm = m;
+		myData.setSplashEntity((SplashData) sm.get(getSplashConstant())); 
+
 	}
 }

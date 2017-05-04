@@ -1,12 +1,13 @@
 package view.toolbar;
 
+import view.UtilityFactory;
 import view.ViewData;
 
 public class GrowEvent implements ToolBarButtonEvent {
 
 	ViewData myData;
 
-	public GrowEvent(ViewData data) {
+	public GrowEvent(UtilityFactory utilF, ViewData data) {
 		myData = data;
 	}
 
@@ -15,5 +16,4 @@ public class GrowEvent implements ToolBarButtonEvent {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

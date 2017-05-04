@@ -2,7 +2,6 @@ package gameView.commands;
 
 import javafx.stage.Stage;
 import gameView.ICommandView;
-import gameView.UIView;
 
 public class SaveCommand extends AbstractCommand {
 

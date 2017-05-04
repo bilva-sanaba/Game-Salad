@@ -1,20 +1,36 @@
 package entity;
 
+import engines.infinite.InfiniteEnum;
+
 public class LevelEntity extends Entity {
 	
 	private int rows;
 	private int cols;
 	private String backgroundFilePath;
+	private String openingMusic;
+	private int lives;
+	private InfiniteEnum ie;
 
 	public LevelEntity(int id) {
 		super(id);
 	}
 
-	public LevelEntity(int id, int r, int c, String bfp) {
+	public LevelEntity(int id, int r, int c, String bfp, String music, int l) {
 		super(id);
 		rows = r;
 		cols = c;
 		backgroundFilePath = bfp;
+		openingMusic = music;
+		lives=l;
+		ie = InfiniteEnum.None;
+	}
+	
+	public String getMusic(){
+		return openingMusic;
+	}
+	
+	public int getLives(){
+		return lives; 
 	}
 	
 	public int getRows() {
@@ -29,6 +45,10 @@ public class LevelEntity extends Entity {
 		return backgroundFilePath;
 	}
 	
+	public InfiniteEnum getInfiniteEnum() {
+		return ie;
+	}
+	
 	public void addRow() {
 		rows++;
 	}
@@ -39,5 +59,9 @@ public class LevelEntity extends Entity {
 	
 	public void setBackgroundFilePath(String fileP) {
 		backgroundFilePath = fileP;
+	}
+	
+	public void setInfiniteEnum(InfiniteEnum ie2) {
+		ie = ie2;
 	}
 }

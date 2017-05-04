@@ -1,9 +1,7 @@
 package view.window;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-
 import components.IComponent;
 import components.entityComponents.ComponentType;
 import entity.Entity;
@@ -20,6 +18,7 @@ import view.GUIBuilder;
 import view.UtilityFactory;
 import view.ViewData;
 import view.editor.ComponentEditor;
+import view.editor.EditableComponents;
 
 /**
  * make a window interface
@@ -28,7 +27,7 @@ import view.editor.ComponentEditor;
  * @author Jonathan
  * @author Jack
  */
-public class EntityConfigurationWindow extends Window {
+public class EntityConfigurationWindow implements Window {
 	private UtilityFactory myUtilF;
 	private ViewData myData;
 	private String[] componentList;
@@ -70,17 +69,19 @@ public class EntityConfigurationWindow extends Window {
 		for (String comp : componentList) {
 			makeComponent(comp);
 		}
-		ObservableList<ComponentType> ObsCopms = FXCollections.observableArrayList(ComponentType.values());
-		ListView<ComponentType> components = new ListView<ComponentType>(ObsCopms);
+		ObservableList<EditableComponents> ObsCopms = FXCollections.observableArrayList(EditableComponents.values());
+		ListView<EditableComponents> components = new ListView<EditableComponents>(ObsCopms);
 		root.getChildren().add(components);
-		components.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ComponentType>() {
+		components.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<EditableComponents>() {
 			@Override
-			public void changed(ObservableValue<? extends ComponentType> observable, ComponentType oldVal,
-					ComponentType newVal) {
+			public void changed(ObservableValue<? extends EditableComponents> observable, EditableComponents oldVal,
+					EditableComponents newVal) {
 				makeComponent(newVal.toString());
 			}
 		});
-		root.getChildren().add(myUtilF.buildButton("MakeEntity", e -> enterButton()));
+		root.getChildren().add(myUtilF.buildHBox(
+				myUtilF.buildButton("AddActions", e -> addActions()),
+				myUtilF.buildButton("AddEntity", e -> enterButton())));
 	}
 	
 	private void makeComponent(String comp) {
@@ -95,23 +96,16 @@ public class EntityConfigurationWindow extends Window {
 	}
 
 	private void enterButton() {
-		System.out.println(myCompEdits);
 		for (ComponentEditor comp : myCompEdits.values()) {
-				myEntity.addComponent(comp.getComponent());
+			myEntity.addComponent(comp.getComponent());
 		}
-		Iterator<IComponent> intr = myEntity.getComponents().iterator();
-		while(intr.hasNext()){
-			IComponent iComp = intr.next();
-			System.out.println(iComp.getComponentType().toString().hashCode() + " line 104 " + this.getClass() + "  " + iComp.getComponentType().toString());
-			try{
-			System.out.println(iComp.hashCode() + " line 105 " + this.getClass());
-			}catch(Exception e){
-				
-			}
-		}
-		myData.defineEntity(myEntity);
+		myData.defineEntity(myEntity.newCopy(myData.getDefinedEntityID()));
 		myData.setUserSelectedEntity(myEntity);
 		myStage.close();
+	}
+	
+	private void addActions(){
+		new EntityActionWindow(myUtilF, myData, myEntity);
 	}
 
 	@Override

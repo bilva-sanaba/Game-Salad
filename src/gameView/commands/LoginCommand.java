@@ -11,6 +11,7 @@ public class LoginCommand extends AbstractCommand{
 
 	@Override
 	public boolean execute(Stage s) {
+		getView().pauseGame();
 		getView().loginScreen();
 		return true;
 	}

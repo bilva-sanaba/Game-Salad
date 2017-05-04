@@ -1,30 +1,29 @@
 package view.window;
 
-import java.io.File;
-import java.util.ArrayList;
 import components.entityComponents.SpriteComponent;
 import entity.Entity;
+import entity.presets.AbstractBlock;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.AuthoringException;
 import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
 import view.ViewData;
+import voogasalad.util.reflection.Reflection;
 
-public class EntityBuilderWindow extends Window{
+public class EntityBuilderWindow implements Window {
 
 	private final Image defaultImage = new Image(getClass().getClassLoader().getResourceAsStream("empty.jpg"));
 	private ImageView myImage;
@@ -49,7 +48,7 @@ public class EntityBuilderWindow extends Window{
 
 	private Scene buildScene() {
 		Pane pane = buildPane();
-		Scene myScene = new Scene(pane, 350, 400);
+		Scene myScene = new Scene(pane);
 		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
 		return myScene;
 	}
@@ -73,7 +72,7 @@ public class EntityBuilderWindow extends Window{
 		root.getChildren().add(imageButton);
 	}
 	
-	private void addRadioButtons(Pane root){
+	private void addRadioButtons(Pane root) {
 		Node entityType = new Label("Kind of Entity:");
 		root.getChildren().add(entityType);
 
@@ -81,20 +80,19 @@ public class EntityBuilderWindow extends Window{
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 				entityList = (String[]) new_toggle.getUserData();
-				for(String s: entityList){
-					System.out.println(s);
-				}
 			}
 		});
 	}
 	
-	private void addOkayButton(Pane root){
+	private void addOkayButton(Pane root) {
 		Node okayButton = util.buildButton("OkayLabel", e -> {
-			Entity tempEntity = new Entity(myData.getEntityID());
-			System.out.println(myImageName + " line 98 " + this.getClass());
+			if (myImageName.equals("")) {
+				throw new AuthoringException("NO_IMAGE");
+			}
+			Entity tempEntity = (Entity) Reflection.createInstance(entityList[0], myData.getDefinedEntityID());
 			tempEntity.addComponent(new SpriteComponent(myImageName));
 			myStage.close();
-			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, entityList, tempEntity);
+			EntityConfigurationWindow ecw = new EntityConfigurationWindow(util, myData, tempEntity);
 			ecw.openWindow();
 		});
 		root.getChildren().add(okayButton);

@@ -1,6 +1,5 @@
 package physics_interface;
 
-import gameView.UIImageProperty;
 import gameView.tools.Coordinate;
 
 /**
@@ -22,5 +21,5 @@ public interface PhysicsEngineInterface {
 	 *            - properties of the UIObject
 	 * @return
 	 */
-	public Coordinate calcNextPosition(UIImageProperty props);
+	//public Coordinate calcNextPosition(UIImageProperty props);
 }
