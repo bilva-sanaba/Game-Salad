@@ -5,17 +5,12 @@ import entity.LevelEntity;
 import entity.SplashData;
 import view.commands.RightClickEvent;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Queue;
 import java.util.Stack;
-
-import components.*;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
-import data_interfaces.Communicator;
 
 /**
  * Casting takes place to be able to edit the component because we are using
@@ -41,9 +36,6 @@ public class ViewData extends Observable {
 	private String gameName;
 	private int currentLevel;
 	private int maxLevel;
-	private Boolean saved = true;
-	// TODO: implement the saved boolean to track whether the current state is
-	// saved
 	private int initialRows;
 	private int initialCols;
 
