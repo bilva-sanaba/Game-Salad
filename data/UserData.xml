@@ -1,31 +1,40 @@
 <users>
   <entry>
-    <string>henry</string>
+    <string>bilva</string>
     <userdata>
-      <username>henry</username>
-      <password>pass</password>
+      <username>bilva</username>
+      <password>sanaba</password>
       <image></image>
-      <myGameScores/>
-      <myAchievements/>
-      <myGames class="list"/>
-    </userdata>
-  </entry>
-  <entry>
-    <string>Henry Taylor</string>
-    <userdata>
-      <username>Henry Taylor</username>
-      <password>password</password>
-      <image>https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/17951884_10154728016417669_3921410893467097756_n.jpg?oh=619d0683b7e55e0c53d5cc8afd41a624&amp;oe=59B8FF2E</image>
       <myGameScores>
         <entry>
           <string>01234</string>
-          <double>0.0</double>
+          <double>5000.0</double>
         </entry>
       </myGameScores>
       <myAchievements>
         <string></string>
       </myAchievements>
+      <myGames class="list">
+        <string>bilva012342017-05-03T20:05:06</string>
+      </myGames>
+      <mySavedGameMap>
+        <entry>
+          <string>bilva012342017-05-03T20:05:06</string>
+          <string>01234</string>
+        </entry>
+      </mySavedGameMap>
+    </userdata>
+  </entry>
+  <entry>
+    <string>jack</string>
+    <userdata>
+      <username>jack</username>
+      <password>ass</password>
+      <image>file:/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/images/bloomfeld.png</image>
+      <myGameScores/>
+      <myAchievements/>
       <myGames class="list"/>
+      <mySavedGameMap/>
     </userdata>
   </entry>
 </users>
