@@ -32,7 +32,6 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private Collection<AbstractCommand> myCommands;
 	private VoogaAlert myAlert;
 	private final String VOOGAISSUE = "Vooga Issue";
-
 	public GameScreen(UIViewInterface view, Stage s, IUserInputData input) {
 		super(view, s, input);
 		myCommands = getCommands(myName);
@@ -118,8 +117,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	}
 
 	private void buildMainScene() {
-		myBP = new BorderPane(null, myTopBox, null, null,
-				null);
+		myBP = new BorderPane();
 		myBP.setId("main");
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
 		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
@@ -128,7 +126,8 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 				myTopBox.getChildren().add(makeButton(c));
 			});
 		setUserCommand();
-		myBP.setCenter(myPane);
+		myBP.setCenter(myPane);  
+		myBP.setTop(myTopBox);
 
 	}
 

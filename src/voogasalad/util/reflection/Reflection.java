@@ -51,7 +51,6 @@ public class Reflection {
 			Class<?> c = Class.forName(name);
 			for (Constructor<?> current : c.getDeclaredConstructors()) {
 				Class<?>[] formals = current.getParameterTypes();
-				System.out.println(args);
 				if (typesMatch(current, formals, args)) {
 					return current.newInstance(convertArgs(current, formals,
 							args));

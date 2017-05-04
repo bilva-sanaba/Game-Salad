@@ -3,6 +3,7 @@ package gameView.tools;
 import gameView.ICommandView;
 import gameView.commands.AbstractCommand;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;

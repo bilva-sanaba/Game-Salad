@@ -37,6 +37,7 @@ public class XMLWriter extends GameSavingDataTool implements Writer {
 		ClassLoader loader = new LocalClassLoader();
 		XStream serializer = new XStream(new DomDriver());
 		String ret;
+		serializer.setMode(XStream.NO_REFERENCES);
 
 		serializer.setClassLoader(loader);
 
