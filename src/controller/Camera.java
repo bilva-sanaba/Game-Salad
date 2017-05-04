@@ -48,15 +48,6 @@ public class Camera extends Entity {
 
 		root.setTranslateX(-myLC.getX() + myFrameWidth / 2);
 		root.setTranslateY(-myLC.getY()+110);
-		
-		/*if(playerLocRelativeToCam <= LEFT_BOUND_FROM_EDGE && followerLoc.getX()>0){
-			root.setTranslateX(root.getTranslateX() - followerVel.getX() + 4);
-			//System.out.println(followerVel.getX());
-		}
-		else if (playerLocRelativeToCam >= RIGHT_BOUND_FROM_EDGE) {
-			root.setTranslateX(root.getTranslateX() - followerVel.getX() - 4);
-			//System.out.println(followerVel.getX());
-		}*/
 
 	}
 	
