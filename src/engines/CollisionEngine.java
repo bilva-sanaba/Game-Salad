@@ -241,7 +241,6 @@ public class CollisionEngine extends AbstractEngine {
 	
 	private IRestrictedGameData checkIndividualCollision(IEntity entityOne, IEntity entityTwo, IRestrictedGameData gd) {
 		String collisionSide = collisionMethod.collides(entityOne, entityTwo);
-		System.out.println(collisionSide + " is the collision side");
 		return sendCollisionToSubEngines(entityOne, entityTwo, collisionSide, gd);
 		
 	}

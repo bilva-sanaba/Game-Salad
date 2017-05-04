@@ -55,7 +55,6 @@ public class SideCollisionComponent implements IComponent {
 		//maybe should refactor
 		
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
-		System.out.println(entityLabel + " is the label pt.2");
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
 		if (entityLabel != null && labelActionMap.containsKey(entityLabel.getString())) {
