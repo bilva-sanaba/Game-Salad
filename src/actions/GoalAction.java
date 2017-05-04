@@ -23,6 +23,7 @@ public class GoalAction  extends AbstractAction  implements IAction{
 		toLevel=level;
 	}
 	public GoalAction(List<String> x) {
+		System.out.println(x);
 		toLevel = Integer.parseInt(x.get(0));
 	}
 	@Override

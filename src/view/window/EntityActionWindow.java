@@ -171,8 +171,10 @@ public class EntityActionWindow implements Window {
 			Class<?> nextAction = listofAct.get(i);
 			String act = null;
 			act = nextAction.toString();
+			try{
 			nametoAct.put(myUtilF.getText(act), act);
 			actions.add(myUtilF.getText(act));
+			}catch(Exception e){}
 			allAct.put(act, nextAction);
 		}
 	}

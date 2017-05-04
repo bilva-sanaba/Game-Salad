@@ -17,18 +17,6 @@
                 <components.entityComponents.ComponentType>Collidable</components.entityComponents.ComponentType>
               </entry>
               <entry>
-                <components.entityComponents.ControllableComponent>
-                  <controllable>true</controllable>
-                </components.entityComponents.ControllableComponent>
-                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
-                <components.entityComponents.FrictionComponent>
-                  <friction>false</friction>
-                </components.entityComponents.FrictionComponent>
-                <components.entityComponents.ComponentType>Friction</components.entityComponents.ComponentType>
-              </entry>
-              <entry>
                 <components.entityComponents.SpriteComponent>
                   <myString>flappybird_yellow.png</myString>
                   <myPath>flappybird_yellow.png</myPath>
@@ -70,6 +58,12 @@
                 <components.entityComponents.ComponentType>Velocity</components.entityComponents.ComponentType>
               </entry>
               <entry>
+                <components.entityComponents.ControllableComponent>
+                  <controllable>true</controllable>
+                </components.entityComponents.ControllableComponent>
+                <components.entityComponents.ComponentType>Controllable</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
                 <components.entityComponents.TypeComponent>
                   <typeOfEntity>Player</typeOfEntity>
                 </components.entityComponents.TypeComponent>
@@ -81,6 +75,12 @@
                   <imageWidth>50.0</imageWidth>
                 </components.entityComponents.ImagePropertiesComponent>
                 <components.entityComponents.ComponentType>ImageProperties</components.entityComponents.ComponentType>
+              </entry>
+              <entry>
+                <components.entityComponents.FrictionComponent>
+                  <friction>false</friction>
+                </components.entityComponents.FrictionComponent>
+                <components.entityComponents.ComponentType>Friction</components.entityComponents.ComponentType>
               </entry>
               <entry>
                 <components.entityComponents.TerminalVelocityComponent>
@@ -128,8 +128,8 @@
         <backgroundFilePath>images/background1.png</backgroundFilePath>
         <openingMusic></openingMusic>
         <lives>3</lives>
-        <ie>None</ie>
-        <camera>false</camera>
+        <ie>Horizontal</ie>
+        <camera>true</camera>
       </entity.LevelEntity>
     </entry>
   </map>
