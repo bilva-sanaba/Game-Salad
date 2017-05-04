@@ -83,7 +83,6 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	public String getMusic() {
 		Map<Integer, LevelEntity> m = results.get(1);
 		return m.get(1).getMusic();
-//		return "badboujee.wav";
 	}
 	
 	public int getLives () {
