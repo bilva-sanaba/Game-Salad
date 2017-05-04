@@ -49,7 +49,7 @@ public class Camera extends Entity {
 	public void updateCamera() {
 		if (myActive) {
 			root.setTranslateX(-myLC.getX() + myFrameWidth / 2);
-			root.setTranslateY(-myLC.getY()+110);
+			root.setTranslateY(-myLC.getY()+300);
 		}
 		
 		
