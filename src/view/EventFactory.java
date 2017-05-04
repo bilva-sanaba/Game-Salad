@@ -40,6 +40,7 @@ public class EventFactory {
 				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, util, data,
 						entity, x, y);
 			} else {
+				System.out.println(RIGHTCLICKPREFIX + eventname);
 				reflectedEvent = (RightClickEvent) Reflection.createInstance(RIGHTCLICKPREFIX + eventname, data, entity,
 						x, y);
 			}

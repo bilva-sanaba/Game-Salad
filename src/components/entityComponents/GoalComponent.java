@@ -5,6 +5,14 @@ import components.IComponent;
 public class GoalComponent implements IComponent {
 	
 	private boolean goalSatisfied = false;
+	
+	public GoalComponent(boolean g){
+		goalSatisfied = g;
+	}
+	
+	public GoalComponent(){
+		super();
+	}
 
 	@Override
 	public ComponentType getComponentType() {
