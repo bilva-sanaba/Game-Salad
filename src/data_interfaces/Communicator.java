@@ -85,7 +85,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		return m.get(1).getMusic();
 		return "badboujee.wav";
 	}
-	
+
 	public int getLives () {
 //		Map <Integer, LevelEntity> m = results.get(1);
 //		return m.get(1).getLives();
@@ -95,9 +95,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		Map <Integer, Map<Integer, Entity>> m = results.get(0);
 		List <IEntityManager> ret = new ArrayList<IEntityManager>();
 		List <IEntity> toBeAdded;
-		
+
 //		System.out.println("m size: " + m.size());
-//		
+//
 //		for (int i = 1; i <= m.size(); i++) {
 //			System.out.println("THISSSSS happens");
 //			toBeAdded = new ArrayList<IEntity>();
@@ -106,11 +106,11 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //				System.out.println("this happens");
 //			}
 //			ret.add(new EntityManager(toBeAdded));
-//			
+//
 //		}
 		return dummyLoad();
 //		return ret;
-		
+
 	}
 
 
@@ -120,14 +120,14 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		Map <Integer, LevelEntity> m = results.get(1);
 		List<LevelEntity> ret = new ArrayList<LevelEntity>();
 		LevelEntity l = new LevelEntity(0,500,500,"background1.png", "badboujee.wav",3);
-		
+
 		ret.add(l);
-		
+
 //		for (int i = 1; i <= m.size(); i++) {
 //			ret.add(m.get(i));
 //		}
 //		System.out.println("HOW MANY LEVEL ENTITIES" + ret.size());
-		
+
 		return ret;
 	}
 
@@ -149,15 +149,15 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		return m.get(1).getInfiniteEnum();
 		return InfiniteEnum.Vertical;
 	}
-	
-	
-	
+
+
+
 	public List<IEntityManager> dummyLoad(){
 		Collection<Entity> e = new ArrayList<Entity>();
 		Collection<Entity> e7 = new ArrayList<Entity>();
 		SplashData sd = new SplashData(1000, "Title", "Instructions", "background1.png");
 		e.add(sd);
-		
+
 		Entity x = new Entity(0);
 		x.addComponent(new LocationComponent(100,150));
 		x.addComponent(new SpriteComponent(("mario_step2.gif")));
@@ -177,6 +177,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		x.addComponent(new TerminalVelocityComponent(10,10));
 		x.addComponent(new ControllableComponent(true));
 		x.addComponent(new OrientationComponent());
+
 
 		List<String> collection = new ArrayList<String>();
 		collection.add("mario_step1.gif");
@@ -285,7 +286,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		pr.addComponent(new LabelComponent("Blok"));
 		pr.addComponent(new TypeComponent(EntityType.Block));
 		e.add(pr);
-		
+
 		Entity y = new AbstractPowerup(101);
 		y.addComponent(new LocationComponent(1000,150));
 		y.addComponent(new SpriteComponent(("platform_tile_057.png")));
@@ -295,13 +296,13 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		y.addComponent(yc);
 		y.addComponent(new VelocityComponent(0,0));
 		y.addComponent(new LabelComponent("Blok"));
-		
+
 		//BLOCK
 
 
 //		y.addComponent(new TypeComponent(EntityType.Block));
 		y.addComponent(new TypeComponent(EntityType.Block));
-		Entity p = new AbstractMysteryBlock(102,y); 
+		Entity p = new AbstractMysteryBlock(102,y);
 		p.addComponent(new LocationComponent(900,50));
 		p.addComponent(new SpriteComponent(("platform_tile_023.png")));
 		ImagePropertiesComponent xpc = new ImagePropertiesComponent();
@@ -327,9 +328,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		y3.addComponent(new LabelComponent("grrraa"));
 		y3.addComponent(new CollidableComponent(true));
 		y3.addComponent(new TimeComponent(new RemoveAction(), 3000));
-		
+
 		for (int i= 0; i<2; i++){
-			
+
 			Entity enemy = new AbstractEnemy(106+i);
 			if (i==0){
 				enemy.addComponent(new LocationComponent(800, 20));
@@ -338,9 +339,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 			}else{
 				enemy.addComponent(new LocationComponent(1200,150));
 
-				
+
 			}
-			
+
 			enemy.addComponent(new MonsterTypeComponent(MonsterType.LeftAndRight));
 			enemy.addComponent(new SpriteComponent(("sand.jpg")));
 			ImagePropertiesComponent goalc = new ImagePropertiesComponent();
@@ -458,7 +459,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //			e.add(p);
 //			e7.add(p);
 //		}
-//		
+//
 //		Entity pr = new AbstractBreakableBox(2356);
 //		pr.addComponent(new LocationComponent(700,150));
 //		pr.addComponent(new SpriteComponent(("platform_tile_035.png")));
@@ -469,7 +470,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		pr.addComponent(new LabelComponent("Blok"));
 //		pr.addComponent(new TypeComponent(EntityType.Block));
 //		e.add(pr);
-//		
+//
 //		Entity y = new AbstractPowerup(101);
 //		y.addComponent(new LocationComponent(1000,150));
 //		y.addComponent(new SpriteComponent(("platform_tile_057.png")));
@@ -479,13 +480,13 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		y.addComponent(yc);
 //		y.addComponent(new VelocityComponent(0,0));
 //		y.addComponent(new LabelComponent("Blok"));
-//		
+//
 //		//BLOCK
 //
 //
 ////		y.addComponent(new TypeComponent(EntityType.Block));
 //		y.addComponent(new TypeComponent(EntityType.Block));
-//		Entity p = new AbstractMysteryBlock(102,y); 
+//		Entity p = new AbstractMysteryBlock(102,y);
 //		p.addComponent(new LocationComponent(900,50));
 //		p.addComponent(new SpriteComponent(("platform_tile_023.png")));
 //		ImagePropertiesComponent xpc = new ImagePropertiesComponent();
@@ -511,9 +512,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //		y3.addComponent(new LabelComponent("grrraa"));
 //		y3.addComponent(new CollidableComponent(true));
 //		y3.addComponent(new TimeComponent(new RemoveAction(), 3000));
-//		
+//
 //		for (int i= 0; i<2; i++){
-//			
+//
 //			Entity enemy = new AbstractEnemy(106+i);
 //			if (i==0){
 //				enemy.addComponent(new LocationComponent(800, 20));
@@ -522,9 +523,9 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 //			}else{
 //				enemy.addComponent(new LocationComponent(1200,150));
 //
-//				
+//
 //			}
-//			
+//
 //			enemy.addComponent(new MonsterTypeComponent(MonsterType.LeftAndRight));
 //			enemy.addComponent(new SpriteComponent(("sand.jpg")));
 //			ImagePropertiesComponent goalc = new ImagePropertiesComponent();

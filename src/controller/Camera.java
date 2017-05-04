@@ -18,17 +18,17 @@ import javafx.scene.Scene;
  */
 
 public class Camera extends Entity {
-	
+
 	public static final int RIGHT_BOUND_FROM_EDGE = 500; //lower is closer to right edge
 	public static final int LEFT_BOUND_FROM_EDGE = 20; //lower is closer to left edge
-	
+
 	private int myLevelLength;
 	private Scene myFrame;
 	private Parent root;
 	private LocationComponent myLC;
 	private double myFrameWidth;
 	private double myFrameHeight;
-	
+
 	public Camera (int length, Scene myScene, LocationComponent lc , int id) {
 		super(id);
 		myLevelLength = length;
@@ -41,7 +41,7 @@ public class Camera extends Entity {
 		if (getComponent(ComponentType.Type) == null) {
 			addComponent(new TypeComponent(EntityType.Camera));
 		}
-		
+
 	}
 
 	public void updateCamera() {
@@ -50,24 +50,24 @@ public class Camera extends Entity {
 		root.setTranslateY(-myLC.getY()+110);
 
 	}
-	
+
 	public boolean withinCameraBounds(IEntity e) {
 		LocationComponent loc = (LocationComponent) e.getComponent(ComponentType.Location);
 		return loc != null && loc.getX() >= getX() && loc.getX()<getX()+getWidth();
 	}
-	
+
 	public double getX() {
 		return root.getTranslateX();
 	}
-	
+
 	public double getWidth() {
 		return 480;
 	}
-	
+
 	public double getY() {
 		return 0.0;
 	}
-	
+
 	public double getHeight() {
 		return 0.0;
 	}
