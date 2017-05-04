@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import view.UtilityFactory;
 
 public class CollidableEditor extends ComponentEditor{
-	private static final String ComponentName = "Collidable";
+	private EditableComponents componentName = EditableComponents.Collidable;
 	private String[] colide = {"false"}; // Initialize array
 	private HBox myBox;
 	private boolean myColide;
@@ -29,6 +29,6 @@ public class CollidableEditor extends ComponentEditor{
 	
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myColide);
+		return getCompF().getComponent(componentName.toString(), myColide);
 	}
 }

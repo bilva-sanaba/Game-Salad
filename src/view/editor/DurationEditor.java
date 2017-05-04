@@ -7,13 +7,12 @@ import javafx.scene.layout.HBox;
 import view.UtilityFactory;
 
 public class DurationEditor extends ComponentEditor {
-	private static final String ComponentName = "Duration";
-
+	private EditableComponents componentName = EditableComponents.Duration;
 	private HBox myBox;
 	private double myDuration;
 
 	public DurationEditor(UtilityFactory utilf) {
-		myBox = utilf.buildSlider(ComponentName, new ChangeListener<Number>() {
+		myBox = utilf.buildSlider(componentName.toString(), new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myDuration = newValue.doubleValue(); 
 			}
@@ -22,7 +21,7 @@ public class DurationEditor extends ComponentEditor {
 	}
 
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myDuration);
+		return getCompF().getComponent(componentName.toString(), myDuration);
 	}
 
 }
