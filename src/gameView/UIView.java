@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 
-public class UIView implements UIViewInterface {
+public class UIView implements UIViewInterface, IUIView {
 	
 	public static final Dimension DEFAULT_SIZE = new Dimension(1000, 650);
 	public static final String DEFAULT_BUTTONS =  "EnglishCommands";
@@ -75,10 +75,10 @@ public class UIView implements UIViewInterface {
 	}
 		
 	public void saveGame() {
-		String save = myCurrentGame + new Timestamp(System.currentTimeMillis()).toLocalDateTime();
+		String save = myCurrentGame + new Timestamp(System.currentTimeMillis()).toLocalDateTime().withNano(0);
 		if (myUserManager.getCurrentUser() != null) {
 			save = myUserManager.getCurrentUser().getName() + save;
-			myUserManager.getCurrentUser().addGame(save);
+			myUserManager.getCurrentUser().addGame(myCurrentGame, save);
 			updateUserStats();
 		}
 		myController.save(save);

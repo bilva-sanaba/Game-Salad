@@ -14,7 +14,6 @@ public class LevelEvent extends GameSavingDataTool implements ToolBarButtonEvent
 	
 	@Override
 	public void event() {
-		System.out.println("maybe");
 		SplashScreenBuilderWindow window = new SplashScreenBuilderWindow();
 		window.openWindow();
 	}

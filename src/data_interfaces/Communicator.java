@@ -604,6 +604,7 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 ////		//
 ////		//
 ////		//		((KeyInputComponent) x.getComponent(ComponentType.KeyInput)).addToMap(KeyCode.T, "REMOVE");
+
 //		Collection<IEntity> e8 = new ArrayList<IEntity>();
 //		for (Entity exp : e7) {
 //			e8.add(exp);

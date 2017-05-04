@@ -11,8 +11,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
-
 import javafx.scene.image.Image;
 
 public class UserData {
@@ -23,11 +21,13 @@ public class UserData {
 	private HashMap<String, Double> myGameScores;
 	private Set<String> myAchievements;
 	private Collection<String> myGames;
+	private HashMap<String, String> mySavedGameMap;
 	
 	public UserData(String name, String passwordString, String imageString) {
 		username = name;
 		password = passwordString;
 		myGameScores = new HashMap<String, Double>();
+		mySavedGameMap = new HashMap<String, String>();
 		myAchievements = new HashSet<String>();
 		myGames = new ArrayList<String>();
 		image = imageString == null ? "" : imageString;
@@ -46,7 +46,9 @@ public class UserData {
 	 * @param points - corresponding score
 	 */
 	public void addPoints(String game, Double points) {
-		if (myGameScores.get(game) == null || myGameScores.get(game) < points) {
+		if (mySavedGameMap.containsKey(game)) {
+			addPoints(mySavedGameMap.get(game), points);
+		} else if (myGameScores.get(game) == null || myGameScores.get(game) < points) {
 			myGameScores.put(game, points);
 		}
 	}
@@ -112,8 +114,9 @@ public class UserData {
 	 * where they left off
 	 * @param file
 	 */
-	public void addGame(String file) {
-		myGames.add(file);
+	public void addGame(String originalGame, String newGame) {
+		myGames.add(newGame);
+		mySavedGameMap.put(newGame, originalGame);
 	}
 	
 	/**
