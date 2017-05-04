@@ -43,7 +43,6 @@ public class ImageChooser {
 			alert.showAndWait();
 		}
 	    String[] directories = imagepath.split(delimiter);
-	    System.out.println(imagepath);
 	    String imageName = directories[directories.length - 1];
 		return imageName;
 	}

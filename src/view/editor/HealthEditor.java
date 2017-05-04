@@ -9,22 +9,22 @@ import javafx.scene.text.Text;
 import view.UtilityFactory;
 
 public class HealthEditor extends ComponentEditor {
-	private static final String ComponentName = "Health";
+	private EditableComponents componentName = EditableComponents.Health;
 	
 	private HBox myBox;
-	private int myHealth;
+	private double myHealth;
 	
 	public HealthEditor(UtilityFactory utilf) {
-		myBox = utilf.buildSlider(ComponentName, new ChangeListener<Number>() {
+		myBox = utilf.buildSlider(componentName.toString(), new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				myHealth = newValue.intValue(); 
+				myHealth = newValue.doubleValue(); 
 			}
 		});
 		setInputNode(myBox);
 	}
 	
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myHealth);
+		return getCompF().getComponent(componentName.toString(), myHealth);
 	}
 	
 }

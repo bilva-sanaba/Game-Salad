@@ -6,7 +6,7 @@
     <myComponentMap>
       <entry>
         <components.entityComponents.SpriteComponent>
-          <classPath>dirt.jpg</classPath>
+          <myString>dirt.jpg</myString>
         </components.entityComponents.SpriteComponent>
         <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
       </entry>
@@ -19,7 +19,7 @@
       </entry>
       <entry>
         <components.entityComponents.LabelComponent>
-          <label>bob</label>
+          <myString>bob</myString>
         </components.entityComponents.LabelComponent>
         <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
       </entry>
@@ -38,7 +38,7 @@
       </entry>
       <entry>
         <components.entityComponents.SpriteComponent>
-          <classPath>platform_tile_022.png</classPath>
+          <myString>platform_tile_022.png</myString>
         </components.entityComponents.SpriteComponent>
         <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
       </entry>
@@ -51,7 +51,7 @@
       </entry>
       <entry>
         <components.entityComponents.LabelComponent>
-          <label>Default Block</label>
+          <myString>Default Block</myString>
         </components.entityComponents.LabelComponent>
         <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
       </entry>
@@ -145,7 +145,7 @@
       </entry>
       <entry>
         <components.entityComponents.SpriteComponent>
-          <classPath>character3.jpg</classPath>
+          <myString>character3.jpg</myString>
         </components.entityComponents.SpriteComponent>
         <components.entityComponents.ComponentType>Sprite</components.entityComponents.ComponentType>
       </entry>
@@ -158,7 +158,7 @@
       </entry>
       <entry>
         <components.entityComponents.LabelComponent>
-          <label>Defult Player</label>
+          <myString>Defult Player</myString>
         </components.entityComponents.LabelComponent>
         <components.entityComponents.ComponentType>Label</components.entityComponents.ComponentType>
       </entry>

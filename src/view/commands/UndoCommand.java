@@ -1,12 +1,13 @@
 package view.commands;
 
+import entity.Entity;
 import view.ViewData;
 
 public class UndoCommand implements RightClickEvent {
 
 private ViewData myData;
 	
-	public UndoCommand(ViewData data, double x, double y){
+	public UndoCommand(ViewData data, Entity e, double x, double y){
 		myData = data;
 	}
 	

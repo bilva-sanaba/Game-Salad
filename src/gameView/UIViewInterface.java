@@ -3,6 +3,7 @@ package gameView;
 import java.util.Set;
 
 import entity.SplashData;
+import gameView.userManagement.IUserManager;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -46,28 +47,28 @@ public interface UIViewInterface {
 	public void saveGame();
 	
 	/**
-	 * Set the splash screen
-	 */
-	public void getSplashScreen();
-	
-	/**
 	 * returns the current stage
 	 * @return
 	 */
 	public Stage getStage();
 	
 	/**
-	 * Add an entity to the manager
-	 * @param entity - entity to add
+	 * Called by WorldAnimator through GameScreen to tell the backend to progress one frame
+	 * @param keysPressed - current keys being pressed by the user
 	 */
-//	public void addData(GameData data);
-	
 	public void step(Set<KeyCode> keysPressed);
 
-	void runSpecificSplash();
+	/**
+	 * Sets a new stage to be shown, pauses the original stage until the user closes out of the new stage
+	 * @param view - view to be displayed
+	 * @param s - stage to display the view through
+	 */
+	public void newStage(AbstractViewer view, Stage s);
 	
-	public SplashData getSplashData();
-
-	
+	/**
+	 * Retrieve manager containing all current users
+	 * @return interface of user manager
+	 */
+	public IUserManager getUserManager();
 
 }

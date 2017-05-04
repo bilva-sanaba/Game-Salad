@@ -29,7 +29,6 @@ public class GameChooser {
 	private static final Dimension SCENE_DIMENSIONS = new Dimension(UIView.DEFAULT_SIZE.width/2, UIView.DEFAULT_SIZE.height/2);
 	
 	public GameChooser(Stage s) {
-		//myStage = s;
 		myStage = new Stage();
 		myStage.setTitle("Pick A Game");
 		myFiles = new ArrayList<String>();
@@ -73,10 +72,7 @@ public class GameChooser {
 	 */
 	public String getFile() {
 		String[] test = myChosenFile.split("[\\\\/]");
-		System.out.println("GET WRECKED");
-		System.out.println(test[test.length-1]);
 		return test[test.length-1];
-
 	}
 	
 	private void makeVBox() {

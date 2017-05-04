@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import gameView.AbstractViewer;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.commands.AbstractCommand;
 import gameView.commands.FacebookCommand;
 import gameView.commands.RegisterCommand;
@@ -37,7 +38,7 @@ public class LoginScreen extends AbstractViewer {
 	private VBox myRight;
 	private Scene myScene;
 	
-	public LoginScreen(UIView view, Stage s, IUserInputData input) { 
+	public LoginScreen(UIViewInterface view, Stage s, IUserInputData input) { 
 		super(view, s, input);
 		myLeft = new VBox(10);
 		myRight = new VBox(10); 
@@ -84,7 +85,6 @@ public class LoginScreen extends AbstractViewer {
 		setMargin(lab, 0, 0, 20, 0);
 		TextField username = makeInput("User Name", "username"); 
 		TextField password = makeInput("Password", "password");
-		//Button signIn = makeButton(new SignInCommand((ICommandView) getView())); 
 		SignInCommand signCommand = new SignInCommand(this);
 		Button signIn = makeButton(signCommand);
 		signIn.setOnAction(new EventHandler<ActionEvent>() {

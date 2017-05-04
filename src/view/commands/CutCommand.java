@@ -10,14 +10,13 @@ private ViewData myData;
 private Entity myEntity;
 private int savedLevel;
 	
-	public CutCommand(ViewData data, double x, double y){
+	public CutCommand(ViewData data, Entity entity, double x, double y){
 		myData = data;
+		myEntity = entity;
 	}
 	
 	@Override
 	public void execute() {
-		
-		myEntity = myData.getUserGridSelectedEntity();
 		savedLevel = myData.getCurrentLevel();
 		myData.unplaceEntity(savedLevel, myEntity);
 		myData.setUserGridSelectedEntity(null);

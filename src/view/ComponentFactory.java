@@ -12,10 +12,6 @@ public class ComponentFactory implements newComponentFactory {
 	private static final String SUFFIX = "Component";
 	private static final String EDITOR_SUFFIX = "Editor";
 	
-	public ComponentFactory(){
-		System.out.println("bloom is a field");
-	}
-
 	public IComponent getComponent(String componentName) {
 		IComponent reflectedComponent;
 		try {
@@ -28,8 +24,7 @@ public class ComponentFactory implements newComponentFactory {
 	
 	public IComponent getComponent(String componentName, Object...objects) {
 		IComponent reflectedComponent;
-		try {			
-			System.out.println(PREFIX + componentName + SUFFIX + this.getClass());
+		try {
 			reflectedComponent = (IComponent) Reflection.createInstance(PREFIX + componentName + SUFFIX, objects);
 		} catch (Exception e) {
 			throw new ReflectionException(ReflectionException.COMPONENT_REFLECTION_ERROR);
@@ -41,10 +36,8 @@ public class ComponentFactory implements newComponentFactory {
 	public ComponentEditor getComponentEditor(String comp, UtilityFactory myUtilF) {
 		ComponentEditor reflectedComponent;
 		try {
-			System.out.println(EDITOR_PREFIX + comp + EDITOR_SUFFIX + this.getClass());
 			reflectedComponent = (ComponentEditor) Reflection.createInstance(EDITOR_PREFIX + comp + EDITOR_SUFFIX, myUtilF);
 		} catch (Exception e) {
-			System.out.println("i shouldnt be here");
 			throw new ReflectionException(ReflectionException.COMPONENT_REFLECTION_ERROR);
 		}
 		return reflectedComponent;

@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 
 import achievements.Achievement;
-import achievements.AchievementFactory;
 import components.entityComponents.LocationComponent;
 import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
@@ -69,6 +68,8 @@ public class WorldAnimator{
 	private boolean pause = false;
 
 	public WorldAnimator(UIViewInterface view){
+		System.out.println("WORLDANIMATOR IS CREATED");
+	
 		myView = view;
 	}
 	public Group getGroup(){

@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
 import view.UtilityFactory;
 
 public class LabelEditor extends ComponentEditor {
-	private static final String ComponentName = "Label";
+	private EditableComponents componentName = EditableComponents.Label;
 	private static final String LABEL = "Name : ";
 	
 	private HBox myBox;
@@ -25,7 +25,7 @@ public class LabelEditor extends ComponentEditor {
 	
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myTextInputField.getText());
+		return getCompF().getComponent(componentName.toString(), myTextInputField.getText());
 	}
 	
 }

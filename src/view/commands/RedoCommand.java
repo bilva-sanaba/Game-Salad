@@ -1,5 +1,6 @@
 package view.commands;
 
+import entity.Entity;
 import view.GridView;
 import view.ViewData;
 
@@ -7,7 +8,7 @@ public class RedoCommand implements RightClickEvent {
 
 private ViewData myData;
 	
-	public RedoCommand(ViewData data, double x, double y){
+	public RedoCommand(ViewData data, Entity e, double x, double y){
 		myData = data;
 	}
 	

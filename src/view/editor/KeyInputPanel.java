@@ -1,4 +1,4 @@
-package engines;
+package view.editor;
 
 import java.util.ArrayList;
 import java.util.HashMap;

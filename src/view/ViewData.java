@@ -5,21 +5,17 @@ import entity.LevelEntity;
 import entity.SplashData;
 import view.commands.RightClickEvent;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Queue;
 import java.util.Stack;
-
-import components.*;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
-import data_interfaces.Communicator;
 
 /**
- * Casting takes place to be able to edit the component because we are using enums to choose the specific component
- * we feel comfortable to cast the component to its specific component
+ * Casting takes place to be able to edit the component because we are using
+ * enums to choose the specific component we feel comfortable to cast the
+ * component to its specific component
  *
  * @author Jonathan
  * @author Justin
@@ -30,9 +26,9 @@ public class ViewData extends Observable {
 
 	private Stack<RightClickEvent> undoStack;
 	private Stack<RightClickEvent> redoStack;
-	private HashMap<Integer, Entity> definedEntityMap;
-	private HashMap<Integer, HashMap<Integer, Entity>> placedEntityMaps;
-	private HashMap<Integer, LevelEntity> levelEntityMap;
+	private Map<Integer, Entity> definedEntityMap;
+	private Map<Integer, Map<Integer, Entity>> placedEntityMaps;
+	private Map<Integer, LevelEntity> levelEntityMap;
 	private SplashData mySplashEntity;
 	private Entity userSelectedEntity;
 	private Entity userGridSelectedEntity;
@@ -40,8 +36,6 @@ public class ViewData extends Observable {
 	private String gameName;
 	private int currentLevel;
 	private int maxLevel;
-	private Boolean saved = true;
-//TODO: implement the saved boolean to track whether the current state is saved
 	private int initialRows;
 	private int initialCols;
 
@@ -53,83 +47,85 @@ public class ViewData extends Observable {
 		undoStack = new Stack<RightClickEvent>();
 		redoStack = new Stack<RightClickEvent>();
 		definedEntityMap = new HashMap<Integer, Entity>();
-		placedEntityMaps = new HashMap<Integer, HashMap<Integer, Entity>>();
+		placedEntityMaps = new HashMap<Integer, Map<Integer, Entity>>();
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
 		levelEntityMap = new HashMap<Integer, LevelEntity>();
-		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
+		levelEntityMap.put(currentLevel,
+				new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
 		mySplashEntity = new SplashData(-2, "The game", "Don't lose", "background1.png");
 		userSelectedEntity = null;
 		gameName = "";
 	}
-	
-	public void addLevel(){
+
+	public void addLevel() {
 		maxLevel++;
 		currentLevel = maxLevel;
 		placedEntityMaps.put(currentLevel, new HashMap<Integer, Entity>());
-		levelEntityMap.put(currentLevel, new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
+		levelEntityMap.put(currentLevel,
+				new LevelEntity(-1, initialRows, initialCols, "images/background1.png", "", 3));
 	}
-	
-	public void removeLevel(int level){
-		for(int i = level; i < maxLevel; i++){
-			placedEntityMaps.put(i, placedEntityMaps.get(i+1));
-			levelEntityMap.put(i, levelEntityMap.get(i+1));
+
+	public void removeLevel(int level) {
+		for (int i = level; i < maxLevel; i++) {
+			placedEntityMaps.put(i, placedEntityMaps.get(i + 1));
+			levelEntityMap.put(i, levelEntityMap.get(i + 1));
 		}
 		placedEntityMaps.remove(placedEntityMaps.size());
 		levelEntityMap.remove(levelEntityMap.size());
 		maxLevel--;
 	}
-	
-	public void moveLevel(int level, int destination){
-		HashMap<Integer, Entity> swapper = placedEntityMaps.get(destination);
+
+	public void moveLevel(int level, int destination) {
+		Map<Integer, Entity> swapper = placedEntityMaps.get(destination);
 		placedEntityMaps.put(destination, placedEntityMaps.get(level));
 		placedEntityMaps.put(level, swapper);
 	}
-	
-	public int getMaxLevel(){
+
+	public int getMaxLevel() {
 		return maxLevel;
 	}
-	
-	public int getPlacedEntityID(){	
+
+	public int getPlacedEntityID() {
 		return findMapMax(placedEntityMaps.get(currentLevel)) + 1;
 	}
-	
+
 	public int getDefinedEntityID() {
 		return findMapMax(definedEntityMap) + 1;
 	}
-	
-	private int findMapMax(Map <Integer, Entity> m) {
+
+	private int findMapMax(Map<Integer, Entity> m) {
 		int max = 0;
-		for (Integer i: m.keySet()) {
+		for (Integer i : m.keySet()) {
 			if (i > max)
 				max = i;
 		}
 		return max;
 	}
-	
-	public int getCurrentLevel(){
+
+	public int getCurrentLevel() {
 		return currentLevel;
 	}
-	
-	public void setCurrentLevel(int i){
+
+	public void setCurrentLevel(int i) {
 		currentLevel = i;
 		setChanged();
 		notifyObservers();
 	}
-	
+
 	public void addEvent(RightClickEvent e) {
 		undoStack.add(e);
 	}
 
-	public void undoLastEvent(){
-		if(undoStack.peek() != null) {
+	public void undoLastEvent() {
+		if (undoStack.peek() != null) {
 			RightClickEvent e = undoStack.pop();
 			e.undo();
 			redoStack.add(e);
 		}
 	}
 
-	public void redo(){
-		if(redoStack.peek() != null) {
+	public void redo() {
+		if (redoStack.peek() != null) {
 			RightClickEvent e = redoStack.pop();
 			e.execute();
 			undoStack.add(e);
@@ -157,7 +153,7 @@ public class ViewData extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-	
+
 	public void defineEntityNoUpdate(Entity entity) {
 		definedEntityMap.put(entity.getID(), entity);
 	}
@@ -178,45 +174,46 @@ public class ViewData extends Observable {
 
 	// fix dependencies
 	public void unplaceEntity(int level, Entity entity) {
-		placedEntityMaps.get(level).remove(entity);
-		System.out.println("shouldve cut" + entity + "from level" + currentLevel);
+		placedEntityMaps.get(level).remove(entity.getID());
 		setChanged();
 		notifyObservers();
 	}
 
-	public void copyEntity(){
-		copiedEntity = userGridSelectedEntity;
+	public void copyEntity(Entity entity) {
+		copiedEntity = entity;
 	}
-	
+
+	public Entity getCopiedEntity() {
+		return copiedEntity;
+	}
+
 	// fix dependencies
 	public Entity pasteEntity(int level, double x, double y) {
 		Entity tempEntity = copiedEntity.clone();
 		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
 		tempLocation.setXY(x, y);
 		placeEntity(level, tempEntity);
-		//userGridSelectedEntity = tempEntity;
-		System.out.println("pasted");
 		return tempEntity;
 	}
-	
+
 	public Map<Integer, Entity> getDefinedEntityMap() {
 		return definedEntityMap;
 	}
 
 	// fix dependencies
-	public HashMap<Integer, HashMap<Integer, Entity>> getPlacedEntityMap() {
+	public Map<Integer, Map<Integer, Entity>> getPlacedEntityMap() {
 		return placedEntityMaps;
 	}
 
 	public Map<Integer, LevelEntity> getLevelEntityMap() {
 		return levelEntityMap;
 	}
-	
-	public LevelEntity getLevelEntity(){
+
+	public LevelEntity getLevelEntity() {
 		return levelEntityMap.get(currentLevel);
 	}
-	
-	public void setLevelEntity(int level, LevelEntity e){
+
+	public void setLevelEntity(int level, LevelEntity e) {
 		levelEntityMap.put(level, e);
 	}
 
@@ -240,18 +237,17 @@ public class ViewData extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-	
+
 	// fix dependencies
-	public void removePlacedEntities() {
-		placedEntityMaps.get(currentLevel).clear();
+	public void removePlacedEntities(int level) {
+		placedEntityMaps.get(level).clear();
 		setChanged();
 		notifyObservers();
 	}
-	
-	public void resetLevelTabs(){
+
+	public void resetLevelTabs() {
 		setChanged();
 		notifyObservers("reset");
 	}
 
-	
 }

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import gameView.AbstractViewer;
 import gameView.UIView;
+import gameView.UIViewInterface;
 import gameView.commands.AbstractCommand;
 import gameView.commands.SignOutCommand;
 import gameView.commands.UserLoadCommand;
@@ -38,7 +39,7 @@ public class ProfileScreen extends AbstractViewer {
 	private VBox myBox;
 	private ImageButton myImageButton;
 	
-	public ProfileScreen(UIView view, Stage s, IUserInputData input) {
+	public ProfileScreen(UIViewInterface view, Stage s, IUserInputData input) {
 		super(view, s, input);
 		myData = getUserManager();
 		setStageReaction();
@@ -53,7 +54,10 @@ public class ProfileScreen extends AbstractViewer {
 	private void setStageReaction() {
 		getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
 	          public void handle(WindowEvent we) {
-	        	  myData.getCurrentUser().changePicture(((ImageViewContainer) myImageButton.getGraphic()).getPath());
+	        	  try {
+	        		  myData.getCurrentUser().changePicture(((ImageViewContainer) myImageButton.getGraphic()).getPath());
+	        	  } catch (Exception e) {
+	        	  } 
 	          }
 	      });    
 	}
@@ -62,7 +66,6 @@ public class ProfileScreen extends AbstractViewer {
 		myBox = makeVBox();
 		myScene = new Scene(myBox, WIDTH, HEIGHT);
 		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
-		
 	}
 	
 	private VBox makeVBox() {
@@ -88,21 +91,34 @@ public class ProfileScreen extends AbstractViewer {
 	}
 	
 	private HBox makeStats() {
-		TableView<GameEntry> gamesBox = makeTable(myData.getCurrentUser().getGameScores(), "Game", "Points");
-		TableView<GameEntry> achievementBox= makeTable(myData.getCurrentUser().getAchievements(), "Achievements");
+		TableView<GameEntry> gamesBox = makeTable(getPointEntry(myData.getCurrentUser().getGameScores()), "Game", "Points");
+		TableView<GameEntry> achievementBox= makeTable(getAchievementsEntry(myData.getCurrentUser().getAchievements()), "Achievements");
 		HBox statsBox = new HBox(0, gamesBox, achievementBox);
 		statsBox.setPrefWidth(WIDTH);
 		statsBox.setAlignment(Pos.CENTER_RIGHT);
 		return statsBox;
 	}
 	
-	private TableView<GameEntry> makeTable(Iterator<String> dataIt, String... args) {
-		TableFactory factory = new TableFactory(WIDTH/2, HEIGHT/4);
+	private ArrayList<GameEntry> getPointEntry(Iterator<String> dataIt) {
 		ArrayList<GameEntry> data = new ArrayList<GameEntry>();
 		while (dataIt.hasNext()) {
 			String game = dataIt.next();
 			data.add(new GameEntry(game, myData.getCurrentUser().getPointValue(game)));
-		}   
+		}
+		return data;
+	}
+	
+	private ArrayList<GameEntry> getAchievementsEntry(Iterator<String> dataIt) {
+		ArrayList<GameEntry> data = new ArrayList<GameEntry>();
+		while (dataIt.hasNext()) {
+			String achievement = dataIt.next();
+			data.add(new GameEntry(achievement, null));
+		}
+		return data;
+	}
+	
+	private TableView<GameEntry> makeTable(ArrayList<GameEntry> data, String... args) {
+		TableFactory factory = new TableFactory(WIDTH/2, HEIGHT/4); 
 		return factory.getTable(data, args);
 	}
 

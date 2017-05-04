@@ -32,6 +32,12 @@ public class FaceBook {
 		
 	}
 	
+	/**
+	 * Returns a new UserData object from the facebook client and the user's log-in. Because Facebook runs through a specific method in 
+	 * userManager, uses a generic 'password' to sign in
+	 * @return
+	 * @throws FrontEndException
+	 */
 	public UserData login() throws FrontEndException {
 		UserData userData;
 		WebDriver driver = initializeDriver();

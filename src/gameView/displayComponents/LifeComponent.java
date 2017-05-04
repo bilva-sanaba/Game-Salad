@@ -25,9 +25,15 @@ public class LifeComponent extends UIDisplayComponent {
 		return myLives;
 	}
 	
+	@Override
 	public DisplayEnum getPos() {
-		return DisplayEnum.TOP_LEFT;
+		return DisplayEnum.TOP_RIGHT;
 	}
+
+	@Override
+	protected void changedValue() {
+		addLifeImages();
+	} 
 	
 	protected void setID() {
 		myLifeNumber = (ReadOnlyIntegerProperty) setValue(getData().getLives());
@@ -52,10 +58,5 @@ public class LifeComponent extends UIDisplayComponent {
 		lifeLabel.setFitWidth(myLives.getPrefWidth()/getConfig().getLives());
 		return lifeLabel;
 	}
-
-	@Override
-	protected void changedValue() {
-		addLifeImages();
-	} 
 
 }
