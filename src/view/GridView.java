@@ -1,6 +1,7 @@
 package view;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import components.entityComponents.ComponentType;
@@ -28,11 +29,11 @@ import view.commands.RightClickMenu;
  * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent {
-	
+
 	private static final int GRIDWIDTH = 720;
 	private static final int GRIDHEIGHT = 500;
 	private static final int GRID_INTERVAL = 10;
-	
+
 	private RightClickMenu rightClick;
 	private ScrollPane myScroll;
 	private Pane myGrid;
@@ -44,7 +45,7 @@ public class GridView extends GUIComponent {
 	private int myLevelNumber;
 	double xClickOffset, yClickOffset;
 	double imageWidth, imageHeight;
-	private HashMap<Entity, ImageView> placedImages = new HashMap<Entity, ImageView>();
+	private Map<Entity, ImageView> placedImages;
 	private BorderPane myBorderPane;
 
 	public GridView(UtilityFactory utilIn, int levelNumber, ViewData data, int rows, int cols) {
@@ -53,23 +54,24 @@ public class GridView extends GUIComponent {
 		myRow = rows;
 		myCol = cols;
 		myData = data;
-		
+		placedImages = new HashMap<Entity, ImageView>();
+
 		rightClick = new RightClickMenu(util, myData);
-		
+
 		myGrid = util.buildGrid(GRIDWIDTH, GRIDHEIGHT, "view-grid");
 
 		myGrid.setOnMousePressed(e -> mousePress(e));
 		myGrid.setOnMouseMoved(e -> mouseMove(e));
-		
+
 		mouseCords = buildMouseCords();
 		HBox gridMenu = buildGridMenu();
-		
+
 		myBorderPane = new BorderPane();
 		myScroll = new ScrollPane(myGrid);
 		myBorderPane.setTop(gridMenu);
 		myBorderPane.setCenter(myScroll);
 	}
-	
+
 	private HBox buildGridMenu(){
 		Button butt = util.buildButton("addHo", e -> addHo());
 		Button butt2 = util.buildButton("addVert", e -> addVert());
@@ -78,11 +80,11 @@ public class GridView extends GUIComponent {
 		box.setSpacing(10);
 		return box;
 	}
-	
+
 	public void setLevelNumber(int i) {
 		myLevelNumber = i;
 	}
-	
+
 	private Label buildMouseCords(){
 		Label mouseCords = new Label();
 		mouseCords.setText("X:0  Y:0");
@@ -98,10 +100,7 @@ public class GridView extends GUIComponent {
 			placeImageAtLoc(e.getX() , e.getY());
 		}
 	}
-	private void snapTo10(int x){
-		
-	}
-	
+
 	private void mouseMove(MouseEvent e){
 		mouseCords.setText("X:" + e.getX() + "  Y:" + e.getY());
 	}
@@ -150,11 +149,11 @@ public class GridView extends GUIComponent {
 		ImageView c = (ImageView) (e.getSource());
 		xClickOffset = e.getX() - c.getX();
 		yClickOffset = e.getY() - c.getY();
-		
+
 		imageWidth = c.getFitWidth();
 		imageHeight = c.getFitHeight();
 	}
-	
+
 	private void entityMouseDrag(MouseEvent e, Entity entity){
 		ImageView c = (ImageView) (e.getSource());
 		double offsetX = e.getX() - c.getX() - xClickOffset;
@@ -172,6 +171,12 @@ public class GridView extends GUIComponent {
 			c.setFitWidth(Math.max(imageWidth+ offsetX, 10));
 		}
 	}
+
+	private void entityMouseReleased(MouseEvent e, Entity entity){
+		ImageView c = (ImageView) (e.getSource());
+		unselectEntity(entity);
+		entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
+	}
 	
 	private double snapToGrid(double val, int gridInterval) {
 		double remainder = val % gridInterval;
@@ -182,7 +187,7 @@ public class GridView extends GUIComponent {
 			return val - remainder;
 		}
 	}
-	
+
 	public void drawEntity(Entity entity) {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
@@ -197,11 +202,7 @@ public class GridView extends GUIComponent {
 		spriteImage.setY(entityLocation.getY());
 		spriteImage.setOnMousePressed(e -> entityMousePress(e, entity));
 		spriteImage.setOnMouseDragged(e -> entityMouseDrag(e, entity));
-		spriteImage.setOnMouseReleased(e -> {
-			ImageView c = (ImageView) (e.getSource());
-			unselectEntity(entity);
-			entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
-		});
+		spriteImage.setOnMouseReleased(e -> entityMouseReleased(e, entity));
 		placedImages.put(entity, spriteImage);
 		myGrid.getChildren().add(spriteImage);
 	}
