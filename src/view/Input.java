@@ -1,5 +1,9 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -21,10 +25,10 @@ public class Input {
 		myStage.close();
 	}
 
-	public String getInput() {
+	public List<String> getInput() {
 		myStage.setScene(new Scene(myBox));
 		myStage.showAndWait();
-		return myTextInputField.getText();
+		return new ArrayList<String>(Arrays.asList(myTextInputField.getText().split(", ")));
 	}
 	
 	public Node getNode() {

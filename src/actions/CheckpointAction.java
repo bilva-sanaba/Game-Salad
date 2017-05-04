@@ -1,5 +1,6 @@
 package actions;
 
+import class_annotations.*;
 import components.entityComponents.CheckpointComponent;
 import components.entityComponents.ComponentType;
 import entity.IEntity;

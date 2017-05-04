@@ -47,6 +47,13 @@ public class EntityConfigurationWindow implements Window {
 		openWindow();
 	}
 	
+	public EntityConfigurationWindow(UtilityFactory util, Entity tempEntity) {
+		myCompF = new ComponentFactory();
+		myUtilF = util;
+		myEntity = tempEntity;
+		myStage.setScene(buildScene());
+	}
+
 	private void initalizeVars(UtilityFactory utilF, ViewData entityData, String[] entityType, Entity entityIn){
 		myCompF = new ComponentFactory();
 		myUtilF = utilF;
@@ -90,17 +97,30 @@ public class EntityConfigurationWindow implements Window {
 	}
 	
 	private void makeComponent(String comp) {
-		ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
-		myCompEdits.put(comp, editor);
-		root.getChildren().add(editor.getInputNode());
+		try {
+			ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
+			System.out.println(comp + " line 102 "  + this.getClass());
+			myCompEdits.put(comp, editor);
+			root.getChildren().add(editor.getInputNode());
+		} catch (Exception e) {
+			System.out.println("Can not edit this component");
+		}
 	}
-
-	private void enterButton() {
+	
+	private void compileEntity(){
 		for (ComponentEditor comp : myCompEdits.values()) {
 			myEntity.addComponent(comp.getComponent());
 		}
-		myData.defineEntity(myEntity.newCopy(myData.getDefinedEntityID()));
-		myData.setUserSelectedEntity(myEntity);
+	}
+
+	private void enterButton() {
+		compileEntity();
+		try{
+			myData.defineEntity(myEntity.newCopy(myData.getDefinedEntityID()));
+			myData.setUserSelectedEntity(myEntity);
+		}catch(Exception e){
+			
+		}
 		myStage.close();
 	}
 	

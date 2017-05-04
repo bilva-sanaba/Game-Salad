@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.Input;
 import view.UtilityFactory;
-import voogasalad.util.reflection.Reflection;
 
 public class IActionMakerWindow{
 	private UtilityFactory myUtilF;
@@ -48,23 +47,18 @@ public class IActionMakerWindow{
 	private void buildIActionMaker() {
 		Constructor<?>[] actConst = myAction.getConstructors();
 		boolean allString = true;
+		int j = 0;
 		for(int i = 0; i < actConst.length; i++){
-			for (int j = 0; j < actConst[i].getParameterTypes().length; j++){
-				allString = allString && (actConst[i].getParameterTypes()[j].toString().equals("String"));
+			for (j = 0; j < actConst[i].getParameterTypes().length; j++){
+				System.out.println(" adf : " + actConst[i].getParameterTypes()[j]);
+				if(actConst[i].getParameterTypes()[j].toString().equals(List.class.toString())){
+					break;
+				}
 			}
-			if(allString){
-				stringConstructNum = i;
-			}
-			if(actConst[i].getParameterTypes().equals(List.class)){
-				listConstructNum = i;
-			}
-			allString = true;
 		}
-		for(int j = 0; j < actConst[stringConstructNum].getParameterCount(); j++){
-			Input getInput = new Input(myUtilF, myAction.toString().replace(" ", ""));
-			myParams.add(getInput.getInput());
-		}
-		
+		listConstructNum = j;
+		Input getInput = new Input(myUtilF, myAction.toString().replace(" ", ""));
+		myParams  = getInput.getInput();		
 	}
 		
 	public String toString(){

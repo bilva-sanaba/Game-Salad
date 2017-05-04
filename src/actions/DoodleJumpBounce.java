@@ -1,5 +1,6 @@
 package actions;
 
+import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
@@ -8,6 +9,7 @@ import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 
+//@TopAction()
 public class DoodleJumpBounce extends AbstractAction implements IAction {
 
 	
