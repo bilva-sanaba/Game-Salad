@@ -16,6 +16,7 @@ import gamedata.IRestrictedGameData;
 @BottomAction()
 public class RemoveAction extends AbstractAction  implements IAction {
 
+	
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {

@@ -16,6 +16,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -25,6 +27,7 @@ import view.AuthoringException;
 import view.GUIBuilder;
 import view.ImageChooser;
 import view.UtilityFactory;
+import view.ViewData;
 import voogasalad.util.reflection.Reflection;
 
 public class EntityMakerWindow implements Window {
