@@ -23,6 +23,6 @@
 #subbox {
 	-fx-background-repeat: stretch;
 	-fx-spacing: 10;
-	-fx-alignment: center
+	-fx-alignment: center;
 	-fx-padding: 10;
 }
