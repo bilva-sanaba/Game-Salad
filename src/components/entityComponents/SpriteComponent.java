@@ -6,7 +6,7 @@ import components.AbstractStringComponent;
 import components.IComponent;
 import javafx.scene.image.Image;
 
-public class SpriteComponent extends AbstractStringComponent implements IComponent {
+public class SpriteComponent extends AbstractOneParameterComponent<String> implements IComponent {
 	private String myPath;
 	public SpriteComponent(String path){
 		super(path);
@@ -24,7 +24,8 @@ public class SpriteComponent extends AbstractStringComponent implements ICompone
 
 	
 	public Image getSprite(){
-		return new Image(getClass().getClassLoader().getResourceAsStream(getString()));
+		System.out.println(getString().getClass().getName());
+		return new Image(getClass().getClassLoader().getResourceAsStream(getString().toString()));
 	}
 	
 }

@@ -192,7 +192,6 @@ public class TabView extends GUIComponent {
 	private void loadPreset(String fileName) {
 		XMLDefinedParser xdp = new XMLDefinedParser();
 		List <Entity> l = xdp.getData(fileName);
-		
 		for (Entity e: l) {
 			e.setID(myData.getDefinedEntityID());
 			myData.defineEntity(e);
