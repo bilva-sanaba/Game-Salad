@@ -38,7 +38,7 @@ public class Camera extends Entity {
 		myLC = lc;
 		myFrameWidth= myFrame.getWidth();
 		myFrameHeight= myFrame.getHeight();
-		myActive = camera;
+		myActive = false;//camera;
 
 		if (getComponent(ComponentType.Type) == null) {
 			addComponent(new TypeComponent(EntityType.Camera));

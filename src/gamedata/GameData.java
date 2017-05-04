@@ -29,7 +29,7 @@ public class GameData implements IGameData,IRestrictedGameData{
 	private StringProperty music = new SimpleStringProperty();
 	private boolean myCamera;
 
-	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, List<String> ac, String m, boolean camera){
+	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, List<String> ac, String m,boolean camera){
 		myAchievements = new VoogaObservableList<String>(ac);
 		points.setValue(p);
 		lives.setValue(l);
