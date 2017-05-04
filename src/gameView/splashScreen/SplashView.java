@@ -14,23 +14,30 @@ import gameView.AbstractViewer;
 import gameView.UIView;
 import gameView.UIViewInterface;
 import gameView.commands.AbstractCommand;
+import gameView.gameScreen.GameScreen;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
+//THIS CODE IS PART OF MY MASTERPIECE
+//hjt8
 
+/**
+* I am including this example as a part of my masterpiece because it is an example of an implementation of AbstractViewer. In addition,
+* it shows the implementation of one of the major parts to the platform, the splashScreen, which is hugely important from a UserExperience
+* standpoint.I think this class shows good design because it is highly encapsulated, and demonstrates a good example of how powerful you can make an extended viewer. 
+* @author Henry
+*
+*/
 public class SplashView extends AbstractViewer {
 
-	private static final String myName = SplashView.class.getSimpleName();
 	private static final String SPLASH_LABEL = "RainDrop Salad";
 	
 	protected Scene myScene;
 	private BorderPane myPane;
-	private Collection<AbstractCommand> myCommands;
 	private VBox myCommandContainer;
 	
 	
 	public SplashView(UIViewInterface view, Stage s, IUserInputData input) {
 		super(view, s, input);
-		myCommands = getCommands(myName);
 		myPane = new BorderPane();
 		myScene = new Scene(myPane, UIView.DEFAULT_SIZE.width,
 				UIView.DEFAULT_SIZE.height);
@@ -41,9 +48,13 @@ public class SplashView extends AbstractViewer {
 	public Scene getScene() {
 		return myScene;
 	}
+	@Override
+	protected String getName() {
+		return GameScreen.class.getSimpleName();	
+	}
 	
 	private void addBackground() {
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,getName()));
 	}
 
 	private void buildMainScene() {
@@ -51,15 +62,19 @@ public class SplashView extends AbstractViewer {
 		myPane.setId("mainpane");
 		BorderPane.setMargin(lab, new Insets(10, 10, 10, 10));
 		myPane.setCenter(lab);
+		setButtonContainer();
+		myPane.setBottom(myCommandContainer);
+	}
+	
+	private void setButtonContainer() {
 		myCommandContainer = new VBox(20);
 		myCommandContainer.setId("mainbox");
 		myCommandContainer.setAlignment(Pos.CENTER);
 		BorderPane.setMargin(myCommandContainer, new Insets(10, 10, 30, 10));
-		myCommands.stream().forEach(c -> {  
+		getCommands(getName()).stream().forEach(c -> {  
 			myCommandContainer.getChildren().add(makeButton(c));
 		});
 		setUserCommand();
-		myPane.setBottom(myCommandContainer);
 	}
 
 	@Override

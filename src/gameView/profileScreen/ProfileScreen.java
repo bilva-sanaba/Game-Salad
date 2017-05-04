@@ -20,6 +20,7 @@ import gameView.UIViewInterface;
 import gameView.commands.AbstractCommand;
 import gameView.commands.SignOutCommand;
 import gameView.commands.UserLoadCommand;
+import gameView.gameScreen.GameScreen;
 import gameView.tools.GameEntry;
 import gameView.tools.ImageButton;
 import gameView.tools.ImageViewContainer;
@@ -30,7 +31,6 @@ import gameView.userManagement.IUserManager;
 
 public class ProfileScreen extends AbstractViewer {
 
-	private static final String myName = "ProfileScreen";
 	private static final Double WIDTH = UIView.DEFAULT_SIZE.width/2.5;
 	private static final Double HEIGHT = UIView.DEFAULT_SIZE.height/1.25;
 	
@@ -51,6 +51,11 @@ public class ProfileScreen extends AbstractViewer {
 		return myScene;
 	}
 	
+	@Override
+	protected String getName() {
+		return ProfileScreen.class.getSimpleName();	
+	}
+	
 	private void setStageReaction() {
 		getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
 	          public void handle(WindowEvent we) {
@@ -65,7 +70,7 @@ public class ProfileScreen extends AbstractViewer {
 	private void makeScene() {
 		myBox = makeVBox();
 		myScene = new Scene(myBox, WIDTH, HEIGHT);
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,getName()));
 	}
 	
 	private VBox makeVBox() {

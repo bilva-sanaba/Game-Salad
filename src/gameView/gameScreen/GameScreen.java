@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 
 public class GameScreen extends AbstractViewer implements IGameScreenDisplays, IGameScreenEntity {
 
-	private static final String myName = GameScreen.class.getSimpleName();
 	private Scene myScene;
 	private BorderPane myBP;
 	private HBox myTopBox;
@@ -30,10 +29,10 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private DisplayManager myDisplays;
 	private Collection<AbstractCommand> myCommands;
 	private VoogaAlert myAlert;
-	private final String VOOGAISSUE = "Vooga Issue";
+	
 	public GameScreen(UIViewInterface view, Stage s, IUserInputData input) {
 		super(view, s, input);
-		myCommands = getCommands(myName);
+		myCommands = getCommands(getName());
 		initializeBoxes();
 		buildMainScene();
 		myBP.applyCss();
@@ -78,12 +77,20 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		myPane.getChildren().add(toAdd.getDisplay());
 	}
 
+	/**
+	 * Checks to see if the worldAnimator can be paused. 
+	 */
 	public void checkWorldAnimator() {
 		try {
 			pauseGame();
 		} catch (Exception e) {
 			System.out.println("NO WORLD ANIMATOR");
 		}
+	}
+
+	@Override
+	protected String getName() {
+		return GameScreen.class.getSimpleName();	
 	}
 
 	@Override
@@ -120,7 +127,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		myBP = new BorderPane();
 		myBP.setId("main");
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,getName()));
 		myCommands.stream()
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
@@ -150,5 +157,4 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 		getGameData().getMusic().stopMusic();
 		myAnimation.pause();
 	}
-
 }

@@ -10,12 +10,11 @@ import javafx.stage.Stage;
 import gameView.AbstractViewer;
 import gameView.UIView;
 import gameView.UIViewInterface;
+import gameView.gameScreen.GameScreen;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
 
 public class EndScreen extends AbstractViewer {
-
-	private static final String myName = EndScreen.class.getSimpleName();
 	
 	private Scene myScene;
 	private BorderPane myBP;
@@ -29,6 +28,11 @@ public class EndScreen extends AbstractViewer {
 	@Override
 	public Scene getScene() {
 		return myScene;
+	}
+	
+	@Override
+	protected String getName() {
+		return EndScreen.class.getSimpleName();	
 	}
 	
 	@Override
@@ -50,7 +54,7 @@ public class EndScreen extends AbstractViewer {
 		myBP = new BorderPane(buildMain(message, points), null, null, null,
 				null);
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName)); 
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,getName())); 
 	}
 
 	private VBox buildMain(String message, String points) {
@@ -59,7 +63,7 @@ public class EndScreen extends AbstractViewer {
 		Label main = makeLabel(message, "ending");
 		Label score = makeLabel(String.format("Score: %s", points),"score");
 		box.getChildren().addAll(main, score);
-		getCommands(myName).stream()  
+		getCommands(getName()).stream()  
 		.forEach(c -> {
 			box.getChildren().add(makeButton(c));
 		});

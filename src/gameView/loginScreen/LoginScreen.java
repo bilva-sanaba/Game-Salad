@@ -24,14 +24,13 @@ import gameView.commands.AbstractCommand;
 import gameView.commands.FacebookCommand;
 import gameView.commands.RegisterCommand;
 import gameView.commands.SignInCommand;
+import gameView.gameScreen.GameScreen;
 import gameView.tools.ImageButton;
 import gameView.tools.ImageViewContainer;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
 
 public class LoginScreen extends AbstractViewer {
-	
-	private final String myName = "LoginScreen";
 	
 	private HBox myMain;
 	private VBox myLeft;
@@ -56,7 +55,12 @@ public class LoginScreen extends AbstractViewer {
 		myMain = new HBox(myLeft, myRight);
 		myMain.setId("main");
 		myScene = new Scene(myMain, UIView.DEFAULT_SIZE.width-100, UIView.DEFAULT_SIZE.height-100);
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,getName()));
+	}
+
+	@Override
+	protected String getName() {
+		return LoginScreen.class.getSimpleName();	
 	}
 	
 	private void makeLeft() {

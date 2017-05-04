@@ -15,13 +15,12 @@ import gameView.AbstractViewer;
 import gameView.UIView;
 import gameView.UIViewInterface;
 import gameView.commands.CloseCommand;
+import gameView.gameScreen.GameScreen;
 import gameView.tools.ResourceRetriever;
 import gameView.userInput.IUserInputData;
 
 public class PauseScreen extends AbstractViewer {
 	
-	private static final String myName = "PauseScreen";
-
 	private Scene myScene;
 	private VBox myBox;
 	private Slider mySlider;
@@ -36,12 +35,17 @@ public class PauseScreen extends AbstractViewer {
 	public Scene getScene() {  
 		return myScene;
 	}
+	
+	@Override
+	protected String getName() {
+		return PauseScreen.class.getSimpleName();	
+	}
 
 	private void makeScene() {
 		myBox = new VBox(20, sliderBox(), makeButton(new CloseCommand(this)));
 		myBox.setAlignment(Pos.CENTER);
 		myScene = new Scene(myBox, UIView.DEFAULT_SIZE.width/3, UIView.DEFAULT_SIZE.height/5);
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,getName()));
 	}
 	
 	private void setSliderAction() {

@@ -22,9 +22,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-
 import javafx.scene.layout.Pane;
-
 import javafx.stage.Stage;
 
 /**
@@ -32,8 +30,6 @@ import javafx.stage.Stage;
  */
 
 public class SpecificGameSplashView extends AbstractViewer {
-	
-	private static final String myName = SpecificGameSplashView.class.getSimpleName();
 	
 	private SplashData mySplashEntity;
 	private Scene myScene;
@@ -44,7 +40,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 	public SpecificGameSplashView(UIViewInterface myGameView, Stage s, IUserInputData input, SplashData se){
 		super(myGameView, s, input);
 		mySplashEntity = se;
-		myCommands = getCommands(myName);
+		myCommands = getCommands(getName());
 		myBP = new BorderPane();
 		buildScene();
 	}
@@ -57,6 +53,12 @@ public class SpecificGameSplashView extends AbstractViewer {
 	public String getInstructions() {
 		return mySplashEntity.getInstructions();
 	}
+	
+	@Override
+	protected String getName() {
+		return SpecificGameSplashView.class.getSimpleName();	
+	}
+
 	
 	private void buildScene() {
 		addBackground(mySplashEntity.getBackgroundFilePath());
@@ -74,7 +76,7 @@ public class SpecificGameSplashView extends AbstractViewer {
 		myBP.setBottom(myButtonContainer);
 		addInstructions();
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height); 
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,getName()));
 		
 	}
 
