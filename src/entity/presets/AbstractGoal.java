@@ -7,16 +7,19 @@ import components.entityComponents.CollisionComponentType;
 import components.entityComponents.CollisionComponentsHandler;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
+import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 
 public class AbstractGoal extends Entity{
+	public static final int DEFAULT_SIZE = 50;
 
 	public AbstractGoal(int id) {
 		super(id);
 		addCollisionComponents();
+		this.addComponent(new ImagePropertiesComponent(DEFAULT_SIZE,DEFAULT_SIZE));
 	}
 	
 	private void addCollisionComponents(){
