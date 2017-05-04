@@ -19,16 +19,21 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import alerts.VoogaError;
 import components.IComponent;
+import controller.VoogaAlert;
 
 import java.io.*;
 
 public class XMLDefinedParser extends GameSavingDataTool implements Parser {
+	
+	private final static String ALERTMESSAGE = "This preset is corrupted!";
 
 	private List<Entity> loadFile(String fileName) {
 		XStream xs = new XStream(new DomDriver());
 		try {
 			return (ArrayList) xs.fromXML(getFileToString(fileName));
 		} catch (Exception e) {
+			VoogaAlert a = new VoogaAlert(ALERTMESSAGE);
+			a.showAlert();
 			return null;
 		}
 	}

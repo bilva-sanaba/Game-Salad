@@ -16,12 +16,17 @@ import components.entityComponents.SideCollisionComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 import exceptions.InputException;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -94,6 +99,31 @@ public class EntityActionWindow implements Window {
 			}
 			allActions.put(currentType, actions);
 			ListView<String> viewActs = myUtilF.buildListView(actions);
+			Tooltip tt = new Tooltip();
+			ImageView iv = new ImageView(new Image(getClass().getClassLoader().getResource("smb.gif").toString()));
+			iv.setFitHeight(250);
+			iv.setFitWidth(250);
+			tt.setGraphic(iv);
+			
+			viewActs.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+		        @Override
+		        public void handle(MouseEvent event) {
+		        	
+					tt.setX(100);
+					tt.setY(100);
+					tt.show(myStage);
+		        }
+		    });
+			viewActs.setOnMouseExited(new EventHandler<MouseEvent>() {
+
+		        @Override
+		        public void handle(MouseEvent event) {
+		        	
+					
+					tt.hide();
+		        }
+		    });
 			VBox listandbut = myUtilF.buildVBox(new Text(currentType.name() + "Action"), viewActs,
 					myUtilF.buildButton("AddActions", e -> addAction(currentType, viewActs)));
 			setListView(listandbut, j);
