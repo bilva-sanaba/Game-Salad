@@ -11,20 +11,16 @@ import java.util.Optional;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.SpriteComponent;
-import data_interfaces.Communicator;
 import data_interfaces.XMLDefinedParser;
 import data_interfaces.XMLWriter;
 import engines.infinite.InfiniteEnum;
 import entity.Entity;
-import entity.LevelEntity;
-import entity.SplashData;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListCell;
@@ -110,6 +106,10 @@ public class TabView extends GUIComponent {
 		myData.getLevelEntityMap().get(1).setInfiniteEnum(InfiniteEnum.None);
 	}
 
+	public void setCamera(boolean b){
+		cameraOption.selectedProperty().set(b);
+	}
+	
 	public void clearSelected() {
 		blocksView.getSelectionModel().clearSelection();
 	}

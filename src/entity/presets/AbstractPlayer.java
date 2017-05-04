@@ -33,10 +33,6 @@ public class AbstractPlayer extends Entity {
 		this.addComponent(new AccelerationComponent(0, 0));
 		KeyInputComponent k = new KeyInputComponent();
 		this.addComponent(k);
-		k.addToMap(KeyCode.V, new ShootAction());
-		k.addToMap(KeyCode.W, new JumpAction());
-		k.addToMap(KeyCode.D, new RightAction());
-		k.addToMap(KeyCode.A, new LeftAction());
 		this.addComponent(new ControllableComponent(true));
 		this.addComponent(new TypeComponent(EntityType.Player));
 		this.addComponent(new CollidableComponent(true));

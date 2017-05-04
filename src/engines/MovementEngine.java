@@ -3,6 +3,7 @@ import java.util.*;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ControllableComponent;
+import components.entityComponents.FrictionComponent;
 import entity.restricted.*;
 import gamedata.IRestrictedGameData;
 import components.entityComponents.LocationComponent;
@@ -33,6 +34,7 @@ public class MovementEngine extends AbstractEngine{
 	}
 	
 	private void decelerate(IEntity e){
+		if (e.hasComponent(ComponentType.Friction) && ((FrictionComponent) e.getComponent(ComponentType.Friction)).getFriction()){
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
@@ -51,6 +53,7 @@ public class MovementEngine extends AbstractEngine{
 		if(lc.getX() < 55){
 			ac.setX(0);
 			vc.setX(0);
+		}
 		}
 	}
 	
