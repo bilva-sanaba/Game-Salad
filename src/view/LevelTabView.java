@@ -18,14 +18,16 @@ public class LevelTabView extends GUIComponent {
 		tabsList = new HashMap<Integer, LevelTab>();
 		myTabs = new TabPane();
 		myTabs.getSelectionModel().selectedItemProperty().addListener((obs,oldTab,newTab) -> {
-			String[] level = newTab.getText().split(" ");
-			myData.setCurrentLevel(Integer.parseInt(level[1]));
+			LevelTab temp = (LevelTab) newTab;
+			myData.setCurrentLevel(temp.getLevel());
 		});
 		addNewTab(myGrid, myData.getMaxLevel());
 	}
 
 	public void clearTabs() {
-		myTabs.getTabs().clear();
+		System.out.println("pre error");
+		myTabs.getTabs().removeAll(tabsList.values());
+		System.out.println("post error");
 		tabsList.clear();
 	}
 	

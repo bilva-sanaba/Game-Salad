@@ -50,7 +50,6 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			setSplashEntity(toPlace.get(2));
 			myData.refresh();
 		}
-		
 	}
 	
 	private void setPlacedEntities(Map m) {

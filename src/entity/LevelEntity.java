@@ -49,12 +49,12 @@ public class LevelEntity extends Entity {
 		return ie;
 	}
 	
-	public void addRow() {
-		rows++;
+	public void addRow(int i) {
+		rows+=i;
 	}
 	
-	public void addCol() {
-		cols++;
+	public void addCol(int i) {
+		cols+=i;
 	}
 	
 	public void setBackgroundFilePath(String fileP) {
