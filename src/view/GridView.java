@@ -197,7 +197,7 @@ public class GridView extends GUIComponent {
 		unselectEntity(entity);
 		entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
 	}
-	
+
 	private double snapToGrid(double val, int gridInterval) {
 		double remainder = val % gridInterval;
 		if (remainder > gridInterval / 2) {
@@ -246,8 +246,10 @@ public class GridView extends GUIComponent {
 	}
 
 	public void updateBackground() {
-		String filePath = myData.getLevelEntity().getBackgroundFilePath();
-		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
+		if(myData.getLevelEntity().getBackgroundFilePath() != null){
+			String filePath = myData.getLevelEntity().getBackgroundFilePath();
+			myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
+		}
 	}
 
 	private void removeEntity(Entity entity) {

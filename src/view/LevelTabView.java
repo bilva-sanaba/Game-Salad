@@ -7,6 +7,7 @@ import entity.Entity;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 
@@ -14,25 +15,32 @@ public class LevelTabView extends GUIComponent {
 	private HashMap<Integer, LevelTab> tabsList;
 	private TabPane myTabs;
 	private ViewData myData;
+	private ChangeListener<Tab> myListener;
 
 	public LevelTabView(GridView myGrid, ViewData myDataIn) {
+		
+		
 		myData = myDataIn;
 		tabsList = new HashMap<Integer, LevelTab>();
 		myTabs = new TabPane();
-		myTabs.getSelectionModel().selectedItemProperty().addListener((obs,oldTab,newTab) -> {
-			LevelTab temp = (LevelTab) newTab;
-			myData.setCurrentLevel(temp.getLevel());
-		});
+		
+		myListener = new ChangeListener<Tab>(){
+			@Override
+			public void changed(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue) {
+				LevelTab temp = (LevelTab) newValue;
+				myData.setCurrentLevel(temp.getLevel());
+			}};
+		
+		myTabs.getSelectionModel().selectedItemProperty().addListener(myListener);
 		
 		addNewTab(myGrid, myData.getMaxLevel());
 	}
 
 	public void clearTabs() {
-		myTabs.getSelectionModel().clearSelection();
-		System.out.println("pre error");
+		myTabs.getSelectionModel().selectedItemProperty().removeListener(myListener);
 		myTabs.getTabs().removeAll(tabsList.values());
-		System.out.println("post error");
 		tabsList.clear();
+		myTabs.getSelectionModel().selectedItemProperty().addListener(myListener);
 	}
 	
 	public void selectTab(int tabIndex) {
@@ -41,10 +49,6 @@ public class LevelTabView extends GUIComponent {
 
 	public HashMap<Integer,LevelTab> getTabsList() {
 		return tabsList;
-	}
-
-	public void loadTab(ScrollPane grid, int counter) {
-
 	}
 
 	public void addNewTab(GridView myGrid, int level) {
