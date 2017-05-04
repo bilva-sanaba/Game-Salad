@@ -8,27 +8,27 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import view.UtilityFactory;
 
-public class ControllableEditor extends ComponentEditor {
-	private EditableComponents componentName = EditableComponents.Controllable;
-	private String[] cont = { "false" }; // Initialize array
+public class StationaryEditor extends ComponentEditor{
+	private EditableComponents componentName = EditableComponents.Stationary;
+	private String[] station = {"false"}; // Initialize array
 	private HBox myBox;
-	private boolean myControl;
+	private boolean myStation;
 
-	public ControllableEditor(UtilityFactory utilf) {
+
+	public StationaryEditor(UtilityFactory utilf) {
 		myBox = new HBox();
-		final ToggleGroup group = utilf.buildRadioButtonGroup("SelectControllable", myBox);
+		final ToggleGroup group = utilf.buildRadioButtonGroup("SelectStationaryType", myBox);
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-				cont = (String[]) new_toggle.getUserData();
-				myControl = cont[0].equals("true");
+				station = (String[]) new_toggle.getUserData();
+				myStation = station[0].equals("true");
 			}
-		});
+		});			
 		setInputNode(myBox);
 	}
-
+	
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(componentName.toString(), myControl);
+		return getCompF().getComponent(componentName.toString(), myStation);
 	}
-
 }
