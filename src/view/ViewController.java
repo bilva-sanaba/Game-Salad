@@ -39,7 +39,6 @@ public class ViewController implements Observer {
 			levelTabs.clearTabs();
 			for(int i : myData.getPlacedEntityMap().keySet()){
 				GridView tempGrid = new GridView(utilF, i, myData, GUIBuilder.INITIAL_GRID_ROWS, GUIBuilder.INITIAL_GRID_COLS);
-				tempGrid.setEntityIDcount();
 				levelTabs.addNewTab(tempGrid, myData.getMaxLevel());
 			}
 		}

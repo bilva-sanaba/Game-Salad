@@ -66,7 +66,6 @@ public class EntityConfigurationWindow implements Window {
 
 	private void buildComponentEditor() {
 		for (String comp : componentList) {
-			System.out.println(comp + " " + this.getClass());
 			makeComponent(comp);
 		}
 		ObservableList<ComponentType> ObsCopms = FXCollections.observableArrayList(ComponentType.values());
@@ -81,7 +80,7 @@ public class EntityConfigurationWindow implements Window {
 		});
 		root.getChildren().add(myUtilF.buildHBox(
 				myUtilF.buildButton("AddActions", e -> addActions()),
-				myUtilF.buildButton("AddEntitiy", e -> enterButton())));
+				myUtilF.buildButton("AddEntity", e -> enterButton())));
 	}
 	
 	private void makeComponent(String comp) {
@@ -99,7 +98,7 @@ public class EntityConfigurationWindow implements Window {
 		for (ComponentEditor comp : myCompEdits.values()) {
 			myEntity.addComponent(comp.getComponent());
 		}
-		myData.defineEntity(myEntity);
+		myData.defineEntity(myEntity.newCopy(myData.getDefinedEntityID()));
 		myData.setUserSelectedEntity(myEntity);
 		myStage.close();
 	}

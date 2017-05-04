@@ -1,9 +1,11 @@
 package gamedata;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import components.entityComponents.LocationComponent;
+import entity.EntityManager;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -109,6 +111,12 @@ public class GameData implements IGameData,IRestrictedGameData{
 
 	public void setAchievement(String ac){
 		myAchievements.add(ac);
+	}
+
+	@Override
+	public IGameData getCopy() {
+		return new GameData(points.doubleValue(), lives.doubleValue(), new EntityManager(), level.doubleValue(), new LocationComponent(), new ArrayList<String>() , music.toString());
+			
 	}
 
 

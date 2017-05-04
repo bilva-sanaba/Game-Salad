@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import view.UtilityFactory;
 
 public class ControllableEditor extends ComponentEditor {
-	private static final String ComponentName = "Controllable";
+	private EditableComponents componentName = EditableComponents.Controllable;
 	private String[] cont = { "false" }; // Initialize array
 	private HBox myBox;
 	private boolean myControl;
@@ -28,7 +28,7 @@ public class ControllableEditor extends ComponentEditor {
 
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myControl);
+		return getCompF().getComponent(componentName.toString(), myControl);
 	}
 
 }

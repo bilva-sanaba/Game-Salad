@@ -46,5 +46,9 @@ public class ImagePropertiesComponent extends AComponent implements IComponent {
 	public IComponent newCopy() {
 		return new ImagePropertiesComponent(getHeight(), getWidth());
 	}
+	
+	public String toString(){
+		return "imageProperties " + imageHeight +  " " + imageWidth;
+	}
 
 }

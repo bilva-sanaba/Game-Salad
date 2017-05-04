@@ -38,6 +38,7 @@ public class GameEngine implements GameEngineInterface {
 	private boolean sliderPause;
 	private List<IEntityManager> myEntityManagers;
 	private List<IEntityManager> previousEntityManagers;
+	private List<IGameData> previousGameData;
 	private EntityLoader myEntityLoader;
 	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
 	
@@ -45,6 +46,7 @@ public class GameEngine implements GameEngineInterface {
 		System.out.println("GameEngine is created");
 		initializeUserData(data);
 		previousEntityManagers = new ArrayList<IEntityManager>();
+		previousGameData = new ArrayList<IGameData>();
 		sliderPause = false;
 	}
 	private void initializeUserData(IRestrictedUserInputData data){
@@ -72,13 +74,10 @@ public class GameEngine implements GameEngineInterface {
 		myGameEngineChooser = new GameEngineChooser(myEntityManager, c.getInfinite());
 		myEngines = myGameEngineChooser.getEngines();
 		myEntityLoader = new EntityLoader(myEntityManager);
-		
 		LocationComponent lc = (LocationComponent) getMainCharacter().getComponent(ComponentType.Location);
 		List<String> listl = new ArrayList<String>();
 		listl.add("");
-
 		myGameData = new GameData(0,c.getLives(),(IRestrictedEntityManager) myEntityManager, 1, lc, listl,c.getMusic());
-
 		return (IRestrictedGameData) myGameData;
 	}
 	
@@ -111,17 +110,20 @@ public class GameEngine implements GameEngineInterface {
 				myGameData.setLevel(-1);
 			}else{
 				myEntityLoader.loadNew(myEntityManagers.get(restrictedGameData.getLevel().intValue()-1));
-				previousEntityManagers.clear();
+				clearStoredStates();
 			}				
 		}
 	}
 	private void resetStoredStates(){
 		if (sliderPause==true){
 			sliderPause=false;
-			previousEntityManagers.clear();
+			clearStoredStates();
 		}
 	}
-	
+	private void clearStoredStates(){
+		previousEntityManagers.clear();
+		previousGameData.clear();
+	}
 	private IEntity getMainCharacter(){
 		for(IEntity e : myEntityManager.getEntities()){
 			if(e.hasComponent(ComponentType.KeyInput)){
@@ -140,16 +142,21 @@ public class GameEngine implements GameEngineInterface {
 		if (next==1){index--;};
 		if (previousIndex!=index){
 			myEntityLoader.loadNew(previousEntityManagers.get(index));
+			IGameData gd = previousGameData.get(index);
+			myGameData.setLives(gd.getLives().doubleValue());
+			myGameData.setPoints(gd.getPoints().doubleValue());
+			
 		}
 	}
 	private void saveNewEntityManager() {
 		numUpdates++;
 		if (numUpdates % SAVE_FREQUENCY*10 == 0) {
 			previousEntityManagers.add((myEntityManager.copy()));
-			
+			previousGameData.add(myGameData.getCopy());
 		}
 		while (previousEntityManagers.size()>25) {
 			previousEntityManagers.remove(0);
+			previousGameData.remove(0);
 		}
 	}
 }

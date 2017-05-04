@@ -20,5 +20,7 @@ public interface IGameData extends IRestrictedGameData{
 	public void setMusic(String s);
 	
 	public void setAchievement(String ac);
+	
+	public IGameData getCopy();
 
 }

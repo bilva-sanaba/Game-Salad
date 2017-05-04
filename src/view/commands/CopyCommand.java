@@ -16,7 +16,7 @@ public class CopyCommand implements RightClickEvent{
 
 	@Override
 	public void execute() {
-		myData.copyEntity(myEntity);
+		myData.copyEntity(myEntity.newCopy(myData.getPlacedEntityID()));
 	}
 
 	@Override
