@@ -8,20 +8,19 @@ import javafx.scene.layout.VBox;
 import view.UtilityFactory;
 
 public class VelocityEditor extends ComponentEditor{
-	private static final String ComponentName = "Velocity";
-	
+	private EditableComponents componentName = EditableComponents.Velocity;	
 	private VBox myBox;
 	private double myXVelocity;
 	private double myYVelocity;
 	
 	public VelocityEditor(UtilityFactory utilf) {
 		myBox = new VBox();
-		HBox xvel = utilf.buildSlider(ComponentName+"X", new ChangeListener<Number>() {
+		HBox xvel = utilf.buildSlider(componentName.toString()+"X", new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myXVelocity = newValue.doubleValue(); 
 			}
 		});
-		HBox yvel = utilf.buildSlider(ComponentName+"Y", new ChangeListener<Number>() {
+		HBox yvel = utilf.buildSlider(componentName.toString()+"Y", new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myYVelocity = newValue.doubleValue(); 
 			}
@@ -32,6 +31,6 @@ public class VelocityEditor extends ComponentEditor{
 	
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myXVelocity, myYVelocity);
+		return getCompF().getComponent(componentName.toString(), myXVelocity, myYVelocity);
 	}
 }

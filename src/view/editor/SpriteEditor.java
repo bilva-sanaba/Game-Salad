@@ -6,7 +6,7 @@ import view.ImageChooser;
 import view.UtilityFactory;
 
 public class SpriteEditor extends ComponentEditor{
-	private static final String ComponentName = "Sprite";
+	private EditableComponents componentName = EditableComponents.Sprite;
 	private ImageChooser imageChooser = new ImageChooser();
 	private String myFilePath;
 
@@ -20,7 +20,7 @@ public class SpriteEditor extends ComponentEditor{
 	
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myFilePath);
+		return getCompF().getComponent(componentName.toString(), myFilePath);
 	}
 
 }
