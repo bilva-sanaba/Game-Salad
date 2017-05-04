@@ -36,7 +36,6 @@ public class EntityConfigurationWindow implements Window {
 	private Stage myStage = new Stage();
 	private Entity myEntity;
 	private HashMap<String, ComponentEditor> myCompEdits = new HashMap<String, ComponentEditor>();
-	private HashMap<EditableComponents, Boolean> selectedComponents;
 
 	public EntityConfigurationWindow(UtilityFactory utilF, ViewData entityData, String[] entityType, Entity entityIn) {
 		initalizeVars(utilF, entityData, entityType, entityIn);
@@ -56,7 +55,6 @@ public class EntityConfigurationWindow implements Window {
 		myData.setUserSelectedEntity(myEntity);
 		componentList = entityType;
 		myStage.setScene(buildScene());
-		selectedComponents = new HashMap<>();
 	}
 
 	private Scene buildScene() {
@@ -89,7 +87,6 @@ public class EntityConfigurationWindow implements Window {
 		root.getChildren().add(myUtilF.buildHBox(
 				myUtilF.buildButton("AddActions", e -> addActions()),
 				myUtilF.buildButton("AddEntity", e -> enterButton())));
-				myUtilF.buildButton("DeleteComponent", e -> deleteButton());
 	}
 	
 	private void deleteButton() {

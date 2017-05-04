@@ -32,7 +32,7 @@ public class ImagePropertiesEditor extends ComponentEditor {
 
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(componentName.toString(), myX, myY);
+		return getCompF().getComponent(componentName.toString(), myY, myX);
 	}
 
 	
