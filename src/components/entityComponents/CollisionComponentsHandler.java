@@ -50,6 +50,10 @@ public class CollisionComponentsHandler extends AComponent implements IComponent
 
 	@Override
 	public IComponent newCopy() {
-		return new CollisionComponentsHandler(sideCollisionMap);
+		Map<String, SideCollisionComponent> copyMap = new HashMap<String, SideCollisionComponent>();
+		for (String s: sideCollisionMap.keySet()) {
+			copyMap.put(s, (SideCollisionComponent) sideCollisionMap.get(s).newCopy());
+		}
+		return new CollisionComponentsHandler(copyMap);
 	}
 }

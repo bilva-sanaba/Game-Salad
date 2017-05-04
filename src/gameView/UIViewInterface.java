@@ -1,8 +1,6 @@
 package gameView;
 
 import java.util.Set;
-
-import entity.SplashData;
 import gameView.userManagement.IUserManager;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;

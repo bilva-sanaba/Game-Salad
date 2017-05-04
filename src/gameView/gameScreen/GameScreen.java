@@ -29,10 +29,9 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	private StackPane myPane;
 	private WorldAnimator myAnimation;
 	private DisplayManager myDisplays;
-	private Collection<AbstractCommand> myCommands;  
-	private VoogaAlert myAlert;   
+	private Collection<AbstractCommand> myCommands;
+	private VoogaAlert myAlert;
 	private final String VOOGAISSUE = "Vooga Issue";
-      
 	public GameScreen(UIViewInterface view, Stage s, IUserInputData input) {
 		super(view, s, input);
 		myCommands = getCommands(myName);
@@ -64,21 +63,21 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 			myAlert.showAlert();
 		}
 	}
-	
+
 	@Override
 	public DisplayManager getComponents() {
-		return myDisplays; 
+		return myDisplays;
 	}
-	
+
 	@Override
 	public void removeComponent(UIDisplayComponent toRemove) {
 		myPane.getChildren().remove(toRemove.getDisplay());
-	} 
+	}
 	@Override
 	public void addComponent(UIDisplayComponent toAdd) {
 		myPane.getChildren().add(toAdd.getDisplay());
-	} 
-	
+	}
+
 	public void checkWorldAnimator() {
 		try {
 			pauseGame();
@@ -86,7 +85,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 			System.out.println("NO WORLD ANIMATOR");
 		}
 	}
-	
+
 	@Override
 	protected void setBackground(String background){
 		myBP.getCenter().setStyle(String.format(
@@ -118,34 +117,34 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	}
 
 	private void buildMainScene() {
-		myBP = new BorderPane(null, myTopBox, null, null,
-				null);
+		myBP = new BorderPane();
 		myBP.setId("main");
 		myScene = new Scene(myBP, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
-		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName)); 
-		myCommands.stream()  
+		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
+		myCommands.stream()
 			.forEach(c -> {
 				myTopBox.getChildren().add(makeButton(c));
 			});
 		setUserCommand();
-		myBP.setCenter(myPane);   
+		myBP.setCenter(myPane);  
+		myBP.setTop(myTopBox);
 
 	}
-	
+
 	private void reset() {
 		myPane.getChildren().clear();
 	}
-	
+
 	/**
 	 * THE FOLLOWING METHODS ARE FOR COMMANDS
 	 */
-	
+
 	@Override
 	public void runGame() {
 		getGameData().getMusic().playMusic();
 		myAnimation.start();
 	}
-	
+
 	@Override
 	public void pauseGame() {
 		getGameData().getMusic().stopMusic();

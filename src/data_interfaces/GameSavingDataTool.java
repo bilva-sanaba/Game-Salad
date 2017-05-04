@@ -11,6 +11,10 @@ public class GameSavingDataTool {
 	private static final String SUFFIX = ".xml";
 	private static String LINESEPARATOR = System.getProperty("line.separator");
 	public static int SPLASHCONSTANT = 1;
+	private static final int SPLASHORDER = 2;
+	private static final int LEVELORDER = 1;
+	private static final int ENTITYORDER = 0;
+	private static final int STORAGELEVEL = 1;
 
 	protected String getPrefix() {
 		return PREFIX;
@@ -26,6 +30,22 @@ public class GameSavingDataTool {
 	
 	protected int getSplashConstant() {
 		return SPLASHCONSTANT;
+	}
+	
+	protected int getSplashOrder() {
+		return SPLASHORDER;
+	}
+	
+	protected int getLevelOrder() {
+		return LEVELORDER;
+	}
+	
+	protected int getEntityOrder() {
+		return ENTITYORDER;
+	}
+	
+	protected int getStorageLevel() {
+		return STORAGELEVEL;
 	}
 	
 	/**
