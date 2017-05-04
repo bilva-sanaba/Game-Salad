@@ -30,8 +30,8 @@ import view.commands.RightClickMenu;
  */
 public class GridView extends GUIComponent {
 
-	private static final int GRIDWIDTH = 720;
-	private static final int GRIDHEIGHT = 500;
+	private static final int GRIDWIDTH = 900;
+	private static final int GRIDHEIGHT = 720;
 	private static final int GRID_INTERVAL = 10;
 
 	private RightClickMenu rightClick;
@@ -75,7 +75,9 @@ public class GridView extends GUIComponent {
 	private HBox buildGridMenu(){
 		Button butt = util.buildButton("addHo", e -> addHo());
 		Button butt2 = util.buildButton("addVert", e -> addVert());
-		HBox box = util.buildHBox(butt, butt2, mouseCords);
+		Button butt3 = util.buildButton("removeHo", e -> removeHo());
+		Button butt4 = util.buildButton("removeVert", e -> removeVert());
+		HBox box = util.buildHBox(butt, butt2, butt3, butt4, mouseCords);
 		box.setPadding(new Insets(10));
 		box.setSpacing(10);
 		return box;
@@ -108,14 +110,32 @@ public class GridView extends GUIComponent {
 	private void addHo() {
 		myGrid.setPrefWidth(myGrid.getWidth() + 60);
 		myCol++;
-		myData.getLevelEntity().addCol();
+		myData.getLevelEntity(myData.getCurrentLevel()).addCol(1);
 	}
 
 	private void addVert() {
 		myGrid.setPrefHeight(myGrid.getHeight() + 60);
 		myRow++;
-		myData.getLevelEntity().addRow();
+		myData.getLevelEntity(myData.getCurrentLevel()).addRow(1);
 	}
+
+	private void removeHo(){
+		if(myCol > 97){
+			myGrid.setPrefWidth(myGrid.getWidth() - 60);
+			myCol--;
+			myData.getLevelEntity(myData.getCurrentLevel()).addCol(-1);
+		}
+	}
+
+	private void removeVert(){
+		if(myRow > 96){
+			myGrid.setPrefHeight(myGrid.getHeight() - 60);
+			myRow--;
+			myData.getLevelEntity(myData.getCurrentLevel()).addRow(-1);
+		}
+	}
+
+
 
 	private void placeImageAtLoc(double row, double col) {
 		Entity userSelectedEntity = myData.getUserSelectedEntity();
@@ -177,7 +197,7 @@ public class GridView extends GUIComponent {
 		unselectEntity(entity);
 		entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
 	}
-	
+
 	private double snapToGrid(double val, int gridInterval) {
 		double remainder = val % gridInterval;
 		if (remainder > gridInterval / 2) {
@@ -215,8 +235,8 @@ public class GridView extends GUIComponent {
 	}
 
 	public void setUpLevel() {
-		int totalRow = myData.getLevelEntity().getRows();
-		int totalCol = myData.getLevelEntity().getCols();
+		int totalRow = myData.getLevelEntity(myData.getCurrentLevel()).getRows();
+		int totalCol = myData.getLevelEntity(myData.getCurrentLevel()).getCols();
 		while (myCol != totalCol) {
 			addHo();
 		}
@@ -226,8 +246,8 @@ public class GridView extends GUIComponent {
 	}
 
 	public void updateBackground() {
-		String filePath = myData.getLevelEntity().getBackgroundFilePath();
-		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
+			String filePath = myData.getLevelEntity(myData.getCurrentLevel()).getBackgroundFilePath();
+			myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
 
 	private void removeEntity(Entity entity) {

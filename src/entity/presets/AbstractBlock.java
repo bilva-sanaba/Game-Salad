@@ -24,7 +24,6 @@ public class AbstractBlock extends Entity {
 	private final static double DEFAULT_SIZE = 50;
 	public AbstractBlock(int id) {
 		super(id);
-		System.out.println("block id = " + id);
 		addCollisionComponents();
 	}
 	

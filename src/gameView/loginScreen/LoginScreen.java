@@ -55,7 +55,7 @@ public class LoginScreen extends AbstractViewer {
 		makeRight();
 		myMain = new HBox(myLeft, myRight);
 		myMain.setId("main");
-		myScene = new Scene(myMain, UIView.DEFAULT_SIZE.width, UIView.DEFAULT_SIZE.height);
+		myScene = new Scene(myMain, UIView.DEFAULT_SIZE.width-100, UIView.DEFAULT_SIZE.height-100);
 		myScene.getStylesheets().add(new ResourceRetriever().getStyleSheets(this,myName));
 	}
 	

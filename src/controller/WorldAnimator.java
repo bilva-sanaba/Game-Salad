@@ -22,9 +22,12 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
+import javafx.scene.ParallelCamera;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 /**
@@ -47,7 +50,7 @@ public class WorldAnimator{
 
 	private Scene myScene;
 	private Timeline animation;
-	private Group root;
+	private Pane root;
 
 
 	private Camera myCamera;
@@ -68,16 +71,15 @@ public class WorldAnimator{
 	private boolean pause = false;
 
 	public WorldAnimator(UIViewInterface view){
-		System.out.println("WORLDANIMATOR IS CREATED");
-	
 		myView = view;
 	}
-	public Group getGroup(){
+	public Pane getGroup(){
 		return root;
 	}
 
 	public void start (IRestrictedGameData myData, IGameScreenEntity screen) throws ClassNotFoundException{ //achievementFactory
-		root = new Group();
+		root = new Pane();
+		root.setStyle("-fx-background-color: rgba(0,0,0,0)");
 		IRestrictedEntityManager restrictedEntityManager = myData.getRestrictedEntityManager();
 		myObservers = new ObserverManager(this, restrictedEntityManager);
 		myAchievements = myData.getAchievement();
@@ -93,10 +95,13 @@ public class WorldAnimator{
 			}
 		});
 
-			myScene = new Scene(root,LENGTH,WIDTH);
-			LocationComponent lc = myData.getMainLocation();
-			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1);
 
+			myScene = new Scene(root,LENGTH,WIDTH);
+
+			LocationComponent lc = myData.getMainLocation();
+			
+			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1, myData.getCamera());
+			
 			myObservers.getUpdatedSet();
 			fillMapAndDisplay(myObservers.getEntityMap().keySet());
 
@@ -121,9 +126,9 @@ public class WorldAnimator{
 			counter++;
 			myView.step(keysPressed);
 			fillMapAndDisplay(myObservers.getUpdatedSet());
-			
+
 			updateAchievement();
-			        
+
 			if(achievementShowing==true){
 			   myAchievement.updateAchievementLoc(-1*myCamera.getX());
 			}
@@ -142,12 +147,11 @@ public class WorldAnimator{
 			String ach="";
 			if(achievementSize!=myAchievements.size()-1){ //subtract one for empty string
 				ach = myAchievements.get(myAchievements.size()-1);
-				System.out.println("HIT ME BABY ONE MORE TIME");
 			}
 			addAchievement(ach);
 			removeAchievement();
 		}
-		
+
 		private void handleKeyReleased(KeyCode keyCode) {
 			keysReleased.add(keyCode);
 			keysPressed.remove(keyCode);
@@ -194,7 +198,7 @@ public class WorldAnimator{
 				//st.play();
 				imageMap.get(entity).getImageView().setImage(null);
 				root.getChildren().remove(imageMap.get(entity));
-				imageMap.remove(entity);    		
+				imageMap.remove(entity);
 			}
 		}
 
@@ -228,7 +232,7 @@ public class WorldAnimator{
 			}
 
 			currentImage.setTranslateX(re.getTranslateX());
-			currentImage.setTranslateY(re.getTranslateY()); 
+			currentImage.setTranslateY(re.getTranslateY());
 			currentImage.setFitHeight(re.getFitHeight());
 			currentImage.setFitWidth(re.getFitWidth());
 
@@ -251,7 +255,6 @@ public class WorldAnimator{
 			if(counter%90==0 && achievementShowing){
 				root.getChildren().remove(myAchievement.getGroup());
 				achievementShowing=false;
-				System.out.println("YACK YACK YACK YACK YACK");
 			}
 		}
 

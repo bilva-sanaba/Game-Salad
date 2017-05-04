@@ -37,7 +37,6 @@ public class Teleport extends AbstractAction  implements IAction {
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		((LocationComponent) other.getComponent(ComponentType.Location)).setXY(teleportXLocation, teleportYLocation);
 		other.changed(other);
-//		System.out.println("we teleported");
 		return getGameDataFactory().blankEntityData(currentGameData);
 	}
 

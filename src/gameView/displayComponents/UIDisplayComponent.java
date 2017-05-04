@@ -1,6 +1,5 @@
 package gameView.displayComponents;
 
-import gameObject.GameConfig;
 import gameView.tools.DisplayEnum;
 import gamedata.IRestrictedGameData;
 import javafx.beans.binding.NumberExpressionBase;
@@ -12,13 +11,11 @@ import javafx.scene.layout.Region;
 public abstract class UIDisplayComponent implements IDisplayComponent {
 
 	private String myDisplayName;
-	private GameConfig gameConfig;
 	private IRestrictedGameData myGameData;
 	
 	public UIDisplayComponent(String name, IRestrictedGameData gameData) {
 		myGameData = gameData;
 		myDisplayName = name;
-		gameConfig = new GameConfig(1, 3);
 		setID();
 	}
 	
@@ -32,10 +29,6 @@ public abstract class UIDisplayComponent implements IDisplayComponent {
 	
 	protected IRestrictedGameData getData() {
 		return myGameData;
-	}
-	
-	protected GameConfig getConfig() {
-		return gameConfig;
 	}
 	
 	protected NumberExpressionBase setValue(NumberExpressionBase value) {
