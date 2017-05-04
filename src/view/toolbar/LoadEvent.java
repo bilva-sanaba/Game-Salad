@@ -44,7 +44,7 @@ public class LoadEvent extends GameSavingDataTool implements ToolBarButtonEvent 
 			String name = firstSplit.substring(0, firstSplit.length()
 					- getSuffix().length());
 			myData.setGameName(name);
-			List <Map> toPlace = xpp.getData(name);
+			List<Map> toPlace = xpp.getData(name);
 			setLevelEntities(toPlace.get(1));
 			setPlacedEntities(toPlace.get(0));
 			setSplashEntity(toPlace.get(2));
