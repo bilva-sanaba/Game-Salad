@@ -71,10 +71,16 @@ public class InfiniteEngine extends AbstractEngine implements IEngine{
 				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 				if (mainPlayer.getY()-lc.getY()>difference/2 && !repeated.contains(e)){
 					repeated.add(e);
-					IEntity newEntity = e.newCopy(getEManager().getEntities().size());
-					newEntity.addComponent(new LocationComponent(lc.getX(),lc.getY()+difference));
-					getEManager().getEntities().add(newEntity);
-					getEManager().changed(newEntity);
+					if (!e.hasComponent(ComponentType.Stationary)){
+						IEntity newEntity = e.newCopy(getEManager().getEntities().size());
+						newEntity.addComponent(new LocationComponent(lc.getX(),lc.getY()+difference));
+						getEManager().getEntities().add(newEntity);
+						getEManager().changed(newEntity);
+					}
+//					IEntity newEntity = e.newCopy(getEManager().getEntities().size());
+//					newEntity.addComponent(new LocationComponent(lc.getX(),lc.getY()+difference));
+//					getEManager().getEntities().add(newEntity);
+//					getEManager().changed(newEntity);
 				}
 				
 			}
