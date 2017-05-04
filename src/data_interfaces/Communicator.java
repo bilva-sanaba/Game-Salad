@@ -79,17 +79,18 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 		fileName = s;
 		XMLPlacedParser xp = new XMLPlacedParser();
 		results = xp.getData(fileName);
+		System.out.println("RESULTS SIZE: " + results.size());
 	}
 	public String getMusic() {
-//		Map<Integer, LevelEntity> m = results.get(1);
-//		return m.get(1).getMusic();
-		return "badboujee.wav";
+		Map<Integer, LevelEntity> m = results.get(1);
+		return m.get(1).getMusic();
+//		return "badboujee.wav";
 	}
 	
 	public int getLives () {
-//		Map <Integer, LevelEntity> m = results.get(1);
-//		return m.get(1).getLives();
-		return 3;
+		Map <Integer, LevelEntity> m = results.get(1);
+		return m.get(1).getLives();
+//		return 3;
 	}
 	public List<IEntityManager> getIEntityManagers() {
 		Map <Integer, Map<Integer, Entity>> m = results.get(0);
