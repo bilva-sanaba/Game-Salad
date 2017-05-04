@@ -31,7 +31,6 @@ public class BlockLeftRegularCollision extends AbstractAction implements IAction
 		if (!other.hasComponent(ComponentType.Orientation)){
 			other.addComponent(new OrientationComponent());
 		}
-		System.out.println("hamsa doesnt suck at coding if this prints");
 		OrientationComponent otherOrientation = (OrientationComponent) other.getComponent(ComponentType.Orientation);
 		otherOrientation.setOrientation(OrientationComponent.LEFT);
 		return getGameDataFactory().blankEntityData(currentGameData);
