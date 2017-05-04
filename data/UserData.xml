@@ -1,5 +1,57 @@
 <users>
   <entry>
+    <string>a</string>
+    <userdata>
+      <username>a</username>
+      <password>b</password>
+      <image></image>
+      <myGameScores>
+        <entry>
+          <string>jack012342017-05-03T21:17:12</string>
+          <double>3000.0</double>
+        </entry>
+      </myGameScores>
+      <myAchievements>
+        <string></string>
+      </myAchievements>
+      <myGames class="list">
+        <string>ajack012342017-05-03T21:17:122017-05-03T21:17:56</string>
+      </myGames>
+      <mySavedGameMap>
+        <entry>
+          <string>ajack012342017-05-03T21:17:122017-05-03T21:17:56</string>
+          <string>jack012342017-05-03T21:17:12</string>
+        </entry>
+      </mySavedGameMap>
+    </userdata>
+  </entry>
+  <entry>
+    <string>TESSSST</string>
+    <userdata>
+      <username>TESSSST</username>
+      <password>TESSTTT</password>
+      <image></image>
+      <myGameScores>
+        <entry>
+          <string>workingtest</string>
+          <double>3800.0</double>
+        </entry>
+      </myGameScores>
+      <myAchievements>
+        <string></string>
+      </myAchievements>
+      <myGames class="list">
+        <string>TESSSSTworkingtest1493862002812</string>
+      </myGames>
+      <mySavedGameMap>
+        <entry>
+          <string>TESSSSTworkingtest1493862002812</string>
+          <string>workingtest</string>
+        </entry>
+      </mySavedGameMap>
+    </userdata>
+  </entry>
+  <entry>
     <string>bilva</string>
     <userdata>
       <username>bilva</username>
@@ -31,10 +83,28 @@
       <username>jack</username>
       <password>ass</password>
       <image>file:/Users/Henry/Documents/workspace-CS308/voogasalad_raindrop/images/bloomfeld.png</image>
-      <myGameScores/>
-      <myAchievements/>
-      <myGames class="list"/>
-      <mySavedGameMap/>
+      <myGameScores>
+        <entry>
+          <string>jack012342017-05-03T19:44:25</string>
+          <double>0.0</double>
+        </entry>
+        <entry>
+          <string>01234</string>
+          <double>300.0</double>
+        </entry>
+      </myGameScores>
+      <myAchievements>
+        <string></string>
+      </myAchievements>
+      <myGames class="list">
+        <string>jack012342017-05-03T21:17:12</string>
+      </myGames>
+      <mySavedGameMap>
+        <entry>
+          <string>jack012342017-05-03T21:17:12</string>
+          <string>01234</string>
+        </entry>
+      </mySavedGameMap>
     </userdata>
   </entry>
 </users>
