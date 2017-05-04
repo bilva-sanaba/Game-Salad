@@ -143,7 +143,6 @@ public class UtilityFactory {
 		EventFactory evfac = new EventFactory(this);
 		menuItem.setOnAction(e -> {
 			try {
-				System.out.println(eventname);
 				evfac.getRightClickEvent(eventname, this, data, entity, x, y).execute();
 			} catch (Exception e1) {
 				e1.printStackTrace();
