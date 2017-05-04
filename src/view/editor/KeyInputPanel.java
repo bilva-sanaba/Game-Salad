@@ -10,6 +10,7 @@ import actions.ShootAction;
 import components.entityComponents.ConcreteKeyExpressions;
 import components.entityComponents.IKeyExpression;
 import components.entityComponents.KeyExpression;
+import components.keyExpressions.InfiniteJump;
 import components.keyExpressions.JumpAction;
 import components.keyExpressions.LeftAction;
 import components.keyExpressions.RightAction;
@@ -45,6 +46,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 		x.add(new JumpAction());
 		x.add(new RightAction());
 		x.add(new LeftAction());
+		x.add(new InfiniteJump());
 	}
 
 
