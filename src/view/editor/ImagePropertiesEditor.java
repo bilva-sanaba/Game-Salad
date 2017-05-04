@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import view.UtilityFactory;
 
 public class ImagePropertiesEditor extends ComponentEditor {
-	private static final String ComponentName = "ImageProperties";
+	private EditableComponents componentName = EditableComponents.ImageProperties;
 	
 	private VBox myBox;
 	private double myX = 40;
@@ -16,12 +16,12 @@ public class ImagePropertiesEditor extends ComponentEditor {
 	
 	public ImagePropertiesEditor(UtilityFactory utilf) {
 		myBox = new VBox();
-		HBox xsize = utilf.buildSlider(ComponentName+"X", new ChangeListener<Number>() {
+		HBox xsize = utilf.buildSlider(componentName.toString()+"X", new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myX = newValue.doubleValue(); 
 			}
 		});
-		HBox ysize = utilf.buildSlider(ComponentName+"Y", new ChangeListener<Number>() {
+		HBox ysize = utilf.buildSlider(componentName.toString()+"Y", new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				myY = newValue.doubleValue(); 
 			}
@@ -32,7 +32,7 @@ public class ImagePropertiesEditor extends ComponentEditor {
 
 	@Override
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, myX, myY);
+		return getCompF().getComponent(componentName.toString(), myX, myY);
 	}
 
 	

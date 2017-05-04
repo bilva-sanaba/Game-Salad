@@ -7,13 +7,13 @@ import javafx.scene.layout.HBox;
 import view.UtilityFactory;
 
 public class StepEditor extends ComponentEditor {
-	private static final String ComponentName = "Step";
+	private EditableComponents componentName = EditableComponents.Step;
 	
 	private HBox myBox;
 	private int mySteps;
 	
 	public StepEditor(UtilityFactory utilf) {
-		myBox = utilf.buildSlider(ComponentName, new ChangeListener<Number>() {
+		myBox = utilf.buildSlider(componentName.toString(), new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				mySteps = newValue.intValue(); 
 			}
@@ -22,7 +22,7 @@ public class StepEditor extends ComponentEditor {
 	}
 	
 	public IComponent getComponent() {
-		return getCompF().getComponent(ComponentName, mySteps);
+		return getCompF().getComponent(componentName.toString(), mySteps);
 	}
 	
 }
