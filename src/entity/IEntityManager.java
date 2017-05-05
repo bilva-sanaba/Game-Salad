@@ -30,10 +30,22 @@ public interface IEntityManager {
 	public Map<Integer, IComponent> getCertainComponents(
 			ComponentType certainComponent);
 
-	
+	/**
+	 * Returns a copy of the current entity manager with no pointers
+	 * @return
+	 */
+
 	public IEntityManager copy();
+	
+	/**
+	 * Returns a collection of stored entities
+	 * @return
+	 */
 	public Collection<IEntity> getEntities();
 
-
+	/**
+	 * For notifying observer of change
+	 * @param o
+	 */
 	void changed(Object o);
 }

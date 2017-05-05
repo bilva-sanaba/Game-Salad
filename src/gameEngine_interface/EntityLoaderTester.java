@@ -18,7 +18,7 @@ public class EntityLoaderTester {
 		IEntityManager main = new EntityManager(new ArrayList<IEntity>());
 		IEntityManager newEM = new EntityManager(new ArrayList<IEntity>());
 		newEM.getEntities().add(new Entity(20));	
-		EntityLoader el = new EntityLoader(main);
+		IEntityLoader el = new EntityLoader(main);
 		el.loadNew(newEM);
 		}
 

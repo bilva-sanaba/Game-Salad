@@ -17,6 +17,12 @@ import gamedata.IRestrictedGameData;
 @RightAction()
 @TopAction()
 @BottomAction()
+/**
+ * Action which sends the player to a a certain level
+ * @author Bilva
+ *
+ */
+
 public class GoalAction  extends AbstractAction  implements IAction{
 	private int toLevel;
 	public GoalAction(int level){

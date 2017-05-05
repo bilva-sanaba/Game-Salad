@@ -23,6 +23,12 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * Action which creates a new entity from a preexisting entities ObjectCreationComponent
+ * @author Bilva
+ *
+ */
+
 public class PowerupCreation   extends AbstractAction implements IAction {
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
