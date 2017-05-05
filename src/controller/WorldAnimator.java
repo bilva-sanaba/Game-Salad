@@ -182,7 +182,6 @@ public class WorldAnimator{
 
 			Map<Integer, ImageConfig> map = myObservers.getEntityMap();
 			for(Integer entity : entities){
-				//This if statement should not be needed and observers shouldn't have nulls in their map imo - Bilva
 				if (map.get(entity)!=null){
 					updateEntity(entity,map);
 					createEntity(entity,map);

@@ -1,7 +1,6 @@
 package gameView.gameScreen;
 
 import java.util.Collection;
-
 import controller.VoogaAlert;
 import controller.WorldAnimator;
 import gameView.AbstractViewer;
@@ -44,6 +43,7 @@ public class GameScreen extends AbstractViewer implements IGameScreenDisplays, I
 	@Override
 	public Scene getScene() {
 		myPane.getChildren().add(myAnimation.getGroup());
+		myDisplays.addAllActive();
 		myAnimation.setKeys(myScene);
 		return myScene;
 	}

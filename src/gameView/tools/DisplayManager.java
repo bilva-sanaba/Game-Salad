@@ -84,7 +84,9 @@ public class DisplayManager implements IDisplayManager {
 	
 	private void copyMap(HashMap<String, UIDisplayComponent> toCopy) {
 		for (String key: toCopy.keySet()) {
-			add(key);
+			if (!myActiveDisplays.containsKey(key)) {
+				myActiveDisplays.put(key, myAllDisplays.get(key));
+			}
 		}
 	}
 	
