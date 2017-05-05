@@ -1,10 +1,5 @@
 package gameEngine_interface;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import components.IComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
@@ -12,7 +7,6 @@ import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
 /**
-public class EntityLoader {
  * Class which allows for the changing of an entity Manager into another entity manager
  * @author Bilva
  *
