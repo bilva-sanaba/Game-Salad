@@ -46,5 +46,6 @@ public enum ComponentType {
 	MonsterType(),
 	Invincible(),
 	Friction(),
+	Stationary(),
 	Null();
 }

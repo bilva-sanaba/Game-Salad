@@ -11,13 +11,20 @@ import components.entityComponents.LocationComponent;
 import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
-
+/**
 public class EntityLoader {
+ * Class which allows for the changing of an entity Manager into another entity manager
+ * @author Bilva
+ *
+ */
+public class EntityLoader implements IEntityLoader {
 	private IEntityManager mainEntityManager;
 	
 	public EntityLoader(IEntityManager mainManager){
 		mainEntityManager = mainManager;
 	}
+
+	@Override
 	public void loadNew(IEntityManager newManager) {
 		IEntity originalMain = new Entity(0);
 		for (IEntity e : mainEntityManager.getEntities()){

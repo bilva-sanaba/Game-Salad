@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import components.entityComponents.ComponentType;
 
-public abstract class AbstractOneParameterComponent<E extends String> extends AComponent  implements IComponent{
+public abstract class AbstractOneParameterComponent<E> extends AComponent  implements IComponent{
 	private E myString;
 	public AbstractOneParameterComponent(E obj){
 		myString = obj;

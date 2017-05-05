@@ -39,7 +39,7 @@ public class GameEngine implements GameEngineInterface {
 	private List<IEntityManager> myEntityManagers;
 	private List<IEntityManager> previousEntityManagers;
 	private List<IGameData> previousGameData;
-	private EntityLoader myEntityLoader;
+	private IEntityLoader myEntityLoader;
 	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
 	
 	public GameEngine(IRestrictedUserInputData data){

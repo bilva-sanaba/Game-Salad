@@ -14,6 +14,12 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * Action which sets the objectCreationComponent to true
+ * @author Bilva
+ *
+ */
+
 public class Reload  extends AbstractAction  implements IAction {
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,

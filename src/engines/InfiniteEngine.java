@@ -10,6 +10,12 @@ import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
+/**
+ * Engine which takes the passed in an Infinite Enum to determine how to modify the game in order
+ * to run infinite games
+ * @param myEntityManager
+ * @param infinite
+ */
 
 public class InfiniteEngine extends AbstractEngine implements IEngine{
 	

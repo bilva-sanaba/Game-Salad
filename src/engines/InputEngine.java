@@ -21,6 +21,13 @@ import entity.restricted.IRestrictedEntity;
 import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
+/**
+ * Engine which checks which relevant keys are being pressed and then runs their mapped actions 
+ * in the key input component. Commented code can also handle mapped strings and run groovy actions but lowers
+ * run time
+ * @author Bilva
+ *
+ */
 
 public class InputEngine extends AbstractEngine {
 	private ScriptEngine engine; 

@@ -23,6 +23,13 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * AI action which allows a nonCPU character to shoot at the player character
+ * (Should have refactored to simply use the ShootAction after adjusting aim but I did not have time)
+ * @author Bilva
+ *
+ */
+
 public class SmartShoot extends AbstractAction implements IAction  {
 	private List<LocationComponent> targets;
 	public SmartShoot(){

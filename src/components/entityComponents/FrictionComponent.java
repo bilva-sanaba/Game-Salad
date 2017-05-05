@@ -1,6 +1,11 @@
 package components.entityComponents;
 
 import components.IComponent;
+/**
+ * Component which is used by the movement engine to determine if an entity will experience deacceleration
+ * @author Bilva
+ *
+ */
 
 public class FrictionComponent implements IComponent {
 	private boolean friction;

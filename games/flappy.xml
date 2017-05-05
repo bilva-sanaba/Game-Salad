@@ -311,8 +311,8 @@
                     <entry>
                       <javafx.scene.input.KeyCode>W</javafx.scene.input.KeyCode>
                       <list>
-                        <components.keyExpressions.JumpAction/>
-                        <components.keyExpressions.JumpAction/>
+                        <components.keyExpressions.InfiniteJump/>
+                        <components.keyExpressions.InfiniteJump/>
                       </list>
                     </entry>
                   </inputMap>

@@ -15,6 +15,12 @@ import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
 @KeyAction()
+/**
+ * Action applicable for a key input as well as other engines
+ * (Should be refactored to use input parameters but this could not be used by authoring)
+ * @author Bilva
+ *
+ */
 
 public class InfiniteJump implements IAction {
 

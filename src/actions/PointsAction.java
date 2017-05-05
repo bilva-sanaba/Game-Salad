@@ -17,6 +17,12 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * Action which increases the players score by a input amount
+ * @author Bilva
+ *
+ */
+
 public class PointsAction extends AbstractAction implements IAction {
 	private double increment;
 	public PointsAction(double d){

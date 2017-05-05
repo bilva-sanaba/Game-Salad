@@ -15,6 +15,12 @@ import gamedata.IRestrictedGameData;
 //@LeftAction()
 //@RightAction()
 //@BottomAction()
+/**
+ * Action which when run, lowers the lives of the game
+ * @author Bilva
+ *
+ */
+
 public class DeathAction extends AbstractAction implements IAction{
 
 	@Override

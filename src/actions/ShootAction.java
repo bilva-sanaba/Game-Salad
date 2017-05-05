@@ -24,6 +24,11 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * Action which shoots the object stored in an entity in a preset direction
+ * @author Bilva
+ *
+ */
 public class ShootAction  extends AbstractAction implements IAction {
 
 	@Override
