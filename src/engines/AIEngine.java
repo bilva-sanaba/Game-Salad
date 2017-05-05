@@ -6,13 +6,17 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.MonsterType;
 import components.entityComponents.MonsterTypeComponent;
 import components.entityComponents.StepComponent;
-import components.entityComponents.TypeComponent;
 import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 
+/**
+ * Basic AI engine which moves based on the Monstermovement component enum stored
+ * @author Bilva
+ *
+ */
 public class AIEngine extends AbstractEngine{
 
 	public AIEngine(IEntityManager myEntityManager) {

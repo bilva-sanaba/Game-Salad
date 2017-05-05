@@ -3,6 +3,10 @@ package actions;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
@@ -15,6 +19,15 @@ import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 
+@TopAction()
+@LeftAction()
+@RightAction()
+@BottomAction()
+/**
+ * Action which creates a new entity from a preexisting entities ObjectCreationComponent
+ * @author Bilva
+ *
+ */
 public class PowerupCreation   extends AbstractAction implements IAction {
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
@@ -27,10 +40,7 @@ public class PowerupCreation   extends AbstractAction implements IAction {
 				Collection<IEntity> list = new ArrayList<IEntity>();
 				list.add( powerup);
 				powerup.setID(myEM.getEntities().size());
-				LocationComponent newLC = ((LocationComponent) powerup.getComponent(ComponentType.Location));
-				ImagePropertiesComponent ipc = ((ImagePropertiesComponent) powerup.getComponent(ComponentType.ImageProperties));
-				newLC.setX(lc.getX());
-				newLC.setY(lc.getY()-ipc.getHeight());
+				movePowerup(powerup,lc);
 				myEM.getEntities().add(powerup);
 				myEM.changed(powerup);
 				EntityManager em = new EntityManager(list);
@@ -38,5 +48,11 @@ public class PowerupCreation   extends AbstractAction implements IAction {
 			}
 		}
 		return returnData; 
+	}
+	private void movePowerup(IEntity powerup, LocationComponent lc){
+		LocationComponent newLC = ((LocationComponent) powerup.getComponent(ComponentType.Location));
+		ImagePropertiesComponent ipc = ((ImagePropertiesComponent) powerup.getComponent(ComponentType.ImageProperties));
+		newLC.setX(lc.getX());
+		newLC.setY(lc.getY()-ipc.getHeight());
 	}
 }

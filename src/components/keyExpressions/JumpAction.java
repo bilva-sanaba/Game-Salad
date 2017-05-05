@@ -15,7 +15,12 @@ import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
 @KeyAction()
-
+/**
+ * Action applicable for a key input
+ * (Should be refactored to use input parameters but this could not be used by authoring)
+ * @author Bilva
+ *
+ */
 public class JumpAction implements IAction {
 
 	@Override

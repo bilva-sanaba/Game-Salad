@@ -19,32 +19,30 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @BottomAction()
 @RightAction()
+/**
+ * Doubles the size of an image when action is run (should have taken in a parameter to determine scaling 
+ * size, but was not sure if authoring could handle parameters at time of creation)
+ * @author Bilva
+ *
+ */
 public class DoubleSize  extends AbstractAction implements IAction {
 	private boolean c;
-	
+
 	public DoubleSize(boolean correction){
 		c = correction;
 	}
-	
-	public DoubleSize(String correction) {
-		c = correction.toLowerCase().equals("true");
-	}
-	
+
 	public DoubleSize(List<String> inputs) throws NotEnoughInputsException {
 		inputs = super.validateList(inputs, 1);
 		c = inputs.get(0).toLowerCase().equals("true");
-		
 	}
-	
-	
+
+
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
-//		SpriteComponent x = (SpriteComponent) other.getComponent(ComponentType.Sprite);
-//		x.setClassPath(imagePath);
 		ImagePropertiesComponent y = (ImagePropertiesComponent) other.getComponent(ComponentType.ImageProperties);
 		if (c){
 			LocationComponent t = (LocationComponent) other.getComponent(ComponentType.Location);
-//		VelocityComponent v = (VelocityComponent) other.getComponent(ComponentType.Velocity);
 			t.setY(t.getY()-y.getHeight());
 		}
 		y.setHeight(y.getHeight()*2);

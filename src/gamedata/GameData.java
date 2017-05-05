@@ -27,8 +27,20 @@ public class GameData implements IGameData,IRestrictedGameData{
 	private LocationComponent mainPlayerLocation;
 	private VoogaObservableList<String> myAchievements;
 	private StringProperty music = new SimpleStringProperty();
-
-	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, List<String> ac, String m){
+	private boolean myCamera;
+	/**
+	 * GameData is an object to be created and updated by the game engine and observed by the display
+	 * it contains all relevant data for display to use
+	 * @param p points
+	 * @param l lives
+	 * @param rem Restricted Entity Manager - allows for display to see all entities but only unmodifiable image and location
+	 * @param lvl Level
+	 * @param lc LocationComponent of main character
+	 * @param ac Achievements
+	 * @param m Music
+	 * @param camera Determines if camera should follow player or not
+	 */
+	public GameData(double p, double l, IRestrictedEntityManager rem, double lvl, LocationComponent lc, List<String> ac, String m,boolean camera){
 		myAchievements = new VoogaObservableList<String>(ac);
 		points.setValue(p);
 		lives.setValue(l);
@@ -37,8 +49,12 @@ public class GameData implements IGameData,IRestrictedGameData{
 		mainPlayerLocation = lc;
 		//		observableList.add(ac);
 		music.setValue(m);
+		myCamera = camera;
 	}
 
+	public boolean getCamera() {
+		return myCamera;
+	}
 	public DoubleProperty getPointsProperty(){
 		return points;
 	}

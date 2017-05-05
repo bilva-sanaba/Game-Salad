@@ -2,14 +2,8 @@ package engines;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 import actions.IAction;
-import alerts.GroovyAlert;
 import components.entityComponents.AccelerationComponent;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ControllableComponent;
@@ -21,13 +15,20 @@ import entity.restricted.IRestrictedEntity;
 import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
-
+/**
+ * Engine which checks which relevant keys are being pressed and then runs their mapped actions 
+ * in the key input component. Commented code can also handle mapped strings and run groovy actions but lowers
+ * run time
+ * @author Bilva
+ *
+ */
 public class InputEngine extends AbstractEngine {
-	private ScriptEngine engine; 
+//	private ScriptEngine engine; 
 	private Collection<IRestrictedEntity> newEntities = new ArrayList<IRestrictedEntity>();
+	
 	public InputEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
-		engine = new ScriptEngineManager().getEngineByName("groovy");	
+//		engine = new ScriptEngineManager().getEngineByName("groovy");	
 	}
 
 	@Override
@@ -55,13 +56,7 @@ public class InputEngine extends AbstractEngine {
 			ic = (KeyInputComponent) e.getComponent(ComponentType.KeyInput);
 			if(cc!=null && cc.checkControl() == true){	
 				for (KeyCode key : keys){
-					if (ic.getActionMap().containsKey(key)){
-						for (IAction action : ic.getActionMap().get(key)){
-							rgd = action.executeAction(e, null, getEManager(), rgd);
-							newEntities.addAll(rgd.getRestrictedEntityManager().getRestrictedEntities());
-							((IRestrictedEntity) e).changed(e);
-						}
-					}
+					handleSingleKeyInput(key,ic,rgd,e);
 //					if (ic.getGroovyMap().containsKey(key)){
 //						try {
 //							vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
@@ -78,5 +73,14 @@ public class InputEngine extends AbstractEngine {
 		}
 		
 		return rgd;	
+	}
+	private void handleSingleKeyInput(KeyCode key, KeyInputComponent ic, IRestrictedGameData rgd, IEntity e){
+		if (ic.getActionMap().containsKey(key)){
+			for (IAction action : ic.getActionMap().get(key)){
+				rgd = action.executeAction(e, null, getEManager(), rgd);
+				newEntities.addAll(rgd.getRestrictedEntityManager().getRestrictedEntities());
+				((IRestrictedEntity) e).changed(e);
+			}
+		}
 	}
 }

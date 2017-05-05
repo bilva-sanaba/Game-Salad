@@ -5,7 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-
+/**
+ * An observable list with all the methods of Java's observable list but no ability to modify its own observer
+ * @author Bilva
+ *
+ * @param <E>
+ */
 public interface VoogaAddableObservableList<E> {
 
 	public boolean add(E e);

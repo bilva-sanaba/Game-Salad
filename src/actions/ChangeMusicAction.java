@@ -14,10 +14,14 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @BottomAction()
 @RightAction()
+/**
+ * Action which allows music to be changed and played when run
+ * @author Bilva
+ *
+ */
 public class ChangeMusicAction extends AbstractAction implements IAction {
 	private String newSong;
 	public ChangeMusicAction(String song) throws FileInputException{
-		
 		newSong= super.validateFile(song);
 	}
 	
@@ -31,9 +35,7 @@ public class ChangeMusicAction extends AbstractAction implements IAction {
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		GameData gd = getGameDataFactory().blankEntityData(currentGameData);
-
 		gd.setMusic(newSong);
-		// TODO Auto-generated method stub
 		return gd;
 	}
 

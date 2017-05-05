@@ -62,6 +62,7 @@ import entity.presets.AbstractBreakableBox;
 import entity.presets.AbstractEnemy;
 import entity.presets.AbstractGoal;
 import entity.presets.AbstractMysteryBlock;
+import entity.presets.AbstractPlayer;
 import entity.presets.AbstractPowerup;
 import entity.presets.DeathBlock;
 import entity.presets.DoodleJumpPlatform;
@@ -75,7 +76,6 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 	List<Map> results;
 
 	public Communicator(String s) {
-		System.out.println("COMMUNICATOR MADE: " + s);
 		fileName = s;
 		XMLPlacedParser xp = new XMLPlacedParser();
 		results = xp.getData(fileName);
@@ -95,8 +95,8 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 			
 		}
 		return ret;
-		
 	}
+	
 
 
 
@@ -122,18 +122,26 @@ public class Communicator extends GameSavingDataTool implements EngineCommunicat
 
 	@Override
 	public InfiniteEnum getInfinite() {
+//		return InfiniteEnum.Vertical;
+
 		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getInfiniteEnum();
 	}
-	
+
+
 	public String getMusic() {
 		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getMusic();
 	}
 	
-	public int getLives () {
+	public int getLives() {
 		Map <Integer, LevelEntity> m = results.get(getLevelOrder());
 		return m.get(getStorageLevel()).getLives();
 	}
-	
+
+	@Override
+	public boolean getCameraOn() {
+		Map<Integer, LevelEntity> m = results.get(getLevelOrder());
+		return m.get(getStorageLevel()).getCamera();
+	}
 }

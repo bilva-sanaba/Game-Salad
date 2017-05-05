@@ -10,7 +10,11 @@ import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
-
+/**
+ * Engine which runs actions at appropriate times based on the mapped TimeComponents
+ * @author Bilva
+ *
+ */
 public class TimeEngine extends AbstractEngine{ 
 	public TimeEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);

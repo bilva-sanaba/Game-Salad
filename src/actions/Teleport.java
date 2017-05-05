@@ -22,14 +22,18 @@ public class Teleport extends AbstractAction  implements IAction {
 	private double teleportYLocation;
 	
 	public Teleport(double newX, double newY) {
+		System.out.println("was created");
 		teleportXLocation = newX;
 		teleportYLocation = newY;
 	}
 
 	public Teleport(List<String> inputs) throws InputException {
+		System.out.println("pre exception checking");
 		inputs = super.validateList(inputs, 2);
+		System.out.println( " tell x and y" + super.parseDouble(inputs.get(0))  + " " + super.parseDouble(inputs.get(1)));
 		teleportXLocation = super.parseDouble(inputs.get(0));
 		teleportYLocation = super.parseDouble(inputs.get(1));
+		System.out.println("post exception checking");
 	}
 	
 	
@@ -37,7 +41,6 @@ public class Teleport extends AbstractAction  implements IAction {
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {
 		((LocationComponent) other.getComponent(ComponentType.Location)).setXY(teleportXLocation, teleportYLocation);
 		other.changed(other);
-//		System.out.println("we teleported");
 		return getGameDataFactory().blankEntityData(currentGameData);
 	}
 

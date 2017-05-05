@@ -1,18 +1,18 @@
 package engines;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
-import components.IComponent;
 import components.entityComponents.ComponentType;
-import entity.Entity;
 import entity.IEntity;
 import entity.IEntityManager;
-import entity.restricted.IRestrictedEntity;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
-
+/**
+ * Abstract class which all engines can extend in order to get the protected EntityManager
+ * 
+ * @author Bilva
+ *
+ */
 public abstract class AbstractEngine implements IEngine {
 	private IEntityManager myEManager;
 	
@@ -30,12 +30,12 @@ public abstract class AbstractEngine implements IEngine {
 	public abstract IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData);
 	
 	/**
-	 * Returns the entity manager
+	 * Returns the entity manager passed in the constructor
 	 */
 	protected IEntityManager getEManager () {
 		return myEManager;
 	}
-	
+	//Safer method exists which e.hasComponent(c)
 	protected boolean hasComponent(IEntity e, ComponentType c) {
 		return (e.getComponent(c)!=null);
 	}

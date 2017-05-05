@@ -17,6 +17,12 @@ public class InfiniteEngine extends AbstractEngine implements IEngine{
 	private double difference;
 	private LocationComponent mainPlayer;
 	private List<IEntity> repeated;
+	/**
+	 * Engine which takes the passed in an Infinite Enum to determine how to modify the game in order
+	 * to run infinite games
+	 * @param myEntityManager
+	 * @param infinite
+	 */
 	public InfiniteEngine(IEntityManager myEntityManager, InfiniteEnum infinite) {
 		super(myEntityManager);
 		this.infinite=infinite;
@@ -71,12 +77,12 @@ public class InfiniteEngine extends AbstractEngine implements IEngine{
 				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 				if (mainPlayer.getY()-lc.getY()>difference/2 && !repeated.contains(e)){
 					repeated.add(e);
-					if (!e.hasComponent(ComponentType.Stationary)){
+//					if (!e.hasComponent(ComponentType.Stationary)){
 						IEntity newEntity = e.newCopy(getEManager().getEntities().size());
 						newEntity.addComponent(new LocationComponent(lc.getX(),lc.getY()+difference));
 						getEManager().getEntities().add(newEntity);
 						getEManager().changed(newEntity);
-					}
+//					}
 //					IEntity newEntity = e.newCopy(getEManager().getEntities().size());
 //					newEntity.addComponent(new LocationComponent(lc.getX(),lc.getY()+difference));
 //					getEManager().getEntities().add(newEntity);

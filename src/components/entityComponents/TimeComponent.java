@@ -1,13 +1,14 @@
 package components.entityComponents;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import actions.IAction;
 import components.IComponent;
-
+/**
+ * Component which is used by the Time Engine to run certain mapped times
+ * @author Bilva
+ *
+ */
 public class TimeComponent implements IComponent {
 	private Map<IAction, Integer> timeActions;
 	private Map<IAction,Integer>  lastTimeAction;
@@ -32,12 +33,21 @@ public class TimeComponent implements IComponent {
 		singleTimeAction= new HashMap<IAction,Integer>();
 		addAction(action, delay);
 	}
-	
+	/**
+	 * Adds an action to the timeActions map which will be run every delay
+	 * @param action
+	 * @param delay
+	 */
 	public void addAction(IAction action,Integer delay){
 		if (!timeActions.containsKey(action)){
 			timeActions.put(action,delay);
 		}
 	}
+	/**
+	 * Adds an action to the singleTimeAction map to be run a single time by the time engine
+	 * @param action
+	 * @param delay
+	 */
 	public void addSingleAction(IAction action, Integer delay){
 		if (!singleTimeAction.containsKey(action)){
 			singleTimeAction.put(action,delay);

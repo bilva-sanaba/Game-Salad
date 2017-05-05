@@ -3,20 +3,18 @@ package entity;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Observer;
 
 import components.IComponent;
-import components.XYComponent;
 import components.entityComponents.ComponentType;
-import components.entityComponents.ImagePropertiesComponent;
-import components.entityComponents.SpriteComponent;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
-import gameView.tools.Coordinate;
-
+/**
+ *  Class which stores a list of entities
+ * @author Bilva
+ *
+ */
 public class EntityManager extends Observable implements IEntityManager, IRestrictedEntityManager  {
 	private Collection<IEntity> myEntities;
 

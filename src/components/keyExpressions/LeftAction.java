@@ -14,6 +14,12 @@ import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 
 @KeyAction
+/**
+ * Action applicable for a key input
+ * (Should be refactored to use input parameters but this could not be used by authoring)
+ * @author Bilva
+ *
+ */
 public class LeftAction implements IAction {
 	@Override
 	public IRestrictedGameData executeAction(IEntity player, IEntity npc, IEntityManager myEM, IRestrictedGameData currentGameData) {
@@ -22,7 +28,7 @@ public class LeftAction implements IAction {
 		
 		if(cc.checkControl() == true){
 			AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
-			ac.setX(-6);
+			ac.setX(-0.2);
 			if (player.getComponent(ComponentType.Orientation)!=null){
 			OrientationComponent oc = (OrientationComponent) player.getComponent(ComponentType.Orientation);
 			oc.setOrientation(180);

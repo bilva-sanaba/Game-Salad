@@ -38,11 +38,10 @@ public class GameEngine implements GameEngineInterface {
 	private boolean sliderPause;
 	private List<IEntityManager> myEntityManagers;
 	private List<IEntityManager> previousEntityManagers;
-	private EntityLoader myEntityLoader;
+	private IEntityLoader myEntityLoader;
 	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
 	
 	public GameEngine(IRestrictedUserInputData data){
-		System.out.println("GameEngine is created");
 		initializeUserData(data);
 		previousEntityManagers = new ArrayList<IEntityManager>();
 		sliderPause = false;
@@ -77,7 +76,7 @@ public class GameEngine implements GameEngineInterface {
 		List<String> listl = new ArrayList<String>();
 		listl.add("");
 
-		myGameData = new GameData(0,c.getLives(),(IRestrictedEntityManager) myEntityManager, 1, lc, listl,c.getMusic());
+		myGameData = new GameData(0,c.getLives(),(IRestrictedEntityManager) myEntityManager, 1, lc, listl,c.getMusic(), c.getCameraOn());
 
 		return (IRestrictedGameData) myGameData;
 	}

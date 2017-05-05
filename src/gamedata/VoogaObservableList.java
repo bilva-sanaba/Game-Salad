@@ -10,7 +10,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
-
+/**
+ * Wrapper class for an ObservableList
+ * @author Bilva
+ *
+ * @param <E>
+ */
 public class VoogaObservableList<E> implements ObservableList<E>, VoogaImmutableObservableList<E>, VoogaAddableObservableList<E> {
 	private ObservableList<E> myList;
 	public VoogaObservableList(List<E> list){
@@ -61,7 +66,6 @@ public class VoogaObservableList<E> implements ObservableList<E>, VoogaImmutable
 	@Override
 	public E get(int index) {
 		// TODO Auto-generated method stub
-		System.out.println("INDEX: " + index);
 		return myList.get(index);
 	}
 

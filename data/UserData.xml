@@ -1,1 +1,14 @@
-<users/>
+<users>
+  <entry>
+    <string>john</string>
+    <userdata>
+      <username>john</username>
+      <password>test</password>
+      <image></image>
+      <myGameScores/>
+      <myAchievements/>
+      <myGames class="list"/>
+      <mySavedGameMap/>
+    </userdata>
+  </entry>
+</users>

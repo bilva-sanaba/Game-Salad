@@ -4,7 +4,11 @@ import components.entityComponents.LocationComponent;
 import entity.restricted.IRestrictedEntityManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
-
+/**
+ * Interface for object in game engine which is updated by game play
+ * @author Bilva
+ *
+ */
 public interface IGameData extends IRestrictedGameData{
 
 	public void setPoints(double d);

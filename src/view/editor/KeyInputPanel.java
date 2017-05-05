@@ -11,6 +11,7 @@ import components.entityComponents.ConcreteKeyExpressions;
 import components.entityComponents.IKeyExpression;
 import components.entityComponents.KeyExpression;
 import components.keyExpressions.DownAction;
+import components.keyExpressions.InfiniteJump;
 import components.keyExpressions.JumpAction;
 import components.keyExpressions.LeftAction;
 import components.keyExpressions.RightAction;
@@ -23,9 +24,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import view.GUIBuilder;
 
 public class KeyInputPanel implements IKeyInputPanel{
 
@@ -45,6 +48,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 		x.add(new RightAction());
 		x.add(new LeftAction());
 		x.add(new DownAction());
+		x.add(new InfiniteJump());
 	}
 
 
@@ -55,7 +59,7 @@ public class KeyInputPanel implements IKeyInputPanel{
 	public void openWindow(){
 		Stage stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
-		BorderPane root = new BorderPane();
+		Pane root = new VBox(10);
 		root.setPadding(new Insets(10));
 		Button okayButton = new Button("Close");
 		okayButton.setOnAction(e -> {
@@ -75,13 +79,9 @@ public class KeyInputPanel implements IKeyInputPanel{
 			}
 		});
 			
-		Pane n = new Pane();
-		root.setTop(add);
-		root.setBottom(n);
-		root.setLeft(t);
-		n.getChildren().add(okayButton);
-		root.setCenter(createKeyInput());
+		root.getChildren().addAll(t,createKeyInput(),add,okayButton);
 		myScene = new Scene(root, 230, 400);
+		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
 		createKeyHandle();
 		stage.setScene(myScene);
 		stage.showAndWait();

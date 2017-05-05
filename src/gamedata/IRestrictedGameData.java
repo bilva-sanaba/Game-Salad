@@ -10,7 +10,11 @@ import javafx.beans.property.ReadOnlyListProperty;
 import javafx.collections.ObservableList;
 import javafx.beans.property.ReadOnlyStringProperty;
 
-
+/**
+ * Interface for object storing gameplay information that the display may use but not modify
+ * @author Bilva
+ *
+ */
 public interface IRestrictedGameData {
 	public ReadOnlyDoubleProperty getPoints();
 	
@@ -25,4 +29,6 @@ public interface IRestrictedGameData {
 	public ReadOnlyStringProperty getMusic();
 
 	public VoogaImmutableObservableList<String> getAchievement();
+	
+	public boolean getCamera();
 }

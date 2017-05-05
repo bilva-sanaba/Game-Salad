@@ -2,7 +2,12 @@ package components.entityComponents;
 
 import components.AComponent;
 import components.IComponent;
-
+/**
+ * Component used by the collision engine to determine if a collision occurs
+ * Sets the size of an image in the game player display
+ * @author Bilva
+ *
+ */
 public class ImagePropertiesComponent extends AComponent implements IComponent {
 	private double imageHeight;
 	private double imageWidth;
@@ -23,7 +28,6 @@ public class ImagePropertiesComponent extends AComponent implements IComponent {
 	
 	@Override
 	public ComponentType getComponentType() {
-		// TODO Auto-generated method stub
 		return ComponentType.ImageProperties;
 	}
 

@@ -53,6 +53,7 @@ public class SideCollisionComponent implements IComponent {
 
 	public IRestrictedGameData executeOnCollide(IEntity e,IEntity e2,IEntityManager myEM, IRestrictedGameData dg) {
 		//maybe should refactor
+		
 		LabelComponent entityLabel = (LabelComponent) e.getComponent(ComponentType.Label);
 		TypeComponent entityType = (TypeComponent) e.getComponent(ComponentType.Type);
 		List<IEntity> newEntities = new ArrayList<IEntity>();
@@ -67,7 +68,6 @@ public class SideCollisionComponent implements IComponent {
 		}
 		if (entityType!= null && typeActionMap.containsKey(entityType.getTypeString())) {
 			for (IAction action : typeActionMap.get(entityType.getTypeString())) {
-
 				dg= action.executeAction(e, e2,myEM, dg);
 //				for (IRestrictedEntity re : dg.getRestrictedEntityManager().getRestrictedEntities()){
 //					newEntities.add(re.clone());
@@ -87,8 +87,16 @@ public class SideCollisionComponent implements IComponent {
 	}
 	@Override
 	public IComponent newCopy() {
-		// TODO Auto-generated method stub
-		return new SideCollisionComponent(sideCollision, typeActionMap,labelActionMap);
+		Map<String, ArrayList<IAction>> copyMap1 = new HashMap<String, ArrayList<IAction>>();
+		Map<String, ArrayList<IAction>> copyMap2 = new HashMap<String, ArrayList<IAction>>();
+		for (String s: typeActionMap.keySet()) {
+			copyMap1.put(s, (ArrayList) typeActionMap.get(s).clone());
+		}
+		for (String s: labelActionMap.keySet()) {
+			copyMap2.put(s, (ArrayList) labelActionMap.get(s).clone());
+		}
+		
+		return new SideCollisionComponent(sideCollision, copyMap1, copyMap2);
 	}
 	
 	public int hashCode(){

@@ -7,7 +7,12 @@ import java.util.ListIterator;
 
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
-
+/**
+ * ObservableList which allows for all Observable list methods other than modifying the contents.
+ * @author Bilva
+ *
+ * @param <E>
+ */
 public interface VoogaImmutableObservableList<E> {
 	public int size();
 	public E get(int index);
