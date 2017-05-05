@@ -12,9 +12,9 @@ import java.util.Map;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import alerts.VoogaAlert;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
-import controller.VoogaAlert;
 import data_interfaces.LocalClassLoader;
 import entity.Entity;
 import entity.IEntity;

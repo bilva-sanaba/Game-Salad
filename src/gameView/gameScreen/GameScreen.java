@@ -1,7 +1,8 @@
 package gameView.gameScreen;
 
 import java.util.Collection;
-import controller.VoogaAlert;
+
+import alerts.VoogaAlert;
 import controller.WorldAnimator;
 import gameView.AbstractViewer;
 import gameView.UIView;

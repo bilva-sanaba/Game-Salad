@@ -6,7 +6,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-import alerts.VoogaError;
+import alerts.VoogaAlert;
 import class_annotations.BottomAction;
 import class_annotations.LeftAction;
 import class_annotations.RightAction;
@@ -46,7 +46,7 @@ public class MusicPlayAction extends AbstractAction implements IAction {
 		}
 		catch(Exception ex)
 		{
-			new VoogaError("File Not Found", "Music Could Not Be Played");
+			new VoogaAlert("File not found: Music Could Not Be Played");
 		}
 
 		GameData r =getGameDataFactory().blankEntityData(currentGameData);

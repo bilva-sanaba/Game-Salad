@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import controller.VoogaAlert;
+import alerts.VoogaAlert;
 import entity.Entity;
 
 public class XMLPlacedParser extends GameSavingDataTool implements Parser {

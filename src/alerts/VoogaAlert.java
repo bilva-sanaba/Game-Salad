@@ -1,4 +1,4 @@
-package controller;
+package alerts;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -21,4 +21,5 @@ public class VoogaAlert {
 	public void showAlert(){
 		alert.showAndWait();
 	}
+	
 }
