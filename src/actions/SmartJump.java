@@ -18,6 +18,12 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * When this action is run, if the entity detects a projectile it will jump
+ * @author Bilva
+ *
+ */
+
 public class SmartJump extends AbstractAction implements IAction {
 
 	@Override

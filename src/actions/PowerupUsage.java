@@ -12,6 +12,12 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * Action which removes the second input from the entity manager
+ * @author Bilva
+ *
+ */
+
 public class PowerupUsage extends AbstractAction implements IAction{
 
 	@Override

@@ -14,6 +14,12 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @BottomAction()
 @RightAction()
+/**
+ * Action which allows music to be changed and played when run
+ * @author Bilva
+ *
+ */
+
 public class ChangeMusicAction extends AbstractAction implements IAction {
 	private String newSong;
 	public ChangeMusicAction(String song) throws FileInputException{

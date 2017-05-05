@@ -12,6 +12,12 @@ import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import javafx.scene.input.KeyCode;
+/**
+ * Movement engine which updates location using various alogrithms that utilize acceleration, velocity, and 
+ * location
+ * @author Belal, Bilva
+ *
+ */
 
 public class MovementEngine extends AbstractEngine{
 	
