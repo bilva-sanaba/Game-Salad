@@ -49,6 +49,7 @@ public abstract class AbstractAction implements IAction{
 		if (inputsToAction.size() == numNecessaryInputs) {
 			boolean allNotNull = true;
 			for (String input : inputsToAction) {
+				System.out.println(input);
 				allNotNull = input!=null;
 			}
 			if (allNotNull == true) {

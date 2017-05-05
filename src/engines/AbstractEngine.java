@@ -12,6 +12,12 @@ import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
+/**
+ * Abstract class which all engines can extend in order to get the protected EntityManager
+ * 
+ * @author Bilva
+ *
+ */
 
 public abstract class AbstractEngine implements IEngine {
 	private IEntityManager myEManager;

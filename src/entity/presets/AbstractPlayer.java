@@ -43,5 +43,6 @@ public class AbstractPlayer extends Entity {
 		this.addComponent(new TypeComponent(EntityType.Player));
 		this.addComponent(new CollidableComponent(true));
 		this.addComponent(new ImagePropertiesComponent(50,50));
+		this.addComponent(new TimeComponent());
 	}
 }

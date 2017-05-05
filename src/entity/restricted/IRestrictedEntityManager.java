@@ -18,7 +18,14 @@ public interface IRestrictedEntityManager  {
 	 */
 	
 	public Collection<IRestrictedEntity> getRestrictedEntities();
-
+	/**
+	 * Adds observer on manager
+	 * @param obs
+	 */
 	public void addObserver(Observer obs);
+	/**
+	 * Notifies observer of change
+	 * @param o
+	 */
 	public void changed(Object o);
 }

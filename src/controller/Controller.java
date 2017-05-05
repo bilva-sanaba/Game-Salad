@@ -33,9 +33,10 @@ import entity.restricted.IRestrictedEntityManager;
 import gameEngine_interface.GameEngine;
 
 /**
- * 
+ * In the MVC model, allows for data written in the authoring environment and saved as XML
+ * to be converted into structures used by the back end (game engine) and view (game player).
+ * Added functionality for the data created in the login portion of the splash screen to be stored as user specific data.
  * @author Jacob
- *
  */
 
 public class Controller implements ControllerInterface {
@@ -101,17 +102,6 @@ public class Controller implements ControllerInterface {
 		return gameData;
 	}
 
-//	@Override
-//	public void resetCurrentGame() throws XMLException {
-//		if(!filePath.equals(null)){
-//			loadNewGame(filePath);
-//		}
-//		else{
-//			throw new XMLException(String.format("No current game"));
-//		}
-//	}
-
-	
 	public SplashData getSplashData(String gameName){
 		Communicator c = new Communicator(gameName);
 		return c.getSplashEntity();

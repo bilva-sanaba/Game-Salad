@@ -22,12 +22,10 @@ public class BlockRightRegularCollision extends AbstractAction implements IActio
 		LocationComponent selfLocation = (LocationComponent) self.getComponent(ComponentType.Location);
 		ImagePropertiesComponent selfImageProp = (ImagePropertiesComponent) self.getComponent(ComponentType.ImageProperties);
 		otherLocation.setX(selfLocation.getX() + selfImageProp.getWidth());
-		//OrientationComponent otherOrientation = (OrientationComponent) other.getComponent(ComponentType.Orientation);
-		VelocityComponent vc = (VelocityComponent) other.getComponent(ComponentType.Velocity);
-		if (vc!=null && vc.getX() <0) {
-			vc.setX(0);
+		OrientationComponent otherOrientation = (OrientationComponent) other.getComponent(ComponentType.Orientation);
+		if (otherOrientation!=null) {
+			otherOrientation.setOrientation(OrientationComponent.RIGHT);
 		}
-		//otherOrientation.setOrientation(OrientationComponent.RIGHT);
 		return getGameDataFactory().blankEntityData(currentGameData);
 
 	}

@@ -17,9 +17,9 @@ import org.xml.sax.SAXException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import alerts.VoogaAlert;
 import alerts.VoogaError;
 import components.IComponent;
-import controller.VoogaAlert;
 
 import java.io.*;
 
