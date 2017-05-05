@@ -89,22 +89,17 @@ public class WorldAnimator{
 				try {
 					updateAchievement();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					VoogaAlert a = new VoogaAlert(e.getMessage());
+					a.showAlert();
 				}
 			}
 		});
 
-
 			myScene = new Scene(root,LENGTH,WIDTH);
-
-			LocationComponent lc = myData.getMainLocation();
-			
+			LocationComponent lc = myData.getMainLocation();	
 			myCamera = new Camera(LENGTH*5 ,myScene, lc, -1, myData.getCamera());
-			
 			myObservers.getUpdatedSet();
 			fillMapAndDisplay(myObservers.getEntityMap().keySet());
-
 			KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
 					e-> {
 						try {
@@ -118,7 +113,6 @@ public class WorldAnimator{
 			animation.setCycleCount(Timeline.INDEFINITE);
 			animation.getKeyFrames().add(frame);
 		}
-
 		public Scene getScene() {
 			return myScene;
 		}
@@ -126,23 +120,17 @@ public class WorldAnimator{
 			counter++;
 			myView.step(keysPressed);
 			fillMapAndDisplay(myObservers.getUpdatedSet());
-
 			updateAchievement();
-
 			if(achievementShowing==true){
 			   myAchievement.updateAchievementLoc(-1*myCamera.getX());
 			}
-
 			myCamera.updateCamera();
-
 			myObservers.clearSet();
 		}
-
 		public void fillMap() {
 			fillMapAndDisplay(myObservers.getUpdatedSet());
 			myCamera.updateCamera();
 		}
-
 		private void updateAchievement() throws ClassNotFoundException {
 			String ach="";
 			if(achievementSize!=myAchievements.size()-1){ //subtract one for empty string
@@ -151,17 +139,14 @@ public class WorldAnimator{
 			addAchievement(ach);
 			removeAchievement();
 		}
-
 		private void handleKeyReleased(KeyCode keyCode) {
 			keysReleased.add(keyCode);
 			keysPressed.remove(keyCode);
 		}
-
 		private void handleKeyPressed(KeyCode keyCode) {
 			externalKeyHandler(keyCode);
 			keysPressed.add(keyCode);
 		}
-
 		private void externalKeyHandler(KeyCode code){
 			if(code == KeyCode.P && !pause){
 				animation.pause();
@@ -172,14 +157,11 @@ public class WorldAnimator{
 				pause =false;
 			}
 		}
-
 		public void setKeys(Scene s) {
 			s.setOnKeyPressed(e -> handleKeyPressed(e.getCode()));
 			s.setOnKeyReleased(e -> handleKeyReleased(e.getCode()));
 		}
-
 		private void fillMapAndDisplay(Set<Integer> entities){
-
 			Map<Integer, ImageConfig> map = myObservers.getEntityMap();
 			for(Integer entity : entities){
 				if (map.get(entity)!=null){
@@ -187,59 +169,41 @@ public class WorldAnimator{
 					createEntity(entity,map);
 				}
 			}
-
 		}
-
-
 		public void removeEntity(Integer entity){
 			if (imageMap.containsKey(entity)){
-				//st.getChildren().add(makeFade(imageMap.get(entity).getImageView()));
-				//st.play();
 				imageMap.get(entity).getImageView().setImage(null);
 				root.getChildren().remove(imageMap.get(entity));
 				imageMap.remove(entity);
 			}
 		}
-
-
 		private void createEntity(Integer entity, Map<Integer, ImageConfig> map){
 			if (!imageMap.containsKey(entity) && map.get(entity)!=null){
 				ImageView imageView = new ImageView();
 				imageView = updateImage(entity, imageView, "", map.get(entity).getImageView(), map.get(entity).getPath());
 				imageMap.put(entity, new ImageConfig(imageView, map.get(entity).getPath()));
-
 				root.getChildren().add(imageView);
 			}
 		}
-
-
 		private void updateEntity(Integer entity, Map<Integer, ImageConfig> map){
 			if (imageMap.containsKey(entity)) {
 				ImageConfig currentImage = imageMap.get(entity);
-
 				ImageConfig updatedImage = map.get(entity);
 				updateImage(entity, currentImage.getImageView(), currentImage.getPath(), updatedImage.getImageView(), updatedImage.getPath());
 			}
-
 		}
 		private ImageView updateImage(int entity, ImageView currentImage, String currentPath, ImageView re, String rePath){
-
 			if(!rePath.equals(currentPath)){
 				currentImage.setImage(re.getImage());
 				ImageConfig updated  = new ImageConfig(currentImage,rePath);
 				imageMap.put(entity,updated);
 			}
-
 			currentImage.setTranslateX(re.getTranslateX());
 			currentImage.setTranslateY(re.getTranslateY());
 			currentImage.setFitHeight(re.getFitHeight());
 			currentImage.setFitWidth(re.getFitWidth());
-
-
 			return currentImage;
 		}
-
-
 		private void addAchievement(String ach) throws ClassNotFoundException{
 			if(!achievementShowing && ach!=""){ //observed generate the achievement (myData.getStr)
 				myAchievement = new Achievement(ach);
@@ -249,31 +213,20 @@ public class WorldAnimator{
 				achievementSize++;
 			}
 		}
-
 		private void removeAchievement() {
 			if(counter%90==0 && achievementShowing){
 				root.getChildren().remove(myAchievement.getGroup());
 				achievementShowing=false;
 			}
 		}
-
 		public void start(){
 			animation.play();
 		}
-
 		public void pause(){
 			animation.pause();
 		}
-
 		public void clearRoot(){
 			imageMap.clear();
 			root.getChildren().clear();
 		}
-
-
-		//FOR RUNNER TESTING
-		public void giveEngine(GameEngine f) {
-			myEngine = f;
-		}
-
 	}
