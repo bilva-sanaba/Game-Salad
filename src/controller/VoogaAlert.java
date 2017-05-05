@@ -2,7 +2,12 @@ package controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
+/**
+ * Generic "Vooga Alert." Winning the war on stack trace.
+ * Alert may be added and used to appear if there is an exception at any point in the program
+ * @author Jacob
+ *
+ */
 public class VoogaAlert {
 	private Alert alert;
 	private final String VOOGAISSUE = "VoogaIssue";

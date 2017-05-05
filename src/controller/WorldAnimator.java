@@ -31,9 +31,10 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 /**
- *
- * @author Jacob
  *Animation and placement of images from the authoring environment into the game player
+ *This class uses updated observed entities on the game screen and allows the user to update the scene based
+ *on key inputs.
+ * @author Jacob
  */
 public class WorldAnimator{
 
