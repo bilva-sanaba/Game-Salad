@@ -13,6 +13,7 @@ public abstract class AbstractOneParameterComponent<E extends String> extends AC
 	public AbstractOneParameterComponent(){}
 	
 	public E getString(){
+
 		return myString;
 	}	
 	

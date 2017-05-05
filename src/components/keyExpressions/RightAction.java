@@ -22,7 +22,7 @@ public class RightAction implements IAction{
 		
 		if(cc.checkControl() == true){
 			AccelerationComponent ac = (AccelerationComponent) player.getComponent(ComponentType.Acceleration);
-			ac.setX(6);
+			ac.setX(0.2);
 			if (player.getComponent(ComponentType.Orientation)!=null){
 			OrientationComponent oc = (OrientationComponent) player.getComponent(ComponentType.Orientation);
 			oc.setOrientation(0);
