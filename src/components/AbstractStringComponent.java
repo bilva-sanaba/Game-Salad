@@ -44,7 +44,6 @@ public abstract class AbstractStringComponent extends AComponent implements ICom
 				ctor = c.getConstructor(String.class);
 				return (IComponent) ctor.newInstance(myString);
 			} catch (NoSuchMethodException| SecurityException | IllegalArgumentException |InstantiationException | IllegalAccessException | InvocationTargetException e) {
-				//Add Error handling here.
 			}
 		}
 		return null;

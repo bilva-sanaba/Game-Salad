@@ -38,12 +38,14 @@ public class GameEngine implements GameEngineInterface {
 	private boolean sliderPause;
 	private List<IEntityManager> myEntityManagers;
 	private List<IEntityManager> previousEntityManagers;
+	private List<IGameData> previousGameData;
 	private EntityLoader myEntityLoader;
 	public static final int SAVE_FREQUENCY = WorldAnimator.FRAMES_PER_SECOND;
 	
 	public GameEngine(IRestrictedUserInputData data){
 		initializeUserData(data);
 		previousEntityManagers = new ArrayList<IEntityManager>();
+		previousGameData = new ArrayList<IGameData>();
 		sliderPause = false;
 	}
 	private void initializeUserData(IRestrictedUserInputData data){
@@ -139,12 +141,16 @@ public class GameEngine implements GameEngineInterface {
 		if (next==1){index--;};
 		if (previousIndex!=index){
 			myEntityLoader.loadNew(previousEntityManagers.get(index));
+			GameDataFactory gdf = new GameDataFactory();
+			gdf.updateGameData(myGameData,previousGameData.get(index));
 		}
 	}
 	private void saveNewEntityManager() {
 		numUpdates++;
 		if (numUpdates % SAVE_FREQUENCY*10 == 0) {
 			previousEntityManagers.add((myEntityManager.copy()));
+			GameDataFactory gdf = new GameDataFactory();
+			previousGameData.add(gdf.blankEntityData(myGameData));
 			
 		}
 		while (previousEntityManagers.size()>25) {
