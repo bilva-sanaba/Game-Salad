@@ -28,13 +28,12 @@ public class Teleport extends AbstractAction  implements IAction {
 	}
 
 	public Teleport(List<String> inputs) throws InputException {
-		System.out.println("pre exception checking");
 		inputs = super.validateList(inputs, 1);
 		String[] s = inputs.get(0).split(",");
 		
 		teleportXLocation = super.parseDouble(s[0]);
 		teleportYLocation = super.parseDouble(s[1]);
-		System.out.println("post exception checking");
+
 	}
 	
 	
