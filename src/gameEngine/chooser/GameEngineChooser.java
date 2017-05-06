@@ -15,7 +15,12 @@ import engines.MovementEngine;
 import engines.TimeEngine;
 import engines.infinite.InfiniteEnum;
 import entity.IEntityManager;
-
+/**
+ * Concrete implementation of IGameEngineChooser which creates a list of all Engines we used in our 
+ * final product 
+ * @author Bilva
+ *
+ */
 public class GameEngineChooser implements IGameEngineChooser {
 	private List<IEngine> myEngines;
 	

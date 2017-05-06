@@ -39,6 +39,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import view.GUIBuilder;
 import view.UtilityFactory;
+
 /**
  * This is a UI where the Users can add Actions to an Entity that they create
  * 
@@ -60,27 +61,47 @@ public class EntityActionWindow {
 	private Integer myDuration;
 	private boolean addDuration = false;
 	private Map<String, String> nametoAct = new HashMap<String, String>();
+
 	
+	private static final String LabelActionLabel = "LabelAction";
+	private static final String EntityTypeLabel = "EntityType";
+	private static final String ChooseLabel = "Choose at Least One: ";
+	private static final String CenterLabel = "Center"; //Center is key for utility factory
+	private static final String BottomRightLabel = "Bottom Right"; //Bottom right is key for utility factory
+	private static final String MakeEntityLabel = "MakeEntity";
+	private static final String TimeForActionLabel = "TimeForAction";
+	private static final String DurationLabel = "Duration";
+	private static final String IActionsLabel = "IActions";
+	private static final String ActionLabel = "Action";
+	private static final String AddActionsLabel = "AddActions";
+	private static final String InvalidParametersAlert = "Invalid Parameters";
+	private static final String EMPTY = "";
+	private static final String TRUE = "true";
+	
+
 	/**
 	 * Sets the appropriate fields and opens the window
 	 * 
-	 * @param utilF Utility Factory to make all the JavaFX Nodes 
-	 * @param myE THe Entity to which the actions are getting added
+	 * @param utilF
+	 *            Utility Factory to make all the JavaFX Nodes
+	 * @param myE
+	 *            THe Entity to which the actions are getting added
 	 */
-	//assume entity.getcomponent returned the component or made one and added it to the entity
+	// assume entity.getComponent returned the component or made one and added
+	// it to the entity
 	public EntityActionWindow(UtilityFactory utilF, Entity myE) {
 		myUtilF = utilF;
 		myEntity = myE;
 		myStage.setScene(buildScene());
 		myStage.show();
 	}
-	
+
 	private Scene buildScene() {
-		labelType = myUtilF.buildTextField("LabelAction");
-		EntityTypeList = myUtilF.buildListView(EntityType.values(), "EntityType");
-		HBox top = myUtilF.buildHBox(new Text("Choose at Least One: "), labelType, EntityTypeList, addDuration());
-		myUtilF.setOn3x3Grid(myEntity.getImageView(), "Center", root);
-		myUtilF.setOn3x3Grid(myUtilF.buildButton("MakeEntity", e -> myStage.close()), "Bottom Right", root); //
+		labelType = myUtilF.buildTextField(LabelActionLabel);
+		EntityTypeList = myUtilF.buildListView(EntityType.values(), EntityTypeLabel);
+		HBox top = myUtilF.buildHBox(new Text(ChooseLabel), labelType, EntityTypeList, addDuration());
+		myUtilF.setOn3x3Grid(myEntity.getImageView(), CenterLabel, root);
+		myUtilF.setOn3x3Grid(myUtilF.buildButton(MakeEntityLabel, e -> myStage.close()), BottomRightLabel, root); //Bottom right is key for utility factory
 		buildActionMaker();
 		Scene myScene = new Scene(myUtilF.buildVBox(top, new ScrollPane(root)), UtilityFactory.DEFAULT_STAGE_SIZE,
 				UtilityFactory.DEFAULT_STAGE_SIZE);
@@ -90,9 +111,9 @@ public class EntityActionWindow {
 
 	private Node addDuration() {
 		VBox time = new VBox();
-		final ToggleGroup group = myUtilF.buildRadioButtonGroup("TimeForAction", time);
+		final ToggleGroup group = myUtilF.buildRadioButtonGroup(TimeForActionLabel, time);
 		group.selectedToggleProperty().addListener((obs, oldval, newval) -> change(obs, oldval, newval));
-		duration = myUtilF.buildSlider("Duration", (obs, oldval, newval) -> changeDuration(obs, oldval, newval));
+		duration = myUtilF.buildSlider(DurationLabel, (obs, oldval, newval) -> changeDuration(obs, oldval, newval));
 		time.getChildren().add(duration);
 		return time;
 	}
@@ -102,9 +123,9 @@ public class EntityActionWindow {
 	}
 
 	private void change(ObservableValue<? extends Toggle> obs, Toggle oldval, Toggle newval) {
-		myDur = (String[]) newval.getUserData(); //String[] is set in the Utility Factory and is consistent
-		tc = (TimeComponent) myEntity.getComponent(ComponentType.Time); 		
-		addDuration = myDur[UtilityFactory.RADIO_INDEX].equalsIgnoreCase("true");
+		myDur = (String[]) newval.getUserData(); // String[] is set in the sUtility Factory and is consistent
+		tc = (TimeComponent) myEntity.getComponent(ComponentType.Time);
+		addDuration = myDur[UtilityFactory.RADIO_INDEX].equalsIgnoreCase(TRUE);
 	}
 
 	private void buildActionMaker() {
@@ -112,83 +133,85 @@ public class EntityActionWindow {
 		allActions = new HashMap<CollisionComponentType, List<String>>();
 		for (int j = 0; j < CollisionComponentType.values().length; j++) {
 			CollisionComponentType currentType = CollisionComponentType.values()[j];
-			List<Class<?>> listofAct = ar.getActionsWithAnnotation(currentType);
+			List<Class<?>> listofActions = ar.getActionsWithAnnotation(currentType);
 			ArrayList<String> actions = new ArrayList<String>();
-			populateString(actions, listofAct);
+			populateString(actions, listofActions);
 			allActions.put(currentType, actions);
 			addListView(actions, currentType, j);
-			}
+		}
 	}
 
-	private void addListView(List<String> actions, CollisionComponentType currentType, int j) {
-		ListView<String> viewActs = myUtilF.buildListView(actions, "IActions");
-		myUtilF.setImageToolTips(viewActs);
-		VBox listandbut = myUtilF.buildVBox(new Text(currentType.name() + "Action"), viewActs,
-				myUtilF.buildButton("AddActions", e -> addAction(currentType, viewActs)));
-		myUtilF.setOn3x3Grid(listandbut, CollisionComponentType.values()[j].toString(), root);
+	private void addListView(List<String> actions, CollisionComponentType currentType, Integer index) {
+		ListView<String> viewActions = myUtilF.buildListView(actions, IActionsLabel);
+		myUtilF.setImageToolTips(viewActions);
+		VBox listandbutton = myUtilF.buildVBox(new Text(currentType.name() + ActionLabel), viewActions,
+				myUtilF.buildButton(AddActionsLabel, e -> addAction(currentType, viewActions)));
+		myUtilF.setOn3x3Grid(listandbutton, CollisionComponentType.values()[index].toString(), root);
 	}
 
 	private void populateString(List<String> actions, List<Class<?>> listofAct) {
 		for (int i = 0; i < listofAct.size(); i++) {
 			Class<?> nextAction = listofAct.get(i);
-			String act = null;
-			act = nextAction.toString();
+			String actionName = nextAction.toString();
 			try {
-				nametoAct.put(myUtilF.getText(act), act);
-				actions.add(myUtilF.getText(act));
+				nametoAct.put(myUtilF.getText(actionName), actionName);
+				actions.add(myUtilF.getText(actionName));
 			} catch (Exception e) {
 				// Action not found in the Action retriever not a real issue for
 				// user or this class
 			}
-			allAct.put(act, nextAction);
+			allAct.put(actionName, nextAction);
 		}
 	}
-	
 
-	private void addAction(CollisionComponentType collisionComponentType, ListView<String> viewActs) {
-		CollisionComponentsHandler sideCollisionActions = (CollisionComponentsHandler) myEntity.getComponent(ComponentType.CollisionHandler);
+	private void addAction(CollisionComponentType collisionComponentType, ListView<String> viewActions) {
+		CollisionComponentsHandler sideCollisionActions = (CollisionComponentsHandler) myEntity
+				.getComponent(ComponentType.CollisionHandler);
 		SideCollisionComponent sidecollision = getSideCollsion(collisionComponentType, sideCollisionActions);
-		IAction act = makeAction(viewActs);
-		boolean validLabel = (!(labelType.getText().toString().equals(labelType.getPromptText().toString()) || labelType.getText().toString().equals("")));
+		IAction action = makeAction(viewActions);
+		boolean validLabel = (!(labelType.getText().toString().equals(labelType.getPromptText().toString())
+				|| labelType.getText().toString().equals(EMPTY)));
 		boolean validType = (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0);
-		BiConsumer<LabelComponent, IAction> bcLabel = (lc, ia) -> {
-			sidecollision.addActionForLabel(lc, ia);
+		BiConsumer<LabelComponent, IAction> functiontoAddLabel = (labelComponent, iAction) -> {
+			sidecollision.addActionForLabel(labelComponent, iAction);
 		};
-		BiConsumer<TypeComponent, IAction> bcType = (tc, ia) -> {
-			sidecollision.addActionForType(tc, ia);
+		BiConsumer<TypeComponent, IAction> functionToAddType = (typeComponet, iAction) -> {
+			sidecollision.addActionForType(typeComponet, iAction);
 		};
-		checkAndAddAction(validLabel, bcLabel, new LabelComponent(labelType.getText()), act);
-		checkAndAddAction(validType, bcType, new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()), act);
+		checkAndAddAction(validLabel, functiontoAddLabel, new LabelComponent(labelType.getText()), action);
+		checkAndAddAction(validType, functionToAddType, new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()),
+				action);
 	}
-	
+
 	@SuppressWarnings("rawtypes")
-	private void checkAndAddAction(boolean valid, BiConsumer bc, IComponent ic, IAction ia){
-		if(valid){
-			checkDuration(ia, bc, ic);
+	private void checkAndAddAction(boolean valid, BiConsumer addActionFunction, IComponent iComponent, IAction iAction) {
+		if (valid) {
+			checkDuration(iAction, addActionFunction, iComponent);
 		}
 	}
-	
-	private IAction makeAction(ListView<String> viewActs) {
-		IAction act = null;
+
+	private IAction makeAction(ListView<String> viewActions) {
+		IAction action = null;
 		try {
-			act = getAction(allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
+			action = getAction(allAct.get(nametoAct.get(viewActions.getSelectionModel().getSelectedItem())));
 		} catch (InputException x) {
-			Alert invalid = new Alert(AlertType.ERROR, "Invalid Parameters");
+			Alert invalid = new Alert(AlertType.ERROR, InvalidParametersAlert);
 			invalid.show();
 		}
-		return act;
+		return action;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void checkDuration(IAction act, BiConsumer bc, IComponent comp){
+	private void checkDuration(IAction action, BiConsumer addActionLambda, IComponent component) {
 		if (addDuration) {
-			tc.addAction(act, myDuration);
+			tc.addAction(action, myDuration);
 		} else {
-			bc.accept(comp, act);
+			addActionLambda.accept(component, action);
 		}
 	}
-	
-	private SideCollisionComponent getSideCollsion(CollisionComponentType collisionComponentType, CollisionComponentsHandler sideCollisionActions) {
+
+	private SideCollisionComponent getSideCollsion(CollisionComponentType collisionComponentType,
+			CollisionComponentsHandler sideCollisionActions) {
 		SideCollisionComponent sidecollision = null;
 		if (sideCollisionActions.getCollisionComponent(collisionComponentType.toString()) == null) {
 			sidecollision = new SideCollisionComponent(collisionComponentType);
@@ -199,14 +222,15 @@ public class EntityActionWindow {
 		return sidecollision;
 	}
 
-	private IAction getAction(Class<?> absAct) throws InputException {
-		IAction act = null;
+	private IAction getAction(Class<?> abstractAction) throws InputException {
+		IAction action = null;
 		try {
-			act = (IAction) absAct.newInstance();
+			action = (IAction) abstractAction.newInstance();
 		} catch (InstantiationException | IllegalAccessException e) {
-			IActionMakerWindow actionMaker = new IActionMakerWindow(myUtilF, absAct);
-			act = actionMaker.openWindow();
+			IActionMakerWindow actionMaker = new IActionMakerWindow(myUtilF, abstractAction);
+			action = actionMaker.openWindow();
 		}
-		return act;
+		return action;
 	}
+
 }

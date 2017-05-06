@@ -6,6 +6,12 @@ import gamedata.GameDataFactory;
 import gamedata.IGameData;
 import gamedata.IRestrictedGameData;
 
+/**
+ * Component which can be used by the checkpoint action to reset a game to the state stored in the checkpoint
+ * @author Bilva
+ *
+ */
+
 public class CheckpointComponent implements IComponent{
 	
 	private IEntityManager checkpointState;

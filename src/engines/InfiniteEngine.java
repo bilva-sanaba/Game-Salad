@@ -10,6 +10,12 @@ import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
+/**
+ * Engine which takes the passed in an Infinite Enum to determine how to modify the game in order
+ * to run infinite games
+ * @param myEntityManager
+ * @param infinite
+ */
 
 public class InfiniteEngine extends AbstractEngine implements IEngine{
 	
@@ -70,7 +76,6 @@ public class InfiniteEngine extends AbstractEngine implements IEngine{
 			else if (infinite==InfiniteEnum.Vertical){
 				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 				if (mainPlayer.getY()-lc.getY()>difference/2 && !repeated.contains(e)){
-					System.out.println("added");
 					repeated.add(e);
 					IEntity newEntity = e.newCopy(getEManager().getEntities().size());
 					newEntity.addComponent(new LocationComponent(lc.getX(),lc.getY()+difference));

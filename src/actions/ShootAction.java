@@ -24,6 +24,11 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * Action which shoots the object stored in an entity in a preset direction
+ * @author Bilva
+ *
+ */
 public class ShootAction  extends AbstractAction implements IAction {
 
 	@Override
@@ -37,18 +42,18 @@ public class ShootAction  extends AbstractAction implements IAction {
 			LocationComponent lcplayer= (LocationComponent) other.getComponent(ComponentType.Location);
 			LocationComponent lcnpc= (LocationComponent) newE.getComponent(ComponentType.Location);
 			
-			OrientationComponent orientationPlayer = (OrientationComponent) other.getComponent(ComponentType.Orientation);
-			int orientation = -1;
-			if (orientationPlayer.getOrientation() == 0) {
-				orientation =1;
-			}
-			
+//			OrientationComponent orientationPlayer = (OrientationComponent) other.getComponent(ComponentType.Orientation);
+//			int orientation = -1;
+//			if (orientationPlayer.getOrientation() == 0) {
+//				orientation =1;
+//			}
+//			
 			VelocityComponent vcNPC = (VelocityComponent) newE.getComponent(ComponentType.Velocity);
 			
 			
 			occ.setEntity(newE.newCopy(myEM.getEntities().size()));
-			vcNPC.setX(vcNPC.getX()*orientation);
-			lcnpc.setX(lcplayer.getX()+(orientation*60));
+			vcNPC.setX(vcNPC.getX());//*orientation);
+			lcnpc.setX(lcplayer.getX());//+(orientation*60));
 			lcnpc.setY(lcplayer.getY());
 			Collection<IEntity> list = new ArrayList<IEntity>();
 			list.add( newE);

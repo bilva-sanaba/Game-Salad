@@ -27,13 +27,17 @@ public interface GameEngineInterface {
 	 * 
 	 * @return
 	 */
-
-
-	
 	public List<IEntityManager> save();
-	
+	/**
+	 * Given an EngineCommunication, retrieves all information needed to run file stored in Communication class
+	 * @param c
+	 * @return
+	 */
 	public IRestrictedGameData loadData(EngineCommunication c);
-
+	/**
+	 * Called during each iteration of WorldAnimator and must be used to update the display of all Entities
+	 * @param keysPressed
+	 */
 	void handleUpdates(Collection<KeyCode> keysPressed);
 
 }

@@ -2,6 +2,11 @@ package components.entityComponents;
 
 import components.IComponent;
 import components.XYComponent;
+/**
+ * Component used by movement engine to update location
+ * @author Bilva
+ *
+ */
 
 public class AccelerationComponent extends XYComponent implements IComponent {
 

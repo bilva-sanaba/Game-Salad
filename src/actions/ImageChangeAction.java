@@ -21,6 +21,13 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * Action which changes the image of a sprite to a new image and also allows for a rotation of images
+ * (rotation is helpful for walking appearance)
+ * @author Bilva
+ *
+ */
+
 public class ImageChangeAction  extends AbstractAction  implements IAction{
 	private List<String> possibleImages;
 	private int counter;

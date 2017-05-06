@@ -14,8 +14,15 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @RightAction()
 @BottomAction()
+/**
+ * Action which removes the first input from the entity manager
+ * @author Bilva
+ *
+ */
+
 public class RemoveAction extends AbstractAction  implements IAction {
 
+	
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {

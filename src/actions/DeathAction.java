@@ -15,15 +15,21 @@ import gamedata.IRestrictedGameData;
 //@LeftAction()
 //@RightAction()
 //@BottomAction()
+/**
+ * Action which when run, lowers the lives of the game
+ * @author Bilva
+ *
+ */
+
 public class DeathAction extends AbstractAction implements IAction{
 
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM,
 			IRestrictedGameData currentGameData) {
 		IGameData gd = getGameDataFactory().blankEntityData(currentGameData);
-		if (!other.hasComponent(ComponentType.Invincible)){
-			other.addComponent(new InvincibilityComponent(false));
-		}
+//		if (!other.hasComponent(ComponentType.Invincible)){
+//			other.addComponent(new InvincibilityComponent(false));
+//		}
 		gd.setLives(gd.getLives().doubleValue()-1);
 	
 		return gd;
