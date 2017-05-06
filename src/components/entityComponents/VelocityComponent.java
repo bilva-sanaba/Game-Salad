@@ -24,7 +24,7 @@ public class VelocityComponent extends XYComponent implements IComponent {
 	/**
 	 * Change in velocity due to error movement engine saving
 	 */
-
+	@Override
 	public IComponent newCopy() {
 		return new VelocityComponent(getX(), getY()-0.000000000001);
 	}
