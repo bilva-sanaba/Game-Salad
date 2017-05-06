@@ -1,46 +1,60 @@
+// This entire file is part of my masterpiece.
+// Josh Kopen
+
 package view.toolbar;
 
-import java.util.*;
-import data_interfaces.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
+import data_interfaces.GameSavingDataTool;
+import data_interfaces.XMLWriter;
 import entity.Entity;
-import entity.IEntity;
+import entity.LevelEntity;
 import entity.SplashData;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
 import view.UtilityFactory;
 import view.ViewData;
 
+/**
+ * I believe that this is well written code as it now saves the data in a far more intelligent way which I use
+ * in my other portions, does not use e.printStackTrace() for my error and handles it the way it makes most sense,
+ * and now relies on the UtilityFactory for the prompt which keeps me up to date on the language and not relying
+ * on static final Strings.
+ * @author joshuakopen
+ *
+ */
+
 public class SaveEvent extends GameSavingDataTool implements ToolBarButtonEvent {
 	private ViewData myData;
-	private final static String FILESAVETITLE = "Saving File";
-	private final static String FILESAVEBODY = "Please choose a name for your game: ";
+	private UtilityFactory utilFac;
 
 	public SaveEvent(UtilityFactory utilF, ViewData data) {
 		myData = data;
+		utilFac = utilF;
 	}
 
 	@Override
 	public void event() {
 		XMLWriter xw = new XMLWriter();
 		String fileName;
-		List <Map> l = new ArrayList<Map>();
+		Map <Class<? extends Entity>, Map> saveMap = new HashMap<Class<? extends Entity>, Map>();
 		
-		l.add(myData.getPlacedEntityMap());
-		l.add(myData.getLevelEntityMap());
-		Map <Integer, SplashData> m = new HashMap<Integer, SplashData>();
-		m.put(getSplashConstant(), myData.getSplashEntity());
-		l.add(m);
+		saveMap.put(Entity.class, myData.getPlacedEntityMap());
+		saveMap.put(LevelEntity.class, myData.getLevelEntityMap());
+		Map <Integer, SplashData> tempMap = new HashMap<Integer, SplashData>();
+		tempMap.put(getSplashConstant(), myData.getSplashEntity());
+		saveMap.put(SplashData.class, tempMap);
 		
 		TextInputDialog tid = new TextInputDialog(myData.getGameName());
-		tid.setTitle(FILESAVETITLE);
-		tid.setHeaderText(FILESAVEBODY);
+		tid.setTitle(utilFac.getText("FileSaveTitle"));
+		tid.setHeaderText(utilFac.getText("FileSaveBody"));
 		Optional<String> result = tid.showAndWait();
 		try {
 			myData.setGameName(result.get());
 			fileName = result.get();
-			xw.writeFile(fileName, l);
+			xw.writeFile(fileName, saveMap);
 		} catch (NoSuchElementException e) {
 			return;
 		}
