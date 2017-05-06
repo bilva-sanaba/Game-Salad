@@ -19,11 +19,13 @@ public abstract class AbstractAction implements IAction{
 	
 	
 	public double parseDouble(String doubleToParse) throws NumericInputException {
+		System.out.println("parsing");
 		if (doubleToParse == null || doubleToParse.equals("")) {
 			throw new NumericInputException();
 		}
 		for (int i=0;i<doubleToParse.length();i++) {
 			if (!Character.isDigit(doubleToParse.charAt(i))) {
+				System.out.println("not number");
 				throw new NumericInputException();
 			}
 		}

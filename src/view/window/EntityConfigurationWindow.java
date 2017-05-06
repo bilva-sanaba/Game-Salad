@@ -125,7 +125,7 @@ public class EntityConfigurationWindow implements Window {
 	}
 	
 	private void addActions(){
-		new EntityActionWindow(myUtilF, myData, myEntity);
+		new EntityActionWindow(myUtilF, myEntity);
 	}
 
 	@Override

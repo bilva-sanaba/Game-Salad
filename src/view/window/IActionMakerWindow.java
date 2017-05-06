@@ -64,7 +64,6 @@ public class IActionMakerWindow{
 	public IAction openWindow() throws InputException {
 		myStage.showAndWait();
 		try {
-	
 			return (IAction) myAction.getConstructors()[listConstructNum].newInstance(myParams);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException e) {

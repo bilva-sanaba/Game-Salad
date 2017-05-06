@@ -17,6 +17,7 @@ import components.entityComponents.TypeComponent;
 import entity.restricted.IRestrictedEntity;
 import javafx.geometry.Dimension2D;
 import javafx.scene.image.ImageView;
+import view.ComponentFactory;
 
 /**
  * Class which will represent each GameObject Contains an identifier int and a
@@ -28,6 +29,7 @@ import javafx.scene.image.ImageView;
 public class Entity extends Observable implements IEntity, IRestrictedEntity {
 	private int identifier;
 	private Map<IComponent, ComponentType> myComponentMap;
+	private ComponentFactory compFac;
 	
 
 	public Entity(int id) {
@@ -87,7 +89,9 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 				return myComponent;
 			}
 		}
-		return null;
+		IComponent ic = compFac.getComponent(ct.toString());
+		myComponentMap.put(ic, ct);
+		return ic;
 	}
 	
 	public boolean containsComponent(ComponentType type){

@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
@@ -25,10 +26,12 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 /**
  * 
@@ -40,8 +43,10 @@ import javafx.scene.text.Text;
  */
 public class UtilityFactory {
 
+	public static final int DEFAULT_STAGE_SIZE = 600;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources" + File.separator;
 	public static final String SPLIT_REGEX = ", ";
+	public static final int RADIO_INDEX = 0;
 	private ResourceBundle imagesResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "images");
 	private ResourceBundle menuResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "menu");
 
@@ -212,8 +217,8 @@ public class UtilityFactory {
 		hb.getChildren().addAll(nodes);
 		return hb;
 	}
-	
-	public Pane buildGrid(int width, int height, String style){
+
+	public Pane buildGrid(int width, int height, String style) {
 		Pane myGrid = new Pane();
 		myGrid.setPrefSize(width, height);
 		myGrid.getStyleClass().add(style);
@@ -236,12 +241,67 @@ public class UtilityFactory {
 
 	public String getText(String act) {
 		String rec = act;
-		try{
+		try {
 			rec = myResources.getString(act.split(" ")[1]);
-		}catch(Exception e){
+		} catch (Exception e) {
 			rec = myResources.getString(act);
 		}
 		return rec;
+	}
+
+	public void setOn3x3Grid(Node n, String s, Pane root) {
+		if (s.equals("Bottom")) {
+			GridPane.setConstraints(n, 1, 2);
+		} else if (s.equals("Top")) {
+			GridPane.setConstraints(n, 1, 0);
+		} else if (s.equals("Left")) {
+			GridPane.setConstraints(n, 0, 1);
+		} else if (s.equals("Right")) {
+			GridPane.setConstraints(n, 2, 1);
+		} else if (s.equals("Center")) {
+			GridPane.setConstraints(n, 1, 1);
+		} else if (s.equals("Bottom Right")) {
+			GridPane.setConstraints(n, 2, 2);
+		}
+		root.getChildren().add(n);
+	}
+
+	public <T> ListView<T> setSize(ListView<T> listView, String string) {
+		String[] listProp = myResources.getString(string + "ListView").split(SPLIT_REGEX);
+		listView.setId(string);
+		listView.setMinSize(Integer.valueOf(listProp[0]), Integer.valueOf(listProp[1]));
+		listView.setMaxSize(Integer.valueOf(listProp[0]), Integer.valueOf(listProp[1]));
+		return listView;
+	}
+
+	public <T> ListView<T> buildListView(T[] list, String string) {
+		return setSize(buildListView(list), string);
+	}
+	
+	public <T> ListView<T> buildListView(List<T> list, String string) {
+		return setSize(buildListView(list), string);
+	}
+
+	public <T> void setImageToolTips(ListView<T> list) {
+		list.setCellFactory(new Callback<ListView<T>, ListCell<T>>() {
+			public ListCell<T> call(ListView<T> param) {
+				final Tooltip tooltip = new Tooltip();
+				final ListCell<T> cell = new ListCell<T>() {
+					@Override
+					public void updateItem(T item, boolean empty) {
+						super.updateItem(item, empty);
+						if (item != null) {
+			                setText(item.toString());
+							tooltip.setText(item.toString().replaceAll("\\s+",""));
+//							tooltip.setGraphic(new ImageView(new Image(getClass().getClassLoader().getResource(myResources.getString(item.toString().replaceAll("\\s+",""))).toString())));
+							setTooltip(tooltip);
+						}
+					}
+				}; // ListCell
+				return cell;
+			}
+		}); // setCellFactory
+		
 	}
 	
 	
