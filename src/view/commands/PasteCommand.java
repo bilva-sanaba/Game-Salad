@@ -1,16 +1,22 @@
+//This entire file is part of my masterpiece
+//Jack Bloomfeld
 package view.commands;
 
 import components.entityComponents.LocationComponent;
 import entity.Entity;
 import view.ViewData;
 
+/**
+ * Defines the paste command
+ * @author Jack
+ *
+ */
 public class PasteCommand implements RightClickEvent{
 
 private ViewData myData;
 private double x;
 private double y;
 private Entity pastedEntity;
-private int savedLevel;
 	
 	public PasteCommand(ViewData data, Entity entity, double xIn, double yIn){
 		myData = data;
@@ -20,15 +26,9 @@ private int savedLevel;
 	
 	@Override
 	public void execute() {
-		savedLevel = myData.getCurrentLevel();
 		pastedEntity = myData.getCopiedEntity().newCopy(myData.getPlacedEntityID());
 		pastedEntity.addComponent(new LocationComponent(x, y));
-		myData.placeEntity(savedLevel, pastedEntity);
+		myData.placeEntity(myData.getCurrentLevel(), pastedEntity);
 		myData.addEvent(this);
-	}
-
-	@Override
-	public void undo() {
-		myData.unplaceEntity(savedLevel, pastedEntity);
 	}
 }

@@ -1,20 +1,34 @@
+//This entire file is part of my masterpiece
+//Jack Bloomfeld
 package view.commands;
 
 import java.util.List;
 
 import entity.Entity;
-import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import view.UtilityFactory;
 import view.ViewData;
 
-public class RightClickMenu {
-	private boolean isShowing;
+/**
+ * This class is part of my masterpiece because it demonstrates a lot of key design principles that I thought were very important
+ * for the design of this project. First of all, it makes use of an interface that designates all of the necessary public methods
+ * so that when it is instantiated inside of the GridView class, the interface can be instantiated so that only the appropriate methods
+ * can be accessed. Additionally, the design of this menu is very extensible because of how reflection is used to determine the
+ * event. The EventFactory class reflects the name of the command from a properties file to create an instance of the appropriate
+ * command, and then the execute() method of that command object is called. This design makes it very easy to add new commands
+ * to the menu by simply adding the name of the command to the properties file, and then creating that command class and defining
+ * the necessary execute() method. The extensibility of this component along with the encapsulation of the execute() methods
+ * of the different commands make it a well designed component.
+ * @author Jack
+ *
+ */
+
+public class RightClickMenu implements IRightClickMenu{
+	private static final String MENU_ERROR = "Error displaying menu";
 	private ViewData myData;
 	private UtilityFactory utilF;
 	private ContextMenu currentMenu;
@@ -33,14 +47,15 @@ public class RightClickMenu {
 		fillMenu(utilF.makeRightClickMenu(myData, e, placex, placey), newMenu);
 		currentMenu = newMenu;
 		currentMenu.show(pane, x, y);
-		isShowing = true;
 	}
 	
 	public void hide(){
 		try{
 			currentMenu.hide();
 		}catch (Exception e){
-
+			Alert error = new Alert(AlertType.ERROR);
+			error.setContentText(MENU_ERROR);
+			error.show();
 		}
 	}
 
@@ -50,6 +65,9 @@ public class RightClickMenu {
 			show = currentMenu.isShowing();
 		} catch (Exception e) {
 			show = false;
+			Alert error = new Alert(AlertType.ERROR);
+			error.setContentText(MENU_ERROR);
+			error.show();
 		}
 		return show;
 	}

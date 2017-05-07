@@ -1,14 +1,19 @@
+//This entire file is part of my masterpiece
+//Jack Bloomfeld
 package view.commands;
 
 import entity.Entity;
-import view.GridView;
 import view.ViewData;
+/**
+ * Defines the cut command for the right click menu
+ * @author Jack
+ *
+ */
 
 public class CutCommand implements RightClickEvent{
 
 private ViewData myData;
 private Entity myEntity;
-private int savedLevel;
 	
 	public CutCommand(ViewData data, Entity entity, double x, double y){
 		myData = data;
@@ -17,16 +22,10 @@ private int savedLevel;
 	
 	@Override
 	public void execute() {
-		savedLevel = myData.getCurrentLevel();
-		myData.unplaceEntity(savedLevel, myEntity);
+		myData.unplaceEntity(myData.getCurrentLevel(), myEntity);
 		myData.setUserGridSelectedEntity(null);
 		myData.copyEntity(myEntity);
 		myData.addEvent(this);
-	}
-
-	@Override
-	public void undo() {
-		myData.placeEntity(savedLevel, myEntity);
 	}
 
 }

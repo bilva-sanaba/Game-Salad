@@ -1,8 +1,14 @@
+//This entire file is part of my masterpiece
+//Jack Bloomfeld
 package view.commands;
 
 import entity.Entity;
-import view.GridView;
 import view.ViewData;
+/**
+ * Defines the copy command for the right click menu
+ * @author Jack
+ *
+ */
 
 public class CopyCommand implements RightClickEvent {
 
@@ -17,12 +23,6 @@ public class CopyCommand implements RightClickEvent {
 	@Override
 	public void execute() {
 		myData.copyEntity(myEntity.newCopy(myData.getPlacedEntityID()));
-	}
-
-	@Override
-	public void undo() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

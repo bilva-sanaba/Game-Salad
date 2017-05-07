@@ -20,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import view.commands.IRightClickMenu;
 import view.commands.RightClickMenu;
 
 
@@ -36,7 +37,7 @@ public class GridView extends GUIComponent {
 
 	private static final int GRID_INTERVAL = 10;
 
-	private RightClickMenu rightClick;
+	private IRightClickMenu rightClick;
 	private ScrollPane myScroll;
 	private Pane myGrid;
 	private ViewData myData;

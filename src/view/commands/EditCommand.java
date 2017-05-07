@@ -1,10 +1,17 @@
+//This entire file is part of my masterpiece
+//Jack Bloomfeld
 package view.commands;
 
 import entity.Entity;
-import view.GridView;
 import view.UtilityFactory;
 import view.ViewData;
 import view.window.EntityConfigurationWindow;
+
+/**
+ * Defines the edit command for the right click menu
+ * @author Jack
+ *
+ */
 
 public class EditCommand implements RightClickEvent {
 
@@ -21,12 +28,6 @@ private Entity myEntity;
 	@Override
 	public void execute() {
 		new EntityConfigurationWindow(util, myData, myEntity);		
-	}
-
-	@Override
-	public void undo() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
