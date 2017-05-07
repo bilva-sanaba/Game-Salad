@@ -22,10 +22,8 @@ public class BlockTopRegularCollision extends AbstractAction implements IAction 
 		LocationComponent lcE1 = (LocationComponent) self.getComponent(ComponentType.Location);
 		lcE0.setY(lcE1.getY()-ipE0.getHeight());
 			VelocityComponent vc = (VelocityComponent) other.getComponent(ComponentType.Velocity);
-//			AccelerationComponent ac = (AccelerationComponent) other.getComponent(ComponentType.Acceleration);
 			if (vc.getY() > 0) {
 				vc.setY(0);
-//				ac.setY(0);
 			}
 			
 		

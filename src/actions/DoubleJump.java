@@ -9,6 +9,7 @@ import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
 
 @TopAction()
+
 public class DoubleJump  extends AbstractAction implements IAction {
 
 	@Override

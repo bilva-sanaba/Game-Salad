@@ -122,6 +122,7 @@ public class EntityActionWindow implements Window {
 		for (int j = 0; j < CollisionComponentType.values().length; j++) {
 			CollisionComponentType currentType = CollisionComponentType.values()[j];
 			List<Class<?>> listofAct = ar.getActionsWithAnnotation(currentType);
+			System.out.println(listofAct.size() + " is the size");
 			// ArrayList<IAction> actions = new ArrayList<IAction>();
 			// try {
 			// populatelist(actions, listofAct);
@@ -135,6 +136,7 @@ public class EntityActionWindow implements Window {
 			}
 			allActions.put(currentType, actions);
 			ListView<String> viewActs = myUtilF.buildListView(actions);
+			System.out.println(viewActs.getChildrenUnmodifiable().size());
 			Tooltip tt = new Tooltip();
 			ImageView iv = new ImageView(new Image(getClass().getClassLoader().getResource("smb.gif").toString()));
 			iv.setFitHeight(250);
@@ -167,6 +169,7 @@ public class EntityActionWindow implements Window {
 	}
 
 	private void populateString(List<String> actions, List<Class<?>> listofAct) throws InputException {
+		System.out.println(listofAct.size() + " size again");
 		for (int i = 0; i < listofAct.size(); i++) {
 			Class<?> nextAction = listofAct.get(i);
 			String act = null;

@@ -1,3 +1,5 @@
+//THIS IS PART OF MY MASTERPIECE
+
 package actions;
 
 import java.io.File;
@@ -14,11 +16,12 @@ import class_annotations.RightAction;
 import class_annotations.TopAction;
 import components.entityComponents.CollisionComponentType;
 
-public class ActionRetriever {
+public class ActionRetriever implements IActionRetriever {
 	
 	public static final String PACKAGE_NAME_WITH_ACTIONS = "actions";
 	public static final String ACTIONS_PREFIX = "actions.";
 	public static final String FILE_SUFFIX = ".class";
+	public static final int CLASS_INDEX = 0;
 
 	public static final CollisionComponentType[] annotationTypes = {CollisionComponentType.Top, CollisionComponentType.Left, CollisionComponentType.Bottom,
 			CollisionComponentType.Right};
@@ -30,13 +33,11 @@ public class ActionRetriever {
 	
 	public ActionRetriever() {
 		annotationMap = new HashMap<CollisionComponentType, Class<?>>();
-		try {
-			for(int i=0;i<annotationTypes.length;i++) {
-				annotationMap.put(annotationTypes[i], annotations[i]);
-			}
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Need to catch the error in line 29 of ActionRetriever.java");
+		for(int i=0;i<annotationTypes.length;i++) {
+			annotationMap.put(annotationTypes[i], annotations[i]);
 		}
+			
+		
 		
 	}
 	
@@ -57,19 +58,23 @@ public class ActionRetriever {
 		List<Class<?>> packageActions = new ArrayList<Class<?>>();
 		URL packageUrl = Thread.currentThread().getContextClassLoader().getResource(PACKAGE_NAME_WITH_ACTIONS);
 		File actionPackage = new File(packageUrl.getFile());
+		addToList(packageActions, actionPackage);
+		return packageActions;
+	}
+
+	private void addToList(List<Class<?>> packageActions, File actionPackage) {
 		for (File classFile : actionPackage.listFiles()) {
-			Class actionClass = null;
+			Class<?> actionClass = null;
 			try {
-				actionClass = Class.forName(ACTIONS_PREFIX + classFile.getName().split(FILE_SUFFIX)[0]);
+				String className = ACTIONS_PREFIX + classFile.getName().split(FILE_SUFFIX)[CLASS_INDEX];
+				actionClass = Class.forName(className);
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Error needs to be handled on line 68 of ActionRetriever.java");
+				continue;
 			}
-			if (actionClass != null && !actionClass.equals(this.getClass())) {
+			if (actionClass != null ) {
 				packageActions.add(actionClass);
 			}
 		}
-		return packageActions;
 	}
 	
 	
