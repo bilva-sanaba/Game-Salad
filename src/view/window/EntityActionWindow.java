@@ -18,66 +18,57 @@ import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.LabelComponent;
 import components.entityComponents.SideCollisionComponent;
-import components.entityComponents.TimeComponent;
 import components.entityComponents.TypeComponent;
 import entity.Entity;
 import exceptions.InputException;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import view.GUIBuilder;
 import view.UtilityFactory;
 
 /**
  * This is a UI where the Users can add Actions to an Entity that they create
  * 
- * @author Jonathan
+ * I split up the original class into two parts a class that makes the stage and
+ * set up miscellaneous FrontEnd of the window and the logic behind actually
+ * getting and making the IActions
+ * 
+ * This class holds the logic behind actually populating the different ListViews
+ * for each side of the Component. It also trys to instantiate the Action or
+ * gets the necessary information from an Input.
+ * 
+ * All the method and variable names are descriptive and and give insight to the
+ * purpose of the code.
+ * 
+ * All instance variables are private and can only be accessed through getters
+ * which encapsulates the information very well. Also the Label and EnityType 
+ * are only available through the EntityActionStage class the information is 
+ * encapsulated and cannot be changed by this class.
+ * 
+ * Also the use of Lambdas is a very effective way to reduce duplicated code.
+ * 
+ * @author Jonathan Rub
  *
  */
-public class EntityActionWindow {
+public class EntityActionWindow implements Window {
 	private UtilityFactory myUtilF;
 	private GridPane root = new GridPane();
 	private Stage myStage = new Stage();
 	private Entity myEntity;
-	private TextField labelType;
-	private ListView<EntityType> EntityTypeList;
 	private Map<CollisionComponentType, List<String>> allActions;
 	private Map<String, Class<?>> allAct = new HashMap<String, Class<?>>();
-	private String[] myDur;
-	private TimeComponent tc = null;
-	private HBox duration;
-	private Integer myDuration;
-	private boolean addDuration = false;
 	private Map<String, String> nametoAct = new HashMap<String, String>();
-
-	
-	private static final String LabelActionLabel = "LabelAction";
-	private static final String EntityTypeLabel = "EntityType";
-	private static final String ChooseLabel = "Choose at Least One: ";
-	private static final String CenterLabel = "Center"; //Center is key for utility factory
-	private static final String BottomRightLabel = "Bottom Right"; //Bottom right is key for utility factory
-	private static final String MakeEntityLabel = "MakeEntity";
-	private static final String TimeForActionLabel = "TimeForAction";
-	private static final String DurationLabel = "Duration";
+	private EntityActionStage myActionStage;
 	private static final String IActionsLabel = "IActions";
 	private static final String ActionLabel = "Action";
 	private static final String AddActionsLabel = "AddActions";
 	private static final String InvalidParametersAlert = "Invalid Parameters";
 	private static final String EMPTY = "";
-	private static final String TRUE = "true";
-	
 
 	/**
 	 * Sets the appropriate fields and opens the window
@@ -92,40 +83,8 @@ public class EntityActionWindow {
 	public EntityActionWindow(UtilityFactory utilF, Entity myE) {
 		myUtilF = utilF;
 		myEntity = myE;
-		myStage.setScene(buildScene());
-		myStage.show();
-	}
-
-	private Scene buildScene() {
-		labelType = myUtilF.buildTextField(LabelActionLabel);
-		EntityTypeList = myUtilF.buildListView(EntityType.values(), EntityTypeLabel);
-		HBox top = myUtilF.buildHBox(new Text(ChooseLabel), labelType, EntityTypeList, addDuration());
-		myUtilF.setOn3x3Grid(myEntity.getImageView(), CenterLabel, root);
-		myUtilF.setOn3x3Grid(myUtilF.buildButton(MakeEntityLabel, e -> myStage.close()), BottomRightLabel, root); //Bottom right is key for utility factory
+		myActionStage = new EntityActionStage(myUtilF, myEntity, myStage, root);
 		buildActionMaker();
-		Scene myScene = new Scene(myUtilF.buildVBox(top, new ScrollPane(root)), UtilityFactory.DEFAULT_STAGE_SIZE,
-				UtilityFactory.DEFAULT_STAGE_SIZE);
-		myScene.getStylesheets().add(GUIBuilder.RESOURCE_PACKAGE + GUIBuilder.STYLESHEET);
-		return myScene;
-	}
-
-	private Node addDuration() {
-		VBox time = new VBox();
-		final ToggleGroup group = myUtilF.buildRadioButtonGroup(TimeForActionLabel, time);
-		group.selectedToggleProperty().addListener((obs, oldval, newval) -> change(obs, oldval, newval));
-		duration = myUtilF.buildSlider(DurationLabel, (obs, oldval, newval) -> changeDuration(obs, oldval, newval));
-		time.getChildren().add(duration);
-		return time;
-	}
-
-	private void changeDuration(ObservableValue<? extends Number> obs, Number oldval, Number newval) {
-		myDuration = Integer.valueOf(newval.intValue());
-	}
-
-	private void change(ObservableValue<? extends Toggle> obs, Toggle oldval, Toggle newval) {
-		myDur = (String[]) newval.getUserData(); // String[] is set in the sUtility Factory and is consistent
-		tc = (TimeComponent) myEntity.getComponent(ComponentType.Time);
-		addDuration = myDur[UtilityFactory.RADIO_INDEX].equalsIgnoreCase(TRUE);
 	}
 
 	private void buildActionMaker() {
@@ -169,6 +128,8 @@ public class EntityActionWindow {
 				.getComponent(ComponentType.CollisionHandler);
 		SideCollisionComponent sidecollision = getSideCollsion(collisionComponentType, sideCollisionActions);
 		IAction action = makeAction(viewActions);
+		TextField labelType = myActionStage.getLabelType();
+		ListView<EntityType> EntityTypeList = myActionStage.getEntityTypeList();
 		boolean validLabel = (!(labelType.getText().toString().equals(labelType.getPromptText().toString())
 				|| labelType.getText().toString().equals(EMPTY)));
 		boolean validType = (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0);
@@ -179,12 +140,13 @@ public class EntityActionWindow {
 			sidecollision.addActionForType(typeComponet, iAction);
 		};
 		checkAndAddAction(validLabel, functiontoAddLabel, new LabelComponent(labelType.getText()), action);
-		checkAndAddAction(validType, functionToAddType, new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()),
-				action);
+		checkAndAddAction(validType, functionToAddType,
+				new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()), action);
 	}
 
 	@SuppressWarnings("rawtypes")
-	private void checkAndAddAction(boolean valid, BiConsumer addActionFunction, IComponent iComponent, IAction iAction) {
+	private void checkAndAddAction(boolean valid, BiConsumer addActionFunction, IComponent iComponent,
+			IAction iAction) {
 		if (valid) {
 			checkDuration(iAction, addActionFunction, iComponent);
 		}
@@ -203,8 +165,8 @@ public class EntityActionWindow {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void checkDuration(IAction action, BiConsumer addActionLambda, IComponent component) {
-		if (addDuration) {
-			tc.addAction(action, myDuration);
+		if (myActionStage.isAddDuration()) {
+			myActionStage.getTimeComponent().addAction(action, myActionStage.getMyDuration());
 		} else {
 			addActionLambda.accept(component, action);
 		}
@@ -231,6 +193,14 @@ public class EntityActionWindow {
 			action = actionMaker.openWindow();
 		}
 		return action;
+	}
+
+	/**
+	 * opens the window
+	 */
+	@Override
+	public void openWindow() {
+		myStage.show();
 	}
 
 }
