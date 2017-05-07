@@ -1,89 +1,42 @@
+// This entire file is part of my masterpiece.
+// Bilva Sanaba
+// This class exhibits good design for several reasons. First it implements the IEngine. The high level game engine has a 
+// list of IEngines that it uses to call updates and by implementing that interface this class can be used.
+// It also relies on the strategy pattern as it can do various functionality given different IInfiniteAlgorithms.
+// Additionally, it extends the Abstract Engine which avoids duplicate code between all IEngines as the AbstractEngine
+// provides protected getters for a factory which can copy Collections to avoid concurrent modification as well as a 
+// protected getter for retrieving the EntityManager which all IEngines would need to hold to make appropriate updates. 
 package engines;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import components.entityComponents.ComponentType;
-import components.entityComponents.LocationComponent;
-import engines.infinite.InfiniteEnum;
+
+import engines.infinite.IInfiniteAlgorithm;
 import entity.IEntity;
 import entity.IEntityManager;
+import exceptions.CopyException;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
 /**
  * Engine which takes the passed in an Infinite Enum to determine how to modify the game in order
  * to run infinite games
+ * @author Bilva
  * @param myEntityManager
- * @param infinite
+ * @param myInfiniteAlgorithm
  */
-
 public class InfiniteEngine extends AbstractEngine implements IEngine{
 	
-	private InfiniteEnum infinite;
-	private double difference;
-	private LocationComponent mainPlayer;
-	private List<IEntity> repeated;
-	public InfiniteEngine(IEntityManager myEntityManager, InfiniteEnum infinite) {
-		super(myEntityManager);
-		this.infinite=infinite;
-		this.repeated = new ArrayList<IEntity>();
-		
-		double maxHeight=0;
-		double minHeight=0;
-		
-		for (IEntity e : myEntityManager.getEntities()){
-			if (e.hasComponent(ComponentType.KeyInput)){
-				mainPlayer = (LocationComponent) e.getComponent(ComponentType.Location);
-			}
-			LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
-			double pos =getDimensionalPosition(lc);
-			maxHeight = Math.max(maxHeight, pos);
-			minHeight = Math.min(minHeight, pos);
-		}
-		
-		difference = maxHeight-minHeight;
-	}
+	private IInfiniteAlgorithm myInfiniteAlgorithm;
 	
-	private double getDimensionalPosition(LocationComponent lc){
-		if (infinite==InfiniteEnum.Horizontal){
-			return lc.getX();
-		}else{
-			if (infinite==InfiniteEnum.Vertical){
-				return lc.getY();
-			}
-		}
-		return 0;
+	public InfiniteEngine(IEntityManager myEntityManager, IInfiniteAlgorithm infinite) {
+		super(myEntityManager);
+		myInfiniteAlgorithm=infinite;
+		myInfiniteAlgorithm.initialize(myEntityManager);
 	}
 	
 	@Override
-	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) {
-		
-		for (IEntity e : getEManager().getEntities().toArray(new IEntity[getEManager().getEntities().size()])){
-			
-			if (infinite==InfiniteEnum.Horizontal){
-				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
-				if (mainPlayer.getX()-lc.getX()>difference/2 && !repeated.contains(e)){
-					repeated.add(e);
-					IEntity newEntity = e.newCopy(getEManager().getEntities().size());
-					newEntity.addComponent(new LocationComponent(lc.getX()+difference,lc.getY()));
-					getEManager().getEntities().add(newEntity);
-					getEManager().changed(newEntity);
-					getEManager().getEntities().remove(e);
-					e.changed(null);
-				}
-				
-			}
-			else if (infinite==InfiniteEnum.Vertical){
-				LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
-				if (mainPlayer.getY()-lc.getY()>difference/2 && !repeated.contains(e)){
-					repeated.add(e);
-					IEntity newEntity = e.newCopy(getEManager().getEntities().size());
-					newEntity.addComponent(new LocationComponent(lc.getX(),lc.getY()+difference));
-					getEManager().getEntities().add(newEntity);
-					getEManager().changed(newEntity);
-				}
-				
-			}
+	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData) throws CopyException {
+		for (IEntity e : getCFactory().copyCollection(getEManager().getEntities())){
+			myInfiniteAlgorithm.update(gameData, getEManager(),e);
 		}
 		return gameData;
 	}

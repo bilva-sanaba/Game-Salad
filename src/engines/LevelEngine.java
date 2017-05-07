@@ -25,7 +25,7 @@ public class LevelEngine extends AbstractEngine{
 		GameDataFactory gdf = new GameDataFactory();
 		GameData gd = gdf.blankEntityData(currentGameData);
 		for(IEntity e: getEManager().getEntities()){
-			if(hasComponent(e, ComponentType.Goal)){
+			if(e.hasComponent(ComponentType.Goal)){
 				GoalComponent gc = (GoalComponent) e.getComponent(ComponentType.Goal);
 				if(gc.checkIfSatisfied() == true){
 					gd.setLevel(gd.getLevel().intValue()+1);

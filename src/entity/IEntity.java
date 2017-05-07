@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import components.IComponent;
 import components.entityComponents.ComponentType;
+import exceptions.CopyException;
 import javafx.beans.Observable;
 
 /**
@@ -59,7 +60,7 @@ public interface IEntity {
 	 * Returns the exact same version of the entity without a pointer
 	 * @return
 	 */
-	public IEntity clone();
+	public IEntity newClone();
 	/**
 	 * For notifying an observer of changes to the entity which must display 
 	 * @param o
@@ -69,6 +70,7 @@ public interface IEntity {
 	 * Returns the same entity without a pointer and a new ID
 	 * @param size
 	 * @return
+	 * @throws CopyException 
 	 */
-	public IEntity newCopy(int size);
+	public IEntity newCopy(int size) throws CopyException;
 }

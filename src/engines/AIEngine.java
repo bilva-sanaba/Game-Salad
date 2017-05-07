@@ -23,7 +23,7 @@ public class AIEngine extends AbstractEngine{
 	public IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData currentGameData) {
 		for(IEntity e: getEManager().getEntities()){
 			
-			if(hasComponent(e, ComponentType.Step)){
+			if(e.hasComponent(ComponentType.Step)){
 				MonsterTypeComponent mtc = (MonsterTypeComponent) e.getComponent(ComponentType.MonsterType);
 				StepComponent sc = (StepComponent) e.getComponent(ComponentType.Step);
 				VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);

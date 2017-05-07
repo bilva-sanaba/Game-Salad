@@ -16,6 +16,7 @@ import entity.EntityManager;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntityManager;
+import exceptions.CopyException;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 
@@ -58,7 +59,10 @@ public class SmartShoot extends AbstractAction implements IAction  {
 			lcnpc.setX(shooterLocation.getX());
 			lcnpc.setY(shooterLocation.getY());
 			
-			occ.setEntity(newE.newCopy(myEM.getEntities().size()));
+			try {
+				occ.setEntity(newE.newCopy(myEM.getEntities().size()));
+			} catch (CopyException e) {
+			}
 			occ.setCreating(true);
 			directShot(shooterLocation,target,vcnpc);
 	

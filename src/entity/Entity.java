@@ -15,6 +15,7 @@ import components.entityComponents.LocationComponent;
 import components.entityComponents.SpriteComponent;
 import components.entityComponents.TypeComponent;
 import entity.restricted.IRestrictedEntity;
+import exceptions.CopyException;
 import javafx.geometry.Dimension2D;
 import javafx.scene.image.ImageView;
 
@@ -35,18 +36,19 @@ public class Entity extends Observable implements IEntity, IRestrictedEntity {
 		myComponentMap = new HashMap<IComponent, ComponentType>();
 	}
 
-	public Entity clone() {
+	public Entity newClone(){
 		Entity temp = new Entity(identifier);
 		for(IComponent a : myComponentMap.keySet()){
-			temp.addComponent(a.newCopy());
+			try {
+				temp.addComponent(a.newCopy());
+			} catch (CopyException e) {
+			}
 		}
 		return temp;
 	}
 	public Entity newCopy(int size){
-		Entity temp = new Entity(identifier+size);
-		for (IComponent a : myComponentMap.keySet()){
-			temp.addComponent(a.newCopy());
-		}
+		Entity temp = newClone();
+		temp.setID(identifier+size);
 		return temp;
 	}
 

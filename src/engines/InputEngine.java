@@ -18,6 +18,7 @@ import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntity;
+import exceptions.CopyException;
 import gamedata.GameDataFactory;
 import gamedata.IRestrictedGameData;
 import javafx.scene.input.KeyCode;
@@ -45,9 +46,13 @@ public class InputEngine extends AbstractEngine {
 			rgd = handleInput(e,keys, rgd);
 		}
 		for (IRestrictedEntity e : newEntities){
-			IEntity myE = e.clone();
-			getEManager().getEntities().add(myE);
-			getEManager().changed(myE);
+			IEntity myE;
+			try {
+				myE = e.newClone();
+				getEManager().getEntities().add(myE);
+				getEManager().changed(myE);
+			} catch (CopyException e1) {
+			}
 		}
 		return rgd;
 	}

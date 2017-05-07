@@ -27,12 +27,12 @@ public class MovementEngine extends AbstractEngine{
 
 	public IRestrictedGameData update(Collection<KeyCode> keys, IRestrictedGameData currentGameData) {
 		for (IEntity e: getEManager().getEntities()) {
-			if(hasComponent(e,ComponentType.KeyInput)){
+			if(e.hasComponent(ComponentType.KeyInput)){
 				ControllableComponent cc = (ControllableComponent) e.getComponent(ComponentType.Controllable);
 				if(keys.isEmpty() || (cc!=null && !(cc.checkControl())))
 				decelerate(e);
 			}
-			if (hasComponent(e,ComponentType.Location)) {
+			if (e.hasComponent(ComponentType.Location)) {
 				updateAllValues(e);
 			}	
 		}
@@ -66,9 +66,9 @@ public class MovementEngine extends AbstractEngine{
 	}
 	
 	private void updateAllValues(IEntity e) {
-		if (hasComponent(e, ComponentType.Velocity)) {
+		if (e.hasComponent(ComponentType.Velocity)) {
 			updateLocation(e);
-			if (hasComponent(e, ComponentType.Acceleration)) {
+			if (e.hasComponent(ComponentType.Acceleration)) {
 				updateMovement(e);
 			}
 		}

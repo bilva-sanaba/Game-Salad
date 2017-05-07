@@ -4,6 +4,7 @@ import java.util.Observer;
 
 import components.entityComponents.ImagePropertiesComponent;
 import entity.Entity;
+import exceptions.CopyException;
 
 import java.util.Observer;
 
@@ -51,6 +52,6 @@ public interface IRestrictedEntity {
 	 * Returns a copy of the object with no pointers
 	 * @return
 	 */
-	public Entity clone();
+	public Entity newClone() throws CopyException;
 
 }

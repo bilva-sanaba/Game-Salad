@@ -3,6 +3,7 @@ package components.entityComponents;
 import components.AComponent;
 import components.IComponent;
 import entity.IEntity;
+import exceptions.CopyException;
 /**
  * Component used to store an entity within an entity for an action
  * to create more entities on screen from the stored one
@@ -50,7 +51,7 @@ public class ObjectCreationComponent extends AComponent implements IComponent{
 		return ComponentType.ObjectCreation;
 	}
 	@Override
-	public IComponent newCopy() {
+	public IComponent newCopy() throws CopyException {
 		ObjectCreationComponent occ= new ObjectCreationComponent(storedEntity.newCopy(0));
 		occ.setCreating(creating);
 		return occ;

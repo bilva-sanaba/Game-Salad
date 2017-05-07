@@ -189,7 +189,7 @@ public class ViewData extends Observable {
 
 	// fix dependencies
 	public Entity pasteEntity(int level, double x, double y) {
-		Entity tempEntity = copiedEntity.clone();
+		Entity tempEntity = copiedEntity.newClone();
 		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
 		tempLocation.setXY(x, y);
 		placeEntity(level, tempEntity);

@@ -30,6 +30,7 @@ import entity.IEntityManager;
 import entity.LevelEntity;
 import entity.SplashData;
 import entity.restricted.IRestrictedEntityManager;
+import exceptions.CopyException;
 import gameEngine_interface.GameEngine;
 
 /**

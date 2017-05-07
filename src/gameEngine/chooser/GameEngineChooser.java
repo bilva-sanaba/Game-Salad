@@ -13,6 +13,7 @@ import engines.InfiniteEngine;
 import engines.InputEngine;
 import engines.MovementEngine;
 import engines.TimeEngine;
+import engines.infinite.IInfiniteAlgorithm;
 import engines.infinite.InfiniteEnum;
 import entity.IEntityManager;
 /**
@@ -24,7 +25,7 @@ import entity.IEntityManager;
 public class GameEngineChooser implements IGameEngineChooser {
 	private List<IEngine> myEngines;
 	
-	public GameEngineChooser(IEntityManager myEntityManager, InfiniteEnum infinite){
+	public GameEngineChooser(IEntityManager myEntityManager, IInfiniteAlgorithm infinite){
 		myEngines = new ArrayList<IEngine>();
 		
 		myEngines.add(new InputEngine(myEntityManager));
@@ -32,10 +33,7 @@ public class GameEngineChooser implements IGameEngineChooser {
 		myEngines.add(new CollisionEngine(myEntityManager));
 		myEngines.add(new TimeEngine(myEntityManager));
 		myEngines.add(new AIEngine(myEntityManager));
-		
-		if (infinite != null && infinite!=InfiniteEnum.None){
-			myEngines.add(new InfiniteEngine(myEntityManager, infinite));
-		}
+		myEngines.add(new InfiniteEngine(myEntityManager, infinite));
 	}
 	@Override
 	public List<IEngine> getEngines() {

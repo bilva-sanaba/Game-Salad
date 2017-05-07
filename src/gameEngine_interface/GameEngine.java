@@ -11,6 +11,7 @@ import engines.IEngine;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntityManager;
+import exceptions.CopyException;
 import gameEngine.chooser.GameEngineChooser;
 import gameEngine.chooser.IGameEngineChooser;
 import gameView.userInput.IRestrictedUserInputData;
@@ -70,7 +71,7 @@ public class GameEngine implements GameEngineInterface {
 		//REAL USE THIS
 		myEntityManagers = c.getIEntityManagers();
 		myEntityManager = myEntityManagers.get(0);
-		myGameEngineChooser = new GameEngineChooser(myEntityManager, c.getInfinite());
+		myGameEngineChooser = new GameEngineChooser(myEntityManager, c.getInfinite().get());
 		myEngines = myGameEngineChooser.getEngines();
 		myEntityLoader = new EntityLoader(myEntityManager);
 		
@@ -99,10 +100,15 @@ public class GameEngine implements GameEngineInterface {
 		resetStoredStates();
 		saveNewEntityManager();
 		for (IEngine s : myEngines){
-			IRestrictedGameData rgd = s.update(keysPressed, (IRestrictedGameData) myGameData);
-			updateLevel(rgd);
-			GameDataFactory gameDataFactory = new GameDataFactory();
-			gameDataFactory.updateGameData(myGameData,rgd);		
+			IRestrictedGameData rgd;
+			try {
+				rgd = s.update(keysPressed, (IRestrictedGameData) myGameData);
+				updateLevel(rgd);
+				GameDataFactory gameDataFactory = new GameDataFactory();
+				gameDataFactory.updateGameData(myGameData,rgd);	
+			} catch (CopyException e) {
+
+			}	
 		}
 	}
 	private void updateLevel(IRestrictedGameData restrictedGameData){

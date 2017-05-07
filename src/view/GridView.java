@@ -142,7 +142,7 @@ public class GridView extends GUIComponent {
 	private void placeImageAtLoc(double row, double col) {
 		Entity userSelectedEntity = myData.getUserSelectedEntity();
 		if (userSelectedEntity != null) {
-			Entity placedEntity = userSelectedEntity.clone();
+			Entity placedEntity = userSelectedEntity.newClone();
 			placedEntity.setID(myData.getPlacedEntityID());
 			double newRow = snapToGrid(row, GRID_INTERVAL);
 			double newCol = snapToGrid(col, GRID_INTERVAL);

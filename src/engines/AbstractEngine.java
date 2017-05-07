@@ -1,49 +1,37 @@
+// This entire file is part of my masterpiece.
+// Bilva Sanaba
+// It highlights good design as it is an abstract class which any class, especially IEngines, can easily extend and use 
+// in order to reduce duplicate if they want access to the stored IEntityManager or CollectionFactory<IEntity>
 package engines;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import components.IComponent;
-import components.entityComponents.ComponentType;
-import entity.Entity;
+import engines.utility.CollectionFactory;
 import entity.IEntity;
 import entity.IEntityManager;
-import entity.restricted.IRestrictedEntity;
-import gamedata.IRestrictedGameData;
-import javafx.scene.input.KeyCode;
 /**
  * Abstract class which all engines can extend in order to get the protected EntityManager
- * 
  * @author Bilva
- *
  */
 
 public abstract class AbstractEngine implements IEngine {
 	private IEntityManager myEManager;
+	private CollectionFactory<IEntity> myCFactory;
 	
 	public AbstractEngine(IEntityManager myEntityManager){
 		myEManager = myEntityManager;
-	}
+		myCFactory = new CollectionFactory<IEntity>();
+	}	
 
 	/**
-	 * Updates its lists of components
-	 * @param keysPressed 
-	 * @return TODO
-	 * 
-	 * @return
-	 */
-	public abstract IRestrictedGameData update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData);
-	
-	/**
-	 * Returns the entity manager
+	 * Returns the stored entity manager
 	 */
 	protected IEntityManager getEManager () {
 		return myEManager;
 	}
-	
-	protected boolean hasComponent(IEntity e, ComponentType c) {
-		return (e.getComponent(c)!=null);
+	/**
+	 * Returns a factory which can be helpful for creating new Collections
+	 * @return CollectionFactory<IEntity> factory for manipulating collections
+	 */
+	protected CollectionFactory<IEntity> getCFactory(){
+		return myCFactory;
 	}
-
 }

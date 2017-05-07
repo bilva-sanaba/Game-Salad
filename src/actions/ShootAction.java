@@ -17,6 +17,7 @@ import entity.EntityManager;
 import entity.IEntity;
 import entity.IEntityManager;
 import entity.restricted.IRestrictedEntityManager;
+import exceptions.CopyException;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 
@@ -51,7 +52,11 @@ public class ShootAction  extends AbstractAction implements IAction {
 			VelocityComponent vcNPC = (VelocityComponent) newE.getComponent(ComponentType.Velocity);
 			
 			
-			occ.setEntity(newE.newCopy(myEM.getEntities().size()));
+				try {
+					occ.setEntity(newE.newCopy(myEM.getEntities().size()));
+				} catch (CopyException e) {
+				}
+		
 			vcNPC.setX(vcNPC.getX());//*orientation);
 			lcnpc.setX(lcplayer.getX());//+(orientation*60));
 			lcnpc.setY(lcplayer.getY());

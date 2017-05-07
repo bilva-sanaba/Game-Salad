@@ -1,25 +1,17 @@
 package engines.infinite;
 
-import java.util.Collection;
-
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
-import javafx.scene.input.KeyCode;
 
 public class Finite implements IInfiniteAlgorithm {
 
 	@Override
-	public String getLabelName() {
-		// TODO Auto-generated method stub
-		return null;
+	public void update(IRestrictedGameData gameData, IEntityManager myEntityManager, IEntity e) {
 	}
 
 	@Override
-	public void update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData, IEntity myEntity,
-			IEntityManager myEntityManager) {
-		// TODO Auto-generated method stub
-
+	public void initialize(IEntityManager myEntityManager) {
 	}
 
 }
