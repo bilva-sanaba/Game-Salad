@@ -20,7 +20,6 @@ public class IActionMakerWindow{
 	private Stage myStage = new Stage();
 	private Class<?> myAction;
 	private List<String> myParams;
-	private int stringConstructNum = 0;
 	private int listConstructNum = 0;
 
 	public IActionMakerWindow(UtilityFactory utilF, Class<?> absAct) {
@@ -46,24 +45,16 @@ public class IActionMakerWindow{
 	
 	private void buildIActionMaker() {
 		Constructor<?>[] actConst = myAction.getConstructors();
-		boolean allString = true;
 		for(int i = 0; i < actConst.length; i++){
 			for (int j = 0; j < actConst[i].getParameterTypes().length; j++){
-				allString = allString && (actConst[i].getParameterTypes()[j].toString().equals("String"));
+				if(actConst[i].getParameterTypes()[j].toString().equals("interface java.util.List")){
+					listConstructNum = j + 1;
+					break;
+				}
 			}
-			if(allString){
-				stringConstructNum = i;
-			}
-			if(actConst[i].getParameterTypes().equals(List.class)){
-				listConstructNum = i;
-			}
-			allString = true;
 		}
-		for(int j = 0; j < actConst[stringConstructNum].getParameterCount(); j++){
-			Input getInput = new Input(myUtilF, myAction.toString().replace(" ", ""));
-			myParams.add(getInput.getInput());
-		}
-		
+		Input getInput = new Input(myUtilF, myAction.toString().replace(" ", ""));
+		myParams  = getInput.getInput();		
 	}
 		
 	public String toString(){
@@ -73,6 +64,7 @@ public class IActionMakerWindow{
 	public IAction openWindow() throws InputException {
 		myStage.showAndWait();
 		try {
+	
 			return (IAction) myAction.getConstructors()[listConstructNum].newInstance(myParams);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException e) {

@@ -97,21 +97,20 @@ public class EntityConfigurationWindow implements Window {
 	}
 	
 	private void makeComponent(String comp) {
-<<<<<<< HEAD
-		System.out.println(comp);
+
+
 		try {
 			ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
 			myCompEdits.put(comp, editor);
 			root.getChildren().add(editor.getInputNode());
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println("Can not edit this component");
 		}
-=======
+
 		ComponentEditor editor = myCompF.getComponentEditor(comp, myUtilF);
 		myCompEdits.put(comp, editor);
 		root.getChildren().add(editor.getInputNode());
->>>>>>> master
+
 	}
 	
 	private void compileEntity(){

@@ -3,6 +3,10 @@ package actions;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.ImagePropertiesComponent;
 import components.entityComponents.LocationComponent;
@@ -14,6 +18,16 @@ import entity.IEntityManager;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
+
+@TopAction()
+@LeftAction()
+@RightAction()
+@BottomAction()
+/**
+ * Action which creates a new entity from a preexisting entities ObjectCreationComponent
+ * @author Bilva
+ *
+ */
 
 public class PowerupCreation   extends AbstractAction implements IAction {
 	@Override

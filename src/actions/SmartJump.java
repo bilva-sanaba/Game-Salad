@@ -1,5 +1,9 @@
 package actions;
 
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.EntityType;
 import components.entityComponents.ImagePropertiesComponent;
@@ -9,6 +13,16 @@ import components.keyExpressions.JumpAction;
 import entity.IEntity;
 import entity.IEntityManager;
 import gamedata.IRestrictedGameData;
+
+@TopAction()
+@LeftAction()
+@RightAction()
+@BottomAction()
+/**
+ * When this action is run, if the entity detects a projectile it will jump
+ * @author Bilva
+ *
+ */
 
 public class SmartJump extends AbstractAction implements IAction {
 

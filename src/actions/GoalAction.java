@@ -17,10 +17,19 @@ import gamedata.IRestrictedGameData;
 @RightAction()
 @TopAction()
 @BottomAction()
+/**
+ * Action which sends the player to a a certain level
+ * @author Bilva
+ *
+ */
+
 public class GoalAction  extends AbstractAction  implements IAction{
 	private int toLevel;
 	public GoalAction(int level){
 		toLevel=level;
+	}
+	public GoalAction(List<String> x) {
+		toLevel = Integer.parseInt(x.get(0));
 	}
 	@Override
 	public IRestrictedGameData executeAction(IEntity other, IEntity self, IEntityManager myEM, IRestrictedGameData currentGameData) {

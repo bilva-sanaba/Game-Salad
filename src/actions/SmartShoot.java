@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import components.entityComponents.ComponentType;
 import components.entityComponents.LocationComponent;
 import components.entityComponents.ObjectCreationComponent;
@@ -14,6 +18,17 @@ import entity.IEntityManager;
 import entity.restricted.IRestrictedEntityManager;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
+
+@TopAction()
+@LeftAction()
+@RightAction()
+@BottomAction()
+/**
+ * AI action which allows a nonCPU character to shoot at the player character
+ * (Should have refactored to simply use the ShootAction after adjusting aim but I did not have time)
+ * @author Bilva
+ *
+ */
 
 public class SmartShoot extends AbstractAction implements IAction  {
 	private List<LocationComponent> targets;

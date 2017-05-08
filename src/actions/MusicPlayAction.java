@@ -6,7 +6,11 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-import alerts.VoogaError;
+import alerts.VoogaAlert;
+import class_annotations.BottomAction;
+import class_annotations.LeftAction;
+import class_annotations.RightAction;
+import class_annotations.TopAction;
 import entity.IEntity;
 import entity.IEntityManager;
 import exceptions.FileInputException;
@@ -15,6 +19,10 @@ import exceptions.NotEnoughInputsException;
 import gamedata.GameData;
 import gamedata.IRestrictedGameData;
 
+@TopAction()
+@LeftAction()
+@RightAction()
+@BottomAction()
 public class MusicPlayAction extends AbstractAction implements IAction {
 	private String playedSong;
 	
@@ -38,7 +46,7 @@ public class MusicPlayAction extends AbstractAction implements IAction {
 		}
 		catch(Exception ex)
 		{
-			new VoogaError("File Not Found", "Music Could Not Be Played");
+			new VoogaAlert("File not found: Music Could Not Be Played");
 		}
 
 		GameData r =getGameDataFactory().blankEntityData(currentGameData);

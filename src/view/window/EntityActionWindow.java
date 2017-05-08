@@ -18,27 +18,39 @@ import components.entityComponents.TypeComponent;
 import entity.Entity;
 import exceptions.InputException;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import javafx.event.EventHandler;
 =======
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 >>>>>>> jjj
+=======
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+>>>>>>> master
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
+>>>>>>> master
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+<<<<<<< HEAD
 =======
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 >>>>>>> jjj
+=======
+>>>>>>> master
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -56,14 +68,13 @@ public class EntityActionWindow implements Window {
 	private TextField labelType;
 	private ListView<EntityType> EntityTypeList;
 	private Map<CollisionComponentType, List<String>> allActions;
-	private Map<String, Class<?>> allAct = new  HashMap<String, Class<?>>();
+	private Map<String, Class<?>> allAct = new HashMap<String, Class<?>>();
 	private String[] myDur;
 	private TimeComponent tc = null;
 	private HBox duration;
 	private Integer myDuration;
 	private boolean addDuration = false;
 	private Map<String, String> nametoAct = new HashMap<String, String>();
-
 
 	public EntityActionWindow(UtilityFactory utilF, ViewData entityData, Entity myE) {
 		myUtilF = utilF;
@@ -91,26 +102,26 @@ public class EntityActionWindow implements Window {
 		VBox time = new VBox();
 		final ToggleGroup group = myUtilF.buildRadioButtonGroup("TimeForAction", time);
 		group.selectedToggleProperty().addListener((obs, oldval, newval) -> change(obs, oldval, newval));
-		duration = myUtilF.buildSlider("Duration",  (obs, oldval, newval) -> changeDuration(obs, oldval, newval));
+		duration = myUtilF.buildSlider("Duration", (obs, oldval, newval) -> changeDuration(obs, oldval, newval));
 		time.getChildren().add(duration);
 		return time;
 	}
 
 	private void changeDuration(ObservableValue<? extends Number> obs, Number oldval, Number newval) {
-		myDuration = Integer.valueOf(newval.intValue()); 
+		myDuration = Integer.valueOf(newval.intValue());
 	}
 
 	private void change(ObservableValue<? extends Toggle> obs, Toggle oldval, Toggle newval) {
 		myDur = (String[]) newval.getUserData();
-		if (myDur[0].equalsIgnoreCase("true")){ // boolean if true
-			if (myEntity.hasComponent(ComponentType.Type)){
+		if (myDur[0].equalsIgnoreCase("true")) { // boolean if true
+			if (myEntity.hasComponent(ComponentType.Type)) {
 				tc = (TimeComponent) myEntity.getComponent(ComponentType.Time);
-			}else{
+			} else {
 				tc = new TimeComponent();
 				myEntity.addComponent(tc);
 			}
-			addDuration  = true;
-		}else{
+			addDuration = true;
+		} else {
 			addDuration = false;
 		}
 	}
@@ -149,26 +160,25 @@ public class EntityActionWindow implements Window {
 			iv.setFitHeight(250);
 			iv.setFitWidth(250);
 			tt.setGraphic(iv);
-			
+
 			viewActs.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-		        @Override
-		        public void handle(MouseEvent event) {
-		        	
+				@Override
+				public void handle(MouseEvent event) {
+
 					tt.setX(100);
 					tt.setY(100);
 					tt.show(myStage);
-		        }
-		    });
+				}
+			});
 			viewActs.setOnMouseExited(new EventHandler<MouseEvent>() {
 
-		        @Override
-		        public void handle(MouseEvent event) {
-		        	
-					
+				@Override
+				public void handle(MouseEvent event) {
+
 					tt.hide();
-		        }
-		    });
+				}
+			});
 			VBox listandbut = myUtilF.buildVBox(new Text(currentType.name() + "Action"), viewActs,
 					myUtilF.buildButton("AddActions", e -> addAction(currentType, viewActs)));
 			setListView(listandbut, j);
@@ -181,8 +191,11 @@ public class EntityActionWindow implements Window {
 			Class<?> nextAction = listofAct.get(i);
 			String act = null;
 			act = nextAction.toString();
+			try{
 			nametoAct.put(myUtilF.getText(act), act);
 			actions.add(myUtilF.getText(act));
+			}catch(Exception e){}
+
 			allAct.put(act, nextAction);
 		}
 	}
@@ -203,26 +216,29 @@ public class EntityActionWindow implements Window {
 			sidecollision = sideCollisionActions.getCollisionComponent(collisionComponentType.toString());
 		}
 		try {
-			System.out.println(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
 			IAction act = getAction(allAct.get(nametoAct.get(viewActs.getSelectionModel().getSelectedItem())));
 			if (!(labelType.getText().toString().equals(labelType.getPromptText().toString())
 					|| labelType.getText().toString().equals(""))) {
 
-				IAction act = getAction(allAct.get(viewActs.getSelectionModel().getSelectedItem()));
-				System.out.println(labelType.getText() + " is the label");
-				sidecollision.addActionForLabel(new LabelComponent(labelType.getText()), act);
+				System.out.println("add label action");
+				if (addDuration) {
+					tc.addAction(act, myDuration);
+				} else {
+					sidecollision.addActionForLabel(new LabelComponent(labelType.getText()), act);
+				}
 			}
 			if (EntityTypeList.getSelectionModel().getSelectedIndex() >= 0) {
 				System.out.println("add type action");
-				if(addDuration){
+				if (addDuration) {
 					tc.addAction(act, myDuration);
-				}else{
-				sidecollision.addActionForType(new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()),
-						act);
+				} else {
+					sidecollision.addActionForType(
+							new TypeComponent(EntityTypeList.getSelectionModel().getSelectedItem()), act);
+
 				}
 			}
 		} catch (InputException e) {
-			//ALERT
+			// ALERT
 		}
 
 	}

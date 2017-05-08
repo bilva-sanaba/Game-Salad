@@ -30,6 +30,10 @@ import view.commands.RightClickMenu;
  */
 public class GridView extends GUIComponent {
 
+
+	private static final int GRIDWIDTH = 900;
+	private static final int GRIDHEIGHT = 720;
+
 	private static final int GRID_INTERVAL = 10;
 
 	private RightClickMenu rightClick;
@@ -109,6 +113,7 @@ public class GridView extends GUIComponent {
 		myGrid.setPrefWidth(myGrid.getWidth() + 60);
 		myCol+= 6;
 		myData.getLevelEntity(myData.getCurrentLevel()).addCol(6);
+
 	}
 
 	private void addVert() {
@@ -132,7 +137,6 @@ public class GridView extends GUIComponent {
 			myData.getLevelEntity(myData.getCurrentLevel()).addRow(-6);
 		}
 	}
-
 
 
 	private void placeImageAtLoc(double row, double col) {

@@ -41,15 +41,34 @@ public interface IEntity {
 	 */
 	public Collection<IComponent> getComponents();
 	/**
+	 * Checks if the specified icomponent exist
+	 * @param ct the component type
+	 * @return boolean if Entity has component
+	 */
+	public boolean hasComponent(ComponentType ct);
+	/**
 	 * Returns the specified icomponent and null if it does not exist
 	 * @param ct the component type
 	 * @return the icomponent or null if it does not exist
 	 */
-	public boolean hasComponent(ComponentType ct);
+
 	public IComponent getComponent(ComponentType ct);
+	@Deprecated 
 	public IComponent getComponent(IComponent ic);
-	
+	/**
+	 * Returns the exact same version of the entity without a pointer
+	 * @return
+	 */
 	public IEntity clone();
+	/**
+	 * For notifying an observer of changes to the entity which must display 
+	 * @param o
+	 */
 	public void changed(Object o);
+	/**
+	 * Returns the same entity without a pointer and a new ID
+	 * @param size
+	 * @return
+	 */
 	public IEntity newCopy(int size);
 }
