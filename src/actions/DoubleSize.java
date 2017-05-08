@@ -19,6 +19,13 @@ import gamedata.IRestrictedGameData;
 @LeftAction()
 @BottomAction()
 @RightAction()
+/**
+ * Doubles the size of an image when action is run (should have taken in a parameter to determine scaling 
+ * size, but was not sure if authoring could handle parameters at time of creation)
+ * @author Bilva
+ *
+ */
+
 public class DoubleSize  extends AbstractAction implements IAction {
 	private boolean c;
 	
@@ -26,13 +33,11 @@ public class DoubleSize  extends AbstractAction implements IAction {
 		c = correction;
 	}
 	
-	public DoubleSize(String correction) {
-		c = correction.toLowerCase().equals("true");
-	}
-	
 	public DoubleSize(List<String> inputs) throws NotEnoughInputsException {
 		inputs = super.validateList(inputs, 1);
+		System.out.println("here!!  " + inputs.get(0).toLowerCase().equals("true"));
 		c = inputs.get(0).toLowerCase().equals("true");
+		
 		
 	}
 	

@@ -37,9 +37,20 @@ public interface IRestrictedEntity {
 	 */
 	public Dimension2D getRestrictedIPComponent();
 	
-	
+	/**
+	 * Adds observer to object
+	 * @param obs
+	 */
 	public void addObserver(Observer obs);
+	/**
+	 * Notifies observer of change
+	 * @param object
+	 */
 	public void changed(Object object);
+	/**
+	 * Returns a copy of the object with no pointers
+	 * @return
+	 */
 	public Entity clone();
 
 }

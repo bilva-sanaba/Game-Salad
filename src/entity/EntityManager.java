@@ -16,6 +16,12 @@ import components.entityComponents.SpriteComponent;
 import entity.restricted.IRestrictedEntity;
 import entity.restricted.IRestrictedEntityManager;
 import gameView.tools.Coordinate;
+/**
+
+ *  Class which stores a list of entities
+ * @author Bilva
+ *
+ */
 
 public class EntityManager extends Observable implements IEntityManager, IRestrictedEntityManager  {
 	private Collection<IEntity> myEntities;

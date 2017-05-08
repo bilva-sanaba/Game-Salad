@@ -9,15 +9,21 @@ import actions.IAction;
 import components.AComponent;
 import components.IComponent;
 import javafx.scene.input.KeyCode;
+/**
+ * Component used by the collision engine to determine if a collision occurs
+ * Sets the size of an image in the game player display
+ * @author Bilva
+ *
+ */
 
 public class KeyInputComponent extends AComponent implements IComponent {
-	private Map<KeyCode, ArrayList<IAction>> inputMap = new HashMap<KeyCode,ArrayList<IAction>>();
+	private Map<KeyCode, List<IAction>> inputMap = new HashMap<KeyCode,List<IAction>>();
 	private Map<KeyCode,String>  groovyMap = new HashMap<KeyCode,String>();
-	public KeyInputComponent(Map<KeyCode,ArrayList<IAction>> keyMap, Map<KeyCode,String> stringMap){
+	public KeyInputComponent(Map<KeyCode,List<IAction>> keyMap, Map<KeyCode,String> stringMap){
 		inputMap=keyMap;
 		groovyMap = stringMap;
 	}
-	public KeyInputComponent(Map<KeyCode,ArrayList<IAction>> keyMap){
+	public KeyInputComponent(Map<KeyCode,List<IAction>> keyMap){
 		inputMap=keyMap;
 	}
 	
@@ -25,7 +31,7 @@ public class KeyInputComponent extends AComponent implements IComponent {
 	}
 	
 	
-	public Map<KeyCode,ArrayList<IAction>> getActionMap(){
+	public Map<KeyCode,List<IAction>> getActionMap(){
 		return inputMap;
 	}
 	public Map<KeyCode,String> getGroovyMap(){

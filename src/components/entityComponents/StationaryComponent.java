@@ -2,7 +2,12 @@ package components.entityComponents;
 
 import components.AComponent;
 import components.IComponent;
-
+/**
+ * Component which can be used by the infinite engine to 
+ * run algorithms differently
+ * @author Bilva
+ *
+ */
 public class StationaryComponent extends AComponent implements IComponent {
 	private boolean station = false;
 
@@ -16,7 +21,7 @@ public class StationaryComponent extends AComponent implements IComponent {
 
 	@Override
 	public ComponentType getComponentType() {
-		return ComponentType.Collidable;
+		return ComponentType.Stationary;
 	}
 
 	public boolean getStationary() {

@@ -3,6 +3,11 @@ package components.entityComponents;
 import components.AbstractStringComponent;
 import components.IComponent;
 import javafx.scene.image.Image;
+/**
+ * Component which holds information for display on what the image of an entity is
+ * @author Bilva
+ *
+ */
 
 public class SpriteComponent extends AbstractStringComponent implements IComponent {
 	private String myPath;

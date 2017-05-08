@@ -68,7 +68,7 @@ public class TabView extends GUIComponent {
 					this.setGraphic(null);
 				} else {
 					SpriteComponent entitySprite = (SpriteComponent) item.getComponent(ComponentType.Sprite);
-					ImageView spriteImage = new ImageView(entitySprite.getSprite());
+					ImageView spriteImage = new ImageView(entitySprite.getSprite()); //entitySprite.getSprite();
 					if (item.getComponent(ComponentType.ImageProperties) != null) {
 						ImagePropertiesComponent imageProp = (ImagePropertiesComponent) item
 								.getComponent(ComponentType.ImageProperties);
@@ -128,9 +128,15 @@ public class TabView extends GUIComponent {
 		}
 	}
 
+	
+/*	public void addPresetEntities() {
+		System.out.println("this is called");
+=======
+
 	public void addPresetEntities() {
+>>>>>>> 4e702528932d9a38ff057e7520d749456b74117c
 		loadPreset(PRESETFILE);
-	}
+	}*/
 
 	@Override
 	public Region buildComponent() {

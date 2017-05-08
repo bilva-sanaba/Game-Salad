@@ -12,6 +12,12 @@ import components.entityComponents.VelocityComponent;
 import entity.IEntity;
 import entity.IEntityManager;
 import javafx.scene.input.KeyCode;
+/**
+ * Movement engine which updates location using various alogrithms that utilize acceleration, velocity, and 
+ * location
+ * @author Belal, Bilva
+ *
+ */
 
 public class MovementEngine extends AbstractEngine{
 	
@@ -34,16 +40,17 @@ public class MovementEngine extends AbstractEngine{
 	}
 	
 	private void decelerate(IEntity e){
-		if (e.hasComponent(ComponentType.Friction) && ((FrictionComponent) e.getComponent(ComponentType.Friction)).getFriction()){
+		if (e.hasComponent(ComponentType.Friction) && !((FrictionComponent) e.getComponent(ComponentType.Friction)).getFriction()){
+		}else{
 		VelocityComponent vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		//DECELERATES
 		if(vc.getX() > 0.5){
-			ac.setX(-0.9);
+			ac.setX(-1);
 		}
 		else if (vc.getX() < - 0.5){
-			ac.setX(0.9);
+			ac.setX(1);
 		}
 		if (Math.abs(vc.getX()) < 0.9){
 			ac.setX(0);
@@ -55,6 +62,7 @@ public class MovementEngine extends AbstractEngine{
 			vc.setX(0);
 		}
 		}
+	
 	}
 	
 	private void updateAllValues(IEntity e) {
