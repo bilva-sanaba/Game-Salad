@@ -1,3 +1,14 @@
+// This entire file is part of my masterpiece
+// BELAL TAHER
+// The reason I added this code to my master piece is very similar to why I added the movement engine.
+// I think the way that it maps key input to an action is extremely good design because it makes 
+// changing key input extremely easy. All you have to do is locate where in the program that action
+// that the key is mapped to and change values in the class. Both this class and my movement engine class
+// display my understanding of flexible code because they both allow users to edit very easily to achieve
+// desired functionality. I didn't refactor this code after the project's deadline either, but I refactored
+// it significantly near the end of the project so that it would be a lot easier to add all the random
+// functionality that we started to pour into the program near the end. 
+
 package engines;
 
 import java.util.ArrayList;
@@ -25,7 +36,7 @@ import javafx.scene.input.KeyCode;
  * Engine which checks which relevant keys are being pressed and then runs their mapped actions 
  * in the key input component. Commented code can also handle mapped strings and run groovy actions but lowers
  * run time
- * @author Bilva
+ * @author Bilva, Belal
  *
  */
 
@@ -69,17 +80,6 @@ public class InputEngine extends AbstractEngine {
 							((IRestrictedEntity) e).changed(e);
 						}
 					}
-//					if (ic.getGroovyMap().containsKey(key)){
-//						try {
-//							vc = (VelocityComponent) e.getComponent(ComponentType.Velocity);
-//							ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
-//							engine.put("vc", vc);
-//							engine.put("ac", ac);
-//							engine.eval(ic.getGroovyMap().get(key));
-//						} catch (ScriptException e1) {
-//							GroovyAlert alert = new GroovyAlert("Invalid Author Key Action", "This program crashed due to an incorrect expression written by the author");
-//						}
-//					}
 				}
 			}
 		}

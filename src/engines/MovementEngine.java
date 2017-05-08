@@ -1,3 +1,21 @@
+// This entire file is part of my masterpiece
+// BELAL TAHER
+// The reason I added this code to my master piece is because I think it serves as a good example
+// for what an engine should aim to look like. Notice how all the values that should be able to be 
+// changed based on user preference are specified through constants at the beginning of the class.
+// As for the methods, the engine follows the convention of a broad public method (in this case update)
+// that will most likely never have to be changed and very specific private helper methods that have
+// compartmentalized functionality (such as updateLocation and updateMovement and decelerate). If someone
+// wanted to fine tweak the way the engine works, they wouldn't have to touch the public method and this
+// is good because that fine tweaking the engine doesn't require changing code anywhere else in the program.
+// If there's one thing this course has taught me, it's that having this aspect to your code is extremely
+// important because it greatly contributes to flexibility. So, essentially, I added this class to my 
+// masterpiece because I feel like it represents good design in the sense that it has very broad public
+// methods, makes use of constants so that fine tuning values is easy, specific and compartmentalized private
+// helper methods that are all very appropriately named which makes locating/understanding/editing them
+// very easy. I didn't actually refactor this code after the project was over, but I refactored this engine
+// a great deal near the end of the project to be designed properly. 
+
 package engines;
 import java.util.*;
 import components.entityComponents.AccelerationComponent;
@@ -19,7 +37,14 @@ import javafx.scene.input.KeyCode;
  *
  */
 
+
 public class MovementEngine extends AbstractEngine{
+	
+	public static final double DECELERATING_RANGE = 0.5;
+	public static final double DECELERATING_CUTOFF = 0.9;
+	public static final int DECELERATE = 1;
+	public static final int STOP = 0;
+	public static final double GRAVITY = 0.9;
 	
 	public MovementEngine(IEntityManager myEntityManager) {
 		super(myEntityManager);
@@ -46,20 +71,15 @@ public class MovementEngine extends AbstractEngine{
 		AccelerationComponent ac = (AccelerationComponent) e.getComponent(ComponentType.Acceleration);
 		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
 		//DECELERATES
-		if(vc.getX() > 0.5){
-			ac.setX(-1);
+		if(vc.getX() > DECELERATING_RANGE){
+			ac.setX(-1 * DECELERATE);
 		}
-		else if (vc.getX() < - 0.5){
-			ac.setX(1);
+		else if (vc.getX() < -1* DECELERATING_RANGE){
+			ac.setX(DECELERATE);
 		}
-		if (Math.abs(vc.getX()) < 0.9){
-			ac.setX(0);
-			vc.setX(0);
-		}
-		
-		if(lc.getX() < 55){
-			ac.setX(0);
-			vc.setX(0);
+		if (Math.abs(vc.getX()) < DECELERATING_CUTOFF){
+			ac.setX(STOP);
+			vc.setX(STOP);
 		}
 		}
 	
@@ -89,7 +109,7 @@ public class MovementEngine extends AbstractEngine{
 		vc.setY(vc.getY() + ac.getY());
 		//GRAVITY
 		if(vc.getY() != 0 && ac.getY() == 0){
-			ac.setY(0.9);
+			ac.setY(GRAVITY);
 		}
 		//TERMINAL VELOCITY
 		if(e.getComponent(ComponentType.TerminalVelocity) != null){
