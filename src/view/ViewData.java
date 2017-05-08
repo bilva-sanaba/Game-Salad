@@ -1,3 +1,17 @@
+// This entire file is part of my masterpiece.
+// Justin Yang
+//
+// ViewData is an observable class that is modified whenever the user
+// performs an action such as placing an entity on the grid or selecting
+// an entity in the entity selection window. Every method that modifies
+// the data such as setCurrentLevel or defineEntity notifies ViewController,
+// which is the observer. ViewData was easily extended to have multiple levels
+// through the use of maps. placedEntityMaps takes the level number as a key
+// and returns the map of placed entities for that level. By performing exchange
+// operations on level maps and modifying a little code in each method, we were
+// able to easily implement multiple levels, which shows that this data class
+// is very flexible.
+
 package view;
 
 import entity.Entity;
@@ -158,7 +172,6 @@ public class ViewData extends Observable {
 		definedEntityMap.put(entity.getID(), entity);
 	}
 
-	// fix dependencies
 	public void placeEntity(int levelNumber, Entity entity) {
 		if (!placedEntityMaps.containsKey(levelNumber)) {
 			placedEntityMaps.put(levelNumber, new HashMap<Integer, Entity>());
@@ -172,7 +185,6 @@ public class ViewData extends Observable {
 		definedEntityMap.remove(entity.getID());
 	}
 
-	// fix dependencies
 	public void unplaceEntity(int level, Entity entity) {
 		placedEntityMaps.get(level).remove(entity.getID());
 		setChanged();
@@ -187,7 +199,6 @@ public class ViewData extends Observable {
 		return copiedEntity;
 	}
 
-	// fix dependencies
 	public Entity pasteEntity(int level, double x, double y) {
 		Entity tempEntity = copiedEntity.clone();
 		LocationComponent tempLocation = (LocationComponent) tempEntity.getComponent(ComponentType.Location);
@@ -200,7 +211,6 @@ public class ViewData extends Observable {
 		return definedEntityMap;
 	}
 
-	// fix dependencies
 	public Map<Integer, Map<Integer, Entity>> getPlacedEntityMap() {
 		return placedEntityMaps;
 	}
@@ -238,7 +248,6 @@ public class ViewData extends Observable {
 		notifyObservers();
 	}
 
-	// fix dependencies
 	public void removePlacedEntities(int level) {
 		placedEntityMaps.get(level).clear();
 		setChanged();

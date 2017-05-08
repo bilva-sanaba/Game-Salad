@@ -22,14 +22,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import view.commands.RightClickMenu;
 
-
 /**
  * @author Jonathan Rub
  * @author Justin Yang
  * @author Jack Bloomfeld
  */
 public class GridView extends GUIComponent {
-
 
 	private static final int GRIDWIDTH = 900;
 	private static final int GRIDHEIGHT = 720;
@@ -74,7 +72,7 @@ public class GridView extends GUIComponent {
 		myBorderPane.setCenter(myScroll);
 	}
 
-	private HBox buildGridMenu(){
+	private HBox buildGridMenu() {
 		Button butt = util.buildButton("addHo", e -> addHo());
 		Button butt2 = util.buildButton("addVert", e -> addVert());
 		Button butt3 = util.buildButton("removeHo", e -> removeHo());
@@ -89,55 +87,53 @@ public class GridView extends GUIComponent {
 		myLevelNumber = i;
 	}
 
-	private Label buildMouseCords(){
+	private Label buildMouseCords() {
 		Label mouseCords = new Label();
 		mouseCords.setText("X:0  Y:0");
 		return mouseCords;
 	}
 
-	private void mousePress(MouseEvent e){
+	private void mousePress(MouseEvent e) {
 		if (!rightClick.isShowing() && e.isSecondaryButtonDown()) {
 			rightClick.show(myGrid, myData.getCopiedEntity(), e.getScreenX(), e.getScreenY(), e.getX(), e.getY());
-		}
-		else if (!e.isSecondaryButtonDown() && !e.isControlDown() && !e.isAltDown()) {
+		} else if (!e.isSecondaryButtonDown() && !e.isControlDown() && !e.isAltDown()) {
 			rightClick.hide();
-			placeImageAtLoc(e.getX() , e.getY());
+			placeImageAtLoc(e.getX(), e.getY());
 		}
 	}
 
-	private void mouseMove(MouseEvent e){
+	private void mouseMove(MouseEvent e) {
 		mouseCords.setText("X:" + e.getX() + "  Y:" + e.getY());
 	}
 
 	private void addHo() {
 		myGrid.setPrefWidth(myGrid.getWidth() + 60);
-		myCol+= 6;
+		myCol += 6;
 		myData.getLevelEntity(myData.getCurrentLevel()).addCol(6);
 
 	}
 
 	private void addVert() {
 		myGrid.setPrefHeight(myGrid.getHeight() + 60);
-		myRow+=6;
+		myRow += 6;
 		myData.getLevelEntity(myData.getCurrentLevel()).addRow(6);
 	}
 
-	private void removeHo(){
-		if(myCol > 66){
+	private void removeHo() {
+		if (myCol > 66) {
 			myGrid.setPrefWidth(myGrid.getWidth() - 60);
-			myCol-=6;
+			myCol -= 6;
 			myData.getLevelEntity(myData.getCurrentLevel()).addCol(-6);
 		}
 	}
 
-	private void removeVert(){
-		if(myRow > 48){
+	private void removeVert() {
+		if (myRow > 48) {
 			myGrid.setPrefHeight(myGrid.getHeight() - 60);
-			myRow-=6;
+			myRow -= 6;
 			myData.getLevelEntity(myData.getCurrentLevel()).addRow(-6);
 		}
 	}
-
 
 	private void placeImageAtLoc(double row, double col) {
 		Entity userSelectedEntity = myData.getUserSelectedEntity();
@@ -160,7 +156,7 @@ public class GridView extends GUIComponent {
 		}
 	}
 
-	private void entityMousePress(MouseEvent e, Entity entity){
+	private void entityMousePress(MouseEvent e, Entity entity) {
 		if (e.isControlDown() || e.isAltDown()) {
 			selectEntity(entity);
 		}
@@ -176,7 +172,7 @@ public class GridView extends GUIComponent {
 		imageHeight = c.getFitHeight();
 	}
 
-	private void entityMouseDrag(MouseEvent e, Entity entity){
+	private void entityMouseDrag(MouseEvent e, Entity entity) {
 		ImageView c = (ImageView) (e.getSource());
 		double offsetX = e.getX() - c.getX() - xClickOffset;
 		double offsetY = e.getY() - c.getY() - yClickOffset;
@@ -190,11 +186,11 @@ public class GridView extends GUIComponent {
 		if (e.isAltDown()) {
 			// Change 10 to static MIN_ENTITY_WIDTH/HEIGHT
 			c.setFitHeight(Math.max(imageHeight + offsetY, 10));
-			c.setFitWidth(Math.max(imageWidth+ offsetX, 10));
+			c.setFitWidth(Math.max(imageWidth + offsetX, 10));
 		}
 	}
 
-	private void entityMouseReleased(MouseEvent e, Entity entity){
+	private void entityMouseReleased(MouseEvent e, Entity entity) {
 		ImageView c = (ImageView) (e.getSource());
 		unselectEntity(entity);
 		entity.addComponent(new ImagePropertiesComponent(c.getFitHeight(), c.getFitWidth()));
@@ -204,8 +200,7 @@ public class GridView extends GUIComponent {
 		double remainder = val % gridInterval;
 		if (remainder > gridInterval / 2) {
 			return val - remainder + gridInterval;
-		}
-		else {
+		} else {
 			return val - remainder;
 		}
 	}
@@ -214,7 +209,8 @@ public class GridView extends GUIComponent {
 		LocationComponent entityLocation = (LocationComponent) entity.getComponent(ComponentType.Location);
 		SpriteComponent entitySprite = (SpriteComponent) entity.getComponent(ComponentType.Sprite);
 		ImageView spriteImage = new ImageView(entitySprite.getSprite());
-		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity.getComponent(ComponentType.ImageProperties);
+		ImagePropertiesComponent imageProperties = (ImagePropertiesComponent) entity
+				.getComponent(ComponentType.ImageProperties);
 		// Modify this part to make children span multiple rows/columns
 		double height = imageProperties.getHeight();
 		double width = imageProperties.getWidth();
@@ -248,8 +244,8 @@ public class GridView extends GUIComponent {
 	}
 
 	public void updateBackground() {
-			String filePath = myData.getLevelEntity(myData.getCurrentLevel()).getBackgroundFilePath();
-			myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
+		String filePath = myData.getLevelEntity(myData.getCurrentLevel()).getBackgroundFilePath();
+		myGrid.setStyle(String.format("-fx-background-image: url(%s);", filePath));
 	}
 
 	private void removeEntity(Entity entity) {

@@ -1,10 +1,21 @@
+// This entire file is part of my masterpiece.
+// Justin Yang
+//
+// ViewController is the class that connects all of the GUI components in the
+// authoring environment. Whenever ViewData is modified, it notifies its observer,
+// ViewController, which then calls the update method in ViewController. This method
+// redraws all of the GUI components based on the data in ViewData. This design is
+// very flexible because if you want to add a new GUI component, you don't have to
+// change the code for any of the other GUI components; you just have to add some
+// methods to ViewData for modifying the data pertaining to that GUI component, and
+// then add a few lines to the update method in ViewController specifying how to handle
+// the changes in data.
+
 package view;
 
-import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-import components.entityComponents.ComponentType;
 import entity.Entity;
 
 public class ViewController implements Observer {
@@ -29,9 +40,7 @@ public class ViewController implements Observer {
 			level.getGrid().drawPlacedEntities();
 			level.getGrid().updateBackground();
 			
-			
 			myTab.clearEntitiesOnTab();
-			//myTab.addPresetEntities();
 			myTab.addDefinedEntities();
 			myTab.selectEntity(currentlySelected);
 		}
@@ -43,7 +52,6 @@ public class ViewController implements Observer {
 			}
 			myTab.setCamera(myData.getLevelEntity(1).getCamera());
 		}
-		
 	}
 
 }
