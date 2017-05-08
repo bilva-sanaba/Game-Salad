@@ -24,7 +24,6 @@ public class BlockRightRegularCollision extends AbstractAction implements IActio
 		OrientationComponent otherOrientation = (OrientationComponent) other.getComponent(ComponentType.Orientation);
 		if (otherOrientation!=null) {
 			otherOrientation.setOrientation(OrientationComponent.RIGHT);
-
 		}
 		return getGameDataFactory().blankEntityData(currentGameData);
 

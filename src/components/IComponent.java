@@ -10,6 +10,11 @@ import components.entityComponents.ComponentType;
  *
  */
 public interface IComponent {
+	/**
+	 * Returns a type from an enum ComponentType. 
+	 * This allows for searching for a certain component by type
+	 * @return
+	 */
 	public ComponentType getComponentType();
 	
 	public IComponent newCopy();

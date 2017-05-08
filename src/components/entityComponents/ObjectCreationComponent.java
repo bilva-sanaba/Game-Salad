@@ -3,7 +3,12 @@ package components.entityComponents;
 import components.AComponent;
 import components.IComponent;
 import entity.IEntity;
-
+/**
+ * Component used to store an entity within an entity for an action
+ * to create more entities on screen from the stored one
+ * @author Bilva
+ *
+ */
 public class ObjectCreationComponent extends AComponent implements IComponent{
 	private IEntity storedEntity;
 	private boolean creating;

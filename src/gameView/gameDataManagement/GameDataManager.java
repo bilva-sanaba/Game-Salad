@@ -52,7 +52,7 @@ public class GameDataManager {
 		myGameData.getLives().addListener(new ChangeListener<Number>(){
 	        public void changed(ObservableValue<? extends Number> o,Number oldVal, 
 	                 Number newVal){
-	        	if (newVal.intValue() == 0) {
+	        	if (newVal.intValue() <= 0) {
 	        		 myView.ending("GAME OVER!");
 	        	}
 	        }

@@ -18,14 +18,14 @@ public class InfiniteHorizontal implements IInfiniteAlgorithm{
 	}
 	@Override
 	public void update(Collection<KeyCode> keysPressed, IRestrictedGameData gameData, IEntity myEntity, IEntityManager myEntityManager) {
-		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
-		if (mainPlayer.getX()-lc.getX()>difference/2 && !repeated.contains(e)){
-			repeated.add(e);
-			IEntity newEntity = e.newCopy(getEManager().getEntities().size());
-			newEntity.addComponent(new LocationComponent(lc.getX()+difference,lc.getY()));
-			getEManager().getEntities().add(newEntity);
-			getEManager().changed(newEntity);
-		}
-		
+//		LocationComponent lc = (LocationComponent) e.getComponent(ComponentType.Location);
+//		if (mainPlayer.getX()-lc.getX()>difference/2 && !repeated.contains(e)){
+//			repeated.add(e);
+//			IEntity newEntity = e.newCopy(getEManager().getEntities().size());
+//			newEntity.addComponent(new LocationComponent(lc.getX()+difference,lc.getY()));
+//			getEManager().getEntities().add(newEntity);
+//			getEManager().changed(newEntity);
+//		}
+//		
 	}
 }
