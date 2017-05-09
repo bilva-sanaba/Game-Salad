@@ -20,7 +20,7 @@ import javafx.scene.input.KeyCode;
  */
 
 public abstract class AbstractEngine implements IEngine {
-	private IEntityManager myEManager;
+	protected IEntityManager myEManager;
 	
 	public AbstractEngine(IEntityManager myEntityManager){
 		myEManager = myEntityManager;
