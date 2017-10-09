@@ -11,11 +11,17 @@ For extensive details on how to use the environment see the project Wiki.
 
 ## Notable Features
 *Ability to create player and non-player entities with attributes based on button clicks, time, and interactions with other entities
+
 *Facebook integration for storing profiles, high scores, and games.
+
 *Infinite and finite platform game creation.
+
 *Pause, play, and rewind (rewind voted best feature for the class)
+
 *Ability to store all game data and load preset entities
+
 *Can keep track of score, level, health, and time
+
 *Much more as documented in the wiki
 
 ## Example Games
