@@ -16,7 +16,7 @@ For extensive details on how to use the environment see the project Wiki.
 
 *Infinite and finite platform game creation.
 
-*Pause, play, and rewind (rewind voted best feature for the class)
+*Pause, play, and rewind 
 
 *Ability to store all game data and load preset entities
 
